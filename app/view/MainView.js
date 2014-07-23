@@ -157,6 +157,7 @@ Ext.define('SignaTouch.view.MainView', {
                     region: 'west',
                     split: true,
                     border: '0 2 0 0',
+                    hidden: true,
                     id: 'Menu',
                     width: 200,
                     bodyBorder: false,
@@ -246,6 +247,7 @@ Ext.define('SignaTouch.view.MainView', {
                                 },
                                 {
                                     xtype: 'container',
+                                    hidden: true,
                                     id: 'Menu2Con',
                                     style: 'background-color:#a5cfff;',
                                     items: [
@@ -2949,6 +2951,7 @@ Ext.define('SignaTouch.view.MainView', {
                         },
                         {
                             xtype: 'panel',
+                            hidden: true,
                             id: 'AddDomainID',
                             style: 'margin: 0 auto;\r\n    text-align: left;\r\n    width: 650px;',
                             bodyPadding: '50 0 50 0',
@@ -10344,7 +10347,6 @@ Ext.define('SignaTouch.view.MainView', {
                     splitterResize: false,
                     frame: true,
                     height: 200,
-                    hidden: true,
                     id: 'panelLoginID',
                     margin: '200 100 200 530',
                     maxWidth: 350,
