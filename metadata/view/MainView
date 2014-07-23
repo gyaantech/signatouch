@@ -326,6 +326,7 @@
                 "collapseDirection": "left",
                 "collapsible": true,
                 "header": false,
+                "hidden": true,
                 "id": "Menu",
                 "itemId": null,
                 "layout|region": "west",
@@ -701,6 +702,7 @@
                             },
                             "codeClass": null,
                             "userConfig": {
+                                "hidden": true,
                                 "id": "Menu2Con",
                                 "margin": null,
                                 "style": [
@@ -6556,6 +6558,7 @@
                         ],
                         "designer|displayName": null,
                         "height": null,
+                        "hidden": true,
                         "id": "AddDomainID",
                         "itemId": null,
                         "maxWidth": null,
@@ -22653,7 +22656,6 @@
                 "designer|displayName": null,
                 "frame": true,
                 "height": 200,
-                "hidden": true,
                 "id": "panelLoginID",
                 "itemId": null,
                 "layout|margins": null,
