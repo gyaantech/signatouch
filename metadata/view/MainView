@@ -4396,6 +4396,7 @@
                         ],
                         "designer|displayName": null,
                         "height": null,
+                        "hidden": true,
                         "id": "AddUserPanelID",
                         "itemId": null,
                         "maxWidth": null,
@@ -6555,8 +6556,7 @@
                         ],
                         "designer|displayName": null,
                         "height": null,
-                        "hidden": true,
-                        "id": "AddCOSID1",
+                        "id": "AddDomainID",
                         "itemId": null,
                         "maxWidth": null,
                         "style": [
@@ -6617,7 +6617,7 @@
                                                 "fieldLabel": "<b>Add New Domain</b>",
                                                 "id": "BreadcrumbAddDomain",
                                                 "labelSeparator": "&nbsp;",
-                                                "labelWidth": 180
+                                                "labelWidth": 150
                                             },
                                             "designerId": "8117a0bf-3769-4900-a335-954e104132d1"
                                         }
@@ -6667,7 +6667,7 @@
                                                         "fieldLabel": "<b>Domain Name&nbsp;<span style=\"color:#D94E37;\">*</span><b/>",
                                                         "fieldStyle": "text-transform:capitalize",
                                                         "id": "txtDomainID",
-                                                        "inputId": "txtDomainName",
+                                                        "inputId": "txtDomainName1",
                                                         "inputType": null,
                                                         "itemId": "",
                                                         "labelWidth": 150,
@@ -6708,7 +6708,7 @@
                                                         "fieldLabel": "<b>Default COS&nbsp;<span style=\"color:#D94E37;\">*</span><b/>",
                                                         "fieldStyle": "text-transform:capitalize",
                                                         "id": "txtDefaultCOSID",
-                                                        "inputId": "txtDefaultCOS",
+                                                        "inputId": "txtDefaultCOS1",
                                                         "inputType": null,
                                                         "itemId": "",
                                                         "labelWidth": 150,
@@ -6748,7 +6748,7 @@
                                                         "fieldLabel": "<b>Description&nbsp;<b/>",
                                                         "fieldStyle": "text-transform:capitalize",
                                                         "id": "txtDescriptionID",
-                                                        "inputId": "txtDescription",
+                                                        "inputId": "txtDescription1",
                                                         "inputType": null,
                                                         "itemId": "",
                                                         "labelWidth": 150,
@@ -6808,7 +6808,7 @@
                                                             "userConfig": {
                                                                 "fn": "onBtnCreate4Click",
                                                                 "implHandler": [
-                                                                    "var form =  Ext.getCmp('DomainForm');  \r",
+                                                                    "var form =  Ext.getCmp('DomainForm');\r",
                                                                     "values = form.getValues();    // Form values\r",
                                                                     "\r",
                                                                     "\r",
@@ -6822,7 +6822,7 @@
                                                                     "        Ext.getCmp('txtDefaultCOSID').reset();\r",
                                                                     "        Ext.getCmp('txtDescriptionID').reset();\r",
                                                                     "    }\r",
-                                                                    "    else if(resp.responseText === 'false'){\r",
+                                                                    "    else if(resp.responseText === '\"duplicate\"'){\r",
                                                                     "        Ext.Msg.alert(\"This Domain already exists\", 'This Domain already exists');\r",
                                                                     "\r",
                                                                     "    }\r",
@@ -6857,7 +6857,7 @@
                                                                     "var username = localStorage.getItem(\"email\");\r",
                                                                     "\r",
                                                                     "// TODO: Login using server-side authentication service\r",
-                                                                    "Ext.Ajax.request({url: \"services/ZimbraDomian.php?action=ZimbraCreateDomain&user=\"+username,\r",
+                                                                    "Ext.Ajax.request({url: \"services/ZimbraDomain.php?action=ZimbraCreateDomain&user=\"+username,\r",
                                                                     "                  method: 'POST',\r",
                                                                     "                  params: values,\r",
                                                                     "                  success: successCallback,\r",
@@ -6867,7 +6867,7 @@
                                                                 "name": "click",
                                                                 "scope": "me"
                                                             },
-                                                            "designerId": "3df4f06f-743e-4425-aa46-bb5a5553b668"
+                                                            "designerId": "b44edfaa-51fd-41c5-b653-6d9a63de40b1"
                                                         }
                                                     ]
                                                 },
@@ -6898,14 +6898,14 @@
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
-                                                                "fn": "onBtnReset2Click1",
+                                                                "fn": "onBtnReset4Click",
                                                                 "implHandler": [
                                                                     "Ext.getCmp('DomainForm').getForm().reset();"
                                                                 ],
                                                                 "name": "click",
                                                                 "scope": "me"
                                                             },
-                                                            "designerId": "2b0f79d8-c9b5-4a35-adb6-ef2898b955fa"
+                                                            "designerId": "ca6c41ca-6420-460d-b194-d9febb72e963"
                                                         }
                                                     ]
                                                 }

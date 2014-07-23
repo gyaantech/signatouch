@@ -1975,6 +1975,7 @@ Ext.define('SignaTouch.view.MainView', {
                         },
                         {
                             xtype: 'panel',
+                            hidden: true,
                             id: 'AddUserPanelID',
                             style: 'margin: 0 auto;\r\n    text-align: left;\r\n    width: 650px;',
                             bodyPadding: '50 0 50 0',
@@ -2948,8 +2949,7 @@ Ext.define('SignaTouch.view.MainView', {
                         },
                         {
                             xtype: 'panel',
-                            hidden: true,
-                            id: 'AddCOSID1',
+                            id: 'AddDomainID',
                             style: 'margin: 0 auto;\r\n    text-align: left;\r\n    width: 650px;',
                             bodyPadding: '50 0 50 0',
                             bodyStyle: 'background-color:#3892d3;',
@@ -2978,7 +2978,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                     id: 'BreadcrumbAddDomain',
                                                     fieldLabel: '<b>Add New Domain</b>',
                                                     labelSeparator: '&nbsp;',
-                                                    labelWidth: 180
+                                                    labelWidth: 150
                                                 }
                                             ]
                                         },
@@ -3004,7 +3004,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             fieldLabel: '<b>Domain Name&nbsp;<span style="color:#D94E37;">*</span><b/>',
                                                             labelWidth: 150,
                                                             fieldStyle: 'text-transform:capitalize',
-                                                            inputId: 'txtDomainName',
+                                                            inputId: 'txtDomainName1',
                                                             allowBlank: false
                                                         }
                                                     ]
@@ -3026,7 +3026,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             fieldLabel: '<b>Default COS&nbsp;<span style="color:#D94E37;">*</span><b/>',
                                                             labelWidth: 150,
                                                             fieldStyle: 'text-transform:capitalize',
-                                                            inputId: 'txtDefaultCOS',
+                                                            inputId: 'txtDefaultCOS1',
                                                             allowBlank: false
                                                         }
                                                     ]
@@ -3048,7 +3048,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             fieldLabel: '<b>Description&nbsp;<b/>',
                                                             labelWidth: 150,
                                                             fieldStyle: 'text-transform:capitalize',
-                                                            inputId: 'txtDescription'
+                                                            inputId: 'txtDescription1'
                                                         }
                                                     ]
                                                 },
@@ -3087,7 +3087,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             text: 'Reset',
                                                             listeners: {
                                                                 click: {
-                                                                    fn: me.onBtnReset2Click1,
+                                                                    fn: me.onBtnReset4Click,
                                                                     scope: me
                                                                 }
                                                             }
@@ -11932,7 +11932,7 @@ Ext.define('SignaTouch.view.MainView', {
                 Ext.getCmp('txtDefaultCOSID').reset();
                 Ext.getCmp('txtDescriptionID').reset();
             }
-            else if(resp.responseText === 'false'){
+            else if(resp.responseText === '"duplicate"'){
                 Ext.Msg.alert("This Domain already exists", 'This Domain already exists');
 
             }
@@ -11967,7 +11967,7 @@ Ext.define('SignaTouch.view.MainView', {
         var username = localStorage.getItem("email");
 
         // TODO: Login using server-side authentication service
-        Ext.Ajax.request({url: "services/ZimbraDomian.php?action=ZimbraCreateDomain&user="+username,
+        Ext.Ajax.request({url: "services/ZimbraDomain.php?action=ZimbraCreateDomain&user="+username,
                           method: 'POST',
                           params: values,
                           success: successCallback,
@@ -11975,7 +11975,7 @@ Ext.define('SignaTouch.view.MainView', {
                          });
     },
 
-    onBtnReset2Click1: function(button, e, eOpts) {
+    onBtnReset4Click: function(button, e, eOpts) {
         Ext.getCmp('DomainForm').getForm().reset();
     },
 
