@@ -1,0 +1,111 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "PhysicianRecord"
+    },
+    "designerId": "26a7c7ba-bdd6-4902-870a-c17a2c1bcf08",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "PhysicianNPI"
+            },
+            "designerId": "7e73888d-5c58-4ef4-b577-158b3d658dd3"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "PhysicianName",
+                "type": "auto"
+            },
+            "designerId": "e86dd9cf-611f-4b57-8a8f-8ed81135231f"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "PhysicianPhone"
+            },
+            "designerId": "89481882-6148-45fd-b3ad-d1a3418dc4df"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "PhysicianCity"
+            },
+            "designerId": "a3e76e16-3cbd-4aa8-b0a1-a39f4e141492"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "PhysicianZip"
+            },
+            "designerId": "46eb0c23-9f50-4548-98ff-13605b009983"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "PhysicianSt"
+            },
+            "designerId": "4ae74862-3218-42f5-a822-e31fe9a859d4"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "PhysicianFirstname"
+            },
+            "designerId": "af6ee4d5-622d-481f-9797-7c64948688f8"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "PhysicianLastname"
+            },
+            "designerId": "e74e32c7-0f53-49e7-b0bc-1f4a2a9f1788"
+        }
+    ]
+}

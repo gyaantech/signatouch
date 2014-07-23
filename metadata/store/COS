@@ -1,0 +1,46 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": true,
+        "batchUpdateMode": "complete",
+        "defaultSortDirection": "DESC",
+        "designer|userClassName": "COS",
+        "model": "COSType",
+        "pageSize": 10,
+        "storeId": "COS"
+    },
+    "designerId": "66b16f45-ba72-482b-85d5-f59684cf2b92",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "url": "services/ZimbraCOS.php?action=FetchAllCOS"
+            },
+            "designerId": "345fb5d7-bfcd-4e67-923f-33dc270eb011",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "root": null
+                    },
+                    "designerId": "9f87e3d7-0533-4e63-8b8b-bd37040e45dc"
+                }
+            ]
+        }
+    ]
+}

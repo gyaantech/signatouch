@@ -1,0 +1,40 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "CertType"
+    },
+    "designerId": "c397048c-9475-4e3c-8818-1bf24f5b368c",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "id",
+                "type": "string"
+            },
+            "designerId": "2b3f979f-1dd5-4fcd-8abf-05db5ff66c7c"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "des",
+                "type": "string"
+            },
+            "designerId": "e31d98da-f8f3-4412-b393-af460ed4836f"
+        }
+    ]
+}

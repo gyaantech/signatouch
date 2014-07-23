@@ -1,0 +1,522 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "NewFacility",
+        "designer|userClassName": "PopupNewFacility",
+        "height": 317,
+        "hidden": false,
+        "hideShadowOnDeactivate": true,
+        "id": "POPUPFacilityID",
+        "itemId": "FacilityItem",
+        "modal": true,
+        "title": "New Facility",
+        "width": 656
+    },
+    "designerId": "d7a1ad77-63bb-481e-b838-3f57d276e726",
+    "cn": [
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": 10,
+                "bodyStyle": [
+                    "background-color:#a5cfff;"
+                ],
+                "height": null,
+                "id": "PopForm2",
+                "layout": "auto",
+                "maxWidth": null,
+                "title": "",
+                "titleAlign": "center",
+                "width": null
+            },
+            "designerId": "5deba09e-d42a-4af4-b5a9-4b4ca7e6b7d5",
+            "cn": [
+                {
+                    "type": "Ext.form.FieldSet",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 258,
+                        "style": [
+                            "border-style:solid;\r",
+                            "border-color:#000000;"
+                        ],
+                        "title": "<font size=\"4\">New Facility</font>",
+                        "width": 629
+                    },
+                    "designerId": "949e28ee-d1f9-43c7-a316-7995e7941dc3",
+                    "cn": [
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "NPI",
+                                "margin": "7 0 7 0"
+                            },
+                            "designerId": "00c0d213-5865-43a8-8ad6-8aedede4ccfa",
+                            "cn": [
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "allowBlank": false,
+                                        "enforceMaxLength": true,
+                                        "fieldLabel": "<b>Facility NPI&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
+                                        "id": "txtPOPFacilityNPIID1",
+                                        "inputId": "txtPOPFacilityNPI",
+                                        "itemId": "",
+                                        "maxLength": 10,
+                                        "name": null,
+                                        "vtype": "alphanum",
+                                        "width": 300
+                                    },
+                                    "designerId": "de3d9792-be98-4628-a821-774c61148005"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "container|align": "stretch",
+                                "itemId": "Name",
+                                "layout": "hbox",
+                                "margin": "7 0 7 0"
+                            },
+                            "designerId": "b04af45a-c1d6-4d4b-a15c-146610700123",
+                            "cn": [
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "allowBlank": false,
+                                        "fieldLabel": "<b>Facility Name&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
+                                        "id": "txtPOPFacilitynameID",
+                                        "inputId": "txtPOPFacilityname",
+                                        "itemId": null,
+                                        "msgTarget": "side",
+                                        "regex": "/^[a-zA-Z ]*$/",
+                                        "regexText": "Please enter valid name.",
+                                        "vtype": null,
+                                        "width": 300
+                                    },
+                                    "designerId": "7117b548-36b6-4e4e-afb5-d9ef43cf0b04"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "Address",
+                                "layout": "vbox",
+                                "margin": "7 0 7 0"
+                            },
+                            "designerId": "a865d431-68b8-49cd-a449-e94694b5e200",
+                            "cn": [
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "allowBlank": false,
+                                        "fieldLabel": "<b>Address1&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
+                                        "id": "txtPOPFacilityAddress1ID",
+                                        "inputId": "txtPOPFacilityAddress1",
+                                        "itemId": "",
+                                        "vtype": null,
+                                        "width": 600
+                                    },
+                                    "designerId": "4c2e0b4d-3958-4eb5-9505-8c139ffe67ff"
+                                },
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": "<b>Address2</b>",
+                                        "id": "txtPOPFacilityAddress2ID",
+                                        "inputId": "txtPOPFacilityAddress2",
+                                        "itemId": null,
+                                        "vtype": null,
+                                        "width": 600
+                                    },
+                                    "designerId": "ace6058f-4aab-4197-a287-7ba6191f2165"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "container|align": "stretch",
+                                "itemId": "Citystatezip",
+                                "layout": "hbox",
+                                "margin": "7 0 7 0"
+                            },
+                            "designerId": "8ed12da6-55d2-43b3-8fcf-4cfd2da0e653",
+                            "cn": [
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "allowBlank": false,
+                                        "fieldLabel": "<b>City&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
+                                        "id": "txtPOPFacilityCityID",
+                                        "inputId": "txtPOPFacilityCity",
+                                        "itemId": "",
+                                        "msgTarget": "side",
+                                        "regex": "/^[a-zA-Z\\s]*$/",
+                                        "regexText": "Please enter valid city",
+                                        "vtype": null,
+                                        "width": 300
+                                    },
+                                    "designerId": "38139d2d-ea02-4694-8d85-361eef583358"
+                                },
+                                {
+                                    "type": "Ext.form.field.ComboBox",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "allowBlank": false,
+                                        "editable": false,
+                                        "fieldLabel": "<b>&nbsp;&nbsp;&nbsp;State&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
+                                        "id": "ddlPOPFacilityStateID",
+                                        "inputId": "ddlPOPFacilityState",
+                                        "itemId": null,
+                                        "layout|flex": 1,
+                                        "maxWidth": 300,
+                                        "regexText": "",
+                                        "store": [
+                                            "['AL',\r",
+                                            "'MT',\r",
+                                            "'AK',\r",
+                                            "'NE',\r",
+                                            "'AZ',\r",
+                                            "'NV',\r",
+                                            "'AR',\r",
+                                            "'NH',\r",
+                                            "'CA',\r",
+                                            "'NJ',\r",
+                                            "'CO',\r",
+                                            "'NM',\r",
+                                            "'CT',\r",
+                                            "'NY',\r",
+                                            "'DE',\r",
+                                            "'NC',\r",
+                                            "'FL',\r",
+                                            "'ND',\r",
+                                            "'GA',\r",
+                                            "'OH',\r",
+                                            "'HI',\r",
+                                            "'OK',\r",
+                                            "'ID',\r",
+                                            "'OR',\r",
+                                            "'IL',\r",
+                                            "'PA',\r",
+                                            "'IN',\r",
+                                            "'RI',\r",
+                                            "'IA',\r",
+                                            "'SC',\r",
+                                            "'KS',\r",
+                                            "'SD',\r",
+                                            "'KY',\r",
+                                            "'TN',\r",
+                                            "'LA',\r",
+                                            "'TX',\r",
+                                            "'ME',\r",
+                                            "'UT',\r",
+                                            "'MD',\r",
+                                            "'VT',\r",
+                                            "'MA',\r",
+                                            "'VA',\r",
+                                            "'MI',\r",
+                                            "'WA',\r",
+                                            "'MN',\r",
+                                            "'WV',\r",
+                                            "'MS',\r",
+                                            "'WI',\r",
+                                            "'MO',\r",
+                                            "'WY']"
+                                        ],
+                                        "value": [
+                                            "['AL']"
+                                        ]
+                                    },
+                                    "configAlternates": {
+                                        "store": "array"
+                                    },
+                                    "designerId": "58f4d53d-c002-45b2-9d05-88177b8588f5"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "container|align": "stretch",
+                                "itemId": "PhoneNo",
+                                "layout": "hbox",
+                                "margin": "7 0 7 0"
+                            },
+                            "designerId": "f5900a69-4b4e-4c53-944d-74ffab77e788",
+                            "cn": [
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "allowBlank": false,
+                                        "enforceMaxLength": true,
+                                        "fieldLabel": "<b>Zip&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
+                                        "id": "txtPOPFacilityzipID",
+                                        "inputId": "txtPOPFacilityzip",
+                                        "itemId": "",
+                                        "labelAlign": null,
+                                        "maxLength": 10,
+                                        "minLength": null,
+                                        "msgTarget": "side",
+                                        "regex": "/(^\\d{5}$)|(^\\d{5}-\\d{4}$)/",
+                                        "regexText": "Invalid Zip Code",
+                                        "width": 300
+                                    },
+                                    "designerId": "f677293b-27bb-4270-b884-8756859ff6ea"
+                                },
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "allowBlank": false,
+                                        "enforceMaxLength": true,
+                                        "fieldLabel": "<b>&nbsp;&nbsp;&nbsp;Phone No.&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
+                                        "id": "txtPOPFacilityPhoneNoID",
+                                        "inputId": "txtPOPFacilityPhoneNo",
+                                        "itemId": null,
+                                        "maxLength": 12,
+                                        "msgTarget": "side",
+                                        "regex": "/^(\\([0-9]{3}\\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/",
+                                        "regexText": "Please enter phone No. in xxx-xxx-xxxx format.",
+                                        "width": 300
+                                    },
+                                    "designerId": "b960f949-46bb-4462-a11f-7a4ee1c5086d"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "container|align": "stretch",
+                                "container|pack": "end",
+                                "itemId": "Button",
+                                "layout": "hbox",
+                                "margin": "7 0 7 0",
+                                "maxWidth": 600
+                            },
+                            "designerId": "cfd94bd1-07a1-418b-a6fd-e073a3b62fe2",
+                            "cn": [
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "btnPOPFacilityCancel",
+                                        "itemId": "btnPOPFacilityCancel",
+                                        "margin": "0 10 0 0",
+                                        "maxWidth": null,
+                                        "padding": "",
+                                        "text": "Reset",
+                                        "width": 92
+                                    },
+                                    "designerId": "ac024f8b-e140-4750-93ab-a3d1f61eb93f",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onBtnPOPFacilityCancelClick",
+                                                "implHandler": [
+                                                    "Ext.getCmp('PopForm2').getForm().reset();"
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "87bb0c5f-5895-4ff4-8303-3569936cb7e3"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "btnPOPFacilitySave",
+                                        "formBind": true,
+                                        "itemId": "btnPOPFacilitySave",
+                                        "margin": "0 0 0 0",
+                                        "maxWidth": null,
+                                        "text": "Save",
+                                        "width": 92
+                                    },
+                                    "designerId": "020115a8-8807-4d68-a8ae-da2249fc09b7",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onBtnPOPFacilitySaveClick",
+                                                "implHandler": [
+                                                    "var form = button.up('form');\r",
+                                                    "           //var header = button.up('headerPanel');\r",
+                                                    "               values = form.getValues();\r",
+                                                    "        var LocalHDRid = localStorage.getItem('SectionAHDRID');\r",
+                                                    "        var successCallbackFacility = function(resp, ops) {\r",
+                                                    "\r",
+                                                    "            Ext.getCmp('FacilityNameText').setValue(Ext.JSON.decode(resp.responseText));\r",
+                                                    "        };\r",
+                                                    "        var failureCallbackFacility = function(resp, ops) {};\r",
+                                                    "        // Success\r",
+                                                    "        var successCallback = function(resp, ops) {\r",
+                                                    "            var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));\r",
+                                                    "            if(responseOjbect.status === true){\r",
+                                                    "\r",
+                                                    "              Ext.Msg.alert(\"Data Inserted\", 'New Facility Created');\r",
+                                                    "\r",
+                                                    "                Ext.getCmp('POPUPFacilityID').hide();\r",
+                                                    "\r",
+                                                    "                // fetch facility name from facility NPI and display in textfield\r",
+                                                    "                Ext.Ajax.request({url: \"services/SectionA.php?action=fetchFacilityName&facility_NPI=\"+responseOjbect.facility_npi,\r",
+                                                    "                method: 'POST',\r",
+                                                    "                params: values,\r",
+                                                    "                success: successCallbackFacility,\r",
+                                                    "                failure: failureCallbackFacility\r",
+                                                    "         });\r",
+                                                    "                            // Code to reset the form values\r",
+                                                    "            form.getForm().getFields().each(function(f){\r",
+                                                    "            f.originalValue=undefined;\r",
+                                                    "            });\r",
+                                                    "            form.getForm().reset();\r",
+                                                    "           }\r",
+                                                    "           else if(responseOjbect.status === 'false'){\r",
+                                                    "\r",
+                                                    "              Ext.Msg.alert(\"Duplicate Entry\", 'Facility NPI Already Exists');\r",
+                                                    "\r",
+                                                    "           }\r",
+                                                    "            else{\r",
+                                                    "\r",
+                                                    "            Ext.Msg.alert(\"Insert Failure\", 'Data cannot be added');\r",
+                                                    "            }\r",
+                                                    "\r",
+                                                    "        };\r",
+                                                    "\r",
+                                                    "        // Failure\r",
+                                                    "        var failureCallback = function(resp, ops) {\r",
+                                                    "\r",
+                                                    "            // Show login failure error\r",
+                                                    "            //Ext.Msg.alert(\"Login Failure\", 'Incorrect Username or Password');\r",
+                                                    "\r",
+                                                    "        };\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "        // TODO: Login using server-side authentication service\r",
+                                                    "        Ext.Ajax.request({url: \"services/Maintainence.php?action=insertFacility&HdrID=\"+LocalHDRid,\r",
+                                                    "                method: 'POST',\r",
+                                                    "                params: values,\r",
+                                                    "                success: successCallback,\r",
+                                                    "                failure: failureCallback\r",
+                                                    "         });"
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "fc1094f6-3bd1-499b-930a-86da15f30f3e"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

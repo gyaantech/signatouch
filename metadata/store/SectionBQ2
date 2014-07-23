@@ -1,0 +1,19 @@
+{
+    "type": "arraystore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "batchUpdateMode": "complete",
+        "data": [
+            "[{\"id\":'1',\"des\":\"1 - With patient in a chronic stable state as an outpatient\"},{\"id\":'2',\"des\":\"2 - Within 2 days prior to discharge from an inpatient facility to home\"},{\"id\":'3',\"des\":\"3 - under other circumstances\"}]\r",
+            ""
+        ],
+        "designer|userClassName": "SectionBQ2",
+        "model": "SectionBQ2",
+        "storeId": "SectionBQ2"
+    },
+    "designerId": "729cea3d-e592-465a-aec4-260e33192381"
+}

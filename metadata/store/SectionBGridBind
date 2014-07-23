@@ -1,0 +1,45 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": true,
+        "defaultSortDirection": "DESC",
+        "designer|userClassName": "SectionBGridBind",
+        "model": "SectionBGridBind",
+        "pageSize": 10,
+        "storeId": "SectionBGridBind"
+    },
+    "designerId": "6c9d1e22-291c-4f35-a9c7-3ab217856f42",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "url": "services/SectionB.php?action=get_SectionBGridBind"
+            },
+            "designerId": "08e74c56-df3c-4092-babe-6a47dd7817f4",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "root": "data"
+                    },
+                    "designerId": "16015752-b7ad-4b8b-9bf2-4fb6ff2d8c30"
+                }
+            ]
+        }
+    ]
+}

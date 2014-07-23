@@ -1,0 +1,18 @@
+{
+    "type": "arraystore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "batchUpdateMode": "complete",
+        "data": [
+            "[{\"id\":\"Y\",\"des\":\"Y - Yes\"},{\"id\":\"N\",\"des\":\"N - No\"},{\"id\":\"D\",\"des\":\"D - Not Portable O2\"}]"
+        ],
+        "designer|userClassName": "SectionBQ4",
+        "model": "SectionBQ4",
+        "storeId": "SectionBQ4"
+    },
+    "designerId": "7a1fca42-6e21-4153-8555-4ec97d632a7c"
+}

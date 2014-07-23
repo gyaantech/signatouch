@@ -1,0 +1,89 @@
+{
+    "name": "SignaTouch",
+    "settings": {
+        "cmd": {
+            "license": "commercial",
+            "cmdVersion": "4.0.4.84",
+            "frameworkVersion": "4.2.1.883"
+        },
+        "canvasControls": {
+            "viewportSize": {
+                "name": "Auto Expand",
+                "builtIn": true,
+                "height": null,
+                "width": null
+            }
+        },
+        "urlPrefix": "http://localhost/SignaTouch",
+        "exportPath": "C:/xampp/htdocs/publish(19-5-2014)/",
+        "spacesToIndent": 4,
+        "sdkPath": "",
+        "lineEnding": "CRLF",
+        "genTimestamps": false,
+        "cacheBust": false,
+        "buildShouldOverwriteIndex": true,
+        "generateArchitectVersion": true,
+        "lastBuildSelection": {
+            "value": "webBuild",
+            "display": "Build web app"
+        },
+        "displayfield-ExtBox1-1282-inputEl": "Not Installed",
+        "displayfield-ExtBox1-1332-inputEl": "Not Installed",
+        "displayfield-ExtBox1-1387-inputEl": "Not Installed",
+        "displayfield-ExtBox1-1437-inputEl": "Not Installed",
+        "displayfield-ExtBox1-1487-inputEl": "Not Installed",
+        "displayfield-ExtBox1-1537-inputEl": "Not Installed",
+        "displayfield-ExtBox1-1587-inputEl": "Not Installed"
+    },
+    "xdsVersion": "3.0.4",
+    "xdsBuild": 1386,
+    "schemaVersion": 1,
+    "upgradeVersion": 300000000004,
+    "framework": "ext42",
+    "viewOrderMap": {
+        "view": [
+            "a705110d-4ce3-4545-a748-7f920677364e",
+            "da43420e-3120-458f-9a6a-f65332f0d93f",
+            "d7a1ad77-63bb-481e-b838-3f57d276e726",
+            "267186a9-eded-4791-87ab-e7e19d818143"
+        ],
+        "store": [
+            "972d8ca1-271c-46fd-b3de-07c932d9d46d",
+            "5f3bf212-600c-4a7b-bf6a-6dddb1380a9b",
+            "426ebeae-9385-49a9-aab8-2ee034600ae5",
+            "7a1fca42-6e21-4153-8555-4ec97d632a7c",
+            "f350acc1-57c3-4c2f-a930-542c2367e615",
+            "729cea3d-e592-465a-aec4-260e33192381",
+            "87db65b7-7644-465d-81b3-6a655c4751da",
+            "66b16f45-ba72-482b-85d5-f59684cf2b92",
+            "6c9d1e22-291c-4f35-a9c7-3ab217856f42",
+            "3b854fb6-7b37-4a28-9f95-4b290bbd2797",
+            "c9e0aa13-b9a2-45fd-b7f7-2f2e3b05d2f3",
+            "fb75c62c-6e3d-40c4-bce5-5b53f834dd70"
+        ],
+        "controller": [
+            "b5d93eec-aeee-4106-82cd-a40b79a24fdf"
+        ],
+        "model": [
+            "89301c4f-a771-427c-9140-abba87bfb095",
+            "c397048c-9475-4e3c-8818-1bf24f5b368c",
+            "8d93385d-a30d-4b63-9f6b-bcb635e048ac",
+            "638b0bd3-e927-4f55-be38-96d43bb080e0",
+            "a3e97c25-311f-49d2-bcbe-dfaad84f44ec",
+            "2f7ef686-cd92-4632-9339-ed4e3f947668",
+            "ac50b34a-3c34-4143-bffb-471664b32b22",
+            "0a5a05b2-96ad-4c61-afb3-c7bd75d03c89",
+            "26a7c7ba-bdd6-4902-870a-c17a2c1bcf08",
+            "849aa792-c52c-4524-a4b8-150a33adf87b",
+            "bc6d4c67-e074-40df-a033-a1fb910eab15",
+            "fb01edb3-b54b-4fce-84bf-86a64b19fc4d"
+        ],
+        "resource": [
+            "78dfd286-f2d0-4843-9e8f-c71156230a59",
+            "67597231-ef68-4113-89c8-7959f8897dce"
+        ],
+        "app": [
+            "application"
+        ]
+    }
+}

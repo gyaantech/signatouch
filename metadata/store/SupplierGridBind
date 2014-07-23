@@ -1,0 +1,45 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": true,
+        "defaultSortDirection": "DESC",
+        "designer|userClassName": "SupplierGridBind",
+        "model": "SupplierRecord",
+        "pageSize": 20,
+        "storeId": "SupplierGridBind"
+    },
+    "designerId": "fb75c62c-6e3d-40c4-bce5-5b53f834dd70",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "url": "services/Maintainence.php?action=get_SupplierGridBind"
+            },
+            "designerId": "733b10f0-245d-4e88-b49a-2eaef69cc22a",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "root": "data"
+                    },
+                    "designerId": "d50113e2-12a4-4982-8e78-aa26eb572018"
+                }
+            ]
+        }
+    ]
+}

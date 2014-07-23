@@ -1,0 +1,86 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "SupplierRecord"
+    },
+    "designerId": "fb01edb3-b54b-4fce-84bf-86a64b19fc4d",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "SupplierNPI"
+            },
+            "designerId": "6c568d9d-5bed-4ec9-9f4a-44d90d77de97"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "SupplierName"
+            },
+            "designerId": "83077557-cbbd-44a5-85f1-7037ba82683b"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "SupplierCity"
+            },
+            "designerId": "ae5bb0f2-bc21-4099-9c6a-9fb7779c6176"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "SupplierSt"
+            },
+            "designerId": "2179dba5-0265-45e0-baae-f2748fb0ef05"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "SupplierZip"
+            },
+            "designerId": "f8e8cd98-23d2-4034-b3f5-fd4f79594eba"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "SupplierPhone"
+            },
+            "designerId": "b58cd001-6e87-44d9-a73a-750a6e7d2681"
+        }
+    ]
+}

@@ -1,0 +1,45 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": true,
+        "defaultSortDirection": "DESC",
+        "designer|userClassName": "PatientGridBind",
+        "model": "PatientRecord",
+        "pageSize": 20,
+        "storeId": "PatientGridBind"
+    },
+    "designerId": "c9e0aa13-b9a2-45fd-b7f7-2f2e3b05d2f3",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "url": "services/Maintainence.php?action=get_PatientGridBind"
+            },
+            "designerId": "a51f8621-2e00-472b-be3c-43f3b731c7bb",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "root": "data"
+                    },
+                    "designerId": "ae9ebc8e-fd8f-4011-ade1-f48d4f53bc31"
+                }
+            ]
+        }
+    ]
+}

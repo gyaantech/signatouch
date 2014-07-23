@@ -1,0 +1,45 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": true,
+        "defaultSortDirection": "DESC",
+        "designer|userClassName": "PhysicianGridBind",
+        "model": "PhysicianRecord",
+        "pageSize": 20,
+        "storeId": "PhysicianGridBind"
+    },
+    "designerId": "3b854fb6-7b37-4a28-9f95-4b290bbd2797",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "url": "services/Maintainence.php?action=get_physicianGridBind"
+            },
+            "designerId": "1b913297-3596-4993-a433-ed1b0049cda1",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "root": "data"
+                    },
+                    "designerId": "d8d4bb18-981d-4dc1-844b-b292f2fb66e5"
+                }
+            ]
+        }
+    ]
+}

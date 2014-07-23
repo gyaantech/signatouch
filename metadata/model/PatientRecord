@@ -1,0 +1,111 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "PatientRecord"
+    },
+    "designerId": "849aa792-c52c-4524-a4b8-150a33adf87b",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "PatientHICN"
+            },
+            "designerId": "3220878a-1d37-4a7d-bc7a-72bbe0ac570d"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "PatientName",
+                "type": "auto"
+            },
+            "designerId": "727a3717-29aa-47e4-bd06-02cd8bb3180a"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "PatientPhone"
+            },
+            "designerId": "09090fbe-44d4-44bf-819a-71a1bff81874"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "PatientCity"
+            },
+            "designerId": "aa7f8142-233e-4620-b91c-443446884329"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "PatientZip"
+            },
+            "designerId": "84b5e402-bdff-4c57-857c-423982579e34"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "PatientSt"
+            },
+            "designerId": "d922dd98-908c-433e-8c5f-cea9465ce3b8"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "PatientFname"
+            },
+            "designerId": "d777bb41-51ec-4edf-86be-225ae22f58b3"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "PatientLname"
+            },
+            "designerId": "0d0692b8-6078-4639-90b5-5df00c2c0bfb"
+        }
+    ]
+}

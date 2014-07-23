@@ -1,0 +1,19 @@
+{
+    "type": "arraystore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "batchUpdateMode": "complete",
+        "data": [
+            "[{\"id\":\"Y\",\"des\":\"Y - Yes\"},{\"id\":\"N\",\"des\":\"N - No\"}]\r",
+            ""
+        ],
+        "designer|userClassName": "SectionBQYesNo",
+        "model": "SectionBQYesNo",
+        "storeId": "SectionBQYesNo"
+    },
+    "designerId": "426ebeae-9385-49a9-aab8-2ee034600ae5"
+}

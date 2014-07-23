@@ -1,0 +1,19 @@
+{
+    "type": "arraystore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "batchUpdateMode": "complete",
+        "data": [
+            "[{\"id\":\"All\",\"des\":\"All\"},{\"id\":\"I\",\"des\":\"Initial\"},{\"id\":\"V\",\"des\":\"Revision\"},{\"id\":\"C\",\"des\":\"Recert\"}]\r",
+            ""
+        ],
+        "designer|userClassName": "CertType",
+        "model": "CertType",
+        "storeId": "CertType"
+    },
+    "designerId": "5f3bf212-600c-4a7b-bf6a-6dddb1380a9b"
+}

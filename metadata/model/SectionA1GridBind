@@ -1,0 +1,135 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "SectionA1GridBind"
+    },
+    "designerId": "0a5a05b2-96ad-4c61-afb3-c7bd75d03c89",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "PatientName"
+            },
+            "designerId": "db8dda7c-20bd-4a79-a34f-38815799f923"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "PatientHICN",
+                "type": "auto"
+            },
+            "designerId": "ba7832b1-c3c2-4a9c-bfaf-01f83eafc729"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "CertType"
+            },
+            "designerId": "268c7be1-6e60-4a0a-b11a-1daf244103ff"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "CertDate"
+            },
+            "designerId": "2e9e4bfe-4c31-401a-88a0-ed4c7bfc2eda"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "MedicalID"
+            },
+            "designerId": "79febd5c-a592-428b-a280-c0afb18e02fd"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "StausFLG"
+            },
+            "designerId": "48276c2c-acc5-4233-b217-7476c812e429"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "link"
+            },
+            "designerId": "2348349f-8c16-4050-9f10-6f7242af93ce"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "HdrID"
+            },
+            "designerId": "42342716-4a7e-4a8c-aca0-34653fad1782"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "PatientLname"
+            },
+            "designerId": "d27358bf-5c39-493b-8ce1-c055eb2b03fc"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "Send"
+            },
+            "designerId": "36705832-a073-4679-a531-a16c736b3453"
+        }
+    ]
+}

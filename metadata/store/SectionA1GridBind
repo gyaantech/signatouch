@@ -1,0 +1,46 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": true,
+        "batchUpdateMode": "complete",
+        "defaultSortDirection": "DESC",
+        "designer|userClassName": "SectionA1GridBind",
+        "model": "SectionA1GridBind",
+        "pageSize": 10,
+        "storeId": "SectionA1GridBind"
+    },
+    "designerId": "87db65b7-7644-465d-81b3-6a655c4751da",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "url": "services/SectionA.php?action=get_SectionA1GridBind"
+            },
+            "designerId": "455149f3-2b65-4c82-8543-6bae0dd6f6a3",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "root": "data"
+                    },
+                    "designerId": "ba306f48-5abf-4150-a1ed-a069f3c3ead9"
+                }
+            ]
+        }
+    ]
+}

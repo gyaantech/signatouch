@@ -1,0 +1,49 @@
+{
+    "type": "Ext.app.Application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "controllers": [
+            "login"
+        ],
+        "models": [
+            "Gender",
+            "CertType",
+            "SectionBQ4",
+            "SectionBQYesNo",
+            "SectionBQ2",
+            "SectionBQ3",
+            "SectionA1GridBind",
+            "SectionBGridBind",
+            "PhysicianRecord",
+            "SupplierRecord",
+            "PatientRecord",
+            "COSType"
+        ],
+        "name": "SignaTouch",
+        "stores": [
+            "MyArrayStore",
+            "CertType",
+            "SectionBQ2",
+            "SectionBQ3",
+            "SectionBQ4",
+            "SectionBQYesNo",
+            "SectionA1GridBind",
+            "SectionBGridBind",
+            "PhysicianGridBind",
+            "SupplierGridBind",
+            "PatientGridBind",
+            "COS"
+        ],
+        "views": [
+            "MainView",
+            "PopupHICN",
+            "Help",
+            "PopupNewFacility"
+        ]
+    },
+    "designerId": "application"
+}

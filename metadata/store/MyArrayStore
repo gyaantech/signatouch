@@ -1,0 +1,19 @@
+{
+    "type": "arraystore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "batchUpdateMode": "complete",
+        "data": [
+            "[{\"id\":\"F\",\"des\":\"Female\"},{\"id\":\"M\",\"des\":\"Male\"}]\r",
+            ""
+        ],
+        "designer|userClassName": "MyArrayStore",
+        "model": "Gender",
+        "storeId": "MyArrayStore"
+    },
+    "designerId": "972d8ca1-271c-46fd-b3de-07c932d9d46d"
+}

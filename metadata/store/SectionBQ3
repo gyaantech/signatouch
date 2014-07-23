@@ -1,0 +1,19 @@
+{
+    "type": "arraystore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "batchUpdateMode": "complete",
+        "data": [
+            "[{\"id\":\"1\",\"des\":\"1 - At Rest\"},{\"id\":\"2\",\"des\":\"2 - During Exercise\"},{\"id\":\"3\",\"des\":\"3 - During Sleep\"}]\r",
+            ""
+        ],
+        "designer|userClassName": "SectionBQ3",
+        "model": "SectionBQ3",
+        "storeId": "SectionBQ3"
+    },
+    "designerId": "f350acc1-57c3-4c2f-a930-542c2367e615"
+}

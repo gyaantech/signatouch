@@ -1,0 +1,45 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "bodyStyle": [
+            "background-color:#a5cfff;"
+        ],
+        "designer|userAlias": "HelpWindow",
+        "designer|userClassName": "Help",
+        "height": 280,
+        "hidden": false,
+        "hideShadowOnDeactivate": true,
+        "id": "mywindow",
+        "itemId": "",
+        "modal": true,
+        "title": "About CMS-484",
+        "width": 705
+    },
+    "designerId": "267186a9-eded-4791-87ab-e7e19d818143",
+    "cn": [
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "html": [
+                    "<ul style=\"list-style:none;text-align: center;padding-top: 25px;/* border: 1px solid red; */padding-right: 45px;\">\r",
+                    "<li><img src=\"resources/images/SignaTouch.png\"></li>\r",
+                    "<li><font size=\"5\"><b>CMS-484 OXYGEN Certificate of Medical Necessity<b></b></b></font></li><b><b>\r",
+                    "<li><b>Version : </b> 1.4</li>\r",
+                    "<li><b>© 2014 SignaTouch Corporation - All Rights Reserved</b></li>\r",
+                    "</b></b></ul>"
+                ]
+            },
+            "designerId": "1b17fdb0-7748-4a47-8af3-4f960a3a00f5"
+        }
+    ]
+}
