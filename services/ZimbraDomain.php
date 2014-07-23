@@ -23,7 +23,7 @@ class CreateDomain {
     }
 
   
-   //parameters for create COS
+   //parameters to create domain
   public function set_Domain_parameters() {
     $GetSet = new GetSet();
     $GetSet->setDomainName($_POST['txtDomainName1']);
@@ -40,7 +40,7 @@ class CreateDomain {
   }
   
 
-// CREATE COS
+// CREATE Domain
  public function ZimbraCreateDomain()
 {        
         $username = isset($_GET['user'])?$_GET['user']:'';
