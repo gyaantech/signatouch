@@ -58,7 +58,7 @@ class CreateDomain {
         
         $connect = new Zimbra();
         $parameters = $connect->ZimbraConnect();
-        
+        $cos_detail = $connect->ZimbraGetCOSID($DefaultCOS);
         
          $SOAPMessage = '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
                                 <soap:Header>
@@ -70,7 +70,7 @@ class CreateDomain {
                                 <soap:Body>
                                     <CreateDomainRequest xmlns="urn:zimbraAdmin">
                                         <name>'.$Domain_Name.'</name>
-                                        <a n="description">'.$DefaultCOS.'</a>
+                                        <a n="zimbraDomainDefaultCOSId">'.$cos_detail.'</a>
                                         <a n="zimbraNotes">'.$Description.'</a>
                                     </CreateDomainRequest>
                                 </soap:Body>
@@ -78,72 +78,25 @@ class CreateDomain {
        
         curl_setopt($CurlHandle, CURLOPT_POSTFIELDS, $SOAPMessage);
         $ZimbraSOAPResponse = curl_exec($CurlHandle);
+        //print("Raw Zimbra SOAP Response:<BR>" . $ZimbraSOAPResponse . "<BR><BR>\n");
         curl_close($CurlHandle);
         $a='<Code>'; 
         $duplicate = strstr($ZimbraSOAPResponse, $a);
-        //echo $ZimbraSOAPResponse;
         if(!($ZimbraSOAPResponse))
         {
                 print("ERROR: curl_exec - (" . curl_errno($CurlHandle) . ") " . curl_error($CurlHandle));
                 return(FALSE); exit();
+        }
+        elseif(strpos($duplicate,'DOMAIN_EXISTS') !== false){
+          return 'duplicate';
+        }
+        else{
+          return TRUE;
         }
           
-               print("Raw Zimbra SOAP Response:<BR>" . $ZimbraSOAPResponse . "<BR><BR>\n");
+              // print("Raw Zimbra SOAP Response:<BR>" . $ZimbraSOAPResponse . "<BR><BR>\n");
         
     }
-/*Fetch COS Data*/
-   public function FetchAllCOS() {
-        $CurlHandle = curl_init();
-        curl_setopt($CurlHandle, CURLOPT_URL,"$this->ServerAddress:7071/service/admin/soap");
-        curl_setopt($CurlHandle, CURLOPT_POST, TRUE);
-        curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
-        curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
-        
-        $connect = new Zimbra();
-        $parameters = $connect->ZimbraConnect();
-        
-        
-         $SOAPMessage = '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
-                                <soap:Header>
-                                        <context xmlns="urn:zimbra">
-                                                <authToken>' . $parameters['authToken'] . '</authToken>
-                                                <sessionId id="' . $parameters['sessionId'] . '">' . $parameters['sessionId'] . '</sessionId>
-                                        </context>
-                                </soap:Header>
-                                <soap:Body>
-                                            <GetAllCosRequest xmlns="urn:zimbraAdmin">                   
-                                     </GetAllCosRequest >
-                                </soap:Body>
-                        </soap:Envelope>';
-       
-        curl_setopt($CurlHandle, CURLOPT_POSTFIELDS, $SOAPMessage);
-        $ZimbraSOAPResponse = curl_exec($CurlHandle);
-        curl_close($CurlHandle);
-        
-        if(!($ZimbraSOAPResponse))
-        {
-                print("ERROR: curl_exec - (" . curl_errno($CurlHandle) . ") " . curl_error($CurlHandle));
-                return(FALSE); exit();
-        }
-  
-             // print("Raw Zimbra SOAP Response:<BR>" . $ZimbraSOAPResponse . "<BR><BR>\n");
-$p = xml_parser_create();
-xml_parse_into_struct($p, $ZimbraSOAPResponse, $vals, $index);
-xml_parser_free($p);
-
-foreach($vals as $key => $value){
-
-      if($value['tag'] == 'COS'){
-        if (array_key_exists("attributes",$value)){
-        $cos_attr[] = array('COSID' => $value['attributes']['ID'],
-                    'COSName' => $value['attributes']['NAME']);
-        }
-  }
-}
-                
-  return $cos_attr;
-   }
 }
 $possible_url = array("ZimbraCreateDomain");
  $value = "An error has occurred";
