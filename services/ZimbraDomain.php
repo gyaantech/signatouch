@@ -26,13 +26,13 @@ class CreateDomain {
    //parameters for create COS
   public function set_Domain_parameters() {
     $GetSet = new GetSet();
-    $GetSet->setDomainName($_POST['txtDomainName']);
+    $GetSet->setDomainName($_POST['txtDomainName1']);
     $Domain_Name = $GetSet->getDomainName();
     
-    $GetSet->setDefaultCOS($_POST['txtDefaultCOS']);
+    $GetSet->setDefaultCOS($_POST['txtDefaultCOS1']);
     $DefaultCOS = $GetSet->getDefaultCOS();
     
-    $GetSet->setCOS_description($_POST['txtDescription']);
+    $GetSet->setCOS_description($_POST['txtDescription1']);
     $Description = $GetSet->getCOS_description();
     
     $result = array('Domain_Name'=>$Domain_Name,'DefaultCOS'=>$DefaultCOS,'Description'=>$Description);
@@ -73,13 +73,6 @@ class CreateDomain {
                                         <a n="description">'.$DefaultCOS.'</a>
                                         <a n="zimbraNotes">'.$Description.'</a>
                                     </CreateDomainRequest>
-                                    
-                                            <CreateCosRequest xmlns="urn:zimbraAdmin"> 
-                                            <name>'.$Domain_Name.'</name>
-                                              <a n="description">'.$Description.'</a>
-                                            <a n="zimbraDomainDefaultCOSId">'.$DefaultCOS.'</a>
-                                                          
-                                     </CreateCosRequest>
                                 </soap:Body>
                         </soap:Envelope>';
        
@@ -94,30 +87,7 @@ class CreateDomain {
                 print("ERROR: curl_exec - (" . curl_errno($CurlHandle) . ") " . curl_error($CurlHandle));
                 return(FALSE); exit();
         }
-  
-        elseif(strpos($duplicate,'COS_EXISTS') !== false){
-          return FALSE;
-        }
-        /*else{
-          // split COS id from soap response
-          $b="cos id="; 
-                $cos = strstr($ZimbraSOAPResponse, $b);
-                $cos = strstr($cos, "=");
-                $cos = substr($cos, 1, strpos($cos, "/") - 1);
-                
-                if($cos){
-                  $cos_arr = explode(" ",$cos);
-                  $cos_code = $cos_arr[0];
-                  $cos_code = str_replace('"','',$cos_code); // returns COS value
-                  $sql = "INSERT INTO cos(COSID, COSName, COSNotes, COSDescription, LastUpdateID) VALUES ('$cos_code','$COS_name','$COS_notes','$COS_description','$username')";
-                $result = mysql_query($sql);
-                if (!$result) 
-                    {
-                    die('Invalid query: ' . $sql . "   " . mysql_error());
-                }
-                return TRUE;  
-                }   
-        }*/
+          
                print("Raw Zimbra SOAP Response:<BR>" . $ZimbraSOAPResponse . "<BR><BR>\n");
         
     }
