@@ -64,7 +64,7 @@ class Maintainence
       $GetSet->setCity($_POST['txtCity']);
       $City = $GetSet->getCity();
       $GetSet->setState($_POST['ddlNewPatientState']);
-      $State = $GetSet->getState();
+      $State = trim($GetSet->getState());
       $GetSet->setZip($_POST['txtHICNZip']);
       $Zip = $GetSet->getZip();
       $GetSet->setPhoneNo($_POST['txtPhoneno']);   
@@ -111,7 +111,7 @@ class Maintainence
         $GetSet->setCity($_POST['txtPOPCity']);
 		$City = $GetSet->getCity();
         $GetSet->setState($_POST['ddlPOPNewPatientState']);
-		$State = $GetSet->getState();
+		$State = trim($GetSet->getState());
         $GetSet->setZip($_POST['txtPOPZip']);
 		$Zip = $GetSet->getZip();
         $GetSet->setPhoneNo($_POST['txtPOPPhoneno']);  
@@ -200,7 +200,7 @@ class Maintainence
       $GetSet->setCity($_POST['txtCity']);
       $City = $GetSet->getCity();
       $GetSet->setState($_POST['ddlNewPatientState']);
-      $State = $GetSet->getState();
+      $State = trim($GetSet->getState());
       $GetSet->setZip($_POST['txtHICNZip']);
       $Zip = $GetSet->getZip();
       $GetSet->setPhoneNo($_POST['txtPhoneno']);   
@@ -248,7 +248,7 @@ class Maintainence
             $GetSet->setCity($_POST['txtPOPFacilityCity']);
               $City = $GetSet->getCity();
             $GetSet->setState($_POST['ddlPOPFacilityState']);
-              $State = $GetSet->getState();
+              $State = trim($GetSet->getState());
             $GetSet->setZip($_POST['txtPOPFacilityzip']);
               $Zip = $GetSet->getZip();
             $GetSet->setPhoneNo($_POST['txtPOPFacilityPhoneNo']); 
@@ -353,7 +353,7 @@ class Maintainence
         $GetSet->setCity($_POST['txtPhysicianCity']);
 		$City = $GetSet->getCity();
         $GetSet->setState($_POST['ddlPhysicianState']);
-		$State = $GetSet->getState();
+		$State = trim($GetSet->getState());
         $GetSet->setZip($_POST['txtPhysicianZip']);
 		$Zip = $GetSet->getZip();
         $GetSet->setPhoneNo($_POST['txtPhysicianPhoneNo']);
@@ -428,7 +428,7 @@ class Maintainence
             $GetSet->setCity($_POST['txtSCity']);
 			$City = $GetSet->getCity();
             $GetSet->setState( $_POST['ddlSState']);
-			$State = $GetSet->getState ();
+			$State = trim($GetSet->getState ());
             $GetSet->setZip($_POST['txtSZip']);
 			$Zip = $GetSet->getZip();
             $GetSet->setPhoneNo($_POST['txtSPhoneNo']);

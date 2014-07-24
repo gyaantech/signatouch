@@ -157,7 +157,6 @@ Ext.define('SignaTouch.view.MainView', {
                     region: 'west',
                     split: true,
                     border: '0 2 0 0',
-                    hidden: true,
                     id: 'Menu',
                     width: 200,
                     bodyBorder: false,
@@ -219,7 +218,6 @@ Ext.define('SignaTouch.view.MainView', {
                                         },
                                         {
                                             xtype: 'menuitem',
-                                            hidden: true,
                                             id: 'SectionAMenu',
                                             itemId: 'MsectionA',
                                             text: 'Section A',
@@ -232,7 +230,6 @@ Ext.define('SignaTouch.view.MainView', {
                                         },
                                         {
                                             xtype: 'menuitem',
-                                            hidden: true,
                                             id: 'SectionBMenu',
                                             itemId: 'MSectionB',
                                             text: 'Section B',
@@ -247,7 +244,6 @@ Ext.define('SignaTouch.view.MainView', {
                                 },
                                 {
                                     xtype: 'container',
-                                    hidden: true,
                                     id: 'Menu2Con',
                                     style: 'background-color:#a5cfff;',
                                     items: [
@@ -511,6 +507,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                         },
                                                                         {
                                                                             xtype: 'combobox',
+                                                                            id: 'CertTypeID',
                                                                             margin: '0 5 0 5',
                                                                             maxWidth: 85,
                                                                             fieldLabel: '',
@@ -1529,6 +1526,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                 Ext.getCmp('txtFilterID').reset();
                                                                                 Ext.getCmp('TxtstartDateID').setValue('');
                                                                                 Ext.getCmp('TxtendDateID').setValue('');
+                                                                                Ext.getCmp('CertTypeID').setValue('All');
 
                                                                             },
                                                                             id: 'SectionAClearID',
@@ -1728,7 +1726,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                             fieldLabel: '<b>DOB&nbsp;<span style="color:#D94E37;">*</span></b>',
                                                             inputId: 'txtDOB',
                                                             allowBlank: false,
-                                                            editable: false,
                                                             format: 'm-d-Y'
                                                         },
                                                         {
@@ -1810,59 +1807,11 @@ Ext.define('SignaTouch.view.MainView', {
                                                             ],
                                                             inputId: 'ddlNewPatientState',
                                                             allowBlank: false,
+                                                            displayField: 'des',
                                                             forceSelection: true,
-                                                            store: [
-                                                                'AL',
-                                                                'MT',
-                                                                'AK',
-                                                                'NE',
-                                                                'AZ',
-                                                                'NV',
-                                                                'AR',
-                                                                'NH',
-                                                                'CA',
-                                                                'NJ',
-                                                                'CO',
-                                                                'NM',
-                                                                'CT',
-                                                                'NY',
-                                                                'DE',
-                                                                'NC',
-                                                                'FL',
-                                                                'ND',
-                                                                'GA',
-                                                                'OH',
-                                                                'HI',
-                                                                'OK',
-                                                                'ID',
-                                                                'OR',
-                                                                'IL',
-                                                                'PA',
-                                                                'IN',
-                                                                'RI',
-                                                                'IA',
-                                                                'SC',
-                                                                'KS',
-                                                                'SD',
-                                                                'KY',
-                                                                'TN',
-                                                                'LA',
-                                                                'TX',
-                                                                'ME',
-                                                                'UT',
-                                                                'MD',
-                                                                'VT',
-                                                                'MA',
-                                                                'VA',
-                                                                'MI',
-                                                                'WA',
-                                                                'MN',
-                                                                'WV',
-                                                                'MS',
-                                                                'WI',
-                                                                'MO',
-                                                                'WY'
-                                                            ]
+                                                            queryMode: 'local',
+                                                            store: 'States',
+                                                            valueField: 'id'
                                                         }
                                                     ]
                                                 },
@@ -1897,10 +1846,17 @@ Ext.define('SignaTouch.view.MainView', {
                                                             msgTarget: 'side',
                                                             inputId: 'txtPhoneno',
                                                             allowBlank: false,
+                                                            enableKeyEvents: true,
                                                             enforceMaxLength: true,
                                                             maxLength: 12,
                                                             regex: /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/,
-                                                            regexText: 'Please enter phone No. in xxx-xxx-xxxx format.'
+                                                            regexText: 'Please enter phone No. in xxx-xxx-xxxx format.',
+                                                            listeners: {
+                                                                keypress: {
+                                                                    fn: me.onTxtPhoneNoPIDKeypress,
+                                                                    scope: me
+                                                                }
+                                                            }
                                                         }
                                                     ]
                                                 },
@@ -2630,6 +2586,7 @@ Ext.define('SignaTouch.view.MainView', {
                         },
                         {
                             xtype: 'panel',
+                            height: 550,
                             hidden: true,
                             id: 'AddAlias',
                             style: 'margin: 0 auto;\r\n    text-align: left;\r\n    width: 650px;',
@@ -3639,59 +3596,11 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     inputId: 'ddlPhysicianState',
                                                                     allowBlank: false,
                                                                     vtype: 'alpha',
+                                                                    displayField: 'des',
                                                                     forceSelection: true,
-                                                                    store: [
-                                                                        'AL',
-                                                                        'MT',
-                                                                        'AK',
-                                                                        'NE',
-                                                                        'AZ',
-                                                                        'NV',
-                                                                        'AR',
-                                                                        'NH',
-                                                                        'CA',
-                                                                        'NJ',
-                                                                        'CO',
-                                                                        'NM',
-                                                                        'CT',
-                                                                        'NY',
-                                                                        'DE',
-                                                                        'NC',
-                                                                        'FL',
-                                                                        'ND',
-                                                                        'GA',
-                                                                        'OH',
-                                                                        'HI',
-                                                                        'OK',
-                                                                        'ID',
-                                                                        'OR',
-                                                                        'IL',
-                                                                        'PA',
-                                                                        'IN',
-                                                                        'RI',
-                                                                        'IA',
-                                                                        'SC',
-                                                                        'KS',
-                                                                        'SD',
-                                                                        'KY',
-                                                                        'TN',
-                                                                        'LA',
-                                                                        'TX',
-                                                                        'ME',
-                                                                        'UT',
-                                                                        'MD',
-                                                                        'VT',
-                                                                        'MA',
-                                                                        'VA',
-                                                                        'MI',
-                                                                        'WA',
-                                                                        'MN',
-                                                                        'WV',
-                                                                        'MS',
-                                                                        'WI',
-                                                                        'MO',
-                                                                        'WY'
-                                                                    ]
+                                                                    queryMode: 'local',
+                                                                    store: 'States',
+                                                                    valueField: 'id'
                                                                 }
                                                             ]
                                                         },
@@ -3728,10 +3637,17 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     msgTarget: 'side',
                                                                     inputId: 'txtPhysicianPhoneNo',
                                                                     allowBlank: false,
+                                                                    enableKeyEvents: true,
                                                                     enforceMaxLength: true,
                                                                     maxLength: 12,
                                                                     regex: /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/,
-                                                                    regexText: 'Please enter phone No. in xxx-xxx-xxxx format.'
+                                                                    regexText: 'Please enter phone No. in xxx-xxx-xxxx format.',
+                                                                    listeners: {
+                                                                        keypress: {
+                                                                            fn: me.onTxtPhoneNoIDKeypress,
+                                                                            scope: me
+                                                                        }
+                                                                    }
                                                                 }
                                                             ]
                                                         },
@@ -4212,65 +4128,14 @@ Ext.define('SignaTouch.view.MainView', {
                                                             id: 'ddlSState1ID',
                                                             maxWidth: 300,
                                                             fieldLabel: '<b>&nbsp;&nbsp;&nbsp;State&nbsp;<span style="color:#D94E37;">*</span></b>',
-                                                            value: [
-                                                                'AL'
-                                                            ],
                                                             inputId: 'ddlSState',
                                                             allowBlank: false,
                                                             enforceMaxLength: true,
+                                                            displayField: 'des',
                                                             forceSelection: true,
-                                                            store: [
-                                                                'AL',
-                                                                'MT',
-                                                                'AK',
-                                                                'NE',
-                                                                'AZ',
-                                                                'NV',
-                                                                'AR',
-                                                                'NH',
-                                                                'CA',
-                                                                'NJ',
-                                                                'CO',
-                                                                'NM',
-                                                                'CT',
-                                                                'NY',
-                                                                'DE',
-                                                                'NC',
-                                                                'FL',
-                                                                'ND',
-                                                                'GA',
-                                                                'OH',
-                                                                'HI',
-                                                                'OK',
-                                                                'ID',
-                                                                'OR',
-                                                                'IL',
-                                                                'PA',
-                                                                'IN',
-                                                                'RI',
-                                                                'IA',
-                                                                'SC',
-                                                                'KS',
-                                                                'SD',
-                                                                'KY',
-                                                                'TN',
-                                                                'LA',
-                                                                'TX',
-                                                                'ME',
-                                                                'UT',
-                                                                'MD',
-                                                                'VT',
-                                                                'MA',
-                                                                'VA',
-                                                                'MI',
-                                                                'WA',
-                                                                'MN',
-                                                                'WV',
-                                                                'MS',
-                                                                'WI',
-                                                                'MO',
-                                                                'WY'
-                                                            ]
+                                                            queryMode: 'local',
+                                                            store: 'States',
+                                                            valueField: 'id'
                                                         }
                                                     ]
                                                 },
@@ -4306,10 +4171,17 @@ Ext.define('SignaTouch.view.MainView', {
                                                             msgTarget: 'side',
                                                             inputId: 'txtSPhoneNo',
                                                             allowBlank: false,
+                                                            enableKeyEvents: true,
                                                             enforceMaxLength: true,
                                                             maxLength: 12,
                                                             regex: /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/,
-                                                            regexText: 'Please enter phone No. in xxx-xxx-xxxx format.'
+                                                            regexText: 'Please enter phone No. in xxx-xxx-xxxx format.',
+                                                            listeners: {
+                                                                keypress: {
+                                                                    fn: me.onTxtSPhoneNoIDKeypress,
+                                                                    scope: me
+                                                                }
+                                                            }
                                                         }
                                                     ]
                                                 },
@@ -4716,6 +4588,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             items: [
                                                                 {
                                                                     xtype: 'combobox',
+                                                                    id: 'ddlSectionBFilterID',
                                                                     itemId: 'ddlSectionBFilter',
                                                                     margin: '0 5 0 5',
                                                                     maxWidth: 95,
@@ -4741,6 +4614,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                 },
                                                                 {
                                                                     xtype: 'combobox',
+                                                                    id: 'ddlSectionBCertypeID',
                                                                     itemId: 'ddlSectionBCertype',
                                                                     margin: '0 5 0 5',
                                                                     width: 120,
@@ -4814,7 +4688,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                     items: [
                                                         {
                                                             xtype: 'gridpanel',
-                                                            height: 225,
+                                                            height: 260,
                                                             id: 'SectionBGrid',
                                                             overflowY: 'scroll',
                                                             title: '',
@@ -4920,17 +4794,9 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                 var sectionB1 = Ext.getCmp('sectionB1ID');
                                                                                 if(selectedFlag === "B")
                                                                                 {
-                                                                                    /* var HeaderPanel = Ext.getCmp('Header');
-                                                                                    var menuPanel = Ext.getCmp('Menu');
-                                                                                    var contentPanel = Ext.getCmp('Content');
-                                                                                    var footerPanel = Ext.getCmp('Footer');*/
-                                                                                    var sectionB1Next = Ext.getCmp('SectionB1NextID');
 
-                                                                                    // show header panel
-                                                                                    /*   HeaderPanel.show();
-                                                                                    menuPanel.show();
-                                                                                    contentPanel.show();
-                                                                                    footerPanel.show();*/
+
+                                                                                    var sectionB1Next = Ext.getCmp('SectionB1NextID');
 
                                                                                     sectionB1.hide();
                                                                                     //sectionA.destroy();
@@ -5028,6 +4894,33 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                         Ext.getCmp('txtNameID').setValue(RecordResponse.SignedByName);
                                                                                         Ext.getCmp('txtTitleID').setValue(RecordResponse.SignedByTitle);
                                                                                         Ext.getCmp('txtEmployerID').setValue(RecordResponse.SignedByEmployer);
+
+                                                                                        if(Ext.getCmp('txtQ1aID').getValue() !=='')
+                                                                                        {
+
+                                                                                            if(Ext.getCmp('txtQ1aID').getValue() ==='0'){
+                                                                                                Ext.getCmp('txtQ1aID').disable();
+
+                                                                                            }
+                                                                                            else{
+                                                                                                Ext.getCmp('txtQ1aID').enable();
+                                                                                                Ext.getCmp('txtQ1bID').disable();
+                                                                                            }
+                                                                                        }
+
+                                                                                        if(Ext.getCmp('txtQ1bID').getValue() !=='')
+                                                                                        {
+
+
+                                                                                            if(Ext.getCmp('txtQ1bID').getValue() ==='0'){
+                                                                                                Ext.getCmp('txtQ1bID').disable();
+                                                                                            }
+                                                                                            else{
+                                                                                                Ext.getCmp('txtQ1bID').enable();
+                                                                                                Ext.getCmp('txtQ1aID').disable();
+                                                                                            }
+                                                                                        }
+
 
                                                                                         /*if(resp.responseText != 'false'){
 
@@ -5743,6 +5636,8 @@ Ext.define('SignaTouch.view.MainView', {
                                                                         Ext.getCmp('txtSectionBFiltertextID').reset();
                                                                         Ext.getCmp('TxtSectionBstartDate').setValue('');
                                                                         Ext.getCmp('TxtSectionBendDate').setValue('');
+                                                                        Ext.getCmp('ddlSectionBCertypeID').setValue('All');
+                                                                        ddlSectionBFilterID
 
                                                                     },
                                                                     id: 'SectionBClear',
@@ -5883,7 +5778,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                     items: [
                                                         {
                                                             xtype: 'gridpanel',
-                                                            height: 290,
+                                                            height: 300,
                                                             id: 'PhysicianGrid',
                                                             overflowY: 'scroll',
                                                             title: '',
@@ -6270,7 +6165,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                     items: [
                                                         {
                                                             xtype: 'gridpanel',
-                                                            height: 290,
+                                                            height: 300,
                                                             id: 'PatientGrid',
                                                             overflowY: 'scroll',
                                                             title: '',
@@ -6656,7 +6551,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                     items: [
                                                         {
                                                             xtype: 'gridpanel',
-                                                            height: 290,
+                                                            height: 300,
                                                             id: 'SupplierGrid',
                                                             overflowY: 'scroll',
                                                             title: '',
@@ -7460,7 +7355,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     fieldLabel: '<b>c) Enter Date of Test</b>',
                                                                     labelWidth: 520,
                                                                     inputId: 'ddlSectionB1Q6c',
-                                                                    editable: false,
                                                                     format: 'm-d-Y'
                                                                 }
                                                             ]
@@ -10347,6 +10241,7 @@ Ext.define('SignaTouch.view.MainView', {
                     splitterResize: false,
                     frame: true,
                     height: 200,
+                    hidden: true,
                     id: 'panelLoginID',
                     margin: '200 100 200 530',
                     maxWidth: 350,
@@ -11046,7 +10941,7 @@ Ext.define('SignaTouch.view.MainView', {
         var CertDate2=values.ddlSectionAEndDate;
            var myStore = Ext.getStore('SectionA1GridBind');
 
-        if(Search === '' && CertDate1 === '' && CertDate2 === ''){
+        if(Search === '' && CertDate1 === '' && CertDate2 === '' && type === ''){
          Ext.Msg.alert("Input required", 'Please enter values to search');
         }
         else{
@@ -11503,6 +11398,16 @@ Ext.define('SignaTouch.view.MainView', {
         sectionA1Next.show();
         Ext.getCmp('SectionA1CertType').setValue('C');
         Ext.getCmp('SectionA1Breadcrumb').setValue('Create Re-Certificate');
+    },
+
+    onTxtPhoneNoPIDKeypress: function(textfield, e, eOpts) {
+        var phone = Ext.getCmp('txtPhoneNoPID').getValue();
+        if(phone.length === 3 || phone.length === 7){
+            var newPhone = phone.concat('-');
+            Ext.getCmp('txtPhoneNoPID').setValue(newPhone);
+        }
+
+
     },
 
     onBtnPatientCancelClick: function(button, e, eOpts) {
@@ -12007,6 +11912,16 @@ Ext.define('SignaTouch.view.MainView', {
 
     },
 
+    onTxtPhoneNoIDKeypress: function(textfield, e, eOpts) {
+        var phone = Ext.getCmp('txtPhoneNoID').getValue();
+        if(phone.length === 3 || phone.length === 7){
+            var newPhone = phone.concat('-');
+            Ext.getCmp('txtPhoneNoID').setValue(newPhone);
+        }
+
+
+    },
+
     onBtnPhysicianCancelClick: function(button, e, eOpts) {
         //go back to Physician selector screen
          Ext.MessageBox.confirm ('Go back', 'Go back to Physician Selector screen ?', function(btn){
@@ -12148,6 +12063,15 @@ Ext.define('SignaTouch.view.MainView', {
                            }
                 });
 
+
+    },
+
+    onTxtSPhoneNoIDKeypress: function(textfield, e, eOpts) {
+        var phone = Ext.getCmp('txtSPhoneNoID').getValue();
+        if(phone.length === 3 || phone.length === 7){
+            var newPhone = phone.concat('-');
+            Ext.getCmp('txtSPhoneNoID').setValue(newPhone);
+        }
 
     },
 
@@ -12304,7 +12228,7 @@ Ext.define('SignaTouch.view.MainView', {
         var CertDate2=values.ddlSectionBEndDate;
         var myStore = Ext.getStore('SectionBGridBind');
 
-        if(Search === '' && CertDate1 === '' && CertDate2 === ''){
+        if(Search === '' && CertDate1 === '' && CertDate2 === '' && type === ''){
          Ext.Msg.alert("Input required", 'Please enter values to search');
         }
         else{
@@ -12900,8 +12824,20 @@ Ext.define('SignaTouch.view.MainView', {
     },
 
     onTxtQ1aIDBlur: function(component, e, eOpts) {
+        var a_value = component.getValue();
+        if(a_value == '0'){
+            Ext.getCmp('txtQ1bID').enable();
+           }
+        else if(a_value === '')
+        {
+            Ext.getCmp('txtQ1bID').enable();
+        }
+        else{
+              Ext.getCmp('txtQ1bID').disable();
+        }
 
         if(component.getValue() >= '56' && component.getValue() <='59' ){
+             Ext.getCmp('txtQ1bID').disable();
 
             Ext.getCmp('ddlQ7ID').enable();
             Ext.getCmp('ddlQ8ID').enable();
@@ -12915,6 +12851,7 @@ Ext.define('SignaTouch.view.MainView', {
 
         }
         else if (Ext.getCmp('txtQ1bID').getValue() === '89') {
+             Ext.getCmp('txtQ1aID').disable();
             Ext.getCmp('ddlQ7ID').enable();
             Ext.getCmp('ddlQ8ID').enable();
             Ext.getCmp('ddlQ9ID').enable();
@@ -12947,8 +12884,21 @@ Ext.define('SignaTouch.view.MainView', {
     },
 
     onTxtQ1bIDBlur: function(component, e, eOpts) {
+        var b_value = component.getValue();
+        if(b_value == '0'){
+            Ext.getCmp('txtQ1aID').enable();
+           }
+        else if(b_value === '')
+        {
+            Ext.getCmp('txtQ1aID').enable();
+        }
+        else{
+              Ext.getCmp('txtQ1aID').disable();
+        }
+
         if(component.getValue() =='89' ){
 
+             Ext.getCmp('txtQ1aID').disable();
             Ext.getCmp('ddlQ7ID').enable();
             Ext.getCmp('ddlQ8ID').enable();
             Ext.getCmp('ddlQ9ID').enable();
@@ -12961,6 +12911,7 @@ Ext.define('SignaTouch.view.MainView', {
         }
         else if(Ext.getCmp('txtQ1aID').getValue() >= 56 && Ext.getCmp('txtQ1aID').getValue() <=59)
         {
+            Ext.getCmp('txtQ1bID').disable();
             Ext.getCmp('ddlQ7ID').enable();
             Ext.getCmp('ddlQ8ID').enable();
             Ext.getCmp('ddlQ9ID').enable();
@@ -13025,16 +12976,16 @@ Ext.define('SignaTouch.view.MainView', {
 
     onBtDiscardClick: function(button, e, eOpts) {
         //go back to section B selector screen
-         Ext.MessageBox.confirm ('Go back', 'Go back to Section B Record Selector screen ?', function(btn){
-                           if(btn === 'yes'){
+         //Ext.MessageBox.confirm ('Go back', 'Go back to Section B Record Selector screen ?', function(btn){
+                           //if(btn === 'yes'){
                                 var myStore = Ext.getStore('SectionBGridBind');
                         myStore.clearFilter();
                         myStore.load();
                                Ext.getCmp('SectionB1NextID').hide();
                                Ext.getCmp('sectionB1ID').show();
                                      Ext.getCmp('SectionB1NextForm').getForm().reset();
-                           }
-                });
+                          // }
+                //});
 
 
     },
@@ -14146,8 +14097,8 @@ Ext.define('SignaTouch.view.MainView', {
 
     onBtSectionA1NextDiscardClick: function(button, e, eOpts) {
         //go back to section A selector screen
-         Ext.MessageBox.confirm ('Go back', 'Go back to Section A Record Selector screen ?', function(btn){
-                           if(btn === 'yes'){
+         //Ext.MessageBox.confirm ('Go back', 'Go back to Section A Record Selector screen ?', function(btn){
+                         //  if(btn === 'yes'){
                               Ext.getCmp('SectionA1NextID').hide();
                               Ext.getCmp('SectionAID').show();
                               Ext.getCmp('SectionA1Form').getForm().reset();
@@ -14158,8 +14109,8 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('TxtstartDateID').setValue('');
         Ext.getCmp('TxtendDateID').setValue('');
 
-                           }
-                });
+                         //  }
+               // });
 
 
     },
@@ -14287,13 +14238,13 @@ Ext.define('SignaTouch.view.MainView', {
     },
 
     onSectionA1FormAfterRender: function(component, eOpts) {
-        Ext.getCmp('txtSectionA1CertificationDateID').setMinValue(Ext.util.Format.date(new Date(), 'm/d/Y'));
+        //Ext.getCmp('txtSectionA1CertificationDateID').setMinValue(Ext.util.Format.date(new Date(), 'm/d/Y'));
     },
 
     onViewbtnDiscardAClick: function(button, e, eOpts) {
         //go back to section A selector screen
-         Ext.MessageBox.confirm ('Go back', 'Go back to Record Selector screen ?', function(btn){
-                           if(btn === 'yes'){
+         //Ext.MessageBox.confirm ('Go back', 'Go back to Record Selector screen ?', function(btn){
+                           //if(btn === 'yes'){
 
                                Ext.getCmp('txtFilterID').reset();
                                Ext.getCmp('TxtstartDateID').setValue('');
@@ -14304,8 +14255,8 @@ Ext.define('SignaTouch.view.MainView', {
                              Ext.getCmp('ViewAll').hide();
                               Ext.getCmp('SectionAID').show();
 
-                           }
-                });
+                           //}
+                //});
 
 
 
@@ -14313,8 +14264,8 @@ Ext.define('SignaTouch.view.MainView', {
 
     onViewbtnDiscardBClick: function(button, e, eOpts) {
         //go back to section B selector screen
-         Ext.MessageBox.confirm ('Go back', 'Go back to Record Selector screen ?', function(btn){
-                           if(btn === 'yes'){
+         //Ext.MessageBox.confirm ('Go back', 'Go back to Record Selector screen ?', function(btn){
+                           //if(btn === 'yes'){
                                Ext.getCmp('txtSectionBFiltertextID').reset();
         Ext.getCmp('TxtSectionBstartDate').setValue('');
         Ext.getCmp('TxtSectionBendDate').setValue('');
@@ -14324,8 +14275,8 @@ Ext.define('SignaTouch.view.MainView', {
                            Ext.getCmp('ViewAll').hide();
                            Ext.getCmp('sectionB1ID').show();
 
-                           }
-                });
+                           //}
+                //});
 
 
     },

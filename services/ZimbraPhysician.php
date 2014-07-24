@@ -332,7 +332,7 @@ class CreatePhysician {
 		$City = $GetSet->getCity();
 		
         $GetSet->setState($_POST['ddlPhysicianState']);
-		$State = $GetSet->getState();
+		$State = trim($GetSet->getState());
 		
         $GetSet->setZip($_POST['txtPhysicianZip']);
 		$Zip = $GetSet->getZip();
@@ -382,7 +382,7 @@ class CreatePhysician {
         $GetSet->setCity($_POST['txtPhysicianCity']);
 		$City = $GetSet->getCity();
         $GetSet->setState($_POST['ddlPhysicianState']);
-		$State = $GetSet->getState();
+		$State = trim($GetSet->getState());
         $GetSet->setZip($_POST['txtPhysicianZip']);
 		$Zip = $GetSet->getZip();
         $GetSet->setPhoneNo($_POST['txtPhysicianPhoneNo']);
