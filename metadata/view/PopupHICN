@@ -453,8 +453,10 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "allowBlank": false,
+                                        "enableKeyEvents": true,
                                         "enforceMaxLength": true,
                                         "fieldLabel": "<b>&nbsp;&nbsp;&nbsp;Phone No.&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
+                                        "id": "txtPOPPhoneNoID",
                                         "inputId": "txtPOPPhoneno",
                                         "itemId": "txtPOPPhoneNo",
                                         "maxLength": 12,
@@ -463,7 +465,32 @@
                                         "regexText": "Please enter phone No. in xxx-xxx-xxxx format.",
                                         "width": 300
                                     },
-                                    "designerId": "56e4ff89-35a9-44ec-8b63-656d16d3c5ea"
+                                    "designerId": "56e4ff89-35a9-44ec-8b63-656d16d3c5ea",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onTxtPOPPhoneNoIDKeypress",
+                                                "implHandler": [
+                                                    "var phone = Ext.getCmp('txtPOPPhoneNoID').getValue();\r",
+                                                    "if(phone.length === 3 || phone.length === 7){\r",
+                                                    "    var newPhone = phone.concat('-');\r",
+                                                    "    Ext.getCmp('txtPOPPhoneNoID').setValue(newPhone);\r",
+                                                    "}\r",
+                                                    "\r",
+                                                    ""
+                                                ],
+                                                "name": "keypress",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "93e6b787-5828-49dd-97e9-593df1b7c26a"
+                                        }
+                                    ]
                                 }
                             ]
                         },

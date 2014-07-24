@@ -298,16 +298,24 @@ Ext.define('SignaTouch.view.PopupHICN', {
                                         },
                                         {
                                             xtype: 'textfield',
+                                            id: 'txtPOPPhoneNoID',
                                             itemId: 'txtPOPPhoneNo',
                                             width: 300,
                                             fieldLabel: '<b>&nbsp;&nbsp;&nbsp;Phone No.&nbsp;<span style="color:#D94E37;">*</span></b>',
                                             msgTarget: 'side',
                                             inputId: 'txtPOPPhoneno',
                                             allowBlank: false,
+                                            enableKeyEvents: true,
                                             enforceMaxLength: true,
                                             maxLength: 12,
                                             regex: /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/,
-                                            regexText: 'Please enter phone No. in xxx-xxx-xxxx format.'
+                                            regexText: 'Please enter phone No. in xxx-xxx-xxxx format.',
+                                            listeners: {
+                                                keypress: {
+                                                    fn: me.onTxtPOPPhoneNoIDKeypress,
+                                                    scope: me
+                                                }
+                                            }
                                         }
                                     ]
                                 },
@@ -366,6 +374,16 @@ Ext.define('SignaTouch.view.PopupHICN', {
         });
 
         me.callParent(arguments);
+    },
+
+    onTxtPOPPhoneNoIDKeypress: function(textfield, e, eOpts) {
+        var phone = Ext.getCmp('txtPOPPhoneNoID').getValue();
+        if(phone.length === 3 || phone.length === 7){
+            var newPhone = phone.concat('-');
+            Ext.getCmp('txtPOPPhoneNoID').setValue(newPhone);
+        }
+
+
     },
 
     onBtnPOPPatientCancelClick: function(button, e, eOpts) {

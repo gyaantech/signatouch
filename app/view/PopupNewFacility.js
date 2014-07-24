@@ -239,10 +239,17 @@ Ext.define('SignaTouch.view.PopupNewFacility', {
                                             msgTarget: 'side',
                                             inputId: 'txtPOPFacilityPhoneNo',
                                             allowBlank: false,
+                                            enableKeyEvents: true,
                                             enforceMaxLength: true,
                                             maxLength: 12,
                                             regex: /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/,
-                                            regexText: 'Please enter phone No. in xxx-xxx-xxxx format.'
+                                            regexText: 'Please enter phone No. in xxx-xxx-xxxx format.',
+                                            listeners: {
+                                                keypress: {
+                                                    fn: me.onTxtPOPFacilityPhoneNoIDKeypress,
+                                                    scope: me
+                                                }
+                                            }
                                         }
                                     ]
                                 },
@@ -295,6 +302,16 @@ Ext.define('SignaTouch.view.PopupNewFacility', {
         });
 
         me.callParent(arguments);
+    },
+
+    onTxtPOPFacilityPhoneNoIDKeypress: function(textfield, e, eOpts) {
+        var phone = Ext.getCmp('txtPOPFacilityPhoneNoID').getValue();
+        if(phone.length === 3 || phone.length === 7){
+            var newPhone = phone.concat('-');
+            Ext.getCmp('txtPOPFacilityPhoneNoID').setValue(newPhone);
+        }
+
+
     },
 
     onBtnPOPFacilityCancelClick: function(button, e, eOpts) {

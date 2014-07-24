@@ -348,6 +348,7 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "allowBlank": false,
+                                        "enableKeyEvents": true,
                                         "enforceMaxLength": true,
                                         "fieldLabel": "<b>&nbsp;&nbsp;&nbsp;Phone No.&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
                                         "id": "txtPOPFacilityPhoneNoID",
@@ -359,7 +360,32 @@
                                         "regexText": "Please enter phone No. in xxx-xxx-xxxx format.",
                                         "width": 300
                                     },
-                                    "designerId": "b960f949-46bb-4462-a11f-7a4ee1c5086d"
+                                    "designerId": "b960f949-46bb-4462-a11f-7a4ee1c5086d",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onTxtPOPFacilityPhoneNoIDKeypress",
+                                                "implHandler": [
+                                                    "var phone = Ext.getCmp('txtPOPFacilityPhoneNoID').getValue();\r",
+                                                    "if(phone.length === 3 || phone.length === 7){\r",
+                                                    "    var newPhone = phone.concat('-');\r",
+                                                    "    Ext.getCmp('txtPOPFacilityPhoneNoID').setValue(newPhone);\r",
+                                                    "}\r",
+                                                    "\r",
+                                                    ""
+                                                ],
+                                                "name": "keypress",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "d731d4d6-6d77-4c70-bccd-1eedc5964818"
+                                        }
+                                    ]
                                 }
                             ]
                         },
