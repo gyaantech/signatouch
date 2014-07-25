@@ -5104,6 +5104,7 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
+                                                        "enableKeyEvents": true,
                                                         "enforceMaxLength": true,
                                                         "fieldLabel": "<b>&nbsp;&nbsp;&nbsp;Phone No.&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
                                                         "id": "txtUPhoneNoID",
@@ -5114,7 +5115,31 @@
                                                         "regexText": "Please enter phone No. in xxx-xxx-xxxx format.",
                                                         "width": 300
                                                     },
-                                                    "designerId": "ea0c27be-81af-4d26-ba8a-f08101ff6c2e"
+                                                    "designerId": "ea0c27be-81af-4d26-ba8a-f08101ff6c2e",
+                                                    "cn": [
+                                                        {
+                                                            "type": "basiceventbinding",
+                                                            "reference": {
+                                                                "name": "listeners",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "fn": "onTxtUPhoneNoIDKeypress",
+                                                                "implHandler": [
+                                                                    "var phone = Ext.getCmp('txtUPhoneNoID').getValue();\r",
+                                                                    "if(phone.length === 3 || phone.length === 7){\r",
+                                                                    "    var newPhone = phone.concat('-');\r",
+                                                                    "    Ext.getCmp('txtUPhoneNoID').setValue(newPhone);\r",
+                                                                    "}\r",
+                                                                    ""
+                                                                ],
+                                                                "name": "keypress",
+                                                                "scope": "me"
+                                                            },
+                                                            "designerId": "26aa74f3-b1fd-4571-8dd3-d92360a96bc4"
+                                                        }
+                                                    ]
                                                 }
                                             ]
                                         },

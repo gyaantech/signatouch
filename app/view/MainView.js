@@ -2343,10 +2343,17 @@ Ext.define('SignaTouch.view.MainView', {
                                                             width: 300,
                                                             fieldLabel: '<b>&nbsp;&nbsp;&nbsp;Phone No.&nbsp;<span style="color:#D94E37;">*</span></b>',
                                                             inputId: 'txtUPhoneno',
+                                                            enableKeyEvents: true,
                                                             enforceMaxLength: true,
                                                             maxLength: 12,
                                                             regex: /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/,
-                                                            regexText: 'Please enter phone No. in xxx-xxx-xxxx format.'
+                                                            regexText: 'Please enter phone No. in xxx-xxx-xxxx format.',
+                                                            listeners: {
+                                                                keypress: {
+                                                                    fn: me.onTxtUPhoneNoIDKeypress,
+                                                                    scope: me
+                                                                }
+                                                            }
                                                         }
                                                     ]
                                                 },
@@ -11552,6 +11559,15 @@ Ext.define('SignaTouch.view.MainView', {
           if(Ext.getCmp('txtPasswordID').getValue() !== Ext.getCmp('txtCPasswordID').getValue()){
              Ext.Msg.alert("Passwords do not match", 'Passwords do not match');
           }
+        }
+
+    },
+
+    onTxtUPhoneNoIDKeypress: function(textfield, e, eOpts) {
+        var phone = Ext.getCmp('txtUPhoneNoID').getValue();
+        if(phone.length === 3 || phone.length === 7){
+            var newPhone = phone.concat('-');
+            Ext.getCmp('txtUPhoneNoID').setValue(newPhone);
         }
 
     },
