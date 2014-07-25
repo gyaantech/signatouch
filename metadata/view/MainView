@@ -4143,8 +4143,8 @@
                                                                 "implHandler": [
                                                                     "\r",
                                                                     "//go back to Physician selector screen\r",
-                                                                    " Ext.MessageBox.confirm ('Go back', 'Go back to Patient Selector screen ?', function(btn){\r",
-                                                                    "                   if(btn === 'yes'){\r",
+                                                                    " //Ext.MessageBox.confirm ('Go back', 'Go back to Patient Selector screen ?', function(btn){\r",
+                                                                    "                //   if(btn === 'yes'){\r",
                                                                     "                       Ext.getCmp('txtPatientfilterID').reset();\r",
                                                                     "                       var myStore = Ext.getStore('PatientGridBind');\r",
                                                                     "                 myStore.clearFilter();\r",
@@ -4152,8 +4152,8 @@
                                                                     "                      Ext.getCmp('PatientPanelID').hide();\r",
                                                                     "                      Ext.getCmp('PatientRecord').show();\r",
                                                                     "                    Ext.getCmp('PatientForm').getForm().reset();\r",
-                                                                    "                   }\r",
-                                                                    "        });\r",
+                                                                    "                //   }\r",
+                                                                    "       // });\r",
                                                                     ""
                                                                 ],
                                                                 "name": "click",
@@ -7445,8 +7445,8 @@
                                                                 "implHandler": [
                                                                     "\r",
                                                                     "//go back to Physician selector screen\r",
-                                                                    " Ext.MessageBox.confirm ('Go back', 'Go back to Patient Selector screen ?', function(btn){\r",
-                                                                    "                   if(btn === 'yes'){\r",
+                                                                    " //Ext.MessageBox.confirm ('Go back', 'Go back to Patient Selector screen ?', function(btn){\r",
+                                                                    "                   //if(btn === 'yes'){\r",
                                                                     "                       Ext.getCmp('txtPatientfilterID').reset();\r",
                                                                     "                        var myStore = Ext.getStore('PatientGridBind');\r",
                                                                     "                 myStore.clearFilter();\r",
@@ -7454,8 +7454,8 @@
                                                                     "                      Ext.getCmp('PatientViewID').hide();\r",
                                                                     "                      Ext.getCmp('PatientRecord').show();\r",
                                                                     "                    Ext.getCmp('PatientForm').getForm().reset();\r",
-                                                                    "                   }\r",
-                                                                    "        });\r",
+                                                                    "                   //}\r",
+                                                                    "       // });\r",
                                                                     ""
                                                                 ],
                                                                 "name": "click",
@@ -8125,8 +8125,8 @@
                                                                         "fn": "onBtnPhysicianCancelClick",
                                                                         "implHandler": [
                                                                             "//go back to Physician selector screen\r",
-                                                                            " Ext.MessageBox.confirm ('Go back', 'Go back to Physician Selector screen ?', function(btn){\r",
-                                                                            "                   if(btn === 'yes'){\r",
+                                                                            " //Ext.MessageBox.confirm ('Go back', 'Go back to Physician Selector screen ?', function(btn){\r",
+                                                                            "                  // if(btn === 'yes'){\r",
                                                                             "                       Ext.getCmp('txtPhysicianfilterID').reset();\r",
                                                                             "                              var myStore = Ext.getStore('PhysicianGridBind');\r",
                                                                             "                  myStore.clearFilter();\r",
@@ -8134,8 +8134,8 @@
                                                                             "                      Ext.getCmp('PhysicianPanelID').hide();\r",
                                                                             "                      Ext.getCmp('PhysicianRecord').show();\r",
                                                                             "                      Ext.getCmp('PhysicianForm').getForm().reset();\r",
-                                                                            "                   }\r",
-                                                                            "        });\r",
+                                                                            "                  // }\r",
+                                                                            "        //});\r",
                                                                             "\r",
                                                                             ""
                                                                         ],
@@ -8834,8 +8834,8 @@
                                                                         "fn": "onBtnPhysicianCancelClick1",
                                                                         "implHandler": [
                                                                             "//go back to Physician selector screen\r",
-                                                                            " Ext.MessageBox.confirm ('Go back', 'Go back to Physician Selector screen ?', function(btn){\r",
-                                                                            "                   if(btn === 'yes'){\r",
+                                                                            " //Ext.MessageBox.confirm ('Go back', 'Go back to Physician Selector screen ?', function(btn){\r",
+                                                                            "                  // if(btn === 'yes'){\r",
                                                                             "                       Ext.getCmp('txtPhysicianfilterID').reset();\r",
                                                                             "                              var myStore = Ext.getStore('PhysicianGridBind');\r",
                                                                             "                 myStore.clearFilter();\r",
@@ -8843,8 +8843,8 @@
                                                                             "                      Ext.getCmp('PhysicianViewID').hide();\r",
                                                                             "                      Ext.getCmp('PhysicianRecord').show();\r",
                                                                             "                      Ext.getCmp('PhysicianForm').getForm().reset();\r",
-                                                                            "                   }\r",
-                                                                            "        });\r",
+                                                                            "                   //}\r",
+                                                                            "        //});\r",
                                                                             "\r",
                                                                             ""
                                                                         ],
@@ -9198,7 +9198,7 @@
                                                         "maxLength": 10,
                                                         "minLength": null,
                                                         "msgTarget": "side",
-                                                        "regex": "/(^\\d{5}$)|(^\\d{5}-\\d{4}$)/",
+                                                        "regex": "/(^\\d{5}$)|(^\\d{5}-\\d{4}$)/\r\n",
                                                         "regexText": "Invalid Zip Code",
                                                         "width": 300
                                                     },
@@ -9299,19 +9299,19 @@
                                                                 "fn": "onBtnSupplierCancelClick",
                                                                 "implHandler": [
                                                                     "//go back to Supplier selector screen\r",
-                                                                    " Ext.MessageBox.confirm ('Go back', 'Go back to Supplier Selector screen ?', function(btn){\r",
-                                                                    "                   if(btn === 'yes'){\r",
-                                                                    "                     \r",
+                                                                    " //Ext.MessageBox.confirm ('Go back', 'Go back to Supplier Selector screen ?', function(btn){\r",
+                                                                    "                 //  if(btn === 'yes'){\r",
+                                                                    "\r",
                                                                     "                     Ext.getCmp('txtSupplierfilterRecordID').reset();\r",
                                                                     "                        var myStore = Ext.getStore('SupplierGridBind');\r",
                                                                     "                myStore.clearFilter();\r",
                                                                     "                myStore.load();\r",
-                                                                    "                       \r",
+                                                                    "\r",
                                                                     "                        Ext.getCmp('SupplierPanelID').hide();\r",
                                                                     "                      Ext.getCmp('SupplierRecord').show();\r",
                                                                     "                      Ext.getCmp('SupplierForm').getForm().reset();\r",
-                                                                    "                   }\r",
-                                                                    "        });\r",
+                                                                    "                   //}\r",
+                                                                    "       // });\r",
                                                                     ""
                                                                 ],
                                                                 "name": "click",
@@ -9910,8 +9910,8 @@
                                                                 "fn": "onBtnSupplierCancelClick1",
                                                                 "implHandler": [
                                                                     "//go back to Supplier selector screen\r",
-                                                                    " Ext.MessageBox.confirm ('Go back', 'Go back to Supplier Selector screen ?', function(btn){\r",
-                                                                    "                   if(btn === 'yes'){\r",
+                                                                    " //Ext.MessageBox.confirm ('Go back', 'Go back to Supplier Selector screen ?', function(btn){\r",
+                                                                    "                   //if(btn === 'yes'){\r",
                                                                     "                        Ext.getCmp('txtSupplierfilterRecordID').reset();\r",
                                                                     "                        var myStore = Ext.getStore('SupplierGridBind');\r",
                                                                     "                 myStore.clearFilter();\r",
@@ -9919,8 +9919,8 @@
                                                                     "                      Ext.getCmp('SupplierViewID').hide();\r",
                                                                     "                      Ext.getCmp('SupplierRecord').show();\r",
                                                                     "                      Ext.getCmp('SupplierForm').getForm().reset();\r",
-                                                                    "                   }\r",
-                                                                    "        });\r",
+                                                                    "                   //}\r",
+                                                                    "       // });\r",
                                                                     ""
                                                                 ],
                                                                 "name": "click",
@@ -10946,135 +10946,161 @@
                                                                                     "var sectionB1 = Ext.getCmp('sectionB1ID');\r",
                                                                                     "if(selectedFlag === \"B\")\r",
                                                                                     "{\r",
-                                                                                    " \r",
                                                                                     "    \r",
-                                                                                    "     var sectionB1Next = Ext.getCmp('SectionB1NextID');\r",
-                                                                                    "\r",
-                                                                                    " sectionB1.hide();\r",
-                                                                                    "//sectionA.destroy();\r",
+                                                                                    "    \r",
+                                                                                    "    var sectionB1Next = Ext.getCmp('SectionB1NextID');\r",
+                                                                                    "    \r",
+                                                                                    "    sectionB1.hide();\r",
+                                                                                    "    //sectionA.destroy();\r",
                                                                                     "    Ext.getCmp('ViewAll').hide();\r",
-                                                                                    "sectionB1Next.show();\r",
+                                                                                    "    sectionB1Next.show();\r",
                                                                                     "    Ext.getCmp('ViewbtnPrint').hide();\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "// Success\r",
-                                                                                    "        var successCallback = function(resp, ops) {\r",
-                                                                                    "          var RecordResponse = JSON.parse(Ext.JSON.decode(resp.responseText));\r",
-                                                                                    "            Ext.getCmp('lblSectionBHICNID').setValue(RecordResponse.PatientHICN);\r",
-                                                                                    "             Ext.getCmp('lblSectionBPatientNameID').setValue(RecordResponse.PatientName);\r",
-                                                                                    "             Ext.getCmp('lblSectionBCertypeID').setValue(RecordResponse.CertType);\r",
-                                                                                    "             Ext.getCmp('lblSectionBcertDateID').setValue(RecordResponse.CertDate);\r",
-                                                                                    "             Ext.getCmp('lblSectionBDOBID').setValue(RecordResponse.PatientDOB);\r",
-                                                                                    "             Ext.getCmp('lblSectionBPhynameID').setValue(RecordResponse.physicianName);\r",
-                                                                                    "             Ext.getCmp('lblSectionBMedID').setValue(RecordResponse.MedicalID);\r",
-                                                                                    "             Ext.getCmp('hdnDetailID').setValue(selectedHdrid);\r",
-                                                                                    "\r",
-                                                                                    "            Ext.getCmp('LengthID').setValue(RecordResponse.LengthNeed);\r",
-                                                                                    "            Ext.getCmp('txticd').setValue(RecordResponse.ICD9);\r",
-                                                                                    "            Ext.getCmp('txticddes').setValue(RecordResponse.ICD9ShortDesc);\r",
-                                                                                    "\r",
-                                                                                    "            Ext.getCmp('txtQ1aID').setValue(RecordResponse.Q1AmmHg);\r",
-                                                                                    "            Ext.getCmp('txtQ1bID').setValue(RecordResponse.Q1Bpercent);\r",
-                                                                                    "            Ext.getCmp('txtDateoftestID').setValue(RecordResponse.Q1Cdate);\r",
-                                                                                    "            var Q2val = RecordResponse.Q2cond;\r",
-                                                                                    "            if(Q2val){\r",
-                                                                                    "                Ext.getCmp('ddlQ2ID').setValue(Ext.getCmp('ddlQ2ID').store.data.items[Q2val-1]['data']['des']);\r",
-                                                                                    "            }\r",
-                                                                                    "\r",
-                                                                                    "            var Q3val = RecordResponse.Q3cond;\r",
-                                                                                    "            if(Q3val){\r",
-                                                                                    "                Ext.getCmp('ddlQ3ID').setValue(Ext.getCmp('ddlQ3ID').store.data.items[Q3val-1]['data']['des']);\r",
-                                                                                    "            }\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "            //Ext.getCmp('ddlQ3ID').setValue(RecordResponse.Q3cond);\r",
-                                                                                    "\r",
-                                                                                    "            Ext.getCmp('ddlQ4ID').setValue(RecordResponse.Q4portable);\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "            Ext.getCmp('txtQ5id').setValue(RecordResponse.Q5O2LPM);\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "            if(Ext.getCmp('txtQ5id').value >= 4)\r",
-                                                                                    "            {\r",
-                                                                                    "                Ext.getCmp('txtQ6aID').enable();\r",
-                                                                                    "                Ext.getCmp('txtQ6bID').enable();\r",
-                                                                                    "                Ext.getCmp('ddlQ6cID').enable();\r",
-                                                                                    "            }\r",
-                                                                                    "            else\r",
-                                                                                    "            {\r",
-                                                                                    "                Ext.getCmp('txtQ6aID').disable();\r",
-                                                                                    "                Ext.getCmp('txtQ6bID').disable();\r",
-                                                                                    "                Ext.getCmp('ddlQ6cID').disable();\r",
-                                                                                    "\r",
-                                                                                    "                 Ext.getCmp('txtQ6aID').setValue('');\r",
-                                                                                    "                Ext.getCmp('txtQ6bID').setValue('');\r",
-                                                                                    "                Ext.getCmp('ddlQ6cID').setValue('');\r",
-                                                                                    "            }\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "            if((Ext.getCmp('txtQ1aID').value >= '56' && Ext.getCmp('txtQ1aID').value <= '59') || (Ext.getCmp('txtQ1bID').value === '89')){\r",
-                                                                                    "\r",
-                                                                                    "                 Ext.getCmp('ddlQ7ID').enable();\r",
-                                                                                    "                Ext.getCmp('ddlQ8ID').enable();\r",
-                                                                                    "                Ext.getCmp('ddlQ9ID').enable();\r",
-                                                                                    "            }\r",
-                                                                                    "            else\r",
-                                                                                    "            {\r",
-                                                                                    "                Ext.getCmp('ddlQ7ID').disable();\r",
-                                                                                    "                Ext.getCmp('ddlQ8ID').disable();\r",
-                                                                                    "                Ext.getCmp('ddlQ9ID').disable();\r",
-                                                                                    "                Ext.getCmp('ddlQ7ID').setValue('');\r",
-                                                                                    "                Ext.getCmp('ddlQ8ID').setValue('');\r",
-                                                                                    "                Ext.getCmp('ddlQ9ID').setValue('');\r",
-                                                                                    "\r",
-                                                                                    "            }\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "            Ext.getCmp('txtQ6aID').setValue(RecordResponse.Q6AmmHg);\r",
-                                                                                    "            Ext.getCmp('txtQ6bID').setValue(RecordResponse.Q6Bpercent);\r",
-                                                                                    "            Ext.getCmp('ddlQ6cID').setValue(RecordResponse.Q6Cdate);\r",
-                                                                                    "\r",
-                                                                                    "            Ext.getCmp('ddlQ7ID').setValue(RecordResponse.Q7CHF);\r",
-                                                                                    "            Ext.getCmp('ddlQ8ID').setValue(RecordResponse.Q8Hypert);\r",
-                                                                                    "            Ext.getCmp('ddlQ9ID').setValue(RecordResponse.Q9Herm);\r",
-                                                                                    "            Ext.getCmp('txtNameID').setValue(RecordResponse.SignedByName);\r",
-                                                                                    "            Ext.getCmp('txtTitleID').setValue(RecordResponse.SignedByTitle);\r",
-                                                                                    "            Ext.getCmp('txtEmployerID').setValue(RecordResponse.SignedByEmployer);\r",
-                                                                                    "\r",
-                                                                                    "            if(Ext.getCmp('txtQ1aID').getValue() !=='')\r",
-                                                                                    "    {\r",
-                                                                                    "      \r",
-                                                                                    "      if(Ext.getCmp('txtQ1aID').getValue() ==='0'){\r",
-                                                                                    "        Ext.getCmp('txtQ1aID').disable();\r",
-                                                                                    "          \r",
-                                                                                    "      }\r",
-                                                                                    "      else{\r",
-                                                                                    "         Ext.getCmp('txtQ1aID').enable();\r",
-                                                                                    "          Ext.getCmp('txtQ1bID').disable();\r",
-                                                                                    "      }\r",
-                                                                                    "  }\r",
                                                                                     "    \r",
-                                                                                    "   if(Ext.getCmp('txtQ1bID').getValue() !=='')\r",
-                                                                                    "    { \r",
+                                                                                    "    \r",
+                                                                                    "    \r",
+                                                                                    "    \r",
+                                                                                    "    \r",
+                                                                                    "    // Success\r",
+                                                                                    "    var successCallback = function(resp, ops) {\r",
+                                                                                    "        var RecordResponse = JSON.parse(Ext.JSON.decode(resp.responseText));\r",
+                                                                                    "        Ext.getCmp('lblSectionBHICNID').setValue(RecordResponse.PatientHICN);\r",
+                                                                                    "        Ext.getCmp('lblSectionBPatientNameID').setValue(RecordResponse.PatientName);\r",
+                                                                                    "        Ext.getCmp('lblSectionBCertypeID').setValue(RecordResponse.CertType);\r",
+                                                                                    "        Ext.getCmp('lblSectionBcertDateID').setValue(RecordResponse.CertDate);\r",
+                                                                                    "        Ext.getCmp('lblSectionBDOBID').setValue(RecordResponse.PatientDOB);\r",
+                                                                                    "        Ext.getCmp('lblSectionBPhynameID').setValue(RecordResponse.physicianName);\r",
+                                                                                    "        Ext.getCmp('lblSectionBMedID').setValue(RecordResponse.MedicalID);\r",
+                                                                                    "        Ext.getCmp('hdnDetailID').setValue(selectedHdrid);\r",
                                                                                     "        \r",
-                                                                                    "      \r",
-                                                                                    "      if(Ext.getCmp('txtQ1bID').getValue() ==='0'){\r",
-                                                                                    "        Ext.getCmp('txtQ1bID').disable();\r",
-                                                                                    "      }\r",
-                                                                                    "      else{\r",
-                                                                                    "         Ext.getCmp('txtQ1bID').enable();\r",
-                                                                                    "          Ext.getCmp('txtQ1aID').disable();\r",
-                                                                                    "      }\r",
-                                                                                    "  }\r",
+                                                                                    "        Ext.getCmp('LengthID').setValue(RecordResponse.LengthNeed);\r",
+                                                                                    "        Ext.getCmp('txticd').setValue(RecordResponse.ICD9);\r",
+                                                                                    "        Ext.getCmp('txticddes').setValue(RecordResponse.ICD9ShortDesc);\r",
+                                                                                    "        \r",
+                                                                                    "        Ext.getCmp('txtQ1aID').setValue(RecordResponse.Q1AmmHg);\r",
+                                                                                    "        Ext.getCmp('txtQ1bID').setValue(RecordResponse.Q1Bpercent);\r",
+                                                                                    "        Ext.getCmp('txtDateoftestID').setValue(RecordResponse.Q1Cdate);\r",
+                                                                                    "        var Q2val = RecordResponse.Q2cond;\r",
+                                                                                    "        if(Q2val){\r",
+                                                                                    "            Ext.getCmp('ddlQ2ID').setValue(Ext.getCmp('ddlQ2ID').store.data.items[Q2val-1]['data']['des']);\r",
+                                                                                    "        }\r",
+                                                                                    "        \r",
+                                                                                    "        var Q3val = RecordResponse.Q3cond;\r",
+                                                                                    "        if(Q3val){\r",
+                                                                                    "            Ext.getCmp('ddlQ3ID').setValue(Ext.getCmp('ddlQ3ID').store.data.items[Q3val-1]['data']['des']);\r",
+                                                                                    "        }\r",
+                                                                                    "        \r",
+                                                                                    "        \r",
+                                                                                    "        //Ext.getCmp('ddlQ3ID').setValue(RecordResponse.Q3cond);\r",
+                                                                                    "        \r",
+                                                                                    "        Ext.getCmp('ddlQ4ID').setValue(RecordResponse.Q4portable);\r",
+                                                                                    "        \r",
+                                                                                    "        \r",
+                                                                                    "        Ext.getCmp('txtQ5id').setValue(RecordResponse.Q5O2LPM);\r",
+                                                                                    "        \r",
+                                                                                    "        \r",
+                                                                                    "        if(Ext.getCmp('txtQ5id').value >= 4)\r",
+                                                                                    "        {\r",
+                                                                                    "            Ext.getCmp('txtQ6aID').enable();\r",
+                                                                                    "            Ext.getCmp('txtQ6bID').enable();\r",
+                                                                                    "            Ext.getCmp('ddlQ6cID').enable();\r",
+                                                                                    "        }\r",
+                                                                                    "        else\r",
+                                                                                    "        {\r",
+                                                                                    "            Ext.getCmp('txtQ6aID').disable();\r",
+                                                                                    "            Ext.getCmp('txtQ6bID').disable();\r",
+                                                                                    "            Ext.getCmp('ddlQ6cID').disable();\r",
+                                                                                    "            \r",
+                                                                                    "            Ext.getCmp('txtQ6aID').setValue('');\r",
+                                                                                    "            Ext.getCmp('txtQ6bID').setValue('');\r",
+                                                                                    "            Ext.getCmp('ddlQ6cID').setValue('');\r",
+                                                                                    "        }\r",
+                                                                                    "        \r",
+                                                                                    "        \r",
+                                                                                    "        if((Ext.getCmp('txtQ1aID').value >= '56' && Ext.getCmp('txtQ1aID').value <= '59') || (Ext.getCmp('txtQ1bID').value === '89')){\r",
+                                                                                    "            \r",
+                                                                                    "            Ext.getCmp('ddlQ7ID').enable();\r",
+                                                                                    "            Ext.getCmp('ddlQ8ID').enable();\r",
+                                                                                    "            Ext.getCmp('ddlQ9ID').enable();\r",
+                                                                                    "        }\r",
+                                                                                    "        else\r",
+                                                                                    "        {\r",
+                                                                                    "            Ext.getCmp('ddlQ7ID').disable();\r",
+                                                                                    "            Ext.getCmp('ddlQ8ID').disable();\r",
+                                                                                    "            Ext.getCmp('ddlQ9ID').disable();\r",
+                                                                                    "            Ext.getCmp('ddlQ7ID').setValue('');\r",
+                                                                                    "            Ext.getCmp('ddlQ8ID').setValue('');\r",
+                                                                                    "            Ext.getCmp('ddlQ9ID').setValue('');\r",
+                                                                                    "            \r",
+                                                                                    "        }\r",
+                                                                                    "        \r",
+                                                                                    "        \r",
+                                                                                    "        \r",
+                                                                                    "        \r",
+                                                                                    "        Ext.getCmp('txtQ6aID').setValue(RecordResponse.Q6AmmHg);\r",
+                                                                                    "        Ext.getCmp('txtQ6bID').setValue(RecordResponse.Q6Bpercent);\r",
+                                                                                    "        Ext.getCmp('ddlQ6cID').setValue(RecordResponse.Q6Cdate);\r",
+                                                                                    "        \r",
+                                                                                    "        Ext.getCmp('ddlQ7ID').setValue(RecordResponse.Q7CHF);\r",
+                                                                                    "        Ext.getCmp('ddlQ8ID').setValue(RecordResponse.Q8Hypert);\r",
+                                                                                    "        Ext.getCmp('ddlQ9ID').setValue(RecordResponse.Q9Herm);\r",
+                                                                                    "        Ext.getCmp('txtNameID').setValue(RecordResponse.SignedByName);\r",
+                                                                                    "        Ext.getCmp('txtTitleID').setValue(RecordResponse.SignedByTitle);\r",
+                                                                                    "        Ext.getCmp('txtEmployerID').setValue(RecordResponse.SignedByEmployer);\r",
+                                                                                    "        \r",
+                                                                                    "        if(Ext.getCmp('txtQ1aID').getValue() !=='')\r",
+                                                                                    "        {\r",
+                                                                                    "            \r",
+                                                                                    "            if(Ext.getCmp('txtQ1aID').getValue() ==='0'){\r",
+                                                                                    "                Ext.getCmp('txtQ1aID').disable();\r",
+                                                                                    "                \r",
+                                                                                    "            }\r",
+                                                                                    "            else{\r",
+                                                                                    "                Ext.getCmp('txtQ1aID').enable();\r",
+                                                                                    "                Ext.getCmp('txtQ1bID').disable();\r",
+                                                                                    "            }\r",
+                                                                                    "        }\r",
+                                                                                    "        \r",
+                                                                                    "        if(Ext.getCmp('txtQ1bID').getValue() !=='')\r",
+                                                                                    "        {\r",
                                                                                     "            \r",
                                                                                     "            \r",
-                                                                                    "            /*if(resp.responseText != 'false'){\r",
+                                                                                    "            if(Ext.getCmp('txtQ1bID').getValue() ==='0'){\r",
+                                                                                    "                Ext.getCmp('txtQ1bID').disable();\r",
+                                                                                    "            }\r",
+                                                                                    "            else{\r",
+                                                                                    "                Ext.getCmp('txtQ1bID').enable();\r",
+                                                                                    "                Ext.getCmp('txtQ1aID').disable();\r",
+                                                                                    "            }\r",
+                                                                                    "        }\r",
+                                                                                    "        \r",
+                                                                                    "        //******//\r",
+                                                                                    "        if(Ext.getCmp('txtQ6aID').getValue() !=='')\r",
+                                                                                    "        {\r",
+                                                                                    "            \r",
+                                                                                    "            if(Ext.getCmp('txtQ6aID').getValue() ==='0'){\r",
+                                                                                    "                Ext.getCmp('txtQ6aID').disable();\r",
+                                                                                    "                \r",
+                                                                                    "            }\r",
+                                                                                    "            else{\r",
+                                                                                    "                Ext.getCmp('txtQ6aID').enable();\r",
+                                                                                    "                Ext.getCmp('txtQ6bID').disable();\r",
+                                                                                    "            }\r",
+                                                                                    "        }\r",
+                                                                                    "        \r",
+                                                                                    "        if(Ext.getCmp('txtQ6bID').getValue() !=='')\r",
+                                                                                    "        {\r",
+                                                                                    "            \r",
+                                                                                    "            \r",
+                                                                                    "            if(Ext.getCmp('txtQ6bID').getValue() ==='0'){\r",
+                                                                                    "                Ext.getCmp('txtQ6bID').disable();\r",
+                                                                                    "            }\r",
+                                                                                    "            else{\r",
+                                                                                    "                Ext.getCmp('txtQ6bID').enable();\r",
+                                                                                    "                Ext.getCmp('txtQ6aID').disable();\r",
+                                                                                    "            }\r",
+                                                                                    "        }\r",
+                                                                                    "        \r",
+                                                                                    "        /*if(resp.responseText != 'false'){\r",
                                                                                     "\r",
                                                                                     "                HCPCSDesID.setValue(Ext.JSON.decode(resp.responseText));\r",
                                                                                     "\r",
@@ -11097,38 +11123,38 @@
                                                                                     "              // Show login failure error\r",
                                                                                     "            Ext.Msg.alert(\"Insert Failure\", 'HCPCS is not in our record');\r",
                                                                                     "            }*/\r",
-                                                                                    "\r",
-                                                                                    "        };\r",
-                                                                                    "\r",
-                                                                                    "        // Failure\r",
-                                                                                    "        var failureCallback = function(resp, ops) {\r",
-                                                                                    "\r",
-                                                                                    "            // Show login failure error\r",
-                                                                                    "            //Ext.Msg.alert(\"Login Failure\", 'Incorrect Username or Password');\r",
-                                                                                    "\r",
-                                                                                    "        };\r",
-                                                                                    "\r",
-                                                                                    "     //adding loader\r",
-                                                                                    "         Ext.Ajax.on('beforerequest', function(){\r",
-                                                                                    "\r",
-                                                                                    "                        var pnl=Ext.getCmp('SectionB1NextID');\r",
-                                                                                    "                        pnl.setLoading(true, true);\r",
-                                                                                    "                });\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "                Ext.Ajax.on('requestcomplete', function(){\r",
-                                                                                    "\r",
-                                                                                    "                      Ext.getCmp('SectionB1NextID').setLoading(false,false);\r",
-                                                                                    "                });\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "        // TODO: Login using server-side authentication service\r",
-                                                                                    "        Ext.Ajax.request({url: \"services/SectionB.php?action=get_LastSectionB1Bind&HdrID=\"+selectedHdrid,\r",
-                                                                                    "                method: 'GET',\r",
-                                                                                    "                params: selectedHdrid,\r",
-                                                                                    "                success: successCallback,\r",
-                                                                                    "                failure: failureCallback\r",
-                                                                                    "         });\r",
+                                                                                    "        \r",
+                                                                                    "    };\r",
+                                                                                    "    \r",
+                                                                                    "    // Failure\r",
+                                                                                    "    var failureCallback = function(resp, ops) {\r",
+                                                                                    "        \r",
+                                                                                    "        // Show login failure error\r",
+                                                                                    "        //Ext.Msg.alert(\"Login Failure\", 'Incorrect Username or Password');\r",
+                                                                                    "        \r",
+                                                                                    "    };\r",
+                                                                                    "    \r",
+                                                                                    "    //adding loader\r",
+                                                                                    "    Ext.Ajax.on('beforerequest', function(){\r",
+                                                                                    "        \r",
+                                                                                    "        var pnl=Ext.getCmp('SectionB1NextID');\r",
+                                                                                    "        pnl.setLoading(true, true);\r",
+                                                                                    "    });\r",
+                                                                                    "    \r",
+                                                                                    "    \r",
+                                                                                    "    Ext.Ajax.on('requestcomplete', function(){\r",
+                                                                                    "        \r",
+                                                                                    "        Ext.getCmp('SectionB1NextID').setLoading(false,false);\r",
+                                                                                    "    });\r",
+                                                                                    "    \r",
+                                                                                    "    \r",
+                                                                                    "    // TODO: Login using server-side authentication service\r",
+                                                                                    "    Ext.Ajax.request({url: \"services/SectionB.php?action=get_LastSectionB1Bind&HdrID=\"+selectedHdrid,\r",
+                                                                                    "                      method: 'GET',\r",
+                                                                                    "                      params: selectedHdrid,\r",
+                                                                                    "                      success: successCallback,\r",
+                                                                                    "                      failure: failureCallback\r",
+                                                                                    "                     });\r",
                                                                                     "}\r",
                                                                                     ""
                                                                                 ]
@@ -12144,7 +12170,6 @@
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
-                                                                "allowBlank": false,
                                                                 "designer|displayName": "",
                                                                 "fieldLabel": null,
                                                                 "id": "txtPhysicianfilterID",
@@ -12165,7 +12190,7 @@
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
-                                                                "formBind": true,
+                                                                "formBind": false,
                                                                 "itemId": "PhysicianBtnGO",
                                                                 "layout|flex": 1,
                                                                 "margin": "0 10 0 10",
@@ -12912,7 +12937,6 @@
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
-                                                                "allowBlank": false,
                                                                 "designer|displayName": "",
                                                                 "fieldLabel": null,
                                                                 "id": "txtPatientfilterID",
@@ -12933,7 +12957,7 @@
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
-                                                                "formBind": true,
+                                                                "formBind": false,
                                                                 "id": "PatientBtnGo",
                                                                 "itemId": null,
                                                                 "layout|flex": 1,
@@ -13715,7 +13739,6 @@
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
-                                                                "allowBlank": false,
                                                                 "designer|displayName": "",
                                                                 "fieldLabel": null,
                                                                 "id": "txtSupplierfilterRecordID",
@@ -13736,7 +13759,7 @@
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
-                                                                "formBind": true,
+                                                                "formBind": false,
                                                                 "itemId": "SupplierBtnGO",
                                                                 "layout|flex": 1,
                                                                 "margin": "0 10 0 10",
@@ -13769,22 +13792,22 @@
                                                                             "{\r",
                                                                             "    myStore.filter('SupplierNPI',Search);\r",
                                                                             "    myStore.load();\r",
-                                                                            "    \r",
+                                                                            "\r",
                                                                             "}\r",
                                                                             "if(type=='SupplierName')\r",
                                                                             "{\r",
-                                                                            "    \r",
+                                                                            "\r",
                                                                             "    myStore.filter('SupplierName',Search);\r",
                                                                             "    myStore.load();\r",
-                                                                            "    \r",
+                                                                            "\r",
                                                                             "}\r",
                                                                             "\r",
                                                                             "if(type=='ZipCode')\r",
                                                                             "{\r",
-                                                                            "    \r",
+                                                                            "\r",
                                                                             "    myStore.filter('SupplierZip',Search);\r",
                                                                             "    myStore.load();\r",
-                                                                            "    \r",
+                                                                            "\r",
                                                                             "}\r",
                                                                             "\r",
                                                                             "\r",
@@ -14310,7 +14333,6 @@
                         ],
                         "dock": null,
                         "height": null,
-                        "hidden": true,
                         "id": "SectionB1NextID",
                         "itemId": "SectionB1Next",
                         "style": [
@@ -14862,329 +14884,348 @@
                                                     "codeClass": null,
                                                     "userConfig": {
                                                         "container|align": "stretch",
+                                                        "id": "Q1abc",
                                                         "layout": "hbox",
                                                         "margin": "7 0 7 0"
                                                     },
                                                     "designerId": "c0b79a1a-ecbc-4377-824d-0a0d4bb3bf15",
                                                     "cn": [
                                                         {
-                                                            "type": "Ext.container.Container",
+                                                            "type": "Ext.form.FieldSet",
                                                             "reference": {
                                                                 "name": "items",
                                                                 "type": "array"
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
-                                                                "itemId": "Question3",
-                                                                "layout|flex": 1
+                                                                "layout|flex": 1,
+                                                                "style": [
+                                                                    "border-style:solid;\r",
+                                                                    "border-color:#000000;"
+                                                                ],
+                                                                "title": "<b>Please answer either Q1a Or Q1b</b>"
                                                             },
-                                                            "designerId": "4ea0c557-d344-4449-9835-05018ff6fabd",
+                                                            "designerId": "a2e82112-b93f-4aa3-b5ef-ea79ab160c7a",
                                                             "cn": [
                                                                 {
-                                                                    "type": "Ext.form.field.Display",
+                                                                    "type": "Ext.container.Container",
                                                                     "reference": {
                                                                         "name": "items",
                                                                         "type": "array"
                                                                     },
                                                                     "codeClass": null,
                                                                     "userConfig": {
-                                                                        "fieldLabel": "<b>1- Enter the most recent test taken on or before the certification date listed in section</b>",
-                                                                        "labelWidth": 800,
-                                                                        "margin": "",
-                                                                        "padding": ""
+                                                                        "itemId": "Question3"
                                                                     },
-                                                                    "designerId": "cb3c280b-c7f3-41c9-ae12-3598c8ed050d"
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "type": "Ext.container.Container",
-                                                    "reference": {
-                                                        "name": "items",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "container|align": "stretch",
-                                                        "itemId": "a",
-                                                        "layout": "hbox",
-                                                        "margin": "7 0 7 0"
-                                                    },
-                                                    "designerId": "f8910b7a-69fe-4153-95cd-9ee93890ed58",
-                                                    "cn": [
-                                                        {
-                                                            "type": "Ext.form.field.Text",
-                                                            "reference": {
-                                                                "name": "items",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "fieldLabel": "<b>a) Enter arterial blood gas PO2 and or&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
-                                                                "id": "txtQ1aID",
-                                                                "inputId": "txtSectionB1Q1a",
-                                                                "itemId": "txtArterial",
-                                                                "labelWidth": 520,
-                                                                "layout|margins": "",
-                                                                "maskRe": "/[\\d\\.]/",
-                                                                "padding": "",
-                                                                "regex": "/^[0-9]*$/",
-                                                                "regexText": "Invalid Input",
-                                                                "width": null
-                                                            },
-                                                            "designerId": "99228c24-dca7-4d67-bd6c-b24f19b75b12",
-                                                            "cn": [
+                                                                    "designerId": "4ea0c557-d344-4449-9835-05018ff6fabd",
+                                                                    "cn": [
+                                                                        {
+                                                                            "type": "Ext.form.field.Display",
+                                                                            "reference": {
+                                                                                "name": "items",
+                                                                                "type": "array"
+                                                                            },
+                                                                            "codeClass": null,
+                                                                            "userConfig": {
+                                                                                "fieldLabel": "<b>1- Enter the most recent test taken on or before the certification date listed in section</b>",
+                                                                                "labelWidth": 800,
+                                                                                "margin": "",
+                                                                                "padding": ""
+                                                                            },
+                                                                            "designerId": "cb3c280b-c7f3-41c9-ae12-3598c8ed050d"
+                                                                        }
+                                                                    ]
+                                                                },
                                                                 {
-                                                                    "type": "basiceventbinding",
+                                                                    "type": "Ext.container.Container",
                                                                     "reference": {
-                                                                        "name": "listeners",
+                                                                        "name": "items",
                                                                         "type": "array"
                                                                     },
                                                                     "codeClass": null,
                                                                     "userConfig": {
-                                                                        "fn": "onTxtQ1aIDBlur",
-                                                                        "implHandler": [
-                                                                            "var a_value = component.getValue();\r",
-                                                                            "if(a_value == '0'){\r",
-                                                                            "    Ext.getCmp('txtQ1bID').enable();\r",
-                                                                            "   }\r",
-                                                                            "else if(a_value === '')\r",
-                                                                            "{\r",
-                                                                            "    Ext.getCmp('txtQ1bID').enable();\r",
-                                                                            "}\r",
-                                                                            "else{\r",
-                                                                            "      Ext.getCmp('txtQ1bID').disable();\r",
-                                                                            "}\r",
-                                                                            "\r",
-                                                                            "if(component.getValue() >= '56' && component.getValue() <='59' ){\r",
-                                                                            "     Ext.getCmp('txtQ1bID').disable();\r",
-                                                                            "    \r",
-                                                                            "    Ext.getCmp('ddlQ7ID').enable();\r",
-                                                                            "    Ext.getCmp('ddlQ8ID').enable();\r",
-                                                                            "    Ext.getCmp('ddlQ9ID').enable();\r",
-                                                                            "    Ext.getCmp('ddlQ7ID').allowBlank = false;\r",
-                                                                            "    Ext.getCmp('ddlQ7ID').validate();\r",
-                                                                            "    Ext.getCmp('ddlQ8ID').allowBlank = false;\r",
-                                                                            "    Ext.getCmp('ddlQ8ID').validate();\r",
-                                                                            "    Ext.getCmp('ddlQ9ID').allowBlank = false;\r",
-                                                                            "    Ext.getCmp('ddlQ9ID').validate();\r",
-                                                                            "\r",
-                                                                            "}\r",
-                                                                            "else if (Ext.getCmp('txtQ1bID').getValue() === '89') {\r",
-                                                                            "     Ext.getCmp('txtQ1aID').disable();\r",
-                                                                            "    Ext.getCmp('ddlQ7ID').enable();\r",
-                                                                            "    Ext.getCmp('ddlQ8ID').enable();\r",
-                                                                            "    Ext.getCmp('ddlQ9ID').enable();\r",
-                                                                            "    Ext.getCmp('ddlQ7ID').allowBlank = false;\r",
-                                                                            "    Ext.getCmp('ddlQ7ID').validate();\r",
-                                                                            "    Ext.getCmp('ddlQ8ID').allowBlank = false;\r",
-                                                                            "    Ext.getCmp('ddlQ8ID').validate();\r",
-                                                                            "    Ext.getCmp('ddlQ9ID').allowBlank = false;\r",
-                                                                            "    Ext.getCmp('ddlQ9ID').validate();\r",
-                                                                            "}\r",
-                                                                            "    else{\r",
-                                                                            "\r",
-                                                                            "\r",
-                                                                            "        Ext.getCmp('ddlQ7ID').disable();\r",
-                                                                            "        Ext.getCmp('ddlQ8ID').disable();\r",
-                                                                            "        Ext.getCmp('ddlQ9ID').disable();\r",
-                                                                            "\r",
-                                                                            "\r",
-                                                                            "        Ext.getCmp('ddlQ7ID').setValue('');\r",
-                                                                            "        Ext.getCmp('ddlQ8ID').setValue('');\r",
-                                                                            "        Ext.getCmp('ddlQ9ID').setValue('');\r",
-                                                                            "\r",
-                                                                            "        Ext.getCmp('ddlQ7ID').allowBlank = true;\r",
-                                                                            "        Ext.getCmp('ddlQ7ID').validate();\r",
-                                                                            "        Ext.getCmp('ddlQ8ID').allowBlank = true;\r",
-                                                                            "        Ext.getCmp('ddlQ8ID').validate();\r",
-                                                                            "        Ext.getCmp('ddlQ9ID').allowBlank = true;\r",
-                                                                            "        Ext.getCmp('ddlQ9ID').validate();\r",
-                                                                            "    }"
-                                                                        ],
-                                                                        "name": "blur",
-                                                                        "scope": "me"
+                                                                        "container|align": "stretch",
+                                                                        "itemId": "a",
+                                                                        "layout": "hbox",
+                                                                        "margin": "7 0 7 0"
                                                                     },
-                                                                    "designerId": "560f3b37-dd2d-4823-abad-bab8f1ab545d"
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "type": "Ext.form.field.Display",
-                                                            "reference": {
-                                                                "name": "items",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "fieldLabel": "&nbsp;mm HG",
-                                                                "layout|flex": 1
-                                                            },
-                                                            "designerId": "dd0c6fd6-ad93-458c-a9bb-a2d5b473e667"
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "type": "Ext.container.Container",
-                                                    "reference": {
-                                                        "name": "items",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "container|align": "stretch",
-                                                        "id": "b",
-                                                        "layout": "hbox",
-                                                        "margin": "7 0 7 0"
-                                                    },
-                                                    "designerId": "89ceba03-3291-4a47-b99c-2bda678be188",
-                                                    "cn": [
-                                                        {
-                                                            "type": "Ext.form.field.Text",
-                                                            "reference": {
-                                                                "name": "items",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "fieldLabel": "<b>b) Enter oxygen saturation test &nbsp;<span style=\"color:#D94E37;\">*</span></b>",
-                                                                "id": "txtQ1bID",
-                                                                "inputId": "txtSectionB1Q1b",
-                                                                "itemId": "txtOxygensaturation",
-                                                                "labelWidth": 520,
-                                                                "maskRe": "/[\\d\\.]/",
-                                                                "regex": "/^[0-9]*$/",
-                                                                "regexText": "Invalid Input",
-                                                                "width": null
-                                                            },
-                                                            "designerId": "19b74df7-7092-493e-8db5-9ea2ba7f3e6c",
-                                                            "cn": [
+                                                                    "designerId": "f8910b7a-69fe-4153-95cd-9ee93890ed58",
+                                                                    "cn": [
+                                                                        {
+                                                                            "type": "Ext.form.field.Text",
+                                                                            "reference": {
+                                                                                "name": "items",
+                                                                                "type": "array"
+                                                                            },
+                                                                            "codeClass": null,
+                                                                            "userConfig": {
+                                                                                "fieldLabel": "<b>a) Enter arterial blood gas PO2 and or&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
+                                                                                "id": "txtQ1aID",
+                                                                                "inputId": "txtSectionB1Q1a",
+                                                                                "itemId": "txtArterial",
+                                                                                "labelWidth": 512,
+                                                                                "layout|margins": "",
+                                                                                "maskRe": "/[\\d\\.]/",
+                                                                                "padding": "",
+                                                                                "regex": "/^[0-9]*$/",
+                                                                                "regexText": "Invalid Input",
+                                                                                "width": null
+                                                                            },
+                                                                            "designerId": "99228c24-dca7-4d67-bd6c-b24f19b75b12",
+                                                                            "cn": [
+                                                                                {
+                                                                                    "type": "basiceventbinding",
+                                                                                    "reference": {
+                                                                                        "name": "listeners",
+                                                                                        "type": "array"
+                                                                                    },
+                                                                                    "codeClass": null,
+                                                                                    "userConfig": {
+                                                                                        "fn": "onTxtQ1aIDBlur",
+                                                                                        "implHandler": [
+                                                                                            "var a_value = component.getValue();\r",
+                                                                                            "if(a_value == '0'){\r",
+                                                                                            "    Ext.getCmp('txtQ1bID').enable();\r",
+                                                                                            "   }\r",
+                                                                                            "else if(a_value === '')\r",
+                                                                                            "{\r",
+                                                                                            "    Ext.getCmp('txtQ1bID').enable();\r",
+                                                                                            "}\r",
+                                                                                            "else{\r",
+                                                                                            "      Ext.getCmp('txtQ1bID').disable();\r",
+                                                                                            "}\r",
+                                                                                            "\r",
+                                                                                            "if(component.getValue() >= '56' && component.getValue() <='59' ){\r",
+                                                                                            "     Ext.getCmp('txtQ1bID').disable();\r",
+                                                                                            "\r",
+                                                                                            "    Ext.getCmp('ddlQ7ID').enable();\r",
+                                                                                            "    Ext.getCmp('ddlQ8ID').enable();\r",
+                                                                                            "    Ext.getCmp('ddlQ9ID').enable();\r",
+                                                                                            "    Ext.getCmp('ddlQ7ID').allowBlank = false;\r",
+                                                                                            "    Ext.getCmp('ddlQ7ID').validate();\r",
+                                                                                            "    Ext.getCmp('ddlQ8ID').allowBlank = false;\r",
+                                                                                            "    Ext.getCmp('ddlQ8ID').validate();\r",
+                                                                                            "    Ext.getCmp('ddlQ9ID').allowBlank = false;\r",
+                                                                                            "    Ext.getCmp('ddlQ9ID').validate();\r",
+                                                                                            "\r",
+                                                                                            "}\r",
+                                                                                            "else if (Ext.getCmp('txtQ1bID').getValue() === '89') {\r",
+                                                                                            "     Ext.getCmp('txtQ1aID').disable();\r",
+                                                                                            "    Ext.getCmp('ddlQ7ID').enable();\r",
+                                                                                            "    Ext.getCmp('ddlQ8ID').enable();\r",
+                                                                                            "    Ext.getCmp('ddlQ9ID').enable();\r",
+                                                                                            "    Ext.getCmp('ddlQ7ID').allowBlank = false;\r",
+                                                                                            "    Ext.getCmp('ddlQ7ID').validate();\r",
+                                                                                            "    Ext.getCmp('ddlQ8ID').allowBlank = false;\r",
+                                                                                            "    Ext.getCmp('ddlQ8ID').validate();\r",
+                                                                                            "    Ext.getCmp('ddlQ9ID').allowBlank = false;\r",
+                                                                                            "    Ext.getCmp('ddlQ9ID').validate();\r",
+                                                                                            "}\r",
+                                                                                            "    else{\r",
+                                                                                            "\r",
+                                                                                            "\r",
+                                                                                            "        Ext.getCmp('ddlQ7ID').disable();\r",
+                                                                                            "        Ext.getCmp('ddlQ8ID').disable();\r",
+                                                                                            "        Ext.getCmp('ddlQ9ID').disable();\r",
+                                                                                            "\r",
+                                                                                            "\r",
+                                                                                            "        Ext.getCmp('ddlQ7ID').setValue('');\r",
+                                                                                            "        Ext.getCmp('ddlQ8ID').setValue('');\r",
+                                                                                            "        Ext.getCmp('ddlQ9ID').setValue('');\r",
+                                                                                            "\r",
+                                                                                            "        Ext.getCmp('ddlQ7ID').allowBlank = true;\r",
+                                                                                            "        Ext.getCmp('ddlQ7ID').validate();\r",
+                                                                                            "        Ext.getCmp('ddlQ8ID').allowBlank = true;\r",
+                                                                                            "        Ext.getCmp('ddlQ8ID').validate();\r",
+                                                                                            "        Ext.getCmp('ddlQ9ID').allowBlank = true;\r",
+                                                                                            "        Ext.getCmp('ddlQ9ID').validate();\r",
+                                                                                            "    }"
+                                                                                        ],
+                                                                                        "name": "blur",
+                                                                                        "scope": "me"
+                                                                                    },
+                                                                                    "designerId": "560f3b37-dd2d-4823-abad-bab8f1ab545d"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "Ext.form.field.Display",
+                                                                            "reference": {
+                                                                                "name": "items",
+                                                                                "type": "array"
+                                                                            },
+                                                                            "codeClass": null,
+                                                                            "userConfig": {
+                                                                                "fieldLabel": "&nbsp;mm HG",
+                                                                                "layout|flex": 1
+                                                                            },
+                                                                            "designerId": "dd0c6fd6-ad93-458c-a9bb-a2d5b473e667"
+                                                                        }
+                                                                    ]
+                                                                },
                                                                 {
-                                                                    "type": "basiceventbinding",
+                                                                    "type": "Ext.container.Container",
                                                                     "reference": {
-                                                                        "name": "listeners",
+                                                                        "name": "items",
                                                                         "type": "array"
                                                                     },
                                                                     "codeClass": null,
                                                                     "userConfig": {
-                                                                        "fn": "onTxtQ1bIDBlur",
-                                                                        "implHandler": [
-                                                                            "var b_value = component.getValue();\r",
-                                                                            "if(b_value == '0'){\r",
-                                                                            "    Ext.getCmp('txtQ1aID').enable();\r",
-                                                                            "   }\r",
-                                                                            "else if(b_value === '')\r",
-                                                                            "{\r",
-                                                                            "    Ext.getCmp('txtQ1aID').enable();\r",
-                                                                            "}\r",
-                                                                            "else{\r",
-                                                                            "      Ext.getCmp('txtQ1aID').disable();\r",
-                                                                            "}\r",
-                                                                            "\r",
-                                                                            "if(component.getValue() =='89' ){\r",
-                                                                            "    \r",
-                                                                            "     Ext.getCmp('txtQ1aID').disable();\r",
-                                                                            "    Ext.getCmp('ddlQ7ID').enable();\r",
-                                                                            "    Ext.getCmp('ddlQ8ID').enable();\r",
-                                                                            "    Ext.getCmp('ddlQ9ID').enable();\r",
-                                                                            "    Ext.getCmp('ddlQ7ID').allowBlank = false;\r",
-                                                                            "    Ext.getCmp('ddlQ7ID').validate();\r",
-                                                                            "    Ext.getCmp('ddlQ8ID').allowBlank = false;\r",
-                                                                            "    Ext.getCmp('ddlQ8ID').validate();\r",
-                                                                            "    Ext.getCmp('ddlQ9ID').allowBlank = false;\r",
-                                                                            "    Ext.getCmp('ddlQ9ID').validate();\r",
-                                                                            "}\r",
-                                                                            "else if(Ext.getCmp('txtQ1aID').getValue() >= 56 && Ext.getCmp('txtQ1aID').getValue() <=59)\r",
-                                                                            "{\r",
-                                                                            "    Ext.getCmp('txtQ1bID').disable();\r",
-                                                                            "    Ext.getCmp('ddlQ7ID').enable();\r",
-                                                                            "    Ext.getCmp('ddlQ8ID').enable();\r",
-                                                                            "    Ext.getCmp('ddlQ9ID').enable();\r",
-                                                                            "    Ext.getCmp('ddlQ7ID').allowBlank = false;\r",
-                                                                            "    Ext.getCmp('ddlQ7ID').validate();\r",
-                                                                            "    Ext.getCmp('ddlQ8ID').allowBlank = false;\r",
-                                                                            "    Ext.getCmp('ddlQ8ID').validate();\r",
-                                                                            "    Ext.getCmp('ddlQ9ID').allowBlank = false;\r",
-                                                                            "    Ext.getCmp('ddlQ9ID').validate();\r",
-                                                                            "}\r",
-                                                                            "\r",
-                                                                            "else{\r",
-                                                                            "\r",
-                                                                            "    Ext.getCmp('ddlQ7ID').disable();\r",
-                                                                            "    Ext.getCmp('ddlQ8ID').disable();\r",
-                                                                            "    Ext.getCmp('ddlQ9ID').disable();\r",
-                                                                            "\r",
-                                                                            "\r",
-                                                                            "    Ext.getCmp('ddlQ7ID').setValue('');\r",
-                                                                            "    Ext.getCmp('ddlQ8ID').setValue('');\r",
-                                                                            "    Ext.getCmp('ddlQ9ID').setValue('');\r",
-                                                                            "\r",
-                                                                            "    Ext.getCmp('ddlQ7ID').allowBlank = true;\r",
-                                                                            "    Ext.getCmp('ddlQ7ID').validate();\r",
-                                                                            "    Ext.getCmp('ddlQ8ID').allowBlank = true;\r",
-                                                                            "    Ext.getCmp('ddlQ8ID').validate();\r",
-                                                                            "    Ext.getCmp('ddlQ9ID').allowBlank = true;\r",
-                                                                            "    Ext.getCmp('ddlQ9ID').validate();\r",
-                                                                            "}"
-                                                                        ],
-                                                                        "name": "blur",
-                                                                        "scope": "me"
+                                                                        "container|align": "stretch",
+                                                                        "id": "b",
+                                                                        "layout": "hbox",
+                                                                        "margin": "7 0 7 0"
                                                                     },
-                                                                    "designerId": "8bf29500-a33a-43c3-b186-1dcd8c47e377"
+                                                                    "designerId": "89ceba03-3291-4a47-b99c-2bda678be188",
+                                                                    "cn": [
+                                                                        {
+                                                                            "type": "Ext.form.field.Text",
+                                                                            "reference": {
+                                                                                "name": "items",
+                                                                                "type": "array"
+                                                                            },
+                                                                            "codeClass": null,
+                                                                            "userConfig": {
+                                                                                "fieldLabel": "<b>b) Enter oxygen saturation test &nbsp;<span style=\"color:#D94E37;\">*</span></b>",
+                                                                                "id": "txtQ1bID",
+                                                                                "inputId": "txtSectionB1Q1b",
+                                                                                "itemId": "txtOxygensaturation",
+                                                                                "labelWidth": 512,
+                                                                                "maskRe": "/[\\d\\.]/",
+                                                                                "regex": "/^[0-9]*$/",
+                                                                                "regexText": "Invalid Input",
+                                                                                "width": null
+                                                                            },
+                                                                            "designerId": "19b74df7-7092-493e-8db5-9ea2ba7f3e6c",
+                                                                            "cn": [
+                                                                                {
+                                                                                    "type": "basiceventbinding",
+                                                                                    "reference": {
+                                                                                        "name": "listeners",
+                                                                                        "type": "array"
+                                                                                    },
+                                                                                    "codeClass": null,
+                                                                                    "userConfig": {
+                                                                                        "fn": "onTxtQ1bIDBlur",
+                                                                                        "implHandler": [
+                                                                                            "var b_value = component.getValue();\r",
+                                                                                            "if(b_value == '0'){\r",
+                                                                                            "    Ext.getCmp('txtQ1aID').enable();\r",
+                                                                                            "   }\r",
+                                                                                            "else if(b_value === '')\r",
+                                                                                            "{\r",
+                                                                                            "    Ext.getCmp('txtQ1aID').enable();\r",
+                                                                                            "}\r",
+                                                                                            "else{\r",
+                                                                                            "      Ext.getCmp('txtQ1aID').disable();\r",
+                                                                                            "}\r",
+                                                                                            "\r",
+                                                                                            "if(component.getValue() =='89' ){\r",
+                                                                                            "\r",
+                                                                                            "     Ext.getCmp('txtQ1aID').disable();\r",
+                                                                                            "    Ext.getCmp('ddlQ7ID').enable();\r",
+                                                                                            "    Ext.getCmp('ddlQ8ID').enable();\r",
+                                                                                            "    Ext.getCmp('ddlQ9ID').enable();\r",
+                                                                                            "    Ext.getCmp('ddlQ7ID').allowBlank = false;\r",
+                                                                                            "    Ext.getCmp('ddlQ7ID').validate();\r",
+                                                                                            "    Ext.getCmp('ddlQ8ID').allowBlank = false;\r",
+                                                                                            "    Ext.getCmp('ddlQ8ID').validate();\r",
+                                                                                            "    Ext.getCmp('ddlQ9ID').allowBlank = false;\r",
+                                                                                            "    Ext.getCmp('ddlQ9ID').validate();\r",
+                                                                                            "}\r",
+                                                                                            "else if(Ext.getCmp('txtQ1aID').getValue() >= 56 && Ext.getCmp('txtQ1aID').getValue() <=59)\r",
+                                                                                            "{\r",
+                                                                                            "    Ext.getCmp('txtQ1bID').disable();\r",
+                                                                                            "    Ext.getCmp('ddlQ7ID').enable();\r",
+                                                                                            "    Ext.getCmp('ddlQ8ID').enable();\r",
+                                                                                            "    Ext.getCmp('ddlQ9ID').enable();\r",
+                                                                                            "    Ext.getCmp('ddlQ7ID').allowBlank = false;\r",
+                                                                                            "    Ext.getCmp('ddlQ7ID').validate();\r",
+                                                                                            "    Ext.getCmp('ddlQ8ID').allowBlank = false;\r",
+                                                                                            "    Ext.getCmp('ddlQ8ID').validate();\r",
+                                                                                            "    Ext.getCmp('ddlQ9ID').allowBlank = false;\r",
+                                                                                            "    Ext.getCmp('ddlQ9ID').validate();\r",
+                                                                                            "}\r",
+                                                                                            "\r",
+                                                                                            "else{\r",
+                                                                                            "\r",
+                                                                                            "    Ext.getCmp('ddlQ7ID').disable();\r",
+                                                                                            "    Ext.getCmp('ddlQ8ID').disable();\r",
+                                                                                            "    Ext.getCmp('ddlQ9ID').disable();\r",
+                                                                                            "\r",
+                                                                                            "\r",
+                                                                                            "    Ext.getCmp('ddlQ7ID').setValue('');\r",
+                                                                                            "    Ext.getCmp('ddlQ8ID').setValue('');\r",
+                                                                                            "    Ext.getCmp('ddlQ9ID').setValue('');\r",
+                                                                                            "\r",
+                                                                                            "    Ext.getCmp('ddlQ7ID').allowBlank = true;\r",
+                                                                                            "    Ext.getCmp('ddlQ7ID').validate();\r",
+                                                                                            "    Ext.getCmp('ddlQ8ID').allowBlank = true;\r",
+                                                                                            "    Ext.getCmp('ddlQ8ID').validate();\r",
+                                                                                            "    Ext.getCmp('ddlQ9ID').allowBlank = true;\r",
+                                                                                            "    Ext.getCmp('ddlQ9ID').validate();\r",
+                                                                                            "}"
+                                                                                        ],
+                                                                                        "name": "blur",
+                                                                                        "scope": "me"
+                                                                                    },
+                                                                                    "designerId": "8bf29500-a33a-43c3-b186-1dcd8c47e377"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "Ext.form.field.Display",
+                                                                            "reference": {
+                                                                                "name": "items",
+                                                                                "type": "array"
+                                                                            },
+                                                                            "codeClass": null,
+                                                                            "userConfig": {
+                                                                                "fieldLabel": "&nbsp;%",
+                                                                                "layout|flex": 1
+                                                                            },
+                                                                            "designerId": "cd574da1-f580-4ee7-9fdc-3c67145058f0"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "Ext.container.Container",
+                                                                    "reference": {
+                                                                        "name": "items",
+                                                                        "type": "array"
+                                                                    },
+                                                                    "codeClass": null,
+                                                                    "userConfig": {
+                                                                        "container|align": "stretch",
+                                                                        "itemId": "c",
+                                                                        "layout": "hbox",
+                                                                        "margin": "7 0 7 0"
+                                                                    },
+                                                                    "designerId": "119fa1a6-3e34-4f8e-a308-4d7577ee929b",
+                                                                    "cn": [
+                                                                        {
+                                                                            "type": "Ext.form.field.Date",
+                                                                            "reference": {
+                                                                                "name": "items",
+                                                                                "type": "array"
+                                                                            },
+                                                                            "codeClass": null,
+                                                                            "userConfig": {
+                                                                                "editable": false,
+                                                                                "fieldLabel": "<b>c) Enter Date of Test&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
+                                                                                "format": "m-d-Y",
+                                                                                "id": "txtDateoftestID",
+                                                                                "inputId": "txtSectionB1Q1c",
+                                                                                "itemId": "txtDateoftest",
+                                                                                "labelWidth": 512,
+                                                                                "layout|flex": null,
+                                                                                "width": null
+                                                                            },
+                                                                            "designerId": "8e55cbcf-32d7-4d96-88f8-90a9173779c1"
+                                                                        }
+                                                                    ]
                                                                 }
                                                             ]
-                                                        },
-                                                        {
-                                                            "type": "Ext.form.field.Display",
-                                                            "reference": {
-                                                                "name": "items",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "fieldLabel": "&nbsp;%",
-                                                                "layout|flex": 1
-                                                            },
-                                                            "designerId": "cd574da1-f580-4ee7-9fdc-3c67145058f0"
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "type": "Ext.container.Container",
-                                                    "reference": {
-                                                        "name": "items",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "container|align": "stretch",
-                                                        "itemId": "c",
-                                                        "layout": "hbox",
-                                                        "margin": "7 0 7 0"
-                                                    },
-                                                    "designerId": "119fa1a6-3e34-4f8e-a308-4d7577ee929b",
-                                                    "cn": [
-                                                        {
-                                                            "type": "Ext.form.field.Date",
-                                                            "reference": {
-                                                                "name": "items",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "editable": false,
-                                                                "fieldLabel": "<b>c) Enter Date of Test&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
-                                                                "format": "m-d-Y",
-                                                                "id": "txtDateoftestID",
-                                                                "inputId": "txtSectionB1Q1c",
-                                                                "itemId": "txtDateoftest",
-                                                                "labelWidth": 520,
-                                                                "layout|flex": null,
-                                                                "width": null
-                                                            },
-                                                            "designerId": "8e55cbcf-32d7-4d96-88f8-90a9173779c1"
                                                         }
                                                     ]
                                                 },
@@ -15417,168 +15458,258 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
-                                                        "container|align": "stretch",
-                                                        "itemId": "Q6",
-                                                        "layout": "hbox",
-                                                        "margin": "7 0 7 0"
+                                                        "id": "Q6abc"
                                                     },
-                                                    "designerId": "6b5711ab-05db-4976-8bbe-319c9b52ac9d",
+                                                    "designerId": "956009a5-7bfc-4be2-ae4e-f6029ddfb978",
                                                     "cn": [
                                                         {
-                                                            "type": "Ext.form.field.Display",
+                                                            "type": "Ext.form.FieldSet",
                                                             "reference": {
                                                                 "name": "items",
                                                                 "type": "array"
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
-                                                                "designer|displayName": "6- If Greater than 4LPM is Prescribed, Enter result taken on 4LPM. This may be an",
-                                                                "fieldLabel": "<b>6- If Greater than 4LPM is Prescribed, Enter result taken on 4LPM. This may be an:&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
-                                                                "labelWidth": 600,
-                                                                "layout|flex": 0
+                                                                "style": [
+                                                                    "border-style:solid;\r",
+                                                                    "border-color:#000000;"
+                                                                ],
+                                                                "title": "<b>Please answer either Q6a OR Q6b</b>"
                                                             },
-                                                            "designerId": "027930b3-1b08-4f31-be5b-f5a49687c045"
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "type": "Ext.container.Container",
-                                                    "reference": {
-                                                        "name": "items",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "container|align": "stretch",
-                                                        "itemId": "Q6a",
-                                                        "layout": "hbox",
-                                                        "margin": "7 0 7 0"
-                                                    },
-                                                    "designerId": "fe2cbdb8-c9e7-433c-a20d-9c5abe1a7c89",
-                                                    "cn": [
-                                                        {
-                                                            "type": "Ext.form.field.Text",
-                                                            "reference": {
-                                                                "name": "items",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "disabled": true,
-                                                                "fieldLabel": "<b>a) Enter arterial blood gas PO2 and or</b>",
-                                                                "id": "txtQ6aID",
-                                                                "inputId": "ddlSectionB1Q6a",
-                                                                "itemId": "txtQ6a",
-                                                                "labelWidth": 520,
-                                                                "layout|flex": null,
-                                                                "maskRe": "/[\\d\\.]/",
-                                                                "regex": "/^[0-9]*$/",
-                                                                "regexText": "Invalid Input"
-                                                            },
-                                                            "designerId": "416d5640-f7da-4c72-9fe2-f37531f14e20"
-                                                        },
-                                                        {
-                                                            "type": "Ext.form.field.Display",
-                                                            "reference": {
-                                                                "name": "items",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "fieldLabel": "&nbsp;mm HG",
-                                                                "layout|flex": 1
-                                                            },
-                                                            "designerId": "8380508a-03ce-480a-8663-f5afaba17219"
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "type": "Ext.container.Container",
-                                                    "reference": {
-                                                        "name": "items",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "container|align": "stretch",
-                                                        "itemId": "Q6b",
-                                                        "layout": "hbox",
-                                                        "margin": "7 0 7 0"
-                                                    },
-                                                    "designerId": "b2038371-ac27-4931-a326-d7c9413f8f95",
-                                                    "cn": [
-                                                        {
-                                                            "type": "Ext.form.field.Text",
-                                                            "reference": {
-                                                                "name": "items",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "disabled": true,
-                                                                "enforceMaxLength": true,
-                                                                "fieldLabel": "<b>b) Enter oxygen saturation test with patient in a chronic stable stage  </b>",
-                                                                "id": "txtQ6bID",
-                                                                "inputId": "ddlSectionB1Q6b",
-                                                                "itemId": "txtQ6b",
-                                                                "labelWidth": 520,
-                                                                "layout|flex": null,
-                                                                "maskRe": "/[\\d\\.]/",
-                                                                "maxLength": 2,
-                                                                "regex": "/^[1-9][0-9]{0,2}$/",
-                                                                "regexText": "Please enter value that is less than 100"
-                                                            },
-                                                            "designerId": "5fadc088-3245-4d70-bdf4-fb27fc1bbc44"
-                                                        },
-                                                        {
-                                                            "type": "Ext.form.field.Display",
-                                                            "reference": {
-                                                                "name": "items",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "fieldLabel": "&nbsp;%",
-                                                                "layout|flex": 1
-                                                            },
-                                                            "designerId": "f090cfed-40fd-4f91-887e-61c53d1a7078"
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "type": "Ext.container.Container",
-                                                    "reference": {
-                                                        "name": "items",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "container|align": "stretch",
-                                                        "itemId": "Q6c",
-                                                        "layout": "hbox",
-                                                        "margin": "7 0 7 0"
-                                                    },
-                                                    "designerId": "8efbb02c-828d-4c55-8832-657b0cfe96f1",
-                                                    "cn": [
-                                                        {
-                                                            "type": "Ext.form.field.Date",
-                                                            "reference": {
-                                                                "name": "items",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "disabled": true,
-                                                                "fieldLabel": "<b>c) Enter Date of Test</b>",
-                                                                "format": "m-d-Y",
-                                                                "id": "ddlQ6cID",
-                                                                "inputId": "ddlSectionB1Q6c",
-                                                                "itemId": "ddlQ6c",
-                                                                "labelWidth": 520,
-                                                                "layout|flex": null,
-                                                                "width": null
-                                                            },
-                                                            "designerId": "d29a0016-4a9f-4498-b2ce-d2e3f6616a9f"
+                                                            "designerId": "35a832f5-5ee1-45f1-b950-84beb463c127",
+                                                            "cn": [
+                                                                {
+                                                                    "type": "Ext.container.Container",
+                                                                    "reference": {
+                                                                        "name": "items",
+                                                                        "type": "array"
+                                                                    },
+                                                                    "codeClass": null,
+                                                                    "userConfig": {
+                                                                        "container|align": "stretch",
+                                                                        "itemId": "Q6",
+                                                                        "layout": "hbox",
+                                                                        "margin": "7 0 7 0"
+                                                                    },
+                                                                    "designerId": "6b5711ab-05db-4976-8bbe-319c9b52ac9d",
+                                                                    "cn": [
+                                                                        {
+                                                                            "type": "Ext.form.field.Display",
+                                                                            "reference": {
+                                                                                "name": "items",
+                                                                                "type": "array"
+                                                                            },
+                                                                            "codeClass": null,
+                                                                            "userConfig": {
+                                                                                "designer|displayName": "6- If Greater than 4LPM is Prescribed, Enter result taken on 4LPM. This may be an",
+                                                                                "fieldLabel": "<b>6- If Greater than 4LPM is Prescribed, Enter result taken on 4LPM. This may be an:&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
+                                                                                "labelWidth": 600,
+                                                                                "layout|flex": 0
+                                                                            },
+                                                                            "designerId": "027930b3-1b08-4f31-be5b-f5a49687c045"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "Ext.container.Container",
+                                                                    "reference": {
+                                                                        "name": "items",
+                                                                        "type": "array"
+                                                                    },
+                                                                    "codeClass": null,
+                                                                    "userConfig": {
+                                                                        "container|align": "stretch",
+                                                                        "itemId": "Q6a",
+                                                                        "layout": "hbox",
+                                                                        "margin": "7 0 7 0"
+                                                                    },
+                                                                    "designerId": "fe2cbdb8-c9e7-433c-a20d-9c5abe1a7c89",
+                                                                    "cn": [
+                                                                        {
+                                                                            "type": "Ext.form.field.Text",
+                                                                            "reference": {
+                                                                                "name": "items",
+                                                                                "type": "array"
+                                                                            },
+                                                                            "codeClass": null,
+                                                                            "userConfig": {
+                                                                                "disabled": true,
+                                                                                "fieldLabel": "<b>a) Enter arterial blood gas PO2 and or</b>",
+                                                                                "id": "txtQ6aID",
+                                                                                "inputId": "ddlSectionB1Q6a",
+                                                                                "itemId": "txtQ6a",
+                                                                                "labelWidth": 512,
+                                                                                "layout|flex": null,
+                                                                                "maskRe": "/[\\d\\.]/",
+                                                                                "regex": "/^[0-9]*$/",
+                                                                                "regexText": "Invalid Input"
+                                                                            },
+                                                                            "designerId": "416d5640-f7da-4c72-9fe2-f37531f14e20",
+                                                                            "cn": [
+                                                                                {
+                                                                                    "type": "basiceventbinding",
+                                                                                    "reference": {
+                                                                                        "name": "listeners",
+                                                                                        "type": "array"
+                                                                                    },
+                                                                                    "codeClass": null,
+                                                                                    "userConfig": {
+                                                                                        "fn": "onTxtQ6aIDBlur",
+                                                                                        "implHandler": [
+                                                                                            "var a_value = component.getValue();\r",
+                                                                                            "if(a_value == '0'){\r",
+                                                                                            "    Ext.getCmp('txtQ6bID').enable();\r",
+                                                                                            "   }\r",
+                                                                                            "else if(a_value === '')\r",
+                                                                                            "{\r",
+                                                                                            "    Ext.getCmp('txtQ6bID').enable();\r",
+                                                                                            "}\r",
+                                                                                            "else{\r",
+                                                                                            "      Ext.getCmp('txtQ6bID').disable();\r",
+                                                                                            "}"
+                                                                                        ],
+                                                                                        "name": "blur",
+                                                                                        "scope": "me"
+                                                                                    },
+                                                                                    "designerId": "f503d2ae-0b2f-42df-bede-ab450bba11e0"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "Ext.form.field.Display",
+                                                                            "reference": {
+                                                                                "name": "items",
+                                                                                "type": "array"
+                                                                            },
+                                                                            "codeClass": null,
+                                                                            "userConfig": {
+                                                                                "fieldLabel": "&nbsp;mm HG",
+                                                                                "layout|flex": 1
+                                                                            },
+                                                                            "designerId": "8380508a-03ce-480a-8663-f5afaba17219"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "Ext.container.Container",
+                                                                    "reference": {
+                                                                        "name": "items",
+                                                                        "type": "array"
+                                                                    },
+                                                                    "codeClass": null,
+                                                                    "userConfig": {
+                                                                        "container|align": "stretch",
+                                                                        "itemId": "Q6b",
+                                                                        "layout": "hbox",
+                                                                        "margin": "7 0 7 0"
+                                                                    },
+                                                                    "designerId": "b2038371-ac27-4931-a326-d7c9413f8f95",
+                                                                    "cn": [
+                                                                        {
+                                                                            "type": "Ext.form.field.Text",
+                                                                            "reference": {
+                                                                                "name": "items",
+                                                                                "type": "array"
+                                                                            },
+                                                                            "codeClass": null,
+                                                                            "userConfig": {
+                                                                                "disabled": true,
+                                                                                "enforceMaxLength": true,
+                                                                                "fieldLabel": "<b>b) Enter oxygen saturation test with patient in a chronic stable stage  </b>",
+                                                                                "id": "txtQ6bID",
+                                                                                "inputId": "ddlSectionB1Q6b",
+                                                                                "itemId": "txtQ6b",
+                                                                                "labelWidth": 512,
+                                                                                "layout|flex": null,
+                                                                                "maskRe": "/[\\d\\.]/",
+                                                                                "maxLength": 2,
+                                                                                "regex": "/^[1-9][0-9]{0,2}$/",
+                                                                                "regexText": "Please enter value that is less than 100"
+                                                                            },
+                                                                            "designerId": "5fadc088-3245-4d70-bdf4-fb27fc1bbc44",
+                                                                            "cn": [
+                                                                                {
+                                                                                    "type": "basiceventbinding",
+                                                                                    "reference": {
+                                                                                        "name": "listeners",
+                                                                                        "type": "array"
+                                                                                    },
+                                                                                    "codeClass": null,
+                                                                                    "userConfig": {
+                                                                                        "fn": "onTxtQ6bIDBlur",
+                                                                                        "implHandler": [
+                                                                                            "var b_value = component.getValue();\r",
+                                                                                            "if(b_value == '0'){\r",
+                                                                                            "    Ext.getCmp('txtQ6aID').enable();\r",
+                                                                                            "   }\r",
+                                                                                            "else if(b_value === '')\r",
+                                                                                            "{\r",
+                                                                                            "    Ext.getCmp('txtQ6aID').enable();\r",
+                                                                                            "}\r",
+                                                                                            "else{\r",
+                                                                                            "      Ext.getCmp('txtQ6aID').disable();\r",
+                                                                                            "}"
+                                                                                        ],
+                                                                                        "name": "blur",
+                                                                                        "scope": "me"
+                                                                                    },
+                                                                                    "designerId": "463fd43c-6d41-4d23-9a21-7e99210abdf9"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "Ext.form.field.Display",
+                                                                            "reference": {
+                                                                                "name": "items",
+                                                                                "type": "array"
+                                                                            },
+                                                                            "codeClass": null,
+                                                                            "userConfig": {
+                                                                                "fieldLabel": "&nbsp;%",
+                                                                                "layout|flex": 1
+                                                                            },
+                                                                            "designerId": "f090cfed-40fd-4f91-887e-61c53d1a7078"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "Ext.container.Container",
+                                                                    "reference": {
+                                                                        "name": "items",
+                                                                        "type": "array"
+                                                                    },
+                                                                    "codeClass": null,
+                                                                    "userConfig": {
+                                                                        "container|align": "stretch",
+                                                                        "itemId": "Q6c",
+                                                                        "layout": "hbox",
+                                                                        "margin": "7 0 7 0"
+                                                                    },
+                                                                    "designerId": "8efbb02c-828d-4c55-8832-657b0cfe96f1",
+                                                                    "cn": [
+                                                                        {
+                                                                            "type": "Ext.form.field.Date",
+                                                                            "reference": {
+                                                                                "name": "items",
+                                                                                "type": "array"
+                                                                            },
+                                                                            "codeClass": null,
+                                                                            "userConfig": {
+                                                                                "disabled": true,
+                                                                                "fieldLabel": "<b>c) Enter Date of Test</b>",
+                                                                                "format": "m-d-Y",
+                                                                                "id": "ddlQ6cID",
+                                                                                "inputId": "ddlSectionB1Q6c",
+                                                                                "itemId": "ddlQ6c",
+                                                                                "labelWidth": 512,
+                                                                                "layout|flex": null,
+                                                                                "width": null
+                                                                            },
+                                                                            "designerId": "d29a0016-4a9f-4498-b2ce-d2e3f6616a9f"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
                                                         }
                                                     ]
                                                 },
@@ -15987,12 +16118,23 @@
                                                                     "values = form.getValues();\r",
                                                                     "\r",
                                                                     "var DetailID = Ext.getCmp('hdnDetailID').getValue();\r",
-                                                                    "\r",
+                                                                    "var q7 = Ext.getCmp('ddlQ7ID').getValue();\r",
+                                                                    "var q8 = Ext.getCmp('ddlQ8ID').getValue();\r",
+                                                                    "var q9 = Ext.getCmp('ddlQ9ID').getValue();\r",
                                                                     "\r",
                                                                     "        // Success\r",
                                                                     "        var successCallback = function(resp, ops) {\r",
-                                                                    "            //console.log(resp.responseText);\r",
-                                                                    "            if(resp.responseText === 'true'){\r",
+                                                                    "            \r",
+                                                                    "            if(q7 === 'N' && q8 === 'N' && q9 === 'N'){\r",
+                                                                    "                   Ext.Msg.show({\r",
+                                                                    "                    title: 'Invalid Answer',\r",
+                                                                    "                    msg: '<code>Atleast one answer from Q7, Q8 and Q9 should be YES.</code>',\r",
+                                                                    "                    icon: Ext.Msg['ERROR']\r",
+                                                                    "                });\r",
+                                                                    "\r",
+                                                                    "            }\r",
+                                                                    "            else{\r",
+                                                                    "             if(resp.responseText === 'true'){\r",
                                                                     "              Ext.Msg.alert(\"Record Saved\", 'Record Saved successfully');\r",
                                                                     "               var myStore = Ext.getStore('SectionBGridBind');\r",
                                                                     "                myStore.clearFilter();\r",
@@ -16017,7 +16159,10 @@
                                                                     "            else{\r",
                                                                     "              // Show login failure error\r",
                                                                     "            Ext.Msg.alert(\"Insert Failure\", 'Record cannot be added');\r",
+                                                                    "            }   \r",
                                                                     "            }\r",
+                                                                    "            \r",
+                                                                    "            \r",
                                                                     "\r",
                                                                     "        };\r",
                                                                     "\r",

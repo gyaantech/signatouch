@@ -4928,6 +4928,32 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                             }
                                                                                         }
 
+                                                                                        //******//
+                                                                                        if(Ext.getCmp('txtQ6aID').getValue() !=='')
+                                                                                        {
+
+                                                                                            if(Ext.getCmp('txtQ6aID').getValue() ==='0'){
+                                                                                                Ext.getCmp('txtQ6aID').disable();
+
+                                                                                            }
+                                                                                            else{
+                                                                                                Ext.getCmp('txtQ6aID').enable();
+                                                                                                Ext.getCmp('txtQ6bID').disable();
+                                                                                            }
+                                                                                        }
+
+                                                                                        if(Ext.getCmp('txtQ6bID').getValue() !=='')
+                                                                                        {
+
+
+                                                                                            if(Ext.getCmp('txtQ6bID').getValue() ==='0'){
+                                                                                                Ext.getCmp('txtQ6bID').disable();
+                                                                                            }
+                                                                                            else{
+                                                                                                Ext.getCmp('txtQ6bID').enable();
+                                                                                                Ext.getCmp('txtQ6aID').disable();
+                                                                                            }
+                                                                                        }
 
                                                                                         /*if(resp.responseText != 'false'){
 
@@ -5742,13 +5768,12 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     id: 'txtPhysicianfilterID',
                                                                     margin: '0 5 0 5',
                                                                     width: 250,
-                                                                    inputId: 'txtPhysicianfilter',
-                                                                    allowBlank: false
+                                                                    inputId: 'txtPhysicianfilter'
                                                                 },
                                                                 {
                                                                     xtype: 'button',
                                                                     flex: 1,
-                                                                    formBind: true,
+                                                                    formBind: false,
                                                                     itemId: 'PhysicianBtnGO',
                                                                     margin: '0 10 0 10',
                                                                     maxWidth: 50,
@@ -6126,13 +6151,12 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     id: 'txtPatientfilterID',
                                                                     margin: '0 5 0 5',
                                                                     width: 250,
-                                                                    inputId: 'txtPatientfilter',
-                                                                    allowBlank: false
+                                                                    inputId: 'txtPatientfilter'
                                                                 },
                                                                 {
                                                                     xtype: 'button',
                                                                     flex: 1,
-                                                                    formBind: true,
+                                                                    formBind: false,
                                                                     id: 'PatientBtnGo',
                                                                     margin: '0 10 0 10',
                                                                     maxWidth: 50,
@@ -6515,13 +6539,12 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     id: 'txtSupplierfilterRecordID',
                                                                     margin: '0 5 0 5',
                                                                     width: 250,
-                                                                    inputId: 'txtSupplierfilter',
-                                                                    allowBlank: false
+                                                                    inputId: 'txtSupplierfilter'
                                                                 },
                                                                 {
                                                                     xtype: 'button',
                                                                     flex: 1,
-                                                                    formBind: true,
+                                                                    formBind: false,
                                                                     itemId: 'SupplierBtnGO',
                                                                     margin: '0 10 0 10',
                                                                     maxWidth: 50,
@@ -6805,7 +6828,6 @@ Ext.define('SignaTouch.view.MainView', {
                         },
                         {
                             xtype: 'panel',
-                            hidden: true,
                             id: 'SectionB1NextID',
                             itemId: 'SectionB1Next',
                             style: 'margin: 0 auto;\r\n    text-align: left;\r\n    width: 900px;',
@@ -7047,6 +7069,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                         },
                                                         {
                                                             xtype: 'container',
+                                                            id: 'Q1abc',
                                                             margin: '7 0 7 0',
                                                             layout: {
                                                                 type: 'hbox',
@@ -7054,107 +7077,114 @@ Ext.define('SignaTouch.view.MainView', {
                                                             },
                                                             items: [
                                                                 {
-                                                                    xtype: 'container',
+                                                                    xtype: 'fieldset',
                                                                     flex: 1,
-                                                                    itemId: 'Question3',
+                                                                    style: 'border-style:solid;\r\nborder-color:#000000;',
+                                                                    title: '<b>Please answer either Q1a Or Q1b</b>',
                                                                     items: [
                                                                         {
-                                                                            xtype: 'displayfield',
-                                                                            margin: '',
-                                                                            padding: '',
-                                                                            fieldLabel: '<b>1- Enter the most recent test taken on or before the certification date listed in section</b>',
-                                                                            labelWidth: 800
+                                                                            xtype: 'container',
+                                                                            itemId: 'Question3',
+                                                                            items: [
+                                                                                {
+                                                                                    xtype: 'displayfield',
+                                                                                    margin: '',
+                                                                                    padding: '',
+                                                                                    fieldLabel: '<b>1- Enter the most recent test taken on or before the certification date listed in section</b>',
+                                                                                    labelWidth: 800
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            xtype: 'container',
+                                                                            itemId: 'a',
+                                                                            margin: '7 0 7 0',
+                                                                            layout: {
+                                                                                type: 'hbox',
+                                                                                align: 'stretch'
+                                                                            },
+                                                                            items: [
+                                                                                {
+                                                                                    xtype: 'textfield',
+                                                                                    margins: '',
+                                                                                    id: 'txtQ1aID',
+                                                                                    itemId: 'txtArterial',
+                                                                                    padding: '',
+                                                                                    fieldLabel: '<b>a) Enter arterial blood gas PO2 and or&nbsp;<span style="color:#D94E37;">*</span></b>',
+                                                                                    labelWidth: 512,
+                                                                                    inputId: 'txtSectionB1Q1a',
+                                                                                    maskRe: /[\d\.]/,
+                                                                                    regex: /^[0-9]*$/,
+                                                                                    regexText: 'Invalid Input',
+                                                                                    listeners: {
+                                                                                        blur: {
+                                                                                            fn: me.onTxtQ1aIDBlur,
+                                                                                            scope: me
+                                                                                        }
+                                                                                    }
+                                                                                },
+                                                                                {
+                                                                                    xtype: 'displayfield',
+                                                                                    flex: 1,
+                                                                                    fieldLabel: '&nbsp;mm HG'
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            xtype: 'container',
+                                                                            id: 'b',
+                                                                            margin: '7 0 7 0',
+                                                                            layout: {
+                                                                                type: 'hbox',
+                                                                                align: 'stretch'
+                                                                            },
+                                                                            items: [
+                                                                                {
+                                                                                    xtype: 'textfield',
+                                                                                    id: 'txtQ1bID',
+                                                                                    itemId: 'txtOxygensaturation',
+                                                                                    fieldLabel: '<b>b) Enter oxygen saturation test &nbsp;<span style="color:#D94E37;">*</span></b>',
+                                                                                    labelWidth: 512,
+                                                                                    inputId: 'txtSectionB1Q1b',
+                                                                                    maskRe: /[\d\.]/,
+                                                                                    regex: /^[0-9]*$/,
+                                                                                    regexText: 'Invalid Input',
+                                                                                    listeners: {
+                                                                                        blur: {
+                                                                                            fn: me.onTxtQ1bIDBlur,
+                                                                                            scope: me
+                                                                                        }
+                                                                                    }
+                                                                                },
+                                                                                {
+                                                                                    xtype: 'displayfield',
+                                                                                    flex: 1,
+                                                                                    fieldLabel: '&nbsp;%'
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            xtype: 'container',
+                                                                            itemId: 'c',
+                                                                            margin: '7 0 7 0',
+                                                                            layout: {
+                                                                                type: 'hbox',
+                                                                                align: 'stretch'
+                                                                            },
+                                                                            items: [
+                                                                                {
+                                                                                    xtype: 'datefield',
+                                                                                    id: 'txtDateoftestID',
+                                                                                    itemId: 'txtDateoftest',
+                                                                                    fieldLabel: '<b>c) Enter Date of Test&nbsp;<span style="color:#D94E37;">*</span></b>',
+                                                                                    labelWidth: 512,
+                                                                                    inputId: 'txtSectionB1Q1c',
+                                                                                    editable: false,
+                                                                                    format: 'm-d-Y'
+                                                                                }
+                                                                            ]
                                                                         }
                                                                     ]
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            xtype: 'container',
-                                                            itemId: 'a',
-                                                            margin: '7 0 7 0',
-                                                            layout: {
-                                                                type: 'hbox',
-                                                                align: 'stretch'
-                                                            },
-                                                            items: [
-                                                                {
-                                                                    xtype: 'textfield',
-                                                                    margins: '',
-                                                                    id: 'txtQ1aID',
-                                                                    itemId: 'txtArterial',
-                                                                    padding: '',
-                                                                    fieldLabel: '<b>a) Enter arterial blood gas PO2 and or&nbsp;<span style="color:#D94E37;">*</span></b>',
-                                                                    labelWidth: 520,
-                                                                    inputId: 'txtSectionB1Q1a',
-                                                                    maskRe: /[\d\.]/,
-                                                                    regex: /^[0-9]*$/,
-                                                                    regexText: 'Invalid Input',
-                                                                    listeners: {
-                                                                        blur: {
-                                                                            fn: me.onTxtQ1aIDBlur,
-                                                                            scope: me
-                                                                        }
-                                                                    }
-                                                                },
-                                                                {
-                                                                    xtype: 'displayfield',
-                                                                    flex: 1,
-                                                                    fieldLabel: '&nbsp;mm HG'
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            xtype: 'container',
-                                                            id: 'b',
-                                                            margin: '7 0 7 0',
-                                                            layout: {
-                                                                type: 'hbox',
-                                                                align: 'stretch'
-                                                            },
-                                                            items: [
-                                                                {
-                                                                    xtype: 'textfield',
-                                                                    id: 'txtQ1bID',
-                                                                    itemId: 'txtOxygensaturation',
-                                                                    fieldLabel: '<b>b) Enter oxygen saturation test &nbsp;<span style="color:#D94E37;">*</span></b>',
-                                                                    labelWidth: 520,
-                                                                    inputId: 'txtSectionB1Q1b',
-                                                                    maskRe: /[\d\.]/,
-                                                                    regex: /^[0-9]*$/,
-                                                                    regexText: 'Invalid Input',
-                                                                    listeners: {
-                                                                        blur: {
-                                                                            fn: me.onTxtQ1bIDBlur,
-                                                                            scope: me
-                                                                        }
-                                                                    }
-                                                                },
-                                                                {
-                                                                    xtype: 'displayfield',
-                                                                    flex: 1,
-                                                                    fieldLabel: '&nbsp;%'
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            xtype: 'container',
-                                                            itemId: 'c',
-                                                            margin: '7 0 7 0',
-                                                            layout: {
-                                                                type: 'hbox',
-                                                                align: 'stretch'
-                                                            },
-                                                            items: [
-                                                                {
-                                                                    xtype: 'datefield',
-                                                                    id: 'txtDateoftestID',
-                                                                    itemId: 'txtDateoftest',
-                                                                    fieldLabel: '<b>c) Enter Date of Test&nbsp;<span style="color:#D94E37;">*</span></b>',
-                                                                    labelWidth: 520,
-                                                                    inputId: 'txtSectionB1Q1c',
-                                                                    editable: false,
-                                                                    format: 'm-d-Y'
                                                                 }
                                                             ]
                                                         },
@@ -7272,97 +7302,122 @@ Ext.define('SignaTouch.view.MainView', {
                                                         },
                                                         {
                                                             xtype: 'container',
-                                                            itemId: 'Q6',
-                                                            margin: '7 0 7 0',
-                                                            layout: {
-                                                                type: 'hbox',
-                                                                align: 'stretch'
-                                                            },
+                                                            id: 'Q6abc',
                                                             items: [
                                                                 {
-                                                                    xtype: 'displayfield',
-                                                                    flex: 0,
-                                                                    fieldLabel: '<b>6- If Greater than 4LPM is Prescribed, Enter result taken on 4LPM. This may be an:&nbsp;<span style="color:#D94E37;">*</span></b>',
-                                                                    labelWidth: 600
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            xtype: 'container',
-                                                            itemId: 'Q6a',
-                                                            margin: '7 0 7 0',
-                                                            layout: {
-                                                                type: 'hbox',
-                                                                align: 'stretch'
-                                                            },
-                                                            items: [
-                                                                {
-                                                                    xtype: 'textfield',
-                                                                    disabled: true,
-                                                                    id: 'txtQ6aID',
-                                                                    itemId: 'txtQ6a',
-                                                                    fieldLabel: '<b>a) Enter arterial blood gas PO2 and or</b>',
-                                                                    labelWidth: 520,
-                                                                    inputId: 'ddlSectionB1Q6a',
-                                                                    maskRe: /[\d\.]/,
-                                                                    regex: /^[0-9]*$/,
-                                                                    regexText: 'Invalid Input'
-                                                                },
-                                                                {
-                                                                    xtype: 'displayfield',
-                                                                    flex: 1,
-                                                                    fieldLabel: '&nbsp;mm HG'
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            xtype: 'container',
-                                                            itemId: 'Q6b',
-                                                            margin: '7 0 7 0',
-                                                            layout: {
-                                                                type: 'hbox',
-                                                                align: 'stretch'
-                                                            },
-                                                            items: [
-                                                                {
-                                                                    xtype: 'textfield',
-                                                                    disabled: true,
-                                                                    id: 'txtQ6bID',
-                                                                    itemId: 'txtQ6b',
-                                                                    fieldLabel: '<b>b) Enter oxygen saturation test with patient in a chronic stable stage  </b>',
-                                                                    labelWidth: 520,
-                                                                    inputId: 'ddlSectionB1Q6b',
-                                                                    enforceMaxLength: true,
-                                                                    maskRe: /[\d\.]/,
-                                                                    maxLength: 2,
-                                                                    regex: /^[1-9][0-9]{0,2}$/,
-                                                                    regexText: 'Please enter value that is less than 100'
-                                                                },
-                                                                {
-                                                                    xtype: 'displayfield',
-                                                                    flex: 1,
-                                                                    fieldLabel: '&nbsp;%'
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            xtype: 'container',
-                                                            itemId: 'Q6c',
-                                                            margin: '7 0 7 0',
-                                                            layout: {
-                                                                type: 'hbox',
-                                                                align: 'stretch'
-                                                            },
-                                                            items: [
-                                                                {
-                                                                    xtype: 'datefield',
-                                                                    disabled: true,
-                                                                    id: 'ddlQ6cID',
-                                                                    itemId: 'ddlQ6c',
-                                                                    fieldLabel: '<b>c) Enter Date of Test</b>',
-                                                                    labelWidth: 520,
-                                                                    inputId: 'ddlSectionB1Q6c',
-                                                                    format: 'm-d-Y'
+                                                                    xtype: 'fieldset',
+                                                                    style: 'border-style:solid;\r\nborder-color:#000000;',
+                                                                    title: '<b>Please answer either Q6a OR Q6b</b>',
+                                                                    items: [
+                                                                        {
+                                                                            xtype: 'container',
+                                                                            itemId: 'Q6',
+                                                                            margin: '7 0 7 0',
+                                                                            layout: {
+                                                                                type: 'hbox',
+                                                                                align: 'stretch'
+                                                                            },
+                                                                            items: [
+                                                                                {
+                                                                                    xtype: 'displayfield',
+                                                                                    flex: 0,
+                                                                                    fieldLabel: '<b>6- If Greater than 4LPM is Prescribed, Enter result taken on 4LPM. This may be an:&nbsp;<span style="color:#D94E37;">*</span></b>',
+                                                                                    labelWidth: 600
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            xtype: 'container',
+                                                                            itemId: 'Q6a',
+                                                                            margin: '7 0 7 0',
+                                                                            layout: {
+                                                                                type: 'hbox',
+                                                                                align: 'stretch'
+                                                                            },
+                                                                            items: [
+                                                                                {
+                                                                                    xtype: 'textfield',
+                                                                                    disabled: true,
+                                                                                    id: 'txtQ6aID',
+                                                                                    itemId: 'txtQ6a',
+                                                                                    fieldLabel: '<b>a) Enter arterial blood gas PO2 and or</b>',
+                                                                                    labelWidth: 512,
+                                                                                    inputId: 'ddlSectionB1Q6a',
+                                                                                    maskRe: /[\d\.]/,
+                                                                                    regex: /^[0-9]*$/,
+                                                                                    regexText: 'Invalid Input',
+                                                                                    listeners: {
+                                                                                        blur: {
+                                                                                            fn: me.onTxtQ6aIDBlur,
+                                                                                            scope: me
+                                                                                        }
+                                                                                    }
+                                                                                },
+                                                                                {
+                                                                                    xtype: 'displayfield',
+                                                                                    flex: 1,
+                                                                                    fieldLabel: '&nbsp;mm HG'
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            xtype: 'container',
+                                                                            itemId: 'Q6b',
+                                                                            margin: '7 0 7 0',
+                                                                            layout: {
+                                                                                type: 'hbox',
+                                                                                align: 'stretch'
+                                                                            },
+                                                                            items: [
+                                                                                {
+                                                                                    xtype: 'textfield',
+                                                                                    disabled: true,
+                                                                                    id: 'txtQ6bID',
+                                                                                    itemId: 'txtQ6b',
+                                                                                    fieldLabel: '<b>b) Enter oxygen saturation test with patient in a chronic stable stage  </b>',
+                                                                                    labelWidth: 512,
+                                                                                    inputId: 'ddlSectionB1Q6b',
+                                                                                    enforceMaxLength: true,
+                                                                                    maskRe: /[\d\.]/,
+                                                                                    maxLength: 2,
+                                                                                    regex: /^[1-9][0-9]{0,2}$/,
+                                                                                    regexText: 'Please enter value that is less than 100',
+                                                                                    listeners: {
+                                                                                        blur: {
+                                                                                            fn: me.onTxtQ6bIDBlur,
+                                                                                            scope: me
+                                                                                        }
+                                                                                    }
+                                                                                },
+                                                                                {
+                                                                                    xtype: 'displayfield',
+                                                                                    flex: 1,
+                                                                                    fieldLabel: '&nbsp;%'
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            xtype: 'container',
+                                                                            itemId: 'Q6c',
+                                                                            margin: '7 0 7 0',
+                                                                            layout: {
+                                                                                type: 'hbox',
+                                                                                align: 'stretch'
+                                                                            },
+                                                                            items: [
+                                                                                {
+                                                                                    xtype: 'datefield',
+                                                                                    disabled: true,
+                                                                                    id: 'ddlQ6cID',
+                                                                                    itemId: 'ddlQ6c',
+                                                                                    fieldLabel: '<b>c) Enter Date of Test</b>',
+                                                                                    labelWidth: 512,
+                                                                                    inputId: 'ddlSectionB1Q6c',
+                                                                                    format: 'm-d-Y'
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
                                                                 }
                                                             ]
                                                         },
@@ -11420,8 +11475,8 @@ Ext.define('SignaTouch.view.MainView', {
     onBtnPatientCancelClick: function(button, e, eOpts) {
 
         //go back to Physician selector screen
-         Ext.MessageBox.confirm ('Go back', 'Go back to Patient Selector screen ?', function(btn){
-                           if(btn === 'yes'){
+         //Ext.MessageBox.confirm ('Go back', 'Go back to Patient Selector screen ?', function(btn){
+                        //   if(btn === 'yes'){
                                Ext.getCmp('txtPatientfilterID').reset();
                                var myStore = Ext.getStore('PatientGridBind');
                          myStore.clearFilter();
@@ -11429,8 +11484,8 @@ Ext.define('SignaTouch.view.MainView', {
                               Ext.getCmp('PatientPanelID').hide();
                               Ext.getCmp('PatientRecord').show();
                             Ext.getCmp('PatientForm').getForm().reset();
-                           }
-                });
+                        //   }
+               // });
 
     },
 
@@ -11905,8 +11960,8 @@ Ext.define('SignaTouch.view.MainView', {
     onBtnPatientCancelClick1: function(button, e, eOpts) {
 
         //go back to Physician selector screen
-         Ext.MessageBox.confirm ('Go back', 'Go back to Patient Selector screen ?', function(btn){
-                           if(btn === 'yes'){
+         //Ext.MessageBox.confirm ('Go back', 'Go back to Patient Selector screen ?', function(btn){
+                           //if(btn === 'yes'){
                                Ext.getCmp('txtPatientfilterID').reset();
                                 var myStore = Ext.getStore('PatientGridBind');
                          myStore.clearFilter();
@@ -11914,8 +11969,8 @@ Ext.define('SignaTouch.view.MainView', {
                               Ext.getCmp('PatientViewID').hide();
                               Ext.getCmp('PatientRecord').show();
                             Ext.getCmp('PatientForm').getForm().reset();
-                           }
-                });
+                           //}
+               // });
 
     },
 
@@ -11940,8 +11995,8 @@ Ext.define('SignaTouch.view.MainView', {
 
     onBtnPhysicianCancelClick: function(button, e, eOpts) {
         //go back to Physician selector screen
-         Ext.MessageBox.confirm ('Go back', 'Go back to Physician Selector screen ?', function(btn){
-                           if(btn === 'yes'){
+         //Ext.MessageBox.confirm ('Go back', 'Go back to Physician Selector screen ?', function(btn){
+                          // if(btn === 'yes'){
                                Ext.getCmp('txtPhysicianfilterID').reset();
                                       var myStore = Ext.getStore('PhysicianGridBind');
                           myStore.clearFilter();
@@ -11949,8 +12004,8 @@ Ext.define('SignaTouch.view.MainView', {
                               Ext.getCmp('PhysicianPanelID').hide();
                               Ext.getCmp('PhysicianRecord').show();
                               Ext.getCmp('PhysicianForm').getForm().reset();
-                           }
-                });
+                          // }
+                //});
 
 
     },
@@ -12067,8 +12122,8 @@ Ext.define('SignaTouch.view.MainView', {
 
     onBtnPhysicianCancelClick1: function(button, e, eOpts) {
         //go back to Physician selector screen
-         Ext.MessageBox.confirm ('Go back', 'Go back to Physician Selector screen ?', function(btn){
-                           if(btn === 'yes'){
+         //Ext.MessageBox.confirm ('Go back', 'Go back to Physician Selector screen ?', function(btn){
+                          // if(btn === 'yes'){
                                Ext.getCmp('txtPhysicianfilterID').reset();
                                       var myStore = Ext.getStore('PhysicianGridBind');
                          myStore.clearFilter();
@@ -12076,8 +12131,8 @@ Ext.define('SignaTouch.view.MainView', {
                               Ext.getCmp('PhysicianViewID').hide();
                               Ext.getCmp('PhysicianRecord').show();
                               Ext.getCmp('PhysicianForm').getForm().reset();
-                           }
-                });
+                           //}
+                //});
 
 
     },
@@ -12093,8 +12148,8 @@ Ext.define('SignaTouch.view.MainView', {
 
     onBtnSupplierCancelClick: function(button, e, eOpts) {
         //go back to Supplier selector screen
-         Ext.MessageBox.confirm ('Go back', 'Go back to Supplier Selector screen ?', function(btn){
-                           if(btn === 'yes'){
+         //Ext.MessageBox.confirm ('Go back', 'Go back to Supplier Selector screen ?', function(btn){
+                         //  if(btn === 'yes'){
 
                              Ext.getCmp('txtSupplierfilterRecordID').reset();
                                 var myStore = Ext.getStore('SupplierGridBind');
@@ -12104,8 +12159,8 @@ Ext.define('SignaTouch.view.MainView', {
                                 Ext.getCmp('SupplierPanelID').hide();
                               Ext.getCmp('SupplierRecord').show();
                               Ext.getCmp('SupplierForm').getForm().reset();
-                           }
-                });
+                           //}
+               // });
 
     },
 
@@ -12218,8 +12273,8 @@ Ext.define('SignaTouch.view.MainView', {
 
     onBtnSupplierCancelClick1: function(button, e, eOpts) {
         //go back to Supplier selector screen
-         Ext.MessageBox.confirm ('Go back', 'Go back to Supplier Selector screen ?', function(btn){
-                           if(btn === 'yes'){
+         //Ext.MessageBox.confirm ('Go back', 'Go back to Supplier Selector screen ?', function(btn){
+                           //if(btn === 'yes'){
                                 Ext.getCmp('txtSupplierfilterRecordID').reset();
                                 var myStore = Ext.getStore('SupplierGridBind');
                          myStore.clearFilter();
@@ -12227,8 +12282,8 @@ Ext.define('SignaTouch.view.MainView', {
                               Ext.getCmp('SupplierViewID').hide();
                               Ext.getCmp('SupplierRecord').show();
                               Ext.getCmp('SupplierForm').getForm().reset();
-                           }
-                });
+                           //}
+               // });
 
     },
 
@@ -12990,6 +13045,34 @@ Ext.define('SignaTouch.view.MainView', {
         }
     },
 
+    onTxtQ6aIDBlur: function(component, e, eOpts) {
+        var a_value = component.getValue();
+        if(a_value == '0'){
+            Ext.getCmp('txtQ6bID').enable();
+           }
+        else if(a_value === '')
+        {
+            Ext.getCmp('txtQ6bID').enable();
+        }
+        else{
+              Ext.getCmp('txtQ6bID').disable();
+        }
+    },
+
+    onTxtQ6bIDBlur: function(component, e, eOpts) {
+        var b_value = component.getValue();
+        if(b_value == '0'){
+            Ext.getCmp('txtQ6aID').enable();
+           }
+        else if(b_value === '')
+        {
+            Ext.getCmp('txtQ6aID').enable();
+        }
+        else{
+              Ext.getCmp('txtQ6aID').disable();
+        }
+    },
+
     onBtDiscardClick: function(button, e, eOpts) {
         //go back to section B selector screen
          //Ext.MessageBox.confirm ('Go back', 'Go back to Section B Record Selector screen ?', function(btn){
@@ -13014,12 +13097,23 @@ Ext.define('SignaTouch.view.MainView', {
         values = form.getValues();
 
         var DetailID = Ext.getCmp('hdnDetailID').getValue();
-
+        var q7 = Ext.getCmp('ddlQ7ID').getValue();
+        var q8 = Ext.getCmp('ddlQ8ID').getValue();
+        var q9 = Ext.getCmp('ddlQ9ID').getValue();
 
                 // Success
                 var successCallback = function(resp, ops) {
-                    //console.log(resp.responseText);
-                    if(resp.responseText === 'true'){
+
+                    if(q7 === 'N' && q8 === 'N' && q9 === 'N'){
+                           Ext.Msg.show({
+                            title: 'Invalid Answer',
+                            msg: '<code>Atleast one answer from Q7, Q8 and Q9 should be YES.</code>',
+                            icon: Ext.Msg['ERROR']
+                        });
+
+                    }
+                    else{
+                     if(resp.responseText === 'true'){
                       Ext.Msg.alert("Record Saved", 'Record Saved successfully');
                        var myStore = Ext.getStore('SectionBGridBind');
                         myStore.clearFilter();
@@ -13045,6 +13139,9 @@ Ext.define('SignaTouch.view.MainView', {
                       // Show login failure error
                     Ext.Msg.alert("Insert Failure", 'Record cannot be added');
                     }
+                    }
+
+
 
                 };
 
