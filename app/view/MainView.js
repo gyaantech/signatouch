@@ -157,6 +157,7 @@ Ext.define('SignaTouch.view.MainView', {
                     region: 'west',
                     split: true,
                     border: '0 2 0 0',
+                    hidden: true,
                     id: 'Menu',
                     width: 200,
                     bodyBorder: false,
@@ -218,6 +219,7 @@ Ext.define('SignaTouch.view.MainView', {
                                         },
                                         {
                                             xtype: 'menuitem',
+                                            hidden: true,
                                             id: 'SectionAMenu',
                                             itemId: 'MsectionA',
                                             text: 'Section A',
@@ -230,6 +232,7 @@ Ext.define('SignaTouch.view.MainView', {
                                         },
                                         {
                                             xtype: 'menuitem',
+                                            hidden: true,
                                             id: 'SectionBMenu',
                                             itemId: 'MSectionB',
                                             text: 'Section B',
@@ -244,6 +247,7 @@ Ext.define('SignaTouch.view.MainView', {
                                 },
                                 {
                                     xtype: 'container',
+                                    hidden: true,
                                     id: 'Menu2Con',
                                     style: 'background-color:#a5cfff;',
                                     items: [
@@ -702,6 +706,8 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                         var HdrID = localStorage.getItem('SectionAHDRID');
                                                                                         var link = record.data.link;
                                                                                         sectionA = Ext.getCmp('SectionAID');
+
+
 
                                                                                         var txtHCPCS1DesID = Ext.getCmp('txtHCPCS1DesID');
                                                                                         var IDtxtHCPCS1Sup = Ext.getCmp('IDtxtHCPCS1Sup');
@@ -1873,7 +1879,8 @@ Ext.define('SignaTouch.view.MainView', {
                                                     items: [
                                                         {
                                                             xtype: 'button',
-                                                            itemId: 'btnPatientCancel',
+                                                            id: 'btnPatientCancelSave',
+                                                            itemId: '',
                                                             margin: '0 10 0 0',
                                                             padding: '',
                                                             width: 92,
@@ -5883,6 +5890,8 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                 Ext.getCmp('txtPHYPasswordID').hide();
                                                                                 Ext.getCmp('txtPHYCPasswordID').hide();
 
+
+
                                                                                 Ext.getCmp('txtPHYPasswordID').allowBlank = true;
                                                                                 Ext.getCmp('txtPHYPasswordID').validate();
 
@@ -6828,6 +6837,7 @@ Ext.define('SignaTouch.view.MainView', {
                         },
                         {
                             xtype: 'panel',
+                            hidden: true,
                             id: 'SectionB1NextID',
                             itemId: 'SectionB1Next',
                             style: 'margin: 0 auto;\r\n    text-align: left;\r\n    width: 900px;',
@@ -7080,7 +7090,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     xtype: 'fieldset',
                                                                     flex: 1,
                                                                     style: 'border-style:solid;\r\nborder-color:#000000;',
-                                                                    title: '<b>Please answer either Q1a Or Q1b</b>',
+                                                                    title: '<b>Please answer either Q1a. Or Q1b. </b>',
                                                                     items: [
                                                                         {
                                                                             xtype: 'container',
@@ -7307,7 +7317,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                 {
                                                                     xtype: 'fieldset',
                                                                     style: 'border-style:solid;\r\nborder-color:#000000;',
-                                                                    title: '<b>Please answer either Q6a OR Q6b</b>',
+                                                                    title: '<b>Please answer either Q6a. OR Q6b. </b>',
                                                                     items: [
                                                                         {
                                                                             xtype: 'container',
@@ -7413,6 +7423,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                     fieldLabel: '<b>c) Enter Date of Test</b>',
                                                                                     labelWidth: 512,
                                                                                     inputId: 'ddlSectionB1Q6c',
+                                                                                    editable: false,
                                                                                     format: 'm-d-Y'
                                                                                 }
                                                                             ]
@@ -7603,6 +7614,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                         {
                                                             xtype: 'button',
                                                             height: 22,
+                                                            id: 'BtDiscardEdit',
                                                             itemId: 'BtDiscard',
                                                             margin: '7 7 7 7',
                                                             text: 'Return',
@@ -7649,7 +7661,7 @@ Ext.define('SignaTouch.view.MainView', {
                             itemId: 'SectionA1Next',
                             style: 'margin: 0 auto;\r\n    text-align: left;\r\n    width: 1000px;',
                             autoDestroy: false,
-                            bodyPadding: '20 0 20 0',
+                            bodyPadding: '10 0 0 0',
                             bodyStyle: 'background-color:#3892d3;',
                             title: '',
                             items: [
@@ -7738,7 +7750,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     fieldLabel: '<b>Certification Date&nbsp;<span style="color:#D94E37;">*</span></b>',
                                                                     labelWidth: 150,
                                                                     inputId: 'txtSectionA1CertificationDate',
-                                                                    editable: false,
                                                                     format: 'm-d-Y'
                                                                 }
                                                             ]
@@ -8747,12 +8758,13 @@ Ext.define('SignaTouch.view.MainView', {
                                                         {
                                                             xtype: 'button',
                                                             height: 22,
-                                                            itemId: 'BtSectionA1NextDiscard',
+                                                            id: 'BtSectionA1NextSaveDiscard',
+                                                            itemId: '',
                                                             margin: '7 7 7 7',
                                                             text: 'Return',
                                                             listeners: {
                                                                 click: {
-                                                                    fn: me.onBtSectionA1NextDiscardClick,
+                                                                    fn: me.onBtSectionA1NextSaveDiscardClick,
                                                                     scope: me
                                                                 }
                                                             }
@@ -10303,7 +10315,6 @@ Ext.define('SignaTouch.view.MainView', {
                     splitterResize: false,
                     frame: true,
                     height: 200,
-                    hidden: true,
                     id: 'panelLoginID',
                     margin: '200 100 200 530',
                     maxWidth: 350,
@@ -11360,6 +11371,8 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('PatientHICNPOP').enable();
         Ext.getCmp('txtPatientName').enable();
 
+
+
         HeaderPanel = Ext.getCmp('Header');
         menuPanel = Ext.getCmp('Menu');
 
@@ -11401,6 +11414,7 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('txtPatientName').enable();
 
 
+
         HeaderPanel = Ext.getCmp('Header');
         menuPanel = Ext.getCmp('Menu');
 
@@ -11436,6 +11450,7 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('txtSectionA1CertificationDateID').enable();
         Ext.getCmp('PatientHICNPOP').enable();
         Ext.getCmp('txtPatientName').enable();
+
 
 
         HeaderPanel = Ext.getCmp('Header');
@@ -11476,7 +11491,7 @@ Ext.define('SignaTouch.view.MainView', {
 
         //go back to Physician selector screen
          //Ext.MessageBox.confirm ('Go back', 'Go back to Patient Selector screen ?', function(btn){
-                        //   if(btn === 'yes'){
+                           //if(btn === 'yes'){
                                Ext.getCmp('txtPatientfilterID').reset();
                                var myStore = Ext.getStore('PatientGridBind');
                          myStore.clearFilter();
@@ -11484,8 +11499,8 @@ Ext.define('SignaTouch.view.MainView', {
                               Ext.getCmp('PatientPanelID').hide();
                               Ext.getCmp('PatientRecord').show();
                             Ext.getCmp('PatientForm').getForm().reset();
-                        //   }
-               // });
+                           //}
+                //});
 
     },
 
@@ -12689,6 +12704,9 @@ Ext.define('SignaTouch.view.MainView', {
 
     onBtPhysicianAddClick1: function(button, e, eOpts) {
         Ext.getCmp('btnPhysicianSaveID').show();
+
+
+
         Ext.getCmp('btnPhysicianUpdateID').hide();
         Ext.getCmp('PhysicianRecordForm').getForm().reset();
          Ext.getCmp('txtNPIID').setReadOnly(false);
@@ -12763,6 +12781,7 @@ Ext.define('SignaTouch.view.MainView', {
             //Button Hide
         Ext.getCmp('btnPatientSaveID1').show();
         Ext.getCmp('btnPatientUpdateID').hide();
+
 
         Ext.getCmp('PatientForm').getForm().reset();
         Ext.getCmp('txtHICNID').setReadOnly(false);
@@ -13075,16 +13094,16 @@ Ext.define('SignaTouch.view.MainView', {
 
     onBtDiscardClick: function(button, e, eOpts) {
         //go back to section B selector screen
-         //Ext.MessageBox.confirm ('Go back', 'Go back to Section B Record Selector screen ?', function(btn){
-                           //if(btn === 'yes'){
-                                var myStore = Ext.getStore('SectionBGridBind');
-                        myStore.clearFilter();
-                        myStore.load();
-                               Ext.getCmp('SectionB1NextID').hide();
-                               Ext.getCmp('sectionB1ID').show();
-                                     Ext.getCmp('SectionB1NextForm').getForm().reset();
-                          // }
-                //});
+        //Ext.MessageBox.confirm ('Do you want to save changes', 'Do you want to save changes?', function(btn){
+            //if(btn === 'yes'){
+                var myStore = Ext.getStore('SectionBGridBind');
+                myStore.clearFilter();
+                myStore.load();
+                Ext.getCmp('SectionB1NextID').hide();
+                Ext.getCmp('sectionB1ID').show();
+                Ext.getCmp('SectionB1NextForm').getForm().reset();
+            //}
+        //});
 
 
     },
@@ -13101,66 +13120,66 @@ Ext.define('SignaTouch.view.MainView', {
         var q8 = Ext.getCmp('ddlQ8ID').getValue();
         var q9 = Ext.getCmp('ddlQ9ID').getValue();
 
-                // Success
-                var successCallback = function(resp, ops) {
+        // Success
+        var successCallback = function(resp, ops) {
 
-                    if(q7 === 'N' && q8 === 'N' && q9 === 'N'){
-                           Ext.Msg.show({
-                            title: 'Invalid Answer',
-                            msg: '<code>Atleast one answer from Q7, Q8 and Q9 should be YES.</code>',
-                            icon: Ext.Msg['ERROR']
-                        });
+            if(q7 === 'N' && q8 === 'N' && q9 === 'N'){
+                Ext.Msg.show({
+                    title: 'Invalid Answer',
+                    msg: '<code>Atleast one answer from Q7, Q8 and Q9 should be YES.</code>',
+                    icon: Ext.Msg['ERROR']
+                });
 
-                    }
-                    else{
-                     if(resp.responseText === 'true'){
-                      Ext.Msg.alert("Record Saved", 'Record Saved successfully');
-                       var myStore = Ext.getStore('SectionBGridBind');
-                        myStore.clearFilter();
-                        myStore.load();
-                        SectionB1 = Ext.getCmp('sectionB1ID');
-                      SectionB1.show();
-                        Ext.getCmp('SectionB1NextID').hide();
-                        Ext.getCmp('SectionB1NextForm').getForm().reset();
+            }
+            else{
+                if(resp.responseText === 'true'){
+                    Ext.Msg.alert("Record Saved", 'Record Saved successfully');
+                    var myStore = Ext.getStore('SectionBGridBind');
+                    myStore.clearFilter();
+                    myStore.load();
+                    SectionB1 = Ext.getCmp('sectionB1ID');
+                    SectionB1.show();
+                    Ext.getCmp('SectionB1NextID').hide();
+                    Ext.getCmp('SectionB1NextForm').getForm().reset();
 
 
-                   }
-                   else if(resp.responseText === 'false'){
+                }
+                else if(resp.responseText === 'false'){
 
                     // Ext.Msg.alert("Duplicate Entry", 'This Record Already Exists');
-                           Ext.Msg.show({
-                            title: 'Duplicate Record',
-                            msg: '<code>This Record Already Exists</code>',
-                            icon: Ext.Msg['ERROR']
-                        });
+                    Ext.Msg.show({
+                        title: 'Duplicate Record',
+                        msg: '<code>This Record Already Exists</code>',
+                        icon: Ext.Msg['ERROR']
+                    });
 
-                   }
+                }
                     else{
-                      // Show login failure error
-                    Ext.Msg.alert("Insert Failure", 'Record cannot be added');
+                        // Show login failure error
+                        Ext.Msg.alert("Insert Failure", 'Record cannot be added');
                     }
-                    }
+            }
 
 
 
-                };
+        };
 
-                // Failure
-                var failureCallback = function(resp, ops) {
+        // Failure
+        var failureCallback = function(resp, ops) {
 
-                    // Show login failure error
-                    //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+            // Show login failure error
+            //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
 
-                };
+        };
 
 
-                // TODO: Login using server-side authentication service
-                Ext.Ajax.request({url: "services/SectionB.php?action=insertSectionBRecord&DetailID="+DetailID+"&srcdomain="+srcdomain+"&src="+domain,
-                        method: 'POST',
-                        params: values,
-                        success: successCallback,
-                        failure: failureCallback
-                 });
+        // TODO: Login using server-side authentication service
+        Ext.Ajax.request({url: "services/SectionB.php?action=insertSectionBRecord&DetailID="+DetailID+"&srcdomain="+srcdomain+"&src="+domain,
+                          method: 'POST',
+                          params: values,
+                          success: successCallback,
+                          failure: failureCallback
+                         });
     },
 
     onChkHICNPOPUPIDChange: function(field, newValue, oldValue, eOpts) {
@@ -14208,22 +14227,24 @@ Ext.define('SignaTouch.view.MainView', {
         }
     },
 
-    onBtSectionA1NextDiscardClick: function(button, e, eOpts) {
+    onBtSectionA1NextSaveDiscardClick: function(button, e, eOpts) {
         //go back to section A selector screen
-         //Ext.MessageBox.confirm ('Go back', 'Go back to Section A Record Selector screen ?', function(btn){
-                         //  if(btn === 'yes'){
-                              Ext.getCmp('SectionA1NextID').hide();
-                              Ext.getCmp('SectionAID').show();
-                              Ext.getCmp('SectionA1Form').getForm().reset();
-                               var myStore = Ext.getStore('SectionA1GridBind');
-         myStore.clearFilter();
-               myStore.load();
-        Ext.getCmp('txtFilterID').reset();
-        Ext.getCmp('TxtstartDateID').setValue('');
-        Ext.getCmp('TxtendDateID').setValue('');
+        //Ext.MessageBox.confirm ('Do you want to save changes?', 'Do you want to save changes?', function(btn){
+            //if(btn === 'yes'){
+                Ext.getCmp('SectionA1NextID').hide();
+            Ext.getCmp('SectionAID').show();
+            Ext.getCmp('SectionA1Form').getForm().reset();
+            var myStore = Ext.getStore('SectionA1GridBind');
+            myStore.clearFilter();
+            myStore.load();
+            Ext.getCmp('txtFilterID').reset();
+            Ext.getCmp('TxtstartDateID').setValue('');
+            Ext.getCmp('TxtendDateID').setValue('');
+            //}
 
-                         //  }
-               // });
+
+
+        //});
 
 
     },
@@ -14234,47 +14255,47 @@ Ext.define('SignaTouch.view.MainView', {
         var srcdomain = localStorage.getItem('domain');
         //var header = button.up('headerPanel');
         values = form.getValues();
-          var LocalHDRid = localStorage.getItem('SectionAHDRID');
-            var CertDate = Ext.getCmp('txtSectionA1CertificationDateID');
-          var HICN = Ext.getCmp('PatientHICNPOP');
-          var MedID =  Ext.getCmp('MedIDSectionAinput');
-                    var SupplierNPI = Ext.getCmp('txtSectionASupplierNPIID');
-                    var PhysicianNPI = Ext.getCmp('txtSectionAPhysicianNPIID');
-                    var POS = Ext.getCmp('txtSectionAPOSID');
+        var LocalHDRid = localStorage.getItem('SectionAHDRID');
+        var CertDate = Ext.getCmp('txtSectionA1CertificationDateID');
+        var HICN = Ext.getCmp('PatientHICNPOP');
+        var MedID =  Ext.getCmp('MedIDSectionAinput');
+        var SupplierNPI = Ext.getCmp('txtSectionASupplierNPIID');
+        var PhysicianNPI = Ext.getCmp('txtSectionAPhysicianNPIID');
+        var POS = Ext.getCmp('txtSectionAPOSID');
 
 
 
-                    var txtE1390Sup = Ext.getCmp('InputE1390ID');
-                    if(txtE1390Sup.value !== '1')
-                    {
-                        txtE1390Sup.setValue('0');
-                    }
+        var txtE1390Sup = Ext.getCmp('InputE1390ID');
+        if(txtE1390Sup.value !== '1')
+        {
+            txtE1390Sup.setValue('0');
+        }
 
-                    var txtE1392Sup = Ext.getCmp('InputE1392ID');
-                    if(txtE1392Sup.value !=='1')
-                    {
-                        txtE1392Sup.setValue('0');
-                    }
+        var txtE1392Sup = Ext.getCmp('InputE1392ID');
+        if(txtE1392Sup.value !=='1')
+        {
+            txtE1392Sup.setValue('0');
+        }
 
-                    var txtE0431Sup = Ext.getCmp('InputE0431ID');
-                     if(txtE0431Sup.value !=='1')
-                    {
-                        txtE0431Sup.setValue('0');
-                    }
+        var txtE0431Sup = Ext.getCmp('InputE0431ID');
+        if(txtE0431Sup.value !=='1')
+        {
+            txtE0431Sup.setValue('0');
+        }
 
-                    var txtK0738Sup = Ext.getCmp('InputK0738ID');
-                     if(txtK0738Sup.value !=='1')
-                        {
-                        txtK0738Sup.setValue('0');
-                        }
+        var txtK0738Sup = Ext.getCmp('InputK0738ID');
+        if(txtK0738Sup.value !=='1')
+        {
+            txtK0738Sup.setValue('0');
+        }
 
-                     var txtHCPCS1ID = Ext.getCmp('txtHCPCS1ID');
+        var txtHCPCS1ID = Ext.getCmp('txtHCPCS1ID');
 
-                    var txtHCPCS2ID = Ext.getCmp('txtHCPCS2ID');
+        var txtHCPCS2ID = Ext.getCmp('txtHCPCS2ID');
 
-                    var txtHCPCS3ID = Ext.getCmp('txtHCPCS3ID');
+        var txtHCPCS3ID = Ext.getCmp('txtHCPCS3ID');
 
-                    var txtHCPCS4ID = Ext.getCmp('txtHCPCS4ID');
+        var txtHCPCS4ID = Ext.getCmp('txtHCPCS4ID');
 
         console.log(txtE1390Sup.value);
         console.log(txtE1392Sup.value);
@@ -14284,49 +14305,49 @@ Ext.define('SignaTouch.view.MainView', {
 
 
         if(CertDate.value === '' || HICN.value === '' || MedID.value === '' || SupplierNPI.value === '' || PhysicianNPI.value === '' || POS.value === '' ){
-              Ext.Msg.show({
-                            title: 'Empty Record',
-                            msg: '<code>Please enter values for required fields</code>',
-                            icon: Ext.Msg['ERROR']
-                        });
+            Ext.Msg.show({
+                title: 'Empty Record',
+                msg: '<code>Please enter values for required fields</code>',
+                icon: Ext.Msg['ERROR']
+            });
         }
-         else if((txtE1390Sup.value === '0' && txtE1392Sup.value === '0' && txtE0431Sup.value === '0' && txtK0738Sup.value === '0') && (txtHCPCS1ID.value === '' && txtHCPCS2ID.value === '' && txtHCPCS3ID.value === '' && txtHCPCS4ID.value === ''))
+        else if((txtE1390Sup.value === '0' && txtE1392Sup.value === '0' && txtE0431Sup.value === '0' && txtK0738Sup.value === '0') && (txtHCPCS1ID.value === '' && txtHCPCS2ID.value === '' && txtHCPCS3ID.value === '' && txtHCPCS4ID.value === ''))
         {
-              Ext.Msg.show({
-                            title: 'Empty Record',
-                            msg: '<code>Please enter values for HCPCS or Non-standard HCPCS</code>',
-                            icon: Ext.Msg['ERROR']
-                        });
+            Ext.Msg.show({
+                title: 'Empty Record',
+                msg: '<code>Please enter values for HCPCS or Non-standard HCPCS</code>',
+                icon: Ext.Msg['ERROR']
+            });
         }
 
 
 
-        else{
+            else{
 
-        // Success
+                // Success
                 var successCallback = function(resp, ops) {
                     //console.log(resp.responseText);
                     if(resp.responseText === 'true'){
-                         localStorage.removeItem("SectionAHDRID"); //remove
-                      Ext.Msg.alert("Record Saved", 'Record saved successfully');
+                        localStorage.removeItem("SectionAHDRID"); //remove
+                        Ext.Msg.alert("Record Saved", 'Record saved successfully');
 
 
-                     SectionA1 = Ext.getCmp('SectionAID');
-                      SectionA1.show();
-         Ext.getCmp('SectionA1NextID').hide();
+                        SectionA1 = Ext.getCmp('SectionAID');
+                        SectionA1.show();
+                        Ext.getCmp('SectionA1NextID').hide();
                         Ext.getCmp('SectionA1Form').getForm().reset();
                         var myStore = Ext.getStore('SectionA1GridBind');
-         myStore.clearFilter();
+                        myStore.clearFilter();
 
-                          myStore.load();
-        Ext.getCmp('txtFilterID').reset();
-        Ext.getCmp('TxtstartDateID').setValue('');
-        Ext.getCmp('TxtendDateID').setValue('');
+                        myStore.load();
+                        Ext.getCmp('txtFilterID').reset();
+                        Ext.getCmp('TxtstartDateID').setValue('');
+                        Ext.getCmp('TxtendDateID').setValue('');
 
-                   }
+                    }
                     else{
 
-                    Ext.Msg.alert("Insert Failure", 'Record cannot be added');
+                        Ext.Msg.alert("Insert Failure", 'Record cannot be added');
                     }
 
                 };
@@ -14342,12 +14363,12 @@ Ext.define('SignaTouch.view.MainView', {
 
                 // TODO: Login using server-side authentication service
                 Ext.Ajax.request({url: "services/SectionA.php?action=insertSectionARecord&HdrID="+LocalHDRid+"&src="+domain+"&srcdomain="+srcdomain,
-                        method: 'POST',
-                        params: values,
-                        success: successCallback,
-                        failure: failureCallback
-                 });
-        }
+                                  method: 'POST',
+                                  params: values,
+                                  success: successCallback,
+                                  failure: failureCallback
+                                 });
+            }
     },
 
     onSectionA1FormAfterRender: function(component, eOpts) {
