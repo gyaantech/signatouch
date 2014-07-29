@@ -157,7 +157,6 @@ Ext.define('SignaTouch.view.MainView', {
                     region: 'west',
                     split: true,
                     border: '0 2 0 0',
-                    hidden: true,
                     id: 'Menu',
                     width: 200,
                     bodyBorder: false,
@@ -219,7 +218,6 @@ Ext.define('SignaTouch.view.MainView', {
                                         },
                                         {
                                             xtype: 'menuitem',
-                                            hidden: true,
                                             id: 'SectionAMenu',
                                             itemId: 'MsectionA',
                                             text: 'Section A',
@@ -232,7 +230,6 @@ Ext.define('SignaTouch.view.MainView', {
                                         },
                                         {
                                             xtype: 'menuitem',
-                                            hidden: true,
                                             id: 'SectionBMenu',
                                             itemId: 'MSectionB',
                                             text: 'Section B',
@@ -247,7 +244,6 @@ Ext.define('SignaTouch.view.MainView', {
                                 },
                                 {
                                     xtype: 'container',
-                                    hidden: true,
                                     id: 'Menu2Con',
                                     style: 'background-color:#a5cfff;',
                                     items: [
@@ -707,7 +703,8 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                         var link = record.data.link;
                                                                                         sectionA = Ext.getCmp('SectionAID');
 
-
+                                                                                        Ext.getCmp('BtSectionA1NextSaveDiscard').hide();
+                                                                                        Ext.getCmp('BtSectionA1NextSaveDiscard2').show();
 
                                                                                         var txtHCPCS1DesID = Ext.getCmp('txtHCPCS1DesID');
                                                                                         var IDtxtHCPCS1Sup = Ext.getCmp('IDtxtHCPCS1Sup');
@@ -1879,6 +1876,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                     items: [
                                                         {
                                                             xtype: 'button',
+                                                            hidden: true,
                                                             id: 'btnPatientCancelSave',
                                                             itemId: '',
                                                             margin: '0 10 0 0',
@@ -1894,8 +1892,23 @@ Ext.define('SignaTouch.view.MainView', {
                                                         },
                                                         {
                                                             xtype: 'button',
-                                                            formBind: true,
                                                             hidden: true,
+                                                            id: 'btnPatientCancelSave2',
+                                                            itemId: '',
+                                                            margin: '0 10 0 0',
+                                                            padding: '',
+                                                            width: 92,
+                                                            text: 'Return',
+                                                            listeners: {
+                                                                click: {
+                                                                    fn: me.onBtnPatientCancelSave2Click,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            xtype: 'button',
+                                                            formBind: true,
                                                             id: 'btnPatientSaveID1',
                                                             itemId: 'btnPatientSave',
                                                             margin: '0 0 0 0',
@@ -3678,7 +3691,8 @@ Ext.define('SignaTouch.view.MainView', {
                                                             items: [
                                                                 {
                                                                     xtype: 'button',
-                                                                    itemId: 'btnPhysicianCancel',
+                                                                    hidden: true,
+                                                                    id: 'btnPhysicianCancel',
                                                                     margin: '0 10 0 0',
                                                                     padding: '',
                                                                     width: 92,
@@ -3692,8 +3706,23 @@ Ext.define('SignaTouch.view.MainView', {
                                                                 },
                                                                 {
                                                                     xtype: 'button',
-                                                                    formBind: true,
                                                                     hidden: true,
+                                                                    id: 'btnPhysicianCancel1',
+                                                                    itemId: '',
+                                                                    margin: '0 10 0 0',
+                                                                    padding: '',
+                                                                    width: 92,
+                                                                    text: 'Return',
+                                                                    listeners: {
+                                                                        click: {
+                                                                            fn: me.onBtnPhysicianCancel1Click,
+                                                                            scope: me
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    xtype: 'button',
+                                                                    formBind: true,
                                                                     id: 'btnPhysicianSaveID',
                                                                     itemId: 'btnPhysicianSave',
                                                                     margin: '0 0 0 0',
@@ -4212,7 +4241,8 @@ Ext.define('SignaTouch.view.MainView', {
                                                     items: [
                                                         {
                                                             xtype: 'button',
-                                                            itemId: 'btnSupplierCancel',
+                                                            hidden: true,
+                                                            id: 'btnSupplierCancel',
                                                             margin: '0 10 0 0',
                                                             padding: '',
                                                             width: 92,
@@ -4220,6 +4250,21 @@ Ext.define('SignaTouch.view.MainView', {
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onBtnSupplierCancelClick,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            xtype: 'button',
+                                                            hidden: true,
+                                                            id: 'btnSupplierCancel1',
+                                                            margin: '0 10 0 0',
+                                                            padding: '',
+                                                            width: 92,
+                                                            text: 'Return',
+                                                            listeners: {
+                                                                click: {
+                                                                    fn: me.onBtnSupplierCancelClick2,
                                                                     scope: me
                                                                 }
                                                             }
@@ -5871,14 +5916,14 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     items: [
                                                                         {
                                                                             handler: function(view, rowIndex, colIndex, item, e, record, row) {
-                                                                                console.log(record.data);
                                                                                 var PhysicianNPI = record.data.PhysicianNPI;
                                                                                 Ext.getCmp('PhysicianForm').getForm().reset();
                                                                                 var PhysicianNPI = record.data.PhysicianNPI;
                                                                                 Ext.getCmp('PhysicianRecord').hide();
                                                                                 Ext.getCmp('PhysicianPanelID').show();
 
-
+                                                                                Ext.getCmp('btnPhysicianCancel1').show();
+                                                                                Ext.getCmp('btnPhysicianCancel').hide();
 
                                                                                 //Breadcrms
                                                                                 Ext.getCmp('Pbread').setValue('<b>Maintenance >> Edit Physician</b>');
@@ -6267,7 +6312,8 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                 Ext.getCmp('PatientRecord').hide();
                                                                                 Ext.getCmp('PatientPanelID').show();
 
-
+                                                                                Ext.getCmp('btnPatientCancelSave2').show();
+                                                                                Ext.getCmp('btnPatientCancelSave').hide();
 
 
                                                                                 //Breadcrms
@@ -6650,7 +6696,8 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                 Ext.getCmp('SupplierRecord').hide();
                                                                                 Ext.getCmp('SupplierPanelID').show();
 
-
+                                                                                Ext.getCmp('btnSupplierCancel1').show();
+                                                                                Ext.getCmp('btnSupplierCancel').hide();
 
                                                                                 //Breadcrms
                                                                                 Ext.getCmp('Pbread4').setValue('<b>Maintenance >> Edit Supplier</b>');
@@ -7073,6 +7120,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     itemId: 'TxtICD',
                                                                     width: 319,
                                                                     fieldLabel: '',
+                                                                    readOnly: true,
                                                                     emptyText: 'ICD (Short Description)'
                                                                 }
                                                             ]
@@ -8758,6 +8806,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                         {
                                                             xtype: 'button',
                                                             height: 22,
+                                                            hidden: true,
                                                             id: 'BtSectionA1NextSaveDiscard',
                                                             itemId: '',
                                                             margin: '7 7 7 7',
@@ -8765,6 +8814,21 @@ Ext.define('SignaTouch.view.MainView', {
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onBtSectionA1NextSaveDiscardClick,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            xtype: 'button',
+                                                            height: 22,
+                                                            hidden: true,
+                                                            id: 'BtSectionA1NextSaveDiscard2',
+                                                            itemId: '',
+                                                            margin: '7 7 7 7',
+                                                            text: 'Return',
+                                                            listeners: {
+                                                                click: {
+                                                                    fn: me.onBtSectionA1NextSaveDiscard2Click,
                                                                     scope: me
                                                                 }
                                                             }
@@ -10315,6 +10379,7 @@ Ext.define('SignaTouch.view.MainView', {
                     splitterResize: false,
                     frame: true,
                     height: 200,
+                    hidden: true,
                     id: 'panelLoginID',
                     margin: '200 100 200 530',
                     maxWidth: 350,
@@ -10542,9 +10607,39 @@ Ext.define('SignaTouch.view.MainView', {
     },
 
     onMsendtodrClick: function(item, e, eOpts) {
-        var mesg_url = localStorage.getItem("preauthURL");
+        /*var mesg_url = localStorage.getItem("preauthURL");
         //Ext.get('Messaging1').dom.src = url;
-        window.open(mesg_url);
+        window.open(mesg_url);*/
+
+
+        // Success
+        var successCallback = function(resp, ops) {
+
+            if(resp.responseText !== 'error' && resp.responseText !== 'false'){
+                var responseOjbect = Ext.JSON.decode(resp.responseText);
+                var preauthURL = responseOjbect.response.preauthURL;
+                var mesg_url = preauthURL;
+                window.open(mesg_url);
+            }
+        };
+
+        // Failure
+        var failureCallback = function(resp, ops) {
+
+
+            // Show login failure error
+            //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+        };
+
+
+        // TODO: Login using server-side authentication service
+        Ext.Ajax.request({url: "services/LDAPpreauth.php?action=Messaging_Preauth_URL",
+                          method: 'POST',
+                          params: values,
+                          success: successCallback,
+                          failure: failureCallback
+                         });
 
 
     },
@@ -11371,7 +11466,8 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('PatientHICNPOP').enable();
         Ext.getCmp('txtPatientName').enable();
 
-
+        Ext.getCmp('BtSectionA1NextSaveDiscard').show();
+        Ext.getCmp('BtSectionA1NextSaveDiscard2').hide();
 
         HeaderPanel = Ext.getCmp('Header');
         menuPanel = Ext.getCmp('Menu');
@@ -11413,7 +11509,8 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('PatientHICNPOP').enable();
         Ext.getCmp('txtPatientName').enable();
 
-
+        Ext.getCmp('BtSectionA1NextSaveDiscard').show();
+        Ext.getCmp('BtSectionA1NextSaveDiscard2').hide();
 
         HeaderPanel = Ext.getCmp('Header');
         menuPanel = Ext.getCmp('Menu');
@@ -11451,7 +11548,8 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('PatientHICNPOP').enable();
         Ext.getCmp('txtPatientName').enable();
 
-
+        Ext.getCmp('BtSectionA1NextSaveDiscard').show();
+        Ext.getCmp('BtSectionA1NextSaveDiscard2').hide();
 
         HeaderPanel = Ext.getCmp('Header');
         menuPanel = Ext.getCmp('Menu');
@@ -11501,6 +11599,86 @@ Ext.define('SignaTouch.view.MainView', {
                             Ext.getCmp('PatientForm').getForm().reset();
                            //}
                 //});
+
+    },
+
+    onBtnPatientCancelSave2Click: function(button, e, eOpts) {
+        //go back to Physician selector screen
+        Ext.MessageBox.confirm ('Do you want to save changes?', 'Do you want to save changes?', function(btn){
+            if(btn === 'yes'){
+                var form = button.up('form');
+                var domain = localStorage.getItem('email');
+                //var header = button.up('headerPanel');
+                values = form.getValues();
+
+                var state = values.ddlNewPatientState;
+                var sex = values.ddlSex;
+                var addr1 = values.txtAddress1;
+                var city = values.txtCity;
+                var dob = values.txtDOB;
+                var fname = values.txtFname;
+                var hicn = values.txtHICN;
+                var zip = values.txtHICNZip;
+                var lname = values.txtLname;
+                var phone = values.txtPhoneno;
+
+                // Success
+                var successCallback = function(resp, ops) {
+                     if(state === '' || sex === '' || addr1 === '' || city === '' || dob === '' || fname === '' || hicn === '' || zip === '' || lname === '' || phone === ''){
+                        Ext.Msg.alert("Please fill up mandatory fields", 'Please fill up mandatory fields');
+                    }
+
+                    else{
+
+                        if(resp.responseText === 'true'){
+
+                            Ext.Msg.alert("Record Updated", 'Patient Record Updated successfully');
+                            Ext.getCmp('txtPatientfilterID').reset();
+                            var myStore = Ext.getStore('PatientGridBind');
+                            myStore.clearFilter();
+                            myStore.load();
+                            Ext.getCmp('PatientPanelID').hide();
+                            Ext.getCmp('PatientRecord').show();
+                            Ext.getCmp('PatientForm').getForm().reset();
+                        }
+                        else if(resp.responseText === 'false'){
+
+                            Ext.Msg.alert("Duplicate Entry", 'Patient Record Already Exists');
+                        }
+                            else{
+                                // Show login failure error
+                                Ext.Msg.alert("Insert Failure", 'Data cannot be added');
+                            }
+                    }
+                };
+
+                // Failure
+                var failureCallback = function(resp, ops) {
+
+                    // Show login failure error
+                    // Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                };
+
+
+                // TODO: Login using server-side authentication service
+                Ext.Ajax.request({url: "services/Maintainence.php?action=editPatientRecord&src="+domain,
+                                  method: 'POST',
+                                  params: values,
+                                  success: successCallback,
+                                  failure: failureCallback
+                                 });
+            }
+            else{
+                Ext.getCmp('txtPatientfilterID').reset();
+                var myStore = Ext.getStore('PatientGridBind');
+                myStore.clearFilter();
+                myStore.load();
+                Ext.getCmp('PatientPanelID').hide();
+                Ext.getCmp('PatientRecord').show();
+                Ext.getCmp('PatientForm').getForm().reset();
+            }
+        });
 
     },
 
@@ -11556,50 +11734,50 @@ Ext.define('SignaTouch.view.MainView', {
     onBtnPatientUpdateClick: function(button, e, eOpts) {
         var form = button.up('form');
         var domain = localStorage.getItem('email');
-                   //var header = button.up('headerPanel');
-                       values = form.getValues();
+        //var header = button.up('headerPanel');
+        values = form.getValues();
 
-                // Success
-                var successCallback = function(resp, ops) {
-                    console.log(resp.responseText);
-                    if(resp.responseText === 'true'){
+        // Success
+        var successCallback = function(resp, ops) {
+            console.log(resp.responseText);
+            if(resp.responseText === 'true'){
 
-                      Ext.Msg.alert("Record Updated", 'Patient Record Updated successfully');
-                        Ext.getCmp('txtPatientfilterID').reset();
-         var myStore = Ext.getStore('PatientGridBind');
-                         myStore.clearFilter();
-                        myStore.load();
-                          Ext.getCmp('PatientPanelID').hide();
-                              Ext.getCmp('PatientRecord').show();
-                            Ext.getCmp('PatientForm').getForm().reset();
-                   }
-                   else if(resp.responseText === 'false'){
+                Ext.Msg.alert("Record Updated", 'Patient Record Updated successfully');
+                Ext.getCmp('txtPatientfilterID').reset();
+                var myStore = Ext.getStore('PatientGridBind');
+                myStore.clearFilter();
+                myStore.load();
+                Ext.getCmp('PatientPanelID').hide();
+                Ext.getCmp('PatientRecord').show();
+                Ext.getCmp('PatientForm').getForm().reset();
+            }
+            else if(resp.responseText === 'false'){
 
-                      Ext.Msg.alert("Duplicate Entry", 'Patient Record Already Exists');
-                   }
-                    else{
-                      // Show login failure error
-                    Ext.Msg.alert("Insert Failure", 'Data cannot be added');
-                    }
-
-                };
-
-                // Failure
-                var failureCallback = function(resp, ops) {
-
+                Ext.Msg.alert("Duplicate Entry", 'Patient Record Already Exists');
+            }
+                else{
                     // Show login failure error
-                   // Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+                    Ext.Msg.alert("Insert Failure", 'Data cannot be added');
+                }
 
-                };
+        };
+
+        // Failure
+        var failureCallback = function(resp, ops) {
+
+            // Show login failure error
+            // Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+        };
 
 
-                // TODO: Login using server-side authentication service
-                Ext.Ajax.request({url: "services/Maintainence.php?action=editPatientRecord&src="+domain,
-                        method: 'POST',
-                        params: values,
-                        success: successCallback,
-                        failure: failureCallback
-                 });
+        // TODO: Login using server-side authentication service
+        Ext.Ajax.request({url: "services/Maintainence.php?action=editPatientRecord&src="+domain,
+                          method: 'POST',
+                          params: values,
+                          success: successCallback,
+                          failure: failureCallback
+                         });
     },
 
     onPatientFormAfterRender: function(component, eOpts) {
@@ -12025,6 +12203,86 @@ Ext.define('SignaTouch.view.MainView', {
 
     },
 
+    onBtnPhysicianCancel1Click: function(button, e, eOpts) {
+        //go back to Physician selector screen
+        var form = button.up('form');
+        Ext.MessageBox.confirm ('Do you want to save changes?', 'Do you want to save changes?', function(btn){
+            if(btn === 'yes'){
+
+                var domain = localStorage.getItem('email');
+                //var header = button.up('headerPanel');
+                values = form.getValues();
+
+                var state = values.ddlPhysicianState;
+                var addr1 = values.txtPhysicianAddress1;
+                var city = values.txtPhysicianCity;
+                var fname = values.txtPhysicianFname;
+                var hicn = values.txtPhysicianNPI;
+                var zip = values.txtPhysicianZip;
+                var lname = values.txtPhysicianLname;
+                var phone = values.txtPhysicianPhoneNo;
+                // Success
+                var successCallback = function(resp, ops) {
+                    if(state === '' || addr1 === '' || city === '' || fname === '' || hicn === '' || zip === '' || lname === '' || phone === ''){
+                        Ext.Msg.alert("Please fill up mandatory fields", 'Please fill up mandatory fields');
+                    }
+                    else{
+                        // console.log(resp.responseText);
+                        if(resp.responseText === 'true'){
+
+                            Ext.Msg.alert("Record Updated", 'Physican Record Updated successfully');
+                            Ext.getCmp('txtPhysicianfilterID').reset();
+                            var myStore = Ext.getStore('PhysicianGridBind');
+                            myStore.clearFilter();
+                            myStore.load();
+                            Ext.getCmp('PhysicianPanelID').hide();
+                            Ext.getCmp('PhysicianRecord').show();
+                            Ext.getCmp('PhysicianForm').getForm().reset();
+
+                        }
+                        else if(resp.responseText === 'false'){
+
+                            Ext.Msg.alert("Duplicate Entry", 'Physican Record Already Exists');
+                        }
+                            else{
+                                // Show login failure error
+                                Ext.Msg.alert("Insert Failure", 'Data cannot be added');
+                            }
+                    }
+
+                };
+
+                // Failure
+                var failureCallback = function(resp, ops) {
+
+                    // Show login failure error
+                    Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                };
+
+
+                // TODO: Login using server-side authentication service
+                Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=ZimbraUpdatePhysician&src="+domain,
+                                  method: 'POST',
+                                  params: values,
+                                  success: successCallback,
+                                  failure: failureCallback
+                                 });
+            }
+            else{
+                Ext.getCmp('txtPhysicianfilterID').reset();
+                var myStore = Ext.getStore('PhysicianGridBind');
+                myStore.clearFilter();
+                myStore.load();
+                Ext.getCmp('PhysicianPanelID').hide();
+                Ext.getCmp('PhysicianRecord').show();
+                Ext.getCmp('PhysicianForm').getForm().reset();
+            }
+        });
+
+
+    },
+
     onBtnPhysicianSaveClick: function(button, e, eOpts) {
         var form = button.up('form');
         var domain = localStorage.getItem('email');
@@ -12176,6 +12434,90 @@ Ext.define('SignaTouch.view.MainView', {
                               Ext.getCmp('SupplierForm').getForm().reset();
                            //}
                // });
+
+    },
+
+    onBtnSupplierCancelClick2: function(button, e, eOpts) {
+        //go back to Supplier selector screen
+        Ext.MessageBox.confirm ('Do you want to save changes?', 'Do you want to save changes?', function(btn){
+            if(btn === 'yes'){
+
+                var form = button.up('form');
+                var domain = localStorage.getItem('email');
+                //var header = button.up('headerPanel');
+                values = form.getValues();
+                console.log(values);
+                var state = values.ddlSState;
+                var addr1 = values.txtSAddress1;
+                var city = values.txtSCity;
+                var fname = values.txtSupplierName;
+                var hicn = values.txtSNPI;
+                var zip = values.txtSZip;
+                var phone = values.txtSPhoneNo;
+
+
+                // Success
+                var successCallback = function(resp, ops) {
+
+                    if(state === '' || addr1 === '' || city === '' || fname === '' || hicn === '' || zip === '' || phone === ''){
+                        Ext.Msg.alert("Please fill up mandatory fields", 'Please fill up mandatory fields');
+                    }
+                    else{
+                        if(resp.responseText === 'true'){
+
+                            Ext.Msg.alert("Record Updated", 'Supplier Record Updated successfully');
+                            Ext.getCmp('txtSupplierfilterRecordID').reset();
+                            var myStore = Ext.getStore('SupplierGridBind');
+                            myStore.clearFilter();
+                            myStore.load();
+                            Ext.getCmp('SupplierPanelID').hide();
+                            Ext.getCmp('SupplierRecord').show();
+                            // Code to reset the form values
+                            Ext.getCmp('SupplierForm').getForm().reset();
+
+                        }
+                        else if(resp.responseText === 'false'){
+
+                            Ext.Msg.alert("Duplicate Entry", 'Supplier Record Already Exists');
+
+                        }
+                            else{
+                                // Show login failure error
+                                Ext.Msg.alert("Insert Failure", 'Data cannot be added');
+                            }
+
+                    }
+
+                };
+
+                // Failure
+                var failureCallback = function(resp, ops) {
+
+                    // Show login failure error
+                    Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                };
+
+
+                // TODO: Login using server-side authentication service
+                Ext.Ajax.request({url: "services/Maintainence.php?action=editSupplierRecord&src="+domain,
+                                  method: 'POST',
+                                  params: values,
+                                  success: successCallback,
+                                  failure: failureCallback
+                                 });
+            }
+            else{
+                Ext.getCmp('txtSupplierfilterRecordID').reset();
+                var myStore = Ext.getStore('SupplierGridBind');
+                myStore.clearFilter();
+                myStore.load();
+
+                Ext.getCmp('SupplierPanelID').hide();
+                Ext.getCmp('SupplierRecord').show();
+                Ext.getCmp('SupplierForm').getForm().reset();
+            }
+        });
 
     },
 
@@ -12705,7 +13047,8 @@ Ext.define('SignaTouch.view.MainView', {
     onBtPhysicianAddClick1: function(button, e, eOpts) {
         Ext.getCmp('btnPhysicianSaveID').show();
 
-
+        Ext.getCmp('btnPhysicianCancel1').hide();
+        Ext.getCmp('btnPhysicianCancel').show();
 
         Ext.getCmp('btnPhysicianUpdateID').hide();
         Ext.getCmp('PhysicianRecordForm').getForm().reset();
@@ -12782,6 +13125,8 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('btnPatientSaveID1').show();
         Ext.getCmp('btnPatientUpdateID').hide();
 
+        Ext.getCmp('btnPatientCancelSave2').hide();
+        Ext.getCmp('btnPatientCancelSave').show();
 
         Ext.getCmp('PatientForm').getForm().reset();
         Ext.getCmp('txtHICNID').setReadOnly(false);
@@ -12836,10 +13181,11 @@ Ext.define('SignaTouch.view.MainView', {
     onBtSupplierAddClick: function(button, e, eOpts) {
         Ext.getCmp('SupplierForm').getForm().reset();
 
-         Ext.getCmp('txtNPIIDS').setReadOnly(false);
-                    Ext.getCmp('txtSupplierNameID').setReadOnly(false);
+        Ext.getCmp('txtNPIIDS').setReadOnly(false);
+        Ext.getCmp('txtSupplierNameID').setReadOnly(false);
 
-
+        Ext.getCmp('btnSupplierCancel1').hide();
+        Ext.getCmp('btnSupplierCancel').show();
 
         //Breadcrms
         Ext.getCmp('Pbread4').setValue('<b>Maintenance >> Add Supplier</b>');
@@ -12847,7 +13193,7 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('SupplierRecord').hide();
         Ext.getCmp('SupplierPanelID').show();
 
-            //Button Hide
+        //Button Hide
         Ext.getCmp('btnSupplierSaveID').show();
         Ext.getCmp('btnSupplierUpdate').hide();
 
@@ -13094,16 +13440,113 @@ Ext.define('SignaTouch.view.MainView', {
 
     onBtDiscardClick: function(button, e, eOpts) {
         //go back to section B selector screen
-        //Ext.MessageBox.confirm ('Do you want to save changes', 'Do you want to save changes?', function(btn){
-            //if(btn === 'yes'){
+        Ext.MessageBox.confirm ('Do you want to save changes', 'Do you want to save changes?', function(btn){
+            if(btn === 'yes'){
+                var form = button.up('form');
+                var domain = localStorage.getItem('email');
+                var srcdomain = localStorage.getItem('domain');
+                //var header = button.up('headerPanel');
+                values = form.getValues();
+
+
+                var name = values.txtSectionB1Name;
+                var title = values.txtSectionB1Title;
+                var employer = values.txtSectionB1Emp;
+                var q1c = values.ddlSectionB1Q6c;
+                var q2 = values.ddlSectionB1Q2;
+                var q3 = values.ddlSectionB1Q3;
+                var q4 = values.ddlSectionB1Q4;
+                var q5 = values.ddlSectionB1Q5;
+                var lof = values.txtLengthNeed;
+                var icdcode = values.txtSectionB1ICD;
+
+
+                if(name==='' || title==='' || employer==='' || q1c==='' || q2==='' || q3==='' || q4==='' || q5==='' || lof === '' || icdcode ===''){
+
+                    Ext.Msg.show({
+                            title: 'Please fill up mandatory values',
+                            msg: '<code>Please fill up mandatory values</code>',
+                            icon: Ext.Msg['ERROR']
+                    });
+                }
+                else{
+                    var DetailID = Ext.getCmp('hdnDetailID').getValue();
+                var q7 = Ext.getCmp('ddlQ7ID').getValue();
+                var q8 = Ext.getCmp('ddlQ8ID').getValue();
+                var q9 = Ext.getCmp('ddlQ9ID').getValue();
+
+                // Success
+                var successCallback = function(resp, ops) {
+
+                    if(q7 === 'N' && q8 === 'N' && q9 === 'N'){
+                        Ext.Msg.show({
+                            title: 'Invalid Answer',
+                            msg: '<code>Atleast one answer from Q7, Q8 and Q9 should be YES.</code>',
+                            icon: Ext.Msg['ERROR']
+                        });
+
+                    }
+                    else{
+                        if(resp.responseText === 'true'){
+                            Ext.Msg.alert("Record Saved", 'Record Saved successfully');
+                            var myStore = Ext.getStore('SectionBGridBind');
+                            myStore.clearFilter();
+                            myStore.load();
+                            SectionB1 = Ext.getCmp('sectionB1ID');
+                            SectionB1.show();
+                            Ext.getCmp('SectionB1NextID').hide();
+                            Ext.getCmp('SectionB1NextForm').getForm().reset();
+
+
+                        }
+                        else if(resp.responseText === 'false'){
+
+                            // Ext.Msg.alert("Duplicate Entry", 'This Record Already Exists');
+                            Ext.Msg.show({
+                                title: 'Duplicate Record',
+                                msg: '<code>This Record Already Exists</code>',
+                                icon: Ext.Msg['ERROR']
+                            });
+
+                        }
+                            else{
+                                // Show login failure error
+                                Ext.Msg.alert("Insert Failure", 'Record cannot be added');
+                            }
+                    }
+
+
+
+                };
+
+                // Failure
+                var failureCallback = function(resp, ops) {
+
+                    // Show login failure error
+                    //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                };
+
+
+                // TODO: Login using server-side authentication service
+                Ext.Ajax.request({url: "services/SectionB.php?action=insertSectionBRecord&DetailID="+DetailID+"&srcdomain="+srcdomain+"&src="+domain,
+                                  method: 'POST',
+                                  params: values,
+                                  success: successCallback,
+                                  failure: failureCallback
+                                 });
+                }
+
+            }
+            else{
                 var myStore = Ext.getStore('SectionBGridBind');
                 myStore.clearFilter();
                 myStore.load();
                 Ext.getCmp('SectionB1NextID').hide();
                 Ext.getCmp('sectionB1ID').show();
                 Ext.getCmp('SectionB1NextForm').getForm().reset();
-            //}
-        //});
+            }
+        });
 
 
     },
@@ -14247,6 +14690,146 @@ Ext.define('SignaTouch.view.MainView', {
         //});
 
 
+    },
+
+    onBtSectionA1NextSaveDiscard2Click: function(button, e, eOpts) {
+        //go back to section A selector screen
+        Ext.MessageBox.confirm ('Do you want to save changes?', 'Do you want to save changes?', function(btn){
+            if(btn === 'yes'){
+                var form = button.up('form');
+                var domain = localStorage.getItem('email');
+                var srcdomain = localStorage.getItem('domain');
+                //var header = button.up('headerPanel');
+                values = form.getValues();
+                var LocalHDRid = localStorage.getItem('SectionAHDRID');
+                var CertDate = Ext.getCmp('txtSectionA1CertificationDateID');
+                var HICN = Ext.getCmp('PatientHICNPOP');
+                var MedID =  Ext.getCmp('MedIDSectionAinput');
+                var SupplierNPI = Ext.getCmp('txtSectionASupplierNPIID');
+                var PhysicianNPI = Ext.getCmp('txtSectionAPhysicianNPIID');
+                var POS = Ext.getCmp('txtSectionAPOSID');
+
+
+
+                var txtE1390Sup = Ext.getCmp('InputE1390ID');
+                if(txtE1390Sup.value !== '1')
+                {
+                    txtE1390Sup.setValue('0');
+                }
+
+                var txtE1392Sup = Ext.getCmp('InputE1392ID');
+                if(txtE1392Sup.value !=='1')
+                {
+                    txtE1392Sup.setValue('0');
+                }
+
+                var txtE0431Sup = Ext.getCmp('InputE0431ID');
+                if(txtE0431Sup.value !=='1')
+                {
+                    txtE0431Sup.setValue('0');
+                }
+
+                var txtK0738Sup = Ext.getCmp('InputK0738ID');
+                if(txtK0738Sup.value !=='1')
+                {
+                    txtK0738Sup.setValue('0');
+                }
+
+                var txtHCPCS1ID = Ext.getCmp('txtHCPCS1ID');
+
+                var txtHCPCS2ID = Ext.getCmp('txtHCPCS2ID');
+
+                var txtHCPCS3ID = Ext.getCmp('txtHCPCS3ID');
+
+                var txtHCPCS4ID = Ext.getCmp('txtHCPCS4ID');
+
+                console.log(txtE1390Sup.value);
+                console.log(txtE1392Sup.value);
+                console.log(txtE0431Sup.value);
+                console.log(txtK0738Sup.value);
+
+
+
+                if(CertDate.value === '' || HICN.value === '' || MedID.value === '' || SupplierNPI.value === '' || PhysicianNPI.value === '' || POS.value === '' ){
+                    Ext.Msg.show({
+                        title: 'Empty Record',
+                        msg: '<code>Please enter values for required fields</code>',
+                        icon: Ext.Msg['ERROR']
+                    });
+                }
+                else if((txtE1390Sup.value === '0' && txtE1392Sup.value === '0' && txtE0431Sup.value === '0' && txtK0738Sup.value === '0') && (txtHCPCS1ID.value === '' && txtHCPCS2ID.value === '' && txtHCPCS3ID.value === '' && txtHCPCS4ID.value === ''))
+                {
+                    Ext.Msg.show({
+                        title: 'Empty Record',
+                        msg: '<code>Please enter values for HCPCS or Non-standard HCPCS</code>',
+                        icon: Ext.Msg['ERROR']
+                    });
+                }
+
+
+
+                    else{
+
+                        // Success
+                        var successCallback = function(resp, ops) {
+                            //console.log(resp.responseText);
+                            if(resp.responseText === 'true'){
+                                localStorage.removeItem("SectionAHDRID"); //remove
+                                Ext.Msg.alert("Record Saved", 'Record saved successfully');
+
+
+                                SectionA1 = Ext.getCmp('SectionAID');
+                                SectionA1.show();
+                                Ext.getCmp('SectionA1NextID').hide();
+                                Ext.getCmp('SectionA1Form').getForm().reset();
+                                var myStore = Ext.getStore('SectionA1GridBind');
+                                myStore.clearFilter();
+
+                                myStore.load();
+                                Ext.getCmp('txtFilterID').reset();
+                                Ext.getCmp('TxtstartDateID').setValue('');
+                                Ext.getCmp('TxtendDateID').setValue('');
+
+                            }
+                            else{
+
+                                Ext.Msg.alert("Insert Failure", 'Record cannot be added');
+                            }
+
+                        };
+
+                        // Failure
+                        var failureCallback = function(resp, ops) {
+
+                            // Show login failure error
+                            //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                        };
+
+
+                        // TODO: Login using server-side authentication service
+                        Ext.Ajax.request({url: "services/SectionA.php?action=insertSectionARecord&HdrID="+LocalHDRid+"&src="+domain+"&srcdomain="+srcdomain,
+                                          method: 'POST',
+                                          params: values,
+                                          success: successCallback,
+                                          failure: failureCallback
+                                         });
+                    }
+            }
+            else{
+                Ext.getCmp('SectionA1NextID').hide();
+                Ext.getCmp('SectionAID').show();
+                Ext.getCmp('SectionA1Form').getForm().reset();
+                var myStore = Ext.getStore('SectionA1GridBind');
+                myStore.clearFilter();
+                myStore.load();
+                Ext.getCmp('txtFilterID').reset();
+                Ext.getCmp('TxtstartDateID').setValue('');
+                Ext.getCmp('TxtendDateID').setValue('');
+            }
+
+
+        });
     },
 
     onBtSectionA1NextSaveClick: function(button, e, eOpts) {
