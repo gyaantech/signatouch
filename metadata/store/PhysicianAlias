@@ -1,0 +1,43 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": true,
+        "autoSync": true,
+        "defaultSortDirection": "DESC",
+        "designer|userClassName": "PhysicianAlias",
+        "model": "Alias",
+        "pageSize": 10,
+        "storeId": "PhysicianAlias"
+    },
+    "designerId": "a139d1e8-df0d-47b2-af0d-d756df6781a4",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "url": "services/ZimbraPhysicianAlias.php?action=ZimbraGetPhysicianAlias&NPI=9999999999"
+            },
+            "designerId": "f8100e40-e48b-44d3-94fb-55795bc49a28",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "designerId": "de9b8887-4a08-43dc-8631-c9d6a83484e2"
+                }
+            ]
+        }
+    ]
+}

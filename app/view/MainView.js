@@ -157,6 +157,7 @@ Ext.define('SignaTouch.view.MainView', {
                     region: 'west',
                     split: true,
                     border: '0 2 0 0',
+                    hidden: true,
                     id: 'Menu',
                     width: 200,
                     bodyBorder: false,
@@ -218,6 +219,7 @@ Ext.define('SignaTouch.view.MainView', {
                                         },
                                         {
                                             xtype: 'menuitem',
+                                            hidden: true,
                                             id: 'SectionAMenu',
                                             itemId: 'MsectionA',
                                             text: 'Section A',
@@ -230,6 +232,7 @@ Ext.define('SignaTouch.view.MainView', {
                                         },
                                         {
                                             xtype: 'menuitem',
+                                            hidden: true,
                                             id: 'SectionBMenu',
                                             itemId: 'MSectionB',
                                             text: 'Section B',
@@ -244,6 +247,7 @@ Ext.define('SignaTouch.view.MainView', {
                                 },
                                 {
                                     xtype: 'container',
+                                    hidden: true,
                                     id: 'Menu2Con',
                                     style: 'background-color:#a5cfff;',
                                     items: [
@@ -2673,7 +2677,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                             width: 330,
                                                             fieldLabel: '<b>Alias&nbsp;<span style="color:#D94E37;">*</span><b/>',
                                                             labelWidth: 150,
-                                                            fieldStyle: 'text-transform:capitalize',
                                                             inputId: 'txtAlias',
                                                             allowBlank: false,
                                                             emptyText: 'alias'
@@ -2713,10 +2716,8 @@ Ext.define('SignaTouch.view.MainView', {
                                                             width: 520,
                                                             fieldLabel: '<b>Target Account&nbsp;<span style="color:#D94E37;">*</span><b/>',
                                                             labelWidth: 150,
-                                                            fieldStyle: 'text-transform:capitalize',
                                                             inputId: 'txtTargetAccount',
-                                                            allowBlank: false,
-                                                            vtype: 'email'
+                                                            allowBlank: false
                                                         }
                                                     ]
                                                 },
@@ -7902,7 +7903,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                 },
                                                 {
                                                     xtype: 'fieldcontainer',
-                                                    disabled: true,
                                                     height: 220,
                                                     id: 'ContainerToProceedSectionA',
                                                     itemId: 'ContainerQuestion',
@@ -8020,12 +8020,20 @@ Ext.define('SignaTouch.view.MainView', {
                                                                             }
                                                                         },
                                                                         {
+                                                                            xtype: 'combobox',
+                                                                            id: 'PhysicianAliasID',
+                                                                            margin: '0 0 0 10',
+                                                                            fieldLabel: '<b>Select Alias</b>',
+                                                                            labelWidth: 80,
+                                                                            displayField: 'alias',
+                                                                            valueField: 'id'
+                                                                        },
+                                                                        {
                                                                             xtype: 'textfield',
                                                                             id: 'phydes',
                                                                             itemId: 'txtSectionAPhysicianDes',
                                                                             padding: '0 0 0 20',
                                                                             width: 320,
-                                                                            fieldLabel: '',
                                                                             labelWidth: 200,
                                                                             inputId: 'txtSectionAPhysicianDes',
                                                                             readOnly: true,
@@ -10379,7 +10387,6 @@ Ext.define('SignaTouch.view.MainView', {
                     splitterResize: false,
                     frame: true,
                     height: 200,
-                    hidden: true,
                     id: 'panelLoginID',
                     margin: '200 100 200 530',
                     maxWidth: 350,
@@ -14270,11 +14277,54 @@ Ext.define('SignaTouch.view.MainView', {
         if(txtSectionA.value !== ''){
             // Success
             var successCallback = function(resp, ops) {
-                console.log(resp.responseText);
+                console.log('respo '+resp.responseText);
                 if(resp.responseText != 'false'){
 
                     //  var physicianNametxt = Ext.ComponentQuery.query('#phydes')[0];
                     physicianNametxt.setValue(Ext.JSON.decode(resp.responseText));
+                    //success alias
+
+                    var successCallbackAlias = function(resp, ops) {
+
+
+
+                        var group_store = Ext.getStore("PhysicianAlias");
+                        //console.log(group_store.getProxy().url);
+                        // group_store.clear();
+                        //group_store.proxy.url = 'services/ZimbraPhysicianAlias.php?action=ZimbraGetPhysicianAlias&NPI="'+input;
+                        group_store.load({url:'services/ZimbraPhysicianAlias.php?action=ZimbraGetPhysicianAlias&NPI="'+input})
+                        //group_store.load();
+
+                        //group_store.setData(resp.responseText);
+
+
+
+
+                        //And assign store to your list again-
+                       // Ext.getCmp('PhysicianAliasID').update();
+                       // Ext.getCmp('PhysicianAliasID').store.proxy.url = 'services/ZimbraPhysicianAlias.php?action=ZimbraGetPhysicianAlias&NPI="'+input;
+                        Ext.getCmp('PhysicianAliasID').bindStore(group_store);
+
+                        console.log(Ext.getCmp('PhysicianAliasID').store);
+                        // Show login failure error
+                        //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                    };
+                    // Failure alias
+                    var failureCallbackAlias = function(resp, ops) {
+
+
+                        // Show login failure error
+                        //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                    };
+                    /*fetch alias */
+                    Ext.Ajax.request({url: "services/ZimbraPhysicianAlias.php?action=ZimbraGetPhysicianAlias&NPI="+input,
+                                      method: 'GET',
+                                      params: input,
+                                      success: successCallbackAlias,
+                                      failure: failureCallbackAlias
+                                     });
                 }
                 else if(resp.responseText === 'false'){
                     txtSectionA.setValue('');

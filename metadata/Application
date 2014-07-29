@@ -22,7 +22,8 @@
             "SupplierRecord",
             "PatientRecord",
             "COSType",
-            "state"
+            "state",
+            "Alias"
         ],
         "name": "SignaTouch",
         "stores": [
@@ -38,7 +39,8 @@
             "SupplierGridBind",
             "PatientGridBind",
             "COS",
-            "States"
+            "States",
+            "PhysicianAlias"
         ],
         "views": [
             "MainView",
