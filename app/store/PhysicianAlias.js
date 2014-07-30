@@ -27,10 +27,13 @@ Ext.define('SignaTouch.store.PhysicianAlias', {
         cfg = cfg || {};
         me.callParent([Ext.apply({
             defaultSortDirection: 'DESC',
-            autoLoad: true,
+            autoLoad: false,
             autoSync: true,
             model: 'SignaTouch.model.Alias',
             storeId: 'PhysicianAlias',
+            data: [
+                
+            ],
             pageSize: 10,
             proxy: {
                 type: 'ajax',

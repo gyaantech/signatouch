@@ -23,9 +23,12 @@ class LDAP {
 
   public function set_user_parameters() { // return username, password and domain name
     $GetSet = new GetSet();
-    $GetSet->setusername($_POST['txtUsername']);
+    $user_post = isset($_POST['txtUsername']) ? $_POST['txtUsername'] :'';
+    $GetSet->setusername($user_post);
     $username = $GetSet->getusername();
-    $GetSet->setpassword($_POST['txtPassword']);
+    
+    $pass_post = isset($_POST['txtPassword']) ? $_POST['txtPassword'] : '';
+    $GetSet->setpassword($pass_post);
     $password = $GetSet->getpassword();
     /*Extract domain from user email id*/
     $GetSet->setdomain($username);
@@ -274,7 +277,7 @@ class LDAP {
     $zimbraPreAuthKey  = $this->GetAcctInfo();
     //echo "key ".$zimbraPreAuthKey;
     $PREAUTH_KEY=$zimbraPreAuthKey;
-    $account=$user_data['username'];
+    $account=isset($user_data['username']) ? $user_data['username'] : $_GET['username'];
     $expires=0;
     $timestamp=time()*1000;
     if(!empty($PREAUTH_KEY)) 

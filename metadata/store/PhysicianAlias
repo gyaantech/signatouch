@@ -6,8 +6,11 @@
     },
     "codeClass": null,
     "userConfig": {
-        "autoLoad": true,
+        "autoLoad": false,
         "autoSync": true,
+        "data": [
+            "[]"
+        ],
         "defaultSortDirection": "DESC",
         "designer|userClassName": "PhysicianAlias",
         "model": "Alias",

@@ -8020,15 +8020,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                                             }
                                                                         },
                                                                         {
-                                                                            xtype: 'combobox',
-                                                                            id: 'PhysicianAliasID',
-                                                                            margin: '0 0 0 10',
-                                                                            fieldLabel: '<b>Select Alias</b>',
-                                                                            labelWidth: 80,
-                                                                            displayField: 'alias',
-                                                                            valueField: 'id'
-                                                                        },
-                                                                        {
                                                                             xtype: 'textfield',
                                                                             id: 'phydes',
                                                                             itemId: 'txtSectionAPhysicianDes',
@@ -8038,6 +8029,30 @@ Ext.define('SignaTouch.view.MainView', {
                                                                             inputId: 'txtSectionAPhysicianDes',
                                                                             readOnly: true,
                                                                             allowBlank: false
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    xtype: 'container',
+                                                                    itemId: 'Q4',
+                                                                    margin: '0 0 10 0',
+                                                                    layout: {
+                                                                        type: 'hbox',
+                                                                        align: 'stretch'
+                                                                    },
+                                                                    items: [
+                                                                        {
+                                                                            xtype: 'combobox',
+                                                                            id: 'PhysicianAliasID',
+                                                                            fieldLabel: '<b>Select Alias&nbsp;<span style="color:#D94E37;">*</span></b>',
+                                                                            labelWidth: 150,
+                                                                            msgTarget: 'side',
+                                                                            inputId: 'PhysicianAliasInput',
+                                                                            allowBlank: false,
+                                                                            emptyText: '',
+                                                                            editable: false,
+                                                                            displayField: 'alias',
+                                                                            valueField: 'id'
                                                                         }
                                                                     ]
                                                                 },
@@ -10641,7 +10656,7 @@ Ext.define('SignaTouch.view.MainView', {
 
 
         // TODO: Login using server-side authentication service
-        Ext.Ajax.request({url: "services/LDAPpreauth.php?action=Messaging_Preauth_URL",
+        Ext.Ajax.request({url: "services/LDAPpreauth.php?action=Messaging_Preauth_URL&username="+localStorage.getItem("email"),
                           method: 'POST',
                           params: values,
                           success: successCallback,
@@ -12325,7 +12340,7 @@ Ext.define('SignaTouch.view.MainView', {
                 var failureCallback = function(resp, ops) {
 
                     // Show login failure error
-                    Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+                    //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
 
                 };
                 //adding loader
@@ -14271,43 +14286,32 @@ Ext.define('SignaTouch.view.MainView', {
     },
 
     onTxtSectionAPhysicianNPIBlur: function(component, e, eOpts) {
+        Ext.getCmp('PhysicianAliasID').reset();
         var input = component.getValue();
         var txtSectionA =  Ext.getCmp('txtSectionAPhysicianNPIID');
         var physicianNametxt =  Ext.getCmp('phydes');
         if(txtSectionA.value !== ''){
             // Success
             var successCallback = function(resp, ops) {
-                console.log('respo '+resp.responseText);
                 if(resp.responseText != 'false'){
 
-                    //  var physicianNametxt = Ext.ComponentQuery.query('#phydes')[0];
                     physicianNametxt.setValue(Ext.JSON.decode(resp.responseText));
                     //success alias
 
                     var successCallbackAlias = function(resp, ops) {
+                        Ext.getCmp('PhysicianAliasID').reset();
+                        var store = Ext.getStore("PhysicianAlias");
+                        store.removeAll(true);
+
+                        store.getProxy().url = 'services/ZimbraPhysicianAlias.php?action=ZimbraGetPhysicianAlias&NPI='+input;
+                        store.load();
+                        store.add(Ext.JSON.decode(resp.responseText));
 
 
+                        Ext.getCmp('PhysicianAliasID').clearValue();
+                        Ext.getCmp('PhysicianAliasID').bindStore(store);
+                       // group_store.load();
 
-                        var group_store = Ext.getStore("PhysicianAlias");
-                        //console.log(group_store.getProxy().url);
-                        // group_store.clear();
-                        //group_store.proxy.url = 'services/ZimbraPhysicianAlias.php?action=ZimbraGetPhysicianAlias&NPI="'+input;
-                        group_store.load({url:'services/ZimbraPhysicianAlias.php?action=ZimbraGetPhysicianAlias&NPI="'+input})
-                        //group_store.load();
-
-                        //group_store.setData(resp.responseText);
-
-
-
-
-                        //And assign store to your list again-
-                       // Ext.getCmp('PhysicianAliasID').update();
-                       // Ext.getCmp('PhysicianAliasID').store.proxy.url = 'services/ZimbraPhysicianAlias.php?action=ZimbraGetPhysicianAlias&NPI="'+input;
-                        Ext.getCmp('PhysicianAliasID').bindStore(group_store);
-
-                        console.log(Ext.getCmp('PhysicianAliasID').store);
-                        // Show login failure error
-                        //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
 
                     };
                     // Failure alias
@@ -14345,7 +14349,6 @@ Ext.define('SignaTouch.view.MainView', {
                 //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
 
             };
-
 
             // TODO: Login using server-side authentication service
             Ext.Ajax.request({url: "services/SectionA.php?action=fetchPhysicianName&PNPI="+input,

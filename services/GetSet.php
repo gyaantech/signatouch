@@ -744,16 +744,6 @@ class GetSet
     {
     return $this->SrcDomain;
     }
-       // set DestDomain
-    public function setDestDomain($DestDomain)
-    {
-    $this->DestDomain = $DestDomain;
-    } 
-    // get DestDomain
-    public function getDestDomain()
-    {
-    return $this->DestDomain;
-    }
     // set Domain
     public function setdomain($domain)
     {
