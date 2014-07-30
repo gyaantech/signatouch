@@ -9,11 +9,6 @@ include "GetSet.php";
 include "ZimbraConnect.php";
 
 class CreateDomain {
- //private $ServerAddress = 'https://mail.windward-dev.com';
-// private $AdminPassword = "b2T17F8DZ2";
-  private $ServerAddress = 'https://msg96.isigndit.com';
-  private $AdminUserName  = "zimbra";
-  private $AdminPassword = "As8wriWew";
   
   //Database connect 
     public function __construct() 
@@ -44,19 +39,19 @@ class CreateDomain {
  public function ZimbraCreateDomain()
 {        
         $username = isset($_GET['user'])?$_GET['user']:'';
-        
+        $connect = new Zimbra();
         $param = $this->set_Domain_parameters();
         $Domain_Name = $param['Domain_Name'];
         $DefaultCOS = $param['DefaultCOS'];
         $Description = $param['Description'];
         $CurlHandle = curl_init();
-        curl_setopt($CurlHandle, CURLOPT_URL,"$this->ServerAddress:7071/service/admin/soap");
+        curl_setopt($CurlHandle, CURLOPT_URL,"$connect->ServerAddress:7071/service/admin/soap");
         curl_setopt($CurlHandle, CURLOPT_POST, TRUE);
         curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
         
-        $connect = new Zimbra();
+        
         $parameters = $connect->ZimbraConnect();
         $cos_detail = $connect->ZimbraGetCOSID($DefaultCOS);
         

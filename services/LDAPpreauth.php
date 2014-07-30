@@ -6,21 +6,19 @@
 // -------------------------------------
 include "DBConnection.php";
 include "GetSet.php";
+include "ZimbraConnect.php";
 class LDAP {
    //Database connect 
     public function __construct() 
     {
         $db = new DB_Class();
+        $connect = new Zimbra();
+        $this->userURL = $connect->ZimbraAddress.':8080/service/soap';
+        $this->WEB_MAIL_PREAUTH_URL = $connect->ZimbraAddress.':8080/service/preauth'; 
+        $this->zmbpasswd = $connect->AdminPassword;
+        $this->zmbADMURL = $connect->ServerAddress.':7071/service/admin/soap';
+        
     }
-  
-    private $userURL='http://msg96.isigndit.com:8080/service/soap';
-  private $zmbADMURL='https://msg96.isigndit.com:7071/service/admin/soap';
-  private $zmbpasswd="As8wriWew";
-   private $WEB_MAIL_PREAUTH_URL="http://msg96.isigndit.com:8080/service/preauth"; 
-/* private $userURL='http://mail.windward-dev.com:8080/service/soap';
-  private $zmbADMURL='https://mail.windward-dev.com:7071/service/admin/soap';
-  private $zmbpasswd="b2T17F8DZ2";
-  private $WEB_MAIL_PREAUTH_URL="http://mail.windward-dev.com:8080/service/preauth";*/
  
 
   public function set_user_parameters() { // return username, password and domain name

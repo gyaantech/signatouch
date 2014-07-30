@@ -9,17 +9,10 @@ include "GetSet.php";
 include "ZimbraConnect.php";
 
 class CreateCOS {
- //private $ServerAddress = 'https://mail.windward-dev.com';
-// private $AdminPassword = "b2T17F8DZ2";
-  private $ServerAddress = 'https://msg96.isigndit.com';
-  private $AdminUserName  = "zimbra";
-  private $AdminPassword = "As8wriWew";
-  
   //Database connect 
     public function __construct() 
     {
         $db = new DB_Class();
-       // $phy = new Maintainence();
     }
 
   
@@ -44,19 +37,19 @@ class CreateCOS {
  public function ZimbraCreateCOS()
 {        
         $username = isset($_GET['user'])?$_GET['user']:'';
-        
+        $connect = new Zimbra();
         $param = $this->set_COS_parameters();
         $COS_name = $param['COS_name'];
         $COS_description = $param['COS_description'];
         $COS_notes = $param['COS_notes'];
         $CurlHandle = curl_init();
-        curl_setopt($CurlHandle, CURLOPT_URL,"$this->ServerAddress:7071/service/admin/soap");
+        curl_setopt($CurlHandle, CURLOPT_URL,"$connect->ServerAddress:7071/service/admin/soap");
         curl_setopt($CurlHandle, CURLOPT_POST, TRUE);
         curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
         
-        $connect = new Zimbra();
+       
         $parameters = $connect->ZimbraConnect();
         
         
@@ -117,14 +110,15 @@ class CreateCOS {
     }
 /*Fetch COS Data*/
    public function FetchAllCOS() {
+        $connect = new Zimbra();
         $CurlHandle = curl_init();
-        curl_setopt($CurlHandle, CURLOPT_URL,"$this->ServerAddress:7071/service/admin/soap");
+        curl_setopt($CurlHandle, CURLOPT_URL,"$connect->ServerAddress:7071/service/admin/soap");
         curl_setopt($CurlHandle, CURLOPT_POST, TRUE);
         curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
         
-        $connect = new Zimbra();
+        
         $parameters = $connect->ZimbraConnect();
         
         

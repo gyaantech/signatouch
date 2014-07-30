@@ -9,29 +9,24 @@ include "GetSet.php";
 include "ZimbraConnect.php";
 
 class GetPhysicianAlias {
- //private $ServerAddress = 'https://mail.windward-dev.com';
-// private $AdminPassword = "b2T17F8DZ2";
-  private $ServerAddress = 'https://msg96.isigndit.com';
-  private $AdminUserName  = "zimbra";
-  private $AdminPassword = "As8wriWew";
-  private $npi_domain = '@npi.st';
   public function ZimbraGetPhysicianAlias()
-  {     
+  {
+     $connect = new Zimbra();
     $GetSet = new GetSet();   
     // set PhysicianNPI
     $GetSet->setPhysicianNPI($_GET['NPI']);
     // get PhysicianNPI
     $npi = $GetSet->getPhysicianNPI();
-    $npi = $npi.$this->npi_domain;
+    $npi = $npi.$connect->npi_domain;
     
         //print_r($_POST);exit();
          $CurlHandle = curl_init();
-          curl_setopt($CurlHandle, CURLOPT_URL,           "$this->ServerAddress:7071/service/admin/soap");
+          curl_setopt($CurlHandle, CURLOPT_URL,           "$connect->ServerAddress:7071/service/admin/soap");
           curl_setopt($CurlHandle, CURLOPT_POST,           TRUE);
           curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
           curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
           curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
-          $connect = new Zimbra();
+         
           //$id = $connect->ZimbraGetAccountID($result['TargetAccount']);
           // ------ Send the zimbraAdmin AuthRequest -----
           

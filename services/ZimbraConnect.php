@@ -8,9 +8,11 @@
 class Zimbra {
  //private $ServerAddress = 'https://mail.windward-dev.com';
 // private $AdminPassword = "b2T17F8DZ2";
-  private $ServerAddress = 'https://msg96.isigndit.com';
-  private $AdminUserName  = "zimbra";
-  private $AdminPassword = "As8wriWew";
+  public $ServerAddress = 'https://msg96.isigndit.com';
+  public $ZimbraAddress = 'http://msg96.isigndit.com';
+  public $AdminUserName  = "zimbra";
+  public $AdminPassword = "As8wriWew";
+  public $npi_domain = '@npi.st';
       
     //Zimbra Connect
      public function ZimbraConnect()

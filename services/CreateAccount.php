@@ -8,10 +8,6 @@ include "DBConnection.php";
 include "GetSet.php";
 include "ZimbraConnect.php";
 class CreateUser {
-  
-   private $ServerAddress = 'https://msg96.isigndit.com';
-  private $AdminUserName  = "zimbra";
-  private $AdminPassword = "As8wriWew";
   //Database connect 
     public function __construct() 
     {
@@ -84,9 +80,10 @@ class CreateUser {
      //to create zimbra Admin Account
   public function ZimbraAdminCreateAccount($Trace, $ServerAddress, $AdminUserName, $AdminPassword, $NewUserName, $NewUserPassword, $COSId)
   {
+        $connect = new Zimbra();
         $param = $this->set_user_parameters();
          $CurlHandle = curl_init();
-          curl_setopt($CurlHandle, CURLOPT_URL,           "$this->ServerAddress:7071/service/admin/soap");
+          curl_setopt($CurlHandle, CURLOPT_URL,           "$connect->ServerAddress:7071/service/admin/soap");
           curl_setopt($CurlHandle, CURLOPT_POST,           TRUE);
           curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
           curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
@@ -94,7 +91,7 @@ class CreateUser {
 
           // ------ Send the zimbraAdmin AuthRequest -----
 
-          $connect = new Zimbra();
+          
           $parameters = $connect->ZimbraConnect();
           // ------ Send the zimbraCreateAccount request -----
           $SOAPMessage = '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
@@ -140,8 +137,9 @@ class CreateUser {
   
    //to create zimbra User
   public function ZimbraCreateUser () {
+     $connect = new Zimbra();
     $param = $this->set_user_parameters();
-    $response = $this->ZimbraAdminCreateAccount(1, $this->ServerAddress, $this->AdminUserName, $this->AdminPassword, $param['NewUserName'], $param['NewUserPassword'], $param['COSId']);
+    $response = $this->ZimbraAdminCreateAccount(1, $connect->ServerAddress, $connect->AdminUserName, $connect->AdminPassword, $param['NewUserName'], $param['NewUserPassword'], $param['COSId']);
     $a='<Code>'; 
     $duplicate = strstr($response, $a);
     if($response == FALSE)
@@ -163,16 +161,17 @@ class CreateUser {
   
     //For change password
   public function ZimbraUpdatePassword()
-{        
+{       
+      $connect = new Zimbra();
         $param = $this->set_new_user_parameters();
         $CurlHandle = curl_init();
-        curl_setopt($CurlHandle, CURLOPT_URL,           "$this->ServerAddress:7071/service/admin/soap");
+        curl_setopt($CurlHandle, CURLOPT_URL,           "$connect->ServerAddress:7071/service/admin/soap");
         curl_setopt($CurlHandle, CURLOPT_POST,           TRUE);
         curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
         
-        $connect = new Zimbra();
+      
         $parameters = $connect->ZimbraConnect();
         //$id = $connect->ZimbraGetAccountID($param['zimbraID']);
         

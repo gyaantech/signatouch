@@ -9,12 +9,6 @@ include "GetSet.php";
 include "ZimbraConnect.php";
 
 class CreatePhysician {
- //private $ServerAddress = 'https://mail.windward-dev.com';
-// private $AdminPassword = "b2T17F8DZ2";
-  private $ServerAddress = 'https://msg96.isigndit.com';
-  private $AdminUserName  = "zimbra";
-  private $AdminPassword = "As8wriWew";
-  
   //Database connect 
     public function __construct() 
     {
@@ -95,9 +89,9 @@ class CreatePhysician {
   
     //to update zimbra Physician
   public function ZimbraUpdatePhysician () {
-    
+     $connect = new Zimbra();
     $param = $this->set_physician_parameters();
-    $response = $this->ZimbraUpdatePhysicianAccount(1, $this->ServerAddress, $this->AdminUserName, $this->AdminPassword, $param['NewUserName'], $param['NewUserPassword'], $param['COSId']);
+    $response = $this->ZimbraUpdatePhysicianAccount(1, $connect->ServerAddress, $connect->AdminUserName, $connect->AdminPassword, $param['NewUserName'], $param['NewUserPassword'], $param['COSId']);
     $a='<Code>'; 
     $duplicate = strstr($response, $a);
     if($response == FALSE)
@@ -115,6 +109,7 @@ class CreatePhysician {
   }
   //to create zimbra Physician
   public function ZimbraCreatePhysician () {
+     $connect = new Zimbra();
     
     $param = $this->set_physician_parameters();
     
@@ -134,7 +129,7 @@ class CreatePhysician {
     $description = 'Domain '.$domain_name.' with default COS.';
     $domain_response = $this->create_domain($domain_name , $COS_user_name , $description);
     
-    $response = $this->ZimbraCreatePhysicianAccount(1, $this->ServerAddress, $this->AdminUserName, $this->AdminPassword, $param['NewUserName'], $param['NewUserPassword'], $cos_admin_response_id);
+    $response = $this->ZimbraCreatePhysicianAccount(1, $connect->ServerAddress, $connect->AdminUserName, $connect->AdminPassword, $param['NewUserName'], $param['NewUserPassword'], $cos_admin_response_id);
     
     $admin_account_name = 'admin@'.$domain_name;
     $account_response = $this->create_office_admin_account($admin_account_name , $param['phone'] , $cos_admin_response_id);
@@ -163,15 +158,15 @@ class CreatePhysician {
   
   public function create_physician_allias($target , $allias_name)
   {
-        //print_r($_POST);exit();
+        $connect = new Zimbra();
          $CurlHandle = curl_init();
-          curl_setopt($CurlHandle, CURLOPT_URL,           "$this->ServerAddress:7071/service/admin/soap");
+          curl_setopt($CurlHandle, CURLOPT_URL,           "$connect->ServerAddress:7071/service/admin/soap");
           curl_setopt($CurlHandle, CURLOPT_POST,           TRUE);
           curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
           curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
           curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
           
-          $connect = new Zimbra();
+          
           $id = $connect->ZimbraGetAccountID($target);
           // ------ Send the zimbraAdmin AuthRequest -----
           
@@ -218,16 +213,17 @@ class CreatePhysician {
   }   
   
   public function create_office_admin_account($admin_account_name , $password , $COS_admin_name){
+       $connect = new Zimbra();
        $username = isset($_GET['user'])?$_GET['user']:'';
         
         $CurlHandle = curl_init();
-        curl_setopt($CurlHandle, CURLOPT_URL,"$this->ServerAddress:7071/service/admin/soap");
+        curl_setopt($CurlHandle, CURLOPT_URL,"$connect->ServerAddress:7071/service/admin/soap");
         curl_setopt($CurlHandle, CURLOPT_POST, TRUE);
         curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
         
-        $connect = new Zimbra();
+ 
         $parameters = $connect->ZimbraConnect();
         //$cos_detail = $connect->ZimbraGetCOSID($COS_admin_name);
         
@@ -268,17 +264,17 @@ class CreatePhysician {
   }
 
     public function create_domain($Domain_Name , $DefaultCOS , $Description)
-{        
+{       $connect = new Zimbra(); 
         $username = isset($_GET['user'])?$_GET['user']:'';
         
         $CurlHandle = curl_init();
-        curl_setopt($CurlHandle, CURLOPT_URL,"$this->ServerAddress:7071/service/admin/soap");
+        curl_setopt($CurlHandle, CURLOPT_URL,"$connect->ServerAddress:7071/service/admin/soap");
         curl_setopt($CurlHandle, CURLOPT_POST, TRUE);
         curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
         
-        $connect = new Zimbra();
+        
         $parameters = $connect->ZimbraConnect();
         $cos_detail = $connect->ZimbraGetCOSID($DefaultCOS);
         
@@ -323,6 +319,7 @@ class CreatePhysician {
   
   
   public function copy_default_cos($COS_name){
+        $connect = new Zimbra();
         $username = isset($_GET['user'])?$_GET['user']:'';
         
         
@@ -331,13 +328,13 @@ class CreatePhysician {
         $COS_description = $param['COS_description'];
         $COS_notes = $param['COS_notes'];
         $CurlHandle = curl_init();
-        curl_setopt($CurlHandle, CURLOPT_URL,"$this->ServerAddress:7071/service/admin/soap");
+        curl_setopt($CurlHandle, CURLOPT_URL,"$connect->ServerAddress:7071/service/admin/soap");
         curl_setopt($CurlHandle, CURLOPT_POST, TRUE);
         curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
         
-        $connect = new Zimbra();
+        
         $parameters = $connect->ZimbraConnect();
         
         
@@ -395,14 +392,15 @@ class CreatePhysician {
   }
   
   public function get_default_cos(){
+         $connect = new Zimbra();
         $CurlHandle = curl_init();
-        curl_setopt($CurlHandle, CURLOPT_URL,"$this->ServerAddress:7071/service/admin/soap");
+        curl_setopt($CurlHandle, CURLOPT_URL,"$connect->ServerAddress:7071/service/admin/soap");
         curl_setopt($CurlHandle, CURLOPT_POST, TRUE);
         curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
         
-        $connect = new Zimbra();
+       
         $parameters = $connect->ZimbraConnect();
         
         
@@ -442,16 +440,17 @@ class CreatePhysician {
   }
     public function ZimbraCreatePhysicianAccount($Trace, $ServerAddress, $AdminUserName, $AdminPassword, $NewUserName, $NewUserPassword, $DefaultCOS)
   {
+         $connect = new Zimbra();
         $param = $this->set_physician_parameters();
          $CurlHandle = curl_init();
-          curl_setopt($CurlHandle, CURLOPT_URL,           "$this->ServerAddress:7071/service/admin/soap");
+          curl_setopt($CurlHandle, CURLOPT_URL,           "$connect->ServerAddress:7071/service/admin/soap");
           curl_setopt($CurlHandle, CURLOPT_POST,           TRUE);
           curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
           curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
           curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
 
           // ------ Send the zimbraAdmin AuthRequest -----
-          $connect = new Zimbra();
+         
           $parameters = $connect->ZimbraConnect();
           //$COSId = $connect->ZimbraGetCOSID($DefaultCOS);
           // ------ Send the zimbraCreateAccount request -----
@@ -499,15 +498,14 @@ class CreatePhysician {
   
   public function ZimbraCreatePhysicianAlias()
   {
-        //print_r($_POST);exit();
+         $connect = new Zimbra();
          $CurlHandle = curl_init();
-          curl_setopt($CurlHandle, CURLOPT_URL,           "$this->ServerAddress:7071/service/admin/soap");
+          curl_setopt($CurlHandle, CURLOPT_URL,           "$connect->ServerAddress:7071/service/admin/soap");
           curl_setopt($CurlHandle, CURLOPT_POST,           TRUE);
           curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
           curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
           curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
           $result = $this->set_alias_parameters();
-          $connect = new Zimbra();
           $id = $connect->ZimbraGetAccountID($result['TargetAccount']);
           // ------ Send the zimbraAdmin AuthRequest -----
           
@@ -559,7 +557,7 @@ class CreatePhysician {
      $connect = new Zimbra();
      $id = $connect->ZimbraGetAccountID($param['email']);
          $CurlHandle = curl_init();
-          curl_setopt($CurlHandle, CURLOPT_URL,           "$this->ServerAddress:7071/service/admin/soap");
+          curl_setopt($CurlHandle, CURLOPT_URL,           "$connect->ServerAddress:7071/service/admin/soap");
           curl_setopt($CurlHandle, CURLOPT_POST,           TRUE);
           curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
           curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
