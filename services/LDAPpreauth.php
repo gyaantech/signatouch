@@ -321,4 +321,3 @@ class LDAP {
       }
   }
   echo json_encode($value);
-?>
