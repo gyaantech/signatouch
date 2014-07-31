@@ -151,9 +151,19 @@ class Function1
     return TRUE;
   } 
  
+  /*function to logout and clear session*/
+ public function logout(){
+    if(isset($_SESSION['password'])){
+      $_SESSION['password'] = '';
+    }
+    if(isset($_SESSION['username'])){
+      $_SESSION['username'] = '';
+    }
+    return TRUE;
+  } 
  } 
   
- $possible_url = array("ViewRecordData","ChangeRecordStatus");
+ $possible_url = array("ViewRecordData","ChangeRecordStatus","logout");
  $value = "An error has occurred";
  $cms = new Function1();
 if (isset ($_GET["action"]) && in_array($_GET["action"], $possible_url)) {
@@ -173,6 +183,9 @@ if (isset ($_GET["action"]) && in_array($_GET["action"], $possible_url)) {
             }
             else
                 $value = "Missing argument";
+            break;
+      case "logout" :
+                $value = $cms->logout();
             break;
       
     }

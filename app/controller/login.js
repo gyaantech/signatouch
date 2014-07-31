@@ -17,73 +17,90 @@ Ext.define('SignaTouch.controller.login', {
     extend: 'Ext.app.Controller',
 
     onLogOut: function(button, e, eOpts) {
-           var Username =  Ext.getCmp('IDtxtUsername');
-        var Password =  Ext.getCmp('IDtxtPassword');
-        Ext.getCmp('loginForm1').getForm().reset();
+        // success
+        var successCallback = function(resp, ops) {
+            if(resp.responseText === 'true'){
+                var Username =  Ext.getCmp('IDtxtUsername');
+                var Password =  Ext.getCmp('IDtxtPassword');
+                Ext.getCmp('loginForm1').getForm().reset();
 
-        localStorage.removeItem("user_name"); //remove
-        localStorage.removeItem("SectionAHDRID"); //remove
-        localStorage.removeItem("new_HICN"); //remove
-        localStorage.removeItem("new_HICN_name"); //remove
-        localStorage.removeItem("preauthURL"); //remove
-        localStorage.removeItem("domain"); //remove
-        localStorage.removeItem("email"); //remove
+                localStorage.removeItem("user_name"); //remove
+                localStorage.removeItem("SectionAHDRID"); //remove
+                localStorage.removeItem("new_HICN"); //remove
+                localStorage.removeItem("new_HICN_name"); //remove
+                localStorage.removeItem("preauthURL"); //remove
+                localStorage.removeItem("domain"); //remove
+                localStorage.removeItem("email"); //remove
 
 
-        //Login Panel
-         Ext.getCmp('panelLoginID').show();
-        Ext.getCmp('loginForm1').show();
+                //Login Panel
+                Ext.getCmp('panelLoginID').show();
+                Ext.getCmp('loginForm1').show();
 
-        // hide
+                // hide
 
-        Ext.getCmp('Menu').hide();
-        Ext.getCmp('Footer').hide();
-        Ext.getCmp('Header').hide();
+                Ext.getCmp('Menu').hide();
+                Ext.getCmp('Footer').hide();
+                Ext.getCmp('Header').hide();
 
-        // section A
-        Ext.getCmp('SectionAID').hide();
-        Ext.getCmp('SectionA1NextID').hide();
+                // section A
+                Ext.getCmp('SectionAID').hide();
+                Ext.getCmp('SectionA1NextID').hide();
 
-        // section B
-        Ext.getCmp('SectionB1NextID').hide();
-        Ext.getCmp('sectionB1ID').hide();
+                // section B
+                Ext.getCmp('SectionB1NextID').hide();
+                Ext.getCmp('sectionB1ID').hide();
 
-        //Patient Record
-        Ext.getCmp('PatientRecord').hide();
-        Ext.getCmp('PatientPanelID').hide();
-        Ext.getCmp('PatientViewID').hide();
+                //Patient Record
+                Ext.getCmp('PatientRecord').hide();
+                Ext.getCmp('PatientPanelID').hide();
+                Ext.getCmp('PatientViewID').hide();
 
-        //Physician Record
-        Ext.getCmp('PhysicianPanelID').hide();
-        Ext.getCmp('PhysicianViewID').hide();
-        Ext.getCmp('PhysicianRecord').hide();
+                //Physician Record
+                Ext.getCmp('PhysicianPanelID').hide();
+                Ext.getCmp('PhysicianViewID').hide();
+                Ext.getCmp('PhysicianRecord').hide();
 
-        //Supplier Record
-        Ext.getCmp('SupplierRecord').hide();
-         Ext.getCmp('SupplierPanelID').hide();
-         Ext.getCmp('SupplierViewID').hide();
+                //Supplier Record
+                Ext.getCmp('SupplierRecord').hide();
+                Ext.getCmp('SupplierPanelID').hide();
+                Ext.getCmp('SupplierViewID').hide();
 
-        Ext.getCmp('ViewAll').hide();
+                Ext.getCmp('ViewAll').hide();
 
-        Ext.getCmp('AddCOSID').hide();
+                Ext.getCmp('AddCOSID').hide();
 
-        //Dashboard
-        Ext.getCmp('Dashboard').hide();
+                //Dashboard
+                Ext.getCmp('Dashboard').hide();
 
-        Ext.getCmp('Messaging').hide();
+                Ext.getCmp('Messaging').hide();
 
-        // hide menus
-        Ext.getCmp('SectionBMenu').hide();
-        Ext.getCmp('SectionAMenu').hide();
-        Ext.getCmp('Menu2Con').hide();
-        // refresh store
-        var myStore = Ext.getStore('SectionA1GridBind');
-        myStore.clearFilter();
-        myStore.load();
+                // hide menus
+                Ext.getCmp('SectionBMenu').hide();
+                Ext.getCmp('SectionAMenu').hide();
+                Ext.getCmp('Menu2Con').hide();
+                // refresh store
+                var myStore = Ext.getStore('SectionA1GridBind');
+                myStore.clearFilter();
+                myStore.load();
 
-        var myStoreb = Ext.getStore('SectionBGridBind');
-        myStoreb.clearFilter();
-        myStoreb.load();
+                var myStoreb = Ext.getStore('SectionBGridBind');
+                myStoreb.clearFilter();
+                myStoreb.load();
+            }
+        };
+        // Failure
+        var failureCallback = function(resp, ops) {
+            console.log('URL not called');
+        };
+
+        // TODO: Login using server-side authentication service
+        Ext.Ajax.request({url: "services/Function.php?action=logout",
+                          method: 'POST',
+                          params:  [Username,Password],
+                          success: successCallback,
+                          failure: failureCallback
+                         });
     },
 
     init: function(application) {

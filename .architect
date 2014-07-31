@@ -3,7 +3,7 @@
         "data": true,
         "model": true,
         "component": true,
-        "controller": false,
+        "controller": true,
         "resource": true,
         "a705110d-4ce3-4545-a748-7f920677364e": {
             "id": "a705110d-4ce3-4545-a748-7f920677364e",
@@ -70,6 +70,7 @@
                 },
                 {
                     "id": "d83eb7c4-d001-4a6f-ac40-06b1a7603968",
+                    "expanded": false,
                     "cn": [
                         {
                             "id": "c85825b0-5f33-4aba-818b-7e245df87dd5",
@@ -235,7 +236,6 @@
                     "cn": [
                         {
                             "id": "aab07db0-06e5-40dd-b5f5-d47a18ec873d",
-                            "expanded": false,
                             "cn": [
                                 {
                                     "id": "711fa619-d627-4b33-9005-1bc04d3d15a2",
@@ -3963,6 +3963,7 @@
         },
         "87db65b7-7644-465d-81b3-6a655c4751da": {
             "id": "87db65b7-7644-465d-81b3-6a655c4751da",
+            "expanded": false,
             "cn": [
                 {
                     "id": "455149f3-2b65-4c82-8543-6bae0dd6f6a3",
@@ -3991,6 +3992,7 @@
         },
         "a139d1e8-df0d-47b2-af0d-d756df6781a4": {
             "id": "a139d1e8-df0d-47b2-af0d-d756df6781a4",
+            "expanded": false,
             "cn": [
                 {
                     "id": "f8100e40-e48b-44d3-94fb-55795bc49a28",
@@ -4326,7 +4328,6 @@
         },
         "b5d93eec-aeee-4106-82cd-a40b79a24fdf": {
             "id": "b5d93eec-aeee-4106-82cd-a40b79a24fdf",
-            "expanded": false,
             "cn": [
                 {
                     "id": "7cb75ddb-45a1-4958-acdb-fb4cd06697cb"
@@ -4372,7 +4373,7 @@
     },
     "inspectorState": {
         "topInstance": "a705110d-4ce3-4545-a748-7f920677364e",
-        "selectedInstance": "bbd042c7-cdbc-4c8a-9727-00a86a763c6b"
+        "selectedInstance": "91e09ab9-de9e-465b-abe0-962cf5437776"
     },
     "codeState": {
         "topInstance": "a705110d-4ce3-4545-a748-7f920677364e"

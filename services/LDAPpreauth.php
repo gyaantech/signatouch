@@ -22,12 +22,30 @@ class LDAP {
  
 
   public function set_user_parameters() { // return username, password and domain name
+    if(!isset($_SESSION)){
+      session_start();
+    }
+      
     $GetSet = new GetSet();
-    $user_post = isset($_POST['txtUsername']) ? $_POST['txtUsername'] :'';
+    //print_r($_SESSION);
+    // store password in session
+    //session_start();
+    // store session data
+    if(!isset($_SESSION['password'])){
+      $_SESSION['password'] = $_POST['txtPassword']; 
+  }
+    if(!isset($_SESSION['username'])){
+      $_SESSION['username'] = $_POST['txtUsername'];
+    }
+    $user = $_SESSION['username'];
+     $pass = $_SESSION['password'];
+    //echo 'password '.$pass;
+    //echo 'username '.$user;
+    $user_post = isset($user) ? $user :'';
     $GetSet->setusername($user_post);
     $username = $GetSet->getusername();
     
-    $pass_post = isset($_POST['txtPassword']) ? $_POST['txtPassword'] : '';
+    $pass_post = isset($pass) ? $pass : '';
     $GetSet->setpassword($pass_post);
     $password = $GetSet->getpassword();
     /*Extract domain from user email id*/
@@ -41,6 +59,7 @@ class LDAP {
       // Auth Request
       // =====================================
       $user_data = $this->set_user_parameters();
+     
       $CurlHandle = curl_init();
       curl_setopt($CurlHandle, CURLOPT_URL, $this->userURL);
       curl_setopt($CurlHandle, CURLOPT_POST, TRUE );
@@ -274,10 +293,12 @@ class LDAP {
     // Get Messaging Preauth URL 
     // -------------------------------------   
     $user_data = $this->set_user_parameters();
+   // print_R($user_data);
     $zimbraPreAuthKey  = $this->GetAcctInfo();
     //echo "key ".$zimbraPreAuthKey;
     $PREAUTH_KEY=$zimbraPreAuthKey;
-    $account=isset($user_data['username']) ? $user_data['username'] : $_GET['username'];
+    $account = isset($user_data['username']) ? $user_data['username'] : $_GET['username'];
+    //echo 'account '.$account;
     $expires=0;
     $timestamp=time()*1000;
     if(!empty($PREAUTH_KEY)) 
@@ -292,7 +313,7 @@ class LDAP {
           $preauthToken=hash_hmac("sha1",$value,$PREAUTH_KEY);
       //Note: &timestamp vs &amptimestamp
           $preauthURL = $this->WEB_MAIL_PREAUTH_URL."?account=".$account."&timestamp=".$timestamp."&expires=0&preauth=".$preauthToken;
-          //print ( "\n$preauthURL\n\n");
+         // print ( "\n$preauthURL\n\n");
           /* Redirect to Zimbra preauth URL */
           $response = $this->GetUserAuth();
           //echo '<pre>';print_r($response['response']);echo '</pre>';

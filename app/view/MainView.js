@@ -707,6 +707,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                         var link = record.data.link;
                                                                                         sectionA = Ext.getCmp('SectionAID');
 
+
                                                                                         Ext.getCmp('BtSectionA1NextSaveDiscard').hide();
                                                                                         Ext.getCmp('BtSectionA1NextSaveDiscard2').show();
 
@@ -739,11 +740,50 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                             txtHCPCS4DesID.reset();
                                                                                             IDtxtHCPCS4Sup.reset();
                                                                                             IDtxtHCPCS4MediCareFee.reset();
+
+
                                                                                             /*Code for edit record in section A*/
                                                                                             // Success
                                                                                             var successCallback = function(resp, ops) {
 
                                                                                                 var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));
+
+
+                                                                                                var successCallbackAlias = function(resp, ops) {
+                                                                                                    Ext.getCmp('PhysicianAliasID').enable();
+                                                                                                    //Ext.getCmp('PhysicianAliasID').reset();
+                                                                                                    var store = Ext.getStore("PhysicianAlias");
+                                                                                                    //console.log(store);
+                                                                                                    store.removeAll(true);
+
+                                                                                                    store.getProxy().url = 'services/ZimbraPhysicianAlias.php?action=ZimbraGetPhysicianAlias&NPI='+Ext.getCmp('txtSectionAPhysicianNPIID').getValue();
+                                                                                                    //console.log(store.getProxy().url);
+                                                                                                    store.load();
+                                                                                                    store.add(Ext.JSON.decode(resp.responseText));
+
+                                                                                                    // console.log(store);
+                                                                                                    //Ext.getCmp('PhysicianAliasID').clearValue();
+                                                                                                    Ext.getCmp('PhysicianAliasID').bindStore(store);
+                                                                                                    // group_store.load();
+
+
+                                                                                                };
+                                                                                                // Failure alias
+                                                                                                var failureCallbackAlias = function(resp, ops) {
+
+
+                                                                                                    // Show login failure error
+                                                                                                    //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                                                                                                };
+                                                                                                /*fetch alias */
+                                                                                                Ext.Ajax.request({url: "services/ZimbraPhysicianAlias.php?action=ZimbraGetPhysicianAlias&NPI="+Ext.getCmp('txtSectionAPhysicianNPIID').getValue(),
+                                                                                                    method: 'GET',
+                                                                                                    params: Ext.getCmp('txtSectionAPhysicianNPIID').getValue(),
+                                                                                                    success: successCallbackAlias,
+                                                                                                    failure: failureCallbackAlias
+                                                                                                });
+
                                                                                                 //console.log(responseOjbect.HCPCS_Other4Desc);
 
                                                                                                 sectionA1Next = Ext.getCmp('SectionA1NextID');
@@ -778,10 +818,13 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                                 var txtE0431MediCare = Ext.getCmp('txtE0431MediCare');
                                                                                                 var txtK0738Sup = Ext.getCmp('txtK0738Sup');
                                                                                                 var txtK0738MediCare = Ext.getCmp('txtK0738MediCare');
+                                                                                                var PhysicianAlias = Ext.getCmp('PhysicianAliasID');
 
 
                                                                                                 CertType.setValue(responseOjbect.CertType);
                                                                                                 CertType.disable();
+
+                                                                                                PhysicianAlias.enable();
                                                                                                 if(responseOjbect.CertType == 'I'){
                                                                                                     CertDate.setValue(responseOjbect.InitialCertDate);
                                                                                                 }
@@ -878,6 +921,8 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                                 txtE1392MediCare.setValue(responseOjbect.HCPCS_E1392MedFee);
                                                                                                 txtE0431MediCare.setValue(responseOjbect.HCPCS_E0431MedFee);
                                                                                                 txtK0738MediCare.setValue(responseOjbect.HCPCS_K0738MedFee);
+
+                                                                                                PhysicianAlias.setValue(responseOjbect.PhysicianAlias);
                                                                                                 Ext.getCmp('ChkHICNPOPUPID').hide();
                                                                                                 Ext.getCmp('BtSectionA1NextProceedID').hide();
                                                                                                 Ext.getCmp('ContainerToProceedSectionA').enable();
@@ -8043,6 +8088,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     items: [
                                                                         {
                                                                             xtype: 'combobox',
+                                                                            disabled: true,
                                                                             id: 'PhysicianAliasID',
                                                                             fieldLabel: '<b>Select Alias&nbsp;<span style="color:#D94E37;">*</span></b>',
                                                                             labelWidth: 150,
@@ -14299,6 +14345,7 @@ Ext.define('SignaTouch.view.MainView', {
                     //success alias
 
                     var successCallbackAlias = function(resp, ops) {
+                        Ext.getCmp('PhysicianAliasID').enable();
                         Ext.getCmp('PhysicianAliasID').reset();
                         var store = Ext.getStore("PhysicianAlias");
                         store.removeAll(true);
@@ -14310,7 +14357,7 @@ Ext.define('SignaTouch.view.MainView', {
 
                         Ext.getCmp('PhysicianAliasID').clearValue();
                         Ext.getCmp('PhysicianAliasID').bindStore(store);
-                       // group_store.load();
+                        // group_store.load();
 
 
                     };
@@ -14332,12 +14379,17 @@ Ext.define('SignaTouch.view.MainView', {
                 }
                 else if(resp.responseText === 'false'){
                     txtSectionA.setValue('');
-                    physicianNametxt.setValue('');
+                    physicianNametxt.reset();
                     Ext.Msg.alert("No Match Found", 'Physician NPI is not in our record');
+                    Ext.getCmp('PhysicianAliasID').disable();
+                    //Ext.getCmp('PhysicianAliasID').reset();
                 }
                     else{
-                        // Show login failure error
+
                         Ext.Msg.alert("No Match Found", 'Physician NPI is not in our record');
+
+                         Ext.getCmp('PhysicianAliasID').disable();
+                        //Ext.getCmp('PhysicianAliasID').reset();
                     }
 
             };
@@ -14761,8 +14813,7 @@ Ext.define('SignaTouch.view.MainView', {
                 var SupplierNPI = Ext.getCmp('txtSectionASupplierNPIID');
                 var PhysicianNPI = Ext.getCmp('txtSectionAPhysicianNPIID');
                 var POS = Ext.getCmp('txtSectionAPOSID');
-
-
+                var alias = Ext.getCmp('PhysicianAliasID');
 
                 var txtE1390Sup = Ext.getCmp('InputE1390ID');
                 if(txtE1390Sup.value !== '1')
@@ -14802,8 +14853,8 @@ Ext.define('SignaTouch.view.MainView', {
                 console.log(txtK0738Sup.value);
 
 
-
-                if(CertDate.value === '' || HICN.value === '' || MedID.value === '' || SupplierNPI.value === '' || PhysicianNPI.value === '' || POS.value === '' ){
+                //alert('alias '+alias.value);
+                if(CertDate.value === '' || HICN.value === '' || MedID.value === '' || SupplierNPI.value === '' || PhysicianNPI.value === '' || POS.value === '' || alias.value === '' || alias.value == null){
                     Ext.Msg.show({
                         title: 'Empty Record',
                         msg: '<code>Please enter values for required fields</code>',

@@ -384,6 +384,26 @@ class Maintainence
                 return FALSE;  
             }
    }
+     /*Fetch physician alias from NPI*/
+  public function GetPhysicianAlias($physician_NPI = '') {
+     if(isset($_GET['NPI'])){
+            $physician_NPI = trim($_GET['NPI']);
+        }
+            $SqlCheck = "SELECT PhysicianAlias FROM physician_alias WHERE PhysicianNPI = '$physician_NPI'";
+            $result = mysql_query($SqlCheck);
+            if($result){
+               $row_count = mysql_num_rows($result);
+                if($row_count >= 1){
+                  while ($row = mysql_fetch_assoc($result)) {
+                     $result_arr[] = array('id' => $row['PhysicianAlias'],'alias' => $row['PhysicianAlias']);
+                  }
+                    return $result_arr;
+                } 
+            }
+            else{
+                return FALSE;  
+            }
+  }
    
  
   /*----------------------Physician record end-------------------------------------------------------------- */
@@ -545,13 +565,16 @@ class Maintainence
 
 }// Class def ends 
   
- $possible_url = array( "get_physicianGridBind","insertsupplierRecord","insertPatientHICN","POPinsertPatientHICN","insertFacility","editPhysicianRecord","ShowPhysicianRecord","get_SupplierGridBind","ShowSupplierRecord","editSupplierRecord","get_PatientGridBind","ShowPatientRecord","editPatientRecord","FetchCOS");
+ $possible_url = array( "get_physicianGridBind","insertsupplierRecord","insertPatientHICN","POPinsertPatientHICN","insertFacility","editPhysicianRecord","ShowPhysicianRecord","get_SupplierGridBind","ShowSupplierRecord","editSupplierRecord","get_PatientGridBind","ShowPatientRecord","editPatientRecord","FetchCOS","GetPhysicianAlias");
  $value = "An error has occurred";
  $cms = new Maintainence();
 if (isset ($_GET["action"]) && in_array($_GET["action"], $possible_url)) {
     switch ($_GET["action"]) {
      
-	
+      
+      	    case "GetPhysicianAlias" :
+            $value = $cms->GetPhysicianAlias();
+            break;
 	    case "get_physicianGridBind" :
             $value = $cms->get_physicianGridBind();
             break;
