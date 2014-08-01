@@ -3706,7 +3706,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     id: 'txtPhoneNoID',
                                                                     itemId: 'txtPhoneNo',
                                                                     width: 300,
-                                                                    fieldLabel: '<b>&nbsp;&nbsp;&nbsp;Phone No.&nbsp;<span style="color:#D94E37;">*</span></b>',
+                                                                    fieldLabel: '<b>&nbsp;&nbsp;&nbsp;Mobile No.&nbsp;<span style="color:#D94E37;">*</span></b>',
                                                                     msgTarget: 'side',
                                                                     inputId: 'txtPhysicianPhoneNo',
                                                                     allowBlank: false,
@@ -3746,6 +3746,20 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     listeners: {
                                                                         click: {
                                                                             fn: me.onBtnPhysicianCancelClick,
+                                                                            scope: me
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    xtype: 'button',
+                                                                    id: 'btnPhysicianAddAnotherID',
+                                                                    margin: '0 10 0 0',
+                                                                    padding: '',
+                                                                    width: 92,
+                                                                    text: 'Add Office',
+                                                                    listeners: {
+                                                                        click: {
+                                                                            fn: me.onBtnPhysicianAddAnotherIDClick,
                                                                             scope: me
                                                                         }
                                                                     }
@@ -5962,6 +5976,8 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     items: [
                                                                         {
                                                                             handler: function(view, rowIndex, colIndex, item, e, record, row) {
+                                                                                // show add another button
+                                                                                Ext.getCmp('btnPhysicianAddAnotherID').show();
                                                                                 var PhysicianNPI = record.data.PhysicianNPI;
                                                                                 Ext.getCmp('PhysicianForm').getForm().reset();
                                                                                 var PhysicianNPI = record.data.PhysicianNPI;
@@ -12271,6 +12287,12 @@ Ext.define('SignaTouch.view.MainView', {
 
     },
 
+    onBtnPhysicianAddAnotherIDClick: function(button, e, eOpts) {
+         // Create new office form window
+        var office = Ext.create("widget.NewPhysicanOffice");
+        office.show();
+    },
+
     onBtnPhysicianCancel1Click: function(button, e, eOpts) {
         //go back to Physician selector screen
         var form = button.up('form');
@@ -13113,6 +13135,7 @@ Ext.define('SignaTouch.view.MainView', {
     },
 
     onBtPhysicianAddClick1: function(button, e, eOpts) {
+        Ext.getCmp('btnPhysicianAddAnotherID').hide();
         Ext.getCmp('btnPhysicianSaveID').show();
 
         Ext.getCmp('btnPhysicianCancel1').hide();

@@ -56,7 +56,8 @@ Ext.application({
         'MainView',
         'PopupHICN',
         'Help',
-        'PopupNewFacility'
+        'PopupNewFacility',
+        'PhysicianOffice'
     ],
     controllers: [
         'login'

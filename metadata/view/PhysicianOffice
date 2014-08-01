@@ -1,0 +1,414 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "NewPhysicanOffice",
+        "designer|userClassName": "PhysicianOffice",
+        "height": 317,
+        "hidden": false,
+        "hideShadowOnDeactivate": true,
+        "id": "PhysicianOfficeID",
+        "itemId": null,
+        "modal": true,
+        "title": "Physician Office",
+        "width": 656
+    },
+    "designerId": "d694134c-e5cb-46e2-94d3-a433e77c068b",
+    "cn": [
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": 10,
+                "bodyStyle": [
+                    "background-color:#a5cfff;"
+                ],
+                "height": null,
+                "id": "PopForm3",
+                "layout": "auto",
+                "maxWidth": null,
+                "title": "",
+                "titleAlign": "center",
+                "width": null
+            },
+            "designerId": "e5f1c4af-af9b-4f13-ba1b-cd7eedd9d347",
+            "cn": [
+                {
+                    "type": "Ext.form.FieldSet",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 258,
+                        "style": [
+                            "border-style:solid;\r",
+                            "border-color:#000000;"
+                        ],
+                        "title": "<font size=\"4\">Physician Office</font>",
+                        "width": 629
+                    },
+                    "designerId": "33f95603-fc30-4983-8553-38be4194ed56",
+                    "cn": [
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "NPI",
+                                "margin": "7 0 7 0"
+                            },
+                            "designerId": "06bdb1c1-ce44-4f4a-8575-8de830535ca3",
+                            "cn": [
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "allowBlank": false,
+                                        "enforceMaxLength": true,
+                                        "fieldLabel": "<b>Physician NPI&nbsp;</b>",
+                                        "id": "txtPOPPhyNPIID",
+                                        "inputId": "txtPOPPhyNPI",
+                                        "itemId": "",
+                                        "maxLength": 10,
+                                        "name": null,
+                                        "readOnly": true,
+                                        "vtype": "alphanum",
+                                        "width": 300
+                                    },
+                                    "designerId": "091eec72-5caa-4964-976a-703bc3fc5c72"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "Address",
+                                "layout": "vbox",
+                                "margin": "7 0 7 0"
+                            },
+                            "designerId": "a18a81be-ae6c-4709-9d34-3a43633909d2",
+                            "cn": [
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "allowBlank": false,
+                                        "fieldLabel": "<b>Address1&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
+                                        "id": "txtPOPPhyAddress1ID",
+                                        "inputId": "txtPOPFacilityAddress1",
+                                        "itemId": "",
+                                        "vtype": null,
+                                        "width": 600
+                                    },
+                                    "designerId": "99e352f4-dfd2-49cf-90df-dc7ec13261b8"
+                                },
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": "<b>Address2</b>",
+                                        "id": "txtPOPPhyAddress2ID",
+                                        "inputId": "txtPOPPhyAddress2",
+                                        "itemId": null,
+                                        "vtype": null,
+                                        "width": 600
+                                    },
+                                    "designerId": "ca6246b8-97f6-4483-9483-6c7a7e409821"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "container|align": "stretch",
+                                "itemId": "Citystatezip",
+                                "layout": "hbox",
+                                "margin": "7 0 7 0"
+                            },
+                            "designerId": "d262bbe7-84be-4fb2-9cf4-050a54d49330",
+                            "cn": [
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "allowBlank": false,
+                                        "fieldLabel": "<b>City&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
+                                        "id": "txtPOPPhyCityID",
+                                        "inputId": "txtPOPPhyCity",
+                                        "itemId": "",
+                                        "msgTarget": "side",
+                                        "regex": "/^[a-zA-Z\\s]*$/",
+                                        "regexText": "Please enter valid city",
+                                        "vtype": null,
+                                        "width": 300
+                                    },
+                                    "designerId": "c3870ac1-ed7a-40f5-801d-f440a53030a2"
+                                },
+                                {
+                                    "type": "Ext.form.field.ComboBox",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "allowBlank": false,
+                                        "displayField": "des",
+                                        "editable": false,
+                                        "fieldLabel": "<b>&nbsp;&nbsp;&nbsp;State&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
+                                        "id": "ddlPOPPhyStateID",
+                                        "inputId": "ddlPOPFacilityState",
+                                        "itemId": null,
+                                        "layout|flex": 1,
+                                        "maxWidth": 300,
+                                        "queryMode": "local",
+                                        "regexText": "",
+                                        "store": "States",
+                                        "value": [
+                                            "['AL']"
+                                        ],
+                                        "valueField": "id"
+                                    },
+                                    "designerId": "8940b4fe-ad73-497d-b98e-5edf8021001c"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "container|align": "stretch",
+                                "itemId": "PhoneNo",
+                                "layout": "hbox",
+                                "margin": "7 0 7 0"
+                            },
+                            "designerId": "1ce9cb57-a842-409d-a307-eb9eaf8aa536",
+                            "cn": [
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "allowBlank": false,
+                                        "enforceMaxLength": true,
+                                        "fieldLabel": "<b>Zip&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
+                                        "id": "txtPOPPhyzipID",
+                                        "inputId": "txtPOPFacilityzip",
+                                        "itemId": "",
+                                        "labelAlign": null,
+                                        "maxLength": 10,
+                                        "minLength": null,
+                                        "msgTarget": "side",
+                                        "regex": "/(^\\d{5}$)|(^\\d{5}-\\d{4}$)/",
+                                        "regexText": "Invalid Zip Code",
+                                        "width": 300
+                                    },
+                                    "designerId": "48bebe0b-4fa7-4b42-9e25-8558a33e54b8"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "container|align": "stretch",
+                                "container|pack": "end",
+                                "itemId": "Button",
+                                "layout": "hbox",
+                                "margin": "7 0 7 0",
+                                "maxWidth": 600
+                            },
+                            "designerId": "e51387c6-ad58-4498-a9e4-a9e56d17b5db",
+                            "cn": [
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": null,
+                                        "id": "btnPOPPhyReset",
+                                        "itemId": "",
+                                        "margin": "0 10 0 0",
+                                        "maxWidth": null,
+                                        "padding": "",
+                                        "text": "Reset",
+                                        "width": 92
+                                    },
+                                    "designerId": "7542da88-38b0-44bd-816c-c304e31cbf9d",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onBtnPOPPhyCancelClick",
+                                                "implHandler": [
+                                                    "Ext.getCmp('PopForm3').getForm().reset();"
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "bac6dd84-160d-451e-9981-15a964262953"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "btnPOPFacilitySave",
+                                        "formBind": true,
+                                        "id": "btnPOPPhySave",
+                                        "itemId": null,
+                                        "margin": "0 0 0 0",
+                                        "maxWidth": null,
+                                        "text": "Save",
+                                        "width": 92
+                                    },
+                                    "designerId": "f7205bc3-2e9f-474d-b329-45053b7f4fc0",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onBtnPOPFacilitySaveClick",
+                                                "implHandler": [
+                                                    "var form = button.up('form');\r",
+                                                    "           //var header = button.up('headerPanel');\r",
+                                                    "               values = form.getValues();\r",
+                                                    "        var LocalHDRid = localStorage.getItem('SectionAHDRID');\r",
+                                                    "        var successCallbackFacility = function(resp, ops) {\r",
+                                                    "\r",
+                                                    "            Ext.getCmp('FacilityNameText').setValue(Ext.JSON.decode(resp.responseText));\r",
+                                                    "        };\r",
+                                                    "        var failureCallbackFacility = function(resp, ops) {};\r",
+                                                    "        // Success\r",
+                                                    "        var successCallback = function(resp, ops) {\r",
+                                                    "            var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));\r",
+                                                    "            if(responseOjbect.status === true){\r",
+                                                    "\r",
+                                                    "              Ext.Msg.alert(\"Data Inserted\", 'New Facility Created');\r",
+                                                    "\r",
+                                                    "                Ext.getCmp('POPUPFacilityID').hide();\r",
+                                                    "\r",
+                                                    "                // fetch facility name from facility NPI and display in textfield\r",
+                                                    "                Ext.Ajax.request({url: \"services/SectionA.php?action=fetchFacilityName&facility_NPI=\"+responseOjbect.facility_npi,\r",
+                                                    "                method: 'POST',\r",
+                                                    "                params: values,\r",
+                                                    "                success: successCallbackFacility,\r",
+                                                    "                failure: failureCallbackFacility\r",
+                                                    "         });\r",
+                                                    "                            // Code to reset the form values\r",
+                                                    "            form.getForm().getFields().each(function(f){\r",
+                                                    "            f.originalValue=undefined;\r",
+                                                    "            });\r",
+                                                    "            form.getForm().reset();\r",
+                                                    "           }\r",
+                                                    "           else if(responseOjbect.status === 'false'){\r",
+                                                    "\r",
+                                                    "              Ext.Msg.alert(\"Duplicate Entry\", 'Facility NPI Already Exists');\r",
+                                                    "\r",
+                                                    "           }\r",
+                                                    "            else{\r",
+                                                    "\r",
+                                                    "            Ext.Msg.alert(\"Insert Failure\", 'Data cannot be added');\r",
+                                                    "            }\r",
+                                                    "\r",
+                                                    "        };\r",
+                                                    "\r",
+                                                    "        // Failure\r",
+                                                    "        var failureCallback = function(resp, ops) {\r",
+                                                    "\r",
+                                                    "            // Show login failure error\r",
+                                                    "            //Ext.Msg.alert(\"Login Failure\", 'Incorrect Username or Password');\r",
+                                                    "\r",
+                                                    "        };\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "        // TODO: Login using server-side authentication service\r",
+                                                    "        Ext.Ajax.request({url: \"services/Maintainence.php?action=insertFacility&HdrID=\"+LocalHDRid,\r",
+                                                    "                method: 'POST',\r",
+                                                    "                params: values,\r",
+                                                    "                success: successCallback,\r",
+                                                    "                failure: failureCallback\r",
+                                                    "         });"
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "41d68aef-00c6-4d62-8461-4327d1594a7a"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

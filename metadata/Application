@@ -46,7 +46,8 @@
             "MainView",
             "PopupHICN",
             "Help",
-            "PopupNewFacility"
+            "PopupNewFacility",
+            "PhysicianOffice"
         ]
     },
     "designerId": "application"

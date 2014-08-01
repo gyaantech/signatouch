@@ -8245,7 +8245,7 @@
                                                                 "allowBlank": false,
                                                                 "enableKeyEvents": true,
                                                                 "enforceMaxLength": true,
-                                                                "fieldLabel": "<b>&nbsp;&nbsp;&nbsp;Phone No.&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
+                                                                "fieldLabel": "<b>&nbsp;&nbsp;&nbsp;Mobile No.&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
                                                                 "id": "txtPhoneNoID",
                                                                 "inputId": "txtPhysicianPhoneNo",
                                                                 "itemId": "txtPhoneNo",
@@ -8350,6 +8350,46 @@
                                                                         "scope": "me"
                                                                     },
                                                                     "designerId": "e1ee851b-edd1-4f0e-b01f-a1b158e9b8e9"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "Ext.button.Button",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "designer|displayName": null,
+                                                                "id": "btnPhysicianAddAnotherID",
+                                                                "itemId": null,
+                                                                "margin": "0 10 0 0",
+                                                                "maxWidth": null,
+                                                                "padding": "",
+                                                                "text": "Add Office",
+                                                                "width": 92
+                                                            },
+                                                            "designerId": "96cf0226-d566-49fd-9da4-e5c725d7b5c5",
+                                                            "cn": [
+                                                                {
+                                                                    "type": "basiceventbinding",
+                                                                    "reference": {
+                                                                        "name": "listeners",
+                                                                        "type": "array"
+                                                                    },
+                                                                    "codeClass": null,
+                                                                    "userConfig": {
+                                                                        "fn": "onBtnPhysicianAddAnotherIDClick",
+                                                                        "implHandler": [
+                                                                            " // Create new office form window\r",
+                                                                            "var office = Ext.create(\"widget.NewPhysicanOffice\");\r",
+                                                                            "office.show();"
+                                                                        ],
+                                                                        "name": "click",
+                                                                        "scope": "me"
+                                                                    },
+                                                                    "designerId": "441b7e2f-8183-4c36-a117-8a90d11de86d"
                                                                 }
                                                             ]
                                                         },
@@ -12728,6 +12768,7 @@
                                                                     "userConfig": {
                                                                         "fn": "onBtPhysicianAddClick1",
                                                                         "implHandler": [
+                                                                            "Ext.getCmp('btnPhysicianAddAnotherID').hide();\r",
                                                                             "Ext.getCmp('btnPhysicianSaveID').show();\r",
                                                                             "\r",
                                                                             "Ext.getCmp('btnPhysicianCancel1').hide();\r",
@@ -12939,6 +12980,8 @@
                                                                                 ],
                                                                                 "fn": "handler",
                                                                                 "implHandler": [
+                                                                                    "// show add another button\r",
+                                                                                    "Ext.getCmp('btnPhysicianAddAnotherID').show();\r",
                                                                                     "var PhysicianNPI = record.data.PhysicianNPI;\r",
                                                                                     "Ext.getCmp('PhysicianForm').getForm().reset();\r",
                                                                                     "var PhysicianNPI = record.data.PhysicianNPI;\r",
