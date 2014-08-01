@@ -326,7 +326,6 @@
                 "collapseDirection": "left",
                 "collapsible": true,
                 "header": false,
-                "hidden": true,
                 "id": "Menu",
                 "itemId": null,
                 "layout|region": "west",
@@ -3941,6 +3940,7 @@
                                                     "codeClass": null,
                                                     "userConfig": {
                                                         "allowBlank": false,
+                                                        "emptyText": "mm-dd-yyyy",
                                                         "fieldLabel": "<b>DOB&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
                                                         "format": "m-d-Y",
                                                         "id": "txtDOBPID",
@@ -23697,6 +23697,7 @@
                 "designer|displayName": null,
                 "frame": true,
                 "height": 200,
+                "hidden": true,
                 "id": "panelLoginID",
                 "itemId": null,
                 "layout|margins": null,

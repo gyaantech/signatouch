@@ -140,7 +140,7 @@ Ext.define('SignaTouch.view.PopupHICN', {
                                             fieldLabel: '<b>DOB&nbsp;<span style="color:#D94E37;">*</span></b>',
                                             inputId: 'txtPOPDOB',
                                             allowBlank: false,
-                                            editable: false,
+                                            emptyText: 'mm-dd-yyyy',
                                             format: 'm-d-Y'
                                         },
                                         {
@@ -237,7 +237,8 @@ Ext.define('SignaTouch.view.PopupHICN', {
                                     items: [
                                         {
                                             xtype: 'textfield',
-                                            itemId: 'txtPOPZip',
+                                            id: 'txtPOPZipID',
+                                            itemId: '',
                                             width: 300,
                                             fieldLabel: '<b>Zip&nbsp;<span style="color:#D94E37;">*</span></b>',
                                             msgTarget: 'side',
@@ -246,7 +247,13 @@ Ext.define('SignaTouch.view.PopupHICN', {
                                             enforceMaxLength: true,
                                             maxLength: 10,
                                             regex: /(^\d{5}$)|(^\d{5}-\d{4}$)/,
-                                            regexText: 'Invalid Zip Code'
+                                            regexText: 'Invalid Zip Code',
+                                            listeners: {
+                                                keypress: {
+                                                    fn: me.onTxtPOPZipKeypress,
+                                                    scope: me
+                                                }
+                                            }
                                         },
                                         {
                                             xtype: 'textfield',
@@ -326,6 +333,16 @@ Ext.define('SignaTouch.view.PopupHICN', {
         });
 
         me.callParent(arguments);
+    },
+
+    onTxtPOPZipKeypress: function(textfield, e, eOpts) {
+        var phone = Ext.getCmp('txtPOPZipID').getValue();
+        if(phone.length === 6){
+            var newPhone = phone.concat('-');
+            Ext.getCmp('txtPOPZipID').setValue(newPhone);
+        }
+
+
     },
 
     onTxtPOPPhoneNoIDKeypress: function(textfield, e, eOpts) {

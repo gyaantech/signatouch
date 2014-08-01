@@ -157,7 +157,6 @@ Ext.define('SignaTouch.view.MainView', {
                     region: 'west',
                     split: true,
                     border: '0 2 0 0',
-                    hidden: true,
                     id: 'Menu',
                     width: 200,
                     bodyBorder: false,
@@ -1775,6 +1774,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             fieldLabel: '<b>DOB&nbsp;<span style="color:#D94E37;">*</span></b>',
                                                             inputId: 'txtDOB',
                                                             allowBlank: false,
+                                                            emptyText: 'mm-dd-yyyy',
                                                             format: 'm-d-Y'
                                                         },
                                                         {
@@ -10465,6 +10465,7 @@ Ext.define('SignaTouch.view.MainView', {
                     splitterResize: false,
                     frame: true,
                     height: 200,
+                    hidden: true,
                     id: 'panelLoginID',
                     margin: '200 100 200 530',
                     maxWidth: 350,

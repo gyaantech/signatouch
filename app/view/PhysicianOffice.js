@@ -118,7 +118,7 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
                                             itemId: '',
                                             width: 600,
                                             fieldLabel: '<b>Address1&nbsp;<span style="color:#D94E37;">*</span></b>',
-                                            inputId: 'txtPOPFacilityAddress1',
+                                            inputId: 'txtPOPPhyAddress1',
                                             allowBlank: false
                                         },
                                         {
@@ -160,7 +160,7 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
                                             value: [
                                                 'AL'
                                             ],
-                                            inputId: 'ddlPOPFacilityState',
+                                            inputId: 'ddlPOPPhyState',
                                             allowBlank: false,
                                             regexText: '',
                                             editable: false,
@@ -187,7 +187,7 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
                                             width: 300,
                                             fieldLabel: '<b>Zip&nbsp;<span style="color:#D94E37;">*</span></b>',
                                             msgTarget: 'side',
-                                            inputId: 'txtPOPFacilityzip',
+                                            inputId: 'txtPOPPhyzip',
                                             allowBlank: false,
                                             enforceMaxLength: true,
                                             maxLength: 10,

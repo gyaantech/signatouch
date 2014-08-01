@@ -19,6 +19,7 @@ class CreatePhysician {
    //parameters to create physician
   public function set_physician_parameters() {
     $GetSet = new GetSet();
+    
     $user_email_id = $_POST['txtPhysicianNPI'].'@npi.st'; 
     
     $GetSet->setemailID($user_email_id);
@@ -64,7 +65,7 @@ class CreatePhysician {
     
     
     
-    $result = array('NewUserName'=>$NewUserName,'NewAltUserName' => $NewAltUserName , 'NewUserPassword'=>$NewUserPassword,'displayName'=>$displayName,'firstName'=>$firstName,'midName'=>$midName,'lastName'=>$lastName,'address1'=>$address1,'address2'=>$address2,'state'=>$state,'phone'=>$phone,'city'=>$city,'zip'=>$zip,'email'=>$user_email_id , 'COSId' => '');
+    $result = array('NewUserName'=>$NewUserName,'NewAltUserName' => $NewAltUserName , 'NewUserPassword'=>$NewUserPassword,'displayName'=>$displayName,'firstName'=>$firstName,'midName'=>$midName,'lastName'=>$lastName,'address1'=>$address1,'address2'=>$address2,'state'=>$state,'phone'=>$phone,'city'=>$city,'zip'=>$zip,'email'=>$user_email_id);
     return $result;
   }
   
@@ -106,14 +107,14 @@ class CreatePhysician {
     }
          
   }
-	public function create_another_office() {
+public function create_another_office() {
 		$username = isset($_GET['user'])?$_GET['user']:'';
 		$param = $this->set_office_parameters();
 		$COS_name_common = '';
 		$name_f_l = ''; 
 		$name_f_l = strtolower(substr($param['firstName'], 0, 1).substr($param['lastName'], 0, 6));
 		
-		$COS_name_common = $name_f_l.'-'.$param['zip'];
+		$COS_name_common = $name_f_l.'-'.substr($param['zip'], 0, 5);
 		$domain_name = $COS_name_common.'.st';
 		
 		$allias_name = $name_f_l.'@'.$domain_name;
@@ -135,7 +136,7 @@ class CreatePhysician {
         $GetSet = new GetSet();
 		
 		$GetSet->setPhysicianNPI($_POST['txtPOPPhyNPI']);
-		$physician_npi = getPhysicianNPI();
+		$physician_npi = $GetSet->getPhysicianNPI();
 		
         $user_email_id = $_POST['txtPOPPhyNPI'].'@npi.st'; 
 		
@@ -177,7 +178,7 @@ class CreatePhysician {
     $okay = FALSE;    
     $name_f_l = strtolower(substr($param['firstName'], 0, 1).substr($param['lastName'], 0, 6));
     
-    $COS_name_common = $name_f_l.'-'.$param['zip'];
+    $COS_name_common = $name_f_l.'-'.substr($param['zip'], 0, 5);
     
     $COS_admin_name = $COS_name_common.'-admin';
     $COS_user_name = $COS_name_common.'-user';
@@ -243,7 +244,7 @@ public function check_for_existaince($domain , $physician_npi_user) {
   }
   
   public function check_for_physician_npi_user($physician_npi_user) {
-        $connect = new Zimbra();
+		$connect = new Zimbra();
         $CurlHandle = curl_init();
         curl_setopt($CurlHandle, CURLOPT_URL,           "$connect->ServerAddress:7071/service/admin/soap");
         curl_setopt($CurlHandle, CURLOPT_POST,           TRUE);
@@ -641,7 +642,7 @@ public function check_for_existaince($domain , $physician_npi_user) {
                                   <soap:Body>
                                    <CreateAccountRequest xmlns="urn:zimbraAdmin">
                                                   <name>' . $param['NewUserName']. '</name>
-                                                  <password>' . $param['phone'] . '</password>
+                                                  <password>' . $param['NewUserPassword'] . '</password>
                                                   <a n="zimbraCOSId">' . $DefaultCOS . '</a>
                                                   <a n="displayName">'.$param['displayName'].'</a>
                                                <a n="givenName">'.$param['firstName'].'</a>

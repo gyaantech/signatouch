@@ -208,7 +208,7 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "allowBlank": false,
-                                        "editable": false,
+                                        "emptyText": "mm-dd-yyyy",
                                         "fieldLabel": "<b>DOB&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
                                         "format": "m-d-Y",
                                         "id": "txtPOPDOBID",
@@ -383,15 +383,41 @@
                                         "allowBlank": false,
                                         "enforceMaxLength": true,
                                         "fieldLabel": "<b>Zip&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
+                                        "id": "txtPOPZipID",
                                         "inputId": "txtPOPZip",
-                                        "itemId": "txtPOPZip",
+                                        "itemId": "",
                                         "maxLength": 10,
                                         "msgTarget": "side",
                                         "regex": "/(^\\d{5}$)|(^\\d{5}-\\d{4}$)/",
                                         "regexText": "Invalid Zip Code",
                                         "width": 300
                                     },
-                                    "designerId": "a09a7adb-f555-4be3-b68c-dc3939215ae1"
+                                    "designerId": "a09a7adb-f555-4be3-b68c-dc3939215ae1",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onTxtPOPZipKeypress",
+                                                "implHandler": [
+                                                    "var phone = Ext.getCmp('txtPOPZipID').getValue();\r",
+                                                    "if(phone.length === 6){\r",
+                                                    "    var newPhone = phone.concat('-');\r",
+                                                    "    Ext.getCmp('txtPOPZipID').setValue(newPhone);\r",
+                                                    "}\r",
+                                                    "\r",
+                                                    ""
+                                                ],
+                                                "name": "keypress",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "a2333632-269e-4781-89f8-6e06e2612a70"
+                                        }
+                                    ]
                                 },
                                 {
                                     "type": "Ext.form.field.Text",
