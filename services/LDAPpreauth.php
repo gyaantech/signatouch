@@ -141,7 +141,7 @@ class LDAP {
                 $cname = strstr($SOAPResponse, $a);
                 $cname = strstr($cname, ">");
                 $cname = substr($cname, 1, strpos($cname, "<") - 1);
-
+               
                 $b="cos id="; 
                 $cos = strstr($SOAPResponse, $b);
                 $cos = strstr($cos, "=");
@@ -162,10 +162,20 @@ class LDAP {
                   $display_status_arr = explode("=",$display_status);
                   $cms_user_type = $display_status_arr[1];
                   $cms_user_type = str_replace('"','',$cms_user_type); // returns display name value
+                  // check whther cos is admin or user
+                  $cos_type='';
+                  
+                  if (strpos($cms_user_type,'-admin') !== false) {
+                     $cos_type = 'admin';
+                  }
+                  if (strpos($cms_user_type,'-user') !== false) {
+                     $cos_type = 'user';
+                  }
                   $domain = $user_data['domain'];
                   if($cname != ''){
                     //$response = array('name');
-                    $sql = "SELECT displayType,FormNameID FROM forms WHERE COSname='$cms_user_type'; ";
+                    $sql = "SELECT displayType,FormNameID FROM forms WHERE COSname='$cos_type'; ";
+                    
                     $result = mysql_query($sql);
                     if (!$result) {
                     die('Invalid query: ' . $sql . "   " . mysql_error());

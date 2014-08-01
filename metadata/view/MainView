@@ -326,6 +326,7 @@
                 "collapseDirection": "left",
                 "collapsible": true,
                 "header": false,
+                "hidden": true,
                 "id": "Menu",
                 "itemId": null,
                 "layout|region": "west",
@@ -562,6 +563,7 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "designer|displayName": null,
+                                        "hidden": true,
                                         "id": "SectionAMenu",
                                         "itemId": "MsectionA",
                                         "text": "Section A"
@@ -646,6 +648,7 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "designer|displayName": null,
+                                        "hidden": true,
                                         "id": "SectionBMenu",
                                         "itemId": "MSectionB",
                                         "text": "Section B"
@@ -729,6 +732,7 @@
                             },
                             "codeClass": null,
                             "userConfig": {
+                                "hidden": true,
                                 "id": "Menu2Con",
                                 "margin": null,
                                 "style": [
@@ -23697,7 +23701,6 @@
                 "designer|displayName": null,
                 "frame": true,
                 "height": 200,
-                "hidden": true,
                 "id": "panelLoginID",
                 "itemId": null,
                 "layout|margins": null,

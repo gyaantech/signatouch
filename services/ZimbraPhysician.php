@@ -111,15 +111,22 @@ public function create_another_office() {
 		$username = isset($_GET['user'])?$_GET['user']:'';
 		$param = $this->set_office_parameters();
 		$COS_name_common = '';
+		
 		$name_f_l = ''; 
 		$name_f_l = strtolower(substr($param['firstName'], 0, 1).substr($param['lastName'], 0, 6));
 		
 		$COS_name_common = $name_f_l.'-'.substr($param['zip'], 0, 5);
+		$COS_user_name = $COS_name_common.'-user';
 		$domain_name = $COS_name_common.'.st';
+		
+		$cos_user_response_id = $this->copy_default_cos($COS_user_name); 
+
+        $description = 'Domain '.$domain_name.' with default COS.';
+        $domain_response = $this->create_domain($domain_name , $COS_user_name , $description);
 		
 		$allias_name = $name_f_l.'@'.$domain_name;
         $allias_response = $this->create_physician_allias($param['NewUserName'] , $allias_name);
-		
+		//exit();
 		if($allias_response){
 			$sql = "INSERT INTO physician_office SET PhysicianNPI = '".$param['physician_npi']."', 
 													PhysicianAddr1 = '".$param['address1']."', 
@@ -134,7 +141,7 @@ public function create_another_office() {
   }
    public function set_office_parameters() {
         $GetSet = new GetSet();
-		
+		//print_r($_POST);exit();
 		$GetSet->setPhysicianNPI($_POST['txtPOPPhyNPI']);
 		$physician_npi = $GetSet->getPhysicianNPI();
 		
@@ -371,7 +378,7 @@ public function check_for_existaince($domain , $physician_npi_user) {
                   return(FALSE); exit();
           }
           
-        //  print("Raw Zimbra SOAP Response:<BR>" . $ZimbraSOAPResponse . "<BR><BR>\n");
+          //print("Raw Zimbra SOAP Response:<BR>" . $ZimbraSOAPResponse . "<BR><BR>\n");
         curl_close($CurlHandle);
         $a='<soap:Reason><soap:Text>'; 
         $duplicate = strstr($ZimbraSOAPResponse, $a);
