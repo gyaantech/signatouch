@@ -1,0 +1,74 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "PhysicianOffice"
+    },
+    "designerId": "c70b98a8-6627-499b-87fb-7dce3fe7ba89",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "PhysicianAddr1"
+            },
+            "designerId": "5409bb5b-252c-44cb-9165-416dfa2a88fe"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "PhysicianAddr2"
+            },
+            "designerId": "737cbe42-2563-4b49-85f0-5fa22b86c175"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "PhysicianCity"
+            },
+            "designerId": "f55ce4c4-d906-4574-9047-9cbfff51f0c5"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "PhysicianSt"
+            },
+            "designerId": "cb6e91a8-c4f0-4758-b4dc-7eccd4e54162"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "PhysicianZip"
+            },
+            "designerId": "e4871830-05fb-4666-9086-30258e4c8ac8"
+        }
+    ]
+}

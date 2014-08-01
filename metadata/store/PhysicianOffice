@@ -1,0 +1,45 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": true,
+        "defaultSortDirection": "DESC",
+        "designer|userClassName": "PhysicianOffice",
+        "model": "PhysicianOffice",
+        "pageSize": 20,
+        "storeId": "PhysicianOffice"
+    },
+    "designerId": "90bc2584-3a69-41f7-b5ad-c7d7d747bdde",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "url": "services/ZimbraPhysicianAlias.php?action=GetPhysicianofficeFromNpi"
+            },
+            "designerId": "c49ead57-6323-4f0d-b02f-f5239812dd5f",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "root": "data"
+                    },
+                    "designerId": "a79331c9-4d72-4f69-9b7f-d36b8735ebd7"
+                }
+            ]
+        }
+    ]
+}

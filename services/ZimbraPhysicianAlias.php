@@ -9,6 +9,11 @@ include "GetSet.php";
 include "ZimbraConnect.php";
 
 class GetPhysicianAlias {
+      //Database connect 
+    public function __construct() 
+    {
+        $db = new DB_Class();	
+    }
   public function ZimbraGetPhysicianAlias()
   {
      $connect = new Zimbra();
@@ -87,15 +92,36 @@ class GetPhysicianAlias {
         }
           
   }   
-   
+  public function GetPhysicianofficeFromNpi(){
+    $physician_NPI = isset($_GET['physician_NPI']) ? $_GET['physician_NPI'] : '';
+        $sql = "SELECT * FROM physician_office WHERE PhysicianNPI='$physician_NPI'";
+        
+        $result = mysql_query($sql);
+        if (!$result) {
+        die('Invalid query: ' . $sql . "   " . mysql_error());
+        }
+        //Allocate the array
+        $app_list = array();
+        //Loop through database to add books to array
+        while ($row = mysql_fetch_assoc($result)) {
+        //echo '<pre>';print_r($row);echo '</pre>';
+         $app_list[] = array('PhysicianAddr1'=> ucwords($row['PhysicianAddr1']),'PhysicianAddr2' => ucwords($row['PhysicianAddr2']), 'PhysicianCity' => ucwords($row['PhysicianCity']),'PhysicianSt'=>ucwords($row['PhysicianSt']),'PhysicianZip'=>$row['PhysicianZip']);
+        }
+
+        return $app_list;
+      
+  } 
 }
-$possible_url = array("ZimbraGetPhysicianAlias");
+$possible_url = array("ZimbraGetPhysicianAlias","GetPhysicianofficeFromNpi");
  $value = "An error has occurred";
  $cms = new GetPhysicianAlias();
   if (isset ($_GET["action"]) && in_array($_GET["action"], $possible_url)) {
       switch ($_GET["action"]) {
        case "ZimbraGetPhysicianAlias" :
                 $value = $cms->ZimbraGetPhysicianAlias();
+            break;
+      case "GetPhysicianofficeFromNpi" :
+                $value = $cms->GetPhysicianofficeFromNpi();
             break;
       }
   }

@@ -6,16 +6,18 @@
     },
     "codeClass": null,
     "userConfig": {
+        "container|align": "stretch",
         "designer|userAlias": "NewPhysicanOffice",
         "designer|userClassName": "PhysicianOffice",
-        "height": 317,
+        "height": 374,
         "hidden": false,
         "hideShadowOnDeactivate": true,
         "id": "PhysicianOfficeID",
         "itemId": null,
+        "layout": "vbox",
         "modal": true,
         "title": "Physician Office",
-        "width": 656
+        "width": 697
     },
     "designerId": "d694134c-e5cb-46e2-94d3-a433e77c068b",
     "cn": [
@@ -31,13 +33,13 @@
                 "bodyStyle": [
                     "background-color:#a5cfff;"
                 ],
-                "height": null,
+                "height": 493,
                 "id": "PopForm3",
                 "layout": "auto",
                 "maxWidth": null,
                 "title": "",
                 "titleAlign": "center",
-                "width": null
+                "width": 739
             },
             "designerId": "e5f1c4af-af9b-4f13-ba1b-cd7eedd9d347",
             "cn": [
@@ -49,13 +51,9 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "height": 258,
-                        "style": [
-                            "border-style:solid;\r",
-                            "border-color:#000000;"
-                        ],
+                        "height": 306,
                         "title": "<font size=\"4\">Physician Office</font>",
-                        "width": 629
+                        "width": 667
                     },
                     "designerId": "33f95603-fc30-4983-8553-38be4194ed56",
                     "cn": [
@@ -93,6 +91,60 @@
                                         "width": 300
                                     },
                                     "designerId": "091eec72-5caa-4964-976a-703bc3fc5c72"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "id": "PopPhyName",
+                                "itemId": "Address1",
+                                "layout": "vbox",
+                                "margin": "7 0 7 0"
+                            },
+                            "designerId": "2faee4ea-0bc2-4b31-922c-4411197c33f6",
+                            "cn": [
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "allowBlank": false,
+                                        "fieldLabel": "<b>First Name</b>",
+                                        "id": "txtPOPPhyFnameID",
+                                        "inputId": "txtPOPPhyFname",
+                                        "itemId": "",
+                                        "readOnly": true,
+                                        "vtype": null,
+                                        "width": 600
+                                    },
+                                    "designerId": "63e544e3-4754-47ce-af2b-5094c93ef7d6"
+                                },
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": "<b>Last Name</b>",
+                                        "id": "txtPOPPhyLnameID",
+                                        "inputId": "txtPOPPhyLname",
+                                        "itemId": null,
+                                        "readOnly": true,
+                                        "vtype": null,
+                                        "width": 600
+                                    },
+                                    "designerId": "90c33d80-a4c1-4001-85cd-50240b1c571f"
                                 }
                             ]
                         },
@@ -299,7 +351,12 @@
                                             "userConfig": {
                                                 "fn": "onBtnPOPPhyCancelClick",
                                                 "implHandler": [
-                                                    "Ext.getCmp('PopForm3').getForm().reset();"
+                                                    "//Ext.getCmp('PopForm3').getForm().reset();\r",
+                                                    "Ext.getCmp('txtPOPPhyAddress1ID').reset();\r",
+                                                    "Ext.getCmp('txtPOPPhyAddress2ID').reset();\r",
+                                                    "Ext.getCmp('txtPOPPhyCityID').reset();\r",
+                                                    "Ext.getCmp('txtPOPPhyStateID').reset();\r",
+                                                    "Ext.getCmp('txtPOPPhyzipID').reset();"
                                                 ],
                                                 "name": "click",
                                                 "scope": "me"
@@ -335,12 +392,12 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "fn": "onBtnPOPFacilitySaveClick",
+                                                "fn": "onBtnPOPPhySaveClick",
                                                 "implHandler": [
                                                     "var form = button.up('form');\r",
                                                     "           //var header = button.up('headerPanel');\r",
                                                     "               values = form.getValues();\r",
-                                                    "        var LocalHDRid = localStorage.getItem('SectionAHDRID');\r",
+                                                    "        var user = localStorage.getItem('email');\r",
                                                     "        var successCallbackFacility = function(resp, ops) {\r",
                                                     "\r",
                                                     "            Ext.getCmp('FacilityNameText').setValue(Ext.JSON.decode(resp.responseText));\r",
@@ -348,36 +405,23 @@
                                                     "        var failureCallbackFacility = function(resp, ops) {};\r",
                                                     "        // Success\r",
                                                     "        var successCallback = function(resp, ops) {\r",
-                                                    "            var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));\r",
-                                                    "            if(responseOjbect.status === true){\r",
-                                                    "\r",
-                                                    "              Ext.Msg.alert(\"Data Inserted\", 'New Facility Created');\r",
-                                                    "\r",
-                                                    "                Ext.getCmp('POPUPFacilityID').hide();\r",
-                                                    "\r",
-                                                    "                // fetch facility name from facility NPI and display in textfield\r",
-                                                    "                Ext.Ajax.request({url: \"services/SectionA.php?action=fetchFacilityName&facility_NPI=\"+responseOjbect.facility_npi,\r",
-                                                    "                method: 'POST',\r",
-                                                    "                params: values,\r",
-                                                    "                success: successCallbackFacility,\r",
-                                                    "                failure: failureCallbackFacility\r",
-                                                    "         });\r",
-                                                    "                            // Code to reset the form values\r",
-                                                    "            form.getForm().getFields().each(function(f){\r",
-                                                    "            f.originalValue=undefined;\r",
-                                                    "            });\r",
-                                                    "            form.getForm().reset();\r",
-                                                    "           }\r",
-                                                    "           else if(responseOjbect.status === 'false'){\r",
-                                                    "\r",
-                                                    "              Ext.Msg.alert(\"Duplicate Entry\", 'Facility NPI Already Exists');\r",
-                                                    "\r",
-                                                    "           }\r",
-                                                    "            else{\r",
-                                                    "\r",
-                                                    "            Ext.Msg.alert(\"Insert Failure\", 'Data cannot be added');\r",
+                                                    "            if(resp.responseText === 'true'){\r",
+                                                    "                Ext.Msg.alert(\"Office is created\", 'Office created successfully');\r",
+                                                    "               \r",
                                                     "            }\r",
-                                                    "\r",
+                                                    "        \r",
+                                                    "            else if(resp.responseText === '\"exists\"'){\r",
+                                                    "                Ext.Msg.alert(\"Office cannot be created\", 'Office already exists');\r",
+                                                    "            }\r",
+                                                    "            else if(resp.responseText === '\"domain_error\"'){\r",
+                                                    "                Ext.Msg.alert(\"Office cannot be created\", 'No such domain exists');\r",
+                                                    "            }\r",
+                                                    "            else if(resp.responseText === '\"account_error\"'){\r",
+                                                    "                Ext.Msg.alert(\"Office cannot be created\", 'No such account exists');\r",
+                                                    "            }\r",
+                                                    "            else {\r",
+                                                    "                Ext.Msg.alert(\"Office cannot be created\", 'Office cannot be created');\r",
+                                                    "            }\r",
                                                     "        };\r",
                                                     "\r",
                                                     "        // Failure\r",
@@ -390,7 +434,7 @@
                                                     "\r",
                                                     "\r",
                                                     "        // TODO: Login using server-side authentication service\r",
-                                                    "        Ext.Ajax.request({url: \"services/Maintainence.php?action=insertFacility&HdrID=\"+LocalHDRid,\r",
+                                                    "        Ext.Ajax.request({url: \"services/ZimbraPhysician.php?action=create_another_office&user=\"+user,\r",
                                                     "                method: 'POST',\r",
                                                     "                params: values,\r",
                                                     "                success: successCallback,\r",
@@ -400,7 +444,7 @@
                                                 "name": "click",
                                                 "scope": "me"
                                             },
-                                            "designerId": "41d68aef-00c6-4d62-8461-4327d1594a7a"
+                                            "designerId": "5deead10-d666-4547-bf73-400b7397bcad"
                                         }
                                     ]
                                 }
@@ -409,6 +453,39 @@
                     ]
                 }
             ]
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onPhysicianOfficeIDShow",
+                "implHandler": [
+                    "var phy_npi = localStorage.getItem(\"physician_npi\");\r",
+                    "var phy_fname = localStorage.getItem(\"physician_fname\");\r",
+                    "var phy_lname = localStorage.getItem(\"physician_lname\");\r",
+                    "\r",
+                    "\r",
+                    "\r",
+                    "var form =  Ext.getCmp('PopForm3');  // Physician Office form\r",
+                    "\r",
+                    "Ext.getCmp('PopForm3').getForm().setValues({\r",
+                    "    txtPOPPhyNPI: phy_npi,\r",
+                    "    txtPOPPhyFname: phy_fname,\r",
+                    "    txtPOPPhyLname: phy_lname\r",
+                    "});\r",
+                    "\r",
+                    "localStorage.removeItem(\"physician_npi\"); //remove\r",
+                    "localStorage.removeItem(\"physician_fname\"); //remove\r",
+                    "localStorage.removeItem(\"physician_lname\"); //remove"
+                ],
+                "name": "show",
+                "scope": "me"
+            },
+            "designerId": "8fa878b6-b638-4c04-816b-96f50c956b27"
         }
     ]
 }

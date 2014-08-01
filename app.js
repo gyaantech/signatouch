@@ -34,7 +34,8 @@ Ext.application({
         'PatientRecord',
         'COSType',
         'state',
-        'Alias'
+        'Alias',
+        'PhysicianOffice'
     ],
     stores: [
         'MyArrayStore',
@@ -50,7 +51,8 @@ Ext.application({
         'PatientGridBind',
         'COS',
         'States',
-        'PhysicianAlias'
+        'PhysicianAlias',
+        'PhysicianOffice'
     ],
     views: [
         'MainView',

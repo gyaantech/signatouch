@@ -219,7 +219,6 @@ Ext.define('SignaTouch.view.MainView', {
                                         },
                                         {
                                             xtype: 'menuitem',
-                                            hidden: true,
                                             id: 'SectionAMenu',
                                             itemId: 'MsectionA',
                                             text: 'Section A',
@@ -232,7 +231,6 @@ Ext.define('SignaTouch.view.MainView', {
                                         },
                                         {
                                             xtype: 'menuitem',
-                                            hidden: true,
                                             id: 'SectionBMenu',
                                             itemId: 'MSectionB',
                                             text: 'Section B',
@@ -247,7 +245,6 @@ Ext.define('SignaTouch.view.MainView', {
                                 },
                                 {
                                     xtype: 'container',
-                                    hidden: true,
                                     id: 'Menu2Con',
                                     style: 'background-color:#a5cfff;',
                                     items: [
@@ -3824,8 +3821,7 @@ Ext.define('SignaTouch.view.MainView', {
                             xtype: 'panel',
                             hidden: true,
                             id: 'PhysicianViewID',
-                            style: 'margin: 0 auto;\r\n    text-align: left;\r\n    width: 650px;',
-                            bodyPadding: '50 0 50 0',
+                            style: 'margin: 0 auto;\r\n    text-align: left;\r\n    width: 1000px;',
                             bodyStyle: 'background-color:#3892d3;',
                             animCollapse: false,
                             title: '',
@@ -3871,17 +3867,9 @@ Ext.define('SignaTouch.view.MainView', {
                                                             margin: '7 0 7 0',
                                                             items: [
                                                                 {
-                                                                    xtype: 'textfield',
+                                                                    xtype: 'displayfield',
                                                                     id: 'txtViewNPIID',
-                                                                    width: 300,
-                                                                    fieldLabel: '<b>NPI&nbsp;</b>',
-                                                                    msgTarget: 'side',
-                                                                    allowBlank: false,
-                                                                    enforceMaxLength: true,
-                                                                    maxLength: 10,
-                                                                    regex: /^[0-9]*$/,
-                                                                    regexText: 'Please enter valid NPI',
-                                                                    vtype: 'alphanum'
+                                                                    fieldLabel: '<b>NPI</b>'
                                                                 }
                                                             ]
                                                         },
@@ -3895,43 +3883,16 @@ Ext.define('SignaTouch.view.MainView', {
                                                             },
                                                             items: [
                                                                 {
-                                                                    xtype: 'textfield',
-                                                                    id: 'txtViewFnameID',
-                                                                    itemId: 'txtFname',
-                                                                    width: 300,
-                                                                    fieldLabel: '<b>First Name&nbsp;</b>',
-                                                                    msgTarget: 'side',
-                                                                    allowBlank: false,
-                                                                    regex: /^[a-zA-Z ]*$/
+                                                                    xtype: 'displayfield',
+                                                                    flex: 1,
+                                                                    id: 'txtViewPhyNameID',
+                                                                    fieldLabel: '<b>Name</b>'
                                                                 },
                                                                 {
-                                                                    xtype: 'textfield',
-                                                                    flex: 0,
-                                                                    id: 'txtViewMnameID',
-                                                                    itemId: 'txtMname',
-                                                                    width: 300,
-                                                                    fieldLabel: '<b>&nbsp;&nbsp;&nbsp;Middle Name</b>',
-                                                                    msgTarget: 'side',
-                                                                    regex: /^[a-zA-Z ]*$/,
-                                                                    regexText: 'Please enter valid name.'
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            xtype: 'container',
-                                                            itemId: 'Name1',
-                                                            margin: '7 0 7 0',
-                                                            items: [
-                                                                {
-                                                                    xtype: 'textfield',
-                                                                    id: 'txtViewLnameID',
-                                                                    itemId: 'txtLname',
-                                                                    width: 300,
-                                                                    fieldLabel: '<b>Last Name&nbsp;</b>',
-                                                                    msgTarget: 'side',
-                                                                    allowBlank: false,
-                                                                    regex: /^[a-zA-Z ]*$/,
-                                                                    regexText: 'Please enter valid name.'
+                                                                    xtype: 'displayfield',
+                                                                    flex: 1,
+                                                                    id: 'txtViewEmailID',
+                                                                    fieldLabel: '<b>&nbsp;&nbsp;&nbsp;Alt. Email ID&nbsp;</b>'
                                                                 }
                                                             ]
                                                         },
@@ -3945,39 +3906,16 @@ Ext.define('SignaTouch.view.MainView', {
                                                             },
                                                             items: [
                                                                 {
-                                                                    xtype: 'textfield',
+                                                                    xtype: 'displayfield',
+                                                                    flex: 1,
                                                                     id: 'txtViewAddress1ID',
-                                                                    itemId: 'txtAddress1',
-                                                                    maxWidth: 600,
-                                                                    width: 600,
-                                                                    fieldLabel: '<b>Address1&nbsp;</b>',
-                                                                    allowBlank: false
+                                                                    fieldLabel: '<b>Address1&nbsp;</b>'
                                                                 },
                                                                 {
-                                                                    xtype: 'textfield',
+                                                                    xtype: 'displayfield',
+                                                                    flex: 1,
                                                                     id: 'txtViewAddress2ID',
-                                                                    itemId: 'txtAddress2',
-                                                                    maxWidth: 600,
-                                                                    fieldLabel: '<b>Address2</b>'
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            xtype: 'container',
-                                                            itemId: 'Email',
-                                                            margin: '7 0 7 0',
-                                                            layout: {
-                                                                type: 'vbox',
-                                                                align: 'stretch'
-                                                            },
-                                                            items: [
-                                                                {
-                                                                    xtype: 'textfield',
-                                                                    id: 'txtViewEmailID',
-                                                                    maxWidth: 600,
-                                                                    width: 600,
-                                                                    fieldLabel: '<b>Alt. Email  ID&nbsp;</b>',
-                                                                    allowBlank: false
+                                                                    fieldLabel: '<b>Address2&nbsp;</b>'
                                                                 }
                                                             ]
                                                         },
@@ -3991,25 +3929,16 @@ Ext.define('SignaTouch.view.MainView', {
                                                             },
                                                             items: [
                                                                 {
-                                                                    xtype: 'textfield',
+                                                                    xtype: 'displayfield',
+                                                                    flex: 1,
                                                                     id: 'txtViewCityID',
-                                                                    itemId: 'txtCity',
-                                                                    width: 300,
-                                                                    fieldLabel: '<b>City&nbsp;</b>',
-                                                                    msgTarget: 'side',
-                                                                    allowBlank: false,
-                                                                    regex: /^[a-zA-Z\s]*$/,
-                                                                    regexText: 'Please enter valid city.'
+                                                                    fieldLabel: '<b>City&nbsp;</b>'
                                                                 },
                                                                 {
-                                                                    xtype: 'textfield',
+                                                                    xtype: 'displayfield',
+                                                                    flex: 1,
                                                                     id: 'txtViewStateID',
-                                                                    width: 300,
-                                                                    fieldLabel: '<b>&nbsp;&nbsp;&nbsp;State.&nbsp;</b>',
-                                                                    msgTarget: 'side',
-                                                                    allowBlank: false,
-                                                                    enforceMaxLength: true,
-                                                                    maxLength: 12
+                                                                    fieldLabel: '<b>&nbsp;&nbsp;&nbsp;State.&nbsp;</b>'
                                                                 }
                                                             ]
                                                         },
@@ -4023,26 +3952,75 @@ Ext.define('SignaTouch.view.MainView', {
                                                             },
                                                             items: [
                                                                 {
-                                                                    xtype: 'textfield',
+                                                                    xtype: 'displayfield',
+                                                                    flex: 1,
                                                                     id: 'txtViewZipID',
-                                                                    itemId: 'txtZip',
-                                                                    width: 300,
-                                                                    fieldLabel: '<b>Zip&nbsp;</b>',
-                                                                    msgTarget: 'side',
-                                                                    allowBlank: false,
-                                                                    enforceMaxLength: true,
-                                                                    maxLength: 10
+                                                                    fieldLabel: '<b>Zip&nbsp;</b>'
                                                                 },
                                                                 {
-                                                                    xtype: 'textfield',
+                                                                    xtype: 'displayfield',
+                                                                    flex: 1,
                                                                     id: 'txtViewPhoneNoID',
-                                                                    itemId: 'txtPhoneNo',
-                                                                    width: 300,
-                                                                    fieldLabel: '<b>&nbsp;&nbsp;&nbsp;Phone No.&nbsp;</b>',
-                                                                    msgTarget: 'side',
-                                                                    allowBlank: false,
-                                                                    enforceMaxLength: true,
-                                                                    maxLength: 12
+                                                                    fieldLabel: '<b>&nbsp;&nbsp;&nbsp;Mobile No.&nbsp;</b>'
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            xtype: 'container',
+                                                            id: 'PhysicianViewOffice',
+                                                            items: [
+                                                                {
+                                                                    xtype: 'fieldset',
+                                                                    style: 'border-style:solid;\r\nborder-color:#000000;',
+                                                                    title: '<h3>Physician Offices:</h3>',
+                                                                    items: [
+                                                                        {
+                                                                            xtype: 'gridpanel',
+                                                                            id: 'PhysicianOfficeGridID',
+                                                                            padding: '0 0 15 0',
+                                                                            overflowY: 'scroll',
+                                                                            title: '',
+                                                                            emptyText: 'No Offices',
+                                                                            enableColumnHide: false,
+                                                                            enableColumnMove: false,
+                                                                            enableColumnResize: false,
+                                                                            store: 'PhysicianOffice',
+                                                                            viewConfig: {
+                                                                                height: 100
+                                                                            },
+                                                                            columns: [
+                                                                                {
+                                                                                    xtype: 'gridcolumn',
+                                                                                    width: 310,
+                                                                                    dataIndex: 'PhysicianAddr1',
+                                                                                    text: 'Address1'
+                                                                                },
+                                                                                {
+                                                                                    xtype: 'gridcolumn',
+                                                                                    width: 236,
+                                                                                    dataIndex: 'PhysicianAddr2',
+                                                                                    text: 'Address2'
+                                                                                },
+                                                                                {
+                                                                                    xtype: 'gridcolumn',
+                                                                                    width: 177,
+                                                                                    dataIndex: 'PhysicianCity',
+                                                                                    text: 'City'
+                                                                                },
+                                                                                {
+                                                                                    xtype: 'gridcolumn',
+                                                                                    dataIndex: 'PhysicianSt',
+                                                                                    text: 'State'
+                                                                                },
+                                                                                {
+                                                                                    xtype: 'gridcolumn',
+                                                                                    width: 113,
+                                                                                    dataIndex: 'PhysicianZip',
+                                                                                    text: 'ZipCode'
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
                                                                 }
                                                             ]
                                                         },
@@ -4050,7 +4028,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                             xtype: 'container',
                                                             itemId: 'Button',
                                                             margin: '7 0 7 0',
-                                                            width: 600,
                                                             layout: {
                                                                 type: 'hbox',
                                                                 align: 'stretch',
@@ -4060,9 +4037,9 @@ Ext.define('SignaTouch.view.MainView', {
                                                                 {
                                                                     xtype: 'button',
                                                                     itemId: 'btnPhysicianCancel',
-                                                                    margin: '0 10 0 0',
+                                                                    margin: '',
                                                                     padding: '',
-                                                                    width: 92,
+                                                                    width: 100,
                                                                     text: 'Return',
                                                                     listeners: {
                                                                         click: {
@@ -6081,41 +6058,65 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                 var successCallback = function(resp, ops) {
                                                                                     var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));
 
+                                                                                    // fetch office based on NPI
+
+                                                                                    var successCallbackOffice = function(resp, ops) {
+
+                                                                                        //Ext.getCmp('PhysicianAliasID').enable();
+                                                                                        //Ext.getCmp('PhysicianAliasID').reset();
+                                                                                        var store = Ext.getStore("PhysicianOffice");
+                                                                                        console.log(store);
+                                                                                        store.removeAll(true);
+
+                                                                                        store.getProxy().url = 'services/ZimbraPhysicianAlias.php?action=GetPhysicianofficeFromNpi&physician_NPI='+PhysicianNPI;
+                                                                                        store.load();
+                                                                                        store.add(Ext.JSON.decode(resp.responseText));
+
+
+                                                                                        //Ext.getCmp('PhysicianOfficeGridID').clearValue();
+                                                                                        Ext.getCmp('PhysicianOfficeGridID').bindStore(store);
+                                                                                    }
+                                                                                    var failureCallbackOffice = function(resp, ops) {
+                                                                                        console.log("API not called");
+                                                                                    }
+                                                                                    // TODO: Login using server-side authentication service
+                                                                                    Ext.Ajax.request({url: "services/ZimbraPhysicianAlias.php?action=GetPhysicianofficeFromNpi&physician_NPI="+PhysicianNPI,
+                                                                                        method: 'GET',
+                                                                                        params: PhysicianNPI,
+                                                                                        success: successCallbackOffice,
+                                                                                        failure: failureCallbackOffice
+                                                                                    });
+
                                                                                     // var responseOjbect = Ext.JSON.decode(resp.responseText);
 
-                                                                                    Ext.getCmp('txtViewNPIID').setValue(PhysicianNPI).setReadOnly(true);
-                                                                                    Ext.getCmp('txtViewNPIID').setValue(PhysicianNPI).setFieldStyle('background-color: #A5CFFF;border:none;font-weight:bold;');
+                                                                                    Ext.getCmp('txtViewNPIID').setValue(PhysicianNPI);
 
-                                                                                    Ext.getCmp('txtViewFnameID').setValue(responseOjbect.PhysicianFirstname).setReadOnly(true);
-                                                                                    Ext.getCmp('txtViewFnameID').setValue(responseOjbect.PhysicianFirstname).setFieldStyle('background-color: #A5CFFF;border:none;font-weight:bold;');
-
-                                                                                    Ext.getCmp('txtViewMnameID').setValue(responseOjbect.PhysicianMidname).setReadOnly(true);
-                                                                                    Ext.getCmp('txtViewMnameID').setValue(responseOjbect.PhysicianMidname).setFieldStyle('background-color: #A5CFFF;border:none;font-weight:bold;');
-
-                                                                                    Ext.getCmp('txtViewLnameID').setValue(responseOjbect.PhysicianLastname).setReadOnly(true);
-                                                                                    Ext.getCmp('txtViewLnameID').setValue(responseOjbect.PhysicianLastname).setFieldStyle('background-color: #A5CFFF;border:none;font-weight:bold;');
-
-                                                                                    Ext.getCmp('txtViewAddress1ID').setValue(responseOjbect.PhysicianAddr1).setReadOnly(true);
-                                                                                    Ext.getCmp('txtViewAddress1ID').setValue(responseOjbect.PhysicianAddr1).setFieldStyle('background-color: #A5CFFF;border:none;font-weight:bold;');
+                                                                                    Ext.getCmp('txtViewPhyNameID').setValue(responseOjbect.PhysicianFirstname+' '+responseOjbect.PhysicianMidname+' '+responseOjbect.PhysicianLastname);
 
 
-                                                                                    Ext.getCmp('txtViewAddress2ID').setValue(responseOjbect.PhysicianAddr2).setReadOnly(true);
-                                                                                    Ext.getCmp('txtViewAddress2ID').setValue(responseOjbect.PhysicianAddr2).setFieldStyle('background-color: #A5CFFF;border:none;font-weight:bold;');
+                                                                                    Ext.getCmp('txtViewAddress1ID').setValue(responseOjbect.PhysicianAddr1);
 
-                                                                                    Ext.getCmp('txtViewCityID').setValue(responseOjbect.PhysicianCity).setReadOnly(true);
-                                                                                    Ext.getCmp('txtViewCityID').setValue(responseOjbect.PhysicianCity).setFieldStyle('background-color: #A5CFFF;border:none;font-weight:bold;');
 
-                                                                                    Ext.getCmp('txtViewStateID').setValue(responseOjbect.PhysicianSt).setReadOnly(true);
-                                                                                    Ext.getCmp('txtViewStateID').setValue(responseOjbect.PhysicianSt).setFieldStyle('background-color: #A5CFFF;border:none;font-weight:bold;');
 
-                                                                                    Ext.getCmp('txtViewZipID').setValue(responseOjbect.PhysicianZip).setReadOnly(true);
-                                                                                    Ext.getCmp('txtViewZipID').setValue(responseOjbect.PhysicianZip).setFieldStyle('background-color: #A5CFFF;border:none;font-weight:bold;');
+                                                                                    Ext.getCmp('txtViewAddress2ID').setValue(responseOjbect.PhysicianAddr2);
 
-                                                                                    Ext.getCmp('txtViewPhoneNoID').setValue(responseOjbect.PhysicianPhone).setReadOnly(true);
-                                                                                    Ext.getCmp('txtViewPhoneNoID').setValue(responseOjbect.PhysicianPhone).setFieldStyle('background-color: #A5CFFF;border:none;font-weight:bold;');
 
-                                                                                    Ext.getCmp('txtViewEmailID').setValue(responseOjbect.PhysicianAltEmailId).setReadOnly(true);
-                                                                                    Ext.getCmp('txtViewEmailID').setValue(responseOjbect.PhysicianAltEmailId).setFieldStyle('background-color: #A5CFFF;border:none;font-weight:bold;');
+                                                                                    Ext.getCmp('txtViewCityID').setValue(responseOjbect.PhysicianCity);
+
+
+                                                                                    Ext.getCmp('txtViewStateID').setValue(responseOjbect.PhysicianSt);
+
+
+                                                                                    Ext.getCmp('txtViewZipID').setValue(responseOjbect.PhysicianZip);
+
+
+                                                                                    Ext.getCmp('txtViewPhoneNoID').setValue(responseOjbect.PhysicianPhone);
+
+
+                                                                                    Ext.getCmp('txtViewEmailID').setValue(responseOjbect.PhysicianAltEmailId);
+
+
+
 
                                                                                 };
 
@@ -12288,7 +12289,25 @@ Ext.define('SignaTouch.view.MainView', {
     },
 
     onBtnPhysicianAddAnotherIDClick: function(button, e, eOpts) {
-         // Create new office form window
+        var form =  Ext.getCmp('PhysicianForm');  // Physician form
+        values = form.getValues();    // Form values
+        var phy_npi = values.txtPhysicianNPI;
+        var phy_fname = values.txtPhysicianFname;
+        var phy_lname = values.txtPhysicianLname;
+
+
+
+        localStorage.removeItem("physician_npi"); //remove
+        localStorage.setItem("physician_npi", phy_npi);
+
+        localStorage.removeItem("physician_fname"); //remove
+        localStorage.setItem("physician_fname", phy_fname);
+
+        localStorage.removeItem("physician_lname"); //remove
+        localStorage.setItem("physician_lname", phy_lname);
+
+
+        // Create new office form window
         var office = Ext.create("widget.NewPhysicanOffice");
         office.show();
     },

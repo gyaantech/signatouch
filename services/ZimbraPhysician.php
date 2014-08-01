@@ -19,7 +19,6 @@ class CreatePhysician {
    //parameters to create physician
   public function set_physician_parameters() {
     $GetSet = new GetSet();
-    
     $user_email_id = $_POST['txtPhysicianNPI'].'@npi.st'; 
     
     $GetSet->setemailID($user_email_id);
@@ -65,7 +64,7 @@ class CreatePhysician {
     
     
     
-    $result = array('NewUserName'=>$NewUserName,'NewAltUserName' => $NewAltUserName , 'NewUserPassword'=>$NewUserPassword,'displayName'=>$displayName,'firstName'=>$firstName,'midName'=>$midName,'lastName'=>$lastName,'address1'=>$address1,'address2'=>$address2,'state'=>$state,'phone'=>$phone,'city'=>$city,'zip'=>$zip,'email'=>$user_email_id);
+    $result = array('NewUserName'=>$NewUserName,'NewAltUserName' => $NewAltUserName , 'NewUserPassword'=>$NewUserPassword,'displayName'=>$displayName,'firstName'=>$firstName,'midName'=>$midName,'lastName'=>$lastName,'address1'=>$address1,'address2'=>$address2,'state'=>$state,'phone'=>$phone,'city'=>$city,'zip'=>$zip,'email'=>$user_email_id , 'COSId' => '');
     return $result;
   }
   
@@ -107,37 +106,64 @@ class CreatePhysician {
     }
          
   }
-public function create_another_office() {
-      $param = $this->set_office_parameters();
-      
+	public function create_another_office() {
+		$username = isset($_GET['user'])?$_GET['user']:'';
+		$param = $this->set_office_parameters();
+		$COS_name_common = '';
+		$name_f_l = ''; 
+		$name_f_l = strtolower(substr($param['firstName'], 0, 1).substr($param['lastName'], 0, 6));
+		
+		$COS_name_common = $name_f_l.'-'.$param['zip'];
+		$domain_name = $COS_name_common.'.st';
+		
+		$allias_name = $name_f_l.'@'.$domain_name;
+        $allias_response = $this->create_physician_allias($param['NewUserName'] , $allias_name);
+		
+		if($allias_response){
+			$sql = "INSERT INTO physician_office SET PhysicianNPI = '".$param['physician_npi']."', 
+													PhysicianAddr1 = '".$param['address1']."', 
+													PhysicianAddr2 = '".$param['address2']."' , 
+													PhysicianCity = '".$param['city']."' , 
+													PhysicianSt = '".$param['state']."' , 
+													PhysicianZip = '".$param['zip']."' , 
+													PhysicianLastUpdateID = '".$username."' ";
+			mysql_query($sql);
+		}
+		return $allias_response;
   }
    public function set_office_parameters() {
         $GetSet = new GetSet();
-
-        $user_email_id = $_POST['txtPhysicianNPI'].'@npi.st'; 
-
+		
+		$GetSet->setPhysicianNPI($_POST['txtPOPPhyNPI']);
+		$physician_npi = getPhysicianNPI();
+		
+        $user_email_id = $_POST['txtPOPPhyNPI'].'@npi.st'; 
+		
         $GetSet->setemailID($user_email_id);
         $NewUserName = $GetSet->getemailID();
+		
+		$GetSet->setFName($_POST['txtPOPPhyFname']);
+		$firstName = $GetSet->getFName();
 
-        $GetSet->setcompany($_POST['txtPhysicianAddress1']);
+		$GetSet->setLName($_POST['txtPOPPhyLname']);
+		$lastName = $GetSet->getLName();
+		
+        $GetSet->setcompany($_POST['txtPOPPhyAddress1']);
         $address1 = $GetSet->getcompany();
 
-        $GetSet->setjobTitle($_POST['txtPhysicianAddress2']);
+        $GetSet->setjobTitle($_POST['txtPOPPhyAddress2']);
         $address2 = $GetSet->getjobTitle();
 
-        $GetSet->setState($_POST['ddlPhysicianState']);
+        $GetSet->setState($_POST['ddlPOPPhyState']);
         $state = $GetSet->getState();
 
-        $GetSet->setPhoneNo($_POST['txtPhysicianPhoneNo']);
-        $phone = $GetSet->getPhoneNo();
-
-        $GetSet->setZip($_POST['txtPhysicianZip']);
+        $GetSet->setZip($_POST['txtPOPPhyzip']);
         $zip = $GetSet->getZip();
         
-        $GetSet->setCity($_POST['txtPhysicianCity']);
+        $GetSet->setCity($_POST['txtPOPPhyCity']);
         $city = $GetSet->getCity();
 
-        $result = array('NewUserName'=>$NewUserName,'NewAltUserName' => $NewAltUserName , 'address1'=>$address1,'address2'=>$address2,'state'=>$state,'phone'=>$phone,'city'=>$city,'zip'=>$zip);
+        $result = array('physician_npi' => $physician_npi, 'NewUserName'=>$NewUserName, 'firstName' => $firstName, 'lastName' => $lastName, 'address1'=>$address1,'address2'=>$address2,'state'=>$state,'city'=>$city,'zip'=>$zip);
         return $result;
       }
   //to create zimbra Physician
@@ -168,7 +194,7 @@ public function create_another_office() {
         $domain_response = $this->create_domain($domain_name , $COS_user_name , $description);
 
 
-        $response = $this->ZimbraCreatePhysicianAccount(1, $this->ServerAddress, $this->AdminUserName, $this->AdminPassword, $param['NewUserName'], $param['NewUserPassword'], $cos_admin_response_id);
+        $response = $this->ZimbraCreatePhysicianAccount(1, $connect->ServerAddress, $connect->AdminUserName, $connect->AdminPassword, $param['NewUserName'], $param['NewUserPassword'], $cos_admin_response_id);
 
 
         $admin_account_name = 'admin@'.$domain_name;
@@ -217,14 +243,15 @@ public function check_for_existaince($domain , $physician_npi_user) {
   }
   
   public function check_for_physician_npi_user($physician_npi_user) {
+        $connect = new Zimbra();
         $CurlHandle = curl_init();
-        curl_setopt($CurlHandle, CURLOPT_URL,           "$this->ServerAddress:7071/service/admin/soap");
+        curl_setopt($CurlHandle, CURLOPT_URL,           "$connect->ServerAddress:7071/service/admin/soap");
         curl_setopt($CurlHandle, CURLOPT_POST,           TRUE);
         curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
 
-        $connect = new Zimbra();
+        
         // ------ Send the zimbraAdmin AuthRequest -----
         $parameters = $connect->ZimbraConnect();
 
@@ -614,7 +641,7 @@ public function check_for_existaince($domain , $physician_npi_user) {
                                   <soap:Body>
                                    <CreateAccountRequest xmlns="urn:zimbraAdmin">
                                                   <name>' . $param['NewUserName']. '</name>
-                                                  <password>' . $param['NewUserPassword'] . '</password>
+                                                  <password>' . $param['phone'] . '</password>
                                                   <a n="zimbraCOSId">' . $DefaultCOS . '</a>
                                                   <a n="displayName">'.$param['displayName'].'</a>
                                                <a n="givenName">'.$param['firstName'].'</a>

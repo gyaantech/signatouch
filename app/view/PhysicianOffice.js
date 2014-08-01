@@ -24,13 +24,18 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
         'Ext.button.Button'
     ],
 
-    height: 317,
+    height: 374,
     hidden: false,
     id: 'PhysicianOfficeID',
-    width: 656,
+    width: 697,
     title: 'Physician Office',
     hideShadowOnDeactivate: true,
     modal: true,
+
+    layout: {
+        type: 'vbox',
+        align: 'stretch'
+    },
 
     initComponent: function() {
         var me = this;
@@ -39,7 +44,9 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
             items: [
                 {
                     xtype: 'form',
+                    height: 493,
                     id: 'PopForm3',
+                    width: 739,
                     layout: 'auto',
                     bodyPadding: 10,
                     bodyStyle: 'background-color:#a5cfff;',
@@ -48,9 +55,8 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
                     items: [
                         {
                             xtype: 'fieldset',
-                            height: 258,
-                            style: 'border-style:solid;\r\nborder-color:#000000;',
-                            width: 629,
+                            height: 306,
+                            width: 667,
                             title: '<font size="4">Physician Office</font>',
                             items: [
                                 {
@@ -70,6 +76,33 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
                                             enforceMaxLength: true,
                                             maxLength: 10,
                                             vtype: 'alphanum'
+                                        }
+                                    ]
+                                },
+                                {
+                                    xtype: 'container',
+                                    id: 'PopPhyName',
+                                    itemId: 'Address1',
+                                    margin: '7 0 7 0',
+                                    layout: 'vbox',
+                                    items: [
+                                        {
+                                            xtype: 'textfield',
+                                            id: 'txtPOPPhyFnameID',
+                                            itemId: '',
+                                            width: 600,
+                                            fieldLabel: '<b>First Name</b>',
+                                            inputId: 'txtPOPPhyFname',
+                                            readOnly: true,
+                                            allowBlank: false
+                                        },
+                                        {
+                                            xtype: 'textfield',
+                                            id: 'txtPOPPhyLnameID',
+                                            width: 600,
+                                            fieldLabel: '<b>Last Name</b>',
+                                            inputId: 'txtPOPPhyLname',
+                                            readOnly: true
                                         }
                                     ]
                                 },
@@ -198,7 +231,7 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
                                             text: 'Save',
                                             listeners: {
                                                 click: {
-                                                    fn: me.onBtnPOPFacilitySaveClick,
+                                                    fn: me.onBtnPOPPhySaveClick,
                                                     scope: me
                                                 }
                                             }
@@ -209,21 +242,32 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
                         }
                     ]
                 }
-            ]
+            ],
+            listeners: {
+                show: {
+                    fn: me.onPhysicianOfficeIDShow,
+                    scope: me
+                }
+            }
         });
 
         me.callParent(arguments);
     },
 
     onBtnPOPPhyCancelClick: function(button, e, eOpts) {
-        Ext.getCmp('PopForm3').getForm().reset();
+        //Ext.getCmp('PopForm3').getForm().reset();
+        Ext.getCmp('txtPOPPhyAddress1ID').reset();
+        Ext.getCmp('txtPOPPhyAddress2ID').reset();
+        Ext.getCmp('txtPOPPhyCityID').reset();
+        Ext.getCmp('txtPOPPhyStateID').reset();
+        Ext.getCmp('txtPOPPhyzipID').reset();
     },
 
-    onBtnPOPFacilitySaveClick: function(button, e, eOpts) {
+    onBtnPOPPhySaveClick: function(button, e, eOpts) {
         var form = button.up('form');
                    //var header = button.up('headerPanel');
                        values = form.getValues();
-                var LocalHDRid = localStorage.getItem('SectionAHDRID');
+                var user = localStorage.getItem('email');
                 var successCallbackFacility = function(resp, ops) {
 
                     Ext.getCmp('FacilityNameText').setValue(Ext.JSON.decode(resp.responseText));
@@ -231,36 +275,23 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
                 var failureCallbackFacility = function(resp, ops) {};
                 // Success
                 var successCallback = function(resp, ops) {
-                    var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));
-                    if(responseOjbect.status === true){
+                    if(resp.responseText === 'true'){
+                        Ext.Msg.alert("Office is created", 'Office created successfully');
 
-                      Ext.Msg.alert("Data Inserted", 'New Facility Created');
-
-                        Ext.getCmp('POPUPFacilityID').hide();
-
-                        // fetch facility name from facility NPI and display in textfield
-                        Ext.Ajax.request({url: "services/SectionA.php?action=fetchFacilityName&facility_NPI="+responseOjbect.facility_npi,
-                        method: 'POST',
-                        params: values,
-                        success: successCallbackFacility,
-                        failure: failureCallbackFacility
-                 });
-                                    // Code to reset the form values
-                    form.getForm().getFields().each(function(f){
-                    f.originalValue=undefined;
-                    });
-                    form.getForm().reset();
-                   }
-                   else if(responseOjbect.status === 'false'){
-
-                      Ext.Msg.alert("Duplicate Entry", 'Facility NPI Already Exists');
-
-                   }
-                    else{
-
-                    Ext.Msg.alert("Insert Failure", 'Data cannot be added');
                     }
 
+                    else if(resp.responseText === '"exists"'){
+                        Ext.Msg.alert("Office cannot be created", 'Office already exists');
+                    }
+                    else if(resp.responseText === '"domain_error"'){
+                        Ext.Msg.alert("Office cannot be created", 'No such domain exists');
+                    }
+                    else if(resp.responseText === '"account_error"'){
+                        Ext.Msg.alert("Office cannot be created", 'No such account exists');
+                    }
+                    else {
+                        Ext.Msg.alert("Office cannot be created", 'Office cannot be created');
+                    }
                 };
 
                 // Failure
@@ -273,12 +304,32 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
 
 
                 // TODO: Login using server-side authentication service
-                Ext.Ajax.request({url: "services/Maintainence.php?action=insertFacility&HdrID="+LocalHDRid,
+                Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=create_another_office&user="+user,
                         method: 'POST',
                         params: values,
                         success: successCallback,
                         failure: failureCallback
                  });
+    },
+
+    onPhysicianOfficeIDShow: function(component, eOpts) {
+        var phy_npi = localStorage.getItem("physician_npi");
+        var phy_fname = localStorage.getItem("physician_fname");
+        var phy_lname = localStorage.getItem("physician_lname");
+
+
+
+        var form =  Ext.getCmp('PopForm3');  // Physician Office form
+
+        Ext.getCmp('PopForm3').getForm().setValues({
+            txtPOPPhyNPI: phy_npi,
+            txtPOPPhyFname: phy_fname,
+            txtPOPPhyLname: phy_lname
+        });
+
+        localStorage.removeItem("physician_npi"); //remove
+        localStorage.removeItem("physician_fname"); //remove
+        localStorage.removeItem("physician_lname"); //remove
     }
 
 });

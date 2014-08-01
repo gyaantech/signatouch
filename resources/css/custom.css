@@ -33,3 +33,7 @@ display: -webkit-box;
     vertical-align: middle !important;
     
 }
+.gridLabel{
+border-style:solid;
+border-color:#000000;
+}

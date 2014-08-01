@@ -23,7 +23,8 @@
             "PatientRecord",
             "COSType",
             "state",
-            "Alias"
+            "Alias",
+            "PhysicianOffice"
         ],
         "name": "SignaTouch",
         "stores": [
@@ -40,7 +41,8 @@
             "PatientGridBind",
             "COS",
             "States",
-            "PhysicianAlias"
+            "PhysicianAlias",
+            "PhysicianOffice"
         ],
         "views": [
             "MainView",

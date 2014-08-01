@@ -563,7 +563,6 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "designer|displayName": null,
-                                        "hidden": true,
                                         "id": "SectionAMenu",
                                         "itemId": "MsectionA",
                                         "text": "Section A"
@@ -648,7 +647,6 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "designer|displayName": null,
-                                        "hidden": true,
                                         "id": "SectionBMenu",
                                         "itemId": "MSectionB",
                                         "text": "Section B"
@@ -732,7 +730,6 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "hidden": true,
                                 "id": "Menu2Con",
                                 "margin": null,
                                 "style": [
@@ -8382,7 +8379,25 @@
                                                                     "userConfig": {
                                                                         "fn": "onBtnPhysicianAddAnotherIDClick",
                                                                         "implHandler": [
-                                                                            " // Create new office form window\r",
+                                                                            "var form =  Ext.getCmp('PhysicianForm');  // Physician form\r",
+                                                                            "values = form.getValues();    // Form values\r",
+                                                                            "var phy_npi = values.txtPhysicianNPI;\r",
+                                                                            "var phy_fname = values.txtPhysicianFname;\r",
+                                                                            "var phy_lname = values.txtPhysicianLname;\r",
+                                                                            "\r",
+                                                                            "\r",
+                                                                            "\r",
+                                                                            "localStorage.removeItem(\"physician_npi\"); //remove\r",
+                                                                            "localStorage.setItem(\"physician_npi\", phy_npi);\r",
+                                                                            "\r",
+                                                                            "localStorage.removeItem(\"physician_fname\"); //remove\r",
+                                                                            "localStorage.setItem(\"physician_fname\", phy_fname);\r",
+                                                                            "\r",
+                                                                            "localStorage.removeItem(\"physician_lname\"); //remove\r",
+                                                                            "localStorage.setItem(\"physician_lname\", phy_lname);\r",
+                                                                            "\r",
+                                                                            "\r",
+                                                                            "// Create new office form window\r",
                                                                             "var office = Ext.create(\"widget.NewPhysicanOffice\");\r",
                                                                             "office.show();"
                                                                         ],
@@ -8706,7 +8721,7 @@
                     "codeClass": null,
                     "userConfig": {
                         "animCollapse": false,
-                        "bodyPadding": "50 0 50 0",
+                        "bodyPadding": null,
                         "bodyStyle": [
                             "background-color:#3892d3; "
                         ],
@@ -8719,7 +8734,7 @@
                         "style": [
                             "margin: 0 auto;\r",
                             "    text-align: left;\r",
-                            "    width: 650px;\r",
+                            "    width: 1000px;\r",
                             ""
                         ],
                         "title": "",
@@ -8821,27 +8836,18 @@
                                                     "designerId": "769ade86-14e6-4717-bc7e-fa1313308333",
                                                     "cn": [
                                                         {
-                                                            "type": "Ext.form.field.Text",
+                                                            "type": "Ext.form.field.Display",
                                                             "reference": {
                                                                 "name": "items",
                                                                 "type": "array"
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
-                                                                "allowBlank": false,
-                                                                "enforceMaxLength": true,
-                                                                "fieldLabel": "<b>NPI&nbsp;</b>",
+                                                                "fieldLabel": "<b>NPI</b>",
                                                                 "id": "txtViewNPIID",
-                                                                "inputId": null,
-                                                                "itemId": null,
-                                                                "maxLength": 10,
-                                                                "msgTarget": "side",
-                                                                "regex": "/^[0-9]*$/",
-                                                                "regexText": "Please enter valid NPI",
-                                                                "vtype": "alphanum",
-                                                                "width": 300
+                                                                "value": null
                                                             },
-                                                            "designerId": "04b72114-b76c-4b49-9e06-ecdec0e77085"
+                                                            "designerId": "6b6c6b0e-7d8e-449b-ac8d-0bf3c15333e8"
                                                         }
                                                     ]
                                                 },
@@ -8861,81 +8867,34 @@
                                                     "designerId": "1e815dbb-8331-4868-bd2b-c16e1cbe1282",
                                                     "cn": [
                                                         {
-                                                            "type": "Ext.form.field.Text",
+                                                            "type": "Ext.form.field.Display",
                                                             "reference": {
                                                                 "name": "items",
                                                                 "type": "array"
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
-                                                                "allowBlank": false,
-                                                                "fieldLabel": "<b>First Name&nbsp;</b>",
-                                                                "id": "txtViewFnameID",
-                                                                "inputId": null,
-                                                                "itemId": "txtFname",
-                                                                "msgTarget": "side",
-                                                                "regex": "/^[a-zA-Z ]*$/",
-                                                                "vtype": null,
-                                                                "width": 300
+                                                                "fieldLabel": "<b>Name</b>",
+                                                                "id": "txtViewPhyNameID",
+                                                                "layout|flex": 1,
+                                                                "value": null
                                                             },
-                                                            "designerId": "bcdf5ca6-996a-41c7-a0ea-5add7036e6a9"
+                                                            "designerId": "8b02cd80-0f12-4431-9db6-261ab3d0ab67"
                                                         },
                                                         {
-                                                            "type": "Ext.form.field.Text",
+                                                            "type": "Ext.form.field.Display",
                                                             "reference": {
                                                                 "name": "items",
                                                                 "type": "array"
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
-                                                                "fieldLabel": "<b>&nbsp;&nbsp;&nbsp;Middle Name</b>",
-                                                                "id": "txtViewMnameID",
-                                                                "inputId": null,
-                                                                "itemId": "txtMname",
-                                                                "layout|flex": 0,
-                                                                "msgTarget": "side",
-                                                                "regex": "/^[a-zA-Z ]*$/",
-                                                                "regexText": "Please enter valid name.",
-                                                                "vtype": null,
-                                                                "width": 300
+                                                                "fieldLabel": "<b>&nbsp;&nbsp;&nbsp;Alt. Email ID&nbsp;</b>",
+                                                                "id": "txtViewEmailID",
+                                                                "layout|flex": 1,
+                                                                "value": null
                                                             },
-                                                            "designerId": "02653102-382f-40e6-81c8-cc17cc2f5432"
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "type": "Ext.container.Container",
-                                                    "reference": {
-                                                        "name": "items",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "itemId": "Name1",
-                                                        "margin": "7 0 7 0"
-                                                    },
-                                                    "designerId": "8c245231-40f6-40cd-bc48-e008c559d424",
-                                                    "cn": [
-                                                        {
-                                                            "type": "Ext.form.field.Text",
-                                                            "reference": {
-                                                                "name": "items",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "allowBlank": false,
-                                                                "fieldLabel": "<b>Last Name&nbsp;</b>",
-                                                                "id": "txtViewLnameID",
-                                                                "inputId": null,
-                                                                "itemId": "txtLname",
-                                                                "msgTarget": "side",
-                                                                "regex": "/^[a-zA-Z ]*$/",
-                                                                "regexText": "Please enter valid name.",
-                                                                "vtype": null,
-                                                                "width": 300
-                                                            },
-                                                            "designerId": "6db34822-6e6a-4bdd-90e1-ff26ef82bb85"
+                                                            "designerId": "d95444c2-4ffa-4ca1-99cf-ab3d348e2427"
                                                         }
                                                     ]
                                                 },
@@ -8955,76 +8914,34 @@
                                                     "designerId": "2015e84f-bf9f-49f8-9e09-786b7ec288d9",
                                                     "cn": [
                                                         {
-                                                            "type": "Ext.form.field.Text",
+                                                            "type": "Ext.form.field.Display",
                                                             "reference": {
                                                                 "name": "items",
                                                                 "type": "array"
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
-                                                                "allowBlank": false,
                                                                 "fieldLabel": "<b>Address1&nbsp;</b>",
                                                                 "id": "txtViewAddress1ID",
-                                                                "inputId": null,
-                                                                "itemId": "txtAddress1",
-                                                                "maxWidth": 600,
-                                                                "vtype": null,
-                                                                "width": 600
+                                                                "layout|flex": 1,
+                                                                "value": null
                                                             },
-                                                            "designerId": "c7b59431-9917-462b-a105-57479929f26c"
+                                                            "designerId": "02bf1250-9f4f-47d4-8607-d2d253dd80b2"
                                                         },
                                                         {
-                                                            "type": "Ext.form.field.Text",
+                                                            "type": "Ext.form.field.Display",
                                                             "reference": {
                                                                 "name": "items",
                                                                 "type": "array"
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
-                                                                "fieldLabel": "<b>Address2</b>",
+                                                                "fieldLabel": "<b>Address2&nbsp;</b>",
                                                                 "id": "txtViewAddress2ID",
-                                                                "inputId": null,
-                                                                "itemId": "txtAddress2",
-                                                                "maxWidth": 600,
-                                                                "vtype": null
+                                                                "layout|flex": 1,
+                                                                "value": null
                                                             },
-                                                            "designerId": "723a75ae-14eb-4c44-9bbf-3c26070444d9"
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "type": "Ext.container.Container",
-                                                    "reference": {
-                                                        "name": "items",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "container|align": "stretch",
-                                                        "itemId": "Email",
-                                                        "layout": "vbox",
-                                                        "margin": "7 0 7 0"
-                                                    },
-                                                    "designerId": "ca2ec811-4dde-4392-b531-55424ca06f50",
-                                                    "cn": [
-                                                        {
-                                                            "type": "Ext.form.field.Text",
-                                                            "reference": {
-                                                                "name": "items",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "allowBlank": false,
-                                                                "fieldLabel": "<b>Alt. Email  ID&nbsp;</b>",
-                                                                "id": "txtViewEmailID",
-                                                                "inputId": null,
-                                                                "itemId": null,
-                                                                "maxWidth": 600,
-                                                                "vtype": null,
-                                                                "width": 600
-                                                            },
-                                                            "designerId": "9afc809f-ee7a-4e29-84d7-4ba38f770f5d"
+                                                            "designerId": "2d410899-5b43-4c99-9d46-af41d8779dea"
                                                         }
                                                     ]
                                                 },
@@ -9044,47 +8961,34 @@
                                                     "designerId": "0481c598-5516-4abe-ae67-7d840c15c4f0",
                                                     "cn": [
                                                         {
-                                                            "type": "Ext.form.field.Text",
+                                                            "type": "Ext.form.field.Display",
                                                             "reference": {
                                                                 "name": "items",
                                                                 "type": "array"
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
-                                                                "allowBlank": false,
                                                                 "fieldLabel": "<b>City&nbsp;</b>",
                                                                 "id": "txtViewCityID",
-                                                                "inputId": null,
-                                                                "itemId": "txtCity",
-                                                                "msgTarget": "side",
-                                                                "regex": "/^[a-zA-Z\\s]*$/\r\n",
-                                                                "regexText": "Please enter valid city.",
-                                                                "vtype": null,
-                                                                "width": 300
+                                                                "layout|flex": 1,
+                                                                "value": null
                                                             },
-                                                            "designerId": "6a672cde-42f5-4ab1-8b1e-25ecf5542576"
+                                                            "designerId": "6bb98cc1-8d00-4aa4-841a-2a09c5fa1bf7"
                                                         },
                                                         {
-                                                            "type": "Ext.form.field.Text",
+                                                            "type": "Ext.form.field.Display",
                                                             "reference": {
                                                                 "name": "items",
                                                                 "type": "array"
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
-                                                                "allowBlank": false,
-                                                                "enforceMaxLength": true,
                                                                 "fieldLabel": "<b>&nbsp;&nbsp;&nbsp;State.&nbsp;</b>",
                                                                 "id": "txtViewStateID",
-                                                                "inputId": null,
-                                                                "itemId": null,
-                                                                "maxLength": 12,
-                                                                "msgTarget": "side",
-                                                                "regex": null,
-                                                                "regexText": null,
-                                                                "width": 300
+                                                                "layout|flex": 1,
+                                                                "value": null
                                                             },
-                                                            "designerId": "44d42c56-121b-47eb-99df-692a13697116"
+                                                            "designerId": "59504a86-6dac-4b15-a5a0-5b859525fed0"
                                                         }
                                                     ]
                                                 },
@@ -9101,51 +9005,173 @@
                                                         "layout": "hbox",
                                                         "margin": "7 0 7 0"
                                                     },
-                                                    "designerId": "bb577499-a807-40b1-9ca7-4c705e88491f",
+                                                    "designerId": "5c2742f5-d618-42a0-929f-f0b0c833e147",
                                                     "cn": [
                                                         {
-                                                            "type": "Ext.form.field.Text",
+                                                            "type": "Ext.form.field.Display",
                                                             "reference": {
                                                                 "name": "items",
                                                                 "type": "array"
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
-                                                                "allowBlank": false,
-                                                                "enforceMaxLength": true,
                                                                 "fieldLabel": "<b>Zip&nbsp;</b>",
                                                                 "id": "txtViewZipID",
-                                                                "inputId": null,
-                                                                "itemId": "txtZip",
-                                                                "maxLength": 10,
-                                                                "msgTarget": "side",
-                                                                "regex": null,
-                                                                "regexText": null,
-                                                                "width": 300
+                                                                "layout|flex": 1,
+                                                                "value": null
                                                             },
-                                                            "designerId": "c93f50b9-dc30-49ad-ba42-de2f2aea305a"
+                                                            "designerId": "08badc30-1ff0-457f-8f2b-210ce6d30787"
                                                         },
                                                         {
-                                                            "type": "Ext.form.field.Text",
+                                                            "type": "Ext.form.field.Display",
                                                             "reference": {
                                                                 "name": "items",
                                                                 "type": "array"
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
-                                                                "allowBlank": false,
-                                                                "enforceMaxLength": true,
-                                                                "fieldLabel": "<b>&nbsp;&nbsp;&nbsp;Phone No.&nbsp;</b>",
+                                                                "fieldLabel": "<b>&nbsp;&nbsp;&nbsp;Mobile No.&nbsp;</b>",
                                                                 "id": "txtViewPhoneNoID",
-                                                                "inputId": null,
-                                                                "itemId": "txtPhoneNo",
-                                                                "maxLength": 12,
-                                                                "msgTarget": "side",
-                                                                "regex": null,
-                                                                "regexText": null,
-                                                                "width": 300
+                                                                "layout|flex": 1,
+                                                                "value": null
                                                             },
-                                                            "designerId": "cbada7e5-c700-426b-a723-502da51a75fd"
+                                                            "designerId": "7fd5516f-0cef-410f-a7d8-8ef3d40ddd43"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "Ext.container.Container",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "id": "PhysicianViewOffice"
+                                                    },
+                                                    "designerId": "e0e94dbb-e314-4a19-a2ea-971daf40b4c3",
+                                                    "cn": [
+                                                        {
+                                                            "type": "Ext.form.FieldSet",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "style": [
+                                                                    "border-style:solid;\r",
+                                                                    "border-color:#000000;"
+                                                                ],
+                                                                "title": "<h3>Physician Offices:</h3>"
+                                                            },
+                                                            "designerId": "1ee2dd7d-466a-411c-9f8f-a753b92e12e6",
+                                                            "cn": [
+                                                                {
+                                                                    "type": "Ext.grid.Panel",
+                                                                    "reference": {
+                                                                        "name": "items",
+                                                                        "type": "array"
+                                                                    },
+                                                                    "codeClass": null,
+                                                                    "userConfig": {
+                                                                        "emptyText": "No Offices",
+                                                                        "enableColumnHide": false,
+                                                                        "enableColumnMove": false,
+                                                                        "enableColumnResize": false,
+                                                                        "height": null,
+                                                                        "id": "PhysicianOfficeGridID",
+                                                                        "overflowY": "scroll",
+                                                                        "padding": "0 0 15 0",
+                                                                        "store": "PhysicianOffice",
+                                                                        "title": ""
+                                                                    },
+                                                                    "designerId": "10de55ea-2af9-4aaf-bdbe-7e18a690f6c4",
+                                                                    "cn": [
+                                                                        {
+                                                                            "type": "Ext.grid.View",
+                                                                            "reference": {
+                                                                                "name": "viewConfig",
+                                                                                "type": "object"
+                                                                            },
+                                                                            "codeClass": null,
+                                                                            "userConfig": {
+                                                                                "height": 100
+                                                                            },
+                                                                            "designerId": "f8f6399a-2786-45bc-8ce3-eded4545efe1"
+                                                                        },
+                                                                        {
+                                                                            "type": "Ext.grid.column.Column",
+                                                                            "reference": {
+                                                                                "name": "columns",
+                                                                                "type": "array"
+                                                                            },
+                                                                            "codeClass": null,
+                                                                            "userConfig": {
+                                                                                "dataIndex": "PhysicianAddr1",
+                                                                                "text": "Address1",
+                                                                                "width": 310
+                                                                            },
+                                                                            "designerId": "58f0e79c-c977-4b36-bb67-57edd0f14a00"
+                                                                        },
+                                                                        {
+                                                                            "type": "Ext.grid.column.Column",
+                                                                            "reference": {
+                                                                                "name": "columns",
+                                                                                "type": "array"
+                                                                            },
+                                                                            "codeClass": null,
+                                                                            "userConfig": {
+                                                                                "dataIndex": "PhysicianAddr2",
+                                                                                "text": "Address2",
+                                                                                "width": 236
+                                                                            },
+                                                                            "designerId": "4ae23536-464d-4934-832e-d97e63388b3b"
+                                                                        },
+                                                                        {
+                                                                            "type": "Ext.grid.column.Column",
+                                                                            "reference": {
+                                                                                "name": "columns",
+                                                                                "type": "array"
+                                                                            },
+                                                                            "codeClass": null,
+                                                                            "userConfig": {
+                                                                                "dataIndex": "PhysicianCity",
+                                                                                "text": "City",
+                                                                                "width": 177
+                                                                            },
+                                                                            "designerId": "e42123f9-0598-4695-808b-53475014a953"
+                                                                        },
+                                                                        {
+                                                                            "type": "Ext.grid.column.Column",
+                                                                            "reference": {
+                                                                                "name": "columns",
+                                                                                "type": "array"
+                                                                            },
+                                                                            "codeClass": null,
+                                                                            "userConfig": {
+                                                                                "dataIndex": "PhysicianSt",
+                                                                                "text": "State"
+                                                                            },
+                                                                            "designerId": "7325851a-7c12-4a75-861d-873b54de3e3a"
+                                                                        },
+                                                                        {
+                                                                            "type": "Ext.grid.column.Column",
+                                                                            "reference": {
+                                                                                "name": "columns",
+                                                                                "type": "array"
+                                                                            },
+                                                                            "codeClass": null,
+                                                                            "userConfig": {
+                                                                                "dataIndex": "PhysicianZip",
+                                                                                "text": "ZipCode",
+                                                                                "width": 113
+                                                                            },
+                                                                            "designerId": "ce140d9f-c335-4812-a9f7-37c8ac57093a"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
                                                         }
                                                     ]
                                                 },
@@ -9162,7 +9188,7 @@
                                                         "itemId": "Button",
                                                         "layout": "hbox",
                                                         "margin": "7 0 7 0",
-                                                        "width": 600
+                                                        "width": null
                                                     },
                                                     "designerId": "871847a4-e86c-4d52-b729-ebc0e38114af",
                                                     "cn": [
@@ -9176,11 +9202,11 @@
                                                             "userConfig": {
                                                                 "designer|displayName": "btnPhysicianCancel",
                                                                 "itemId": "btnPhysicianCancel",
-                                                                "margin": "0 10 0 0",
+                                                                "margin": "",
                                                                 "maxWidth": null,
                                                                 "padding": "",
                                                                 "text": "Return",
-                                                                "width": 92
+                                                                "width": 100
                                                             },
                                                             "designerId": "b0c895a4-0336-47f7-82d9-cea284bef559",
                                                             "cn": [
@@ -13109,78 +13135,102 @@
                                                                                     "\r",
                                                                                     "\r",
                                                                                     "\r",
-                                                                                    "    //Button Hide\r",
+                                                                                    "//Button Hide\r",
                                                                                     "Ext.getCmp('btnPhysicianSaveID').hide();\r",
                                                                                     "\r",
                                                                                     "\r",
                                                                                     "// Ajax request to fetch data based on HDRID\r",
-                                                                                    " // Success\r",
-                                                                                    "        var successCallback = function(resp, ops) {\r",
-                                                                                    "            var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));\r",
+                                                                                    "// Success\r",
+                                                                                    "var successCallback = function(resp, ops) {\r",
+                                                                                    "    var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));\r",
+                                                                                    "    \r",
+                                                                                    "    // fetch office based on NPI\r",
+                                                                                    "    \r",
+                                                                                    "    var successCallbackOffice = function(resp, ops) {\r",
+                                                                                    "        \r",
+                                                                                    "        //Ext.getCmp('PhysicianAliasID').enable();\r",
+                                                                                    "        //Ext.getCmp('PhysicianAliasID').reset();\r",
+                                                                                    "        var store = Ext.getStore(\"PhysicianOffice\");\r",
+                                                                                    "        console.log(store);\r",
+                                                                                    "        store.removeAll(true);\r",
+                                                                                    "        \r",
+                                                                                    "        store.getProxy().url = 'services/ZimbraPhysicianAlias.php?action=GetPhysicianofficeFromNpi&physician_NPI='+PhysicianNPI;\r",
+                                                                                    "        store.load();\r",
+                                                                                    "        store.add(Ext.JSON.decode(resp.responseText));\r",
+                                                                                    "        \r",
+                                                                                    "        \r",
+                                                                                    "        //Ext.getCmp('PhysicianOfficeGridID').clearValue();\r",
+                                                                                    "        Ext.getCmp('PhysicianOfficeGridID').bindStore(store);\r",
+                                                                                    "    }\r",
+                                                                                    "    var failureCallbackOffice = function(resp, ops) {\r",
+                                                                                    "        console.log(\"API not called\");\r",
+                                                                                    "    }\r",
+                                                                                    "    // TODO: Login using server-side authentication service\r",
+                                                                                    "    Ext.Ajax.request({url: \"services/ZimbraPhysicianAlias.php?action=GetPhysicianofficeFromNpi&physician_NPI=\"+PhysicianNPI,\r",
+                                                                                    "                      method: 'GET',\r",
+                                                                                    "                      params: PhysicianNPI,\r",
+                                                                                    "                      success: successCallbackOffice,\r",
+                                                                                    "                      failure: failureCallbackOffice\r",
+                                                                                    "                     });\r",
+                                                                                    "    \r",
+                                                                                    "    // var responseOjbect = Ext.JSON.decode(resp.responseText);\r",
+                                                                                    "    \r",
+                                                                                    "    Ext.getCmp('txtViewNPIID').setValue(PhysicianNPI);\r",
+                                                                                    "    \r",
+                                                                                    "    Ext.getCmp('txtViewPhyNameID').setValue(responseOjbect.PhysicianFirstname+' '+responseOjbect.PhysicianMidname+' '+responseOjbect.PhysicianLastname);\r",
+                                                                                    "    \r",
+                                                                                    "    \r",
+                                                                                    "    Ext.getCmp('txtViewAddress1ID').setValue(responseOjbect.PhysicianAddr1);\r",
+                                                                                    "    \r",
+                                                                                    "    \r",
+                                                                                    "    \r",
+                                                                                    "    Ext.getCmp('txtViewAddress2ID').setValue(responseOjbect.PhysicianAddr2);\r",
+                                                                                    "    \r",
+                                                                                    "    \r",
+                                                                                    "    Ext.getCmp('txtViewCityID').setValue(responseOjbect.PhysicianCity);\r",
+                                                                                    "    \r",
+                                                                                    "    \r",
+                                                                                    "    Ext.getCmp('txtViewStateID').setValue(responseOjbect.PhysicianSt);\r",
+                                                                                    "    \r",
+                                                                                    "    \r",
+                                                                                    "    Ext.getCmp('txtViewZipID').setValue(responseOjbect.PhysicianZip);\r",
+                                                                                    "    \r",
+                                                                                    "    \r",
+                                                                                    "    Ext.getCmp('txtViewPhoneNoID').setValue(responseOjbect.PhysicianPhone);\r",
+                                                                                    "    \r",
+                                                                                    "    \r",
+                                                                                    "    Ext.getCmp('txtViewEmailID').setValue(responseOjbect.PhysicianAltEmailId);\r",
+                                                                                    "    \r",
+                                                                                    "    \r",
+                                                                                    "    \r",
+                                                                                    "    \r",
+                                                                                    "};\r",
                                                                                     "\r",
-                                                                                    "            // var responseOjbect = Ext.JSON.decode(resp.responseText);\r",
-                                                                                    "\r",
-                                                                                    "            Ext.getCmp('txtViewNPIID').setValue(PhysicianNPI).setReadOnly(true);\r",
-                                                                                    "            Ext.getCmp('txtViewNPIID').setValue(PhysicianNPI).setFieldStyle('background-color: #A5CFFF;border:none;font-weight:bold;');\r",
-                                                                                    "\r",
-                                                                                    "            Ext.getCmp('txtViewFnameID').setValue(responseOjbect.PhysicianFirstname).setReadOnly(true);\r",
-                                                                                    "            Ext.getCmp('txtViewFnameID').setValue(responseOjbect.PhysicianFirstname).setFieldStyle('background-color: #A5CFFF;border:none;font-weight:bold;');\r",
-                                                                                    "\r",
-                                                                                    "            Ext.getCmp('txtViewMnameID').setValue(responseOjbect.PhysicianMidname).setReadOnly(true);\r",
-                                                                                    "            Ext.getCmp('txtViewMnameID').setValue(responseOjbect.PhysicianMidname).setFieldStyle('background-color: #A5CFFF;border:none;font-weight:bold;');\r",
-                                                                                    "\r",
-                                                                                    "            Ext.getCmp('txtViewLnameID').setValue(responseOjbect.PhysicianLastname).setReadOnly(true);\r",
-                                                                                    "            Ext.getCmp('txtViewLnameID').setValue(responseOjbect.PhysicianLastname).setFieldStyle('background-color: #A5CFFF;border:none;font-weight:bold;');\r",
-                                                                                    "\r",
-                                                                                    "            Ext.getCmp('txtViewAddress1ID').setValue(responseOjbect.PhysicianAddr1).setReadOnly(true);\r",
-                                                                                    "            Ext.getCmp('txtViewAddress1ID').setValue(responseOjbect.PhysicianAddr1).setFieldStyle('background-color: #A5CFFF;border:none;font-weight:bold;');\r",
+                                                                                    "// Failure\r",
+                                                                                    "var failureCallback = function(resp, ops) {\r",
+                                                                                    "    console.log(\"API not called\");\r",
+                                                                                    "    \r",
+                                                                                    "};\r",
+                                                                                    "//adding loader\r",
+                                                                                    "Ext.Ajax.on('beforerequest', function(){\r",
+                                                                                    "    \r",
+                                                                                    "    var pnl=Ext.getCmp('PhysicianViewID');\r",
+                                                                                    "    pnl.setLoading(true, true);\r",
+                                                                                    "});\r",
                                                                                     "\r",
                                                                                     "\r",
-                                                                                    "            Ext.getCmp('txtViewAddress2ID').setValue(responseOjbect.PhysicianAddr2).setReadOnly(true);\r",
-                                                                                    "            Ext.getCmp('txtViewAddress2ID').setValue(responseOjbect.PhysicianAddr2).setFieldStyle('background-color: #A5CFFF;border:none;font-weight:bold;');\r",
+                                                                                    "Ext.Ajax.on('requestcomplete', function(){\r",
+                                                                                    "    \r",
+                                                                                    "    Ext.getCmp('PhysicianViewID').setLoading(false,false);\r",
+                                                                                    "});\r",
                                                                                     "\r",
-                                                                                    "            Ext.getCmp('txtViewCityID').setValue(responseOjbect.PhysicianCity).setReadOnly(true);\r",
-                                                                                    "            Ext.getCmp('txtViewCityID').setValue(responseOjbect.PhysicianCity).setFieldStyle('background-color: #A5CFFF;border:none;font-weight:bold;');\r",
-                                                                                    "\r",
-                                                                                    "            Ext.getCmp('txtViewStateID').setValue(responseOjbect.PhysicianSt).setReadOnly(true);\r",
-                                                                                    "            Ext.getCmp('txtViewStateID').setValue(responseOjbect.PhysicianSt).setFieldStyle('background-color: #A5CFFF;border:none;font-weight:bold;');\r",
-                                                                                    "\r",
-                                                                                    "            Ext.getCmp('txtViewZipID').setValue(responseOjbect.PhysicianZip).setReadOnly(true);\r",
-                                                                                    "            Ext.getCmp('txtViewZipID').setValue(responseOjbect.PhysicianZip).setFieldStyle('background-color: #A5CFFF;border:none;font-weight:bold;');\r",
-                                                                                    "\r",
-                                                                                    "            Ext.getCmp('txtViewPhoneNoID').setValue(responseOjbect.PhysicianPhone).setReadOnly(true);\r",
-                                                                                    "            Ext.getCmp('txtViewPhoneNoID').setValue(responseOjbect.PhysicianPhone).setFieldStyle('background-color: #A5CFFF;border:none;font-weight:bold;');\r",
-                                                                                    "            \r",
-                                                                                    "            Ext.getCmp('txtViewEmailID').setValue(responseOjbect.PhysicianAltEmailId).setReadOnly(true);\r",
-                                                                                    "            Ext.getCmp('txtViewEmailID').setValue(responseOjbect.PhysicianAltEmailId).setFieldStyle('background-color: #A5CFFF;border:none;font-weight:bold;');\r",
-                                                                                    "\r",
-                                                                                    "        };\r",
-                                                                                    "\r",
-                                                                                    "        // Failure\r",
-                                                                                    "        var failureCallback = function(resp, ops) {\r",
-                                                                                    "            console.log(\"API not called\");\r",
-                                                                                    "\r",
-                                                                                    "        };\r",
-                                                                                    "         //adding loader\r",
-                                                                                    "         Ext.Ajax.on('beforerequest', function(){\r",
-                                                                                    "\r",
-                                                                                    "                        var pnl=Ext.getCmp('PhysicianViewID');\r",
-                                                                                    "                        pnl.setLoading(true, true);\r",
-                                                                                    "                });\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "                Ext.Ajax.on('requestcomplete', function(){\r",
-                                                                                    "\r",
-                                                                                    "                      Ext.getCmp('PhysicianViewID').setLoading(false,false);\r",
-                                                                                    "                });\r",
-                                                                                    "\r",
-                                                                                    "        // TODO: Login using server-side authentication service\r",
-                                                                                    "        Ext.Ajax.request({url: \"services/Maintainence.php?action=ShowPhysicianRecord&physician_NPI=\"+PhysicianNPI,\r",
-                                                                                    "                method: 'GET',\r",
-                                                                                    "                params: PhysicianNPI,\r",
-                                                                                    "                success: successCallback,\r",
-                                                                                    "                failure: failureCallback\r",
-                                                                                    "         });\r",
+                                                                                    "// TODO: Login using server-side authentication service\r",
+                                                                                    "Ext.Ajax.request({url: \"services/Maintainence.php?action=ShowPhysicianRecord&physician_NPI=\"+PhysicianNPI,\r",
+                                                                                    "                  method: 'GET',\r",
+                                                                                    "                  params: PhysicianNPI,\r",
+                                                                                    "                  success: successCallback,\r",
+                                                                                    "                  failure: failureCallback\r",
+                                                                                    "                 });\r",
                                                                                     "\r",
                                                                                     ""
                                                                                 ]
@@ -18041,34 +18091,34 @@
                                                                                     "    // Success\r",
                                                                                     "    var successCallback = function(resp, ops) {\r",
                                                                                     "        if(resp.responseText != 'false'){\r",
-                                                                                    "            \r",
+                                                                                    "\r",
                                                                                     "            physicianNametxt.setValue(Ext.JSON.decode(resp.responseText));\r",
                                                                                     "            //success alias\r",
-                                                                                    "            \r",
+                                                                                    "\r",
                                                                                     "            var successCallbackAlias = function(resp, ops) {\r",
                                                                                     "                Ext.getCmp('PhysicianAliasID').enable();\r",
                                                                                     "                Ext.getCmp('PhysicianAliasID').reset();\r",
                                                                                     "                var store = Ext.getStore(\"PhysicianAlias\");\r",
                                                                                     "                store.removeAll(true);\r",
-                                                                                    "                \r",
+                                                                                    "\r",
                                                                                     "                store.getProxy().url = 'services/ZimbraPhysicianAlias.php?action=ZimbraGetPhysicianAlias&NPI='+input;\r",
                                                                                     "                store.load();\r",
                                                                                     "                store.add(Ext.JSON.decode(resp.responseText));\r",
-                                                                                    "                \r",
-                                                                                    "                \r",
+                                                                                    "\r",
+                                                                                    "\r",
                                                                                     "                Ext.getCmp('PhysicianAliasID').clearValue();\r",
                                                                                     "                Ext.getCmp('PhysicianAliasID').bindStore(store);\r",
                                                                                     "                // group_store.load();\r",
-                                                                                    "                \r",
-                                                                                    "                \r",
+                                                                                    "\r",
+                                                                                    "\r",
                                                                                     "            };\r",
                                                                                     "            // Failure alias\r",
                                                                                     "            var failureCallbackAlias = function(resp, ops) {\r",
-                                                                                    "                \r",
-                                                                                    "                \r",
+                                                                                    "\r",
+                                                                                    "\r",
                                                                                     "                // Show login failure error\r",
                                                                                     "                //Ext.Msg.alert(\"Login Failure\", 'Incorrect Username or Password');\r",
-                                                                                    "                \r",
+                                                                                    "\r",
                                                                                     "            };\r",
                                                                                     "            /*fetch alias */\r",
                                                                                     "            Ext.Ajax.request({url: \"services/ZimbraPhysicianAlias.php?action=ZimbraGetPhysicianAlias&NPI=\"+input,\r",
@@ -18086,23 +18136,23 @@
                                                                                     "            //Ext.getCmp('PhysicianAliasID').reset();\r",
                                                                                     "        }\r",
                                                                                     "            else{\r",
-                                                                                    "                \r",
+                                                                                    "\r",
                                                                                     "                Ext.Msg.alert(\"No Match Found\", 'Physician NPI is not in our record');\r",
-                                                                                    "                \r",
+                                                                                    "\r",
                                                                                     "                 Ext.getCmp('PhysicianAliasID').disable();\r",
                                                                                     "                //Ext.getCmp('PhysicianAliasID').reset();\r",
                                                                                     "            }\r",
-                                                                                    "        \r",
+                                                                                    "\r",
                                                                                     "    };\r",
-                                                                                    "    \r",
+                                                                                    "\r",
                                                                                     "    // Failure\r",
                                                                                     "    var failureCallback = function(resp, ops) {\r",
-                                                                                    "        \r",
+                                                                                    "\r",
                                                                                     "        // Show login failure error\r",
                                                                                     "        //Ext.Msg.alert(\"Login Failure\", 'Incorrect Username or Password');\r",
-                                                                                    "        \r",
+                                                                                    "\r",
                                                                                     "    };\r",
-                                                                                    "    \r",
+                                                                                    "\r",
                                                                                     "    // TODO: Login using server-side authentication service\r",
                                                                                     "    Ext.Ajax.request({url: \"services/SectionA.php?action=fetchPhysicianName&PNPI=\"+input,\r",
                                                                                     "                      method: 'GET',\r",
@@ -18110,7 +18160,7 @@
                                                                                     "                      success: successCallback,\r",
                                                                                     "                      failure: failureCallback\r",
                                                                                     "                     });\r",
-                                                                                    "    \r",
+                                                                                    "\r",
                                                                                     "}\r",
                                                                                     "else{\r",
                                                                                     "    physicianNametxt.reset();\r",
