@@ -12406,7 +12406,7 @@ Ext.define('SignaTouch.view.MainView', {
                 var successCallback = function(resp, ops) {
                     console.log(resp.responseText);
                     if(resp.responseText === 'true'){
-
+                        /*
                       Ext.Msg.alert("Data Inserted", 'Physican Record Created successfully');
                         Ext.getCmp('txtPhysicianfilterID').reset();
                           var myStore = Ext.getStore('PhysicianGridBind');
@@ -12415,6 +12415,13 @@ Ext.define('SignaTouch.view.MainView', {
                          Ext.getCmp('PhysicianPanelID').hide();
                               Ext.getCmp('PhysicianRecord').show();
                               Ext.getCmp('PhysicianForm').getForm().reset();
+                        */
+                        Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=ZimbraPhysicianCreate&src="+domain,
+                                method: 'POST',
+                                params: values,
+                                success: successPhyCallback,
+                                failure: failurePhyCallback
+                         });
                    }
                    else if(resp.responseText === 'false'){
 
@@ -12434,6 +12441,41 @@ Ext.define('SignaTouch.view.MainView', {
                     //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
 
                 };
+
+                // Success
+                var successPhyCallback = function(resp, ops) {
+                    console.log(resp.responseText);
+                    if(resp.responseText === 'true'){
+
+                      Ext.Msg.alert("Data Inserted", 'Physican Record Created successfully');
+                        Ext.getCmp('txtPhysicianfilterID').reset();
+                          var myStore = Ext.getStore('PhysicianGridBind');
+                          myStore.clearFilter();
+                        myStore.load();
+                         Ext.getCmp('PhysicianPanelID').hide();
+                              Ext.getCmp('PhysicianRecord').show();
+                              Ext.getCmp('PhysicianForm').getForm().reset();
+
+
+                   }
+                   else if(resp.responseText === 'false'){
+
+                      Ext.Msg.alert("Duplicate Entry", 'Physican Record Already Exists');
+                   }
+                    else{
+                      // Show login failure error
+                    Ext.Msg.alert("Insert Failure", 'Data cannot be added');
+                    }
+
+                };
+
+                // Failure
+                var failurePhyCallback = function(resp, ops) {
+
+                    // Show login failure error
+                    //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                };
                 //adding loader
                  Ext.Ajax.on('beforerequest', function(){
 
@@ -12448,12 +12490,13 @@ Ext.define('SignaTouch.view.MainView', {
                         });
 
                 // TODO: Login using server-side authentication service
-                Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=ZimbraCreatePhysician&src="+domain,
+                Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=ZimbraCheckPhysician&src="+domain,
                         method: 'POST',
                         params: values,
                         success: successCallback,
                         failure: failureCallback
                  });
+
     },
 
     onBtnPhysicianUpdateIDClick: function(button, e, eOpts) {

@@ -174,6 +174,72 @@ public function create_another_office() {
         $result = array('physician_npi' => $physician_npi, 'NewUserName'=>$NewUserName, 'firstName' => $firstName, 'lastName' => $lastName, 'address1'=>$address1,'address2'=>$address2,'state'=>$state,'city'=>$city,'zip'=>$zip);
         return $result;
       }
+	  
+	  
+	public function ZimbraCheckPhysician(){
+		$param = $this->set_physician_parameters();
+    
+		$COS_name_common = '';
+		$name_f_l = '';
+		$okay = FALSE;    
+		$name_f_l = strtolower(substr($param['firstName'], 0, 1).substr($param['lastName'], 0, 6));
+		
+		$COS_name_common = $name_f_l.'-'.substr($param['zip'], 0, 5);
+		
+		$domain_name = $COS_name_common.'.st';
+		/* Check if Domain and Physician NPI User Exists or not*/
+		$okay = $this->check_for_existaince($domain_name , $param['NewUserName']);
+		return $okay;
+	}  
+	public function ZimbraPhysicianCreate(){
+		$connect = new Zimbra();
+		$param = $this->set_physician_parameters();
+		
+		$COS_name_common = '';
+		$name_f_l = '';
+		$okay = FALSE;    
+		$name_f_l = strtolower(substr($param['firstName'], 0, 1).substr($param['lastName'], 0, 6));
+		
+		$COS_name_common = $name_f_l.'-'.substr($param['zip'], 0, 5);
+		
+		$COS_admin_name = $COS_name_common.'-admin';
+		$COS_user_name = $COS_name_common.'-user';
+	  
+		$domain_name = $COS_name_common.'.st';
+		$cos_admin_response_id = $this->copy_default_cos($COS_admin_name); 
+        $cos_user_response_id = $this->copy_default_cos($COS_user_name); 
+
+        $description = 'Domain '.$domain_name.' with default COS.';
+        $domain_response = $this->create_domain($domain_name , $COS_user_name , $description);
+
+
+        $response = $this->ZimbraCreatePhysicianAccount(1, $connect->ServerAddress, $connect->AdminUserName, $connect->AdminPassword, $param['NewUserName'], $param['NewUserPassword'], $cos_admin_response_id);
+
+
+        $admin_account_name = 'admin@'.$domain_name;
+        $account_response = $this->create_office_admin_account($admin_account_name , $param['phone'] , $cos_admin_response_id);
+
+
+        $allias_name = $name_f_l.'@'.$domain_name;
+        $allias_response = $this->create_physician_allias($param['NewUserName'] , $allias_name);
+        //print_r($response);exit();
+        $a='<Code>'; 
+        $duplicate = strstr($response, $a);
+        if($response == FALSE){
+				  printf("ZimbraCreatePhysicianAccount Failed!<BR>\n");
+				  return(FALSE); exit();
+
+		}
+        elseif(strpos($duplicate,'ACCOUNT_EXISTS') !== false){
+          return FALSE;
+        }
+        else{
+			//$alias_response = $this->ZimbraCreatePhysicianAlias(1, $this->ServerAddress, $this->AdminUserName, $this->AdminPassword);
+			$result = $this->insertPhysicianRecord();
+			return $result;
+        }
+	}
+	
   //to create zimbra Physician
   public function ZimbraCreatePhysician () {
      $connect = new Zimbra();
@@ -956,7 +1022,7 @@ public function send_email($to , $FName ,$LName, $user_name, $password) {
             }
    }
 }
-$possible_url = array("ZimbraCreatePhysician","ZimbraCreatePhysicianAlias","ZimbraUpdatePhysician", "get_default_cos", "create_another_office");
+$possible_url = array("ZimbraCreatePhysician","ZimbraCreatePhysicianAlias","ZimbraUpdatePhysician", "get_default_cos", "create_another_office","ZimbraCheckPhysician" ,"ZimbraPhysicianCreate");
  $value = "An error has occurred";
  $cms = new CreatePhysician();
   if (isset ($_GET["action"]) && in_array($_GET["action"], $possible_url)) {
@@ -976,7 +1042,12 @@ $possible_url = array("ZimbraCreatePhysician","ZimbraCreatePhysicianAlias","Zimb
 		case "create_another_office" :
                 $value = $cms->create_another_office();
             break;
-      
+		case "ZimbraCheckPhysician" :
+                $value = $cms->ZimbraCheckPhysician();
+            break;
+      case "ZimbraPhysicianCreate" :
+                $value = $cms->ZimbraPhysicianCreate();
+            break;
       }
   }
    echo json_encode($value);

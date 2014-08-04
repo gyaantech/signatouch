@@ -301,7 +301,17 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
                     //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
 
                 };
+                Ext.Ajax.on('beforerequest', function(){
 
+                                var pnl=Ext.getCmp('PopForm3');
+                                pnl.setLoading(true, true);
+                        });
+
+
+                        Ext.Ajax.on('requestcomplete', function(){
+
+                              Ext.getCmp('PopForm3').setLoading(false,false);
+                        });
 
                 // TODO: Login using server-side authentication service
                 Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=create_another_office&user="+user,
