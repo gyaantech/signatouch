@@ -15345,7 +15345,7 @@ Ext.define('SignaTouch.view.MainView', {
                     var data = responseOjbect.menu;
 
                     Ext.each(data, function(op) {
-                        //  console.log(op.FormNameID);
+                          console.log(op.FormNameID);
                         // if(op.displayType === '0'){
                         Ext.getCmp(op.FormNameID).show();
                         // }

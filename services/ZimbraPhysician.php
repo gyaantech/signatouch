@@ -921,7 +921,7 @@ public function check_for_existaince($domain , $physician_npi_user) {
                 {
                 die('Invalid query: ' . $sql . "   " . mysql_error());
             }
-			$this->send_email($AltEmailId , $FName ,$LName, $PhysicianNPI , $PhoneNo);
+			//$this->send_email($AltEmailId , $FName ,$LName, $PhysicianNPI , $PhoneNo);
             return TRUE;  
         }
 }

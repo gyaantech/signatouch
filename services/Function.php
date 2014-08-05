@@ -153,12 +153,14 @@ class Function1
  
   /*function to logout and clear session*/
  public function logout(){
+   session_start();
     if(isset($_SESSION['password'])){
-      $_SESSION['password'] = '';
+      unset($_SESSION['password']);
     }
     if(isset($_SESSION['username'])){
-      $_SESSION['username'] = '';
+      unset($_SESSION['username']);
     }
+    session_destroy();
     return TRUE;
   } 
  } 

@@ -59,7 +59,7 @@ class LDAP {
       // Auth Request
       // =====================================
       $user_data = $this->set_user_parameters();
-     
+    // print_r($user_data);
       $CurlHandle = curl_init();
       curl_setopt($CurlHandle, CURLOPT_URL, $this->userURL);
       curl_setopt($CurlHandle, CURLOPT_POST, TRUE );
@@ -148,7 +148,7 @@ class LDAP {
                 $cos = substr($cos, 1, strpos($cos, "/") - 1);
 
            //  print("displayName = $cname\n");
-           //  print("cos = $cos\n");
+            //print("cos = $cos\n");
                 $cos_code='';
                 $cms_user_type='';
                 if($cos){
@@ -159,12 +159,14 @@ class LDAP {
                   $cos_code = str_replace('"','',$cos_code); // returns COS value
                     
                   $display_status = $cos_arr[1];
+                  
                   $display_status_arr = explode("=",$display_status);
                   $cms_user_type = $display_status_arr[1];
+                  //echo $cms_user_type;
                   $cms_user_type = str_replace('"','',$cms_user_type); // returns display name value
                   // check whther cos is admin or user
                   $cos_type='';
-                  
+                  //echo $cms_user_type;
                   if (strpos($cms_user_type,'-admin') !== false) {
                      $cos_type = 'admin';
                   }
@@ -302,6 +304,9 @@ class LDAP {
     // =====================================
     // Get Messaging Preauth URL 
     // -------------------------------------   
+    session_start();
+    session_destroy();
+    
     $user_data = $this->set_user_parameters();
    // print_R($user_data);
     $zimbraPreAuthKey  = $this->GetAcctInfo();

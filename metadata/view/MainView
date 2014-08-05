@@ -24003,7 +24003,7 @@
                                                     "            var data = responseOjbect.menu;\r",
                                                     "\r",
                                                     "            Ext.each(data, function(op) {\r",
-                                                    "                //  console.log(op.FormNameID);\r",
+                                                    "                  console.log(op.FormNameID);\r",
                                                     "                // if(op.displayType === '0'){\r",
                                                     "                Ext.getCmp(op.FormNameID).show();\r",
                                                     "                // }\r",

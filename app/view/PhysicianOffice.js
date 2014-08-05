@@ -276,8 +276,13 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
                 // Success
                 var successCallback = function(resp, ops) {
                     if(resp.responseText === 'true'){
+                        Ext.getCmp('PhysicianOfficeID').setLoading(false,false);
                         Ext.Msg.alert("Office is created", 'Office created successfully');
-
+                        Ext.getCmp('PhysicianOfficeID').destroy();
+                        form.getForm().getFields().each(function(f){
+                            f.originalValue=undefined;
+                        });
+                        form.getForm().reset();
                     }
 
                     else if(resp.responseText === '"exists"'){
@@ -303,14 +308,16 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
                 };
                 Ext.Ajax.on('beforerequest', function(){
 
-                                var pnl=Ext.getCmp('PopForm3');
+                                var pnl=Ext.getCmp('PhysicianOfficeID');
                                 pnl.setLoading(true, true);
                         });
 
 
                         Ext.Ajax.on('requestcomplete', function(){
 
-                              Ext.getCmp('PopForm3').setLoading(false,false);
+                              Ext.getCmp('PhysicianOfficeID').setLoading(false,false);
+                              //Ext.getCmp('PhysicianOfficeID').close();
+
                         });
 
                 // TODO: Login using server-side authentication service
