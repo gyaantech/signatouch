@@ -219,7 +219,8 @@ public function create_another_office() {
         $admin_account_name = 'admin@'.$domain_name;
         $account_response = $this->create_office_admin_account($admin_account_name , $param['phone'] , $cos_admin_response_id);
 
-
+		//$preauth = $this->ZimbraPhysicianPreAuthKey($domain_name , $admin_account_name);
+		
         $allias_name = $name_f_l.'@'.$domain_name;
         $allias_response = $this->create_physician_allias($param['NewUserName'] , $allias_name);
         //print_r($response);exit();
@@ -715,7 +716,7 @@ public function check_for_existaince($domain , $physician_npi_user) {
                                   <soap:Body>
                                    <CreateAccountRequest xmlns="urn:zimbraAdmin">
                                                   <name>' . $param['NewUserName']. '</name>
-                                                  <password>' . $param['NewUserPassword'] . '</password>
+                                                  <password>' . $param['phone'] . '</password>
                                                   <a n="zimbraCOSId">' . $DefaultCOS . '</a>
                                                   <a n="displayName">'.$param['displayName'].'</a>
                                                <a n="givenName">'.$param['firstName'].'</a>
@@ -1021,8 +1022,117 @@ public function send_email($to , $FName ,$LName, $user_name, $password) {
                 return FALSE;  
             }
    }
+   public function ZimbraPhysicianPreAuthKey(){
+		
+		$param = $this->set_physician_parameters();
+		$COS_name_common = '';
+		$name_f_l = '';
+		   
+		$name_f_l = strtolower(substr($param['firstName'], 0, 1).substr($param['lastName'], 0, 6));
+
+		$COS_name_common = $name_f_l.'-'.substr($param['zip'], 0, 5);
+
+		$domain_name = $COS_name_common.'.st';
+		$admin_account_name = 'admin@'.$domain_name;
+		
+		//$domain = 'npi.st';
+		$connect = new Zimbra();
+        $CurlHandle = curl_init();
+        curl_setopt($CurlHandle, CURLOPT_URL,           "$connect->ServerAddress:7071/service/admin/soap");
+        curl_setopt($CurlHandle, CURLOPT_POST,           TRUE);
+        curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
+
+        // ------ Send the zimbraAdmin AuthRequest -----
+        $parameters = $connect->ZimbraConnect();
+
+        // ------ Send the zimbraCreateAccount request -----
+        $SOAPMessage = '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+                                <soap:Header>
+                                        <context xmlns="urn:zimbra">
+                                                <authToken>' . $parameters['authToken'] . '</authToken>
+                                                <sessionId id="' . $parameters['sessionId'] . '">' . $parameters['sessionId'] . '</sessionId>
+                                        </context>
+                                </soap:Header>
+                                <soap:Body>
+                                        <GetDomainRequest xmlns="urn:zimbraAdmin">
+                                            <domain by="name">'.$domain_name.'</domain>
+                                        </GetDomainRequest>
+                                </soap:Body>
+                        </soap:Envelope>';
+
+        curl_setopt($CurlHandle, CURLOPT_POSTFIELDS, $SOAPMessage);
+        $ZimbraSOAPResponse = curl_exec($CurlHandle);
+        curl_close($CurlHandle);
+		$cos_desc = '';
+        $a = '<domain id="'; 
+        $domain_id = strstr($ZimbraSOAPResponse, $a);
+        //$domain_id = strstr($domain_id, '" name="');
+        $domain_id = substr($domain_id, 12, strpos($domain_id, '" name="') - 12);
+		//exit();
+		//print("Raw Zimbra SOAP Response:<BR>" . $ZimbraSOAPResponse . "<BR><BR>\n");
+		
+        $a='<Code>'; 
+        $exists = strstr($ZimbraSOAPResponse, $a);
+        if(!($ZimbraSOAPResponse)){
+                //print("ERROR: curl_exec - (" . curl_errno($CurlHandle) . ") " . curl_error($CurlHandle));
+            return FALSE;
+        }
+        elseif(strpos($exists,'NO_SUCH_DOMAIN') !== false){
+            return FALSE;
+        }
+        else{
+            $PREAUTH_KEY="0f6f5bbf7f3ee4e99e2d24a7091e262db37eb9542bc921b2ae4434fcb6338284";
+			$timestamp = time()*1000;
+			//$email = $_GET["email"];
+			//$email = '1111111111@npi.st';
+			$preauthToken = hash_hmac("sha1",$admin_account_name."|name|0|".$timestamp,$PREAUTH_KEY);
+			
+			$connect = new Zimbra(); 
+			//$username = isset($_GET['user'])?$_GET['user']:'';
+			
+			$CurlHandle = curl_init();
+			curl_setopt($CurlHandle, CURLOPT_URL,"$connect->ServerAddress:7071/service/admin/soap");
+			curl_setopt($CurlHandle, CURLOPT_POST, TRUE);
+			curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
+			curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
+			curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
+			
+			
+			$parameters = $connect->ZimbraConnect();
+			
+			 $SOAPMessage = '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+									<soap:Header>
+											<context xmlns="urn:zimbra">
+													<authToken>' . $parameters['authToken'] . '</authToken>
+													<sessionId id="' . $parameters['sessionId'] . '">' . $parameters['sessionId'] . '</sessionId>
+											</context>
+									</soap:Header>
+									<soap:Body>
+										<ModifyDomainRequest xmlns="urn:zimbraAdmin">
+											<id>'.$domain_id.'</id>
+											<a n="zimbraPreAuthKey">'.$preauthToken.'</a>
+										</ModifyDomainRequest> 
+									</soap:Body>
+							</soap:Envelope>';
+		   
+			curl_setopt($CurlHandle, CURLOPT_POSTFIELDS, $SOAPMessage);
+			$ZimbraSOAPResponse = curl_exec($CurlHandle);
+			//print("Raw Zimbra SOAP Response:<BR>" . $ZimbraSOAPResponse . "<BR><BR>\n");
+			curl_close($CurlHandle);
+			if(!($ZimbraSOAPResponse))
+			{
+					print("ERROR: curl_exec - (" . curl_errno($CurlHandle) . ") " . curl_error($CurlHandle));
+					return(FALSE); exit();
+			}
+			else{
+			  return TRUE;
+			}
+        }
+   }
 }
-$possible_url = array("ZimbraCreatePhysician","ZimbraCreatePhysicianAlias","ZimbraUpdatePhysician", "get_default_cos", "create_another_office","ZimbraCheckPhysician" ,"ZimbraPhysicianCreate");
+$possible_url = array("ZimbraCreatePhysician","ZimbraCreatePhysicianAlias","ZimbraUpdatePhysician", "get_default_cos", "create_another_office","ZimbraCheckPhysician" ,"ZimbraPhysicianCreate" , "ZimbraPhysicianPreAuthKey");
  $value = "An error has occurred";
  $cms = new CreatePhysician();
   if (isset ($_GET["action"]) && in_array($_GET["action"], $possible_url)) {
@@ -1047,6 +1157,9 @@ $possible_url = array("ZimbraCreatePhysician","ZimbraCreatePhysicianAlias","Zimb
             break;
       case "ZimbraPhysicianCreate" :
                 $value = $cms->ZimbraPhysicianCreate();
+            break;
+      case "ZimbraPhysicianPreAuthKey" :
+                $value = $cms->ZimbraPhysicianPreAuthKey();
             break;
       }
   }

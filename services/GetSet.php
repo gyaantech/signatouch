@@ -49,6 +49,7 @@ class GetSet
     public $ID;
     public $type;
     public $username;
+    public $usernamenonst;
     public $password;
     public $op;
     public $domain;
@@ -194,10 +195,20 @@ class GetSet
     public function setusername($username)
     {
     $this->username = $username.".st";
-     // $this->username = $username;
+    // $this->username = $username;
     } 
     // get username
     public function getusername()
+    {
+    return $this->username;
+    }
+        // set username without st
+    public function setusernamenonst($username)
+    {
+     $this->username = $username;
+    } 
+    // get username
+    public function getusernamenonst()
     {
     return $this->username;
     }

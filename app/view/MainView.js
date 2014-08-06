@@ -12440,16 +12440,22 @@ Ext.define('SignaTouch.view.MainView', {
                 var successPhyCallback = function(resp, ops) {
                     console.log(resp.responseText);
                     if(resp.responseText === 'true'){
-
-                      Ext.Msg.alert("Data Inserted", 'Physican Record Created successfully');
+                        /*
+                        Ext.Msg.alert("Data Inserted", 'Physican Record Created successfully');
                         Ext.getCmp('txtPhysicianfilterID').reset();
-                          var myStore = Ext.getStore('PhysicianGridBind');
-                          myStore.clearFilter();
+                        var myStore = Ext.getStore('PhysicianGridBind');
+                        myStore.clearFilter();
                         myStore.load();
-                         Ext.getCmp('PhysicianPanelID').hide();
-                              Ext.getCmp('PhysicianRecord').show();
-                              Ext.getCmp('PhysicianForm').getForm().reset();
-
+                        Ext.getCmp('PhysicianPanelID').hide();
+                        Ext.getCmp('PhysicianRecord').show();
+                        Ext.getCmp('PhysicianForm').getForm().reset();
+                        */
+                        Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=ZimbraPhysicianPreAuthKey&src="+domain,
+                                method: 'POST',
+                                params: values,
+                                success: successPhyAuthCallback,
+                                failure: failurePhyAuthCallback
+                         });
 
                    }
                    else if(resp.responseText === 'false'){
@@ -12458,11 +12464,45 @@ Ext.define('SignaTouch.view.MainView', {
                    }
                     else{
                       // Show login failure error
-                    Ext.Msg.alert("Insert Failure", 'Data cannot be added');
+                        Ext.Msg.alert("Insert Failure", 'Data cannot be added');
                     }
 
                 };
 
+
+                var successPhyAuthCallback = function(resp, ops) {
+                    console.log(resp.responseText);
+                    if(resp.responseText === 'true'){
+
+                        Ext.Msg.alert("Data Inserted", 'Physican Record Created successfully');
+                        Ext.getCmp('txtPhysicianfilterID').reset();
+                        var myStore = Ext.getStore('PhysicianGridBind');
+                        myStore.clearFilter();
+                        myStore.load();
+                        Ext.getCmp('PhysicianPanelID').hide();
+                        Ext.getCmp('PhysicianRecord').show();
+                        Ext.getCmp('PhysicianForm').getForm().reset();
+
+
+                   }
+                   else if(resp.responseText === 'false'){
+
+                      Ext.Msg.alert("Preauth Key Failed", 'Preauth Key Failed!');
+                   }
+                    else{
+                      // Show login failure error
+                        Ext.Msg.alert("Insert Failure", 'Data cannot be added');
+                    }
+
+                };
+
+                // Failure
+                var failurePhyAuthCallback = function(resp, ops) {
+
+                    // Show login failure error
+                    //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                };
                 // Failure
                 var failurePhyCallback = function(resp, ops) {
 
@@ -12490,7 +12530,6 @@ Ext.define('SignaTouch.view.MainView', {
                         success: successCallback,
                         failure: failureCallback
                  });
-
     },
 
     onBtnPhysicianUpdateIDClick: function(button, e, eOpts) {

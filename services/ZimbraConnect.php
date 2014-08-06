@@ -13,6 +13,7 @@ class Zimbra {
   public $AdminUserName  = "zimbra";
   public $AdminPassword = "As8wriWew";
   public $npi_domain = '@npi.st';
+  public $non_st_domains = array('isigndit.com', 'gyaantech');
       
     //Zimbra Connect
      public function ZimbraConnect()
