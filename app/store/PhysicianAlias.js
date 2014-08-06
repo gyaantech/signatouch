@@ -37,7 +37,7 @@ Ext.define('SignaTouch.store.PhysicianAlias', {
             pageSize: 10,
             proxy: {
                 type: 'ajax',
-                url: 'services/Maintainence.php?action=GetPhysicianAlias&NPI=9999999999',
+                url: 'services/ZimbraPhysicianAlias.php?action=ZimbraGetPhysicianAlias&NPI=1111111111',
                 reader: {
                     type: 'json'
                 }

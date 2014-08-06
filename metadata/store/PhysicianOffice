@@ -7,6 +7,9 @@
     "codeClass": null,
     "userConfig": {
         "autoLoad": true,
+        "data": [
+            "[]"
+        ],
         "defaultSortDirection": "DESC",
         "designer|userClassName": "PhysicianOffice",
         "model": "PhysicianOffice",
@@ -23,7 +26,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "url": "services/ZimbraPhysicianAlias.php?action=GetPhysicianofficeFromNpi"
+                "url": "services/ZimbraPhysicianAlias.php?action=ZimbraGetPhysicianAlias&NPI=1111111111"
             },
             "designerId": "c49ead57-6323-4f0d-b02f-f5239812dd5f",
             "cn": [

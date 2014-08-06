@@ -30,10 +30,13 @@ Ext.define('SignaTouch.store.PhysicianOffice', {
             autoLoad: true,
             model: 'SignaTouch.model.PhysicianOffice',
             storeId: 'PhysicianOffice',
+            data: [
+                
+            ],
             pageSize: 20,
             proxy: {
                 type: 'ajax',
-                url: 'services/ZimbraPhysicianAlias.php?action=GetPhysicianofficeFromNpi',
+                url: 'services/ZimbraPhysicianAlias.php?action=ZimbraGetPhysicianAlias&NPI=1111111111',
                 reader: {
                     type: 'json',
                     root: 'data'

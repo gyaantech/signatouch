@@ -27,7 +27,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "url": "services/Maintainence.php?action=GetPhysicianAlias&NPI=9999999999"
+                "url": "services/ZimbraPhysicianAlias.php?action=ZimbraGetPhysicianAlias&NPI=1111111111"
             },
             "designerId": "f8100e40-e48b-44d3-94fb-55795bc49a28",
             "cn": [

@@ -128,7 +128,7 @@ class LDAP {
            // print("ERROR: curl_exec - (" . curl_errno($CurlHandle) . ") " . curl_error($CurlHandle));
             return(FALSE);
       }
- // echo $SOAPResponse;
+  //echo $SOAPResponse;
       // =====================================
         // Parse for the Name & COS
         // -------------------------------------

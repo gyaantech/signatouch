@@ -93,7 +93,7 @@ class GetPhysicianAlias {
           
   }   
   public function GetPhysicianofficeFromNpi(){
-    $physician_NPI = isset($_GET['physician_NPI']) ? $_GET['physician_NPI'] : '';
+    $physician_NPI = isset($_GET['NPI']) ? $_GET['NPI'] : '';
         $sql = "SELECT * FROM physician_office WHERE PhysicianNPI='$physician_NPI'";
         
         $result = mysql_query($sql);
@@ -109,7 +109,8 @@ class GetPhysicianAlias {
         }
 
         return $app_list;
-      
+    
+
   } 
 }
 $possible_url = array("ZimbraGetPhysicianAlias","GetPhysicianofficeFromNpi");

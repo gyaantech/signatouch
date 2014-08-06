@@ -3995,19 +3995,13 @@ Ext.define('SignaTouch.view.MainView', {
                                                                             columns: [
                                                                                 {
                                                                                     xtype: 'gridcolumn',
-                                                                                    width: 310,
+                                                                                    width: 350,
                                                                                     dataIndex: 'PhysicianAddr1',
                                                                                     text: 'Address1'
                                                                                 },
                                                                                 {
                                                                                     xtype: 'gridcolumn',
-                                                                                    width: 236,
-                                                                                    dataIndex: 'PhysicianAddr2',
-                                                                                    text: 'Address2'
-                                                                                },
-                                                                                {
-                                                                                    xtype: 'gridcolumn',
-                                                                                    width: 177,
+                                                                                    width: 180,
                                                                                     dataIndex: 'PhysicianCity',
                                                                                     text: 'City'
                                                                                 },
@@ -6072,7 +6066,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                         console.log(store);
                                                                                         store.removeAll(true);
 
-                                                                                        store.getProxy().url = 'services/ZimbraPhysicianAlias.php?action=GetPhysicianofficeFromNpi&physician_NPI='+PhysicianNPI;
+                                                                                        store.getProxy().url = 'services/ZimbraPhysicianAlias.php?action=GetPhysicianofficeFromNpi&NPI='+PhysicianNPI;
                                                                                         store.load();
                                                                                         store.add(Ext.JSON.decode(resp.responseText));
 
@@ -6084,7 +6078,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                         console.log("API not called");
                                                                                     }
                                                                                     // TODO: Login using server-side authentication service
-                                                                                    Ext.Ajax.request({url: "services/ZimbraPhysicianAlias.php?action=GetPhysicianofficeFromNpi&physician_NPI="+PhysicianNPI,
+                                                                                    Ext.Ajax.request({url: "services/ZimbraPhysicianAlias.php?action=GetPhysicianofficeFromNpi&NPI="+PhysicianNPI,
                                                                                         method: 'GET',
                                                                                         params: PhysicianNPI,
                                                                                         success: successCallbackOffice,

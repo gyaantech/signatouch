@@ -25,9 +25,6 @@ Ext.define('SignaTouch.model.PhysicianOffice', {
             name: 'PhysicianAddr1'
         },
         {
-            name: 'PhysicianAddr2'
-        },
-        {
             name: 'PhysicianCity'
         },
         {
