@@ -8633,12 +8633,12 @@
                                                                             "            }\r",
                                                                             "\r",
                                                                             "        };\r",
-                                                                            "        \r",
+                                                                            "\r",
                                                                             "\r",
                                                                             "        var successPhyAuthCallback = function(resp, ops) {\r",
                                                                             "            console.log(resp.responseText);\r",
                                                                             "            if(resp.responseText === 'true'){\r",
-                                                                            "                \r",
+                                                                            "\r",
                                                                             "                Ext.Msg.alert(\"Data Inserted\", 'Physican Record Created successfully');\r",
                                                                             "                Ext.getCmp('txtPhysicianfilterID').reset();\r",
                                                                             "                var myStore = Ext.getStore('PhysicianGridBind');\r",
@@ -8647,7 +8647,7 @@
                                                                             "                Ext.getCmp('PhysicianPanelID').hide();\r",
                                                                             "                Ext.getCmp('PhysicianRecord').show();\r",
                                                                             "                Ext.getCmp('PhysicianForm').getForm().reset();\r",
-                                                                            "                \r",
+                                                                            "\r",
                                                                             "\r",
                                                                             "           }\r",
                                                                             "           else if(resp.responseText === 'false'){\r",
@@ -9196,7 +9196,7 @@
                                                                             "userConfig": {
                                                                                 "dataIndex": "PhysicianAddr1",
                                                                                 "text": "Address1",
-                                                                                "width": 350
+                                                                                "width": 280
                                                                             },
                                                                             "designerId": "58f0e79c-c977-4b36-bb67-57edd0f14a00"
                                                                         },
@@ -9208,9 +9208,23 @@
                                                                             },
                                                                             "codeClass": null,
                                                                             "userConfig": {
+                                                                                "dataIndex": "PhysicianAddr2",
+                                                                                "text": "Address2",
+                                                                                "width": 260
+                                                                            },
+                                                                            "designerId": "4d31097b-297d-4b01-86a4-54f9a62f1a17"
+                                                                        },
+                                                                        {
+                                                                            "type": "Ext.grid.column.Column",
+                                                                            "reference": {
+                                                                                "name": "columns",
+                                                                                "type": "array"
+                                                                            },
+                                                                            "codeClass": null,
+                                                                            "userConfig": {
                                                                                 "dataIndex": "PhysicianCity",
                                                                                 "text": "City",
-                                                                                "width": 180
+                                                                                "width": 150
                                                                             },
                                                                             "designerId": "e42123f9-0598-4695-808b-53475014a953"
                                                                         },

@@ -17,7 +17,7 @@ class LDAP {
         $this->WEB_MAIL_PREAUTH_URL = $connect->ZimbraAddress.':8080/service/preauth'; 
         $this->zmbpasswd = $connect->AdminPassword;
         $this->zmbADMURL = $connect->ServerAddress.':7071/service/admin/soap';
-        $this->non_st_domains = $connect->non_st_domains;
+       
     }
  
 
@@ -42,23 +42,13 @@ class LDAP {
     //echo 'password '.$pass;
     //echo 'username '.$user;
     $user_post = isset($user) ? $user :'';
-    
-    // get domain from username
-    $GetSet->setdomain($user_post);
-    $domain = $GetSet->getdomain();
-    
-    if (in_array($domain, $this->non_st_domains)) {
-      $GetSet->setusernamenonst($user_post);
-      $username = $GetSet->getusernamenonst();
-      $GetSet->setdomain($username);
-      $domain = $GetSet->getdomain();
-    }
-    else{
+
       $GetSet->setusername($user_post);
       $username = $GetSet->getusername();
+      
       $GetSet->setdomain($username);
       $domain = $GetSet->getdomain();
-    }
+
 
     
     $pass_post = isset($pass) ? $pass : '';

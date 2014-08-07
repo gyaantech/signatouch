@@ -3995,13 +3995,19 @@ Ext.define('SignaTouch.view.MainView', {
                                                                             columns: [
                                                                                 {
                                                                                     xtype: 'gridcolumn',
-                                                                                    width: 350,
+                                                                                    width: 280,
                                                                                     dataIndex: 'PhysicianAddr1',
                                                                                     text: 'Address1'
                                                                                 },
                                                                                 {
                                                                                     xtype: 'gridcolumn',
-                                                                                    width: 180,
+                                                                                    width: 260,
+                                                                                    dataIndex: 'PhysicianAddr2',
+                                                                                    text: 'Address2'
+                                                                                },
+                                                                                {
+                                                                                    xtype: 'gridcolumn',
+                                                                                    width: 150,
                                                                                     dataIndex: 'PhysicianCity',
                                                                                     text: 'City'
                                                                                 },

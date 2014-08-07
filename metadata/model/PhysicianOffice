@@ -30,6 +30,18 @@
             },
             "codeClass": null,
             "userConfig": {
+                "name": "PhysicianAddr2"
+            },
+            "designerId": "c051d2d8-9f88-446a-b8e9-9e91692ed828"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "name": "PhysicianCity"
             },
             "designerId": "f55ce4c4-d906-4574-9047-9cbfff51f0c5"

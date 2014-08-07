@@ -1287,7 +1287,6 @@
                         },
                         {
                             "id": "11b4a836-48a4-4a8b-97c5-9934d3029a7c",
-                            "expanded": false,
                             "cn": [
                                 {
                                     "id": "f92ee53c-3ac4-4ca4-a2cd-917dc5953d80",
@@ -1372,6 +1371,9 @@
                                                                                 },
                                                                                 {
                                                                                     "id": "58f0e79c-c977-4b36-bb67-57edd0f14a00"
+                                                                                },
+                                                                                {
+                                                                                    "id": "4d31097b-297d-4b01-86a4-54f9a62f1a17"
                                                                                 },
                                                                                 {
                                                                                     "id": "e42123f9-0598-4695-808b-53475014a953"
@@ -4449,10 +4451,12 @@
         },
         "c70b98a8-6627-499b-87fb-7dce3fe7ba89": {
             "id": "c70b98a8-6627-499b-87fb-7dce3fe7ba89",
-            "expanded": false,
             "cn": [
                 {
                     "id": "5409bb5b-252c-44cb-9165-416dfa2a88fe"
+                },
+                {
+                    "id": "c051d2d8-9f88-446a-b8e9-9e91692ed828"
                 },
                 {
                     "id": "f55ce4c4-d906-4574-9047-9cbfff51f0c5"
@@ -4515,7 +4519,7 @@
     },
     "inspectorState": {
         "topInstance": "a705110d-4ce3-4545-a748-7f920677364e",
-        "selectedInstance": "31463168-930f-4a2a-8288-cdf8ac818e67"
+        "selectedInstance": "4d31097b-297d-4b01-86a4-54f9a62f1a17"
     },
     "codeState": {
         "topInstance": "a705110d-4ce3-4545-a748-7f920677364e"
