@@ -19,16 +19,46 @@ class Maintainence
 /*----------------------Patient record start-------------------------------------------------------------- */
    /*Patient record */
      public function get_PatientGridBind () {
-        $total_count = mysql_query("SELECT PatientHICN FROM patient");
-        $num_rows = mysql_num_rows($total_count);
+  //print_r($_GET['filter']);exit();
+  $filter = array();
+  $filter_array = '';
+  $filter_json = isset($_GET['filter']) ? $_GET['filter'] : '';
+  $filter_array = json_decode($filter_json);
+  //print_r($filter_array);
+  if(is_array($filter_array)){
+   foreach($filter_array as $value){
+    $filter[$value->property] = $value->value;
+   }
+  }
+  $count = count($filter);
+  
         $start = $_GET['start'];
         $limit = $_GET['limit'];
-        $sql = "Select patient.PatientHICN,CONCAT (if(patient.PatientFname is null,'',patient.PatientFname),' ',if(patient.PatientMidName is null,'',patient.PatientMidName),' ',if(patient.PatientLname is null,'',patient.PatientLname)) as PatientName,PatientLname,PatientFname,patient.PatientPhone,patient.PatientCity,patient.PatientSt,patient.PatientZip FROM patient order by patient.LastUpdate DESC LIMIT $start,$limit;";
+  
+  $sql = "Select SQL_CALC_FOUND_ROWS patient.PatientHICN,CONCAT (if(patient.PatientFname is null,'',patient.PatientFname),' ',if(patient.PatientMidName is null,'',patient.PatientMidName),' ',if(patient.PatientLname is null,'',patient.PatientLname)) as PatientName,PatientLname,PatientFname,patient.PatientPhone,patient.PatientCity,patient.PatientSt,patient.PatientZip 
+  FROM patient";
+  if($count > 0){
+   $sql .= " WHERE ";
+   if($filter['SelectFilter'] == 'LastName'){
+    $sql .= "patient.PatientLname LIKE '%".$filter['PatientHICN']."%'";
+   }elseif($filter['SelectFilter'] == 'HICN'){
+    $sql .= "patient.PatientHICN LIKE '%".$filter['PatientHICN']."%'";
+   }elseif($filter['SelectFilter'] == 'FirstName'){
+    $sql .= "patient.PatientFname LIKE '%".$filter['PatientHICN']."%'";
+   }elseif($filter['SelectFilter'] == 'ZipCode'){
+    $sql .= "patient.PatientZip LIKE '%".$filter['PatientHICN']."%'";
+   }
+  }
+  $sql .= " order by patient.LastUpdate DESC LIMIT $start,$limit";
 
         $result = mysql_query($sql);
         if (!$result) {
         die('Invalid query: ' . $sql . "   " . mysql_error());
         }
+  
+  $total_count = mysql_query("SELECT FOUND_ROWS()");
+        $num_rows = mysql_fetch_row($total_count);
+  
         //Allocate the array
         $app_list = array();
         //Loop through database to add books to array
@@ -280,17 +310,44 @@ class Maintainence
 /*----------------------Physician record start-------------------------------------------------------------- */
  
  /*physician record */
-     public function get_physicianGridBind () {
-        $total_count = mysql_query("SELECT PhysicianNPI FROM physician");
-        $num_rows = mysql_num_rows($total_count);
+      public function get_physicianGridBind () {
+        $filter = array();
+  $filter_array = '';
+  $filter_json = isset($_GET['filter']) ? $_GET['filter'] : '';
+  $filter_array = json_decode($filter_json);
+  //print_r($filter_array);
+  if(is_array($filter_array)){
+   foreach($filter_array as $value){
+    $filter[$value->property] = $value->value;
+   }
+  }
+  $count = count($filter);
+  
         $start = $_GET['start'];
         $limit = $_GET['limit'];
-        $sql = "Select CONCAT (if(PhysicianFirstname is null,'',PhysicianFirstname),' ',if(PhysicianMidname is null,'',PhysicianMidname),' ',if(PhysicianLastname is null,'',PhysicianLastname)) as PhysicianName,PhysicianNPI,PhysicianPhone,PhysicianCity,PhysicianZip,PhysicianSt,PhysicianFirstname,PhysicianLastname FROM physician order by PhysicianLastUpdate DESC LIMIT $start,$limit;";
+  
+  $sql = "Select SQL_CALC_FOUND_ROWS CONCAT (if(PhysicianFirstname is null,'',PhysicianFirstname),' ',if(PhysicianMidname is null,'',PhysicianMidname),' ',if(PhysicianLastname is null,'',PhysicianLastname)) as PhysicianName,PhysicianNPI,PhysicianPhone,PhysicianCity,PhysicianZip,PhysicianSt,PhysicianFirstname,PhysicianLastname 
+  FROM physician";
+  if($count > 0){
+   $sql .= " WHERE ";
+   if($filter['SelectFilter'] == 'LastName'){
+    $sql .= "PhysicianLastname LIKE '%".$filter['PatientHICN']."%'";
+   }elseif($filter['SelectFilter'] == 'NPI'){
+    $sql .= "PhysicianNPI LIKE '%".$filter['PatientHICN']."%'";
+   }elseif($filter['SelectFilter'] == 'FirstName'){
+    $sql .= "PhysicianFirstname LIKE '%".$filter['PatientHICN']."%'";
+   }elseif($filter['SelectFilter'] == 'ZipCode'){
+    $sql .= "PhysicianZip LIKE '%".$filter['PatientHICN']."%'";
+   }
+  }
+  $sql .= " order by PhysicianLastUpdate DESC LIMIT $start,$limit;";
 
         $result = mysql_query($sql);
         if (!$result) {
         die('Invalid query: ' . $sql . "   " . mysql_error());
         }
+  $total_count = mysql_query("SELECT FOUND_ROWS()");
+        $num_rows = mysql_fetch_row($total_count);
         //Allocate the array
         $app_list = array();
         //Loop through database to add books to array
@@ -411,16 +468,41 @@ class Maintainence
     /*----------------------Supplier record start-------------------------------------------------------------- */
    /*Supplier record */
      public function get_SupplierGridBind () {
-        $total_count = mysql_query("SELECT SupplierNPI FROM supplier");
-        $num_rows = mysql_num_rows($total_count);
+        $filter = array();
+  $filter_array = '';
+  $filter_json = isset($_GET['filter']) ? $_GET['filter'] : '';
+  $filter_array = json_decode($filter_json);
+  //print_r($filter_array);
+  if(is_array($filter_array)){
+   foreach($filter_array as $value){
+    $filter[$value->property] = $value->value;
+   }
+  }
+  $count = count($filter);
+  
         $start = $_GET['start'];
         $limit = $_GET['limit'];
-        $sql = "SELECT SupplierNPI, SupplierName,SupplierCity, SupplierSt, SupplierZip, SupplierPhone,LastUpdate FROM supplier order by LastUpdate DESC LIMIT $start,$limit;";
+  
+  $sql = "Select SQL_CALC_FOUND_ROWS SupplierNPI, SupplierName,SupplierCity, SupplierSt, SupplierZip, SupplierPhone,LastUpdate 
+  FROM supplier";
+  if($count > 0){
+   $sql .= " WHERE ";
+   if($filter['SelectFilter'] == 'SupplierName'){
+    $sql .= "SupplierName LIKE '%".$filter['PatientHICN']."%'";
+   }elseif($filter['SelectFilter'] == 'NPI'){
+    $sql .= "SupplierNPI LIKE '%".$filter['PatientHICN']."%'";
+   }elseif($filter['SelectFilter'] == 'ZipCode'){
+    $sql .= "SupplierZip LIKE '%".$filter['PatientHICN']."%'";
+   }
+  }
+  $sql .= " order by LastUpdate DESC LIMIT $start,$limit;";
 
         $result = mysql_query($sql);
         if (!$result) {
         die('Invalid query: ' . $sql . "   " . mysql_error());
         }
+  $total_count = mysql_query("SELECT FOUND_ROWS()");
+        $num_rows = mysql_fetch_row($total_count);
         //Allocate the array
         $app_list = array();
         //Loop through database to add books to array

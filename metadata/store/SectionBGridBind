@@ -11,6 +11,7 @@
         "designer|userClassName": "SectionBGridBind",
         "model": "SectionBGridBind",
         "pageSize": 10,
+        "remoteFilter": true,
         "storeId": "SectionBGridBind"
     },
     "designerId": "6c9d1e22-291c-4f35-a9c7-3ab217856f42",

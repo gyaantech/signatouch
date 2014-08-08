@@ -29,6 +29,7 @@ Ext.define('SignaTouch.store.SectionBGridBind', {
             defaultSortDirection: 'DESC',
             autoLoad: true,
             model: 'SignaTouch.model.SectionBGridBind',
+            remoteFilter: true,
             storeId: 'SectionBGridBind',
             pageSize: 10,
             proxy: {

@@ -29,6 +29,7 @@ Ext.define('SignaTouch.store.PhysicianGridBind', {
             defaultSortDirection: 'DESC',
             autoLoad: true,
             model: 'SignaTouch.model.PhysicianRecord',
+            remoteFilter: true,
             storeId: 'PhysicianGridBind',
             pageSize: 20,
             proxy: {

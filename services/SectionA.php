@@ -20,16 +20,93 @@ class SectionA
   
     /*Section A record selector*/
      public function get_SectionA1GridBind () {
-        $total_count = mysql_query("SELECT HdrID FROM cms484hdr");
-        $num_rows = mysql_num_rows($total_count);
+        
+  $filter = array();
+  $filter_array = '';
+  $filter_json = isset($_GET['filter']) ? $_GET['filter'] : '';
+  $filter_array = json_decode($filter_json);
+  //print_r($filter_array);
+  if(is_array($filter_array)){
+   foreach($filter_array as $value){
+    $filter[$value->property] = $value->value;
+   }
+  }
+  $count = count($filter);
+  
         $start = $_GET['start'];
         $limit = $_GET['limit'];
-        $sql = "Select CONCAT (if(patient.PatientFname is null,'',patient.PatientFname),' ',if(patient.PatientMidName is null,'',patient.PatientMidName),' ',if(patient.PatientLname is null,'',patient.PatientLname)) as PatientName,patient.PatientHICN as HICN,cms484hdr.CertType as CertType,case when CertType='I' then DATE_FORMAT(InitialCertDate, '%m-%d-%Y') when CertType='V' then DATE_FORMAT(RevisedCertDate, '%m-%d-%Y') Else DATE_FORMAT(RecertificationDate, '%m-%d-%Y') End as CertDate,cms484hdr.MedicalID,cms484hdr.StausFLG, case when cms484hdr.StausFLG='A' then 'Edit' Else 'View' End as link,cms484hdr.HdrID as HdrID,patient.PatientLname ,case when (cms484hdr.MedicalID is not null and cms484hdr.PhysicianNPI is not null and cms484hdr.SupplierNPI and cms484hdr.PlaceService ) then 'Allow' Else 'Dis' End as Send from cms484hdr inner join patient on patient.PatientHICN = cms484hdr.PatientHICN order By cms484hdr.LastUpdate Desc LIMIT $start,$limit; ";
+        $sql = "Select  SQL_CALC_FOUND_ROWS CONCAT (if(patient.PatientFname is null,'',patient.PatientFname),' ',if(patient.PatientMidName is null,'',patient.PatientMidName),' ',if(patient.PatientLname is null,'',patient.PatientLname)) as PatientName,
+      patient.PatientHICN as HICN,
+      cms484hdr.CertType as CertType,case when CertType='I' then DATE_FORMAT(InitialCertDate, '%m-%d-%Y') when CertType='V' then DATE_FORMAT(RevisedCertDate, '%m-%d-%Y') Else DATE_FORMAT(RecertificationDate, '%m-%d-%Y') End as CertDate,
+      cms484hdr.MedicalID,cms484hdr.StausFLG, case when cms484hdr.StausFLG='A' then 'Edit' Else 'View' End as link,
+      cms484hdr.HdrID as HdrID,patient.PatientLname ,case when (cms484hdr.MedicalID is not null and cms484hdr.PhysicianNPI is not null and cms484hdr.SupplierNPI and cms484hdr.PlaceService ) then 'Allow' Else 'Dis' End as Send 
+      from cms484hdr 
+      inner join patient 
+      on patient.PatientHICN = cms484hdr.PatientHICN "; 
+  if($count > 0){
+   $sql .= " WHERE ";
+   if($filter['SelectFilter'] == 'LastName'){
+    $sql .= "patient.PatientLname LIKE '%".$filter['PatientHICN']."%'";
+   }elseif($filter['SelectFilter'] == 'HICN'){
+    $sql .= "patient.PatientHICN LIKE '%".$filter['PatientHICN']."%'";
+   }elseif($filter['SelectFilter'] == 'MedID'){
+    $sql .= "cms484hdr.MedicalID LIKE '%".$filter['PatientHICN']."%'";
+   }
+   
+   if($filter['CertType'] != 'All'){
+    $sql .= " AND cms484hdr.CertType LIKE '%".$filter['CertType']."%'";
+   }
+   if($filter['CertType'] == 'All'){
+    if($filter['StartDate'] != '' && $filter['EndDate'] != ''){
+      $sql .= " AND (DATE_FORMAT(InitialCertDate, '%m-%d-%Y') BETWEEN '".$filter['StartDate']."' AND '".$filter['EndDate']."'
+        OR DATE_FORMAT(RevisedCertDate, '%m-%d-%Y') BETWEEN '".$filter['StartDate']."' AND '".$filter['EndDate']."'
+        OR DATE_FORMAT(RecertificationDate, '%m-%d-%Y') BETWEEN '".$filter['StartDate']."' AND '".$filter['EndDate']."')";
+    }elseif($filter['StartDate'] != '' && $filter['EndDate'] == ''){
+      $sql .= " AND (DATE_FORMAT(InitialCertDate, '%m-%d-%Y') = '".$filter['StartDate']."'
+        OR DATE_FORMAT(RevisedCertDate, '%m-%d-%Y') = '".$filter['StartDate']."'
+        OR DATE_FORMAT(RecertificationDate, '%m-%d-%Y') = '".$filter['StartDate']."')";
+    }elseif($filter['StartDate'] == '' && $filter['EndDate'] != ''){
+      $sql .= " AND (DATE_FORMAT(InitialCertDate, '%m-%d-%Y') = '".$filter['EndDate']."'
+        OR DATE_FORMAT(RevisedCertDate, '%m-%d-%Y') = '".$filter['EndDate']."'
+        OR DATE_FORMAT(RecertificationDate, '%m-%d-%Y') = '".$filter['EndDate']."')";
+    }
+   }elseif($filter['CertType'] == 'I'){
+    if($filter['StartDate'] != '' && $filter['EndDate'] != ''){
+      $sql .= " AND (DATE_FORMAT(InitialCertDate, '%m-%d-%Y') BETWEEN '".$filter['StartDate']."' AND '".$filter['EndDate']."')";
+    }elseif($filter['StartDate'] != '' && $filter['EndDate'] == ''){
+      $sql .= " AND (DATE_FORMAT(InitialCertDate, '%m-%d-%Y') = '".$filter['StartDate']."')";
+    }elseif($filter['StartDate'] == '' && $filter['EndDate'] != ''){
+      $sql .= " AND (DATE_FORMAT(InitialCertDate, '%m-%d-%Y') = '".$filter['EndDate']."')";
+    }    
+   }elseif($filter['CertType'] == 'V'){
+    if($filter['StartDate'] != '' && $filter['EndDate'] != ''){
+      $sql .= " AND (DATE_FORMAT(RevisedCertDate, '%m-%d-%Y') BETWEEN '".$filter['StartDate']."' AND '".$filter['EndDate']."')";
+    }elseif($filter['StartDate'] != '' && $filter['EndDate'] == ''){
+      $sql .= " AND (DATE_FORMAT(RevisedCertDate, '%m-%d-%Y') = '".$filter['StartDate']."')";
+    }elseif($filter['StartDate'] == '' && $filter['EndDate'] != ''){
+      $sql .= " AND (DATE_FORMAT(RevisedCertDate, '%m-%d-%Y') = '".$filter['EndDate']."')";
+    } 
+   }elseif($filter['CertType'] != 'All'){
+    if($filter['StartDate'] != '' && $filter['EndDate'] != ''){
+      $sql .= " AND (DATE_FORMAT(RecertificationDate, '%m-%d-%Y') BETWEEN '".$filter['StartDate']."' AND '".$filter['EndDate']."')";
+    }elseif($filter['StartDate'] != '' && $filter['EndDate'] == ''){
+      $sql .= " AND (DATE_FORMAT(RecertificationDate, '%m-%d-%Y') = '".$filter['StartDate']."')";
+    }elseif($filter['StartDate'] == '' && $filter['EndDate'] != ''){
+      $sql .= " AND (DATE_FORMAT(RecertificationDate, '%m-%d-%Y') = '".$filter['EndDate']."')";
+    }
+   }
+  }    
+  $sql .=  " order By cms484hdr.LastUpdate DESC 
+      LIMIT $start,$limit; ";
 
         $result = mysql_query($sql);
         if (!$result) {
         die('Invalid query: ' . $sql . "   " . mysql_error());
         }
+  
+  $total_count = mysql_query("SELECT FOUND_ROWS()");
+        $num_rows = mysql_fetch_row($total_count);
+  
         //Allocate the array
         $app_list = array();
         //Loop through database to add books to array

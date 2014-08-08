@@ -19,16 +19,61 @@ class SectionB
 	
  /*Section B record selector*/
      public function get_SectionBGridBind () {
-        $total_count = mysql_query("SELECT DetailID FROM cms484det WHERE StatusFLG IN ('B','S')");
-        $num_rows = mysql_num_rows($total_count);
+        $filter = array();
+  $filter_array = '';
+  $filter_json = isset($_GET['filter']) ? $_GET['filter'] : '';
+  $filter_array = json_decode($filter_json);
+  //print_r($filter_array);
+  if(is_array($filter_array)){
+   foreach($filter_array as $value){
+    $filter[$value->property] = $value->value;
+   }
+  }
+  $count = count($filter);
+  
         $start = $_GET['start'];
         $limit = $_GET['limit'];
-    $sql = "Select CONCAT (if(patient.PatientFname is null,'',patient.PatientFname),' ',if(patient.PatientMidName is null,'',patient.PatientMidName),' ',if(patient.PatientLname is null,'',patient.PatientLname)) as PatientName,patient.PatientHICN as HICN,cms484det.CertType as CertType,DATE_FORMAT(cms484det.CertDate, '%m-%d-%Y') as CertDate,cms484det.MedicalID,cms484det.StatusFLG,case when cms484det.StatusFLG='B' then 'Edit' Else 'View' End as link, case when (cms484det.LengthNeed is not null and ICD9 is not null and cms484det.StatusFLG='B') then 'Allow' Else 'Dis' End as Send, cms484det.DetailID as DetailID,patient.PatientLname from cms484det inner join patient on patient.PatientHICN = cms484det.PatientHICN where cms484det.StatusFLG='B' or cms484det.StatusFLG='S' order By cms484det.LastUpdate DESC LIMIT $start,$limit;";
+        $sql = "Select  SQL_CALC_FOUND_ROWS CONCAT (if(patient.PatientFname is null,'',patient.PatientFname),' ',if(patient.PatientMidName is null,'',patient.PatientMidName),' ',if(patient.PatientLname is null,'',patient.PatientLname)) as PatientName,
+  patient.PatientHICN as HICN,cms484det.CertType as CertType,
+  DATE_FORMAT(cms484det.CertDate, '%m-%d-%Y') as CertDate,cms484det.MedicalID,cms484det.StatusFLG,case when cms484det.StatusFLG='B' then 'Edit' Else 'View' End as link, case when (cms484det.LengthNeed is not null and ICD9 is not null and cms484det.StatusFLG='B') then 'Allow' Else 'Dis' End as Send, 
+  cms484det.DetailID as DetailID,patient.PatientLname 
+  from cms484det 
+  inner join patient 
+  on patient.PatientHICN = cms484det.PatientHICN 
+  where (cms484det.StatusFLG='B' 
+  or cms484det.StatusFLG='S') "; 
+  if($count > 0){
+   $sql .= " AND ";
+   if($filter['SelectFilter'] == 'LastName'){
+    $sql .= "patient.PatientLname LIKE '%".$filter['PatientHICN']."%'";
+   }elseif($filter['SelectFilter'] == 'HICN'){
+    $sql .= "patient.PatientHICN LIKE '%".$filter['PatientHICN']."%'";
+   }elseif($filter['SelectFilter'] == 'MedID'){
+    $sql .= "cms484det.MedicalID LIKE '%".$filter['PatientHICN']."%'";
+   }
+   
+   if($filter['CertType'] != 'All'){
+    $sql .= " AND cms484det.CertType LIKE '%".$filter['CertType']."%'";
+   }
+   
+   if($filter['StartDate'] != '' && $filter['EndDate'] != ''){
+     $sql .= " AND (DATE_FORMAT(cms484det.CertDate, '%m-%d-%Y') BETWEEN '".$filter['StartDate']."' AND '".$filter['EndDate']."')";
+   }elseif($filter['StartDate'] != '' && $filter['EndDate'] == ''){
+     $sql .= " AND (DATE_FORMAT(cms484det.CertDate, '%m-%d-%Y') = '".$filter['StartDate']."')";
+   }elseif($filter['StartDate'] == '' && $filter['EndDate'] != ''){
+     $sql .= " AND (DATE_FORMAT(cms484det.CertDate, '%m-%d-%Y') = '".$filter['EndDate']."')";
+   }
+   
+  }    
+  $sql .=  " order By cms484det.LastUpdate DESC 
+  LIMIT $start,$limit;";
            
     $result = mysql_query($sql);
     if (!$result) {
         die('Invalid query: ' . $sql . "   " . mysql_error());
     }
+  $total_count = mysql_query("SELECT FOUND_ROWS()");
+        $num_rows = mysql_fetch_row($total_count);
 //Allocate the array
     $app_list = array();
 //Loop through database to add books to array

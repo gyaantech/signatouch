@@ -11,6 +11,7 @@
         "designer|userClassName": "PatientGridBind",
         "model": "PatientRecord",
         "pageSize": 20,
+        "remoteFilter": true,
         "storeId": "PatientGridBind"
     },
     "designerId": "c9e0aa13-b9a2-45fd-b7f7-2f2e3b05d2f3",

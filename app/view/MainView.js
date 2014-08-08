@@ -1584,7 +1584,13 @@ Ext.define('SignaTouch.view.MainView', {
                                                                             id: 'SectionAClearID',
                                                                             text: 'Clear Filter'
                                                                         }
-                                                                    ]
+                                                                    ],
+                                                                    listeners: {
+                                                                        beforechange: {
+                                                                            fn: me.onPagingtoolbarBeforeChange,
+                                                                            scope: me
+                                                                        }
+                                                                    }
                                                                 }
                                                             ]
                                                         },
@@ -5769,7 +5775,13 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     id: 'SectionBClear',
                                                                     text: 'Clear Filter'
                                                                 }
-                                                            ]
+                                                            ],
+                                                            listeners: {
+                                                                beforechange: {
+                                                                    fn: me.onPagingtoolbarBeforeChange4,
+                                                                    scope: me
+                                                                }
+                                                            }
                                                         }
                                                     ]
                                                 }
@@ -6180,7 +6192,13 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     id: 'PhysicianClear',
                                                                     text: 'Clear Filter'
                                                                 }
-                                                            ]
+                                                            ],
+                                                            listeners: {
+                                                                beforechange: {
+                                                                    fn: me.onPagingtoolbarBeforeChange1,
+                                                                    scope: me
+                                                                }
+                                                            }
                                                         }
                                                     ]
                                                 }
@@ -6569,7 +6587,13 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     id: 'PatientClear',
                                                                     text: 'Clear Filter'
                                                                 }
-                                                            ]
+                                                            ],
+                                                            listeners: {
+                                                                beforechange: {
+                                                                    fn: me.onPagingtoolbarBeforeChange2,
+                                                                    scope: me
+                                                                }
+                                                            }
                                                         }
                                                     ]
                                                 }
@@ -6939,7 +6963,13 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     id: 'SupplierClear',
                                                                     text: 'Clear Filter'
                                                                 }
-                                                            ]
+                                                            ],
+                                                            listeners: {
+                                                                beforechange: {
+                                                                    fn: me.onPagingtoolbarBeforeChange3,
+                                                                    scope: me
+                                                                }
+                                                            }
                                                         }
                                                     ]
                                                 }
@@ -11202,7 +11232,7 @@ Ext.define('SignaTouch.view.MainView', {
          Ext.Msg.alert("Input required", 'Please enter values to search');
         }
         else{
-
+        /*
          // Success
 
                     myStore.clearFilter();
@@ -11538,9 +11568,29 @@ Ext.define('SignaTouch.view.MainView', {
 
                      }
 
-
+        */
+             myStore.filter([{property: 'SelectFilter',value: type} ,
+                            {property: 'CertType' , value: CertType} ,
+                            {property: 'PatientHICN' , value: Search } ,
+                           {property: 'StartDate' , value: CertDate1 },
+                           {property: 'EndDate' , value: CertDate2 }]);
 
         }
+    },
+
+    onPagingtoolbarBeforeChange: function(pagingtoolbar, page, eOpts) {
+        var SectionA1GridBind = Ext.getStore('SectionA1GridBind');
+        var txtFilterID = Ext.get('txtFilterID').getValue();
+        var TxtstartDateID = Ext.get('TxtstartDateID').getValue();
+        var TxtendDateID = Ext.get('TxtendDateID').getValue();
+        var CertTypeID = Ext.get('CertTypeID').getValue();
+        var type = Ext.get('SelectFilter').getValue();
+
+        SectionA1GridBind.getProxy().extraParams.SelectFilter = type;
+        SectionA1GridBind.getProxy().extraParams.PatientHICN = txtFilterID;
+        SectionA1GridBind.getProxy().extraParams.CertType = CertTypeID;
+        SectionA1GridBind.getProxy().extraParams.StartDate = TxtstartDateID;
+        SectionA1GridBind.getProxy().extraParams.EndDateID = TxtendDateID;
     },
 
     onBtnInitialClick: function(button, e, eOpts) {
@@ -12855,7 +12905,7 @@ Ext.define('SignaTouch.view.MainView', {
          Ext.Msg.alert("Input required", 'Please enter values to search');
         }
         else{
-
+        /*
          // Success
 
                     myStore.clearFilter();
@@ -13191,10 +13241,30 @@ Ext.define('SignaTouch.view.MainView', {
 
                      }
 
-
-
+        */
+         myStore.filter([{property: 'SelectFilter',value: type} ,
+                            {property: 'CertType' , value: CertType} ,
+                            {property: 'PatientHICN' , value: Search } ,
+                           {property: 'StartDate' , value: CertDate1 },
+                           {property: 'EndDate' , value: CertDate2 }]);
         }
 
+
+    },
+
+    onPagingtoolbarBeforeChange4: function(pagingtoolbar, page, eOpts) {
+        var SectionBGridBind = Ext.getStore('SectionBGridBind');
+        var txtFilterID = Ext.get('txtSectionBfilter').getValue();
+        var TxtstartDateID = Ext.get('ddlSectionBSDate').getValue();
+        var TxtendDateID = Ext.get('ddlSectionBEndDate').getValue();
+        var CertTypeID = Ext.get('ddlSectionBCertype').getValue();
+        var type = Ext.get('ddlSectionBFilter').getValue();
+
+        SectionBGridBind.getProxy().extraParams.SelectFilter = type;
+        SectionBGridBind.getProxy().extraParams.PatientHICN = txtFilterID;
+        SectionBGridBind.getProxy().extraParams.CertType = CertTypeID;
+        SectionBGridBind.getProxy().extraParams.StartDate = TxtstartDateID;
+        SectionBGridBind.getProxy().extraParams.EndDateID = TxtendDateID;
     },
 
     onPhysicianBtnGOClick: function(button, e, eOpts) {
@@ -13204,7 +13274,7 @@ Ext.define('SignaTouch.view.MainView', {
         var Search=values.txtPhysicianfilter;
         var myStore = Ext.getStore('PhysicianGridBind');
 
-        myStore.clearFilter();
+        /*myStore.clearFilter();
 
 
         if(type=='NPI')
@@ -13236,7 +13306,9 @@ Ext.define('SignaTouch.view.MainView', {
 
         }
 
-
+        */
+         myStore.filter([{property: 'SelectFilter',value: type} ,
+                            {property: 'PatientHICN' , value: Search }]);
     },
 
     onBtPhysicianAddClick1: function(button, e, eOpts) {
@@ -13260,6 +13332,16 @@ Ext.define('SignaTouch.view.MainView', {
                              // Ext.getCmp('PhysicianForm').getForm().reset();
     },
 
+    onPagingtoolbarBeforeChange1: function(pagingtoolbar, page, eOpts) {
+        var PhysicianGridBind = Ext.getStore('PhysicianGridBind');
+
+        var type = Ext.get('ddlPhysicianFilter').getValue();
+        var Search = Ext.get('txtPhysicianfilter').getValue();
+
+        PhysicianGridBind.getProxy().extraParams.SelectFilter = type;
+        PhysicianGridBind.getProxy().extraParams.Search = Search;
+    },
+
     onPatientBtnGoClick: function(button, e, eOpts) {
         var form = button.up('form');
         values = form.getValues();
@@ -13268,7 +13350,7 @@ Ext.define('SignaTouch.view.MainView', {
         var Search=values.txtPatientfilter;
         var myStore = Ext.getStore('PatientGridBind');
 
-
+        /*
         myStore.clearFilter();
 
 
@@ -13305,7 +13387,9 @@ Ext.define('SignaTouch.view.MainView', {
 
 
 
-
+        */
+        myStore.filter([{property: 'SelectFilter',value: type} ,
+                            {property: 'PatientHICN' , value: Search }]);
 
 
 
@@ -13338,6 +13422,16 @@ Ext.define('SignaTouch.view.MainView', {
 
     },
 
+    onPagingtoolbarBeforeChange2: function(pagingtoolbar, page, eOpts) {
+        var PatientGridBind = Ext.getStore('PatientGridBind');
+
+        var type = Ext.get('ddlPatientFilter').getValue();
+        var Search = Ext.get('txtPatientfilter').getValue();
+
+        PatientGridBind.getProxy().extraParams.SelectFilter = type;
+        PatientGridBind.getProxy().extraParams.Search = Search;
+    },
+
     onSupplierBtnGOClick: function(button, e, eOpts) {
         var form = button.up('form');
          values = form.getValues();
@@ -13346,6 +13440,7 @@ Ext.define('SignaTouch.view.MainView', {
         var Search=values.txtSupplierfilter;
         var myStore = Ext.getStore('SupplierGridBind');
 
+        /*
         myStore.clearFilter();
 
         if(type=='NPI')
@@ -13370,7 +13465,9 @@ Ext.define('SignaTouch.view.MainView', {
 
         }
 
-
+        */
+        myStore.filter([{property: 'SelectFilter',value: type} ,
+                            {property: 'PatientHICN' , value: Search }]);
 
     },
 
@@ -13396,6 +13493,16 @@ Ext.define('SignaTouch.view.MainView', {
 
 
 
+    },
+
+    onPagingtoolbarBeforeChange3: function(pagingtoolbar, page, eOpts) {
+        var SupplierGridBind = Ext.getStore('SupplierGridBind');
+
+        var type = Ext.get('ddlSupplierFilter').getValue();
+        var Search = Ext.get('txtSupplierfilter').getValue();
+
+        SupplierGridBind.getProxy().extraParams.SelectFilter = type;
+        SupplierGridBind.getProxy().extraParams.Search = Search;
     },
 
     onDdlICDSelect: function(combo, records, eOpts) {

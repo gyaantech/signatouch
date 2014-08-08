@@ -12,6 +12,7 @@
         "designer|userClassName": "SectionA1GridBind",
         "model": "SectionA1GridBind",
         "pageSize": 10,
+        "remoteFilter": true,
         "storeId": "SectionA1GridBind"
     },
     "designerId": "87db65b7-7644-465d-81b3-6a655c4751da",

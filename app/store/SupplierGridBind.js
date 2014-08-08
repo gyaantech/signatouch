@@ -29,6 +29,7 @@ Ext.define('SignaTouch.store.SupplierGridBind', {
             defaultSortDirection: 'DESC',
             autoLoad: true,
             model: 'SignaTouch.model.SupplierRecord',
+            remoteFilter: true,
             storeId: 'SupplierGridBind',
             pageSize: 20,
             proxy: {

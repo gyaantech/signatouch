@@ -1786,7 +1786,7 @@
                                                                                     " Ext.Msg.alert(\"Input required\", 'Please enter values to search');\r",
                                                                                     "}\r",
                                                                                     "else{\r",
-                                                                                    "\r",
+                                                                                    "/*\r",
                                                                                     " // Success\r",
                                                                                     "\r",
                                                                                     "            myStore.clearFilter();\r",
@@ -2122,7 +2122,12 @@
                                                                                     "\r",
                                                                                     "             }\r",
                                                                                     "\r",
-                                                                                    "\r",
+                                                                                    "*/\r",
+                                                                                    "     myStore.filter([{property: 'SelectFilter',value: type} , \r",
+                                                                                    "                    {property: 'CertType' , value: CertType} , \r",
+                                                                                    "                    {property: 'PatientHICN' , value: Search } ,\r",
+                                                                                    "                   {property: 'StartDate' , value: CertDate1 },\r",
+                                                                                    "                   {property: 'EndDate' , value: CertDate2 }]);\r",
                                                                                     "\r",
                                                                                     "}"
                                                                                 ],
@@ -3446,6 +3451,34 @@
                                                                             "designerId": "bfbfad78-3f1f-4956-a6bf-5b9f8fec8fa5"
                                                                         }
                                                                     ]
+                                                                },
+                                                                {
+                                                                    "type": "basiceventbinding",
+                                                                    "reference": {
+                                                                        "name": "listeners",
+                                                                        "type": "array"
+                                                                    },
+                                                                    "codeClass": null,
+                                                                    "userConfig": {
+                                                                        "fn": "onPagingtoolbarBeforeChange",
+                                                                        "implHandler": [
+                                                                            "var SectionA1GridBind = Ext.getStore('SectionA1GridBind');\r",
+                                                                            "var txtFilterID = Ext.get('txtFilterID').getValue();\r",
+                                                                            "var TxtstartDateID = Ext.get('TxtstartDateID').getValue();\r",
+                                                                            "var TxtendDateID = Ext.get('TxtendDateID').getValue();\r",
+                                                                            "var CertTypeID = Ext.get('CertTypeID').getValue();\r",
+                                                                            "var type = Ext.get('SelectFilter').getValue();\r",
+                                                                            "\r",
+                                                                            "SectionA1GridBind.getProxy().extraParams.SelectFilter = type;\r",
+                                                                            "SectionA1GridBind.getProxy().extraParams.PatientHICN = txtFilterID;\r",
+                                                                            "SectionA1GridBind.getProxy().extraParams.CertType = CertTypeID;\r",
+                                                                            "SectionA1GridBind.getProxy().extraParams.StartDate = TxtstartDateID;\r",
+                                                                            "SectionA1GridBind.getProxy().extraParams.EndDateID = TxtendDateID;"
+                                                                        ],
+                                                                        "name": "beforechange",
+                                                                        "scope": "me"
+                                                                    },
+                                                                    "designerId": "dde513b1-95ba-4ee2-96a0-241b351c6c35"
                                                                 }
                                                             ]
                                                         }
@@ -10961,7 +10994,7 @@
                                                                             " Ext.Msg.alert(\"Input required\", 'Please enter values to search');\r",
                                                                             "}\r",
                                                                             "else{\r",
-                                                                            "\r",
+                                                                            "/*\r",
                                                                             " // Success\r",
                                                                             "\r",
                                                                             "            myStore.clearFilter();\r",
@@ -11297,9 +11330,14 @@
                                                                             "\r",
                                                                             "             }\r",
                                                                             "\r",
-                                                                            "\r",
-                                                                            "\r",
+                                                                            "*/\r",
+                                                                            " myStore.filter([{property: 'SelectFilter',value: type} , \r",
+                                                                            "                    {property: 'CertType' , value: CertType} , \r",
+                                                                            "                    {property: 'PatientHICN' , value: Search } ,\r",
+                                                                            "                   {property: 'StartDate' , value: CertDate1 },\r",
+                                                                            "                   {property: 'EndDate' , value: CertDate2 }]);\r",
                                                                             "}\r",
+                                                                            "\r",
                                                                             ""
                                                                         ],
                                                                         "name": "click",
@@ -12588,6 +12626,34 @@
                                                                     "designerId": "0ea89b80-701e-4f0e-98de-e641fa2ff493"
                                                                 }
                                                             ]
+                                                        },
+                                                        {
+                                                            "type": "basiceventbinding",
+                                                            "reference": {
+                                                                "name": "listeners",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "fn": "onPagingtoolbarBeforeChange4",
+                                                                "implHandler": [
+                                                                    "var SectionBGridBind = Ext.getStore('SectionBGridBind');\r",
+                                                                    "var txtFilterID = Ext.get('txtSectionBfilter').getValue();\r",
+                                                                    "var TxtstartDateID = Ext.get('ddlSectionBSDate').getValue();\r",
+                                                                    "var TxtendDateID = Ext.get('ddlSectionBEndDate').getValue();\r",
+                                                                    "var CertTypeID = Ext.get('ddlSectionBCertype').getValue();\r",
+                                                                    "var type = Ext.get('ddlSectionBFilter').getValue();\r",
+                                                                    "\r",
+                                                                    "SectionBGridBind.getProxy().extraParams.SelectFilter = type;\r",
+                                                                    "SectionBGridBind.getProxy().extraParams.PatientHICN = txtFilterID;\r",
+                                                                    "SectionBGridBind.getProxy().extraParams.CertType = CertTypeID;\r",
+                                                                    "SectionBGridBind.getProxy().extraParams.StartDate = TxtstartDateID;\r",
+                                                                    "SectionBGridBind.getProxy().extraParams.EndDateID = TxtendDateID;"
+                                                                ],
+                                                                "name": "beforechange",
+                                                                "scope": "me"
+                                                            },
+                                                            "designerId": "c4610c4c-adcd-4fc3-b73e-6dd8346d5df9"
                                                         }
                                                     ]
                                                 }
@@ -12810,7 +12876,7 @@
                                                                             "var Search=values.txtPhysicianfilter;\r",
                                                                             "var myStore = Ext.getStore('PhysicianGridBind');\r",
                                                                             "\r",
-                                                                            "myStore.clearFilter();\r",
+                                                                            "/*myStore.clearFilter();\r",
                                                                             "\r",
                                                                             "\r",
                                                                             "if(type=='NPI')\r",
@@ -12842,7 +12908,9 @@
                                                                             "\r",
                                                                             "}\r",
                                                                             "\r",
-                                                                            ""
+                                                                            "*/\r",
+                                                                            " myStore.filter([{property: 'SelectFilter',value: type} , \r",
+                                                                            "                    {property: 'PatientHICN' , value: Search }]);"
                                                                         ],
                                                                         "name": "click",
                                                                         "scope": "me"
@@ -13380,6 +13448,29 @@
                                                                     "designerId": "f6678c97-c2df-414f-846b-a1aea45679e8"
                                                                 }
                                                             ]
+                                                        },
+                                                        {
+                                                            "type": "basiceventbinding",
+                                                            "reference": {
+                                                                "name": "listeners",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "fn": "onPagingtoolbarBeforeChange1",
+                                                                "implHandler": [
+                                                                    "var PhysicianGridBind = Ext.getStore('PhysicianGridBind');\r",
+                                                                    "\r",
+                                                                    "var type = Ext.get('ddlPhysicianFilter').getValue();\r",
+                                                                    "var Search = Ext.get('txtPhysicianfilter').getValue();\r",
+                                                                    "\r",
+                                                                    "PhysicianGridBind.getProxy().extraParams.SelectFilter = type;\r",
+                                                                    "PhysicianGridBind.getProxy().extraParams.Search = Search;"
+                                                                ],
+                                                                "name": "beforechange",
+                                                                "scope": "me"
+                                                            },
+                                                            "designerId": "6986f864-8be8-4744-a174-5f81cf75d49a"
                                                         }
                                                     ]
                                                 }
@@ -13612,7 +13703,7 @@
                                                                             "var Search=values.txtPatientfilter;\r",
                                                                             "var myStore = Ext.getStore('PatientGridBind');\r",
                                                                             "\r",
-                                                                            "\r",
+                                                                            "/*\r",
                                                                             "myStore.clearFilter();\r",
                                                                             "\r",
                                                                             "\r",
@@ -13620,41 +13711,43 @@
                                                                             "{\r",
                                                                             "    myStore.filter('PatientHICN',Search);\r",
                                                                             "    myStore.load();\r",
-                                                                            "    \r",
+                                                                            "\r",
                                                                             "}\r",
                                                                             "if(type=='FirstName')\r",
                                                                             "{\r",
-                                                                            "    \r",
+                                                                            "\r",
                                                                             "    myStore.filter('PatientFname',Search);\r",
                                                                             "    myStore.load();\r",
-                                                                            "    \r",
+                                                                            "\r",
                                                                             "}\r",
                                                                             "if(type=='LastName')\r",
                                                                             "{\r",
-                                                                            "    \r",
+                                                                            "\r",
                                                                             "    myStore.filter('PatientLname',Search);\r",
                                                                             "    myStore.load();\r",
-                                                                            "    \r",
+                                                                            "\r",
                                                                             "}\r",
                                                                             "\r",
                                                                             "if(type=='ZipCode')\r",
                                                                             "{\r",
-                                                                            "    \r",
-                                                                            "    \r",
+                                                                            "\r",
+                                                                            "\r",
                                                                             "    myStore.filter('PatientZip',Search);\r",
                                                                             "    myStore.load();\r",
-                                                                            "    \r",
+                                                                            "\r",
                                                                             "}\r",
                                                                             "\r",
                                                                             "\r",
                                                                             "\r",
                                                                             "\r",
+                                                                            "*/\r",
+                                                                            "myStore.filter([{property: 'SelectFilter',value: type} , \r",
+                                                                            "                    {property: 'PatientHICN' , value: Search }]);\r",
                                                                             "\r",
                                                                             "\r",
                                                                             "\r",
                                                                             "\r",
                                                                             "\r",
-                                                                            "       \r",
                                                                             "\r",
                                                                             "\r",
                                                                             ""
@@ -14185,6 +14278,29 @@
                                                                     "designerId": "ced1e5bb-ed9f-431c-88c1-209e9f54695d"
                                                                 }
                                                             ]
+                                                        },
+                                                        {
+                                                            "type": "basiceventbinding",
+                                                            "reference": {
+                                                                "name": "listeners",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "fn": "onPagingtoolbarBeforeChange2",
+                                                                "implHandler": [
+                                                                    "var PatientGridBind = Ext.getStore('PatientGridBind');\r",
+                                                                    "\r",
+                                                                    "var type = Ext.get('ddlPatientFilter').getValue();\r",
+                                                                    "var Search = Ext.get('txtPatientfilter').getValue();\r",
+                                                                    "\r",
+                                                                    "PatientGridBind.getProxy().extraParams.SelectFilter = type;\r",
+                                                                    "PatientGridBind.getProxy().extraParams.Search = Search;"
+                                                                ],
+                                                                "name": "beforechange",
+                                                                "scope": "me"
+                                                            },
+                                                            "designerId": "2305c9e3-bc02-4e30-b73a-e3ad90a3b982"
                                                         }
                                                     ]
                                                 }
@@ -14417,6 +14533,7 @@
                                                                             "var Search=values.txtSupplierfilter;\r",
                                                                             "var myStore = Ext.getStore('SupplierGridBind');\r",
                                                                             "\r",
+                                                                            "/*\r",
                                                                             "myStore.clearFilter();\r",
                                                                             "\r",
                                                                             "if(type=='NPI')\r",
@@ -14441,7 +14558,9 @@
                                                                             "\r",
                                                                             "}\r",
                                                                             "\r",
-                                                                            "\r",
+                                                                            "*/\r",
+                                                                            "myStore.filter([{property: 'SelectFilter',value: type} , \r",
+                                                                            "                    {property: 'PatientHICN' , value: Search }]);\r",
                                                                             ""
                                                                         ],
                                                                         "name": "click",
@@ -14941,6 +15060,29 @@
                                                                     "designerId": "5fce8be1-1de5-4454-b2bf-879b0835a2e5"
                                                                 }
                                                             ]
+                                                        },
+                                                        {
+                                                            "type": "basiceventbinding",
+                                                            "reference": {
+                                                                "name": "listeners",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "fn": "onPagingtoolbarBeforeChange3",
+                                                                "implHandler": [
+                                                                    "var SupplierGridBind = Ext.getStore('SupplierGridBind');\r",
+                                                                    "\r",
+                                                                    "var type = Ext.get('ddlSupplierFilter').getValue();\r",
+                                                                    "var Search = Ext.get('txtSupplierfilter').getValue();\r",
+                                                                    "\r",
+                                                                    "SupplierGridBind.getProxy().extraParams.SelectFilter = type;\r",
+                                                                    "SupplierGridBind.getProxy().extraParams.Search = Search;"
+                                                                ],
+                                                                "name": "beforechange",
+                                                                "scope": "me"
+                                                            },
+                                                            "designerId": "082996ee-680e-4bb9-b260-69d2a30c9817"
                                                         }
                                                     ]
                                                 }

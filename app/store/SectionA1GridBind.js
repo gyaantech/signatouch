@@ -30,6 +30,7 @@ Ext.define('SignaTouch.store.SectionA1GridBind', {
             autoLoad: true,
             batchUpdateMode: 'complete',
             model: 'SignaTouch.model.SectionA1GridBind',
+            remoteFilter: true,
             storeId: 'SectionA1GridBind',
             pageSize: 10,
             proxy: {
