@@ -329,6 +329,7 @@
                 "hidden": true,
                 "id": "Menu",
                 "itemId": null,
+                "layout": null,
                 "layout|region": "west",
                 "layout|split": true,
                 "title": "Menu",
@@ -344,9 +345,14 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "animCollapse": false,
+                        "bodyStyle": [
+                            "background-color:#a5cfff;"
+                        ],
+                        "layout": "accordion",
                         "title": "Menu"
                     },
-                    "designerId": "c85825b0-5f33-4aba-818b-7e245df87dd5",
+                    "designerId": "5838ed96-c333-4a3b-8d88-3960068a6b73",
                     "cn": [
                         {
                             "type": "Ext.menu.Menu",
@@ -356,17 +362,11 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "bodyStyle": [
-                                    "background-color:#a5cfff;"
-                                ],
                                 "floating": false,
-                                "header": false,
-                                "hidden": false,
-                                "id": "Menu1",
-                                "itemId": "sideMenu",
-                                "width": null
+                                "id": "MenuID",
+                                "width": 120
                             },
-                            "designerId": "d98ae1fc-6d78-4977-b341-388596148fff",
+                            "designerId": "5df39415-de6d-49d1-87f2-173ef8f82f5e",
                             "cn": [
                                 {
                                     "type": "Ext.menu.Item",
@@ -376,11 +376,10 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "designer|displayName": "Dashboard",
-                                        "itemId": "Mselect",
+                                        "id": "DashboardID",
                                         "text": "Dashboard"
                                     },
-                                    "designerId": "c7cf3838-58ce-406f-af5e-ae3fabe6644d",
+                                    "designerId": "2a735db0-a8c3-444f-9bd0-8abf58e56459",
                                     "cn": [
                                         {
                                             "type": "basiceventbinding",
@@ -390,7 +389,7 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "fn": "onMselectClick",
+                                                "fn": "onDashboardIDClick",
                                                 "implHandler": [
                                                     "Ext.getCmp('Menu').show();\r",
                                                     "Ext.getCmp('Footer').show();\r",
@@ -438,7 +437,7 @@
                                                 "name": "click",
                                                 "scope": "me"
                                             },
-                                            "designerId": "c4480b40-e55c-4d6e-ad52-d3833133a5a8"
+                                            "designerId": "16def1c7-3b9e-43b3-a6be-22ae6a7263a1"
                                         }
                                     ]
                                 },
@@ -450,11 +449,10 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "designer|displayName": "Messaging",
-                                        "itemId": "Msendtodr",
+                                        "id": "MessagingID",
                                         "text": "Messaging"
                                     },
-                                    "designerId": "dc020b26-9bfd-44f5-bc1f-fbf39e79909c",
+                                    "designerId": "e607c815-2ff1-44ed-8f07-fb3eb95e2ed6",
                                     "cn": [
                                         {
                                             "type": "basiceventbinding",
@@ -464,7 +462,7 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "fn": "onMsendtodrClick",
+                                                "fn": "onMessagingIDClick",
                                                 "implHandler": [
                                                     "/*var mesg_url = localStorage.getItem(\"preauthURL\");\r",
                                                     "//Ext.get('Messaging1').dom.src = url;\r",
@@ -505,55 +503,27 @@
                                                 "name": "click",
                                                 "scope": "me"
                                             },
-                                            "designerId": "bbd042c7-cdbc-4c8a-9727-00a86a763c6b"
+                                            "designerId": "d038cd62-9f4f-4a3a-8d74-b30bbaba74d2"
                                         }
                                     ]
-                                },
-                                {
-                                    "type": "Ext.menu.Separator",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "designerId": "27c3bfc8-0fca-4993-8c97-d75fea711f90"
-                                },
-                                {
-                                    "type": "Ext.form.field.Display",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "fieldLabel": "<b>Form</b>",
-                                        "labelSeparator": "&nbsp;",
-                                        "value": null
-                                    },
-                                    "designerId": "c4d35677-97db-438b-b2c5-d081d72f24e8"
-                                },
-                                {
-                                    "type": "Ext.menu.Separator",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "designerId": "b4a30598-17af-42c7-9971-a2ada363199d"
-                                },
-                                {
-                                    "type": "Ext.form.field.Display",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "fieldLabel": "<b>CMS 484</b>",
-                                        "value": null
-                                    },
-                                    "designerId": "8795e2fd-61f7-4ea8-820e-c9db39682066"
-                                },
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.menu.Menu",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "floating": false,
+                                "id": "CMS484",
+                                "title": "CMS-484",
+                                "width": 120
+                            },
+                            "designerId": "e2aec05b-6923-4a30-a6f4-47e7b52baf5a",
+                            "cn": [
                                 {
                                     "type": "Ext.menu.Item",
                                     "reference": {
@@ -564,8 +534,8 @@
                                     "userConfig": {
                                         "designer|displayName": null,
                                         "hidden": true,
-                                        "id": "SectionAMenu",
-                                        "itemId": "MsectionA",
+                                        "id": "CMS484SectionA",
+                                        "itemId": null,
                                         "text": "Section A"
                                     },
                                     "designerId": "00fce188-8b56-4537-82c1-ea1761a7f23e",
@@ -725,756 +695,679 @@
                             ]
                         },
                         {
-                            "type": "Ext.container.Container",
+                            "type": "Ext.menu.Menu",
                             "reference": {
                                 "name": "items",
                                 "type": "array"
                             },
                             "codeClass": null,
                             "userConfig": {
+                                "bodyStyle": null,
+                                "floating": false,
                                 "hidden": true,
-                                "id": "Menu2Con",
-                                "margin": null,
-                                "style": [
-                                    "background-color:#a5cfff;"
-                                ]
+                                "id": "Maintanance",
+                                "title": "Maintenance",
+                                "width": null
                             },
-                            "designerId": "526c93fe-a984-47ae-bcea-e9617a0f41ba",
+                            "designerId": "73716934-7551-43f2-8a82-d014a9886d04",
                             "cn": [
                                 {
-                                    "type": "Ext.menu.Menu",
+                                    "type": "Ext.menu.Item",
                                     "reference": {
                                         "name": "items",
                                         "type": "array"
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "bodyStyle": [
-                                            "background-color:#a5cfff;"
-                                        ],
-                                        "floating": false,
-                                        "hidden": false,
-                                        "id": "Maintanance",
-                                        "width": null
+                                        "designer|displayName": "",
+                                        "itemId": "MNewPatient",
+                                        "text": "Patient / HICN"
                                     },
-                                    "designerId": "d3d7ff7e-3d8f-4189-b3f0-c70fa21ffa8a",
+                                    "designerId": "2d2e0763-6f0d-4c78-ad62-ac7c9851de09",
                                     "cn": [
                                         {
-                                            "type": "Ext.form.field.Display",
+                                            "type": "basiceventbinding",
                                             "reference": {
-                                                "name": "items",
+                                                "name": "listeners",
                                                 "type": "array"
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "fieldLabel": "<b>Maintenance</b>",
-                                                "value": null
+                                                "fn": "onMNewPatientClick",
+                                                "implHandler": [
+                                                    "Ext.getCmp('Menu').show();\r",
+                                                    "Ext.getCmp('Footer').show();\r",
+                                                    "Ext.getCmp('Header').show();\r",
+                                                    "\r",
+                                                    "// hide\r",
+                                                    "\r",
+                                                    "// section A\r",
+                                                    "Ext.getCmp('SectionAID').hide();\r",
+                                                    "Ext.getCmp('SectionA1NextID').hide();\r",
+                                                    "\r",
+                                                    "// section B\r",
+                                                    "Ext.getCmp('SectionB1NextID').hide();\r",
+                                                    "Ext.getCmp('sectionB1ID').hide();\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "//Physician Record\r",
+                                                    "Ext.getCmp('PhysicianPanelID').hide();\r",
+                                                    "Ext.getCmp('PhysicianViewID').hide();\r",
+                                                    "Ext.getCmp('PhysicianRecord').hide();\r",
+                                                    "\r",
+                                                    "//Supplier Record\r",
+                                                    "Ext.getCmp('SupplierRecord').hide();\r",
+                                                    " Ext.getCmp('SupplierPanelID').hide();\r",
+                                                    " Ext.getCmp('SupplierViewID').hide();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('ViewAll').hide();\r",
+                                                    "Ext.getCmp('Messaging').hide();\r",
+                                                    "Ext.getCmp('Dashboard').hide();\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "//Patient Record\r",
+                                                    "Ext.getCmp('PatientRecord').show();\r",
+                                                    "Ext.getCmp('PatientPanelID').hide();\r",
+                                                    "Ext.getCmp('PatientViewID').hide();\r",
+                                                    "Ext.getCmp('PatientForm').getForm().reset();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('AddUserPanelID').hide();\r",
+                                                    "// Clear store\r",
+                                                    "Ext.getCmp('ChangePasswordPanelID').hide();\r",
+                                                    "\r",
+                                                    "var myStore = Ext.getStore('PatientGridBind');\r",
+                                                    " myStore.clearFilter();\r",
+                                                    "myStore.load();\r",
+                                                    "Ext.getCmp('txtPatientfilterID').reset();\r",
+                                                    "Ext.getCmp('AddCOSID').hide();\r",
+                                                    "Ext.getCmp('AddAlias').hide();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('AddDomainID').hide();"
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
                                             },
-                                            "designerId": "294066f1-621c-4d08-a6bf-06bc92455e9f"
-                                        },
+                                            "designerId": "70ac5d16-9b70-4f35-ae13-4534f723fac4"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.menu.Item",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "MPhysician",
+                                        "text": "Physician"
+                                    },
+                                    "designerId": "aa756708-676f-4f12-b40c-c40e36accffa",
+                                    "cn": [
                                         {
-                                            "type": "Ext.menu.Separator",
+                                            "type": "basiceventbinding",
                                             "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "designerId": "a0d75724-ed0b-4039-bbdf-b576eafc6e88"
-                                        },
-                                        {
-                                            "type": "Ext.menu.Item",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "designer|displayName": "",
-                                                "itemId": "MNewPatient",
-                                                "text": "Patient / HICN"
-                                            },
-                                            "designerId": "2d2e0763-6f0d-4c78-ad62-ac7c9851de09",
-                                            "cn": [
-                                                {
-                                                    "type": "basiceventbinding",
-                                                    "reference": {
-                                                        "name": "listeners",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "fn": "onMNewPatientClick",
-                                                        "implHandler": [
-                                                            "Ext.getCmp('Menu').show();\r",
-                                                            "Ext.getCmp('Footer').show();\r",
-                                                            "Ext.getCmp('Header').show();\r",
-                                                            "\r",
-                                                            "// hide\r",
-                                                            "\r",
-                                                            "// section A\r",
-                                                            "Ext.getCmp('SectionAID').hide();\r",
-                                                            "Ext.getCmp('SectionA1NextID').hide();\r",
-                                                            "\r",
-                                                            "// section B\r",
-                                                            "Ext.getCmp('SectionB1NextID').hide();\r",
-                                                            "Ext.getCmp('sectionB1ID').hide();\r",
-                                                            "\r",
-                                                            "\r",
-                                                            "//Physician Record\r",
-                                                            "Ext.getCmp('PhysicianPanelID').hide();\r",
-                                                            "Ext.getCmp('PhysicianViewID').hide();\r",
-                                                            "Ext.getCmp('PhysicianRecord').hide();\r",
-                                                            "\r",
-                                                            "//Supplier Record\r",
-                                                            "Ext.getCmp('SupplierRecord').hide();\r",
-                                                            " Ext.getCmp('SupplierPanelID').hide();\r",
-                                                            " Ext.getCmp('SupplierViewID').hide();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('ViewAll').hide();\r",
-                                                            "Ext.getCmp('Messaging').hide();\r",
-                                                            "Ext.getCmp('Dashboard').hide();\r",
-                                                            "\r",
-                                                            "\r",
-                                                            "//Patient Record\r",
-                                                            "Ext.getCmp('PatientRecord').show();\r",
-                                                            "Ext.getCmp('PatientPanelID').hide();\r",
-                                                            "Ext.getCmp('PatientViewID').hide();\r",
-                                                            "Ext.getCmp('PatientForm').getForm().reset();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('AddUserPanelID').hide();\r",
-                                                            "// Clear store\r",
-                                                            "Ext.getCmp('ChangePasswordPanelID').hide();\r",
-                                                            "\r",
-                                                            "var myStore = Ext.getStore('PatientGridBind');\r",
-                                                            " myStore.clearFilter();\r",
-                                                            "myStore.load();\r",
-                                                            "Ext.getCmp('txtPatientfilterID').reset();\r",
-                                                            "Ext.getCmp('AddCOSID').hide();\r",
-                                                            "Ext.getCmp('AddAlias').hide();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('AddDomainID').hide();"
-                                                        ],
-                                                        "name": "click",
-                                                        "scope": "me"
-                                                    },
-                                                    "designerId": "70ac5d16-9b70-4f35-ae13-4534f723fac4"
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "Ext.menu.Item",
-                                            "reference": {
-                                                "name": "items",
+                                                "name": "listeners",
                                                 "type": "array"
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "itemId": "MPhysician",
-                                                "text": "Physician"
+                                                "fn": "onMPhysicianClick",
+                                                "implHandler": [
+                                                    "Ext.getCmp('Menu').show();\r",
+                                                    "Ext.getCmp('Footer').show();\r",
+                                                    "Ext.getCmp('Header').show();\r",
+                                                    "\r",
+                                                    "// hide\r",
+                                                    "\r",
+                                                    "// section A\r",
+                                                    "Ext.getCmp('SectionAID').hide();\r",
+                                                    "Ext.getCmp('SectionA1NextID').hide();\r",
+                                                    "\r",
+                                                    "// section B\r",
+                                                    "Ext.getCmp('SectionB1NextID').hide();\r",
+                                                    "Ext.getCmp('sectionB1ID').hide();\r",
+                                                    "\r",
+                                                    "//Patient Record\r",
+                                                    "Ext.getCmp('PatientRecord').hide();\r",
+                                                    "Ext.getCmp('PatientPanelID').hide();\r",
+                                                    "Ext.getCmp('PatientViewID').hide();\r",
+                                                    "\r",
+                                                    "//Supplier Record\r",
+                                                    "Ext.getCmp('SupplierRecord').hide();\r",
+                                                    " Ext.getCmp('SupplierPanelID').hide();\r",
+                                                    " Ext.getCmp('SupplierViewID').hide();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('ViewAll').hide();\r",
+                                                    "Ext.getCmp('Messaging').hide();\r",
+                                                    "Ext.getCmp('Dashboard').hide();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('AddUserPanelID').hide();\r",
+                                                    "\r",
+                                                    "//Physician Record\r",
+                                                    "Ext.getCmp('PhysicianPanelID').hide();\r",
+                                                    "Ext.getCmp('PhysicianViewID').hide();\r",
+                                                    "Ext.getCmp('PhysicianRecord').show();\r",
+                                                    "Ext.getCmp('PhysicianForm').getForm().reset();\r",
+                                                    "// Clear store\r",
+                                                    "\r",
+                                                    "var myStore = Ext.getStore('PhysicianGridBind');\r",
+                                                    " myStore.clearFilter();\r",
+                                                    "myStore.load();\r",
+                                                    "Ext.getCmp('txtPhysicianfilterID').reset();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('ChangePasswordPanelID').hide();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('AddCOSID').hide();\r",
+                                                    "Ext.getCmp('AddAlias').hide();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('AddDomainID').hide();"
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
                                             },
-                                            "designerId": "aa756708-676f-4f12-b40c-c40e36accffa",
-                                            "cn": [
-                                                {
-                                                    "type": "basiceventbinding",
-                                                    "reference": {
-                                                        "name": "listeners",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "fn": "onMPhysicianClick",
-                                                        "implHandler": [
-                                                            "Ext.getCmp('Menu').show();\r",
-                                                            "Ext.getCmp('Footer').show();\r",
-                                                            "Ext.getCmp('Header').show();\r",
-                                                            "\r",
-                                                            "// hide\r",
-                                                            "\r",
-                                                            "// section A\r",
-                                                            "Ext.getCmp('SectionAID').hide();\r",
-                                                            "Ext.getCmp('SectionA1NextID').hide();\r",
-                                                            "\r",
-                                                            "// section B\r",
-                                                            "Ext.getCmp('SectionB1NextID').hide();\r",
-                                                            "Ext.getCmp('sectionB1ID').hide();\r",
-                                                            "\r",
-                                                            "//Patient Record\r",
-                                                            "Ext.getCmp('PatientRecord').hide();\r",
-                                                            "Ext.getCmp('PatientPanelID').hide();\r",
-                                                            "Ext.getCmp('PatientViewID').hide();\r",
-                                                            "\r",
-                                                            "//Supplier Record\r",
-                                                            "Ext.getCmp('SupplierRecord').hide();\r",
-                                                            " Ext.getCmp('SupplierPanelID').hide();\r",
-                                                            " Ext.getCmp('SupplierViewID').hide();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('ViewAll').hide();\r",
-                                                            "Ext.getCmp('Messaging').hide();\r",
-                                                            "Ext.getCmp('Dashboard').hide();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('AddUserPanelID').hide();\r",
-                                                            "\r",
-                                                            "//Physician Record\r",
-                                                            "Ext.getCmp('PhysicianPanelID').hide();\r",
-                                                            "Ext.getCmp('PhysicianViewID').hide();\r",
-                                                            "Ext.getCmp('PhysicianRecord').show();\r",
-                                                            "Ext.getCmp('PhysicianForm').getForm().reset();\r",
-                                                            "// Clear store\r",
-                                                            "\r",
-                                                            "var myStore = Ext.getStore('PhysicianGridBind');\r",
-                                                            " myStore.clearFilter();\r",
-                                                            "myStore.load();\r",
-                                                            "Ext.getCmp('txtPhysicianfilterID').reset();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('ChangePasswordPanelID').hide();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('AddCOSID').hide();\r",
-                                                            "Ext.getCmp('AddAlias').hide();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('AddDomainID').hide();"
-                                                        ],
-                                                        "name": "click",
-                                                        "scope": "me"
-                                                    },
-                                                    "designerId": "9271c586-d413-4915-8185-ce535afa5735"
-                                                }
-                                            ]
-                                        },
+                                            "designerId": "9271c586-d413-4915-8185-ce535afa5735"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.menu.Item",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "Supplier",
+                                        "itemId": "MSupplier",
+                                        "text": "Supplier"
+                                    },
+                                    "designerId": "43e21bf8-c494-4b35-9af3-ff4a6aa89d07",
+                                    "cn": [
                                         {
-                                            "type": "Ext.menu.Item",
+                                            "type": "basiceventbinding",
                                             "reference": {
-                                                "name": "items",
+                                                "name": "listeners",
                                                 "type": "array"
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "designer|displayName": "Supplier",
-                                                "itemId": "MSupplier",
-                                                "text": "Supplier"
+                                                "fn": "onMSupplierClick",
+                                                "implHandler": [
+                                                    "Ext.getCmp('Menu').show();\r",
+                                                    "Ext.getCmp('Footer').show();\r",
+                                                    "Ext.getCmp('Header').show();\r",
+                                                    "\r",
+                                                    "// hide\r",
+                                                    "\r",
+                                                    "// section A\r",
+                                                    "Ext.getCmp('SectionAID').hide();\r",
+                                                    "Ext.getCmp('SectionA1NextID').hide();\r",
+                                                    "\r",
+                                                    "// section B\r",
+                                                    "Ext.getCmp('SectionB1NextID').hide();\r",
+                                                    "Ext.getCmp('sectionB1ID').hide();\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "//Physician Record\r",
+                                                    "Ext.getCmp('PhysicianPanelID').hide();\r",
+                                                    "Ext.getCmp('PhysicianViewID').hide();\r",
+                                                    "Ext.getCmp('PhysicianRecord').hide();\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "//Patient Record\r",
+                                                    "Ext.getCmp('PatientRecord').hide();\r",
+                                                    "Ext.getCmp('PatientPanelID').hide();\r",
+                                                    "Ext.getCmp('PatientViewID').hide();\r",
+                                                    "Ext.getCmp('AddUserPanelID').hide();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('ViewAll').hide();\r",
+                                                    "Ext.getCmp('Messaging').hide();\r",
+                                                    "Ext.getCmp('Dashboard').hide();\r",
+                                                    "\r",
+                                                    "//Supplier Record\r",
+                                                    "Ext.getCmp('SupplierRecord').show();\r",
+                                                    " Ext.getCmp('SupplierPanelID').hide();\r",
+                                                    " Ext.getCmp('SupplierViewID').hide();\r",
+                                                    "Ext.getCmp('SupplierForm').getForm().reset();\r",
+                                                    "// Clear store\r",
+                                                    "\r",
+                                                    "var myStore = Ext.getStore('SupplierGridBind');\r",
+                                                    "myStore.clearFilter();\r",
+                                                    "myStore.load();\r",
+                                                    "Ext.getCmp('txtSupplierfilterRecordID').reset();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('ChangePasswordPanelID').hide();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('AddCOSID').hide();\r",
+                                                    "Ext.getCmp('AddAlias').hide();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('AddDomainID').hide();"
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
                                             },
-                                            "designerId": "43e21bf8-c494-4b35-9af3-ff4a6aa89d07",
-                                            "cn": [
-                                                {
-                                                    "type": "basiceventbinding",
-                                                    "reference": {
-                                                        "name": "listeners",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "fn": "onMSupplierClick",
-                                                        "implHandler": [
-                                                            "Ext.getCmp('Menu').show();\r",
-                                                            "Ext.getCmp('Footer').show();\r",
-                                                            "Ext.getCmp('Header').show();\r",
-                                                            "\r",
-                                                            "// hide\r",
-                                                            "\r",
-                                                            "// section A\r",
-                                                            "Ext.getCmp('SectionAID').hide();\r",
-                                                            "Ext.getCmp('SectionA1NextID').hide();\r",
-                                                            "\r",
-                                                            "// section B\r",
-                                                            "Ext.getCmp('SectionB1NextID').hide();\r",
-                                                            "Ext.getCmp('sectionB1ID').hide();\r",
-                                                            "\r",
-                                                            "\r",
-                                                            "//Physician Record\r",
-                                                            "Ext.getCmp('PhysicianPanelID').hide();\r",
-                                                            "Ext.getCmp('PhysicianViewID').hide();\r",
-                                                            "Ext.getCmp('PhysicianRecord').hide();\r",
-                                                            "\r",
-                                                            "\r",
-                                                            "//Patient Record\r",
-                                                            "Ext.getCmp('PatientRecord').hide();\r",
-                                                            "Ext.getCmp('PatientPanelID').hide();\r",
-                                                            "Ext.getCmp('PatientViewID').hide();\r",
-                                                            "Ext.getCmp('AddUserPanelID').hide();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('ViewAll').hide();\r",
-                                                            "Ext.getCmp('Messaging').hide();\r",
-                                                            "Ext.getCmp('Dashboard').hide();\r",
-                                                            "\r",
-                                                            "//Supplier Record\r",
-                                                            "Ext.getCmp('SupplierRecord').show();\r",
-                                                            " Ext.getCmp('SupplierPanelID').hide();\r",
-                                                            " Ext.getCmp('SupplierViewID').hide();\r",
-                                                            "Ext.getCmp('SupplierForm').getForm().reset();\r",
-                                                            "// Clear store\r",
-                                                            "\r",
-                                                            "var myStore = Ext.getStore('SupplierGridBind');\r",
-                                                            "myStore.clearFilter();\r",
-                                                            "myStore.load();\r",
-                                                            "Ext.getCmp('txtSupplierfilterRecordID').reset();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('ChangePasswordPanelID').hide();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('AddCOSID').hide();\r",
-                                                            "Ext.getCmp('AddAlias').hide();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('AddDomainID').hide();"
-                                                        ],
-                                                        "name": "click",
-                                                        "scope": "me"
-                                                    },
-                                                    "designerId": "66abfac3-dbd1-44f7-9014-4c500aa9ce3f"
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "Ext.menu.Separator",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "designerId": "36b9a46c-ec05-409b-8dcc-6d840ca7c953"
-                                        },
-                                        {
-                                            "type": "Ext.form.field.Display",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "fieldLabel": "<b>Manage Account</b>",
-                                                "labelWidth": 150,
-                                                "value": null
-                                            },
-                                            "designerId": "42e53401-1af4-4bca-b03e-d23bc606bdc6"
-                                        },
-                                        {
-                                            "type": "Ext.menu.Separator",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "designerId": "7a104305-abdc-45ac-84c1-8f5a176a6991"
-                                        },
-                                        {
-                                            "type": "Ext.menu.Item",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "id": "MAddUserID",
-                                                "text": "Add User"
-                                            },
-                                            "designerId": "07cda5a2-3d06-403a-8999-30a1bbb79bbf",
-                                            "cn": [
-                                                {
-                                                    "type": "basiceventbinding",
-                                                    "reference": {
-                                                        "name": "listeners",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "fn": "onMAddUserIDClick",
-                                                        "implHandler": [
-                                                            "Ext.getCmp('Menu').show();\r",
-                                                            "Ext.getCmp('Footer').show();\r",
-                                                            "Ext.getCmp('Header').show();\r",
-                                                            "\r",
-                                                            "// hide\r",
-                                                            "\r",
-                                                            "// section A\r",
-                                                            "Ext.getCmp('SectionAID').hide();\r",
-                                                            "Ext.getCmp('SectionA1NextID').hide();\r",
-                                                            "\r",
-                                                            "// section B\r",
-                                                            "Ext.getCmp('SectionB1NextID').hide();\r",
-                                                            "Ext.getCmp('sectionB1ID').hide();\r",
-                                                            "\r",
-                                                            "//Patient Record\r",
-                                                            "Ext.getCmp('PatientRecord').hide();\r",
-                                                            "Ext.getCmp('PatientPanelID').hide();\r",
-                                                            "Ext.getCmp('PatientViewID').hide();\r",
-                                                            "\r",
-                                                            "//Physician Record\r",
-                                                            "Ext.getCmp('PhysicianPanelID').hide();\r",
-                                                            "Ext.getCmp('PhysicianViewID').hide();\r",
-                                                            "Ext.getCmp('PhysicianRecord').hide();\r",
-                                                            "\r",
-                                                            "//Supplier Record\r",
-                                                            "Ext.getCmp('SupplierRecord').hide();\r",
-                                                            " Ext.getCmp('SupplierPanelID').hide();\r",
-                                                            " Ext.getCmp('SupplierViewID').hide();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('ViewAll').hide();\r",
-                                                            "Ext.getCmp('Messaging').hide();\r",
-                                                            "Ext.getCmp('Dashboard').hide();\r",
-                                                            "\r",
-                                                            "\r",
-                                                            "//Dashboard\r",
-                                                            "Ext.getCmp('AddUserForm').getForm().reset();\r",
-                                                            "Ext.getCmp('AddUserPanelID').show();\r",
-                                                            "Ext.getCmp('AddAlias').hide();\r",
-                                                            "Ext.getCmp('ChangePasswordPanelID').hide();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('AddCOSID').hide();\r",
-                                                            "var domain = localStorage.getItem(\"domain\");\r",
-                                                            "var domain = domain.replace('.st', \"\");\r",
-                                                            "Ext.getCmp('userDomainID').setValue('<b>@'+domain+'</b>');\r",
-                                                            "Ext.getCmp('hiddenDomainID').setValue('@'+domain);\r",
-                                                            "\r",
-                                                            "Ext.getCmp('AddDomainID').hide();\r",
-                                                            ""
-                                                        ],
-                                                        "name": "click",
-                                                        "scope": "me"
-                                                    },
-                                                    "designerId": "c5eaceec-7504-4f2d-a743-4d5274f74513"
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "Ext.menu.Item",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "id": "MAddCOSID",
-                                                "text": "Add COS"
-                                            },
-                                            "designerId": "1e9223ae-8c4c-4c53-9ec6-0cd3cd7d3a7f",
-                                            "cn": [
-                                                {
-                                                    "type": "basiceventbinding",
-                                                    "reference": {
-                                                        "name": "listeners",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "fn": "onMAddCOSIDClick",
-                                                        "implHandler": [
-                                                            "Ext.getCmp('Menu').show();\r",
-                                                            "Ext.getCmp('Footer').show();\r",
-                                                            "Ext.getCmp('Header').show();\r",
-                                                            "\r",
-                                                            "// hide\r",
-                                                            "\r",
-                                                            "// section A\r",
-                                                            "Ext.getCmp('SectionAID').hide();\r",
-                                                            "Ext.getCmp('SectionA1NextID').hide();\r",
-                                                            "\r",
-                                                            "// section B\r",
-                                                            "Ext.getCmp('SectionB1NextID').hide();\r",
-                                                            "Ext.getCmp('sectionB1ID').hide();\r",
-                                                            "\r",
-                                                            "//Patient Record\r",
-                                                            "Ext.getCmp('PatientRecord').hide();\r",
-                                                            "Ext.getCmp('PatientPanelID').hide();\r",
-                                                            "Ext.getCmp('PatientViewID').hide();\r",
-                                                            "\r",
-                                                            "//Physician Record\r",
-                                                            "Ext.getCmp('PhysicianPanelID').hide();\r",
-                                                            "Ext.getCmp('PhysicianViewID').hide();\r",
-                                                            "Ext.getCmp('PhysicianRecord').hide();\r",
-                                                            "\r",
-                                                            "//Supplier Record\r",
-                                                            "Ext.getCmp('SupplierRecord').hide();\r",
-                                                            " Ext.getCmp('SupplierPanelID').hide();\r",
-                                                            " Ext.getCmp('SupplierViewID').hide();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('ViewAll').hide();\r",
-                                                            "Ext.getCmp('Messaging').hide();\r",
-                                                            "Ext.getCmp('Dashboard').hide();\r",
-                                                            "Ext.getCmp('AddAlias').hide();\r",
-                                                            "\r",
-                                                            "//COS\r",
-                                                            "Ext.getCmp('COSForm').getForm().reset();\r",
-                                                            "Ext.getCmp('AddCOSID').show();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('AddUserPanelID').hide();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('ChangePasswordPanelID').hide();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('AddDomainID').hide();\r",
-                                                            ""
-                                                        ],
-                                                        "name": "click",
-                                                        "scope": "me"
-                                                    },
-                                                    "designerId": "a3a8fc03-7f93-4f84-81a7-f865552eb3e0"
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "Ext.menu.Item",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "id": "MAddAlliasID",
-                                                "text": "Add Alias"
-                                            },
-                                            "designerId": "5facd3d0-b0db-43d7-af94-0f6e17eb8373",
-                                            "cn": [
-                                                {
-                                                    "type": "basiceventbinding",
-                                                    "reference": {
-                                                        "name": "listeners",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "fn": "onMAddAlliasIDClick",
-                                                        "implHandler": [
-                                                            "Ext.getCmp('Menu').show();\r",
-                                                            "Ext.getCmp('Footer').show();\r",
-                                                            "Ext.getCmp('Header').show();\r",
-                                                            "\r",
-                                                            "// hide\r",
-                                                            "\r",
-                                                            "// section A\r",
-                                                            "Ext.getCmp('SectionAID').hide();\r",
-                                                            "Ext.getCmp('SectionA1NextID').hide();\r",
-                                                            "\r",
-                                                            "// section B\r",
-                                                            "Ext.getCmp('SectionB1NextID').hide();\r",
-                                                            "Ext.getCmp('sectionB1ID').hide();\r",
-                                                            "\r",
-                                                            "//Patient Record\r",
-                                                            "Ext.getCmp('PatientRecord').hide();\r",
-                                                            "Ext.getCmp('PatientPanelID').hide();\r",
-                                                            "Ext.getCmp('PatientViewID').hide();\r",
-                                                            "\r",
-                                                            "//Physician Record\r",
-                                                            "Ext.getCmp('PhysicianPanelID').hide();\r",
-                                                            "Ext.getCmp('PhysicianViewID').hide();\r",
-                                                            "Ext.getCmp('PhysicianRecord').hide();\r",
-                                                            "\r",
-                                                            "//Supplier Record\r",
-                                                            "Ext.getCmp('SupplierRecord').hide();\r",
-                                                            " Ext.getCmp('SupplierPanelID').hide();\r",
-                                                            " Ext.getCmp('SupplierViewID').hide();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('ViewAll').hide();\r",
-                                                            "Ext.getCmp('Messaging').hide();\r",
-                                                            "Ext.getCmp('Dashboard').hide();\r",
-                                                            "\r",
-                                                            "\r",
-                                                            "//COS\r",
-                                                            "\r",
-                                                            "Ext.getCmp('AddUserPanelID').hide();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('ChangePasswordPanelID').hide();\r",
-                                                            "Ext.getCmp('AddCOSID').hide();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('AliasForm').getForm().reset();\r",
-                                                            "Ext.getCmp('AddAlias').show();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('AddDomainID').hide();"
-                                                        ],
-                                                        "name": "click",
-                                                        "scope": "me"
-                                                    },
-                                                    "designerId": "05e22bf5-6966-4704-8536-86cba16a2b2e"
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "Ext.menu.Item",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "id": "MAddDomainID",
-                                                "text": "Add Domain"
-                                            },
-                                            "designerId": "b76baf46-eb6e-4ba9-9ad7-ee27bb1aefd4",
-                                            "cn": [
-                                                {
-                                                    "type": "basiceventbinding",
-                                                    "reference": {
-                                                        "name": "listeners",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "fn": "onMAddDomainIDClick",
-                                                        "implHandler": [
-                                                            "Ext.getCmp('Menu').show();\r",
-                                                            "Ext.getCmp('Footer').show();\r",
-                                                            "Ext.getCmp('Header').show();\r",
-                                                            "\r",
-                                                            "// hide\r",
-                                                            "\r",
-                                                            "// section A\r",
-                                                            "Ext.getCmp('SectionAID').hide();\r",
-                                                            "Ext.getCmp('SectionA1NextID').hide();\r",
-                                                            "\r",
-                                                            "// section B\r",
-                                                            "Ext.getCmp('SectionB1NextID').hide();\r",
-                                                            "Ext.getCmp('sectionB1ID').hide();\r",
-                                                            "\r",
-                                                            "//Patient Record\r",
-                                                            "Ext.getCmp('PatientRecord').hide();\r",
-                                                            "Ext.getCmp('PatientPanelID').hide();\r",
-                                                            "Ext.getCmp('PatientViewID').hide();\r",
-                                                            "\r",
-                                                            "//Physician Record\r",
-                                                            "Ext.getCmp('PhysicianPanelID').hide();\r",
-                                                            "Ext.getCmp('PhysicianViewID').hide();\r",
-                                                            "Ext.getCmp('PhysicianRecord').hide();\r",
-                                                            "\r",
-                                                            "//Supplier Record\r",
-                                                            "Ext.getCmp('SupplierRecord').hide();\r",
-                                                            " Ext.getCmp('SupplierPanelID').hide();\r",
-                                                            " Ext.getCmp('SupplierViewID').hide();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('ViewAll').hide();\r",
-                                                            "Ext.getCmp('Messaging').hide();\r",
-                                                            "Ext.getCmp('Dashboard').hide();\r",
-                                                            "Ext.getCmp('AddAlias').hide();\r",
-                                                            "\r",
-                                                            "//COS\r",
-                                                            "Ext.getCmp('AddCOSID').hide();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('AddUserPanelID').hide();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('ChangePasswordPanelID').hide();\r",
-                                                            "\r",
-                                                            "Ext.getCmp('DomainForm').getForm().reset();\r",
-                                                            "Ext.getCmp('AddDomainID').show();\r",
-                                                            ""
-                                                        ],
-                                                        "name": "click",
-                                                        "scope": "me"
-                                                    },
-                                                    "designerId": "19ae1411-77de-4262-a32d-a62e0a9c409f"
-                                                }
-                                            ]
+                                            "designerId": "66abfac3-dbd1-44f7-9014-4c500aa9ce3f"
                                         }
                                     ]
                                 }
                             ]
                         },
                         {
-                            "type": "Ext.container.Container",
+                            "type": "Ext.menu.Menu",
                             "reference": {
                                 "name": "items",
                                 "type": "array"
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "style": [
-                                    "background-color:#a5cfff;"
-                                ]
+                                "bodyStyle": null,
+                                "floating": false,
+                                "hidden": true,
+                                "id": "ManageAccountID",
+                                "title": "Manage Account",
+                                "width": null
                             },
-                            "designerId": "114fd688-7303-4a46-b215-74ea4dd68adc",
+                            "designerId": "52cde567-2976-48cc-8eb4-60b74668ee15",
                             "cn": [
                                 {
-                                    "type": "Ext.form.FieldSet",
+                                    "type": "Ext.menu.Item",
                                     "reference": {
                                         "name": "items",
                                         "type": "array"
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "id": "LegendID",
-                                        "margin": "15 0 0 0",
-                                        "style": [
-                                            "border-style:solid;\r",
-                                            "border-color:#E1E1E1;\r",
-                                            ""
-                                        ],
-                                        "title": "<b>Legends</b>",
-                                        "width": 180
+                                        "id": "MAddUserID",
+                                        "text": "Add User"
                                     },
-                                    "designerId": "d95d09bc-cdd6-4ba5-a8bb-84c4f54708a8",
+                                    "designerId": "07cda5a2-3d06-403a-8999-30a1bbb79bbf",
                                     "cn": [
                                         {
-                                            "type": "Ext.container.Container",
+                                            "type": "basiceventbinding",
                                             "reference": {
-                                                "name": "items",
+                                                "name": "listeners",
                                                 "type": "array"
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "designer|displayName": "Edit",
-                                                "html": [
-                                                    "<tr>\r",
-                                                    "<td><img src=\"resources/images/edit.png\" width=\"20px\" Heigth=\"20px\"></td>\r",
-                                                    "<td>Edit</td>\r",
-                                                    "</tr>\r",
+                                                "fn": "onMAddUserIDClick",
+                                                "implHandler": [
+                                                    "Ext.getCmp('Menu').show();\r",
+                                                    "Ext.getCmp('Footer').show();\r",
+                                                    "Ext.getCmp('Header').show();\r",
                                                     "\r",
+                                                    "// hide\r",
+                                                    "\r",
+                                                    "// section A\r",
+                                                    "Ext.getCmp('SectionAID').hide();\r",
+                                                    "Ext.getCmp('SectionA1NextID').hide();\r",
+                                                    "\r",
+                                                    "// section B\r",
+                                                    "Ext.getCmp('SectionB1NextID').hide();\r",
+                                                    "Ext.getCmp('sectionB1ID').hide();\r",
+                                                    "\r",
+                                                    "//Patient Record\r",
+                                                    "Ext.getCmp('PatientRecord').hide();\r",
+                                                    "Ext.getCmp('PatientPanelID').hide();\r",
+                                                    "Ext.getCmp('PatientViewID').hide();\r",
+                                                    "\r",
+                                                    "//Physician Record\r",
+                                                    "Ext.getCmp('PhysicianPanelID').hide();\r",
+                                                    "Ext.getCmp('PhysicianViewID').hide();\r",
+                                                    "Ext.getCmp('PhysicianRecord').hide();\r",
+                                                    "\r",
+                                                    "//Supplier Record\r",
+                                                    "Ext.getCmp('SupplierRecord').hide();\r",
+                                                    " Ext.getCmp('SupplierPanelID').hide();\r",
+                                                    " Ext.getCmp('SupplierViewID').hide();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('ViewAll').hide();\r",
+                                                    "Ext.getCmp('Messaging').hide();\r",
+                                                    "Ext.getCmp('Dashboard').hide();\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "//Dashboard\r",
+                                                    "Ext.getCmp('AddUserForm').getForm().reset();\r",
+                                                    "Ext.getCmp('AddUserPanelID').show();\r",
+                                                    "Ext.getCmp('AddAlias').hide();\r",
+                                                    "Ext.getCmp('ChangePasswordPanelID').hide();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('AddCOSID').hide();\r",
+                                                    "var domain = localStorage.getItem(\"domain\");\r",
+                                                    "var domain = domain.replace('.st', \"\");\r",
+                                                    "Ext.getCmp('userDomainID').setValue('<b>@'+domain+'</b>');\r",
+                                                    "Ext.getCmp('hiddenDomainID').setValue('@'+domain);\r",
+                                                    "\r",
+                                                    "Ext.getCmp('AddDomainID').hide();\r",
                                                     ""
                                                 ],
-                                                "padding": "5 0 0 0"
+                                                "name": "click",
+                                                "scope": "me"
                                             },
-                                            "designerId": "f25dd80c-b1e1-4814-86fa-16775aed0299"
-                                        },
-                                        {
-                                            "type": "Ext.container.Container",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "designer|displayName": "Approve/Review",
-                                                "html": [
-                                                    "<tr>\r",
-                                                    "<td><img src=\"resources/images/review.png\" width=\"20px\" Heigth=\"20px\"></td>\r",
-                                                    "<td>Approve/Review</td>\r",
-                                                    "</tr>"
-                                                ],
-                                                "padding": "5 0 0 0"
-                                            },
-                                            "designerId": "8719a69a-6a8c-48b8-bbd2-4bcc7461cbd5"
-                                        },
-                                        {
-                                            "type": "Ext.container.Container",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "designer|displayName": "Send to Dr. office",
-                                                "html": [
-                                                    "<tr>\r",
-                                                    "<td><img src=\"resources/images/doctor.png\" width=\"20px\" Heigth=\"20px\"></td>\r",
-                                                    "<td>Send to Dr. Office</td>\r",
-                                                    "</tr>"
-                                                ],
-                                                "padding": "5 0 0 0"
-                                            },
-                                            "designerId": "50c3273d-2b2e-4c8e-9955-c8af048f7a91"
-                                        },
-                                        {
-                                            "type": "Ext.container.Container",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "designer|displayName": "View",
-                                                "html": [
-                                                    "<tr>\r",
-                                                    "<td><img src=\"resources/images/view.png\" width=\"20px\" Heigth=\"20px\"></td>\r",
-                                                    "<td>View</td>\r",
-                                                    "</tr>"
-                                                ],
-                                                "padding": "5 0 5 0"
-                                            },
-                                            "designerId": "ffb90caf-0262-43dd-b405-99625467b762"
+                                            "designerId": "c5eaceec-7504-4f2d-a743-4d5274f74513"
                                         }
                                     ]
+                                },
+                                {
+                                    "type": "Ext.menu.Item",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "id": "MAddCOSID",
+                                        "text": "Add COS"
+                                    },
+                                    "designerId": "1e9223ae-8c4c-4c53-9ec6-0cd3cd7d3a7f",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onMAddCOSIDClick",
+                                                "implHandler": [
+                                                    "Ext.getCmp('Menu').show();\r",
+                                                    "Ext.getCmp('Footer').show();\r",
+                                                    "Ext.getCmp('Header').show();\r",
+                                                    "\r",
+                                                    "// hide\r",
+                                                    "\r",
+                                                    "// section A\r",
+                                                    "Ext.getCmp('SectionAID').hide();\r",
+                                                    "Ext.getCmp('SectionA1NextID').hide();\r",
+                                                    "\r",
+                                                    "// section B\r",
+                                                    "Ext.getCmp('SectionB1NextID').hide();\r",
+                                                    "Ext.getCmp('sectionB1ID').hide();\r",
+                                                    "\r",
+                                                    "//Patient Record\r",
+                                                    "Ext.getCmp('PatientRecord').hide();\r",
+                                                    "Ext.getCmp('PatientPanelID').hide();\r",
+                                                    "Ext.getCmp('PatientViewID').hide();\r",
+                                                    "\r",
+                                                    "//Physician Record\r",
+                                                    "Ext.getCmp('PhysicianPanelID').hide();\r",
+                                                    "Ext.getCmp('PhysicianViewID').hide();\r",
+                                                    "Ext.getCmp('PhysicianRecord').hide();\r",
+                                                    "\r",
+                                                    "//Supplier Record\r",
+                                                    "Ext.getCmp('SupplierRecord').hide();\r",
+                                                    " Ext.getCmp('SupplierPanelID').hide();\r",
+                                                    " Ext.getCmp('SupplierViewID').hide();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('ViewAll').hide();\r",
+                                                    "Ext.getCmp('Messaging').hide();\r",
+                                                    "Ext.getCmp('Dashboard').hide();\r",
+                                                    "Ext.getCmp('AddAlias').hide();\r",
+                                                    "\r",
+                                                    "//COS\r",
+                                                    "Ext.getCmp('COSForm').getForm().reset();\r",
+                                                    "Ext.getCmp('AddCOSID').show();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('AddUserPanelID').hide();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('ChangePasswordPanelID').hide();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('AddDomainID').hide();\r",
+                                                    ""
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "a3a8fc03-7f93-4f84-81a7-f865552eb3e0"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.menu.Item",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "id": "MAddAlliasID",
+                                        "text": "Add Alias"
+                                    },
+                                    "designerId": "5facd3d0-b0db-43d7-af94-0f6e17eb8373",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onMAddAlliasIDClick",
+                                                "implHandler": [
+                                                    "Ext.getCmp('Menu').show();\r",
+                                                    "Ext.getCmp('Footer').show();\r",
+                                                    "Ext.getCmp('Header').show();\r",
+                                                    "\r",
+                                                    "// hide\r",
+                                                    "\r",
+                                                    "// section A\r",
+                                                    "Ext.getCmp('SectionAID').hide();\r",
+                                                    "Ext.getCmp('SectionA1NextID').hide();\r",
+                                                    "\r",
+                                                    "// section B\r",
+                                                    "Ext.getCmp('SectionB1NextID').hide();\r",
+                                                    "Ext.getCmp('sectionB1ID').hide();\r",
+                                                    "\r",
+                                                    "//Patient Record\r",
+                                                    "Ext.getCmp('PatientRecord').hide();\r",
+                                                    "Ext.getCmp('PatientPanelID').hide();\r",
+                                                    "Ext.getCmp('PatientViewID').hide();\r",
+                                                    "\r",
+                                                    "//Physician Record\r",
+                                                    "Ext.getCmp('PhysicianPanelID').hide();\r",
+                                                    "Ext.getCmp('PhysicianViewID').hide();\r",
+                                                    "Ext.getCmp('PhysicianRecord').hide();\r",
+                                                    "\r",
+                                                    "//Supplier Record\r",
+                                                    "Ext.getCmp('SupplierRecord').hide();\r",
+                                                    " Ext.getCmp('SupplierPanelID').hide();\r",
+                                                    " Ext.getCmp('SupplierViewID').hide();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('ViewAll').hide();\r",
+                                                    "Ext.getCmp('Messaging').hide();\r",
+                                                    "Ext.getCmp('Dashboard').hide();\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "//COS\r",
+                                                    "\r",
+                                                    "Ext.getCmp('AddUserPanelID').hide();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('ChangePasswordPanelID').hide();\r",
+                                                    "Ext.getCmp('AddCOSID').hide();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('AliasForm').getForm().reset();\r",
+                                                    "Ext.getCmp('AddAlias').show();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('AddDomainID').hide();"
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "05e22bf5-6966-4704-8536-86cba16a2b2e"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.menu.Item",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "id": "MAddDomainID",
+                                        "text": "Add Domain"
+                                    },
+                                    "designerId": "b76baf46-eb6e-4ba9-9ad7-ee27bb1aefd4",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onMAddDomainIDClick",
+                                                "implHandler": [
+                                                    "Ext.getCmp('Menu').show();\r",
+                                                    "Ext.getCmp('Footer').show();\r",
+                                                    "Ext.getCmp('Header').show();\r",
+                                                    "\r",
+                                                    "// hide\r",
+                                                    "\r",
+                                                    "// section A\r",
+                                                    "Ext.getCmp('SectionAID').hide();\r",
+                                                    "Ext.getCmp('SectionA1NextID').hide();\r",
+                                                    "\r",
+                                                    "// section B\r",
+                                                    "Ext.getCmp('SectionB1NextID').hide();\r",
+                                                    "Ext.getCmp('sectionB1ID').hide();\r",
+                                                    "\r",
+                                                    "//Patient Record\r",
+                                                    "Ext.getCmp('PatientRecord').hide();\r",
+                                                    "Ext.getCmp('PatientPanelID').hide();\r",
+                                                    "Ext.getCmp('PatientViewID').hide();\r",
+                                                    "\r",
+                                                    "//Physician Record\r",
+                                                    "Ext.getCmp('PhysicianPanelID').hide();\r",
+                                                    "Ext.getCmp('PhysicianViewID').hide();\r",
+                                                    "Ext.getCmp('PhysicianRecord').hide();\r",
+                                                    "\r",
+                                                    "//Supplier Record\r",
+                                                    "Ext.getCmp('SupplierRecord').hide();\r",
+                                                    " Ext.getCmp('SupplierPanelID').hide();\r",
+                                                    " Ext.getCmp('SupplierViewID').hide();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('ViewAll').hide();\r",
+                                                    "Ext.getCmp('Messaging').hide();\r",
+                                                    "Ext.getCmp('Dashboard').hide();\r",
+                                                    "Ext.getCmp('AddAlias').hide();\r",
+                                                    "\r",
+                                                    "//COS\r",
+                                                    "Ext.getCmp('AddCOSID').hide();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('AddUserPanelID').hide();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('ChangePasswordPanelID').hide();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('DomainForm').getForm().reset();\r",
+                                                    "Ext.getCmp('AddDomainID').show();\r",
+                                                    ""
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "19ae1411-77de-4262-a32d-a62e0a9c409f"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.panel.Panel",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "bodyStyle": null,
+                                "id": "LegendsID",
+                                "title": "Legends"
+                            },
+                            "designerId": "0986d8da-562e-4aa2-b89f-dde6e4ed9e7a",
+                            "cn": [
+                                {
+                                    "type": "Ext.container.Container",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "Edit",
+                                        "html": [
+                                            "<tr>\r",
+                                            "<td><img src=\"resources/images/edit.png\" width=\"20px\" Heigth=\"20px\"></td>\r",
+                                            "<td>Edit</td>\r",
+                                            "</tr>\r",
+                                            "\r",
+                                            ""
+                                        ],
+                                        "padding": "5 0 0 0"
+                                    },
+                                    "designerId": "f25dd80c-b1e1-4814-86fa-16775aed0299"
+                                },
+                                {
+                                    "type": "Ext.container.Container",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "Approve/Review",
+                                        "html": [
+                                            "<tr>\r",
+                                            "<td><img src=\"resources/images/review.png\" width=\"20px\" Heigth=\"20px\"></td>\r",
+                                            "<td>Approve/Review</td>\r",
+                                            "</tr>"
+                                        ],
+                                        "padding": "5 0 0 0"
+                                    },
+                                    "designerId": "8719a69a-6a8c-48b8-bbd2-4bcc7461cbd5"
+                                },
+                                {
+                                    "type": "Ext.container.Container",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "Send to Dr. office",
+                                        "html": [
+                                            "<tr>\r",
+                                            "<td><img src=\"resources/images/doctor.png\" width=\"20px\" Heigth=\"20px\"></td>\r",
+                                            "<td>Send to Dr. Office</td>\r",
+                                            "</tr>"
+                                        ],
+                                        "padding": "5 0 0 0"
+                                    },
+                                    "designerId": "50c3273d-2b2e-4c8e-9955-c8af048f7a91"
+                                },
+                                {
+                                    "type": "Ext.container.Container",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "View",
+                                        "html": [
+                                            "<tr>\r",
+                                            "<td><img src=\"resources/images/view.png\" width=\"20px\" Heigth=\"20px\"></td>\r",
+                                            "<td>View</td>\r",
+                                            "</tr>"
+                                        ],
+                                        "padding": "5 0 5 0"
+                                    },
+                                    "designerId": "ffb90caf-0262-43dd-b405-99625467b762"
                                 }
                             ]
                         }
@@ -3998,7 +3891,7 @@
                                                         "allowBlank": false,
                                                         "displayField": "des",
                                                         "editable": false,
-                                                        "emptyText": "Unknown",
+                                                        "emptyText": "-Select-",
                                                         "fieldLabel": "<b>&nbsp;&nbsp;&nbsp;Sex&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
                                                         "forceSelection": true,
                                                         "id": "txtSexPID",
@@ -23898,7 +23791,26 @@
                                                         "text": "Print",
                                                         "width": 60
                                                     },
-                                                    "designerId": "2b1714c9-b936-46c2-a8d7-2b2ae08a42c5"
+                                                    "designerId": "2b1714c9-b936-46c2-a8d7-2b2ae08a42c5",
+                                                    "cn": [
+                                                        {
+                                                            "type": "basiceventbinding",
+                                                            "reference": {
+                                                                "name": "listeners",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "fn": "onViewbtnPrintClick",
+                                                                "implHandler": [
+                                                                    "Ext.Msg.alert(\"Print Disabled Currently\", 'Print Disabled Currently');"
+                                                                ],
+                                                                "name": "click",
+                                                                "scope": "me"
+                                                            },
+                                                            "designerId": "6d9c355e-0343-4af3-9ca8-74f150f68acb"
+                                                        }
+                                                    ]
                                                 }
                                             ]
                                         }
@@ -24128,12 +24040,14 @@
                                                 "fn": "onLoginButtonClick",
                                                 "implHandler": [
                                                     "var form =  Ext.getCmp('loginForm1');  // Login form\r",
+                                                    "\r",
                                                     "var userName =  Ext.getCmp('LBLUsername');\r",
                                                     "//var header = button.up('headerPanel');\r",
                                                     "values = form.getValues();    // Form values\r",
+                                                    "//console.log(values);\r",
                                                     "var username = values.txtUsername;\r",
                                                     "var password = values.txtPassword;\r",
-                                                    "Ext.getCmp('LegendID').show();\r",
+                                                    "Ext.getCmp('LegendsID').show();\r",
                                                     "\r",
                                                     "// Success\r",
                                                     "var successCallback = function(resp, ops) {\r",
@@ -24182,12 +24096,12 @@
                                                     "\r",
                                                     "\r",
                                                     "            var data = responseOjbect.menu;\r",
-                                                    "\r",
+                                                    "            //console.log(data);\r",
                                                     "            Ext.each(data, function(op) {\r",
                                                     "                  console.log(op.FormNameID);\r",
-                                                    "                // if(op.displayType === '0'){\r",
+                                                    "                \r",
                                                     "                Ext.getCmp(op.FormNameID).show();\r",
-                                                    "                // }\r",
+                                                    "                \r",
                                                     "            });\r",
                                                     "        }\r",
                                                     "\r",

@@ -22,9 +22,9 @@ Ext.define('SignaTouch.view.MainView', {
         'Ext.button.Button',
         'Ext.form.Label',
         'Ext.menu.Menu',
-        'Ext.menu.Separator',
-        'Ext.form.FieldSet',
+        'Ext.menu.Item',
         'Ext.form.Panel',
+        'Ext.form.FieldSet',
         'Ext.form.field.ComboBox',
         'Ext.form.field.Date',
         'Ext.grid.Panel',
@@ -169,59 +169,52 @@ Ext.define('SignaTouch.view.MainView', {
                     items: [
                         {
                             xtype: 'panel',
+                            layout: 'accordion',
+                            bodyStyle: 'background-color:#a5cfff;',
+                            animCollapse: false,
                             title: 'Menu',
                             items: [
                                 {
                                     xtype: 'menu',
                                     floating: false,
-                                    hidden: false,
-                                    id: 'Menu1',
-                                    itemId: 'sideMenu',
-                                    bodyStyle: 'background-color:#a5cfff;',
-                                    header: false,
+                                    id: 'MenuID',
+                                    width: 120,
                                     items: [
                                         {
                                             xtype: 'menuitem',
-                                            itemId: 'Mselect',
+                                            id: 'DashboardID',
                                             text: 'Dashboard',
                                             listeners: {
                                                 click: {
-                                                    fn: me.onMselectClick,
+                                                    fn: me.onDashboardIDClick,
                                                     scope: me
                                                 }
                                             }
                                         },
                                         {
                                             xtype: 'menuitem',
-                                            itemId: 'Msendtodr',
+                                            id: 'MessagingID',
                                             text: 'Messaging',
                                             listeners: {
                                                 click: {
-                                                    fn: me.onMsendtodrClick,
+                                                    fn: me.onMessagingIDClick,
                                                     scope: me
                                                 }
                                             }
-                                        },
-                                        {
-                                            xtype: 'menuseparator'
-                                        },
-                                        {
-                                            xtype: 'displayfield',
-                                            fieldLabel: '<b>Form</b>',
-                                            labelSeparator: '&nbsp;'
-                                        },
-                                        {
-                                            xtype: 'menuseparator'
-                                        },
-                                        {
-                                            xtype: 'displayfield',
-                                            fieldLabel: '<b>CMS 484</b>'
-                                        },
+                                        }
+                                    ]
+                                },
+                                {
+                                    xtype: 'menu',
+                                    floating: false,
+                                    id: 'CMS484',
+                                    width: 120,
+                                    title: 'CMS-484',
+                                    items: [
                                         {
                                             xtype: 'menuitem',
                                             hidden: true,
-                                            id: 'SectionAMenu',
-                                            itemId: 'MsectionA',
+                                            id: 'CMS484SectionA',
                                             text: 'Section A',
                                             listeners: {
                                                 click: {
@@ -246,150 +239,124 @@ Ext.define('SignaTouch.view.MainView', {
                                     ]
                                 },
                                 {
-                                    xtype: 'container',
+                                    xtype: 'menu',
+                                    floating: false,
                                     hidden: true,
-                                    id: 'Menu2Con',
-                                    style: 'background-color:#a5cfff;',
+                                    id: 'Maintanance',
+                                    title: 'Maintenance',
                                     items: [
                                         {
-                                            xtype: 'menu',
-                                            floating: false,
-                                            hidden: false,
-                                            id: 'Maintanance',
-                                            bodyStyle: 'background-color:#a5cfff;',
-                                            items: [
-                                                {
-                                                    xtype: 'displayfield',
-                                                    fieldLabel: '<b>Maintenance</b>'
-                                                },
-                                                {
-                                                    xtype: 'menuseparator'
-                                                },
-                                                {
-                                                    xtype: 'menuitem',
-                                                    itemId: 'MNewPatient',
-                                                    text: 'Patient / HICN',
-                                                    listeners: {
-                                                        click: {
-                                                            fn: me.onMNewPatientClick,
-                                                            scope: me
-                                                        }
-                                                    }
-                                                },
-                                                {
-                                                    xtype: 'menuitem',
-                                                    itemId: 'MPhysician',
-                                                    text: 'Physician',
-                                                    listeners: {
-                                                        click: {
-                                                            fn: me.onMPhysicianClick,
-                                                            scope: me
-                                                        }
-                                                    }
-                                                },
-                                                {
-                                                    xtype: 'menuitem',
-                                                    itemId: 'MSupplier',
-                                                    text: 'Supplier',
-                                                    listeners: {
-                                                        click: {
-                                                            fn: me.onMSupplierClick,
-                                                            scope: me
-                                                        }
-                                                    }
-                                                },
-                                                {
-                                                    xtype: 'menuseparator'
-                                                },
-                                                {
-                                                    xtype: 'displayfield',
-                                                    fieldLabel: '<b>Manage Account</b>',
-                                                    labelWidth: 150
-                                                },
-                                                {
-                                                    xtype: 'menuseparator'
-                                                },
-                                                {
-                                                    xtype: 'menuitem',
-                                                    id: 'MAddUserID',
-                                                    text: 'Add User',
-                                                    listeners: {
-                                                        click: {
-                                                            fn: me.onMAddUserIDClick,
-                                                            scope: me
-                                                        }
-                                                    }
-                                                },
-                                                {
-                                                    xtype: 'menuitem',
-                                                    id: 'MAddCOSID',
-                                                    text: 'Add COS',
-                                                    listeners: {
-                                                        click: {
-                                                            fn: me.onMAddCOSIDClick,
-                                                            scope: me
-                                                        }
-                                                    }
-                                                },
-                                                {
-                                                    xtype: 'menuitem',
-                                                    id: 'MAddAlliasID',
-                                                    text: 'Add Alias',
-                                                    listeners: {
-                                                        click: {
-                                                            fn: me.onMAddAlliasIDClick,
-                                                            scope: me
-                                                        }
-                                                    }
-                                                },
-                                                {
-                                                    xtype: 'menuitem',
-                                                    id: 'MAddDomainID',
-                                                    text: 'Add Domain',
-                                                    listeners: {
-                                                        click: {
-                                                            fn: me.onMAddDomainIDClick,
-                                                            scope: me
-                                                        }
-                                                    }
+                                            xtype: 'menuitem',
+                                            itemId: 'MNewPatient',
+                                            text: 'Patient / HICN',
+                                            listeners: {
+                                                click: {
+                                                    fn: me.onMNewPatientClick,
+                                                    scope: me
                                                 }
-                                            ]
+                                            }
+                                        },
+                                        {
+                                            xtype: 'menuitem',
+                                            itemId: 'MPhysician',
+                                            text: 'Physician',
+                                            listeners: {
+                                                click: {
+                                                    fn: me.onMPhysicianClick,
+                                                    scope: me
+                                                }
+                                            }
+                                        },
+                                        {
+                                            xtype: 'menuitem',
+                                            itemId: 'MSupplier',
+                                            text: 'Supplier',
+                                            listeners: {
+                                                click: {
+                                                    fn: me.onMSupplierClick,
+                                                    scope: me
+                                                }
+                                            }
                                         }
                                     ]
                                 },
                                 {
-                                    xtype: 'container',
-                                    style: 'background-color:#a5cfff;',
+                                    xtype: 'menu',
+                                    floating: false,
+                                    hidden: true,
+                                    id: 'ManageAccountID',
+                                    title: 'Manage Account',
                                     items: [
                                         {
-                                            xtype: 'fieldset',
-                                            id: 'LegendID',
-                                            margin: '15 0 0 0',
-                                            style: 'border-style:solid;\r\nborder-color:#E1E1E1;',
-                                            width: 180,
-                                            title: '<b>Legends</b>',
-                                            items: [
-                                                {
-                                                    xtype: 'container',
-                                                    html: '<tr>\r\n<td><img src="resources/images/edit.png" width="20px" Heigth="20px"></td>\r\n<td>Edit</td>\r\n</tr>',
-                                                    padding: '5 0 0 0'
-                                                },
-                                                {
-                                                    xtype: 'container',
-                                                    html: '<tr>\r\n<td><img src="resources/images/review.png" width="20px" Heigth="20px"></td>\r\n<td>Approve/Review</td>\r\n</tr>',
-                                                    padding: '5 0 0 0'
-                                                },
-                                                {
-                                                    xtype: 'container',
-                                                    html: '<tr>\r\n<td><img src="resources/images/doctor.png" width="20px" Heigth="20px"></td>\r\n<td>Send to Dr. Office</td>\r\n</tr>',
-                                                    padding: '5 0 0 0'
-                                                },
-                                                {
-                                                    xtype: 'container',
-                                                    html: '<tr>\r\n<td><img src="resources/images/view.png" width="20px" Heigth="20px"></td>\r\n<td>View</td>\r\n</tr>',
-                                                    padding: '5 0 5 0'
+                                            xtype: 'menuitem',
+                                            id: 'MAddUserID',
+                                            text: 'Add User',
+                                            listeners: {
+                                                click: {
+                                                    fn: me.onMAddUserIDClick,
+                                                    scope: me
                                                 }
-                                            ]
+                                            }
+                                        },
+                                        {
+                                            xtype: 'menuitem',
+                                            id: 'MAddCOSID',
+                                            text: 'Add COS',
+                                            listeners: {
+                                                click: {
+                                                    fn: me.onMAddCOSIDClick,
+                                                    scope: me
+                                                }
+                                            }
+                                        },
+                                        {
+                                            xtype: 'menuitem',
+                                            id: 'MAddAlliasID',
+                                            text: 'Add Alias',
+                                            listeners: {
+                                                click: {
+                                                    fn: me.onMAddAlliasIDClick,
+                                                    scope: me
+                                                }
+                                            }
+                                        },
+                                        {
+                                            xtype: 'menuitem',
+                                            id: 'MAddDomainID',
+                                            text: 'Add Domain',
+                                            listeners: {
+                                                click: {
+                                                    fn: me.onMAddDomainIDClick,
+                                                    scope: me
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    xtype: 'panel',
+                                    id: 'LegendsID',
+                                    title: 'Legends',
+                                    items: [
+                                        {
+                                            xtype: 'container',
+                                            html: '<tr>\r\n<td><img src="resources/images/edit.png" width="20px" Heigth="20px"></td>\r\n<td>Edit</td>\r\n</tr>',
+                                            padding: '5 0 0 0'
+                                        },
+                                        {
+                                            xtype: 'container',
+                                            html: '<tr>\r\n<td><img src="resources/images/review.png" width="20px" Heigth="20px"></td>\r\n<td>Approve/Review</td>\r\n</tr>',
+                                            padding: '5 0 0 0'
+                                        },
+                                        {
+                                            xtype: 'container',
+                                            html: '<tr>\r\n<td><img src="resources/images/doctor.png" width="20px" Heigth="20px"></td>\r\n<td>Send to Dr. Office</td>\r\n</tr>',
+                                            padding: '5 0 0 0'
+                                        },
+                                        {
+                                            xtype: 'container',
+                                            html: '<tr>\r\n<td><img src="resources/images/view.png" width="20px" Heigth="20px"></td>\r\n<td>View</td>\r\n</tr>',
+                                            padding: '5 0 5 0'
                                         }
                                     ]
                                 }
@@ -1795,7 +1762,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             msgTarget: 'side',
                                                             inputId: 'ddlSex',
                                                             allowBlank: false,
-                                                            emptyText: 'Unknown',
+                                                            emptyText: '-Select-',
                                                             editable: false,
                                                             displayField: 'des',
                                                             forceSelection: true,
@@ -10481,7 +10448,13 @@ Ext.define('SignaTouch.view.MainView', {
                                                             id: 'ViewbtnPrint',
                                                             margin: '0 20 0 0',
                                                             width: 60,
-                                                            text: 'Print'
+                                                            text: 'Print',
+                                                            listeners: {
+                                                                click: {
+                                                                    fn: me.onViewbtnPrintClick,
+                                                                    scope: me
+                                                                }
+                                                            }
                                                         }
                                                     ]
                                                 }
@@ -10680,7 +10653,7 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('AddCOSID').hide();
     },
 
-    onMselectClick: function(item, e, eOpts) {
+    onDashboardIDClick: function(item, e, eOpts) {
         Ext.getCmp('Menu').show();
         Ext.getCmp('Footer').show();
         Ext.getCmp('Header').show();
@@ -10725,7 +10698,7 @@ Ext.define('SignaTouch.view.MainView', {
 
     },
 
-    onMsendtodrClick: function(item, e, eOpts) {
+    onMessagingIDClick: function(item, e, eOpts) {
         /*var mesg_url = localStorage.getItem("preauthURL");
         //Ext.get('Messaging1').dom.src = url;
         window.open(mesg_url);*/
@@ -15427,6 +15400,10 @@ Ext.define('SignaTouch.view.MainView', {
 
     },
 
+    onViewbtnPrintClick: function(button, e, eOpts) {
+        Ext.Msg.alert("Print Disabled Currently", 'Print Disabled Currently');
+    },
+
     onIDtxtPasswordSpecialkey: function(field, e, eOpts) {
         if (e.getKey() == Ext.EventObject.ENTER){
           Ext.getCmp('loginButton').fireEvent('click');
@@ -15435,12 +15412,14 @@ Ext.define('SignaTouch.view.MainView', {
 
     onLoginButtonClick: function(button, e, eOpts) {
         var form =  Ext.getCmp('loginForm1');  // Login form
+
         var userName =  Ext.getCmp('LBLUsername');
         //var header = button.up('headerPanel');
         values = form.getValues();    // Form values
+        //console.log(values);
         var username = values.txtUsername;
         var password = values.txtPassword;
-        Ext.getCmp('LegendID').show();
+        Ext.getCmp('LegendsID').show();
 
         // Success
         var successCallback = function(resp, ops) {
@@ -15489,12 +15468,12 @@ Ext.define('SignaTouch.view.MainView', {
 
 
                     var data = responseOjbect.menu;
-
+                    //console.log(data);
                     Ext.each(data, function(op) {
                           console.log(op.FormNameID);
-                        // if(op.displayType === '0'){
+
                         Ext.getCmp(op.FormNameID).show();
-                        // }
+
                     });
                 }
 

@@ -5,9 +5,9 @@
  * metadata-driven class system features 
  */
 Ext.Loader.addClassPathMappings({
-  "Ext": "ext/src",
-  "Ext.Msg": "ext/src/window/MessageBox.js",
-  "Ext.rtl.EventObjectImpl": "ext/src/rtl/EventObject.js",
+  "Ext": "../ext/src",
+  "Ext.Msg": "../ext/src/window/MessageBox.js",
+  "Ext.rtl.EventObjectImpl": "../ext/src/rtl/EventObject.js",
   "ExtThemeNeptune.Component": "ext/ext-theme-neptune.js",
   "ExtThemeNeptune.container.ButtonGroup": "ext/ext-theme-neptune.js",
   "ExtThemeNeptune.form.field.HtmlEditor": "ext/ext-theme-neptune.js",
@@ -861,9 +861,12 @@ Ext.ClassManager.addNameAlternateMappings({
   "ExtThemeNeptune.toolbar.Paging": [],
   "ExtThemeNeptune.toolbar.Toolbar": [],
   "SignaTouch.controller.login": [],
+  "SignaTouch.model.Alias": [],
+  "SignaTouch.model.COSType": [],
   "SignaTouch.model.CertType": [],
   "SignaTouch.model.Gender": [],
   "SignaTouch.model.PatientRecord": [],
+  "SignaTouch.model.PhysicianOffice": [],
   "SignaTouch.model.PhysicianRecord": [],
   "SignaTouch.model.SectionA1GridBind": [],
   "SignaTouch.model.SectionBGridBind": [],
@@ -872,19 +875,26 @@ Ext.ClassManager.addNameAlternateMappings({
   "SignaTouch.model.SectionBQ4": [],
   "SignaTouch.model.SectionBQYesNo": [],
   "SignaTouch.model.SupplierRecord": [],
+  "SignaTouch.model.state": [],
+  "SignaTouch.store.COS": [],
   "SignaTouch.store.CertType": [],
   "SignaTouch.store.MyArrayStore": [],
   "SignaTouch.store.PatientGridBind": [],
+  "SignaTouch.store.PhysicianAlias": [],
   "SignaTouch.store.PhysicianGridBind": [],
+  "SignaTouch.store.PhysicianOffice": [],
   "SignaTouch.store.SectionA1GridBind": [],
   "SignaTouch.store.SectionBGridBind": [],
   "SignaTouch.store.SectionBQ2": [],
   "SignaTouch.store.SectionBQ3": [],
   "SignaTouch.store.SectionBQ4": [],
   "SignaTouch.store.SectionBQYesNo": [],
+  "SignaTouch.store.States": [],
   "SignaTouch.store.SupplierGridBind": [],
+  "SignaTouch.view.AddDomain": [],
   "SignaTouch.view.Help": [],
   "SignaTouch.view.MainView": [],
+  "SignaTouch.view.PhysicianOffice": [],
   "SignaTouch.view.PopupHICN": [],
   "SignaTouch.view.PopupNewFacility": [],
   "jb.Application": [],
@@ -1894,9 +1904,12 @@ Ext.ClassManager.addNameAliasMappings({
   "ExtThemeNeptune.toolbar.Paging": [],
   "ExtThemeNeptune.toolbar.Toolbar": [],
   "SignaTouch.controller.login": [],
+  "SignaTouch.model.Alias": [],
+  "SignaTouch.model.COSType": [],
   "SignaTouch.model.CertType": [],
   "SignaTouch.model.Gender": [],
   "SignaTouch.model.PatientRecord": [],
+  "SignaTouch.model.PhysicianOffice": [],
   "SignaTouch.model.PhysicianRecord": [],
   "SignaTouch.model.SectionA1GridBind": [],
   "SignaTouch.model.SectionBGridBind": [],
@@ -1905,21 +1918,30 @@ Ext.ClassManager.addNameAliasMappings({
   "SignaTouch.model.SectionBQ4": [],
   "SignaTouch.model.SectionBQYesNo": [],
   "SignaTouch.model.SupplierRecord": [],
+  "SignaTouch.model.state": [],
+  "SignaTouch.store.COS": [],
   "SignaTouch.store.CertType": [],
   "SignaTouch.store.MyArrayStore": [],
   "SignaTouch.store.PatientGridBind": [],
+  "SignaTouch.store.PhysicianAlias": [],
   "SignaTouch.store.PhysicianGridBind": [],
+  "SignaTouch.store.PhysicianOffice": [],
   "SignaTouch.store.SectionA1GridBind": [],
   "SignaTouch.store.SectionBGridBind": [],
   "SignaTouch.store.SectionBQ2": [],
   "SignaTouch.store.SectionBQ3": [],
   "SignaTouch.store.SectionBQ4": [],
   "SignaTouch.store.SectionBQYesNo": [],
+  "SignaTouch.store.States": [],
   "SignaTouch.store.SupplierGridBind": [],
+  "SignaTouch.view.AddDomain": [],
   "SignaTouch.view.Help": [
     "widget.HelpWindow"
   ],
   "SignaTouch.view.MainView": [],
+  "SignaTouch.view.PhysicianOffice": [
+    "widget.NewPhysicanOffice"
+  ],
   "SignaTouch.view.PopupHICN": [
     "widget.HICN"
   ],
@@ -1936,22 +1958,22 @@ Ext.ClassManager.addNameAliasMappings({
 Ext.setVersion("ext-theme-base", "4.2.1");
 Ext.setVersion("ext-theme-neptune", "4.2.1");
 Ext.setVersion("ext-theme-neutral", "4.2.1");
-Ext.Loader.loadScript("ext/packages/ext-theme-neptune/overrides/Component.js");;
-Ext.Loader.loadScript("ext/packages/ext-theme-neptune/overrides/panel/Panel.js");;
-Ext.Loader.loadScript("ext/packages/ext-theme-neptune/overrides/toolbar/Toolbar.js");;
-Ext.Loader.loadScript("ext/packages/ext-theme-neptune/overrides/layout/component/Dock.js");;
-Ext.Loader.loadScript("ext/packages/ext-theme-neptune/overrides/container/ButtonGroup.js");;
-Ext.Loader.loadScript("ext/packages/ext-theme-neptune/overrides/toolbar/Paging.js");;
-Ext.Loader.loadScript("ext/packages/ext-theme-neptune/overrides/picker/Month.js");;
-Ext.Loader.loadScript("ext/packages/ext-theme-neptune/overrides/form/field/HtmlEditor.js");;
-Ext.Loader.loadScript("ext/packages/ext-theme-neptune/overrides/panel/Table.js");;
-Ext.Loader.loadScript("ext/packages/ext-theme-neptune/overrides/grid/RowEditor.js");;
-Ext.Loader.loadScript("ext/packages/ext-theme-neptune/overrides/grid/column/RowNumberer.js");;
-Ext.Loader.loadScript("ext/packages/ext-theme-neptune/overrides/resizer/Splitter.js");;
-Ext.Loader.loadScript("ext/packages/ext-theme-neptune/overrides/menu/Menu.js");;
-Ext.Loader.loadScript("ext/packages/ext-theme-neptune/overrides/menu/Separator.js");;
-Ext.Loader.loadScript("ext/packages/ext-theme-neptune/overrides/panel/Tool.js");;
-Ext.Loader.loadScript("ext/packages/ext-theme-neptune/overrides/tab/Tab.js");;
+Ext.Loader.loadScript("../ext/packages/ext-theme-neptune/overrides/Component.js");;
+Ext.Loader.loadScript("../ext/packages/ext-theme-neptune/overrides/panel/Panel.js");;
+Ext.Loader.loadScript("../ext/packages/ext-theme-neptune/overrides/toolbar/Toolbar.js");;
+Ext.Loader.loadScript("../ext/packages/ext-theme-neptune/overrides/layout/component/Dock.js");;
+Ext.Loader.loadScript("../ext/packages/ext-theme-neptune/overrides/container/ButtonGroup.js");;
+Ext.Loader.loadScript("../ext/packages/ext-theme-neptune/overrides/toolbar/Paging.js");;
+Ext.Loader.loadScript("../ext/packages/ext-theme-neptune/overrides/picker/Month.js");;
+Ext.Loader.loadScript("../ext/packages/ext-theme-neptune/overrides/form/field/HtmlEditor.js");;
+Ext.Loader.loadScript("../ext/packages/ext-theme-neptune/overrides/panel/Table.js");;
+Ext.Loader.loadScript("../ext/packages/ext-theme-neptune/overrides/grid/RowEditor.js");;
+Ext.Loader.loadScript("../ext/packages/ext-theme-neptune/overrides/grid/column/RowNumberer.js");;
+Ext.Loader.loadScript("../ext/packages/ext-theme-neptune/overrides/resizer/Splitter.js");;
+Ext.Loader.loadScript("../ext/packages/ext-theme-neptune/overrides/menu/Menu.js");;
+Ext.Loader.loadScript("../ext/packages/ext-theme-neptune/overrides/menu/Separator.js");;
+Ext.Loader.loadScript("../ext/packages/ext-theme-neptune/overrides/panel/Tool.js");;
+Ext.Loader.loadScript("../ext/packages/ext-theme-neptune/overrides/tab/Tab.js");;
 /**
  * Sencha Blink - Development
  * @author Jacky Nguyen <jacky@sencha.com>

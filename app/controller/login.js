@@ -77,8 +77,8 @@ Ext.define('SignaTouch.controller.login', {
 
                 // hide menus
                 Ext.getCmp('SectionBMenu').hide();
-                Ext.getCmp('SectionAMenu').hide();
-                Ext.getCmp('Menu2Con').hide();
+                Ext.getCmp('CMS484SectionA').hide();
+                Ext.getCmp('Maintanance').hide();
                 // refresh store
                 var myStore = Ext.getStore('SectionA1GridBind');
                 myStore.clearFilter();

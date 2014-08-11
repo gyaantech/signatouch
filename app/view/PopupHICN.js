@@ -151,7 +151,7 @@ Ext.define('SignaTouch.view.PopupHICN', {
                                             msgTarget: 'side',
                                             inputId: 'ddlPOPSex',
                                             allowBlank: false,
-                                            emptyText: 'Unknown',
+                                            emptyText: '-Select-',
                                             validateBlank: true,
                                             editable: false,
                                             displayField: 'des',

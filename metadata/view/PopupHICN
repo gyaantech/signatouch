@@ -229,7 +229,7 @@
                                         "allowBlank": false,
                                         "displayField": "des",
                                         "editable": false,
-                                        "emptyText": "Unknown",
+                                        "emptyText": "-Select-",
                                         "fieldLabel": "<b>&nbsp;&nbsp;&nbsp;Sex&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
                                         "forceSelection": true,
                                         "inputId": "ddlPOPSex",
