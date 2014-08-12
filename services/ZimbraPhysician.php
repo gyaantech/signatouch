@@ -108,36 +108,38 @@ class CreatePhysician {
          
   }
 public function create_another_office() {
-		$username = isset($_GET['user'])?$_GET['user']:'';
-		$param = $this->set_office_parameters();
-		$COS_name_common = '';
-		
-		$name_f_l = ''; 
-		$name_f_l = strtolower(substr($param['firstName'], 0, 1).substr($param['lastName'], 0, 6));
-		
-		$COS_name_common = $name_f_l.'-'.substr($param['zip'], 0, 5);
-		$COS_user_name = $COS_name_common.'-user';
-		$domain_name = $COS_name_common.'.st';
-		
-		$cos_user_response_id = $this->copy_default_cos($COS_user_name); 
+  
+  $username = isset($_GET['user'])?$_GET['user']:'';
+  $param = $this->set_office_parameters();
+  $COS_name_common = '';
+  
+  $name_f_l = ''; 
+  $name_f_l = strtolower(substr($param['firstName'], 0, 1).substr($param['lastName'], 0, 6));
+  
+  $COS_name_common = $name_f_l.'-'.substr($param['zip'], 0, 5);
+  //$COS_user_name = $COS_name_common.'-user';
+  $COS_user_name = 'barnes-client-admin';
+  $domain_name = $COS_name_common.'.st';
+  
+  //$cos_user_response_id = $this->copy_default_cos($COS_user_name); 
 
         $description = 'Domain '.$domain_name.' with default COS.';
         $domain_response = $this->create_domain($domain_name , $COS_user_name , $description);
-		
-		$allias_name = $name_f_l.'@'.$domain_name;
+  
+  $allias_name = $name_f_l.'@'.$domain_name;
         $allias_response = $this->create_physician_allias($param['NewUserName'] , $allias_name);
-		//exit();
-		if($allias_response){
-			$sql = "INSERT INTO physician_office SET PhysicianNPI = '".$param['physician_npi']."', 
-													PhysicianAddr1 = '".$param['address1']."', 
-													PhysicianAddr2 = '".$param['address2']."' , 
-													PhysicianCity = '".$param['city']."' , 
-													PhysicianSt = '".$param['state']."' , 
-													PhysicianZip = '".$param['zip']."' , 
-													PhysicianLastUpdateID = '".$username."' ";
-			mysql_query($sql);
-		}
-		return $allias_response;
+  //exit();
+  if($allias_response){
+   $sql = "INSERT INTO physician_office SET PhysicianNPI = '".$param['physician_npi']."', 
+             PhysicianAddr1 = '".$param['address1']."', 
+             PhysicianAddr2 = '".$param['address2']."' , 
+             PhysicianCity = '".$param['city']."' , 
+             PhysicianSt = '".$param['state']."' , 
+             PhysicianZip = '".$param['zip']."' , 
+             PhysicianLastUpdateID = '".$username."' ";
+   mysql_query($sql);
+  }
+  return $allias_response;
   }
    public function set_office_parameters() {
         $GetSet = new GetSet();
@@ -192,22 +194,29 @@ public function create_another_office() {
 		return $okay;
 	}  
 	public function ZimbraPhysicianCreate(){
-		$connect = new Zimbra();
-		$param = $this->set_physician_parameters();
-		
-		$COS_name_common = '';
-		$name_f_l = '';
-		$okay = FALSE;    
-		$name_f_l = strtolower(substr($param['firstName'], 0, 1).substr($param['lastName'], 0, 6));
-		
-		$COS_name_common = $name_f_l.'-'.substr($param['zip'], 0, 5);
-		
-		$COS_admin_name = $COS_name_common.'-admin';
-		$COS_user_name = $COS_name_common.'-user';
-	  
-		$domain_name = $COS_name_common.'.st';
-		$cos_admin_response_id = $this->copy_default_cos($COS_admin_name); 
+  $connect = new Zimbra();
+  $param = $this->set_physician_parameters();
+  
+  $COS_name_common = '';
+  $name_f_l = '';
+  $okay = FALSE;    
+  $name_f_l = strtolower(substr($param['firstName'], 0, 1).substr($param['lastName'], 0, 6));
+  
+  $COS_name_common = $name_f_l.'-'.substr($param['zip'], 0, 5);
+  /*
+  $COS_admin_name = $COS_name_common.'-admin';
+  $COS_user_name = $COS_name_common.'-user';
+  */
+  $COS_admin_name = 'barnes-client-admin';
+  $COS_user_name = 'barnes-client-admin';
+  
+  $domain_name = $COS_name_common.'.st';
+  /*
+  $cos_admin_response_id = $this->copy_default_cos($COS_admin_name); 
         $cos_user_response_id = $this->copy_default_cos($COS_user_name); 
+  */
+  $cos_admin_response_id = $connect->ZimbraGetCOSID($COS_admin_name);
+        $cos_user_response_id = $connect->ZimbraGetCOSID($COS_user_name); 
 
         $description = 'Domain '.$domain_name.' with default COS.';
         $domain_response = $this->create_domain($domain_name , $COS_user_name , $description);
@@ -219,27 +228,27 @@ public function create_another_office() {
         $admin_account_name = 'admin@'.$domain_name;
         $account_response = $this->create_office_admin_account($admin_account_name , $param['phone'] , $cos_admin_response_id);
 
-		//$preauth = $this->ZimbraPhysicianPreAuthKey($domain_name , $admin_account_name);
-		
+  //$preauth = $this->ZimbraPhysicianPreAuthKey($domain_name , $admin_account_name);
+  
         $allias_name = $name_f_l.'@'.$domain_name;
         $allias_response = $this->create_physician_allias($param['NewUserName'] , $allias_name);
         //print_r($response);exit();
         $a='<Code>'; 
         $duplicate = strstr($response, $a);
         if($response == FALSE){
-				  printf("ZimbraCreatePhysicianAccount Failed!<BR>\n");
-				  return(FALSE); exit();
+      printf("ZimbraCreatePhysicianAccount Failed!<BR>\n");
+      return(FALSE); exit();
 
-		}
+  }
         elseif(strpos($duplicate,'ACCOUNT_EXISTS') !== false){
           return FALSE;
         }
         else{
-			//$alias_response = $this->ZimbraCreatePhysicianAlias(1, $this->ServerAddress, $this->AdminUserName, $this->AdminPassword);
-			$result = $this->insertPhysicianRecord();
-			return $result;
+   //$alias_response = $this->ZimbraCreatePhysicianAlias(1, $this->ServerAddress, $this->AdminUserName, $this->AdminPassword);
+   $result = $this->insertPhysicianRecord();
+   return $result;
         }
-	}
+ }
 	
   //to create zimbra Physician
   public function ZimbraCreatePhysician () {

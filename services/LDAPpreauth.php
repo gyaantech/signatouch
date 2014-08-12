@@ -37,11 +37,6 @@ class LDAP {
     if(!isset($_SESSION['username'])){
       $_SESSION['username'] = $_POST['txtUsername'];
     }
-   /* if(!isset($_SESSION['route_type'])){
-      $_SESSION['route_type'] = $_COOKIE['route_type'];
-      setcookie ("route_type", "", time());
-    }
-    * */
     
     $user = $_SESSION['username'];
      $pass = $_SESSION['password'];
@@ -332,7 +327,7 @@ class LDAP {
     // Get Messaging Preauth URL 
     // -------------------------------------   
     session_start();
-    print_r($_COOKIE);
+  //  print_r($_COOKIE);
    // $route_type = $_SESSION['RouteType'];
     session_destroy();
     if(isset($_COOKIE['route_type'])){
