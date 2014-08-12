@@ -14,12 +14,15 @@ class GetPhysicianAlias {
     {
         $db = new DB_Class();	
     }
-  public function ZimbraGetPhysicianAlias()
+  public function ZimbraGetPhysicianAlias($npi='')
   {
      $connect = new Zimbra();
     $GetSet = new GetSet();   
     // set PhysicianNPI
-    $GetSet->setPhysicianNPI($_GET['NPI']);
+    if($npi == ''){
+      $npi = $_GET['NPI'];
+    }
+    $GetSet->setPhysicianNPI($npi);
     // get PhysicianNPI
     $npi = $GetSet->getPhysicianNPI();
     $npi = $npi.$connect->npi_domain;

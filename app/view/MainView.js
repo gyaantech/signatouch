@@ -177,36 +177,6 @@ Ext.define('SignaTouch.view.MainView', {
                                 {
                                     xtype: 'menu',
                                     floating: false,
-                                    id: 'MenuID',
-                                    width: 120,
-                                    items: [
-                                        {
-                                            xtype: 'menuitem',
-                                            id: 'DashboardID',
-                                            text: 'Dashboard',
-                                            listeners: {
-                                                click: {
-                                                    fn: me.onDashboardIDClick,
-                                                    scope: me
-                                                }
-                                            }
-                                        },
-                                        {
-                                            xtype: 'menuitem',
-                                            id: 'MessagingID',
-                                            text: 'Messaging',
-                                            listeners: {
-                                                click: {
-                                                    fn: me.onMessagingIDClick,
-                                                    scope: me
-                                                }
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    xtype: 'menu',
-                                    floating: false,
                                     id: 'CMS484',
                                     width: 120,
                                     title: 'CMS-484',
@@ -232,6 +202,37 @@ Ext.define('SignaTouch.view.MainView', {
                                             listeners: {
                                                 click: {
                                                     fn: me.onSectionBMenuClick,
+                                                    scope: me
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    xtype: 'menu',
+                                    floating: false,
+                                    id: 'MenuID',
+                                    width: 120,
+                                    title: 'Dashboard',
+                                    items: [
+                                        {
+                                            xtype: 'menuitem',
+                                            id: 'DashboardID',
+                                            text: 'Dashboard',
+                                            listeners: {
+                                                click: {
+                                                    fn: me.onDashboardIDClick,
+                                                    scope: me
+                                                }
+                                            }
+                                        },
+                                        {
+                                            xtype: 'menuitem',
+                                            id: 'MessagingID',
+                                            text: 'Messaging',
+                                            listeners: {
+                                                click: {
+                                                    fn: me.onMessagingIDClick,
                                                     scope: me
                                                 }
                                             }
@@ -1480,7 +1481,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                                 Ext.getCmp('ViewHCPCS4Des').setValue(responseOjbect.HCPCS_Other4Desc);
 
                                                                                                 Ext.getCmp('ViewHCPCS4Sup').setValue(responseOjbect.HCPCS_Other4SupChrg);
-                                                                                                console.log(Ext.getCmp('ViewHCPCS4Sup').value);
+
                                                                                                 Ext.getCmp('ViewHCPCS4Med').setValue(responseOjbect.HCPCS_Other4MedFee);
 
                                                                                             }
@@ -5599,7 +5600,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                     Ext.getCmp('ViewE4').setValue(responseOjbect.HCPCS_K0738);
                                                                                     Ext.getCmp('ViewE4Sup').setValue(responseOjbect.HCPCS_K0738MedFee);
                                                                                     Ext.getCmp('ViewE4Med').setValue(responseOjbect.HCPCS_K0738SupChrg);
-
+                                                                                    console.log(responseOjbect.HCPCS_Other1Code);
                                                                                     if(responseOjbect.HCPCS_Other1Code !== ''){
                                                                                         Ext.getCmp('ViewHCPCS1').setValue(responseOjbect.HCPCS_Other1Code);
                                                                                         Ext.getCmp('ViewHCPCS1Des').setValue(responseOjbect.HCPCS_Other1Desc);
@@ -10658,89 +10659,6 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('AddCOSID').hide();
     },
 
-    onDashboardIDClick: function(item, e, eOpts) {
-        Ext.getCmp('Menu').show();
-        Ext.getCmp('Footer').show();
-        Ext.getCmp('Header').show();
-
-        // hide
-
-        // section A
-        Ext.getCmp('SectionAID').hide();
-        Ext.getCmp('SectionA1NextID').hide();
-
-        // section B
-        Ext.getCmp('SectionB1NextID').hide();
-        Ext.getCmp('sectionB1ID').hide();
-
-        //Patient Record
-        Ext.getCmp('PatientRecord').hide();
-        Ext.getCmp('PatientPanelID').hide();
-        Ext.getCmp('PatientViewID').hide();
-
-        //Physician Record
-        Ext.getCmp('PhysicianPanelID').hide();
-        Ext.getCmp('PhysicianViewID').hide();
-        Ext.getCmp('PhysicianRecord').hide();
-
-        //Supplier Record
-        Ext.getCmp('SupplierRecord').hide();
-         Ext.getCmp('SupplierPanelID').hide();
-         Ext.getCmp('SupplierViewID').hide();
-
-        Ext.getCmp('ViewAll').hide();
-        Ext.getCmp('Messaging').hide();
-
-        Ext.getCmp('AddUserPanelID').hide();
-
-
-        //Dashboard
-        Ext.getCmp('DashboardForm').getForm().reset();
-        Ext.getCmp('Dashboard').show();
-
-        Ext.getCmp('ChangePasswordPanelID').hide();
-        Ext.getCmp('AddAlias').hide();
-
-    },
-
-    onMessagingIDClick: function(item, e, eOpts) {
-        /*var mesg_url = localStorage.getItem("preauthURL");
-        //Ext.get('Messaging1').dom.src = url;
-        window.open(mesg_url);*/
-
-
-        // Success
-        var successCallback = function(resp, ops) {
-
-            if(resp.responseText !== 'error' && resp.responseText !== 'false'){
-                var responseOjbect = Ext.JSON.decode(resp.responseText);
-                var preauthURL = responseOjbect.response.preauthURL;
-                var mesg_url = preauthURL;
-                window.open(mesg_url);
-            }
-        };
-
-        // Failure
-        var failureCallback = function(resp, ops) {
-
-
-            // Show login failure error
-            //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
-
-        };
-
-
-        // TODO: Login using server-side authentication service
-        Ext.Ajax.request({url: "services/LDAPpreauth.php?action=Messaging_Preauth_URL&username="+localStorage.getItem("email"),
-                          method: 'POST',
-                          params: values,
-                          success: successCallback,
-                          failure: failureCallback
-                         });
-
-
-    },
-
     onSectionAMenuClick: function(item, e, eOpts) {
         Ext.getCmp('Menu').show();
         Ext.getCmp('Footer').show();
@@ -10845,6 +10763,89 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('AddAlias').hide();
 
         Ext.getCmp('AddDomainID').hide();
+    },
+
+    onDashboardIDClick: function(item, e, eOpts) {
+        Ext.getCmp('Menu').show();
+        Ext.getCmp('Footer').show();
+        Ext.getCmp('Header').show();
+
+        // hide
+
+        // section A
+        Ext.getCmp('SectionAID').hide();
+        Ext.getCmp('SectionA1NextID').hide();
+
+        // section B
+        Ext.getCmp('SectionB1NextID').hide();
+        Ext.getCmp('sectionB1ID').hide();
+
+        //Patient Record
+        Ext.getCmp('PatientRecord').hide();
+        Ext.getCmp('PatientPanelID').hide();
+        Ext.getCmp('PatientViewID').hide();
+
+        //Physician Record
+        Ext.getCmp('PhysicianPanelID').hide();
+        Ext.getCmp('PhysicianViewID').hide();
+        Ext.getCmp('PhysicianRecord').hide();
+
+        //Supplier Record
+        Ext.getCmp('SupplierRecord').hide();
+         Ext.getCmp('SupplierPanelID').hide();
+         Ext.getCmp('SupplierViewID').hide();
+
+        Ext.getCmp('ViewAll').hide();
+        Ext.getCmp('Messaging').hide();
+
+        Ext.getCmp('AddUserPanelID').hide();
+
+
+        //Dashboard
+        Ext.getCmp('DashboardForm').getForm().reset();
+        Ext.getCmp('Dashboard').show();
+
+        Ext.getCmp('ChangePasswordPanelID').hide();
+        Ext.getCmp('AddAlias').hide();
+
+    },
+
+    onMessagingIDClick: function(item, e, eOpts) {
+        /*var mesg_url = localStorage.getItem("preauthURL");
+        //Ext.get('Messaging1').dom.src = url;
+        window.open(mesg_url);*/
+
+
+        // Success
+        var successCallback = function(resp, ops) {
+
+            if(resp.responseText !== 'error' && resp.responseText !== 'false'){
+                var responseOjbect = Ext.JSON.decode(resp.responseText);
+                var preauthURL = responseOjbect.response.preauthURL;
+                var mesg_url = preauthURL;
+                window.open(mesg_url);
+            }
+        };
+
+        // Failure
+        var failureCallback = function(resp, ops) {
+
+
+            // Show login failure error
+            //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+        };
+
+
+        // TODO: Login using server-side authentication service
+        Ext.Ajax.request({url: "services/LDAPpreauth.php?action=Messaging_Preauth_URL&username="+localStorage.getItem("email"),
+                          method: 'POST',
+                          params: values,
+                          success: successCallback,
+                          failure: failureCallback
+                         });
+
+
     },
 
     onMNewPatientClick: function(item, e, eOpts) {
@@ -15444,7 +15445,11 @@ Ext.define('SignaTouch.view.MainView', {
 
                 else {
                     var myStore = Ext.getStore('SectionA1GridBind');
+                    var myStore1 = Ext.getStore('SectionBGridBind');
+
                     myStore.load();
+
+                    myStore1.load();
 
                     var responseOjbect = Ext.JSON.decode(resp.responseText);
                    // console.log(responseOjbect);

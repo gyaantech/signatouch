@@ -47,17 +47,24 @@ class LDAP {
       $GetSet->setusername($user_post);
       $username = $GetSet->getusername();
       
+      // get domain from username
       $GetSet->setdomain($username);
       $domain = $GetSet->getdomain();
+      
+      $npi = '';
+      if($domain == 'npi.st'){
+         // get npi from username
+       $GetSet->set_npi($username);
+        $npi = $GetSet->get_npi();
+      }
 
-
-    
+      
     $pass_post = isset($pass) ? $pass : '';
     $GetSet->setpassword($pass_post);
     $password = $GetSet->getpassword();
     /*Extract domain from user email id*/
     
-    $response = array('username'=>$username,'password'=>$password,'domain'=>$domain);
+    $response = array('username'=>$username,'password'=>$password,'domain'=>$domain,'npi'=>$npi);
     //echo '<pre>';print_r($response);echo '</pre>';
     return $response;
   } // function def ends
@@ -135,7 +142,7 @@ class LDAP {
            // print("ERROR: curl_exec - (" . curl_errno($CurlHandle) . ") " . curl_error($CurlHandle));
             return(FALSE);
       }
-  //echo $SOAPResponse;
+ // echo $SOAPResponse;
       // =====================================
         // Parse for the Name & COS
         // -------------------------------------
@@ -182,10 +189,12 @@ class LDAP {
                      $cos_type = 'user';
                   }*/
                   $domain = $user_data['domain'];
+                  $npi = $user_data['npi'];
                   if($cname != ''){
                     //$response = array('name');
                     //$sql = "SELECT displayType,FormNameID FROM forms WHERE COSname='$cos_type'; ";
                     $sql = "SELECT displayType,FormNameID,RouteType FROM forms2 WHERE COSname='$cms_user_type' and Active='1'; ";
+                    //echo $sql;
                     $result = mysql_query($sql);
                     if (!$result) {
                     die('Invalid query: ' . $sql . "   " . mysql_error());
@@ -211,7 +220,11 @@ class LDAP {
                                $_SESSION['RouteType'] = $routetype;
                       }
                      * */
-                      setcookie("route_type",$routetype);
+                      setcookie("route_type",$routetype); // set routype in cookie
+                      setcookie("user_domain",$domain); //set users domain in cookie
+                      if($npi != ''){
+                        setcookie("user_npi",$npi); //set users npi in cookie
+                      }
                        // print_r($_SESSION);
                     $response = array('status'=>$cms_user_type,'username'=>$cname,'cos'=>$cos_code,'domain'=>$domain,'email'=>$user_data['username'],'id'=>$id);
                     $response  = array('menu'=>$app_list,'response'=>$response);
@@ -330,8 +343,15 @@ class LDAP {
   //  print_r($_COOKIE);
    // $route_type = $_SESSION['RouteType'];
     session_destroy();
+    // destroy cookies
     if(isset($_COOKIE['route_type'])){
       setcookie("route_type", "", time());
+    }
+    if(isset($_COOKIE['user_domain'])){
+      setcookie("user_domain", "", time());
+    }
+    if(isset($_COOKIE['user_npi'])){
+      setcookie("user_npi", "", time());
     }
     $user_data = $this->set_user_parameters();
    // print_R($user_data);

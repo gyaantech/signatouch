@@ -363,161 +363,6 @@
                             "codeClass": null,
                             "userConfig": {
                                 "floating": false,
-                                "id": "MenuID",
-                                "width": 120
-                            },
-                            "designerId": "5df39415-de6d-49d1-87f2-173ef8f82f5e",
-                            "cn": [
-                                {
-                                    "type": "Ext.menu.Item",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "id": "DashboardID",
-                                        "text": "Dashboard"
-                                    },
-                                    "designerId": "2a735db0-a8c3-444f-9bd0-8abf58e56459",
-                                    "cn": [
-                                        {
-                                            "type": "basiceventbinding",
-                                            "reference": {
-                                                "name": "listeners",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "fn": "onDashboardIDClick",
-                                                "implHandler": [
-                                                    "Ext.getCmp('Menu').show();\r",
-                                                    "Ext.getCmp('Footer').show();\r",
-                                                    "Ext.getCmp('Header').show();\r",
-                                                    "\r",
-                                                    "// hide\r",
-                                                    "\r",
-                                                    "// section A\r",
-                                                    "Ext.getCmp('SectionAID').hide();\r",
-                                                    "Ext.getCmp('SectionA1NextID').hide();\r",
-                                                    "\r",
-                                                    "// section B\r",
-                                                    "Ext.getCmp('SectionB1NextID').hide();\r",
-                                                    "Ext.getCmp('sectionB1ID').hide();\r",
-                                                    "\r",
-                                                    "//Patient Record\r",
-                                                    "Ext.getCmp('PatientRecord').hide();\r",
-                                                    "Ext.getCmp('PatientPanelID').hide();\r",
-                                                    "Ext.getCmp('PatientViewID').hide();\r",
-                                                    "\r",
-                                                    "//Physician Record\r",
-                                                    "Ext.getCmp('PhysicianPanelID').hide();\r",
-                                                    "Ext.getCmp('PhysicianViewID').hide();\r",
-                                                    "Ext.getCmp('PhysicianRecord').hide();\r",
-                                                    "\r",
-                                                    "//Supplier Record\r",
-                                                    "Ext.getCmp('SupplierRecord').hide();\r",
-                                                    " Ext.getCmp('SupplierPanelID').hide();\r",
-                                                    " Ext.getCmp('SupplierViewID').hide();\r",
-                                                    "\r",
-                                                    "Ext.getCmp('ViewAll').hide();\r",
-                                                    "Ext.getCmp('Messaging').hide();\r",
-                                                    "\r",
-                                                    "Ext.getCmp('AddUserPanelID').hide();\r",
-                                                    "\r",
-                                                    "\r",
-                                                    "//Dashboard\r",
-                                                    "Ext.getCmp('DashboardForm').getForm().reset();\r",
-                                                    "Ext.getCmp('Dashboard').show();\r",
-                                                    "\r",
-                                                    "Ext.getCmp('ChangePasswordPanelID').hide();\r",
-                                                    "Ext.getCmp('AddAlias').hide();\r",
-                                                    ""
-                                                ],
-                                                "name": "click",
-                                                "scope": "me"
-                                            },
-                                            "designerId": "16def1c7-3b9e-43b3-a6be-22ae6a7263a1"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Ext.menu.Item",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "id": "MessagingID",
-                                        "text": "Messaging"
-                                    },
-                                    "designerId": "e607c815-2ff1-44ed-8f07-fb3eb95e2ed6",
-                                    "cn": [
-                                        {
-                                            "type": "basiceventbinding",
-                                            "reference": {
-                                                "name": "listeners",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "fn": "onMessagingIDClick",
-                                                "implHandler": [
-                                                    "/*var mesg_url = localStorage.getItem(\"preauthURL\");\r",
-                                                    "//Ext.get('Messaging1').dom.src = url;\r",
-                                                    "window.open(mesg_url);*/\r",
-                                                    "\r",
-                                                    "\r",
-                                                    "// Success\r",
-                                                    "var successCallback = function(resp, ops) {\r",
-                                                    "\r",
-                                                    "    if(resp.responseText !== 'error' && resp.responseText !== 'false'){\r",
-                                                    "        var responseOjbect = Ext.JSON.decode(resp.responseText);\r",
-                                                    "        var preauthURL = responseOjbect.response.preauthURL;\r",
-                                                    "        var mesg_url = preauthURL;\r",
-                                                    "        window.open(mesg_url);\r",
-                                                    "    }\r",
-                                                    "};\r",
-                                                    "\r",
-                                                    "// Failure\r",
-                                                    "var failureCallback = function(resp, ops) {\r",
-                                                    "\r",
-                                                    "\r",
-                                                    "    // Show login failure error\r",
-                                                    "    //Ext.Msg.alert(\"Login Failure\", 'Incorrect Username or Password');\r",
-                                                    "\r",
-                                                    "};\r",
-                                                    "\r",
-                                                    "\r",
-                                                    "// TODO: Login using server-side authentication service\r",
-                                                    "Ext.Ajax.request({url: \"services/LDAPpreauth.php?action=Messaging_Preauth_URL&username=\"+localStorage.getItem(\"email\"),\r",
-                                                    "                  method: 'POST',\r",
-                                                    "                  params: values,\r",
-                                                    "                  success: successCallback,\r",
-                                                    "                  failure: failureCallback\r",
-                                                    "                 });\r",
-                                                    "\r",
-                                                    ""
-                                                ],
-                                                "name": "click",
-                                                "scope": "me"
-                                            },
-                                            "designerId": "d038cd62-9f4f-4a3a-8d74-b30bbaba74d2"
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "type": "Ext.menu.Menu",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "floating": false,
                                 "id": "CMS484",
                                 "title": "CMS-484",
                                 "width": 120
@@ -689,6 +534,162 @@
                                                 "scope": "me"
                                             },
                                             "designerId": "732bde96-9c63-49ee-80e2-68b62a58435d"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.menu.Menu",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "floating": false,
+                                "id": "MenuID",
+                                "title": "Dashboard",
+                                "width": 120
+                            },
+                            "designerId": "5df39415-de6d-49d1-87f2-173ef8f82f5e",
+                            "cn": [
+                                {
+                                    "type": "Ext.menu.Item",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "id": "DashboardID",
+                                        "text": "Dashboard"
+                                    },
+                                    "designerId": "2a735db0-a8c3-444f-9bd0-8abf58e56459",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onDashboardIDClick",
+                                                "implHandler": [
+                                                    "Ext.getCmp('Menu').show();\r",
+                                                    "Ext.getCmp('Footer').show();\r",
+                                                    "Ext.getCmp('Header').show();\r",
+                                                    "\r",
+                                                    "// hide\r",
+                                                    "\r",
+                                                    "// section A\r",
+                                                    "Ext.getCmp('SectionAID').hide();\r",
+                                                    "Ext.getCmp('SectionA1NextID').hide();\r",
+                                                    "\r",
+                                                    "// section B\r",
+                                                    "Ext.getCmp('SectionB1NextID').hide();\r",
+                                                    "Ext.getCmp('sectionB1ID').hide();\r",
+                                                    "\r",
+                                                    "//Patient Record\r",
+                                                    "Ext.getCmp('PatientRecord').hide();\r",
+                                                    "Ext.getCmp('PatientPanelID').hide();\r",
+                                                    "Ext.getCmp('PatientViewID').hide();\r",
+                                                    "\r",
+                                                    "//Physician Record\r",
+                                                    "Ext.getCmp('PhysicianPanelID').hide();\r",
+                                                    "Ext.getCmp('PhysicianViewID').hide();\r",
+                                                    "Ext.getCmp('PhysicianRecord').hide();\r",
+                                                    "\r",
+                                                    "//Supplier Record\r",
+                                                    "Ext.getCmp('SupplierRecord').hide();\r",
+                                                    " Ext.getCmp('SupplierPanelID').hide();\r",
+                                                    " Ext.getCmp('SupplierViewID').hide();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('ViewAll').hide();\r",
+                                                    "Ext.getCmp('Messaging').hide();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('AddUserPanelID').hide();\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "//Dashboard\r",
+                                                    "Ext.getCmp('DashboardForm').getForm().reset();\r",
+                                                    "Ext.getCmp('Dashboard').show();\r",
+                                                    "\r",
+                                                    "Ext.getCmp('ChangePasswordPanelID').hide();\r",
+                                                    "Ext.getCmp('AddAlias').hide();\r",
+                                                    ""
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "16def1c7-3b9e-43b3-a6be-22ae6a7263a1"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.menu.Item",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "id": "MessagingID",
+                                        "text": "Messaging"
+                                    },
+                                    "designerId": "e607c815-2ff1-44ed-8f07-fb3eb95e2ed6",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onMessagingIDClick",
+                                                "implHandler": [
+                                                    "/*var mesg_url = localStorage.getItem(\"preauthURL\");\r",
+                                                    "//Ext.get('Messaging1').dom.src = url;\r",
+                                                    "window.open(mesg_url);*/\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "// Success\r",
+                                                    "var successCallback = function(resp, ops) {\r",
+                                                    "\r",
+                                                    "    if(resp.responseText !== 'error' && resp.responseText !== 'false'){\r",
+                                                    "        var responseOjbect = Ext.JSON.decode(resp.responseText);\r",
+                                                    "        var preauthURL = responseOjbect.response.preauthURL;\r",
+                                                    "        var mesg_url = preauthURL;\r",
+                                                    "        window.open(mesg_url);\r",
+                                                    "    }\r",
+                                                    "};\r",
+                                                    "\r",
+                                                    "// Failure\r",
+                                                    "var failureCallback = function(resp, ops) {\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "    // Show login failure error\r",
+                                                    "    //Ext.Msg.alert(\"Login Failure\", 'Incorrect Username or Password');\r",
+                                                    "\r",
+                                                    "};\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "// TODO: Login using server-side authentication service\r",
+                                                    "Ext.Ajax.request({url: \"services/LDAPpreauth.php?action=Messaging_Preauth_URL&username=\"+localStorage.getItem(\"email\"),\r",
+                                                    "                  method: 'POST',\r",
+                                                    "                  params: values,\r",
+                                                    "                  success: successCallback,\r",
+                                                    "                  failure: failureCallback\r",
+                                                    "                 });\r",
+                                                    "\r",
+                                                    ""
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "d038cd62-9f4f-4a3a-8d74-b30bbaba74d2"
                                         }
                                     ]
                                 }
@@ -3169,7 +3170,7 @@
                                                                                             "                Ext.getCmp('ViewHCPCS4Des').setValue(responseOjbect.HCPCS_Other4Desc);\r",
                                                                                             "\r",
                                                                                             "                Ext.getCmp('ViewHCPCS4Sup').setValue(responseOjbect.HCPCS_Other4SupChrg);\r",
-                                                                                            "                console.log(Ext.getCmp('ViewHCPCS4Sup').value);\r",
+                                                                                            "                \r",
                                                                                             "                Ext.getCmp('ViewHCPCS4Med').setValue(responseOjbect.HCPCS_Other4MedFee);\r",
                                                                                             "\r",
                                                                                             "            }\r",
@@ -12281,7 +12282,7 @@
                                                                                     "            Ext.getCmp('ViewE4').setValue(responseOjbect.HCPCS_K0738);\r",
                                                                                     "            Ext.getCmp('ViewE4Sup').setValue(responseOjbect.HCPCS_K0738MedFee);\r",
                                                                                     "            Ext.getCmp('ViewE4Med').setValue(responseOjbect.HCPCS_K0738SupChrg);\r",
-                                                                                    "\r",
+                                                                                    "    console.log(responseOjbect.HCPCS_Other1Code);\r",
                                                                                     "            if(responseOjbect.HCPCS_Other1Code !== ''){\r",
                                                                                     "                Ext.getCmp('ViewHCPCS1').setValue(responseOjbect.HCPCS_Other1Code);\r",
                                                                                     "                Ext.getCmp('ViewHCPCS1Des').setValue(responseOjbect.HCPCS_Other1Desc);\r",
@@ -24072,8 +24073,12 @@
                                                     "\r",
                                                     "        else {\r",
                                                     "            var myStore = Ext.getStore('SectionA1GridBind');\r",
+                                                    "            var myStore1 = Ext.getStore('SectionBGridBind');\r",
+                                                    "            \r",
                                                     "            myStore.load();\r",
                                                     "            \r",
+                                                    "            myStore1.load();\r",
+                                                    "\r",
                                                     "            var responseOjbect = Ext.JSON.decode(resp.responseText);\r",
                                                     "           // console.log(responseOjbect);\r",
                                                     "\r",
@@ -24100,8 +24105,8 @@
                                                     "\r",
                                                     "            localStorage.removeItem(\"email\"); //remove\r",
                                                     "            localStorage.setItem(\"email\", responseOjbect.response.email);\r",
-                                                    "            \r",
-                                                    "           \r",
+                                                    "\r",
+                                                    "\r",
                                                     "\r",
                                                     "\r",
                                                     "            userName.setText(localStorage.getItem('user_name'));\r",
@@ -24113,9 +24118,9 @@
                                                     "            console.log(data);\r",
                                                     "            Ext.each(data, function(op) {\r",
                                                     "                  console.log(op.FormNameID);\r",
-                                                    "                \r",
+                                                    "\r",
                                                     "                Ext.getCmp(op.FormNameID).show();\r",
-                                                    "                \r",
+                                                    "\r",
                                                     "            });\r",
                                                     "        }\r",
                                                     "\r",

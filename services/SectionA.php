@@ -7,7 +7,7 @@
 
 include "DBConnection.php";
 include "GetSet.php";
-
+include "ZimbraConnect.php";
 class SectionA
 {
     //Database connect 
@@ -23,7 +23,40 @@ class SectionA
            if(!isset($_SESSION)){
              session_start();
           }
-        $routytype = ($_COOKIE['route_type']);
+          $routetype = '';
+          $userdomain = '';
+          $where = '';
+          if(isset($_COOKIE['route_type'])){
+            $routetype = ($_COOKIE['route_type']);  
+          }
+       if(isset($_COOKIE['user_domain'])){
+         $userdomain = ($_COOKIE['user_domain']);
+       } 
+        
+        if(isset($_COOKIE['user_npi'])){
+          $connect = new Zimbra();
+          $phy_alias = $connect->ZimbraGetPhysicianAlias($_COOKIE['user_npi']);
+         
+        }
+        if($routetype == 'provider'){
+          $where = "where SrcDomain='$userdomain'";
+        }
+       if($routetype == 'client'){
+          $alias_data = '';
+          if(!empty($phy_alias)){
+            foreach($phy_alias as $alias){
+              $my_domain = substr(strrchr($alias['alias'], "@"), 1);
+              if($alias_data != '')
+                $alias_data = $alias_data.','."'".$my_domain."'";
+              else
+                $alias_data = "'".$my_domain."'";
+            }
+            $where = "AND DestDomain IN ($alias_data)";
+          }
+          else{
+            $where = "and DestDomain='$userdomain'";
+          }
+        }
   $filter = array();
   $filter_array = '';
   $filter_json = isset($_GET['filter']) ? $_GET['filter'] : '';
@@ -45,9 +78,11 @@ class SectionA
       cms484hdr.HdrID as HdrID,patient.PatientLname ,case when (cms484hdr.MedicalID is not null and cms484hdr.PhysicianNPI is not null and cms484hdr.SupplierNPI and cms484hdr.PlaceService ) then 'Allow' Else 'Dis' End as Send 
       from cms484hdr 
       inner join patient 
-      on patient.PatientHICN = cms484hdr.PatientHICN "; 
+      on patient.PatientHICN = cms484hdr.PatientHICN $where"; 
+        
   if($count > 0){
-   $sql .= " WHERE ";
+   //$sql .= " WHERE ";
+    $sql .= " AND ";
    if($filter['SelectFilter'] == 'LastName'){
     $sql .= "patient.PatientLname LIKE '%".$filter['PatientHICN']."%'";
    }elseif($filter['SelectFilter'] == 'HICN'){
@@ -98,8 +133,9 @@ class SectionA
       $sql .= " AND (DATE_FORMAT(RecertificationDate, '%m-%d-%Y') = '".$filter['EndDate']."')";
     }
    }
-  }    
-  $sql .=  " order By cms484hdr.LastUpdate DESC 
+  }
+  
+$sql .=  " order By cms484hdr.LastUpdate DESC 
       LIMIT $start,$limit; ";
 
         $result = mysql_query($sql);

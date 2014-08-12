@@ -70,6 +70,8 @@ class GetSet
     public $Domain_Name;
     public $DefaultCOS;
     
+    public $npi;
+    
      // get Domain_Name
     public function getDefaultCOS()
     {
@@ -756,14 +758,24 @@ class GetSet
     return $this->SrcDomain;
     }
     // set Domain
-    public function setdomain($domain)
+    public function setdomain($username)
     {
-    $this->domain = substr(strrchr($domain, "@"), 1);
+    $this->domain = substr(strrchr($username, "@"), 1);
     } 
     // get Domain
     public function getdomain()
     {
     return $this->domain;
+    }
+    // set npi from username
+    public function set_npi($username)
+    {
+    $this->npi = explode("@",$username);
+    } 
+    // get npi from username
+    public function get_npi()
+    {
+    return $this->npi[0];
     }
     public function setAliasEmailId($email_id){
       $this->alias_email_id = $email_id;

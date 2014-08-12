@@ -7,7 +7,7 @@
 
 include "DBConnection.php";
 include "GetSet.php";
-
+include "ZimbraConnect.php";
 class SectionB
 {
   //Database connect 
@@ -16,9 +16,48 @@ class SectionB
         $db = new DB_Class();
 
     }
+ 
 	
  /*Section B record selector*/
      public function get_SectionBGridBind () {
+       if(!isset($_SESSION)){
+             session_start();
+          }
+          $routetype = '';
+          $userdomain = '';
+          $where = '';
+          if(isset($_COOKIE['route_type'])){
+            $routetype = ($_COOKIE['route_type']);  
+          }
+       if(isset($_COOKIE['user_domain'])){
+         $userdomain = ($_COOKIE['user_domain']);
+       } 
+        
+        if(isset($_COOKIE['user_npi'])){
+          $connect = new Zimbra();
+          $phy_alias = $connect->ZimbraGetPhysicianAlias($_COOKIE['user_npi']);
+         
+        }
+        //print_r($_COOKIE);
+        if($routetype == 'provider'){
+          $where = "and SrcDomain='$userdomain'";
+        }
+       if($routetype == 'client'){
+         $alias_data = '';
+          if(!empty($phy_alias)){
+            foreach($phy_alias as $alias){
+              $my_domain = substr(strrchr($alias['alias'], "@"), 1);
+              if($alias_data != '')
+                $alias_data = $alias_data.','."'".$my_domain."'";
+              else
+                $alias_data = "'".$my_domain."'";
+            }
+            $where = "AND DestDomain IN ($alias_data)";
+          }
+          else{
+            $where = "and DestDomain='$userdomain'";
+          }
+        }
         $filter = array();
   $filter_array = '';
   $filter_json = isset($_GET['filter']) ? $_GET['filter'] : '';
@@ -41,7 +80,7 @@ class SectionB
   inner join patient 
   on patient.PatientHICN = cms484det.PatientHICN 
   where (cms484det.StatusFLG='B' 
-  or cms484det.StatusFLG='S') "; 
+  or cms484det.StatusFLG='S') $where"; 
   if($count > 0){
    $sql .= " AND ";
    if($filter['SelectFilter'] == 'LastName'){
@@ -66,8 +105,7 @@ class SectionB
    
   }    
   $sql .=  " order By cms484det.LastUpdate DESC 
-  LIMIT $start,$limit;";
-           
+  LIMIT $start,$limit;";  
     $result = mysql_query($sql);
     if (!$result) {
         die('Invalid query: ' . $sql . "   " . mysql_error());
