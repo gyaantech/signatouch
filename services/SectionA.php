@@ -20,7 +20,10 @@ class SectionA
   
     /*Section A record selector*/
      public function get_SectionA1GridBind () {
-        
+           if(!isset($_SESSION)){
+             session_start();
+          }
+        $routytype = ($_COOKIE['route_type']);
   $filter = array();
   $filter_array = '';
   $filter_json = isset($_GET['filter']) ? $_GET['filter'] : '';

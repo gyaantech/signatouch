@@ -1,8 +1,8 @@
 <?php
 // Test for Zimbra Preauth access
 //
-// Ver 3
-// Thu Jun 27 EDT 2014
+// Ver 4
+// Thu Aug 11 EDT 2014
 // -------------------------------------
 include "DBConnection.php";
 include "GetSet.php";
@@ -37,6 +37,12 @@ class LDAP {
     if(!isset($_SESSION['username'])){
       $_SESSION['username'] = $_POST['txtUsername'];
     }
+   /* if(!isset($_SESSION['route_type'])){
+      $_SESSION['route_type'] = $_COOKIE['route_type'];
+      setcookie ("route_type", "", time());
+    }
+    * */
+    
     $user = $_SESSION['username'];
      $pass = $_SESSION['password'];
     //echo 'password '.$pass;
@@ -171,19 +177,20 @@ class LDAP {
                   //echo $cms_user_type;
                   $cms_user_type = str_replace('"','',$cms_user_type); // returns display name value
                   // check whther cos is admin or user
-                  $cos_type='';
+                  /*$cos_type='';
+                  
                   //echo $cms_user_type;
                   if (strpos($cms_user_type,'-admin') !== false) {
                      $cos_type = 'admin';
                   }
                   if (strpos($cms_user_type,'-user') !== false) {
                      $cos_type = 'user';
-                  }
+                  }*/
                   $domain = $user_data['domain'];
                   if($cname != ''){
                     //$response = array('name');
-                    $sql = "SELECT displayType,FormNameID FROM forms WHERE COSname='$cos_type'; ";
-                    
+                    //$sql = "SELECT displayType,FormNameID FROM forms WHERE COSname='$cos_type'; ";
+                    $sql = "SELECT displayType,FormNameID,RouteType FROM forms2 WHERE COSname='$cms_user_type' and Active='1'; ";
                     $result = mysql_query($sql);
                     if (!$result) {
                     die('Invalid query: ' . $sql . "   " . mysql_error());
@@ -193,10 +200,24 @@ class LDAP {
 
                     while ($row = mysql_fetch_assoc($result)) {
                     //echo '<pre>';print_r($row);echo '</pre>';
+                      if($row['RouteType'] == '1'){
+                        $routetype = 'provider';
+                      }
+                     if($row['RouteType'] == '2'){
+                        $routetype = 'client';
+                      }
                     $app_list[] = array('displayType'=> $row['displayType'],'FormNameID' => $row['FormNameID']);
                     }
-
-
+                    // set routype in session variable
+                        if(!isset($_SESSION)){
+                        session_start();
+                      }
+                    /*if(!isset($_SESSION['RouteType'])){
+                               $_SESSION['RouteType'] = $routetype;
+                      }
+                     * */
+                      setcookie("route_type",$routetype);
+                       // print_r($_SESSION);
                     $response = array('status'=>$cms_user_type,'username'=>$cname,'cos'=>$cos_code,'domain'=>$domain,'email'=>$user_data['username'],'id'=>$id);
                     $response  = array('menu'=>$app_list,'response'=>$response);
                     
@@ -311,8 +332,12 @@ class LDAP {
     // Get Messaging Preauth URL 
     // -------------------------------------   
     session_start();
+    print_r($_COOKIE);
+   // $route_type = $_SESSION['RouteType'];
     session_destroy();
-    
+    if(isset($_COOKIE['route_type'])){
+      setcookie("route_type", "", time());
+    }
     $user_data = $this->set_user_parameters();
    // print_R($user_data);
     $zimbraPreAuthKey  = $this->GetAcctInfo();

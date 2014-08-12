@@ -300,6 +300,7 @@ Ext.define('SignaTouch.view.MainView', {
                                         },
                                         {
                                             xtype: 'menuitem',
+                                            hidden: true,
                                             id: 'MAddCOSID',
                                             text: 'Add COS',
                                             listeners: {
@@ -322,6 +323,7 @@ Ext.define('SignaTouch.view.MainView', {
                                         },
                                         {
                                             xtype: 'menuitem',
+                                            hidden: true,
                                             id: 'MAddDomainID',
                                             text: 'Add Domain',
                                             listeners: {
@@ -7998,6 +8000,9 @@ Ext.define('SignaTouch.view.MainView', {
                                                                             allowBlank: false,
                                                                             enforceMaxLength: true,
                                                                             maxLength: 16,
+                                                                            maxLengthText: 'Please enter 16 digit medical ID',
+                                                                            minLength: 16,
+                                                                            minLengthText: 'Please enter 16 digit medical ID',
                                                                             validateBlank: true,
                                                                             vtype: 'alphanum'
                                                                         }
@@ -15411,6 +15416,10 @@ Ext.define('SignaTouch.view.MainView', {
     },
 
     onLoginButtonClick: function(button, e, eOpts) {
+        Ext.getCmp('txtFilterID').reset();
+        Ext.getCmp('CertTypeID').setValue('All');
+        Ext.getCmp('TxtendDateID').reset();
+        Ext.getCmp('TxtstartDateID').reset();
         var form =  Ext.getCmp('loginForm1');  // Login form
 
         var userName =  Ext.getCmp('LBLUsername');
@@ -15434,8 +15443,11 @@ Ext.define('SignaTouch.view.MainView', {
             }
 
                 else {
+                    var myStore = Ext.getStore('SectionA1GridBind');
+                    myStore.load();
+
                     var responseOjbect = Ext.JSON.decode(resp.responseText);
-                    //console.log(responseOjbect.response.status);
+                   // console.log(responseOjbect);
 
                     //Common Panel
 
@@ -15462,13 +15474,15 @@ Ext.define('SignaTouch.view.MainView', {
                     localStorage.setItem("email", responseOjbect.response.email);
 
 
+
+
                     userName.setText(localStorage.getItem('user_name'));
         Ext.getCmp('HiddenID').setValue(responseOjbect.response.id);
 
 
 
                     var data = responseOjbect.menu;
-                    //console.log(data);
+                    console.log(data);
                     Ext.each(data, function(op) {
                           console.log(op.FormNameID);
 

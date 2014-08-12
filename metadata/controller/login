@@ -84,6 +84,7 @@
                     "        Ext.getCmp('SectionBMenu').hide();\r",
                     "        Ext.getCmp('CMS484SectionA').hide();\r",
                     "        Ext.getCmp('Maintanance').hide();\r",
+                    "        Ext.getCmp('ManageAccountID').hide();\r",
                     "        // refresh store\r",
                     "        var myStore = Ext.getStore('SectionA1GridBind');\r",
                     "        myStore.clearFilter();\r",

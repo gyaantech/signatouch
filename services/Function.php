@@ -160,6 +160,10 @@ class Function1
     if(isset($_SESSION['username'])){
       unset($_SESSION['username']);
     }
+      // unset routetype in session variable
+    if(isset($_COOKIE['route_type'])){
+      setcookie("route_type", "", time());
+    }
     session_destroy();
     return TRUE;
   } 

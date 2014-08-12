@@ -1057,6 +1057,7 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "hidden": true,
                                         "id": "MAddCOSID",
                                         "text": "Add COS"
                                     },
@@ -1208,6 +1209,7 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "hidden": true,
                                         "id": "MAddDomainID",
                                         "text": "Add Domain"
                                     },
@@ -2016,8 +2018,8 @@
                                                                                     "             }\r",
                                                                                     "\r",
                                                                                     "*/\r",
-                                                                                    "     myStore.filter([{property: 'SelectFilter',value: type} , \r",
-                                                                                    "                    {property: 'CertType' , value: CertType} , \r",
+                                                                                    "     myStore.filter([{property: 'SelectFilter',value: type} ,\r",
+                                                                                    "                    {property: 'CertType' , value: CertType} ,\r",
                                                                                     "                    {property: 'PatientHICN' , value: Search } ,\r",
                                                                                     "                   {property: 'StartDate' , value: CertDate1 },\r",
                                                                                     "                   {property: 'EndDate' , value: CertDate2 }]);\r",
@@ -18021,6 +18023,9 @@
                                                                         "inputId": "MedIDSectionA",
                                                                         "labelWidth": 150,
                                                                         "maxLength": 16,
+                                                                        "maxLengthText": "Please enter 16 digit medical ID",
+                                                                        "minLength": 16,
+                                                                        "minLengthText": "Please enter 16 digit medical ID",
                                                                         "validateBlank": true,
                                                                         "vtype": "alphanum",
                                                                         "width": null
@@ -24039,6 +24044,10 @@
                                             "userConfig": {
                                                 "fn": "onLoginButtonClick",
                                                 "implHandler": [
+                                                    "Ext.getCmp('txtFilterID').reset();\r",
+                                                    "Ext.getCmp('CertTypeID').setValue('All');\r",
+                                                    "Ext.getCmp('TxtendDateID').reset();\r",
+                                                    "Ext.getCmp('TxtstartDateID').reset();\r",
                                                     "var form =  Ext.getCmp('loginForm1');  // Login form\r",
                                                     "\r",
                                                     "var userName =  Ext.getCmp('LBLUsername');\r",
@@ -24062,8 +24071,11 @@
                                                     "    }\r",
                                                     "\r",
                                                     "        else {\r",
+                                                    "            var myStore = Ext.getStore('SectionA1GridBind');\r",
+                                                    "            myStore.load();\r",
+                                                    "            \r",
                                                     "            var responseOjbect = Ext.JSON.decode(resp.responseText);\r",
-                                                    "            //console.log(responseOjbect.response.status);\r",
+                                                    "           // console.log(responseOjbect);\r",
                                                     "\r",
                                                     "            //Common Panel\r",
                                                     "\r",
@@ -24088,6 +24100,8 @@
                                                     "\r",
                                                     "            localStorage.removeItem(\"email\"); //remove\r",
                                                     "            localStorage.setItem(\"email\", responseOjbect.response.email);\r",
+                                                    "            \r",
+                                                    "           \r",
                                                     "\r",
                                                     "\r",
                                                     "            userName.setText(localStorage.getItem('user_name'));\r",
@@ -24096,7 +24110,7 @@
                                                     "\r",
                                                     "\r",
                                                     "            var data = responseOjbect.menu;\r",
-                                                    "            //console.log(data);\r",
+                                                    "            console.log(data);\r",
                                                     "            Ext.each(data, function(op) {\r",
                                                     "                  console.log(op.FormNameID);\r",
                                                     "                \r",
