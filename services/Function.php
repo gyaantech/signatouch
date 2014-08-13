@@ -164,6 +164,15 @@ class Function1
     if(isset($_COOKIE['route_type'])){
       setcookie("route_type", "", time());
     }
+    if(isset($_COOKIE['user_domain'])){
+      setcookie("user_domain", "", time());
+    }
+    if(isset($_COOKIE['user_npi'])){
+      setcookie("user_npi", "", time());
+    }
+     if(isset($_COOKIE['user_cos'])){
+      setcookie("user_cos", "", time());
+    }
     session_destroy();
     return TRUE;
   } 

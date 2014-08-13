@@ -222,6 +222,7 @@ class LDAP {
                      * */
                       setcookie("route_type",$routetype); // set routype in cookie
                       setcookie("user_domain",$domain); //set users domain in cookie
+                      setcookie("user_cos",$cms_user_type); //set users domain in cookie
                       if($npi != ''){
                         setcookie("user_npi",$npi); //set users npi in cookie
                       }
@@ -352,6 +353,9 @@ class LDAP {
     }
     if(isset($_COOKIE['user_npi'])){
       setcookie("user_npi", "", time());
+    }
+    if(isset($_COOKIE['user_cos'])){
+      setcookie("user_cos", "", time());
     }
     $user_data = $this->set_user_parameters();
    // print_R($user_data);
