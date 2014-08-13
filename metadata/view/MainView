@@ -3170,7 +3170,7 @@
                                                                                             "                Ext.getCmp('ViewHCPCS4Des').setValue(responseOjbect.HCPCS_Other4Desc);\r",
                                                                                             "\r",
                                                                                             "                Ext.getCmp('ViewHCPCS4Sup').setValue(responseOjbect.HCPCS_Other4SupChrg);\r",
-                                                                                            "                \r",
+                                                                                            "\r",
                                                                                             "                Ext.getCmp('ViewHCPCS4Med').setValue(responseOjbect.HCPCS_Other4MedFee);\r",
                                                                                             "\r",
                                                                                             "            }\r",
@@ -22641,6 +22641,7 @@
                                                                                         "labelWidth": 70,
                                                                                         "layout|flex": null,
                                                                                         "maxWidth": null,
+                                                                                        "readOnly": true,
                                                                                         "width": 130
                                                                                     },
                                                                                     "designerId": "0e043984-781d-4011-aaed-250aa9ecc51a"
@@ -22741,6 +22742,7 @@
                                                                                         "labelWidth": 70,
                                                                                         "layout|flex": null,
                                                                                         "maxWidth": null,
+                                                                                        "readOnly": true,
                                                                                         "width": 130
                                                                                     },
                                                                                     "designerId": "e7a34f9d-940e-4711-88f4-32d80844fd97"
@@ -22842,6 +22844,7 @@
                                                                                         "labelWidth": 70,
                                                                                         "layout|flex": null,
                                                                                         "maxWidth": null,
+                                                                                        "readOnly": true,
                                                                                         "width": 130
                                                                                     },
                                                                                     "designerId": "4ca9c3a4-0183-47d2-ac25-dcff77b93c1a"
@@ -22941,6 +22944,7 @@
                                                                                         "labelWidth": 70,
                                                                                         "layout|flex": null,
                                                                                         "maxWidth": null,
+                                                                                        "readOnly": true,
                                                                                         "width": 130
                                                                                     },
                                                                                     "designerId": "e4197b23-e852-4258-b6d5-d35172710830"

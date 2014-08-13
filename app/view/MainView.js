@@ -9968,6 +9968,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                             fieldLabel: '',
                                                                                             labelWidth: 70,
                                                                                             inputId: 'InputE1390',
+                                                                                            readOnly: true,
                                                                                             boxLabel: '<b>E1390</b>',
                                                                                             inputValue: '1'
                                                                                         },
@@ -10017,6 +10018,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                             fieldLabel: '',
                                                                                             labelWidth: 70,
                                                                                             inputId: 'InputE1392',
+                                                                                            readOnly: true,
                                                                                             boxLabel: '<b>E1392</b>',
                                                                                             inputValue: '1'
                                                                                         },
@@ -10068,6 +10070,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                             fieldLabel: '',
                                                                                             labelWidth: 70,
                                                                                             inputId: 'InputE0431',
+                                                                                            readOnly: true,
                                                                                             boxLabel: '<b>E0431</b>',
                                                                                             inputValue: '1'
                                                                                         },
@@ -10116,6 +10119,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                             fieldLabel: '',
                                                                                             labelWidth: 70,
                                                                                             inputId: 'InputK0738',
+                                                                                            readOnly: true,
                                                                                             boxLabel: '<b>K0738</b>',
                                                                                             inputValue: '1'
                                                                                         },
