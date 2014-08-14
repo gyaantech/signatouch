@@ -25,8 +25,8 @@ class CreateUser {
     $GetSet->setpassword($_POST['txtCPassword']);
     $NewUserPassword = $GetSet->getpassword();
 
-    $GetSet->setCOS($_POST['txtSectionType']);
-    $COSId = $GetSet->getCOS();
+    //$GetSet->setCOS($_POST['txtSectionType']);
+    //$COSId = $GetSet->getCOS();
 
     $GetSet->setdisplayName($_POST['txtDisplayNaMe']);
     $displayName = $GetSet->GetdisplayName();
@@ -59,7 +59,7 @@ class CreateUser {
     
     
     
-    $result = array('NewUserName'=>$NewUserName,'NewUserPassword'=>$NewUserPassword,'COSId'=>$COSId,'displayName'=>$displayName,'firstName'=>$firstName,'midName'=>$midName,'lastName'=>$lastName,'company'=>$company,'jobTitle'=>$jobTitle,'state'=>$state,'phone'=>$phone,'city'=>$city,'zip'=>$zip);
+    $result = array('NewUserName'=>$NewUserName,'NewUserPassword'=>$NewUserPassword,'displayName'=>$displayName,'firstName'=>$firstName,'midName'=>$midName,'lastName'=>$lastName,'company'=>$company,'jobTitle'=>$jobTitle,'state'=>$state,'phone'=>$phone,'city'=>$city,'zip'=>$zip);
     return $result;
   }
     
@@ -80,8 +80,13 @@ class CreateUser {
      //to create zimbra Admin Account
   public function ZimbraAdminCreateAccount($Trace, $ServerAddress, $AdminUserName, $AdminPassword, $NewUserName, $NewUserPassword, $COSId)
   {
+        $physician_cos_array = explode('-',$_COOKIE['user_cos']);
+        $COS_user_name = $physician_cos_array[0].'-client-user';
+        
+        //echo 'cos '.$COS_user_name;
         $connect = new Zimbra();
         $param = $this->set_user_parameters();
+        $cosID = $connect->ZimbraGetCOSID($COS_user_name);
          $CurlHandle = curl_init();
           curl_setopt($CurlHandle, CURLOPT_URL,           "$connect->ServerAddress:7071/service/admin/soap");
           curl_setopt($CurlHandle, CURLOPT_POST,           TRUE);
@@ -104,8 +109,8 @@ class CreateUser {
                                   <soap:Body>
                                           <CreateAccountRequest xmlns="urn:zimbraAdmin">
                                                   <name>' . $param['NewUserName'].'.st' . '</name>
-                                                  <password>' . $param['NewUserPassword'] . '</password>
-                                                  <a n="zimbraCOSId">' . $param['COSId'] . '</a>
+                                                  <password>' . $param['phone'] . '</password>
+                                                  <a n="zimbraCOSId">' . $cosID . '</a>
                                                   <a n="displayName">'.$param['displayName'].'</a>
                                                <a n="givenName">'.$param['firstName'].'</a>
                                                         <a n="initials">'.$param['midName'].'</a>
@@ -139,7 +144,10 @@ class CreateUser {
   public function ZimbraCreateUser () {
      $connect = new Zimbra();
     $param = $this->set_user_parameters();
-    $response = $this->ZimbraAdminCreateAccount(1, $connect->ServerAddress, $connect->AdminUserName, $connect->AdminPassword, $param['NewUserName'], $param['NewUserPassword'], $param['COSId']);
+    $physician_cos_array = explode('-',$_COOKIE['user_cos']);
+    $COS_user_name = $physician_cos_array[0].'-client-user';
+    
+    $response = $this->ZimbraAdminCreateAccount(1, $connect->ServerAddress, $connect->AdminUserName, $connect->AdminPassword, $param['NewUserName'], $param['NewUserPassword'], $COS_user_name);
     $a='<Code>'; 
     $duplicate = strstr($response, $a);
     if($response == FALSE)

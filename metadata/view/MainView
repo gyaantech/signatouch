@@ -4983,48 +4983,6 @@
                                             "codeClass": null,
                                             "userConfig": {
                                                 "container|align": "stretch",
-                                                "id": "SectionType",
-                                                "itemId": "DOBSex",
-                                                "layout": "hbox",
-                                                "margin": "7 0 7 0"
-                                            },
-                                            "designerId": "68998ddd-7ca6-403f-983c-1c208d3ec7d6",
-                                            "cn": [
-                                                {
-                                                    "type": "Ext.form.field.ComboBox",
-                                                    "reference": {
-                                                        "name": "items",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "allowBlank": false,
-                                                        "displayField": "COSName",
-                                                        "editable": false,
-                                                        "emptyText": "Unknown",
-                                                        "fieldLabel": "<b>COS&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
-                                                        "forceSelection": true,
-                                                        "id": "txtSectionTypeID",
-                                                        "inputId": "txtSectionType",
-                                                        "itemId": null,
-                                                        "labelWidth": 130,
-                                                        "store": "COS",
-                                                        "valueField": "COSID",
-                                                        "width": 300
-                                                    },
-                                                    "designerId": "a9de80c2-5fcc-47f4-9dc2-ac09e5afeffb"
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "Ext.container.Container",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "container|align": "stretch",
                                                 "itemId": "Company",
                                                 "layout": "hbox",
                                                 "margin": "7 0 7 0"
@@ -24078,9 +24036,9 @@
                                                     "        else {\r",
                                                     "            var myStore = Ext.getStore('SectionA1GridBind');\r",
                                                     "            var myStore1 = Ext.getStore('SectionBGridBind');\r",
-                                                    "            \r",
+                                                    "\r",
                                                     "            myStore.load();\r",
-                                                    "            \r",
+                                                    "\r",
                                                     "            myStore1.load();\r",
                                                     "\r",
                                                     "            var responseOjbect = Ext.JSON.decode(resp.responseText);\r",
@@ -24119,9 +24077,9 @@
                                                     "\r",
                                                     "\r",
                                                     "            var data = responseOjbect.menu;\r",
-                                                    "            console.log(data);\r",
+                                                    "            //console.log(data);\r",
                                                     "            Ext.each(data, function(op) {\r",
-                                                    "                  console.log(op.FormNameID);\r",
+                                                    "                  //console.log(op.FormNameID);\r",
                                                     "\r",
                                                     "                Ext.getCmp(op.FormNameID).show();\r",
                                                     "\r",

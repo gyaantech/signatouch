@@ -2213,33 +2213,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                 },
                                                 {
                                                     xtype: 'container',
-                                                    id: 'SectionType',
-                                                    itemId: 'DOBSex',
-                                                    margin: '7 0 7 0',
-                                                    layout: {
-                                                        type: 'hbox',
-                                                        align: 'stretch'
-                                                    },
-                                                    items: [
-                                                        {
-                                                            xtype: 'combobox',
-                                                            id: 'txtSectionTypeID',
-                                                            width: 300,
-                                                            fieldLabel: '<b>COS&nbsp;<span style="color:#D94E37;">*</span></b>',
-                                                            labelWidth: 130,
-                                                            inputId: 'txtSectionType',
-                                                            allowBlank: false,
-                                                            emptyText: 'Unknown',
-                                                            editable: false,
-                                                            displayField: 'COSName',
-                                                            forceSelection: true,
-                                                            store: 'COS',
-                                                            valueField: 'COSID'
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    xtype: 'container',
                                                     itemId: 'Company',
                                                     margin: '7 0 7 0',
                                                     layout: {
@@ -15491,9 +15464,9 @@ Ext.define('SignaTouch.view.MainView', {
 
 
                     var data = responseOjbect.menu;
-                    console.log(data);
+                    //console.log(data);
                     Ext.each(data, function(op) {
-                          console.log(op.FormNameID);
+                          //console.log(op.FormNameID);
 
                         Ext.getCmp(op.FormNameID).show();
 
