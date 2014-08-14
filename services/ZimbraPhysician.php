@@ -118,7 +118,9 @@ public function create_another_office() {
 		
 		$COS_name_common = $name_f_l.'-'.substr($param['zip'], 0, 5);
 		//$COS_user_name = $COS_name_common.'-user';
-		$COS_user_name = 'barnes-client-admin';
+		//$COS_user_name = 'barnes-client-admin';
+		$physician_cos_array = explode('-',$_COOKIE['user_cos']);
+		$COS_user_name = $physician_cos_array[0].'-client-admin';
 		$domain_name = $COS_name_common.'.st';
 		
 		//$cos_user_response_id = $this->copy_default_cos($COS_user_name); 
@@ -194,6 +196,7 @@ public function create_another_office() {
 		return $okay;
 	}  
 	public function ZimbraPhysicianCreate(){
+    //print_r($_COOKIE);
 		$connect = new Zimbra();
 		$param = $this->set_physician_parameters();
 		
@@ -207,8 +210,9 @@ public function create_another_office() {
 		$COS_admin_name = $COS_name_common.'-admin';
 		$COS_user_name = $COS_name_common.'-user';
 		*/
-		$COS_admin_name = 'barnes-client-admin';
-		$COS_user_name = 'barnes-client-admin';
+		$physician_cos_array = explode('-',$_COOKIE['user_cos']);
+		$COS_admin_name = $physician_cos_array[0].'-client-admin';
+		$COS_user_name = $physician_cos_array[0].'-client-admin';
 		
 		$domain_name = $COS_name_common.'.st';
 		/*

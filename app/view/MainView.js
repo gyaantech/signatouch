@@ -11951,7 +11951,7 @@ Ext.define('SignaTouch.view.MainView', {
 
         // Success
         var successCallback = function(resp, ops) {
-            console.log(resp.responseText);
+            //console.log(resp.responseText);
             if(resp.responseText === 'true'){
                 Ext.Msg.alert("New User Created", 'New User Created successfully');
                  Ext.getCmp('AddUserForm').getForm().reset();

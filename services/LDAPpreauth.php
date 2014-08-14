@@ -220,9 +220,10 @@ class LDAP {
                                $_SESSION['RouteType'] = $routetype;
                       }
                      * */
+                      //echo $cms_user_type;
                       setcookie("route_type",$routetype); // set routype in cookie
                       setcookie("user_domain",$domain); //set users domain in cookie
-                      setcookie("user_cos",$cms_user_type); //set users domain in cookie
+                      setcookie("user_cos",$cms_user_type); //set users cos in cookie
                       if($npi != ''){
                         setcookie("user_npi",$npi); //set users npi in cookie
                       }
