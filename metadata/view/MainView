@@ -444,7 +444,7 @@
                                                     "Ext.getCmp('ChangePasswordPanelID').hide();\r",
                                                     "Ext.getCmp('AddCOSID').hide();\r",
                                                     "Ext.getCmp('AddAlias').hide();\r",
-                                                    "\r",
+                                                    "Ext.getCmp('AddUserPanelID').hide();\r",
                                                     "Ext.getCmp('AddDomainID').hide();"
                                                 ],
                                                 "name": "click",
@@ -527,7 +527,7 @@
                                                     "Ext.getCmp('ChangePasswordPanelID').hide();\r",
                                                     "Ext.getCmp('AddCOSID').hide();\r",
                                                     "Ext.getCmp('AddAlias').hide();\r",
-                                                    "\r",
+                                                    "Ext.getCmp('AddUserPanelID').hide();\r",
                                                     "Ext.getCmp('AddDomainID').hide();"
                                                 ],
                                                 "name": "click",
@@ -2955,6 +2955,8 @@
                                                                                             "\r",
                                                                                             "Ext.getCmp('ViewForm').getForm().reset();\r",
                                                                                             "var selectedHdrid = record.data.HdrID;\r",
+                                                                                            "Ext.getCmp('HiddenHDRID').setValue(selectedHdrid);\r",
+                                                                                            "\r",
                                                                                             "Ext.getCmp('SectionAID').hide();\r",
                                                                                             "Ext.getCmp('ViewAll').show();\r",
                                                                                             "\r",
@@ -4983,6 +4985,44 @@
                                             "codeClass": null,
                                             "userConfig": {
                                                 "container|align": "stretch",
+                                                "id": "IsAdminID",
+                                                "itemId": "Name2",
+                                                "layout": "hbox",
+                                                "margin": null
+                                            },
+                                            "designerId": "f1605364-173f-450a-a724-d6173d00ed0e",
+                                            "cn": [
+                                                {
+                                                    "type": "Ext.form.field.Checkbox",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "boxLabel": "<b>Is Admin?</b>",
+                                                        "fieldLabel": "",
+                                                        "id": "AutoID1",
+                                                        "inputId": "isadmin",
+                                                        "inputValue": "1",
+                                                        "layout|flex": 1,
+                                                        "margin": null,
+                                                        "uncheckedValue": "0",
+                                                        "value": null
+                                                    },
+                                                    "designerId": "245be603-db22-4586-964e-1bb71dfe2eaa"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "Ext.container.Container",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "container|align": "stretch",
                                                 "itemId": "Company",
                                                 "layout": "hbox",
                                                 "margin": "7 0 7 0"
@@ -5283,6 +5323,7 @@
                                                             "userConfig": {
                                                                 "fn": "onBtnCreateClick",
                                                                 "implHandler": [
+                                                                    "\r",
                                                                     "var form =  Ext.getCmp('AddUserForm');  // Login form\r",
                                                                     "//var userName =  Ext.getCmp('LBLUsername');\r",
                                                                     "//var header = button.up('headerPanel');\r",
@@ -5373,6 +5414,7 @@
                                                             "userConfig": {
                                                                 "fn": "onBtnResetClick",
                                                                 "implHandler": [
+                                                                    "console.log(Ext.getCmp('AddUserForm').getForm());\r",
                                                                     "Ext.getCmp('AddUserForm').getForm().reset();"
                                                                 ],
                                                                 "name": "click",
@@ -12054,6 +12096,7 @@
                                                                                     "var selectedHdrid = record.data.DetailID;\r",
                                                                                     "Ext.getCmp('sectionB1ID').hide();\r",
                                                                                     "Ext.getCmp('ViewAll').show();\r",
+                                                                                    "Ext.getCmp('HiddenHDRID').setValue(selectedHdrid);\r",
                                                                                     "\r",
                                                                                     "\r",
                                                                                     "//Breadcrms\r",
@@ -23771,7 +23814,31 @@
                                                             "userConfig": {
                                                                 "fn": "onViewbtnPrintClick",
                                                                 "implHandler": [
-                                                                    "Ext.Msg.alert(\"Print Disabled Currently\", 'Print Disabled Currently');"
+                                                                    "//Ext.Msg.alert(\"Print Disabled Currently\", 'Print Disabled Currently');\r",
+                                                                    "var HdrID = Ext.getCmp('HiddenHDRID').value;\r",
+                                                                    "\r",
+                                                                    "        // Success\r",
+                                                                    "        var successCallback = function(resp, ops) {\r",
+                                                                    "            \r",
+                                                                    "        };\r",
+                                                                    "\r",
+                                                                    "        // Failure\r",
+                                                                    "        var failureCallback = function(resp, ops) {\r",
+                                                                    "\r",
+                                                                    "\r",
+                                                                    "            // Show login failure error\r",
+                                                                    "            //Ext.Msg.alert(\"Login Failure\", 'Incorrect Username or Password');\r",
+                                                                    "\r",
+                                                                    "        };\r",
+                                                                    "\r",
+                                                                    "\r",
+                                                                    "              Ext.Ajax.request({url: \"services/Print.php?action=PrintRecordData&HDRID=\"+HdrID,\r",
+                                                                    "                method: 'GET',\r",
+                                                                    "                params: HdrID,\r",
+                                                                    "                success: successCallback,\r",
+                                                                    "                failure: failureCallback\r",
+                                                                    "         });\r",
+                                                                    ""
                                                                 ],
                                                                 "name": "click",
                                                                 "scope": "me"

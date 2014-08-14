@@ -88,7 +88,7 @@
                     "        Ext.getCmp('ChangePasswordPanelID').hide();\r",
                     "        Ext.getCmp('AddUserPanelID').hide();\r",
                     "        Ext.getCmp('AddAlias').hide();\r",
-                    "        \r",
+                    "\r",
                     "        // refresh store\r",
                     "        var myStore = Ext.getStore('SectionA1GridBind');\r",
                     "        myStore.clearFilter();\r",

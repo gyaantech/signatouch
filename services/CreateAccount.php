@@ -24,10 +24,12 @@ class CreateUser {
     
     $GetSet->setpassword($_POST['txtCPassword']);
     $NewUserPassword = $GetSet->getpassword();
-
-    //$GetSet->setCOS($_POST['txtSectionType']);
-    //$COSId = $GetSet->getCOS();
-
+      if($_POST['isadmin'] == '1'){
+        $cos_append = 'admin';
+      }
+      if($_POST['isadmin'] == '0'){
+        $cos_append = 'user';
+      }
     $GetSet->setdisplayName($_POST['txtDisplayNaMe']);
     $displayName = $GetSet->GetdisplayName();
 
@@ -59,7 +61,7 @@ class CreateUser {
     
     
     
-    $result = array('NewUserName'=>$NewUserName,'NewUserPassword'=>$NewUserPassword,'displayName'=>$displayName,'firstName'=>$firstName,'midName'=>$midName,'lastName'=>$lastName,'company'=>$company,'jobTitle'=>$jobTitle,'state'=>$state,'phone'=>$phone,'city'=>$city,'zip'=>$zip);
+    $result = array('NewUserName'=>$NewUserName,'NewUserPassword'=>$NewUserPassword,'displayName'=>$displayName,'firstName'=>$firstName,'midName'=>$midName,'lastName'=>$lastName,'company'=>$company,'jobTitle'=>$jobTitle,'state'=>$state,'phone'=>$phone,'city'=>$city,'zip'=>$zip,'cos_append'=>$cos_append);
     return $result;
   }
     
@@ -80,12 +82,10 @@ class CreateUser {
      //to create zimbra Admin Account
   public function ZimbraAdminCreateAccount($Trace, $ServerAddress, $AdminUserName, $AdminPassword, $NewUserName, $NewUserPassword, $COSId)
   {
-        $physician_cos_array = explode('-',$_COOKIE['user_cos']);
-        $COS_user_name = $physician_cos_array[0].'-client-user';
-        
-        //echo 'cos '.$COS_user_name;
         $connect = new Zimbra();
         $param = $this->set_user_parameters();
+        $physician_cos_array = explode('-',$_COOKIE['user_cos']);
+        $COS_user_name = $physician_cos_array[0].'-client-'.$param['cos_append'];
         $cosID = $connect->ZimbraGetCOSID($COS_user_name);
          $CurlHandle = curl_init();
           curl_setopt($CurlHandle, CURLOPT_URL,           "$connect->ServerAddress:7071/service/admin/soap");

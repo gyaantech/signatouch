@@ -117,7 +117,7 @@ public function create_another_office() {
 		$name_f_l = strtolower(substr($param['firstName'], 0, 1).substr($param['lastName'], 0, 6));
 		
 		$COS_name_common = $name_f_l.'-'.substr($param['zip'], 0, 5);
-		//$COS_user_name = $COS_name_common.'-user';
+		//$COS_user_name = $COS_name_common.'-user';01
 		//$COS_user_name = 'barnes-client-admin';
 		$physician_cos_array = explode('-',$_COOKIE['user_cos']);
 		$COS_user_name = $physician_cos_array[0].'-client-admin';

@@ -1266,6 +1266,8 @@ Ext.define('SignaTouch.view.MainView', {
 
                                                                                         Ext.getCmp('ViewForm').getForm().reset();
                                                                                         var selectedHdrid = record.data.HdrID;
+                                                                                        Ext.getCmp('HiddenHDRID').setValue(selectedHdrid);
+
                                                                                         Ext.getCmp('SectionAID').hide();
                                                                                         Ext.getCmp('ViewAll').show();
 
@@ -2208,6 +2210,27 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     scope: me
                                                                 }
                                                             }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    xtype: 'container',
+                                                    id: 'IsAdminID',
+                                                    itemId: 'Name2',
+                                                    layout: {
+                                                        type: 'hbox',
+                                                        align: 'stretch'
+                                                    },
+                                                    items: [
+                                                        {
+                                                            xtype: 'checkboxfield',
+                                                            flex: 1,
+                                                            id: 'AutoID1',
+                                                            fieldLabel: '',
+                                                            inputId: 'isadmin',
+                                                            boxLabel: '<b>Is Admin?</b>',
+                                                            inputValue: '1',
+                                                            uncheckedValue: '0'
                                                         }
                                                     ]
                                                 },
@@ -5387,6 +5410,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                 var selectedHdrid = record.data.DetailID;
                                                                                 Ext.getCmp('sectionB1ID').hide();
                                                                                 Ext.getCmp('ViewAll').show();
+                                                                                Ext.getCmp('HiddenHDRID').setValue(selectedHdrid);
 
 
                                                                                 //Breadcrms
@@ -10686,7 +10710,7 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('ChangePasswordPanelID').hide();
         Ext.getCmp('AddCOSID').hide();
         Ext.getCmp('AddAlias').hide();
-
+        Ext.getCmp('AddUserPanelID').hide();
         Ext.getCmp('AddDomainID').hide();
     },
 
@@ -10738,7 +10762,7 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('ChangePasswordPanelID').hide();
         Ext.getCmp('AddCOSID').hide();
         Ext.getCmp('AddAlias').hide();
-
+        Ext.getCmp('AddUserPanelID').hide();
         Ext.getCmp('AddDomainID').hide();
     },
 
@@ -11916,6 +11940,7 @@ Ext.define('SignaTouch.view.MainView', {
     },
 
     onBtnCreateClick: function(button, e, eOpts) {
+
         var form =  Ext.getCmp('AddUserForm');  // Login form
         //var userName =  Ext.getCmp('LBLUsername');
         //var header = button.up('headerPanel');
@@ -11972,6 +11997,7 @@ Ext.define('SignaTouch.view.MainView', {
     },
 
     onBtnResetClick: function(button, e, eOpts) {
+        console.log(Ext.getCmp('AddUserForm').getForm());
         Ext.getCmp('AddUserForm').getForm().reset();
     },
 
@@ -15384,7 +15410,31 @@ Ext.define('SignaTouch.view.MainView', {
     },
 
     onViewbtnPrintClick: function(button, e, eOpts) {
-        Ext.Msg.alert("Print Disabled Currently", 'Print Disabled Currently');
+        //Ext.Msg.alert("Print Disabled Currently", 'Print Disabled Currently');
+        var HdrID = Ext.getCmp('HiddenHDRID').value;
+
+                // Success
+                var successCallback = function(resp, ops) {
+
+                };
+
+                // Failure
+                var failureCallback = function(resp, ops) {
+
+
+                    // Show login failure error
+                    //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                };
+
+
+                      Ext.Ajax.request({url: "services/Print.php?action=PrintRecordData&HDRID="+HdrID,
+                        method: 'GET',
+                        params: HdrID,
+                        success: successCallback,
+                        failure: failureCallback
+                 });
+
     },
 
     onIDtxtPasswordSpecialkey: function(field, e, eOpts) {
