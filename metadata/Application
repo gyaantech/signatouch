@@ -24,7 +24,8 @@
             "COSType",
             "state",
             "Alias",
-            "PhysicianOffice"
+            "PhysicianOffice",
+            "DomainUserRecord"
         ],
         "name": "SignaTouch",
         "stores": [

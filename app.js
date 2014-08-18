@@ -35,7 +35,8 @@ Ext.application({
         'COSType',
         'state',
         'Alias',
-        'PhysicianOffice'
+        'PhysicianOffice',
+        'DomainUserRecord'
     ],
     stores: [
         'MyArrayStore',
