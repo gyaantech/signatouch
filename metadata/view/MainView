@@ -6132,6 +6132,7 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
+                                                        "cls": "SaveBt",
                                                         "designer|displayName": null,
                                                         "formBind": true,
                                                         "id": "btnCreate3",
@@ -6231,6 +6232,7 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
+                                                        "cls": "BackBt",
                                                         "designer|displayName": null,
                                                         "formBind": false,
                                                         "id": "btnReset3",
@@ -23546,10 +23548,12 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
+                                                        "cls": "BackBt",
                                                         "hidden": true,
                                                         "id": "ViewbtnDiscardA",
+                                                        "layout|flex": 1,
                                                         "margin": "0 10 0 0",
-                                                        "text": "Return"
+                                                        "text": "Back"
                                                     },
                                                     "designerId": "8fb5c44b-fcc3-4f99-a7d9-a7d43c18fdf1",
                                                     "cn": [
@@ -23597,10 +23601,11 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
+                                                        "cls": "BackBt",
                                                         "hidden": true,
                                                         "id": "ViewbtnDiscardB",
                                                         "margin": "0 10 0 0",
-                                                        "text": "Return"
+                                                        "text": "Back"
                                                     },
                                                     "designerId": "6b7a36b4-7e59-45cb-b8b1-5829dddbfe8d",
                                                     "cn": [

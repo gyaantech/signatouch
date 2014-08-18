@@ -2753,6 +2753,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                         {
                                                             xtype: 'button',
                                                             formBind: true,
+                                                            cls: 'SaveBt',
                                                             id: 'btnCreate3',
                                                             margin: '0 10 0 0',
                                                             padding: '',
@@ -2768,6 +2769,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                         {
                                                             xtype: 'button',
                                                             formBind: false,
+                                                            cls: 'BackBt',
                                                             id: 'btnReset3',
                                                             margin: '0 0 0 0',
                                                             width: 92,
@@ -10399,10 +10401,12 @@ Ext.define('SignaTouch.view.MainView', {
                                                     items: [
                                                         {
                                                             xtype: 'button',
+                                                            flex: 1,
+                                                            cls: 'BackBt',
                                                             hidden: true,
                                                             id: 'ViewbtnDiscardA',
                                                             margin: '0 10 0 0',
-                                                            text: 'Return',
+                                                            text: 'Back',
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onViewbtnDiscardAClick,
@@ -10412,10 +10416,11 @@ Ext.define('SignaTouch.view.MainView', {
                                                         },
                                                         {
                                                             xtype: 'button',
+                                                            cls: 'BackBt',
                                                             hidden: true,
                                                             id: 'ViewbtnDiscardB',
                                                             margin: '0 10 0 0',
-                                                            text: 'Return',
+                                                            text: 'Back',
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onViewbtnDiscardBClick,

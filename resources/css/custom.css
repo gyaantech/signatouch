@@ -37,3 +37,17 @@ display: -webkit-box;
 border-style:solid;
 border-color:#000000;
 }
+
+.BackBt
+{
+background: #D94E37;
+color: white;
+border: #D94E37;
+}
+
+.SaveBt
+{
+background: Green;
+color: white;
+border: Green;
+}

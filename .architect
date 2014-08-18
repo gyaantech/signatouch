@@ -1,7 +1,7 @@
 {
     "expandedState": {
-        "data": false,
-        "model": false,
+        "data": true,
+        "model": true,
         "component": true,
         "controller": true,
         "resource": true,
@@ -73,6 +73,7 @@
                     "cn": [
                         {
                             "id": "5838ed96-c333-4a3b-8d88-3960068a6b73",
+                            "expanded": false,
                             "cn": [
                                 {
                                     "id": "e2aec05b-6923-4a30-a6f4-47e7b52baf5a",
@@ -212,7 +213,6 @@
                 },
                 {
                     "id": "c125811a-f32b-4ce6-9ac3-fa8a0babbdd4",
-                    "expanded": false,
                     "cn": [
                         {
                             "id": "aab07db0-06e5-40dd-b5f5-d47a18ec873d",
@@ -800,6 +800,7 @@
                                     "cn": [
                                         {
                                             "id": "197e975e-8ac2-4563-8e83-7a7ac35196ee",
+                                            "expanded": false,
                                             "cn": [
                                                 {
                                                     "id": "ebfdc321-ab5a-409c-b46d-688bd502c840"
@@ -814,6 +815,7 @@
                                                 },
                                                 {
                                                     "id": "66d2875a-fd5d-4028-905e-16222c79304d",
+                                                    "expanded": false,
                                                     "cn": [
                                                         {
                                                             "id": "6edf26c6-5dfc-444c-bff9-082687d8c5ac"
@@ -2990,6 +2992,7 @@
                                                     "cn": [
                                                         {
                                                             "id": "02a44297-e473-4516-87b1-1941df00d5ba",
+                                                            "expanded": false,
                                                             "cn": [
                                                                 {
                                                                     "id": "a82e5519-4887-484a-be1a-5338e9cdb6f3",
@@ -3228,6 +3231,7 @@
                                                         },
                                                         {
                                                             "id": "31476884-257e-4152-aa52-38c474b33a26",
+                                                            "expanded": false,
                                                             "cn": [
                                                                 {
                                                                     "id": "f1d201ba-dc5a-41e8-a18b-f8da174782cc",
@@ -3432,6 +3436,7 @@
                                                         },
                                                         {
                                                             "id": "09206312-4bc6-4400-b347-16648ae28427",
+                                                            "expanded": false,
                                                             "cn": [
                                                                 {
                                                                     "id": "da4e6411-5347-4efd-846e-af96b5b2caa3",
@@ -3446,6 +3451,7 @@
                                                                     "cn": [
                                                                         {
                                                                             "id": "6fbc06a4-a177-4218-b7af-744bee5d7d72",
+                                                                            "expanded": false,
                                                                             "cn": [
                                                                                 {
                                                                                     "id": "f1e3c707-ca96-48f9-b30c-bc2dd72c02e0",
@@ -3644,6 +3650,7 @@
                                                     "cn": [
                                                         {
                                                             "id": "8fb5c44b-fcc3-4f99-a7d9-a7d43c18fdf1",
+                                                            "expanded": false,
                                                             "cn": [
                                                                 {
                                                                     "id": "2571749f-5ff1-482f-85d5-3426dc219014"
@@ -4584,7 +4591,6 @@
         },
         "8056087a-a8ab-4cef-82f9-e47bd9574808": {
             "id": "8056087a-a8ab-4cef-82f9-e47bd9574808",
-            "expanded": false,
             "cn": [
                 {
                     "id": "71d2e631-7f7c-460e-87d2-c6066cac3d02"
@@ -4632,20 +4638,21 @@
             "a705110d-4ce3-4545-a748-7f920677364e",
             "da43420e-3120-458f-9a6a-f65332f0d93f",
             "b5d93eec-aeee-4106-82cd-a40b79a24fdf",
-            "8056087a-a8ab-4cef-82f9-e47bd9574808"
+            "8056087a-a8ab-4cef-82f9-e47bd9574808",
+            "67597231-ef68-4113-89c8-7959f8897dce"
         ]
     },
     "canvasState": {
-        "topInstance": "a705110d-4ce3-4545-a748-7f920677364e"
+        "topInstance": null
     },
     "inspectorState": {
-        "topInstance": "a705110d-4ce3-4545-a748-7f920677364e",
-        "selectedInstance": "ffb90caf-0262-43dd-b405-99625467b762"
+        "topInstance": "8056087a-a8ab-4cef-82f9-e47bd9574808",
+        "selectedInstance": "8056087a-a8ab-4cef-82f9-e47bd9574808"
     },
     "codeState": {
-        "topInstance": "a705110d-4ce3-4545-a748-7f920677364e"
+        "topInstance": "8056087a-a8ab-4cef-82f9-e47bd9574808"
     },
-    "editMode": "design",
+    "editMode": "code",
     "userSettings": {
         "no-cmd": false
     }
