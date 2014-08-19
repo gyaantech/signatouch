@@ -568,8 +568,8 @@ $sql .=  " order By cms484hdr.LastUpdate DESC
         $E0431 = $_POST['InputE0431'];
         }
 
-        $E0431SupChrg = isset($_POST['txtE0431SupplierCharge']) ? $_POST['txtE0431SupplierCharge'] : 0.00;
-        $E0431MedFee = isset($_POST['txtE0431MediCareFee']) ? $_POST['txtE0431MediCareFee'] : 0.00;
+        $E0431SupChrg = isset($_POST['txtE0431SupplierCharge']) ? $_POST['txtE0431SupplierCharge'] : '';
+        $E0431MedFee = isset($_POST['txtE0431MediCareFee']) ? $_POST['txtE0431MediCareFee'] : '';
         
 
         if(!isset($_POST['InputE1390'])){
@@ -579,8 +579,8 @@ $sql .=  " order By cms484hdr.LastUpdate DESC
         $E1390 = $_POST['InputE1390'];
         }
 
-        $E1390SupChrg = isset($_POST['txtE1390SupplierCharge']) ? $_POST['txtE1390SupplierCharge'] : 0.00;
-        $E1390MedFee = isset($_POST['txtE1390MediCareFee']) ? $_POST['txtE1390MediCareFee'] : 0.00;
+        $E1390SupChrg = isset($_POST['txtE1390SupplierCharge']) ? $_POST['txtE1390SupplierCharge'] : '';
+        $E1390MedFee = isset($_POST['txtE1390MediCareFee']) ? $_POST['txtE1390MediCareFee'] : '';
 
         if(!isset($_POST['InputE1392'])){
         $E1392 = 0; 
@@ -588,8 +588,8 @@ $sql .=  " order By cms484hdr.LastUpdate DESC
         else{
         $E1392 = $_POST['InputE1392'];
         }
-        $E1392MedFee = isset($_POST['txtE1392MediCareFee']) ? $_POST['txtE1392MediCareFee'] : 0.00;
-        $E1392SupChrg = isset($_POST['txtE1392SupplierCharge']) ? $_POST['txtE1392SupplierCharge'] : 0.00;
+        $E1392MedFee = isset($_POST['txtE1392MediCareFee']) ? $_POST['txtE1392MediCareFee'] : '';
+        $E1392SupChrg = isset($_POST['txtE1392SupplierCharge']) ? $_POST['txtE1392SupplierCharge'] : '';
 
         if(!isset($_POST['InputK0738'])){
         $K0738 = 0; 
@@ -625,6 +625,7 @@ $sql .=  " order By cms484hdr.LastUpdate DESC
 
 $sql = "Update cms484hdr set MedicalID = '$MedicalID',PhysicianNPI='$PhysicianNPI', PhysicianAlias='$PhysicianAlias',SupplierNPI='$NPI', PlaceService='$POS',`HCPCS-E0431`='$E0431',`HCPCS-E0431SupChrg`='$E0431SupChrg', `HCPCS-E0431MedFee`='$E0431MedFee',`HCPCS-E1390`='$E1390',`HCPCS-E1390SupChrg`='$E1390SupChrg', `HCPCS-E1390MedFee`='$E1390MedFee',`HCPCS-E1392`='$E1392',`HCPCS-E1392MedFee`='$E1392MedFee', `HCPCS-E1392SupChrg`='$E1392SupChrg',`HCPCS-K0738`='$K0738',`HCPCS-K0738MedFee`='$K0738MedFee', `HCPCS-K0738SupChrg`='$K0738SupChrg', `HCPCS-Other1Code`='$Other1Code', `HCPCS-Other1Desc`='$Other1Desc', `HCPCS-Other1MedFee`='$Other1MedFee', `HCPCS-Other1SupChrg`='$Other1SupChrg', `HCPCS-Other2Code`='$Other2Code', `HCPCS-Other2Desc`='$Other2Desc', `HCPCS-Other2MedFee`='$Other2MedFee', `HCPCS-Other2SupChrg`='$Other2SupChrg', `HCPCS-Other3Code`='$Other3Code', `HCPCS-Other3Desc`='$Other3Desc', `HCPCS-Other3MedFee`='$Other3MedFee', `HCPCS-Other3SupChrg`='$Other3SupChrg', `HCPCS-Other4Code`='$Other4Code', `HCPCS-Other4Desc`='$Other4Desc', `HCPCS-Other4MedFee`='$Other4MedFee', `HCPCS-Other4SupChrg`='$Other4SupChrg', LastUpdateID='$LastUpdateID',LastUpdate=Now(),SrcDomain='$SrcDomain',DestDomain='$destDomain',TBLver='$TBLver' where HdrID='$HdrID';";
          $sql1 = "Update cms484det set MedicalID='$MedicalID',SrcDomain='$SrcDomain',DestDomain='$destDomain', LastUpdateID='$LastUpdateID' where DetailID='$HdrID' ";
+         
                 $result = mysql_query($sql);
                 $result1 = mysql_query($sql1);
                 if (!$result || !$result1) 

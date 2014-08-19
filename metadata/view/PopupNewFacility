@@ -363,49 +363,11 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "cls": "BackBt",
-                                        "designer|displayName": "btnPOPFacilityCancel",
-                                        "itemId": "btnPOPFacilityCancel",
-                                        "margin": "0 10 0 0",
-                                        "maxWidth": null,
-                                        "padding": "",
-                                        "text": "Back",
-                                        "width": 92
-                                    },
-                                    "designerId": "ac024f8b-e140-4750-93ab-a3d1f61eb93f",
-                                    "cn": [
-                                        {
-                                            "type": "basiceventbinding",
-                                            "reference": {
-                                                "name": "listeners",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "fn": "onBtnPOPFacilityCancelClick",
-                                                "implHandler": [
-                                                    "Ext.getCmp('PopForm2').getForm().reset();"
-                                                ],
-                                                "name": "click",
-                                                "scope": "me"
-                                            },
-                                            "designerId": "87bb0c5f-5895-4ff4-8303-3569936cb7e3"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Ext.button.Button",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
                                         "cls": "SaveBt",
                                         "designer|displayName": "btnPOPFacilitySave",
                                         "formBind": true,
                                         "itemId": "btnPOPFacilitySave",
-                                        "margin": "0 0 0 0",
+                                        "margin": "0 10 0 0",
                                         "maxWidth": null,
                                         "text": "Save",
                                         "width": 92
@@ -486,6 +448,44 @@
                                                 "scope": "me"
                                             },
                                             "designerId": "fc1094f6-3bd1-499b-930a-86da15f30f3e"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "cls": "BackBt",
+                                        "designer|displayName": "btnPOPFacilityCancel",
+                                        "itemId": "btnPOPFacilityCancel",
+                                        "margin": null,
+                                        "maxWidth": null,
+                                        "padding": "",
+                                        "text": "Back",
+                                        "width": 92
+                                    },
+                                    "designerId": "ac024f8b-e140-4750-93ab-a3d1f61eb93f",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onBtnPOPFacilityCancelClick",
+                                                "implHandler": [
+                                                    "Ext.getCmp('PopForm2').getForm().reset();"
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "87bb0c5f-5895-4ff4-8303-3569936cb7e3"
                                         }
                                     ]
                                 }

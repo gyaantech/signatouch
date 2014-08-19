@@ -330,56 +330,12 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "cls": "BackBt",
-                                        "designer|displayName": null,
-                                        "id": "btnPOPPhyReset",
-                                        "itemId": "",
-                                        "margin": "0 10 0 0",
-                                        "maxWidth": null,
-                                        "padding": "",
-                                        "text": "Back",
-                                        "width": 92
-                                    },
-                                    "designerId": "7542da88-38b0-44bd-816c-c304e31cbf9d",
-                                    "cn": [
-                                        {
-                                            "type": "basiceventbinding",
-                                            "reference": {
-                                                "name": "listeners",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "fn": "onBtnPOPPhyCancelClick",
-                                                "implHandler": [
-                                                    "//Ext.getCmp('PopForm3').getForm().reset();\r",
-                                                    "Ext.getCmp('txtPOPPhyAddress1ID').reset();\r",
-                                                    "Ext.getCmp('txtPOPPhyAddress2ID').reset();\r",
-                                                    "Ext.getCmp('txtPOPPhyCityID').reset();\r",
-                                                    "Ext.getCmp('txtPOPPhyStateID').reset();\r",
-                                                    "Ext.getCmp('txtPOPPhyzipID').reset();"
-                                                ],
-                                                "name": "click",
-                                                "scope": "me"
-                                            },
-                                            "designerId": "bac6dd84-160d-451e-9981-15a964262953"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Ext.button.Button",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
                                         "cls": "SaveBt",
                                         "designer|displayName": "btnPOPFacilitySave",
                                         "formBind": true,
                                         "id": "btnPOPPhySave",
                                         "itemId": null,
-                                        "margin": "0 0 0 0",
+                                        "margin": "0 10 0 0",
                                         "maxWidth": null,
                                         "text": "Save",
                                         "width": 92
@@ -464,6 +420,50 @@
                                                 "scope": "me"
                                             },
                                             "designerId": "5deead10-d666-4547-bf73-400b7397bcad"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "cls": "BackBt",
+                                        "designer|displayName": null,
+                                        "id": "btnPOPPhyReset",
+                                        "itemId": "",
+                                        "margin": "",
+                                        "maxWidth": null,
+                                        "padding": "",
+                                        "text": "Back",
+                                        "width": 92
+                                    },
+                                    "designerId": "7542da88-38b0-44bd-816c-c304e31cbf9d",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onBtnPOPPhyCancelClick",
+                                                "implHandler": [
+                                                    "//Ext.getCmp('PopForm3').getForm().reset();\r",
+                                                    "Ext.getCmp('txtPOPPhyAddress1ID').reset();\r",
+                                                    "Ext.getCmp('txtPOPPhyAddress2ID').reset();\r",
+                                                    "Ext.getCmp('txtPOPPhyCityID').reset();\r",
+                                                    "Ext.getCmp('txtPOPPhyStateID').reset();\r",
+                                                    "Ext.getCmp('txtPOPPhyzipID').reset();"
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "bac6dd84-160d-451e-9981-15a964262953"
                                         }
                                     ]
                                 }

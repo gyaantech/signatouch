@@ -974,7 +974,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                 {
                                                                                     handler: function(view, rowIndex, colIndex, item, e, record, row) {
                                                                                         var selectedFlag = record.data.StausFLG;
-
+                                                                                        var flag = record.data.StausFLG;
                                                                                         if(selectedFlag === "A"){
 
                                                                                             Ext.getCmp('ViewbtnPrint').hide();
@@ -1054,7 +1054,12 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                                 Ext.getCmp('ViewNFO').setValue(responseOjbect.Send);
 
                                                                                                 Ext.getCmp('ViewMonths').setValue(responseOjbect.LengthNeed);
-                                                                                                Ext.getCmp('ViewICD9').setValue(responseOjbect.ICD9);
+                                                                                                //ICD
+                                                                                                Ext.getCmp('ViewICD9').setValue(responseOjbect.ICDver);
+                                                                                                Ext.getCmp('ICD1').setValue(responseOjbect.ICDa);
+                                                                                                Ext.getCmp('ICD2').setValue(responseOjbect.ICDb);
+                                                                                                Ext.getCmp('ICD3').setValue(responseOjbect.ICDc);
+                                                                                                Ext.getCmp('ICD4').setValue(responseOjbect.ICDd);
 
                                                                                                 Ext.getCmp('View1a').setValue(responseOjbect.Q1AmmHg);
                                                                                                 Ext.getCmp('View1b').setValue(responseOjbect.Q1Bpercent);
@@ -1269,7 +1274,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                             Ext.getCmp('ViewAll').setLoading(false,false);
                                                                                         });
                                                                                         // TODO: Login using server-side authentication service
-                                                                                        Ext.Ajax.request({url: "services/Function.php?action=ViewRecordData&HDRID="+selectedHdrid,
+                                                                                        Ext.Ajax.request({url: "services/Function.php?action=ViewRecordData&HDRID="+selectedHdrid+"&flag="+flag,
                                                                                             method: 'POST',
                                                                                             params: selectedHdrid,
                                                                                             success: successCallback,
@@ -1288,9 +1293,9 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                 },
                                                                                 {
                                                                                     handler: function(view, rowIndex, colIndex, item, e, record, row) {
-
                                                                                         Ext.getCmp('ViewForm').getForm().reset();
                                                                                         var selectedHdrid = record.data.HdrID;
+                                                                                        var flag = record.data.StausFLG;
                                                                                         Ext.getCmp('HiddenHDRID').setValue(selectedHdrid);
 
                                                                                         Ext.getCmp('SectionAID').hide();
@@ -1365,7 +1370,14 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                             //SectionB
                                                                                             Ext.getCmp('ViewNFO').setValue(responseOjbect.Send);
                                                                                             Ext.getCmp('ViewMonths').setValue(responseOjbect.LengthNeed);
-                                                                                            Ext.getCmp('ViewICD9').setValue(responseOjbect.ICD9);
+
+
+                                                                                            //ICD
+                                                                                            Ext.getCmp('ViewICD9').setValue(responseOjbect.ICDver);
+                                                                                            Ext.getCmp('ICD1').setValue(responseOjbect.ICDa);
+                                                                                            Ext.getCmp('ICD2').setValue(responseOjbect.ICDb);
+                                                                                            Ext.getCmp('ICD3').setValue(responseOjbect.ICDc);
+                                                                                            Ext.getCmp('ICD4').setValue(responseOjbect.ICDd);
 
                                                                                             Ext.getCmp('View1a').setValue(responseOjbect.Q1AmmHg);
                                                                                             Ext.getCmp('View1b').setValue(responseOjbect.Q1Bpercent);
@@ -1538,7 +1550,7 @@ Ext.define('SignaTouch.view.MainView', {
 
 
                                                                                         // TODO: Login using server-side authentication service
-                                                                                        Ext.Ajax.request({url: "services/Function.php?action=ViewRecordData&HDRID="+selectedHdrid,
+                                                                                        Ext.Ajax.request({url: "services/Function.php?action=ViewRecordData&HDRID="+selectedHdrid+"&flag="+flag,
                                                                                             method: 'POST',
                                                                                             params: selectedHdrid,
                                                                                             success: successCallback,
@@ -1929,45 +1941,11 @@ Ext.define('SignaTouch.view.MainView', {
                                                     items: [
                                                         {
                                                             xtype: 'button',
-                                                            cls: 'BackBt',
-                                                            hidden: true,
-                                                            id: 'btnPatientCancelSave',
-                                                            itemId: '',
-                                                            margin: '0 10 0 0',
-                                                            padding: '',
-                                                            width: 92,
-                                                            text: 'Back',
-                                                            listeners: {
-                                                                click: {
-                                                                    fn: me.onBtnPatientCancelClick,
-                                                                    scope: me
-                                                                }
-                                                            }
-                                                        },
-                                                        {
-                                                            xtype: 'button',
-                                                            cls: 'BackBt',
-                                                            hidden: true,
-                                                            id: 'btnPatientCancelSave2',
-                                                            itemId: '',
-                                                            margin: '0 10 0 0',
-                                                            padding: '',
-                                                            width: 92,
-                                                            text: 'Back',
-                                                            listeners: {
-                                                                click: {
-                                                                    fn: me.onBtnPatientCancelSave2Click,
-                                                                    scope: me
-                                                                }
-                                                            }
-                                                        },
-                                                        {
-                                                            xtype: 'button',
                                                             formBind: true,
                                                             cls: 'SaveBt',
                                                             id: 'btnPatientSaveID1',
                                                             itemId: 'btnPatientSave',
-                                                            margin: '0 0 0 0',
+                                                            margin: '0 10 0 0',
                                                             width: 92,
                                                             text: 'Save',
                                                             listeners: {
@@ -1984,12 +1962,44 @@ Ext.define('SignaTouch.view.MainView', {
                                                             hidden: true,
                                                             id: 'btnPatientUpdateID',
                                                             itemId: 'btnPatientUpdate',
-                                                            margin: '0 0 0 0',
+                                                            margin: '0 10 0 0',
                                                             width: 92,
                                                             text: 'Update',
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onBtnPatientUpdateClick,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            xtype: 'button',
+                                                            cls: 'BackBt',
+                                                            hidden: true,
+                                                            id: 'btnPatientCancelSave2',
+                                                            itemId: '',
+                                                            padding: '',
+                                                            width: 92,
+                                                            text: 'Back',
+                                                            listeners: {
+                                                                click: {
+                                                                    fn: me.onBtnPatientCancelSave2Click,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            xtype: 'button',
+                                                            cls: 'BackBt',
+                                                            hidden: true,
+                                                            id: 'btnPatientCancelSave',
+                                                            itemId: '',
+                                                            padding: '',
+                                                            width: 92,
+                                                            text: 'Back',
+                                                            listeners: {
+                                                                click: {
+                                                                    fn: me.onBtnPatientCancelClick,
                                                                     scope: me
                                                                 }
                                                             }
@@ -3343,11 +3353,12 @@ Ext.define('SignaTouch.view.MainView', {
                                                     items: [
                                                         {
                                                             xtype: 'button',
+                                                            cls: 'BackBt',
                                                             itemId: 'btnPatientCancel',
                                                             margin: '0 10 0 0',
                                                             padding: '',
                                                             width: 92,
-                                                            text: 'Return',
+                                                            text: 'Back',
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onBtnPatientCancelClick1,
@@ -3698,21 +3709,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                             items: [
                                                                 {
                                                                     xtype: 'button',
-                                                                    hidden: true,
-                                                                    id: 'btnPhysicianCancel',
-                                                                    margin: '0 10 0 0',
-                                                                    padding: '',
-                                                                    width: 92,
-                                                                    text: 'Return',
-                                                                    listeners: {
-                                                                        click: {
-                                                                            fn: me.onBtnPhysicianCancelClick,
-                                                                            scope: me
-                                                                        }
-                                                                    }
-                                                                },
-                                                                {
-                                                                    xtype: 'button',
                                                                     id: 'btnPhysicianAddAnotherID',
                                                                     margin: '0 10 0 0',
                                                                     padding: '',
@@ -3727,26 +3723,11 @@ Ext.define('SignaTouch.view.MainView', {
                                                                 },
                                                                 {
                                                                     xtype: 'button',
-                                                                    hidden: true,
-                                                                    id: 'btnPhysicianCancel1',
-                                                                    itemId: '',
-                                                                    margin: '0 10 0 0',
-                                                                    padding: '',
-                                                                    width: 92,
-                                                                    text: 'Return',
-                                                                    listeners: {
-                                                                        click: {
-                                                                            fn: me.onBtnPhysicianCancel1Click,
-                                                                            scope: me
-                                                                        }
-                                                                    }
-                                                                },
-                                                                {
-                                                                    xtype: 'button',
                                                                     formBind: true,
+                                                                    cls: 'SaveBt',
                                                                     id: 'btnPhysicianSaveID',
                                                                     itemId: 'btnPhysicianSave',
-                                                                    margin: '0 0 0 0',
+                                                                    margin: '0 10 0 0',
                                                                     width: 92,
                                                                     text: 'Save',
                                                                     listeners: {
@@ -3759,14 +3740,46 @@ Ext.define('SignaTouch.view.MainView', {
                                                                 {
                                                                     xtype: 'button',
                                                                     formBind: true,
+                                                                    cls: 'SaveBt',
                                                                     hidden: true,
                                                                     id: 'btnPhysicianUpdateID',
-                                                                    margin: '0 0 0 0',
+                                                                    margin: '0 10 0 0',
                                                                     width: 92,
                                                                     text: 'Update',
                                                                     listeners: {
                                                                         click: {
                                                                             fn: me.onBtnPhysicianUpdateIDClick,
+                                                                            scope: me
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    xtype: 'button',
+                                                                    cls: 'BackBt',
+                                                                    hidden: true,
+                                                                    id: 'btnPhysicianCancel',
+                                                                    padding: '',
+                                                                    width: 92,
+                                                                    text: 'Back',
+                                                                    listeners: {
+                                                                        click: {
+                                                                            fn: me.onBtnPhysicianCancelClick,
+                                                                            scope: me
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    xtype: 'button',
+                                                                    cls: 'BackBt',
+                                                                    hidden: true,
+                                                                    id: 'btnPhysicianCancel1',
+                                                                    itemId: '',
+                                                                    padding: '',
+                                                                    width: 92,
+                                                                    text: 'Back',
+                                                                    listeners: {
+                                                                        click: {
+                                                                            fn: me.onBtnPhysicianCancel1Click,
                                                                             scope: me
                                                                         }
                                                                     }
@@ -4000,11 +4013,12 @@ Ext.define('SignaTouch.view.MainView', {
                                                             items: [
                                                                 {
                                                                     xtype: 'button',
+                                                                    cls: 'BackBt',
                                                                     itemId: 'btnPhysicianCancel',
                                                                     margin: '',
                                                                     padding: '',
                                                                     width: 100,
-                                                                    text: 'Return',
+                                                                    text: 'Back',
                                                                     listeners: {
                                                                         click: {
                                                                             fn: me.onBtnPhysicianCancelClick1,
@@ -4243,44 +4257,12 @@ Ext.define('SignaTouch.view.MainView', {
                                                     items: [
                                                         {
                                                             xtype: 'button',
-                                                            cls: 'BackBt',
-                                                            hidden: true,
-                                                            id: 'btnSupplierCancel',
-                                                            margin: '0 10 0 0',
-                                                            padding: '',
-                                                            width: 92,
-                                                            text: 'Back',
-                                                            listeners: {
-                                                                click: {
-                                                                    fn: me.onBtnSupplierCancelClick,
-                                                                    scope: me
-                                                                }
-                                                            }
-                                                        },
-                                                        {
-                                                            xtype: 'button',
-                                                            cls: 'BackBt',
-                                                            hidden: true,
-                                                            id: 'btnSupplierCancel1',
-                                                            margin: '0 10 0 0',
-                                                            padding: '',
-                                                            width: 92,
-                                                            text: 'Back',
-                                                            listeners: {
-                                                                click: {
-                                                                    fn: me.onBtnSupplierCancelClick2,
-                                                                    scope: me
-                                                                }
-                                                            }
-                                                        },
-                                                        {
-                                                            xtype: 'button',
                                                             formBind: true,
                                                             cls: 'SaveBt',
                                                             hidden: true,
                                                             id: 'btnSupplierSaveID',
                                                             itemId: 'btnSupplierSave',
-                                                            margin: '0 0 0 0',
+                                                            margin: '0 10 0 0',
                                                             width: 92,
                                                             text: 'Save',
                                                             listeners: {
@@ -4297,12 +4279,42 @@ Ext.define('SignaTouch.view.MainView', {
                                                             hidden: true,
                                                             id: 'btnSupplierUpdate',
                                                             itemId: '',
-                                                            margin: '0 0 0 0',
+                                                            margin: '0 10 0 0',
                                                             width: 92,
                                                             text: 'Update',
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onBtnSupplierUpdateClick,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            xtype: 'button',
+                                                            cls: 'BackBt',
+                                                            hidden: true,
+                                                            id: 'btnSupplierCancel',
+                                                            padding: '',
+                                                            width: 92,
+                                                            text: 'Back',
+                                                            listeners: {
+                                                                click: {
+                                                                    fn: me.onBtnSupplierCancelClick,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            xtype: 'button',
+                                                            cls: 'BackBt',
+                                                            hidden: true,
+                                                            id: 'btnSupplierCancel1',
+                                                            padding: '',
+                                                            width: 92,
+                                                            text: 'Back',
+                                                            listeners: {
+                                                                click: {
+                                                                    fn: me.onBtnSupplierCancelClick2,
                                                                     scope: me
                                                                 }
                                                             }
@@ -4887,8 +4899,18 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                         Ext.getCmp('hdnDetailID').setValue(selectedHdrid);
 
                                                                                         Ext.getCmp('LengthID').setValue(RecordResponse.LengthNeed);
-                                                                                        Ext.getCmp('txticd').setValue(RecordResponse.ICD9);
-                                                                                        Ext.getCmp('txticddes').setValue(RecordResponse.ICD9ShortDesc);
+
+                                                                                        Ext.getCmp('txticd').setValue(RecordResponse.ICDa);
+                                                                                        Ext.getCmp('txticddes').setValue(RecordResponse.ICDaShortDesc);
+
+                                                                                        Ext.getCmp('txticd1').setValue(RecordResponse.ICDb);
+                                                                                        Ext.getCmp('txticddes1').setValue(RecordResponse.ICDbShortDesc);
+
+                                                                                        Ext.getCmp('txticd2').setValue(RecordResponse.ICDc);
+                                                                                        Ext.getCmp('txticddes2').setValue(RecordResponse.ICDcShortDesc);
+
+                                                                                        Ext.getCmp('txticd3').setValue(RecordResponse.ICDd);
+                                                                                        Ext.getCmp('txticddes3').setValue(RecordResponse.ICDdShortDesc);
 
                                                                                         Ext.getCmp('txtQ1aID').setValue(RecordResponse.Q1AmmHg);
                                                                                         Ext.getCmp('txtQ1bID').setValue(RecordResponse.Q1Bpercent);
@@ -5094,6 +5116,7 @@ Ext.define('SignaTouch.view.MainView', {
 
                                                                                     Ext.getCmp('ViewForm').getForm().reset();
                                                                                     var selectedHdrid = record.data.DetailID;
+                                                                                    var flag = record.data.StausFLG;
                                                                                     Ext.getCmp('HiddenHDRID').setValue(selectedHdrid);
 
 
@@ -5170,7 +5193,12 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                         //SectionB
                                                                                         Ext.getCmp('ViewNFO').setValue(responseOjbect.Send);
                                                                                         Ext.getCmp('ViewMonths').setValue(responseOjbect.LengthNeed);
-                                                                                        Ext.getCmp('ViewICD9').setValue(responseOjbect.ICD9);
+                                                                                        //ICD
+                                                                                        Ext.getCmp('ViewICD9').setValue(responseOjbect.ICDver);
+                                                                                        Ext.getCmp('ICD1').setValue(responseOjbect.ICDa);
+                                                                                        Ext.getCmp('ICD2').setValue(responseOjbect.ICDb);
+                                                                                        Ext.getCmp('ICD3').setValue(responseOjbect.ICDc);
+                                                                                        Ext.getCmp('ICD4').setValue(responseOjbect.ICDd);
 
                                                                                         Ext.getCmp('View1a').setValue(responseOjbect.Q1AmmHg);
                                                                                         Ext.getCmp('View1b').setValue(responseOjbect.Q1Bpercent);
@@ -5386,7 +5414,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                 });
 
                                                                                 // TODO: Login using server-side authentication service
-                                                                                Ext.Ajax.request({url: "services/Function.php?action=ViewRecordData&HDRID="+selectedHdrid,
+                                                                                Ext.Ajax.request({url: "services/Function.php?action=ViewRecordData&HDRID="+selectedHdrid+"&flag="+flag,
                                                                                     method: 'POST',
                                                                                     params: selectedHdrid,
                                                                                     success: successCallback,
@@ -5402,6 +5430,7 @@ Ext.define('SignaTouch.view.MainView', {
 
                                                                                 Ext.getCmp('ViewForm').getForm().reset();
                                                                                 var selectedHdrid = record.data.DetailID;
+                                                                                var flag = record.data.StausFLG;
                                                                                 Ext.getCmp('sectionB1ID').hide();
                                                                                 Ext.getCmp('ViewAll').show();
                                                                                 Ext.getCmp('HiddenHDRID').setValue(selectedHdrid);
@@ -5479,7 +5508,12 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                     //SectionB
                                                                                     Ext.getCmp('ViewNFO').setValue(responseOjbect.Send);
                                                                                     Ext.getCmp('ViewMonths').setValue(responseOjbect.LengthNeed);
-                                                                                    Ext.getCmp('ViewICD9').setValue(responseOjbect.ICD9);
+                                                                                    //ICD
+                                                                                    Ext.getCmp('ViewICD9').setValue(responseOjbect.ICDver);
+                                                                                    Ext.getCmp('ICD1').setValue(responseOjbect.ICDa);
+                                                                                    Ext.getCmp('ICD2').setValue(responseOjbect.ICDb);
+                                                                                    Ext.getCmp('ICD3').setValue(responseOjbect.ICDc);
+                                                                                    Ext.getCmp('ICD4').setValue(responseOjbect.ICDd);
 
                                                                                     Ext.getCmp('View1a').setValue(responseOjbect.Q1AmmHg);
                                                                                     Ext.getCmp('View1b').setValue(responseOjbect.Q1Bpercent);
@@ -5695,7 +5729,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                             });
 
                                                                             // TODO: Login using server-side authentication service
-                                                                            Ext.Ajax.request({url: "services/Function.php?action=ViewRecordData&HDRID="+selectedHdrid,
+                                                                            Ext.Ajax.request({url: "services/Function.php?action=ViewRecordData&HDRID="+selectedHdrid+"&flag="+flag,
                                                                                 method: 'POST',
                                                                                 params: selectedHdrid,
                                                                                 success: successCallback,
@@ -7163,7 +7197,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                         },
                                                         {
                                                             xtype: 'container',
-                                                            itemId: 'Question2',
+                                                            id: 'ICD',
                                                             margin: '7 0 7 0',
                                                             layout: {
                                                                 type: 'hbox',
@@ -7171,44 +7205,180 @@ Ext.define('SignaTouch.view.MainView', {
                                                             },
                                                             items: [
                                                                 {
-                                                                    xtype: 'combobox',
-                                                                    id: 'ddlICD',
-                                                                    fieldLabel: '',
-                                                                    value: 'ICD9',
-                                                                    editable: false,
-                                                                    store: [
-                                                                        'ICD9'
-                                                                    ],
-                                                                    listeners: {
-                                                                        select: {
-                                                                            fn: me.onDdlICDSelect,
-                                                                            scope: me
+                                                                    xtype: 'fieldset',
+                                                                    flex: 1,
+                                                                    style: 'border-style:solid;\r\nborder-color:#000000;',
+                                                                    title: '<b>Please Altleast one ICD Code. </b>',
+                                                                    items: [
+                                                                        {
+                                                                            xtype: 'container',
+                                                                            itemId: 'Question2',
+                                                                            margin: '7 0 7 0',
+                                                                            layout: {
+                                                                                type: 'hbox',
+                                                                                align: 'stretch'
+                                                                            },
+                                                                            items: [
+                                                                                {
+                                                                                    xtype: 'combobox',
+                                                                                    id: 'ddlICD',
+                                                                                    fieldLabel: '',
+                                                                                    value: 'ICD9',
+                                                                                    editable: false,
+                                                                                    store: [
+                                                                                        'ICD9'
+                                                                                    ],
+                                                                                    listeners: {
+                                                                                        select: {
+                                                                                            fn: me.onDdlICDSelect,
+                                                                                            scope: me
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            xtype: 'container',
+                                                                            itemId: 'ICDA',
+                                                                            margin: '7 0 7 0',
+                                                                            layout: {
+                                                                                type: 'hbox',
+                                                                                align: 'stretch'
+                                                                            },
+                                                                            items: [
+                                                                                {
+                                                                                    xtype: 'textfield',
+                                                                                    id: 'txticd',
+                                                                                    margin: '0 20 0 0',
+                                                                                    maxWidth: 180,
+                                                                                    fieldLabel: '',
+                                                                                    inputId: 'txtSectionB1ICD',
+                                                                                    allowBlank: false,
+                                                                                    emptyText: 'ICD Code',
+                                                                                    listeners: {
+                                                                                        blur: {
+                                                                                            fn: me.onTxticdBlur,
+                                                                                            scope: me
+                                                                                        }
+                                                                                    }
+                                                                                },
+                                                                                {
+                                                                                    xtype: 'textfield',
+                                                                                    id: 'txticddes',
+                                                                                    itemId: 'TxtICD',
+                                                                                    width: 490,
+                                                                                    fieldLabel: '',
+                                                                                    readOnly: true,
+                                                                                    emptyText: 'ICD (Short Description)'
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            xtype: 'container',
+                                                                            itemId: 'ICDB',
+                                                                            margin: '7 0 7 0',
+                                                                            layout: {
+                                                                                type: 'hbox',
+                                                                                align: 'stretch'
+                                                                            },
+                                                                            items: [
+                                                                                {
+                                                                                    xtype: 'textfield',
+                                                                                    id: 'txticd1',
+                                                                                    margin: '0 20 0 0',
+                                                                                    maxWidth: 180,
+                                                                                    fieldLabel: '',
+                                                                                    inputId: 'txtSectionB1ICD1',
+                                                                                    emptyText: 'ICD Code',
+                                                                                    listeners: {
+                                                                                        blur: {
+                                                                                            fn: me.onTxticd1Blur,
+                                                                                            scope: me
+                                                                                        }
+                                                                                    }
+                                                                                },
+                                                                                {
+                                                                                    xtype: 'textfield',
+                                                                                    id: 'txticddes1',
+                                                                                    itemId: 'TxtICD',
+                                                                                    width: 490,
+                                                                                    fieldLabel: '',
+                                                                                    readOnly: true,
+                                                                                    emptyText: 'ICD (Short Description)'
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            xtype: 'container',
+                                                                            itemId: 'ICDC',
+                                                                            margin: '7 0 7 0',
+                                                                            layout: {
+                                                                                type: 'hbox',
+                                                                                align: 'stretch'
+                                                                            },
+                                                                            items: [
+                                                                                {
+                                                                                    xtype: 'textfield',
+                                                                                    id: 'txticd2',
+                                                                                    margin: '0 20 0 0',
+                                                                                    maxWidth: 180,
+                                                                                    fieldLabel: '',
+                                                                                    inputId: 'txtSectionB1ICD2',
+                                                                                    emptyText: 'ICD Code',
+                                                                                    listeners: {
+                                                                                        blur: {
+                                                                                            fn: me.onTxticd2Blur,
+                                                                                            scope: me
+                                                                                        }
+                                                                                    }
+                                                                                },
+                                                                                {
+                                                                                    xtype: 'textfield',
+                                                                                    id: 'txticddes2',
+                                                                                    itemId: 'TxtICD',
+                                                                                    width: 490,
+                                                                                    fieldLabel: '',
+                                                                                    readOnly: true,
+                                                                                    emptyText: 'ICD (Short Description)'
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            xtype: 'container',
+                                                                            itemId: 'ICDD',
+                                                                            margin: '7 0 7 0',
+                                                                            layout: {
+                                                                                type: 'hbox',
+                                                                                align: 'stretch'
+                                                                            },
+                                                                            items: [
+                                                                                {
+                                                                                    xtype: 'textfield',
+                                                                                    id: 'txticd3',
+                                                                                    margin: '0 20 0 0',
+                                                                                    maxWidth: 180,
+                                                                                    fieldLabel: '',
+                                                                                    inputId: 'txtSectionB1ICD3',
+                                                                                    emptyText: 'ICD Code',
+                                                                                    listeners: {
+                                                                                        blur: {
+                                                                                            fn: me.onTxticd3Blur,
+                                                                                            scope: me
+                                                                                        }
+                                                                                    }
+                                                                                },
+                                                                                {
+                                                                                    xtype: 'textfield',
+                                                                                    id: 'txticddes3',
+                                                                                    itemId: 'TxtICD',
+                                                                                    width: 490,
+                                                                                    fieldLabel: '',
+                                                                                    readOnly: true,
+                                                                                    emptyText: 'ICD (Short Description)'
+                                                                                }
+                                                                            ]
                                                                         }
-                                                                    }
-                                                                },
-                                                                {
-                                                                    xtype: 'textfield',
-                                                                    id: 'txticd',
-                                                                    margin: '0 20 0 20',
-                                                                    fieldLabel: '',
-                                                                    inputId: 'txtSectionB1ICD',
-                                                                    allowBlank: false,
-                                                                    emptyText: 'ICD Code',
-                                                                    listeners: {
-                                                                        blur: {
-                                                                            fn: me.onTxticdBlur,
-                                                                            scope: me
-                                                                        }
-                                                                    }
-                                                                },
-                                                                {
-                                                                    xtype: 'textfield',
-                                                                    id: 'txticddes',
-                                                                    itemId: 'TxtICD',
-                                                                    width: 319,
-                                                                    fieldLabel: '',
-                                                                    readOnly: true,
-                                                                    emptyText: 'ICD (Short Description)'
+                                                                    ]
                                                                 }
                                                             ]
                                                         },
@@ -7748,28 +7918,33 @@ Ext.define('SignaTouch.view.MainView', {
                                                     items: [
                                                         {
                                                             xtype: 'button',
+                                                            flex: 1,
+                                                            formBind: true,
+                                                            cls: 'SaveBt',
                                                             height: 22,
-                                                            id: 'BtDiscardEdit',
-                                                            itemId: 'BtDiscard',
+                                                            itemId: 'BtSectionB1Save',
                                                             margin: '7 7 7 7',
-                                                            text: 'Return',
+                                                            maxWidth: 70,
+                                                            text: 'Save',
                                                             listeners: {
                                                                 click: {
-                                                                    fn: me.onBtDiscardClick,
+                                                                    fn: me.onBtSectionB1SaveClick,
                                                                     scope: me
                                                                 }
                                                             }
                                                         },
                                                         {
                                                             xtype: 'button',
-                                                            formBind: true,
+                                                            flex: 1,
+                                                            cls: 'BackBt',
                                                             height: 22,
-                                                            itemId: 'BtSectionB1Save',
+                                                            id: 'BtDiscardEdit',
+                                                            itemId: 'BtDiscard',
                                                             margin: '7 7 7 7',
-                                                            text: 'Save',
+                                                            text: 'Back',
                                                             listeners: {
                                                                 click: {
-                                                                    fn: me.onBtSectionB1SaveClick,
+                                                                    fn: me.onBtDiscardClick,
                                                                     scope: me
                                                                 }
                                                             }
@@ -8015,16 +8190,14 @@ Ext.define('SignaTouch.view.MainView', {
                                                                         {
                                                                             xtype: 'textfield',
                                                                             id: 'MedIDSectionAinput',
-                                                                            fieldLabel: '<b>Medical ID &nbsp;<span style="color:#D94E37;">*</span></b>',
+                                                                            fieldLabel: '<b>Medical ID &nbsp;</b>',
                                                                             labelWidth: 150,
                                                                             inputId: 'MedIDSectionA',
-                                                                            allowBlank: false,
                                                                             enforceMaxLength: true,
                                                                             maxLength: 16,
                                                                             maxLengthText: 'Please enter 16 digit medical ID',
                                                                             minLength: 16,
                                                                             minLengthText: 'Please enter 16 digit medical ID',
-                                                                            validateBlank: true,
                                                                             vtype: 'alphanum'
                                                                         }
                                                                     ]
@@ -8307,7 +8480,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                     labelWidth: 107,
                                                                                     inputId: 'txtE1390SupplierCharge',
                                                                                     allowBlank: false,
-                                                                                    emptyText: '0.00',
                                                                                     maskRe: /[\d\.]/,
                                                                                     regex: /^\d+(\.\d{1,2})?$/,
                                                                                     regexText: 'Please enter valid Supplier charges.'
@@ -8324,7 +8496,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                     labelWidth: 150,
                                                                                     inputId: 'txtE1390MediCareFee',
                                                                                     allowBlank: false,
-                                                                                    emptyText: '0.00',
                                                                                     maskRe: /[\d\.]/,
                                                                                     regex: /^\d+(\.\d{1,2})?$/,
                                                                                     regexText: 'Please enter valid medical charges.'
@@ -8918,12 +9089,33 @@ Ext.define('SignaTouch.view.MainView', {
                                                     items: [
                                                         {
                                                             xtype: 'button',
+                                                            flex: 1,
+                                                            formBind: true,
+                                                            cls: 'SaveBt',
+                                                            disabled: true,
+                                                            height: 22,
+                                                            id: 'BtSectionA1NextSaveID',
+                                                            itemId: 'BtSectionA1NextSave',
+                                                            margin: '7 7 7 7',
+                                                            maxWidth: 70,
+                                                            allowDepress: false,
+                                                            text: 'Save',
+                                                            listeners: {
+                                                                click: {
+                                                                    fn: me.onBtSectionA1NextSaveClick,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            xtype: 'button',
+                                                            cls: 'BackBt',
                                                             height: 22,
                                                             hidden: true,
                                                             id: 'BtSectionA1NextSaveDiscard',
                                                             itemId: '',
                                                             margin: '7 7 7 7',
-                                                            text: 'Return',
+                                                            text: 'Back',
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onBtSectionA1NextSaveDiscardClick,
@@ -8933,32 +9125,16 @@ Ext.define('SignaTouch.view.MainView', {
                                                         },
                                                         {
                                                             xtype: 'button',
+                                                            cls: 'BackBt',
                                                             height: 22,
                                                             hidden: true,
                                                             id: 'BtSectionA1NextSaveDiscard2',
                                                             itemId: '',
                                                             margin: '7 7 7 7',
-                                                            text: 'Return',
+                                                            text: 'Back',
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onBtSectionA1NextSaveDiscard2Click,
-                                                                    scope: me
-                                                                }
-                                                            }
-                                                        },
-                                                        {
-                                                            xtype: 'button',
-                                                            formBind: true,
-                                                            disabled: true,
-                                                            height: 22,
-                                                            id: 'BtSectionA1NextSaveID',
-                                                            itemId: 'BtSectionA1NextSave',
-                                                            margin: '7 7 7 7',
-                                                            allowDepress: false,
-                                                            text: 'Save',
-                                                            listeners: {
-                                                                click: {
-                                                                    fn: me.onBtSectionA1NextSaveClick,
                                                                     scope: me
                                                                 }
                                                             }
@@ -9244,7 +9420,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                             id: 'Suppiler',
                                                                             margin: '10 10 0 0',
                                                                             style: 'border-style:solid;\r\nborder-color:#000000;',
-                                                                            title: '<font size="4">Suppiler Information</font>',
+                                                                            title: '<font size="4">Supplier Information</font>',
                                                                             items: [
                                                                                 {
                                                                                     xtype: 'container',
@@ -9528,13 +9704,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                                             id: 'ViewMonths',
                                                                             fieldLabel: '<b>Estimated Length of Stay #Months </b>',
                                                                             labelWidth: 430
-                                                                        },
-                                                                        {
-                                                                            xtype: 'displayfield',
-                                                                            flex: 1,
-                                                                            id: 'ViewICD9',
-                                                                            style: 'Font-Weight:Bold;',
-                                                                            labelWidth: 430
                                                                         }
                                                                     ]
                                                                 },
@@ -9544,6 +9713,87 @@ Ext.define('SignaTouch.view.MainView', {
                                                                         type: 'hbox',
                                                                         align: 'stretch'
                                                                     }
+                                                                },
+                                                                {
+                                                                    xtype: 'container',
+                                                                    itemId: 'ICD',
+                                                                    margin: '7 0 7 0',
+                                                                    items: [
+                                                                        {
+                                                                            xtype: 'fieldset',
+                                                                            style: 'border-style:solid;\r\nborder-color:#000000;',
+                                                                            width: 930,
+                                                                            title: '<b>ICD Code. </b>',
+                                                                            items: [
+                                                                                {
+                                                                                    xtype: 'container',
+                                                                                    itemId: 'Q8',
+                                                                                    layout: {
+                                                                                        type: 'hbox',
+                                                                                        align: 'stretch'
+                                                                                    },
+                                                                                    items: [
+                                                                                        {
+                                                                                            xtype: 'displayfield',
+                                                                                            flex: 1,
+                                                                                            id: 'ViewICD9',
+                                                                                            style: 'Font-Weight:Bold;',
+                                                                                            labelWidth: 430
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    xtype: 'container',
+                                                                                    itemId: 'Q7',
+                                                                                    layout: {
+                                                                                        type: 'hbox',
+                                                                                        align: 'stretch'
+                                                                                    },
+                                                                                    items: [
+                                                                                        {
+                                                                                            xtype: 'displayfield',
+                                                                                            flex: 1,
+                                                                                            id: 'ICD1',
+                                                                                            fieldLabel: '',
+                                                                                            labelWidth: 430
+                                                                                        },
+                                                                                        {
+                                                                                            xtype: 'displayfield',
+                                                                                            flex: 1,
+                                                                                            id: 'ICD2',
+                                                                                            fieldLabel: '',
+                                                                                            labelWidth: 430
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    xtype: 'container',
+                                                                                    itemId: 'Q9',
+                                                                                    padding: '0 0 10 0',
+                                                                                    layout: {
+                                                                                        type: 'hbox',
+                                                                                        align: 'stretch'
+                                                                                    },
+                                                                                    items: [
+                                                                                        {
+                                                                                            xtype: 'displayfield',
+                                                                                            flex: 1,
+                                                                                            id: 'ICD3',
+                                                                                            fieldLabel: '',
+                                                                                            labelWidth: 430
+                                                                                        },
+                                                                                        {
+                                                                                            xtype: 'displayfield',
+                                                                                            flex: 1,
+                                                                                            id: 'ICD4',
+                                                                                            fieldLabel: '',
+                                                                                            labelWidth: 430
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
                                                                 },
                                                                 {
                                                                     xtype: 'container',
@@ -10007,8 +10257,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                             width: 107,
                                                                                             fieldLabel: '',
                                                                                             labelAlign: 'right',
-                                                                                            labelWidth: 107,
-                                                                                            value: 0.00
+                                                                                            labelWidth: 107
                                                                                         },
                                                                                         {
                                                                                             xtype: 'displayfield',
@@ -10057,8 +10306,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                             width: 107,
                                                                                             fieldLabel: '',
                                                                                             labelAlign: 'right',
-                                                                                            labelWidth: 107,
-                                                                                            value: 0.00
+                                                                                            labelWidth: 107
                                                                                         },
                                                                                         {
                                                                                             xtype: 'displayfield',
@@ -10108,8 +10356,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                             style: 'text-align:Right;',
                                                                                             width: 107,
                                                                                             fieldLabel: '',
-                                                                                            labelWidth: 107,
-                                                                                            value: 0.00
+                                                                                            labelWidth: 107
                                                                                         },
                                                                                         {
                                                                                             xtype: 'displayfield',
@@ -10158,7 +10405,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                             width: 107,
                                                                                             fieldLabel: '',
                                                                                             labelWidth: 107,
-                                                                                            value: 0.00,
                                                                                             inputId: 'lblK0738Sup'
                                                                                         },
                                                                                         {
@@ -10168,7 +10414,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                             style: 'text-align:Right;',
                                                                                             width: 170,
                                                                                             fieldLabel: '',
-                                                                                            value: 0.00,
                                                                                             inputId: 'lblK0738MediCareFee'
                                                                                         }
                                                                                     ]
@@ -10422,34 +10667,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                     items: [
                                                         {
                                                             xtype: 'button',
-                                                            cls: 'BackBt',
-                                                            hidden: true,
-                                                            id: 'ViewbtnDiscardA',
-                                                            margin: '0 10 0 0',
-                                                            text: 'Back',
-                                                            listeners: {
-                                                                click: {
-                                                                    fn: me.onViewbtnDiscardAClick,
-                                                                    scope: me
-                                                                }
-                                                            }
-                                                        },
-                                                        {
-                                                            xtype: 'button',
-                                                            cls: 'BackBt',
-                                                            hidden: true,
-                                                            id: 'ViewbtnDiscardB',
-                                                            margin: '0 10 0 0',
-                                                            text: 'Back',
-                                                            listeners: {
-                                                                click: {
-                                                                    fn: me.onViewbtnDiscardBClick,
-                                                                    scope: me
-                                                                }
-                                                            }
-                                                        },
-                                                        {
-                                                            xtype: 'button',
                                                             hidden: true,
                                                             id: 'ViewbtnReview',
                                                             margin: '0 10 0 0',
@@ -10484,6 +10701,37 @@ Ext.define('SignaTouch.view.MainView', {
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onViewbtnPrintClick,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            xtype: 'button',
+                                                            cls: 'BackBt',
+                                                            hidden: true,
+                                                            id: 'ViewbtnDiscardA',
+                                                            margin: '0 10 0 0',
+                                                            maxWidth: 70,
+                                                            text: 'Back',
+                                                            listeners: {
+                                                                click: {
+                                                                    fn: me.onViewbtnDiscardAClick,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            xtype: 'button',
+                                                            flex: 1,
+                                                            cls: 'BackBt',
+                                                            hidden: true,
+                                                            id: 'ViewbtnDiscardB',
+                                                            margin: '0 10 0 0',
+                                                            maxWidth: 70,
+                                                            text: 'Back',
+                                                            listeners: {
+                                                                click: {
+                                                                    fn: me.onViewbtnDiscardBClick,
                                                                     scope: me
                                                                 }
                                                             }
@@ -12040,103 +12288,6 @@ Ext.define('SignaTouch.view.MainView', {
 
     },
 
-    onBtnPatientCancelClick: function(button, e, eOpts) {
-
-        //go back to Physician selector screen
-         //Ext.MessageBox.confirm ('Go back', 'Go back to Patient Selector screen ?', function(btn){
-                           //if(btn === 'yes'){
-                               Ext.getCmp('txtPatientfilterID').reset();
-                               var myStore = Ext.getStore('PatientGridBind');
-                         myStore.clearFilter();
-                        myStore.load();
-                              Ext.getCmp('PatientPanelID').hide();
-                              Ext.getCmp('PatientRecord').show();
-                            Ext.getCmp('PatientForm').getForm().reset();
-                           //}
-                //});
-
-    },
-
-    onBtnPatientCancelSave2Click: function(button, e, eOpts) {
-        //go back to Physician selector screen
-        Ext.MessageBox.confirm ('Do you want to save changes?', 'Do you want to save changes?', function(btn){
-            if(btn === 'yes'){
-                var form = button.up('form');
-                var domain = localStorage.getItem('email');
-                //var header = button.up('headerPanel');
-                values = form.getValues();
-
-                var state = values.ddlNewPatientState;
-                var sex = values.ddlSex;
-                var addr1 = values.txtAddress1;
-                var city = values.txtCity;
-                var dob = values.txtDOB;
-                var fname = values.txtFname;
-                var hicn = values.txtHICN;
-                var zip = values.txtHICNZip;
-                var lname = values.txtLname;
-                var phone = values.txtPhoneno;
-
-                // Success
-                var successCallback = function(resp, ops) {
-                     if(state === '' || sex === '' || addr1 === '' || city === '' || dob === '' || fname === '' || hicn === '' || zip === '' || lname === '' || phone === ''){
-                        Ext.Msg.alert("Please fill up mandatory fields", 'Please fill up mandatory fields');
-                    }
-
-                    else{
-
-                        if(resp.responseText === 'true'){
-
-                            Ext.Msg.alert("Record Updated", 'Patient Record Updated successfully');
-                            Ext.getCmp('txtPatientfilterID').reset();
-                            var myStore = Ext.getStore('PatientGridBind');
-                            myStore.clearFilter();
-                            myStore.load();
-                            Ext.getCmp('PatientPanelID').hide();
-                            Ext.getCmp('PatientRecord').show();
-                            Ext.getCmp('PatientForm').getForm().reset();
-                        }
-                        else if(resp.responseText === 'false'){
-
-                            Ext.Msg.alert("Duplicate Entry", 'Patient Record Already Exists');
-                        }
-                            else{
-                                // Show login failure error
-                                Ext.Msg.alert("Insert Failure", 'Data cannot be added');
-                            }
-                    }
-                };
-
-                // Failure
-                var failureCallback = function(resp, ops) {
-
-                    // Show login failure error
-                    // Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
-
-                };
-
-
-                // TODO: Login using server-side authentication service
-                Ext.Ajax.request({url: "services/Maintainence.php?action=editPatientRecord&src="+domain,
-                                  method: 'POST',
-                                  params: values,
-                                  success: successCallback,
-                                  failure: failureCallback
-                                 });
-            }
-            else{
-                Ext.getCmp('txtPatientfilterID').reset();
-                var myStore = Ext.getStore('PatientGridBind');
-                myStore.clearFilter();
-                myStore.load();
-                Ext.getCmp('PatientPanelID').hide();
-                Ext.getCmp('PatientRecord').show();
-                Ext.getCmp('PatientForm').getForm().reset();
-            }
-        });
-
-    },
-
     onBtnPatientSaveClick: function(button, e, eOpts) {
         var form = button.up('form');
         var domain = localStorage.getItem('email');
@@ -12233,6 +12384,103 @@ Ext.define('SignaTouch.view.MainView', {
                           success: successCallback,
                           failure: failureCallback
                          });
+    },
+
+    onBtnPatientCancelSave2Click: function(button, e, eOpts) {
+        //go back to Physician selector screen
+        Ext.MessageBox.confirm ('Do you want to save changes?', 'Do you want to save changes?', function(btn){
+            if(btn === 'yes'){
+                var form = button.up('form');
+                var domain = localStorage.getItem('email');
+                //var header = button.up('headerPanel');
+                values = form.getValues();
+
+                var state = values.ddlNewPatientState;
+                var sex = values.ddlSex;
+                var addr1 = values.txtAddress1;
+                var city = values.txtCity;
+                var dob = values.txtDOB;
+                var fname = values.txtFname;
+                var hicn = values.txtHICN;
+                var zip = values.txtHICNZip;
+                var lname = values.txtLname;
+                var phone = values.txtPhoneno;
+
+                // Success
+                var successCallback = function(resp, ops) {
+                     if(state === '' || sex === '' || addr1 === '' || city === '' || dob === '' || fname === '' || hicn === '' || zip === '' || lname === '' || phone === ''){
+                        Ext.Msg.alert("Please fill up mandatory fields", 'Please fill up mandatory fields');
+                    }
+
+                    else{
+
+                        if(resp.responseText === 'true'){
+
+                            Ext.Msg.alert("Record Updated", 'Patient Record Updated successfully');
+                            Ext.getCmp('txtPatientfilterID').reset();
+                            var myStore = Ext.getStore('PatientGridBind');
+                            myStore.clearFilter();
+                            myStore.load();
+                            Ext.getCmp('PatientPanelID').hide();
+                            Ext.getCmp('PatientRecord').show();
+                            Ext.getCmp('PatientForm').getForm().reset();
+                        }
+                        else if(resp.responseText === 'false'){
+
+                            Ext.Msg.alert("Duplicate Entry", 'Patient Record Already Exists');
+                        }
+                            else{
+                                // Show login failure error
+                                Ext.Msg.alert("Insert Failure", 'Data cannot be added');
+                            }
+                    }
+                };
+
+                // Failure
+                var failureCallback = function(resp, ops) {
+
+                    // Show login failure error
+                    // Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                };
+
+
+                // TODO: Login using server-side authentication service
+                Ext.Ajax.request({url: "services/Maintainence.php?action=editPatientRecord&src="+domain,
+                                  method: 'POST',
+                                  params: values,
+                                  success: successCallback,
+                                  failure: failureCallback
+                                 });
+            }
+            else{
+                Ext.getCmp('txtPatientfilterID').reset();
+                var myStore = Ext.getStore('PatientGridBind');
+                myStore.clearFilter();
+                myStore.load();
+                Ext.getCmp('PatientPanelID').hide();
+                Ext.getCmp('PatientRecord').show();
+                Ext.getCmp('PatientForm').getForm().reset();
+            }
+        });
+
+    },
+
+    onBtnPatientCancelClick: function(button, e, eOpts) {
+
+        //go back to Physician selector screen
+         //Ext.MessageBox.confirm ('Go back', 'Go back to Patient Selector screen ?', function(btn){
+                           //if(btn === 'yes'){
+                               Ext.getCmp('txtPatientfilterID').reset();
+                               var myStore = Ext.getStore('PatientGridBind');
+                         myStore.clearFilter();
+                        myStore.load();
+                              Ext.getCmp('PatientPanelID').hide();
+                              Ext.getCmp('PatientRecord').show();
+                            Ext.getCmp('PatientForm').getForm().reset();
+                           //}
+                //});
+
     },
 
     onPatientFormAfterRender: function(component, eOpts) {
@@ -12643,23 +12891,6 @@ Ext.define('SignaTouch.view.MainView', {
 
     },
 
-    onBtnPhysicianCancelClick: function(button, e, eOpts) {
-        //go back to Physician selector screen
-         //Ext.MessageBox.confirm ('Go back', 'Go back to Physician Selector screen ?', function(btn){
-                          // if(btn === 'yes'){
-                               Ext.getCmp('txtPhysicianfilterID').reset();
-                                      var myStore = Ext.getStore('PhysicianGridBind');
-                          myStore.clearFilter();
-                        myStore.load();
-                              Ext.getCmp('PhysicianPanelID').hide();
-                              Ext.getCmp('PhysicianRecord').show();
-                              Ext.getCmp('PhysicianForm').getForm().reset();
-                          // }
-                //});
-
-
-    },
-
     onBtnPhysicianAddAnotherIDClick: function(button, e, eOpts) {
         var form =  Ext.getCmp('PhysicianForm');  // Physician form
         values = form.getValues();    // Form values
@@ -12682,86 +12913,6 @@ Ext.define('SignaTouch.view.MainView', {
         // Create new office form window
         var office = Ext.create("widget.NewPhysicanOffice");
         office.show();
-    },
-
-    onBtnPhysicianCancel1Click: function(button, e, eOpts) {
-        //go back to Physician selector screen
-        var form = button.up('form');
-        Ext.MessageBox.confirm ('Do you want to save changes?', 'Do you want to save changes?', function(btn){
-            if(btn === 'yes'){
-
-                var domain = localStorage.getItem('email');
-                //var header = button.up('headerPanel');
-                values = form.getValues();
-
-                var state = values.ddlPhysicianState;
-                var addr1 = values.txtPhysicianAddress1;
-                var city = values.txtPhysicianCity;
-                var fname = values.txtPhysicianFname;
-                var hicn = values.txtPhysicianNPI;
-                var zip = values.txtPhysicianZip;
-                var lname = values.txtPhysicianLname;
-                var phone = values.txtPhysicianPhoneNo;
-                // Success
-                var successCallback = function(resp, ops) {
-                    if(state === '' || addr1 === '' || city === '' || fname === '' || hicn === '' || zip === '' || lname === '' || phone === ''){
-                        Ext.Msg.alert("Please fill up mandatory fields", 'Please fill up mandatory fields');
-                    }
-                    else{
-                        // console.log(resp.responseText);
-                        if(resp.responseText === 'true'){
-
-                            Ext.Msg.alert("Record Updated", 'Physican Record Updated successfully');
-                            Ext.getCmp('txtPhysicianfilterID').reset();
-                            var myStore = Ext.getStore('PhysicianGridBind');
-                            myStore.clearFilter();
-                            myStore.load();
-                            Ext.getCmp('PhysicianPanelID').hide();
-                            Ext.getCmp('PhysicianRecord').show();
-                            Ext.getCmp('PhysicianForm').getForm().reset();
-
-                        }
-                        else if(resp.responseText === 'false'){
-
-                            Ext.Msg.alert("Duplicate Entry", 'Physican Record Already Exists');
-                        }
-                            else{
-                                // Show login failure error
-                                Ext.Msg.alert("Insert Failure", 'Data cannot be added');
-                            }
-                    }
-
-                };
-
-                // Failure
-                var failureCallback = function(resp, ops) {
-
-                    // Show login failure error
-                    Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
-
-                };
-
-
-                // TODO: Login using server-side authentication service
-                Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=ZimbraUpdatePhysician&src="+domain,
-                                  method: 'POST',
-                                  params: values,
-                                  success: successCallback,
-                                  failure: failureCallback
-                                 });
-            }
-            else{
-                Ext.getCmp('txtPhysicianfilterID').reset();
-                var myStore = Ext.getStore('PhysicianGridBind');
-                myStore.clearFilter();
-                myStore.load();
-                Ext.getCmp('PhysicianPanelID').hide();
-                Ext.getCmp('PhysicianRecord').show();
-                Ext.getCmp('PhysicianForm').getForm().reset();
-            }
-        });
-
-
     },
 
     onBtnPhysicianSaveClick: function(button, e, eOpts) {
@@ -12956,6 +13107,103 @@ Ext.define('SignaTouch.view.MainView', {
                  });
     },
 
+    onBtnPhysicianCancelClick: function(button, e, eOpts) {
+        //go back to Physician selector screen
+         //Ext.MessageBox.confirm ('Go back', 'Go back to Physician Selector screen ?', function(btn){
+                          // if(btn === 'yes'){
+                               Ext.getCmp('txtPhysicianfilterID').reset();
+                                      var myStore = Ext.getStore('PhysicianGridBind');
+                          myStore.clearFilter();
+                        myStore.load();
+                              Ext.getCmp('PhysicianPanelID').hide();
+                              Ext.getCmp('PhysicianRecord').show();
+                              Ext.getCmp('PhysicianForm').getForm().reset();
+                          // }
+                //});
+
+
+    },
+
+    onBtnPhysicianCancel1Click: function(button, e, eOpts) {
+        //go back to Physician selector screen
+        var form = button.up('form');
+        Ext.MessageBox.confirm ('Do you want to save changes?', 'Do you want to save changes?', function(btn){
+            if(btn === 'yes'){
+
+                var domain = localStorage.getItem('email');
+                //var header = button.up('headerPanel');
+                values = form.getValues();
+
+                var state = values.ddlPhysicianState;
+                var addr1 = values.txtPhysicianAddress1;
+                var city = values.txtPhysicianCity;
+                var fname = values.txtPhysicianFname;
+                var hicn = values.txtPhysicianNPI;
+                var zip = values.txtPhysicianZip;
+                var lname = values.txtPhysicianLname;
+                var phone = values.txtPhysicianPhoneNo;
+                // Success
+                var successCallback = function(resp, ops) {
+                    if(state === '' || addr1 === '' || city === '' || fname === '' || hicn === '' || zip === '' || lname === '' || phone === ''){
+                        Ext.Msg.alert("Please fill up mandatory fields", 'Please fill up mandatory fields');
+                    }
+                    else{
+                        // console.log(resp.responseText);
+                        if(resp.responseText === 'true'){
+
+                            Ext.Msg.alert("Record Updated", 'Physican Record Updated successfully');
+                            Ext.getCmp('txtPhysicianfilterID').reset();
+                            var myStore = Ext.getStore('PhysicianGridBind');
+                            myStore.clearFilter();
+                            myStore.load();
+                            Ext.getCmp('PhysicianPanelID').hide();
+                            Ext.getCmp('PhysicianRecord').show();
+                            Ext.getCmp('PhysicianForm').getForm().reset();
+
+                        }
+                        else if(resp.responseText === 'false'){
+
+                            Ext.Msg.alert("Duplicate Entry", 'Physican Record Already Exists');
+                        }
+                            else{
+                                // Show login failure error
+                                Ext.Msg.alert("Insert Failure", 'Data cannot be added');
+                            }
+                    }
+
+                };
+
+                // Failure
+                var failureCallback = function(resp, ops) {
+
+                    // Show login failure error
+                    Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                };
+
+
+                // TODO: Login using server-side authentication service
+                Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=ZimbraUpdatePhysician&src="+domain,
+                                  method: 'POST',
+                                  params: values,
+                                  success: successCallback,
+                                  failure: failureCallback
+                                 });
+            }
+            else{
+                Ext.getCmp('txtPhysicianfilterID').reset();
+                var myStore = Ext.getStore('PhysicianGridBind');
+                myStore.clearFilter();
+                myStore.load();
+                Ext.getCmp('PhysicianPanelID').hide();
+                Ext.getCmp('PhysicianRecord').show();
+                Ext.getCmp('PhysicianForm').getForm().reset();
+            }
+        });
+
+
+    },
+
     onBtnPhysicianCancelClick1: function(button, e, eOpts) {
         //go back to Physician selector screen
          //Ext.MessageBox.confirm ('Go back', 'Go back to Physician Selector screen ?', function(btn){
@@ -12979,108 +13227,6 @@ Ext.define('SignaTouch.view.MainView', {
             var newPhone = phone.concat('-');
             Ext.getCmp('txtSPhoneNoID').setValue(newPhone);
         }
-
-    },
-
-    onBtnSupplierCancelClick: function(button, e, eOpts) {
-        //go back to Supplier selector screen
-         //Ext.MessageBox.confirm ('Go back', 'Go back to Supplier Selector screen ?', function(btn){
-                         //  if(btn === 'yes'){
-
-                             Ext.getCmp('txtSupplierfilterRecordID').reset();
-                                var myStore = Ext.getStore('SupplierGridBind');
-                        myStore.clearFilter();
-                        myStore.load();
-
-                                Ext.getCmp('SupplierPanelID').hide();
-                              Ext.getCmp('SupplierRecord').show();
-                              Ext.getCmp('SupplierForm').getForm().reset();
-                           //}
-               // });
-
-    },
-
-    onBtnSupplierCancelClick2: function(button, e, eOpts) {
-        //go back to Supplier selector screen
-        Ext.MessageBox.confirm ('Do you want to save changes?', 'Do you want to save changes?', function(btn){
-            if(btn === 'yes'){
-
-                var form = button.up('form');
-                var domain = localStorage.getItem('email');
-                //var header = button.up('headerPanel');
-                values = form.getValues();
-                console.log(values);
-                var state = values.ddlSState;
-                var addr1 = values.txtSAddress1;
-                var city = values.txtSCity;
-                var fname = values.txtSupplierName;
-                var hicn = values.txtSNPI;
-                var zip = values.txtSZip;
-                var phone = values.txtSPhoneNo;
-
-
-                // Success
-                var successCallback = function(resp, ops) {
-
-                    if(state === '' || addr1 === '' || city === '' || fname === '' || hicn === '' || zip === '' || phone === ''){
-                        Ext.Msg.alert("Please fill up mandatory fields", 'Please fill up mandatory fields');
-                    }
-                    else{
-                        if(resp.responseText === 'true'){
-
-                            Ext.Msg.alert("Record Updated", 'Supplier Record Updated successfully');
-                            Ext.getCmp('txtSupplierfilterRecordID').reset();
-                            var myStore = Ext.getStore('SupplierGridBind');
-                            myStore.clearFilter();
-                            myStore.load();
-                            Ext.getCmp('SupplierPanelID').hide();
-                            Ext.getCmp('SupplierRecord').show();
-                            // Code to reset the form values
-                            Ext.getCmp('SupplierForm').getForm().reset();
-
-                        }
-                        else if(resp.responseText === 'false'){
-
-                            Ext.Msg.alert("Duplicate Entry", 'Supplier Record Already Exists');
-
-                        }
-                            else{
-                                // Show login failure error
-                                Ext.Msg.alert("Insert Failure", 'Data cannot be added');
-                            }
-
-                    }
-
-                };
-
-                // Failure
-                var failureCallback = function(resp, ops) {
-
-                    // Show login failure error
-                    Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
-
-                };
-
-
-                // TODO: Login using server-side authentication service
-                Ext.Ajax.request({url: "services/Maintainence.php?action=editSupplierRecord&src="+domain,
-                                  method: 'POST',
-                                  params: values,
-                                  success: successCallback,
-                                  failure: failureCallback
-                                 });
-            }
-            else{
-                Ext.getCmp('txtSupplierfilterRecordID').reset();
-                var myStore = Ext.getStore('SupplierGridBind');
-                myStore.clearFilter();
-                myStore.load();
-
-                Ext.getCmp('SupplierPanelID').hide();
-                Ext.getCmp('SupplierRecord').show();
-                Ext.getCmp('SupplierForm').getForm().reset();
-            }
-        });
 
     },
 
@@ -13189,6 +13335,108 @@ Ext.define('SignaTouch.view.MainView', {
                         success: successCallback,
                         failure: failureCallback
                  });
+    },
+
+    onBtnSupplierCancelClick: function(button, e, eOpts) {
+        //go back to Supplier selector screen
+         //Ext.MessageBox.confirm ('Go back', 'Go back to Supplier Selector screen ?', function(btn){
+                         //  if(btn === 'yes'){
+
+                             Ext.getCmp('txtSupplierfilterRecordID').reset();
+                                var myStore = Ext.getStore('SupplierGridBind');
+                        myStore.clearFilter();
+                        myStore.load();
+
+                                Ext.getCmp('SupplierPanelID').hide();
+                              Ext.getCmp('SupplierRecord').show();
+                              Ext.getCmp('SupplierForm').getForm().reset();
+                           //}
+               // });
+
+    },
+
+    onBtnSupplierCancelClick2: function(button, e, eOpts) {
+        //go back to Supplier selector screen
+        Ext.MessageBox.confirm ('Do you want to save changes?', 'Do you want to save changes?', function(btn){
+            if(btn === 'yes'){
+
+                var form = button.up('form');
+                var domain = localStorage.getItem('email');
+                //var header = button.up('headerPanel');
+                values = form.getValues();
+                console.log(values);
+                var state = values.ddlSState;
+                var addr1 = values.txtSAddress1;
+                var city = values.txtSCity;
+                var fname = values.txtSupplierName;
+                var hicn = values.txtSNPI;
+                var zip = values.txtSZip;
+                var phone = values.txtSPhoneNo;
+
+
+                // Success
+                var successCallback = function(resp, ops) {
+
+                    if(state === '' || addr1 === '' || city === '' || fname === '' || hicn === '' || zip === '' || phone === ''){
+                        Ext.Msg.alert("Please fill up mandatory fields", 'Please fill up mandatory fields');
+                    }
+                    else{
+                        if(resp.responseText === 'true'){
+
+                            Ext.Msg.alert("Record Updated", 'Supplier Record Updated successfully');
+                            Ext.getCmp('txtSupplierfilterRecordID').reset();
+                            var myStore = Ext.getStore('SupplierGridBind');
+                            myStore.clearFilter();
+                            myStore.load();
+                            Ext.getCmp('SupplierPanelID').hide();
+                            Ext.getCmp('SupplierRecord').show();
+                            // Code to reset the form values
+                            Ext.getCmp('SupplierForm').getForm().reset();
+
+                        }
+                        else if(resp.responseText === 'false'){
+
+                            Ext.Msg.alert("Duplicate Entry", 'Supplier Record Already Exists');
+
+                        }
+                            else{
+                                // Show login failure error
+                                Ext.Msg.alert("Insert Failure", 'Data cannot be added');
+                            }
+
+                    }
+
+                };
+
+                // Failure
+                var failureCallback = function(resp, ops) {
+
+                    // Show login failure error
+                    Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                };
+
+
+                // TODO: Login using server-side authentication service
+                Ext.Ajax.request({url: "services/Maintainence.php?action=editSupplierRecord&src="+domain,
+                                  method: 'POST',
+                                  params: values,
+                                  success: successCallback,
+                                  failure: failureCallback
+                                 });
+            }
+            else{
+                Ext.getCmp('txtSupplierfilterRecordID').reset();
+                var myStore = Ext.getStore('SupplierGridBind');
+                myStore.clearFilter();
+                myStore.load();
+
+                Ext.getCmp('SupplierPanelID').hide();
+                Ext.getCmp('SupplierRecord').show();
+                Ext.getCmp('SupplierForm').getForm().reset();
+            }
+        });
+
     },
 
     onBtnSupplierCancelClick1: function(button, e, eOpts) {
@@ -13880,6 +14128,138 @@ Ext.define('SignaTouch.view.MainView', {
         }
     },
 
+    onTxticd1Blur: function(component, e, eOpts) {
+        var input = component.getValue();
+        var txtSectionB =  Ext.getCmp('txticd1');
+        var ICDdes =  Ext.getCmp('txticddes1');
+        if(txtSectionB.value !== ''){
+            // Success
+
+            var successCallback = function(resp, ops) {
+                console.log(resp.responseText);
+                if(resp.responseText != 'false'){
+
+                    ICDdes.setValue(Ext.JSON.decode(resp.responseText));
+                }
+                else {
+                    ICDdes.setValue('');
+                    txtSectionB.setValue('');
+
+                    Ext.Msg.alert("No match", 'This ICD9 code is not in our record');
+                }
+
+            };
+
+            // Failure
+            var failureCallback = function(resp, ops) {
+
+                // Show login failure error
+                //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+            };
+
+
+            // TODO: Login using server-side authentication service
+            Ext.Ajax.request({url: "services/SectionB.php?action=fetchICDDescription&ICDCode="+input,
+                              method: 'GET',
+                              params: 'input',
+                              success: successCallback,
+                              failure: failureCallback
+                             });
+        }
+        else{
+            ICDdes.reset();
+        }
+    },
+
+    onTxticd2Blur: function(component, e, eOpts) {
+        var input = component.getValue();
+        var txtSectionB =  Ext.getCmp('txticd2');
+        var ICDdes =  Ext.getCmp('txticddes2');
+        if(txtSectionB.value !== ''){
+            // Success
+
+            var successCallback = function(resp, ops) {
+                console.log(resp.responseText);
+                if(resp.responseText != 'false'){
+
+                    ICDdes.setValue(Ext.JSON.decode(resp.responseText));
+                }
+                else {
+                    ICDdes.setValue('');
+                    txtSectionB.setValue('');
+
+                    Ext.Msg.alert("No match", 'This ICD9 code is not in our record');
+                }
+
+            };
+
+            // Failure
+            var failureCallback = function(resp, ops) {
+
+                // Show login failure error
+                //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+            };
+
+
+            // TODO: Login using server-side authentication service
+            Ext.Ajax.request({url: "services/SectionB.php?action=fetchICDDescription&ICDCode="+input,
+                              method: 'GET',
+                              params: 'input',
+                              success: successCallback,
+                              failure: failureCallback
+                             });
+        }
+        else{
+            ICDdes.reset();
+        }
+    },
+
+    onTxticd3Blur: function(component, e, eOpts) {
+        var input = component.getValue();
+        var txtSectionB =  Ext.getCmp('txticd3');
+        var ICDdes =  Ext.getCmp('txticddes3');
+        if(txtSectionB.value !== ''){
+            // Success
+
+            var successCallback = function(resp, ops) {
+                console.log(resp.responseText);
+                if(resp.responseText != 'false'){
+
+                    ICDdes.setValue(Ext.JSON.decode(resp.responseText));
+                }
+                else {
+                    ICDdes.setValue('');
+                    txtSectionB.setValue('');
+
+                    Ext.Msg.alert("No match", 'This ICD9 code is not in our record');
+                }
+
+            };
+
+            // Failure
+            var failureCallback = function(resp, ops) {
+
+                // Show login failure error
+                //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+            };
+
+
+            // TODO: Login using server-side authentication service
+            Ext.Ajax.request({url: "services/SectionB.php?action=fetchICDDescription&ICDCode="+input,
+                              method: 'GET',
+                              params: 'input',
+                              success: successCallback,
+                              failure: failureCallback
+                             });
+        }
+        else{
+            ICDdes.reset();
+        }
+    },
+
     onTxtQ1aIDBlur: function(component, e, eOpts) {
         var a_value = component.getValue();
         if(a_value == '0'){
@@ -14059,6 +14439,80 @@ Ext.define('SignaTouch.view.MainView', {
         }
     },
 
+    onBtSectionB1SaveClick: function(button, e, eOpts) {
+        var form = button.up('form');
+        var domain = localStorage.getItem('email');
+        var srcdomain = localStorage.getItem('domain');
+        //var header = button.up('headerPanel');
+        values = form.getValues();
+
+        var DetailID = Ext.getCmp('hdnDetailID').getValue();
+        var q7 = Ext.getCmp('ddlQ7ID').getValue();
+        var q8 = Ext.getCmp('ddlQ8ID').getValue();
+        var q9 = Ext.getCmp('ddlQ9ID').getValue();
+
+        // Success
+        var successCallback = function(resp, ops) {
+
+            if(q7 === 'N' && q8 === 'N' && q9 === 'N'){
+                Ext.Msg.show({
+                    title: 'Invalid Answer',
+                    msg: '<code>Atleast one answer from Q7, Q8 and Q9 should be YES.</code>',
+                    icon: Ext.Msg['ERROR']
+                });
+
+            }
+            else{
+                if(resp.responseText === 'true'){
+                    Ext.Msg.alert("Record Saved", 'Record Saved successfully');
+                    var myStore = Ext.getStore('SectionBGridBind');
+                    myStore.clearFilter();
+                    myStore.load();
+                    SectionB1 = Ext.getCmp('sectionB1ID');
+                    SectionB1.show();
+                    Ext.getCmp('SectionB1NextID').hide();
+                    Ext.getCmp('SectionB1NextForm').getForm().reset();
+
+
+                }
+                else if(resp.responseText === 'false'){
+
+                    // Ext.Msg.alert("Duplicate Entry", 'This Record Already Exists');
+                    Ext.Msg.show({
+                        title: 'Duplicate Record',
+                        msg: '<code>This Record Already Exists</code>',
+                        icon: Ext.Msg['ERROR']
+                    });
+
+                }
+                    else{
+                        // Show login failure error
+                        Ext.Msg.alert("Insert Failure", 'Record cannot be added');
+                    }
+            }
+
+
+
+        };
+
+        // Failure
+        var failureCallback = function(resp, ops) {
+
+            // Show login failure error
+            //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+        };
+
+
+        // TODO: Login using server-side authentication service
+        Ext.Ajax.request({url: "services/SectionB.php?action=insertSectionBRecord&DetailID="+DetailID+"&srcdomain="+srcdomain+"&src="+domain,
+                          method: 'POST',
+                          params: values,
+                          success: successCallback,
+                          failure: failureCallback
+                         });
+    },
+
     onBtDiscardClick: function(button, e, eOpts) {
         //go back to section B selector screen
         Ext.MessageBox.confirm ('Do you want to save changes', 'Do you want to save changes?', function(btn){
@@ -14170,80 +14624,6 @@ Ext.define('SignaTouch.view.MainView', {
         });
 
 
-    },
-
-    onBtSectionB1SaveClick: function(button, e, eOpts) {
-        var form = button.up('form');
-        var domain = localStorage.getItem('email');
-        var srcdomain = localStorage.getItem('domain');
-        //var header = button.up('headerPanel');
-        values = form.getValues();
-
-        var DetailID = Ext.getCmp('hdnDetailID').getValue();
-        var q7 = Ext.getCmp('ddlQ7ID').getValue();
-        var q8 = Ext.getCmp('ddlQ8ID').getValue();
-        var q9 = Ext.getCmp('ddlQ9ID').getValue();
-
-        // Success
-        var successCallback = function(resp, ops) {
-
-            if(q7 === 'N' && q8 === 'N' && q9 === 'N'){
-                Ext.Msg.show({
-                    title: 'Invalid Answer',
-                    msg: '<code>Atleast one answer from Q7, Q8 and Q9 should be YES.</code>',
-                    icon: Ext.Msg['ERROR']
-                });
-
-            }
-            else{
-                if(resp.responseText === 'true'){
-                    Ext.Msg.alert("Record Saved", 'Record Saved successfully');
-                    var myStore = Ext.getStore('SectionBGridBind');
-                    myStore.clearFilter();
-                    myStore.load();
-                    SectionB1 = Ext.getCmp('sectionB1ID');
-                    SectionB1.show();
-                    Ext.getCmp('SectionB1NextID').hide();
-                    Ext.getCmp('SectionB1NextForm').getForm().reset();
-
-
-                }
-                else if(resp.responseText === 'false'){
-
-                    // Ext.Msg.alert("Duplicate Entry", 'This Record Already Exists');
-                    Ext.Msg.show({
-                        title: 'Duplicate Record',
-                        msg: '<code>This Record Already Exists</code>',
-                        icon: Ext.Msg['ERROR']
-                    });
-
-                }
-                    else{
-                        // Show login failure error
-                        Ext.Msg.alert("Insert Failure", 'Record cannot be added');
-                    }
-            }
-
-
-
-        };
-
-        // Failure
-        var failureCallback = function(resp, ops) {
-
-            // Show login failure error
-            //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
-
-        };
-
-
-        // TODO: Login using server-side authentication service
-        Ext.Ajax.request({url: "services/SectionB.php?action=insertSectionBRecord&DetailID="+DetailID+"&srcdomain="+srcdomain+"&src="+domain,
-                          method: 'POST',
-                          params: values,
-                          success: successCallback,
-                          failure: failureCallback
-                         });
     },
 
     onChkHICNPOPUPIDChange: function(field, newValue, oldValue, eOpts) {
@@ -15328,6 +15708,128 @@ Ext.define('SignaTouch.view.MainView', {
         }
     },
 
+    onBtSectionA1NextSaveClick: function(button, e, eOpts) {
+        var form = button.up('form');
+        var domain = localStorage.getItem('email');
+        var srcdomain = localStorage.getItem('domain');
+        //var header = button.up('headerPanel');
+        values = form.getValues();
+        var LocalHDRid = localStorage.getItem('SectionAHDRID');
+        var CertDate = Ext.getCmp('txtSectionA1CertificationDateID');
+        var HICN = Ext.getCmp('PatientHICNPOP');
+        //var MedID =  Ext.getCmp('MedIDSectionAinput');
+        var SupplierNPI = Ext.getCmp('txtSectionASupplierNPIID');
+        var PhysicianNPI = Ext.getCmp('txtSectionAPhysicianNPIID');
+        var POS = Ext.getCmp('txtSectionAPOSID');
+
+
+
+        var txtE1390Sup = Ext.getCmp('InputE1390ID');
+        if(txtE1390Sup.value !== '1')
+        {
+            txtE1390Sup.setValue('0');
+        }
+
+        var txtE1392Sup = Ext.getCmp('InputE1392ID');
+        if(txtE1392Sup.value !=='1')
+        {
+            txtE1392Sup.setValue('0');
+        }
+
+        var txtE0431Sup = Ext.getCmp('InputE0431ID');
+        if(txtE0431Sup.value !=='1')
+        {
+            txtE0431Sup.setValue('0');
+        }
+
+        var txtK0738Sup = Ext.getCmp('InputK0738ID');
+        if(txtK0738Sup.value !=='1')
+        {
+            txtK0738Sup.setValue('0');
+        }
+
+        var txtHCPCS1ID = Ext.getCmp('txtHCPCS1ID');
+
+        var txtHCPCS2ID = Ext.getCmp('txtHCPCS2ID');
+
+        var txtHCPCS3ID = Ext.getCmp('txtHCPCS3ID');
+
+        var txtHCPCS4ID = Ext.getCmp('txtHCPCS4ID');
+
+        console.log(txtE1390Sup.value);
+        console.log(txtE1392Sup.value);
+        console.log(txtE0431Sup.value);
+        console.log(txtK0738Sup.value);
+
+
+
+        if(CertDate.value === '' || HICN.value === '' || SupplierNPI.value === '' || PhysicianNPI.value === '' || POS.value === '' ){
+            Ext.Msg.show({
+                title: 'Empty Record',
+                msg: '<code>Please enter values for required fields</code>',
+                icon: Ext.Msg['ERROR']
+            });
+        }
+        else if((txtE1390Sup.value === '0' && txtE1392Sup.value === '0' && txtE0431Sup.value === '0' && txtK0738Sup.value === '0') && (txtHCPCS1ID.value === '' && txtHCPCS2ID.value === '' && txtHCPCS3ID.value === '' && txtHCPCS4ID.value === ''))
+        {
+            Ext.Msg.show({
+                title: 'Empty Record',
+                msg: '<code>Please enter values for HCPCS or Non-standard HCPCS</code>',
+                icon: Ext.Msg['ERROR']
+            });
+        }
+
+
+
+            else{
+
+                // Success
+                var successCallback = function(resp, ops) {
+                    //console.log(resp.responseText);
+                    if(resp.responseText === 'true'){
+                        localStorage.removeItem("SectionAHDRID"); //remove
+                        Ext.Msg.alert("Record Saved", 'Record saved successfully');
+
+
+                        SectionA1 = Ext.getCmp('SectionAID');
+                        SectionA1.show();
+                        Ext.getCmp('SectionA1NextID').hide();
+                        Ext.getCmp('SectionA1Form').getForm().reset();
+                        var myStore = Ext.getStore('SectionA1GridBind');
+                        myStore.clearFilter();
+
+                        myStore.load();
+                        Ext.getCmp('txtFilterID').reset();
+                        Ext.getCmp('TxtstartDateID').setValue('');
+                        Ext.getCmp('TxtendDateID').setValue('');
+
+                    }
+                    else{
+
+                        Ext.Msg.alert("Insert Failure", 'Record cannot be added');
+                    }
+
+                };
+
+                // Failure
+                var failureCallback = function(resp, ops) {
+
+                    // Show login failure error
+                    //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                };
+
+
+                // TODO: Login using server-side authentication service
+                Ext.Ajax.request({url: "services/SectionA.php?action=insertSectionARecord&HdrID="+LocalHDRid+"&src="+domain+"&srcdomain="+srcdomain,
+                                  method: 'POST',
+                                  params: values,
+                                  success: successCallback,
+                                  failure: failureCallback
+                                 });
+            }
+    },
+
     onBtSectionA1NextSaveDiscardClick: function(button, e, eOpts) {
         //go back to section A selector screen
         //Ext.MessageBox.confirm ('Do you want to save changes?', 'Do you want to save changes?', function(btn){
@@ -15489,170 +15991,8 @@ Ext.define('SignaTouch.view.MainView', {
         });
     },
 
-    onBtSectionA1NextSaveClick: function(button, e, eOpts) {
-        var form = button.up('form');
-        var domain = localStorage.getItem('email');
-        var srcdomain = localStorage.getItem('domain');
-        //var header = button.up('headerPanel');
-        values = form.getValues();
-        var LocalHDRid = localStorage.getItem('SectionAHDRID');
-        var CertDate = Ext.getCmp('txtSectionA1CertificationDateID');
-        var HICN = Ext.getCmp('PatientHICNPOP');
-        var MedID =  Ext.getCmp('MedIDSectionAinput');
-        var SupplierNPI = Ext.getCmp('txtSectionASupplierNPIID');
-        var PhysicianNPI = Ext.getCmp('txtSectionAPhysicianNPIID');
-        var POS = Ext.getCmp('txtSectionAPOSID');
-
-
-
-        var txtE1390Sup = Ext.getCmp('InputE1390ID');
-        if(txtE1390Sup.value !== '1')
-        {
-            txtE1390Sup.setValue('0');
-        }
-
-        var txtE1392Sup = Ext.getCmp('InputE1392ID');
-        if(txtE1392Sup.value !=='1')
-        {
-            txtE1392Sup.setValue('0');
-        }
-
-        var txtE0431Sup = Ext.getCmp('InputE0431ID');
-        if(txtE0431Sup.value !=='1')
-        {
-            txtE0431Sup.setValue('0');
-        }
-
-        var txtK0738Sup = Ext.getCmp('InputK0738ID');
-        if(txtK0738Sup.value !=='1')
-        {
-            txtK0738Sup.setValue('0');
-        }
-
-        var txtHCPCS1ID = Ext.getCmp('txtHCPCS1ID');
-
-        var txtHCPCS2ID = Ext.getCmp('txtHCPCS2ID');
-
-        var txtHCPCS3ID = Ext.getCmp('txtHCPCS3ID');
-
-        var txtHCPCS4ID = Ext.getCmp('txtHCPCS4ID');
-
-        console.log(txtE1390Sup.value);
-        console.log(txtE1392Sup.value);
-        console.log(txtE0431Sup.value);
-        console.log(txtK0738Sup.value);
-
-
-
-        if(CertDate.value === '' || HICN.value === '' || MedID.value === '' || SupplierNPI.value === '' || PhysicianNPI.value === '' || POS.value === '' ){
-            Ext.Msg.show({
-                title: 'Empty Record',
-                msg: '<code>Please enter values for required fields</code>',
-                icon: Ext.Msg['ERROR']
-            });
-        }
-        else if((txtE1390Sup.value === '0' && txtE1392Sup.value === '0' && txtE0431Sup.value === '0' && txtK0738Sup.value === '0') && (txtHCPCS1ID.value === '' && txtHCPCS2ID.value === '' && txtHCPCS3ID.value === '' && txtHCPCS4ID.value === ''))
-        {
-            Ext.Msg.show({
-                title: 'Empty Record',
-                msg: '<code>Please enter values for HCPCS or Non-standard HCPCS</code>',
-                icon: Ext.Msg['ERROR']
-            });
-        }
-
-
-
-            else{
-
-                // Success
-                var successCallback = function(resp, ops) {
-                    //console.log(resp.responseText);
-                    if(resp.responseText === 'true'){
-                        localStorage.removeItem("SectionAHDRID"); //remove
-                        Ext.Msg.alert("Record Saved", 'Record saved successfully');
-
-
-                        SectionA1 = Ext.getCmp('SectionAID');
-                        SectionA1.show();
-                        Ext.getCmp('SectionA1NextID').hide();
-                        Ext.getCmp('SectionA1Form').getForm().reset();
-                        var myStore = Ext.getStore('SectionA1GridBind');
-                        myStore.clearFilter();
-
-                        myStore.load();
-                        Ext.getCmp('txtFilterID').reset();
-                        Ext.getCmp('TxtstartDateID').setValue('');
-                        Ext.getCmp('TxtendDateID').setValue('');
-
-                    }
-                    else{
-
-                        Ext.Msg.alert("Insert Failure", 'Record cannot be added');
-                    }
-
-                };
-
-                // Failure
-                var failureCallback = function(resp, ops) {
-
-                    // Show login failure error
-                    //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
-
-                };
-
-
-                // TODO: Login using server-side authentication service
-                Ext.Ajax.request({url: "services/SectionA.php?action=insertSectionARecord&HdrID="+LocalHDRid+"&src="+domain+"&srcdomain="+srcdomain,
-                                  method: 'POST',
-                                  params: values,
-                                  success: successCallback,
-                                  failure: failureCallback
-                                 });
-            }
-    },
-
     onSectionA1FormAfterRender: function(component, eOpts) {
         //Ext.getCmp('txtSectionA1CertificationDateID').setMinValue(Ext.util.Format.date(new Date(), 'm/d/Y'));
-    },
-
-    onViewbtnDiscardAClick: function(button, e, eOpts) {
-        //go back to section A selector screen
-         //Ext.MessageBox.confirm ('Go back', 'Go back to Record Selector screen ?', function(btn){
-                           //if(btn === 'yes'){
-
-                               Ext.getCmp('txtFilterID').reset();
-                               Ext.getCmp('TxtstartDateID').setValue('');
-                               Ext.getCmp('TxtendDateID').setValue('');
-                               var myStore = Ext.getStore('SectionA1GridBind');
-                               myStore.clearFilter();
-                               myStore.load();
-                             Ext.getCmp('ViewAll').hide();
-                              Ext.getCmp('SectionAID').show();
-
-                           //}
-                //});
-
-
-
-    },
-
-    onViewbtnDiscardBClick: function(button, e, eOpts) {
-        //go back to section B selector screen
-         //Ext.MessageBox.confirm ('Go back', 'Go back to Record Selector screen ?', function(btn){
-                           //if(btn === 'yes'){
-                               Ext.getCmp('txtSectionBFiltertextID').reset();
-        Ext.getCmp('TxtSectionBstartDate').setValue('');
-        Ext.getCmp('TxtSectionBendDate').setValue('');
-                                 var myStore = Ext.getStore('SectionBGridBind');
-                         myStore.clearFilter();
-                        myStore.load();
-                           Ext.getCmp('ViewAll').hide();
-                           Ext.getCmp('sectionB1ID').show();
-
-                           //}
-                //});
-
-
     },
 
     onViewbtnReviewClick: function(button, e, eOpts) {
@@ -15770,6 +16110,46 @@ Ext.define('SignaTouch.view.MainView', {
                         success: successCallback,
                         failure: failureCallback
                  });
+
+    },
+
+    onViewbtnDiscardAClick: function(button, e, eOpts) {
+        //go back to section A selector screen
+         //Ext.MessageBox.confirm ('Go back', 'Go back to Record Selector screen ?', function(btn){
+                           //if(btn === 'yes'){
+
+                               Ext.getCmp('txtFilterID').reset();
+                               Ext.getCmp('TxtstartDateID').setValue('');
+                               Ext.getCmp('TxtendDateID').setValue('');
+                               var myStore = Ext.getStore('SectionA1GridBind');
+                               myStore.clearFilter();
+                               myStore.load();
+                             Ext.getCmp('ViewAll').hide();
+                              Ext.getCmp('SectionAID').show();
+
+                           //}
+                //});
+
+
+
+    },
+
+    onViewbtnDiscardBClick: function(button, e, eOpts) {
+        //go back to section B selector screen
+         //Ext.MessageBox.confirm ('Go back', 'Go back to Record Selector screen ?', function(btn){
+                           //if(btn === 'yes'){
+                               Ext.getCmp('txtSectionBFiltertextID').reset();
+        Ext.getCmp('TxtSectionBstartDate').setValue('');
+        Ext.getCmp('TxtSectionBendDate').setValue('');
+                                 var myStore = Ext.getStore('SectionBGridBind');
+                         myStore.clearFilter();
+                        myStore.load();
+                           Ext.getCmp('ViewAll').hide();
+                           Ext.getCmp('sectionB1ID').show();
+
+                           //}
+                //});
+
 
     },
 

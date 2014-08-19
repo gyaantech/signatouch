@@ -209,31 +209,31 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
                                     items: [
                                         {
                                             xtype: 'button',
-                                            cls: 'BackBt',
-                                            id: 'btnPOPPhyReset',
-                                            itemId: '',
+                                            formBind: true,
+                                            cls: 'SaveBt',
+                                            id: 'btnPOPPhySave',
                                             margin: '0 10 0 0',
-                                            padding: '',
                                             width: 92,
-                                            text: 'Back',
+                                            text: 'Save',
                                             listeners: {
                                                 click: {
-                                                    fn: me.onBtnPOPPhyCancelClick,
+                                                    fn: me.onBtnPOPPhySaveClick,
                                                     scope: me
                                                 }
                                             }
                                         },
                                         {
                                             xtype: 'button',
-                                            formBind: true,
-                                            cls: 'SaveBt',
-                                            id: 'btnPOPPhySave',
-                                            margin: '0 0 0 0',
+                                            cls: 'BackBt',
+                                            id: 'btnPOPPhyReset',
+                                            itemId: '',
+                                            margin: '',
+                                            padding: '',
                                             width: 92,
-                                            text: 'Save',
+                                            text: 'Back',
                                             listeners: {
                                                 click: {
-                                                    fn: me.onBtnPOPPhySaveClick,
+                                                    fn: me.onBtnPOPPhyCancelClick,
                                                     scope: me
                                                 }
                                             }
@@ -254,15 +254,6 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
         });
 
         me.callParent(arguments);
-    },
-
-    onBtnPOPPhyCancelClick: function(button, e, eOpts) {
-        //Ext.getCmp('PopForm3').getForm().reset();
-        Ext.getCmp('txtPOPPhyAddress1ID').reset();
-        Ext.getCmp('txtPOPPhyAddress2ID').reset();
-        Ext.getCmp('txtPOPPhyCityID').reset();
-        Ext.getCmp('txtPOPPhyStateID').reset();
-        Ext.getCmp('txtPOPPhyzipID').reset();
     },
 
     onBtnPOPPhySaveClick: function(button, e, eOpts) {
@@ -329,6 +320,15 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
                         success: successCallback,
                         failure: failureCallback
                  });
+    },
+
+    onBtnPOPPhyCancelClick: function(button, e, eOpts) {
+        //Ext.getCmp('PopForm3').getForm().reset();
+        Ext.getCmp('txtPOPPhyAddress1ID').reset();
+        Ext.getCmp('txtPOPPhyAddress2ID').reset();
+        Ext.getCmp('txtPOPPhyCityID').reset();
+        Ext.getCmp('txtPOPPhyStateID').reset();
+        Ext.getCmp('txtPOPPhyzipID').reset();
     },
 
     onPhysicianOfficeIDShow: function(component, eOpts) {

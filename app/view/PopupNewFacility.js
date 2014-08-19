@@ -218,30 +218,29 @@ Ext.define('SignaTouch.view.PopupNewFacility', {
                                     items: [
                                         {
                                             xtype: 'button',
-                                            cls: 'BackBt',
-                                            itemId: 'btnPOPFacilityCancel',
+                                            formBind: true,
+                                            cls: 'SaveBt',
+                                            itemId: 'btnPOPFacilitySave',
                                             margin: '0 10 0 0',
-                                            padding: '',
                                             width: 92,
-                                            text: 'Back',
+                                            text: 'Save',
                                             listeners: {
                                                 click: {
-                                                    fn: me.onBtnPOPFacilityCancelClick,
+                                                    fn: me.onBtnPOPFacilitySaveClick,
                                                     scope: me
                                                 }
                                             }
                                         },
                                         {
                                             xtype: 'button',
-                                            formBind: true,
-                                            cls: 'SaveBt',
-                                            itemId: 'btnPOPFacilitySave',
-                                            margin: '0 0 0 0',
+                                            cls: 'BackBt',
+                                            itemId: 'btnPOPFacilityCancel',
+                                            padding: '',
                                             width: 92,
-                                            text: 'Save',
+                                            text: 'Back',
                                             listeners: {
                                                 click: {
-                                                    fn: me.onBtnPOPFacilitySaveClick,
+                                                    fn: me.onBtnPOPFacilityCancelClick,
                                                     scope: me
                                                 }
                                             }
@@ -266,10 +265,6 @@ Ext.define('SignaTouch.view.PopupNewFacility', {
         }
 
 
-    },
-
-    onBtnPOPFacilityCancelClick: function(button, e, eOpts) {
-        Ext.getCmp('PopForm2').getForm().reset();
     },
 
     onBtnPOPFacilitySaveClick: function(button, e, eOpts) {
@@ -332,6 +327,10 @@ Ext.define('SignaTouch.view.PopupNewFacility', {
                         success: successCallback,
                         failure: failureCallback
                  });
+    },
+
+    onBtnPOPFacilityCancelClick: function(button, e, eOpts) {
+        Ext.getCmp('PopForm2').getForm().reset();
     }
 
 });

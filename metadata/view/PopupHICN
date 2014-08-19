@@ -494,50 +494,11 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "cls": "BackBt",
-                                        "designer|displayName": "btnPOPPatientCancel",
-                                        "itemId": "btnPOPPatientCancel",
-                                        "margin": "0 10 0 0",
-                                        "maxWidth": null,
-                                        "padding": "",
-                                        "text": "Back",
-                                        "width": 92
-                                    },
-                                    "designerId": "aa81cf44-f606-4ab8-bd19-a296f24058dc",
-                                    "cn": [
-                                        {
-                                            "type": "basiceventbinding",
-                                            "reference": {
-                                                "name": "listeners",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "fn": "onBtnPOPPatientCancelClick",
-                                                "implHandler": [
-                                                    "   Ext.getCmp('patientPopForm1').getForm().reset(); \r",
-                                                    " "
-                                                ],
-                                                "name": "click",
-                                                "scope": "me"
-                                            },
-                                            "designerId": "10a014ce-c6ac-4078-815c-c288bdde98d2"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Ext.button.Button",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
                                         "cls": "SaveBt",
                                         "designer|displayName": "btnPOPPatientSave",
                                         "formBind": true,
                                         "itemId": "btnPOPPatientSave",
-                                        "margin": "0 0 0 0",
+                                        "margin": "0 10 0 0",
                                         "maxWidth": null,
                                         "text": "Save",
                                         "width": 92
@@ -616,6 +577,45 @@
                                                 "scope": "me"
                                             },
                                             "designerId": "c0d77b70-3581-402d-96ed-90cd7c434644"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "cls": "BackBt",
+                                        "designer|displayName": "btnPOPPatientCancel",
+                                        "itemId": "btnPOPPatientCancel",
+                                        "margin": null,
+                                        "maxWidth": null,
+                                        "padding": "",
+                                        "text": "Back",
+                                        "width": 92
+                                    },
+                                    "designerId": "aa81cf44-f606-4ab8-bd19-a296f24058dc",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onBtnPOPPatientCancelClick",
+                                                "implHandler": [
+                                                    "   Ext.getCmp('patientPopForm1').getForm().reset(); \r",
+                                                    " "
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "10a014ce-c6ac-4078-815c-c288bdde98d2"
                                         }
                                     ]
                                 }

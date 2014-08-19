@@ -74,7 +74,7 @@ class SectionB
         $limit = $_GET['limit'];
         $sql = "Select  SQL_CALC_FOUND_ROWS CONCAT (if(patient.PatientFname is null,'',patient.PatientFname),' ',if(patient.PatientMidName is null,'',patient.PatientMidName),' ',if(patient.PatientLname is null,'',patient.PatientLname)) as PatientName,
   patient.PatientHICN as HICN,cms484det.CertType as CertType,
-  DATE_FORMAT(cms484det.CertDate, '%m-%d-%Y') as CertDate,cms484det.MedicalID,cms484det.StatusFLG,case when cms484det.StatusFLG='B' then 'Edit' Else 'View' End as link, case when (cms484det.LengthNeed is not null and ICD9 is not null and cms484det.StatusFLG='B') then 'Allow' Else 'Dis' End as Send, 
+  DATE_FORMAT(cms484det.CertDate, '%m-%d-%Y') as CertDate,cms484det.MedicalID,cms484det.StatusFLG,case when cms484det.StatusFLG='B' then 'Edit' Else 'View' End as link, case when (cms484det.LengthNeed is not null and ICDa is not null and cms484det.StatusFLG='B') then 'Allow' Else 'Dis' End as Send, 
   cms484det.DetailID as DetailID,patient.PatientLname 
   from cms484det 
   inner join patient 
@@ -133,7 +133,7 @@ class SectionB
         if(isset($_GET['ICDCode'])){
             $ICDCode = trim($_GET['ICDCode']);
         }
-            $SqlCheck = "Select ICD9ShortDesc from icd9 where ICD9ID= $ICDCode";
+            $SqlCheck = "Select ICD9ShortDesc from icd9 where ICD9ID= '$ICDCode'";
             $result = mysql_query($SqlCheck);
             if($result) {
                $row_count = mysql_num_rows($result);
@@ -161,8 +161,19 @@ class SectionB
 		$StatusFLG = $GetSet->getStatusFLG();
         $GetSet->setLengthNeed($_POST['txtLengthNeed']);
 		$LengthNeed = $GetSet->getLengthNeed();
+    
         $GetSet->setICD9($_POST['txtSectionB1ICD']);
-		$ICD9 = $GetSet->getICD9();
+		$ICD9a = $GetSet->getICD9();
+    
+            $GetSet->setICD9($_POST['txtSectionB1ICD1']);
+		$ICD9b = $GetSet->getICD9();
+    
+            $GetSet->setICD9($_POST['txtSectionB1ICD2']);
+		$ICD9c = $GetSet->getICD9();
+    
+            $GetSet->setICD9($_POST['txtSectionB1ICD3']);
+		$ICD9d = $GetSet->getICD9();
+    
         $GetSet->setICDver('9');
 		$ICDver = $GetSet->getICDver();
        
@@ -211,7 +222,7 @@ class SectionB
         $result = mysql_query($SqlCheck);
         $row_count = mysql_num_rows($result);
         if($row_count == 1){
-             $sql = "Update cms484det set StatusFLG='$StatusFLG',LengthNeed='$LengthNeed',ICD9='$ICD9',ICDver='$ICDver',Q1AmmHg='$Q1AmmHg',Q1Bpercent='$Q1Bpercent',Q1Cdate=STR_TO_DATE('$Q1Cdate', '%m-%d-%Y'),Q2cond='$Q2cond',Q3cond='$Q3cond',Q4portable='$Q4portable',Q5O2LPM='$Q5O2LPM',Q6AmmHg='$Q6AmmHg',Q6Bpercent='$Q6Bpercent',Q6Cdate=STR_TO_DATE('$Q6Cdate', '%m-%d-%Y'),Q7CHF='$Q7CHF',Q8Hypert='$Q8Hypert',Q9Herm='$Q9Herm',SignedByName='$SignedByName',SignedByTitle='$SignedByTitle',SignedByEmployer='$SignedByEmployer',LastUpdateID='$LastUpdateID',LastUpdate=NOW(),SrcDomain='$SrcDomain',LastUpdateID='$LastUpdateID',TBLver='$TBLver' where DetailID='$DetailID'";
+             $sql = "Update cms484det set StatusFLG='$StatusFLG',LengthNeed='$LengthNeed',ICDa='$ICD9a',ICDb='$ICD9b',ICDc='$ICD9c',ICDd='$ICD9d',ICDver='$ICDver',Q1AmmHg='$Q1AmmHg',Q1Bpercent='$Q1Bpercent',Q1Cdate=STR_TO_DATE('$Q1Cdate', '%m-%d-%Y'),Q2cond='$Q2cond',Q3cond='$Q3cond',Q4portable='$Q4portable',Q5O2LPM='$Q5O2LPM',Q6AmmHg='$Q6AmmHg',Q6Bpercent='$Q6Bpercent',Q6Cdate=STR_TO_DATE('$Q6Cdate', '%m-%d-%Y'),Q7CHF='$Q7CHF',Q8Hypert='$Q8Hypert',Q9Herm='$Q9Herm',SignedByName='$SignedByName',SignedByTitle='$SignedByTitle',SignedByEmployer='$SignedByEmployer',LastUpdateID='$LastUpdateID',LastUpdate=NOW(),SrcDomain='$SrcDomain',LastUpdateID='$LastUpdateID',TBLver='$TBLver' where DetailID='$DetailID'";
               $result = mysql_query($sql);
               if (!$result) 
                   {
@@ -230,7 +241,7 @@ class SectionB
            if(isset($_GET['HdrID'])){
             $HdrID = trim($_GET['HdrID']);
 $sql = "Select CONCAT (if(patient.PatientFname is null,'',patient.PatientFname),' ',if(patient.PatientMidName is null,'',patient.PatientMidName),' ',if(patient.PatientLname is null,'',patient.PatientLname)) as PatientName,patient.PatientHICN as HICN, DATE_FORMAT(patient.PatientDOB, '%m-%d-%Y') as PatientDOB ,CONCAT (if(physician.PhysicianFirstname is null,'',physician.PhysicianFirstname),' ',if(physician.PhysicianMidname is null,'',physician.PhysicianMidname),' ',if(physician.PhysicianLastname is null,'',physician.PhysicianLastname)) as physicianName,cms484hdr.HdrID as HdrID,cms484hdr.MedicalID,cms484det.CertType,DATE_FORMAT(cms484det.CertDate, '%m-%d-%Y') as CertDate
-,cms484det.LengthNeed,cms484det.ICD9,cms484det.Q1AmmHg,cms484det.Q1Bpercent,DATE_FORMAT(cms484det.Q1Cdate, '%m-%d-%Y') as Q1Cdate ,cms484det.Q2cond,cms484det.Q3cond,cms484det.Q4portable,cms484det.Q5O2LPM,cms484det.Q6AmmHg,cms484det.Q6Bpercent,DATE_FORMAT(cms484det.Q6Cdate, '%m-%d-%Y') as Q6Cdate,cms484det.Q7CHF,cms484det.Q8Hypert,cms484det.Q9Herm,cms484det.SignedByName,cms484det.SignedByTitle,cms484det.SignedByEmployer from cms484hdr inner join patient on patient.PatientHICN = cms484hdr.PatientHICN left join physician on physician.PhysicianNPI = cms484hdr.PhysicianNPI inner join cms484det on cms484det.DetailID = cms484hdr.HdrID where cms484hdr.HdrID='$HdrID';";        
+,cms484det.LengthNeed,cms484det.ICDa,cms484det.ICDb,cms484det.ICDc,cms484det.ICDd,cms484det.Q1AmmHg,cms484det.Q1Bpercent,DATE_FORMAT(cms484det.Q1Cdate, '%m-%d-%Y') as Q1Cdate ,cms484det.Q2cond,cms484det.Q3cond,cms484det.Q4portable,cms484det.Q5O2LPM,cms484det.Q6AmmHg,cms484det.Q6Bpercent,DATE_FORMAT(cms484det.Q6Cdate, '%m-%d-%Y') as Q6Cdate,cms484det.Q7CHF,cms484det.Q8Hypert,cms484det.Q9Herm,cms484det.SignedByName,cms484det.SignedByTitle,cms484det.SignedByEmployer from cms484hdr inner join patient on patient.PatientHICN = cms484hdr.PatientHICN left join physician on physician.PhysicianNPI = cms484hdr.PhysicianNPI inner join cms484det on cms484det.DetailID = cms484hdr.HdrID where cms484hdr.HdrID='$HdrID';";        
     $result = mysql_query($sql);
     if (!$result) {
         die('Invalid query: ' . $sql . "   " . mysql_error());
@@ -239,33 +250,53 @@ $sql = "Select CONCAT (if(patient.PatientFname is null,'',patient.PatientFname),
     $app_list = array();
 //Loop through database to add books to array
     while ($row = mysql_fetch_assoc($result)) {
-      $icd9Des = $this->fetchICDDescription($row['ICD9']);
-      if($icd9Des == ''){
-       $icd9Des = ''; 
+      $icdaDes = $this->fetchICDDescription($row['ICDa']);
+      $icdbDes = $this->fetchICDDescription($row['ICDb']);
+      $icdcDes = $this->fetchICDDescription($row['ICDc']);
+      $icddDes = $this->fetchICDDescription($row['ICDd']);
+      if($icdaDes == ''){
+       $icdaDes = ''; 
       }
-        
-     
-     
+     if($icdbDes == ''){
+       $icdbDes = ''; 
+      }
+      if($icdcDes == ''){
+       $icdcDes = ''; 
+      }
+      if($icddDes == ''){
+       $icddDes = ''; 
+      }
+
         $app_list = array('PatientName'=> $row['PatientName'],
-            'PatientHICN' => $row['HICN'],
-            'CertType' => $row['CertType'],
-          'CertDate' => $row['CertDate'],
-          'PatientDOB'=>$row['PatientDOB'],
-            'physicianName' => $row['physicianName'],
-            'MedicalID' => $row['MedicalID'],
-            'LengthNeed' => $row['LengthNeed'], 
-                        'ICD9' => $row['ICD9'], 
-                        'ICD9ShortDesc' => $icd9Des,
+                        'PatientHICN' => $row['HICN'],
+                        'CertType' => $row['CertType'],
+                        'CertDate' => $row['CertDate'],
+                        'PatientDOB'=>$row['PatientDOB'],
+                        'physicianName' => $row['physicianName'],
+                        'MedicalID' => $row['MedicalID'],
+                        'LengthNeed' => $row['LengthNeed'], 
+                        'ICDa' => $row['ICDa'], 
+                        'ICDaShortDesc' => $icdaDes,
+            
+                         'ICDb' => $row['ICDb'], 
+                        'ICDbShortDesc' => $icdbDes,
+            
+                         'ICDc' => $row['ICDc'], 
+                        'ICDcShortDesc' => $icdcDes,
+            
+                         'ICDd' => $row['ICDd'], 
+                        'ICDdShortDesc' => $icddDes,
+            
                         'Q1AmmHg' => $row['Q1AmmHg'], 
                         'Q1Bpercent' => $row['Q1Bpercent'], 
-         'Q1Cdate' =>$row['Q1Cdate'], 
+                        'Q1Cdate' =>$row['Q1Cdate'], 
                         'Q2cond' => trim($row['Q2cond']), 
                         'Q3cond' => $row['Q3cond'], 
                         'Q4portable' => $row['Q4portable'], 
                         'Q5O2LPM' => $row['Q5O2LPM'], 
                         'Q6AmmHg' => $row['Q6AmmHg'], 
                         'Q6Bpercent' => $row['Q6Bpercent'], 
-         'Q6Cdate' => $row['Q6Cdate'], 
+                        'Q6Cdate' => $row['Q6Cdate'], 
                         'Q7CHF' => $row['Q7CHF'], 
                         'Q8Hypert' => $row['Q8Hypert'], 
                         'Q9Herm' => $row['Q9Herm'], 

@@ -291,30 +291,29 @@ Ext.define('SignaTouch.view.PopupHICN', {
                                     items: [
                                         {
                                             xtype: 'button',
-                                            cls: 'BackBt',
-                                            itemId: 'btnPOPPatientCancel',
+                                            formBind: true,
+                                            cls: 'SaveBt',
+                                            itemId: 'btnPOPPatientSave',
                                             margin: '0 10 0 0',
-                                            padding: '',
                                             width: 92,
-                                            text: 'Back',
+                                            text: 'Save',
                                             listeners: {
                                                 click: {
-                                                    fn: me.onBtnPOPPatientCancelClick,
+                                                    fn: me.onBtnPOPPatientSaveClick,
                                                     scope: me
                                                 }
                                             }
                                         },
                                         {
                                             xtype: 'button',
-                                            formBind: true,
-                                            cls: 'SaveBt',
-                                            itemId: 'btnPOPPatientSave',
-                                            margin: '0 0 0 0',
+                                            cls: 'BackBt',
+                                            itemId: 'btnPOPPatientCancel',
+                                            padding: '',
                                             width: 92,
-                                            text: 'Save',
+                                            text: 'Back',
                                             listeners: {
                                                 click: {
-                                                    fn: me.onBtnPOPPatientSaveClick,
+                                                    fn: me.onBtnPOPPatientCancelClick,
                                                     scope: me
                                                 }
                                             }
@@ -354,11 +353,6 @@ Ext.define('SignaTouch.view.PopupHICN', {
             Ext.getCmp('txtPOPPhoneNoID').setValue(newPhone);
         }
 
-
-    },
-
-    onBtnPOPPatientCancelClick: function(button, e, eOpts) {
-           Ext.getCmp('patientPopForm1').getForm().reset();
 
     },
 
@@ -420,6 +414,11 @@ Ext.define('SignaTouch.view.PopupHICN', {
                         success: successCallback,
                         failure: failureCallback
                  });
+    },
+
+    onBtnPOPPatientCancelClick: function(button, e, eOpts) {
+           Ext.getCmp('patientPopForm1').getForm().reset();
+
     },
 
     onPatientPopForm1AfterRender: function(component, eOpts) {
