@@ -951,39 +951,6 @@
                                             "designerId": "66abfac3-dbd1-44f7-9014-4c500aa9ce3f"
                                         }
                                     ]
-                                },
-                                {
-                                    "type": "Ext.menu.Item",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "designer|displayName": "UploadDocument",
-                                        "itemId": "UploadDocumentID",
-                                        "text": "Upload Document"
-                                    },
-                                    "designerId": "c260f17b-b773-478f-8dfc-a37a54ef668f",
-                                    "cn": [
-                                        {
-                                            "type": "basiceventbinding",
-                                            "reference": {
-                                                "name": "listeners",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "fn": "onUploadDocumentIDClick",
-                                                "implHandler": [
-                                                    "Ext.Msg.alert(\"Non Functional\", 'Not implemented at this time'); "
-                                                ],
-                                                "name": "click",
-                                                "scope": "me"
-                                            },
-                                            "designerId": "07e2beda-0865-491c-9eb2-099dbb2cf81a"
-                                        }
-                                    ]
                                 }
                             ]
                         },
@@ -1308,6 +1275,58 @@
                                                 "scope": "me"
                                             },
                                             "designerId": "19ae1411-77de-4262-a32d-a62e0a9c409f"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.menu.Menu",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "bodyStyle": null,
+                                "floating": false,
+                                "hidden": true,
+                                "id": "UploadDocID",
+                                "title": "Upload Document",
+                                "width": null
+                            },
+                            "designerId": "dcee258d-3222-4925-9fae-6b6d2bc5c3f7",
+                            "cn": [
+                                {
+                                    "type": "Ext.menu.Item",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "UploadDocument",
+                                        "itemId": "UploadDocumentID",
+                                        "text": "Upload Document"
+                                    },
+                                    "designerId": "c260f17b-b773-478f-8dfc-a37a54ef668f",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onUploadDocumentIDClick",
+                                                "implHandler": [
+                                                    "Ext.Msg.alert(\"Non Functional\", 'Not implemented at this time'); "
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "07e2beda-0865-491c-9eb2-099dbb2cf81a"
                                         }
                                     ]
                                 }

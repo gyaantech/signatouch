@@ -278,17 +278,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                     scope: me
                                                 }
                                             }
-                                        },
-                                        {
-                                            xtype: 'menuitem',
-                                            itemId: 'UploadDocumentID',
-                                            text: 'Upload Document',
-                                            listeners: {
-                                                click: {
-                                                    fn: me.onUploadDocumentIDClick,
-                                                    scope: me
-                                                }
-                                            }
                                         }
                                     ]
                                 },
@@ -341,6 +330,26 @@ Ext.define('SignaTouch.view.MainView', {
                                             listeners: {
                                                 click: {
                                                     fn: me.onMAddDomainIDClick,
+                                                    scope: me
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    xtype: 'menu',
+                                    floating: false,
+                                    hidden: true,
+                                    id: 'UploadDocID',
+                                    title: 'Upload Document',
+                                    items: [
+                                        {
+                                            xtype: 'menuitem',
+                                            itemId: 'UploadDocumentID',
+                                            text: 'Upload Document',
+                                            listeners: {
+                                                click: {
+                                                    fn: me.onUploadDocumentIDClick,
                                                     scope: me
                                                 }
                                             }
@@ -11326,10 +11335,6 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('AddDomainID').hide();
     },
 
-    onUploadDocumentIDClick: function(item, e, eOpts) {
-        Ext.Msg.alert("Non Functional", 'Not implemented at this time');
-    },
-
     onMAddUserIDClick: function(item, e, eOpts) {
         Ext.getCmp('Menu').show();
         Ext.getCmp('Footer').show();
@@ -11521,6 +11526,10 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('DomainForm').getForm().reset();
         Ext.getCmp('AddDomainID').show();
 
+    },
+
+    onUploadDocumentIDClick: function(item, e, eOpts) {
+        Ext.Msg.alert("Non Functional", 'Not implemented at this time');
     },
 
     onBtGOClick: function(button, e, eOpts) {
