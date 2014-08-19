@@ -278,6 +278,17 @@ Ext.define('SignaTouch.view.MainView', {
                                                     scope: me
                                                 }
                                             }
+                                        },
+                                        {
+                                            xtype: 'menuitem',
+                                            itemId: 'UploadDocumentID',
+                                            text: 'Upload Document',
+                                            listeners: {
+                                                click: {
+                                                    fn: me.onUploadDocumentIDClick,
+                                                    scope: me
+                                                }
+                                            }
                                         }
                                     ]
                                 },
@@ -359,6 +370,11 @@ Ext.define('SignaTouch.view.MainView', {
                                         {
                                             xtype: 'container',
                                             html: '<tr>\r\n<td><img src="resources/images/view.png" width="20px" Heigth="20px"></td>\r\n<td>View</td>\r\n</tr>',
+                                            padding: '5 0 5 10'
+                                        },
+                                        {
+                                            xtype: 'container',
+                                            html: '<tr>\r\n<td><img src="resources/images/office.jpg" width="20px" Heigth="20px"></td>\r\n<td>Add Office</td>\r\n</tr>',
                                             padding: '5 0 5 10'
                                         }
                                     ]
@@ -1904,13 +1920,14 @@ Ext.define('SignaTouch.view.MainView', {
                                                     items: [
                                                         {
                                                             xtype: 'button',
+                                                            cls: 'BackBt',
                                                             hidden: true,
                                                             id: 'btnPatientCancelSave',
                                                             itemId: '',
                                                             margin: '0 10 0 0',
                                                             padding: '',
                                                             width: 92,
-                                                            text: 'Return',
+                                                            text: 'Back',
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onBtnPatientCancelClick,
@@ -1920,13 +1937,14 @@ Ext.define('SignaTouch.view.MainView', {
                                                         },
                                                         {
                                                             xtype: 'button',
+                                                            cls: 'BackBt',
                                                             hidden: true,
                                                             id: 'btnPatientCancelSave2',
                                                             itemId: '',
                                                             margin: '0 10 0 0',
                                                             padding: '',
                                                             width: 92,
-                                                            text: 'Return',
+                                                            text: 'Back',
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onBtnPatientCancelSave2Click,
@@ -1937,6 +1955,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                         {
                                                             xtype: 'button',
                                                             formBind: true,
+                                                            cls: 'SaveBt',
                                                             id: 'btnPatientSaveID1',
                                                             itemId: 'btnPatientSave',
                                                             margin: '0 0 0 0',
@@ -1952,6 +1971,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                         {
                                                             xtype: 'button',
                                                             formBind: true,
+                                                            cls: 'SaveBt',
                                                             hidden: true,
                                                             id: 'btnPatientUpdateID',
                                                             itemId: 'btnPatientUpdate',
@@ -2163,6 +2183,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                 },
                                                 {
                                                     xtype: 'container',
+                                                    hidden: true,
                                                     id: 'Password',
                                                     margin: '7 0 7 0',
                                                     layout: {
@@ -2179,13 +2200,13 @@ Ext.define('SignaTouch.view.MainView', {
                                                             labelWidth: 130,
                                                             fieldStyle: 'text-transform:capitalize',
                                                             inputId: 'txtUPassword',
-                                                            inputType: 'password',
-                                                            allowBlank: false
+                                                            inputType: 'password'
                                                         }
                                                     ]
                                                 },
                                                 {
                                                     xtype: 'container',
+                                                    hidden: true,
                                                     id: 'Password1',
                                                     margin: '7 0 7 0',
                                                     layout: {
@@ -2203,7 +2224,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                             fieldStyle: 'text-transform:capitalize',
                                                             inputId: 'txtCPassword',
                                                             inputType: 'password',
-                                                            allowBlank: false,
                                                             listeners: {
                                                                 blur: {
                                                                     fn: me.onTxtCPasswordIDBlur,
@@ -2300,58 +2320,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             inputId: 'ddlUState',
                                                             allowBlank: false,
                                                             forceSelection: true,
-                                                            store: [
-                                                                'AL',
-                                                                'MT',
-                                                                'AK',
-                                                                'NE',
-                                                                'AZ',
-                                                                'NV',
-                                                                'AR',
-                                                                'NH',
-                                                                'CA',
-                                                                'NJ',
-                                                                'CO',
-                                                                'NM',
-                                                                'CT',
-                                                                'NY',
-                                                                'DE',
-                                                                'NC',
-                                                                'FL',
-                                                                'ND',
-                                                                'GA',
-                                                                'OH',
-                                                                'HI',
-                                                                'OK',
-                                                                'ID',
-                                                                'OR',
-                                                                'IL',
-                                                                'PA',
-                                                                'IN',
-                                                                'RI',
-                                                                'IA',
-                                                                'SC',
-                                                                'KS',
-                                                                'SD',
-                                                                'KY',
-                                                                'TN',
-                                                                'LA',
-                                                                'TX',
-                                                                'ME',
-                                                                'UT',
-                                                                'MD',
-                                                                'VT',
-                                                                'MA',
-                                                                'VA',
-                                                                'MI',
-                                                                'WA',
-                                                                'MN',
-                                                                'WV',
-                                                                'MS',
-                                                                'WI',
-                                                                'MO',
-                                                                'WY'
-                                                            ]
+                                                            store: 'States'
                                                         }
                                                     ]
                                                 },
@@ -2413,6 +2382,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                         {
                                                             xtype: 'button',
                                                             formBind: true,
+                                                            cls: 'SaveBt',
                                                             id: 'btnCreate',
                                                             margin: '0 10 0 0',
                                                             padding: '',
@@ -2428,10 +2398,11 @@ Ext.define('SignaTouch.view.MainView', {
                                                         {
                                                             xtype: 'button',
                                                             formBind: false,
+                                                            cls: 'BackBt',
                                                             id: 'btnReset',
                                                             margin: '0 0 0 0',
                                                             width: 92,
-                                                            text: 'Reset',
+                                                            text: 'Back',
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onBtnResetClick,
@@ -2592,11 +2563,12 @@ Ext.define('SignaTouch.view.MainView', {
                                                         {
                                                             xtype: 'button',
                                                             formBind: true,
+                                                            cls: 'SaveBt',
                                                             id: 'btnCreate1',
                                                             margin: '0 10 0 0',
                                                             padding: '',
                                                             width: 92,
-                                                            text: 'Update',
+                                                            text: 'Save',
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onBtnCreate1Click,
@@ -2607,10 +2579,11 @@ Ext.define('SignaTouch.view.MainView', {
                                                         {
                                                             xtype: 'button',
                                                             formBind: false,
+                                                            cls: 'BackBt',
                                                             id: 'btnReset1',
                                                             margin: '0 0 0 0',
                                                             width: 92,
-                                                            text: 'Reset',
+                                                            text: 'Back',
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onBtnReset1Click,
@@ -2773,7 +2746,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             id: 'btnReset3',
                                                             margin: '0 0 0 0',
                                                             width: 92,
-                                                            text: 'Reset',
+                                                            text: 'Back',
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onBtnReset3Click,
@@ -2913,6 +2886,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                         {
                                                             xtype: 'button',
                                                             formBind: true,
+                                                            cls: 'SaveBt',
                                                             id: 'btnCreate2',
                                                             margin: '0 10 0 0',
                                                             padding: '',
@@ -2928,10 +2902,11 @@ Ext.define('SignaTouch.view.MainView', {
                                                         {
                                                             xtype: 'button',
                                                             formBind: false,
+                                                            cls: 'BackBt',
                                                             id: 'btnReset2',
                                                             margin: '0 0 0 0',
                                                             width: 92,
-                                                            text: 'Reset',
+                                                            text: 'Back',
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onBtnReset2Click,
@@ -3074,6 +3049,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                         {
                                                             xtype: 'button',
                                                             formBind: true,
+                                                            cls: 'SaveBt',
                                                             id: 'btnCreate4',
                                                             margin: '0 10 0 0',
                                                             padding: '',
@@ -3089,10 +3065,11 @@ Ext.define('SignaTouch.view.MainView', {
                                                         {
                                                             xtype: 'button',
                                                             formBind: false,
+                                                            cls: 'BackBt',
                                                             id: 'btnReset4',
                                                             margin: '0 0 0 0',
                                                             width: 92,
-                                                            text: 'Reset',
+                                                            text: 'Back',
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onBtnReset4Click,
@@ -3504,6 +3481,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                         },
                                                         {
                                                             xtype: 'container',
+                                                            hidden: true,
                                                             id: 'PhyPassword',
                                                             margin: '7 0 7 0',
                                                             layout: {
@@ -3521,13 +3499,13 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     fieldStyle: 'text-transform:capitalize',
                                                                     inputId: 'txtPHYPassword',
                                                                     inputType: 'password',
-                                                                    allowBlank: false,
                                                                     minLength: 6
                                                                 }
                                                             ]
                                                         },
                                                         {
                                                             xtype: 'container',
+                                                            hidden: true,
                                                             id: 'PhyCPassword',
                                                             margin: '7 0 7 0',
                                                             layout: {
@@ -3545,7 +3523,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     fieldStyle: 'text-transform:capitalize',
                                                                     inputId: 'txtPHYCPassword',
                                                                     inputType: 'password',
-                                                                    allowBlank: false,
                                                                     minLength: 6,
                                                                     listeners: {
                                                                         blur: {
@@ -4188,6 +4165,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             fieldLabel: '<b>&nbsp;&nbsp;&nbsp;State&nbsp;<span style="color:#D94E37;">*</span></b>',
                                                             inputId: 'ddlSState',
                                                             allowBlank: false,
+                                                            emptyText: '-Select-',
                                                             enforceMaxLength: true,
                                                             displayField: 'des',
                                                             forceSelection: true,
@@ -4256,12 +4234,13 @@ Ext.define('SignaTouch.view.MainView', {
                                                     items: [
                                                         {
                                                             xtype: 'button',
+                                                            cls: 'BackBt',
                                                             hidden: true,
                                                             id: 'btnSupplierCancel',
                                                             margin: '0 10 0 0',
                                                             padding: '',
                                                             width: 92,
-                                                            text: 'Return',
+                                                            text: 'Back',
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onBtnSupplierCancelClick,
@@ -4271,12 +4250,13 @@ Ext.define('SignaTouch.view.MainView', {
                                                         },
                                                         {
                                                             xtype: 'button',
+                                                            cls: 'BackBt',
                                                             hidden: true,
                                                             id: 'btnSupplierCancel1',
                                                             margin: '0 10 0 0',
                                                             padding: '',
                                                             width: 92,
-                                                            text: 'Return',
+                                                            text: 'Back',
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onBtnSupplierCancelClick2,
@@ -4287,6 +4267,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                         {
                                                             xtype: 'button',
                                                             formBind: true,
+                                                            cls: 'SaveBt',
                                                             hidden: true,
                                                             id: 'btnSupplierSaveID',
                                                             itemId: 'btnSupplierSave',
@@ -4303,6 +4284,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                         {
                                                             xtype: 'button',
                                                             formBind: true,
+                                                            cls: 'SaveBt',
                                                             hidden: true,
                                                             id: 'btnSupplierUpdate',
                                                             itemId: '',
@@ -4519,11 +4501,12 @@ Ext.define('SignaTouch.view.MainView', {
                                                     items: [
                                                         {
                                                             xtype: 'button',
+                                                            cls: 'BackBt',
                                                             itemId: 'btnSupplierCancel',
                                                             margin: '0 10 0 0',
                                                             padding: '',
                                                             width: 92,
-                                                            text: 'Return',
+                                                            text: 'Back',
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onBtnSupplierCancelClick1,
@@ -5886,6 +5869,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             xtype: 'gridpanel',
                                                             height: 300,
                                                             id: 'PhysicianGrid',
+                                                            width: 955,
                                                             overflowY: 'scroll',
                                                             title: '',
                                                             emptyText: '<font size="4">No Records found...</font>',
@@ -5897,7 +5881,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             columns: [
                                                                 {
                                                                     xtype: 'gridcolumn',
-                                                                    width: 164,
+                                                                    width: 127,
                                                                     dataIndex: 'PhysicianNPI',
                                                                     text: 'Physician NPI'
                                                                 },
@@ -5932,6 +5916,8 @@ Ext.define('SignaTouch.view.MainView', {
                                                                 {
                                                                     xtype: 'actioncolumn',
                                                                     text: 'Action',
+                                                                    width: 130,
+                                                                    defaultWidth: 120,
                                                                     align: 'center',
                                                                     dataIndex: 'Action',
                                                                     menuText: 'Action',
@@ -6136,6 +6122,32 @@ Ext.define('SignaTouch.view.MainView', {
                                                                             icon: 'resources/images/view.png',
                                                                             iconCls: 'actionicon',
                                                                             tooltip: 'View'
+                                                                        },
+                                                                        {
+                                                                            handler: function(view, rowIndex, colIndex, item, e, record, row) {
+                                                                                var phy_npi = record.data.PhysicianNPI;
+                                                                                var phy_fname = record.data.PhysicianFirstname;
+                                                                                var phy_lname = record.data.PhysicianLastname;
+
+
+
+                                                                                localStorage.removeItem("physician_npi"); //remove
+                                                                                localStorage.setItem("physician_npi", phy_npi);
+
+                                                                                localStorage.removeItem("physician_fname"); //remove
+                                                                                localStorage.setItem("physician_fname", phy_fname);
+
+                                                                                localStorage.removeItem("physician_lname"); //remove
+                                                                                localStorage.setItem("physician_lname", phy_lname);
+
+
+                                                                                // Create new office form window
+                                                                                var office = Ext.create("widget.NewPhysicanOffice");
+                                                                                office.show();
+                                                                            },
+                                                                            icon: 'resources/images/office.jpg',
+                                                                            iconCls: 'actionicon',
+                                                                            tooltip: 'Add Office'
                                                                         }
                                                                     ]
                                                                 }
@@ -10401,7 +10413,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                     items: [
                                                         {
                                                             xtype: 'button',
-                                                            flex: 1,
                                                             cls: 'BackBt',
                                                             hidden: true,
                                                             id: 'ViewbtnDiscardA',
@@ -11313,6 +11324,10 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('AddAlias').hide();
 
         Ext.getCmp('AddDomainID').hide();
+    },
+
+    onUploadDocumentIDClick: function(item, e, eOpts) {
+        Ext.Msg.alert("Non Functional", 'Not implemented at this time');
     },
 
     onMAddUserIDClick: function(item, e, eOpts) {

@@ -494,12 +494,13 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "cls": "BackBt",
                                         "designer|displayName": "btnPOPPatientCancel",
                                         "itemId": "btnPOPPatientCancel",
                                         "margin": "0 10 0 0",
                                         "maxWidth": null,
                                         "padding": "",
-                                        "text": "Reset",
+                                        "text": "Back",
                                         "width": 92
                                     },
                                     "designerId": "aa81cf44-f606-4ab8-bd19-a296f24058dc",
@@ -532,6 +533,7 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "cls": "SaveBt",
                                         "designer|displayName": "btnPOPPatientSave",
                                         "formBind": true,
                                         "itemId": "btnPOPPatientSave",

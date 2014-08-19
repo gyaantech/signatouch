@@ -363,12 +363,13 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "cls": "BackBt",
                                         "designer|displayName": "btnPOPFacilityCancel",
                                         "itemId": "btnPOPFacilityCancel",
                                         "margin": "0 10 0 0",
                                         "maxWidth": null,
                                         "padding": "",
-                                        "text": "Reset",
+                                        "text": "Back",
                                         "width": 92
                                     },
                                     "designerId": "ac024f8b-e140-4750-93ab-a3d1f61eb93f",
@@ -400,6 +401,7 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "cls": "SaveBt",
                                         "designer|displayName": "btnPOPFacilitySave",
                                         "formBind": true,
                                         "itemId": "btnPOPFacilitySave",

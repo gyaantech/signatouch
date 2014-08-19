@@ -330,13 +330,14 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "cls": "BackBt",
                                         "designer|displayName": null,
                                         "id": "btnPOPPhyReset",
                                         "itemId": "",
                                         "margin": "0 10 0 0",
                                         "maxWidth": null,
                                         "padding": "",
-                                        "text": "Reset",
+                                        "text": "Back",
                                         "width": 92
                                     },
                                     "designerId": "7542da88-38b0-44bd-816c-c304e31cbf9d",
@@ -373,6 +374,7 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "cls": "SaveBt",
                                         "designer|displayName": "btnPOPFacilitySave",
                                         "formBind": true,
                                         "id": "btnPOPPhySave",

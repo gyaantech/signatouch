@@ -291,11 +291,12 @@ Ext.define('SignaTouch.view.PopupHICN', {
                                     items: [
                                         {
                                             xtype: 'button',
+                                            cls: 'BackBt',
                                             itemId: 'btnPOPPatientCancel',
                                             margin: '0 10 0 0',
                                             padding: '',
                                             width: 92,
-                                            text: 'Reset',
+                                            text: 'Back',
                                             listeners: {
                                                 click: {
                                                     fn: me.onBtnPOPPatientCancelClick,
@@ -306,6 +307,7 @@ Ext.define('SignaTouch.view.PopupHICN', {
                                         {
                                             xtype: 'button',
                                             formBind: true,
+                                            cls: 'SaveBt',
                                             itemId: 'btnPOPPatientSave',
                                             margin: '0 0 0 0',
                                             width: 92,

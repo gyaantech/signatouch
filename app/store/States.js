@@ -33,196 +33,196 @@ Ext.define('SignaTouch.store.States', {
                     des: 'Al'
                 },
                 {
-                    id: 'MT',
-                    des: 'MT'
-                },
-                {
                     id: 'AK',
                     des: 'AK'
-                },
-                {
-                    id: 'NE',
-                    des: 'NE'
                 },
                 {
                     id: 'AZ',
                     des: 'AZ'
                 },
                 {
-                    id: 'NV',
-                    des: 'NV'
-                },
-                {
                     id: 'AR',
                     des: 'AR'
-                },
-                {
-                    id: 'NH',
-                    des: 'NH'
                 },
                 {
                     id: 'CA',
                     des: 'CA'
                 },
                 {
-                    id: 'NJ',
-                    des: 'NJ'
-                },
-                {
                     id: 'CO',
                     des: 'CO'
-                },
-                {
-                    id: 'NM',
-                    des: 'NM'
                 },
                 {
                     id: 'CT',
                     des: 'CT'
                 },
                 {
-                    id: 'NY',
-                    des: 'NY'
-                },
-                {
                     id: 'DE',
                     des: 'DE'
-                },
-                {
-                    id: 'NC',
-                    des: 'NC'
                 },
                 {
                     id: 'FL',
                     des: 'FL'
                 },
                 {
-                    id: 'ND',
-                    des: 'ND'
-                },
-                {
                     id: 'GA',
                     des: 'GA'
-                },
-                {
-                    id: 'OH',
-                    des: 'OH'
                 },
                 {
                     id: 'HI',
                     des: 'HI'
                 },
                 {
-                    id: 'OK',
-                    des: 'OK'
-                },
-                {
                     id: 'ID',
                     des: 'ID'
-                },
-                {
-                    id: 'OR',
-                    des: 'OR'
                 },
                 {
                     id: 'IL',
                     des: 'IL'
                 },
                 {
-                    id: 'PA',
-                    des: 'PA'
-                },
-                {
                     id: 'IN',
                     des: 'IN'
-                },
-                {
-                    id: 'RI',
-                    des: 'RI'
                 },
                 {
                     id: 'IA',
                     des: 'IA'
                 },
                 {
-                    id: 'SC',
-                    des: 'SC'
-                },
-                {
                     id: 'KS',
                     des: 'KS'
-                },
-                {
-                    id: 'SD',
-                    des: 'SD'
                 },
                 {
                     id: 'KY',
                     des: 'KY'
                 },
                 {
-                    id: 'TN',
-                    des: 'TN'
-                },
-                {
                     id: 'LA',
                     des: 'LA'
-                },
-                {
-                    id: 'TX',
-                    des: 'TX'
                 },
                 {
                     id: 'ME',
                     des: 'ME'
                 },
                 {
-                    id: 'UT',
-                    des: 'UT'
-                },
-                {
                     id: 'MD',
                     des: 'MD'
-                },
-                {
-                    id: 'VT',
-                    des: 'VT'
                 },
                 {
                     id: 'MA',
                     des: 'MA'
                 },
                 {
-                    id: 'VA',
-                    des: 'VA'
-                },
-                {
                     id: 'MI',
                     des: 'MI'
-                },
-                {
-                    id: 'WA',
-                    des: 'WA'
                 },
                 {
                     id: 'MN',
                     des: 'MN'
                 },
                 {
-                    id: 'WV',
-                    des: 'WV'
-                },
-                {
                     id: 'MS',
                     des: 'MS'
                 },
                 {
-                    id: 'WI',
-                    des: 'WI'
-                },
-                {
                     id: 'MO',
                     des: 'MO'
+                },
+                {
+                    id: 'MT',
+                    des: 'MT'
+                },
+                {
+                    id: 'NE',
+                    des: 'NE'
+                },
+                {
+                    id: 'NV',
+                    des: 'NV'
+                },
+                {
+                    id: 'NH',
+                    des: 'NH'
+                },
+                {
+                    id: 'NJ',
+                    des: 'NJ'
+                },
+                {
+                    id: 'NM',
+                    des: 'NM'
+                },
+                {
+                    id: 'NY',
+                    des: 'NY'
+                },
+                {
+                    id: 'NC',
+                    des: 'NC'
+                },
+                {
+                    id: 'ND',
+                    des: 'ND'
+                },
+                {
+                    id: 'OH',
+                    des: 'OH'
+                },
+                {
+                    id: 'OK',
+                    des: 'OK'
+                },
+                {
+                    id: 'OR',
+                    des: 'OR'
+                },
+                {
+                    id: 'PA',
+                    des: 'PA'
+                },
+                {
+                    id: 'RI',
+                    des: 'RI'
+                },
+                {
+                    id: 'SC',
+                    des: 'SC'
+                },
+                {
+                    id: 'SD',
+                    des: 'SD'
+                },
+                {
+                    id: 'TN',
+                    des: 'TN'
+                },
+                {
+                    id: 'TX',
+                    des: 'TX'
+                },
+                {
+                    id: 'UT',
+                    des: 'UT'
+                },
+                {
+                    id: 'VT',
+                    des: 'VT'
+                },
+                {
+                    id: 'VA',
+                    des: 'VA'
+                },
+                {
+                    id: 'WA',
+                    des: 'WA'
+                },
+                {
+                    id: 'WV',
+                    des: 'WV'
+                },
+                {
+                    id: 'WI',
+                    des: 'WI'
                 },
                 {
                     id: 'WY',

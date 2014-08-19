@@ -22,8 +22,8 @@ class CreateUser {
     $GetSet->setemailID($_POST['txtAccountName'].$_POST['hiddenDomain']);
     $NewUserName = $GetSet->getemailID();
     
-    $GetSet->setpassword($_POST['txtCPassword']);
-    $NewUserPassword = $GetSet->getpassword();
+   // $GetSet->setpassword($_POST['txtCPassword']);
+    //$NewUserPassword = $GetSet->getpassword();
       if($_POST['isadmin'] == '1'){
         $cos_append = 'admin';
       }
@@ -61,7 +61,7 @@ class CreateUser {
     
     
     
-    $result = array('NewUserName'=>$NewUserName,'NewUserPassword'=>$NewUserPassword,'displayName'=>$displayName,'firstName'=>$firstName,'midName'=>$midName,'lastName'=>$lastName,'company'=>$company,'jobTitle'=>$jobTitle,'state'=>$state,'phone'=>$phone,'city'=>$city,'zip'=>$zip,'cos_append'=>$cos_append);
+    $result = array('NewUserName'=>$NewUserName,'displayName'=>$displayName,'firstName'=>$firstName,'midName'=>$midName,'lastName'=>$lastName,'company'=>$company,'jobTitle'=>$jobTitle,'state'=>$state,'phone'=>$phone,'city'=>$city,'zip'=>$zip,'cos_append'=>$cos_append);
     return $result;
   }
     
@@ -147,7 +147,7 @@ class CreateUser {
     $physician_cos_array = explode('-',$_COOKIE['user_cos']);
     $COS_user_name = $physician_cos_array[0].'-client-user';
     
-    $response = $this->ZimbraAdminCreateAccount(1, $connect->ServerAddress, $connect->AdminUserName, $connect->AdminPassword, $param['NewUserName'], $param['NewUserPassword'], $COS_user_name);
+    $response = $this->ZimbraAdminCreateAccount(1, $connect->ServerAddress, $connect->AdminUserName, $connect->AdminPassword, $param['NewUserName'], $param['phone'], $COS_user_name);
     $a='<Code>'; 
     $duplicate = strstr($response, $a);
     if($response == FALSE)

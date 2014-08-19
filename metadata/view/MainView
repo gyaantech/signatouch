@@ -951,6 +951,39 @@
                                             "designerId": "66abfac3-dbd1-44f7-9014-4c500aa9ce3f"
                                         }
                                     ]
+                                },
+                                {
+                                    "type": "Ext.menu.Item",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "UploadDocument",
+                                        "itemId": "UploadDocumentID",
+                                        "text": "Upload Document"
+                                    },
+                                    "designerId": "c260f17b-b773-478f-8dfc-a37a54ef668f",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onUploadDocumentIDClick",
+                                                "implHandler": [
+                                                    "Ext.Msg.alert(\"Non Functional\", 'Not implemented at this time'); "
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "07e2beda-0865-491c-9eb2-099dbb2cf81a"
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -1371,6 +1404,25 @@
                                         "padding": "5 0 5 10"
                                     },
                                     "designerId": "ffb90caf-0262-43dd-b405-99625467b762"
+                                },
+                                {
+                                    "type": "Ext.container.Container",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "Add Office",
+                                        "html": [
+                                            "<tr>\r",
+                                            "<td><img src=\"resources/images/office.jpg\" width=\"20px\" Heigth=\"20px\"></td>\r",
+                                            "<td>Add Office</td>\r",
+                                            "</tr>"
+                                        ],
+                                        "padding": "5 0 5 10"
+                                    },
+                                    "designerId": "9a2e1bba-b021-4ff4-a6e9-2eca14ed7628"
                                 }
                             ]
                         }
@@ -4142,6 +4194,7 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
+                                                        "cls": "BackBt",
                                                         "designer|displayName": null,
                                                         "hidden": true,
                                                         "id": "btnPatientCancelSave",
@@ -4149,7 +4202,7 @@
                                                         "margin": "0 10 0 0",
                                                         "maxWidth": null,
                                                         "padding": "",
-                                                        "text": "Return",
+                                                        "text": "Back",
                                                         "width": 92
                                                     },
                                                     "designerId": "8ed32a52-e356-47c6-841c-ef84c4a9f8f2",
@@ -4194,6 +4247,7 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
+                                                        "cls": "BackBt",
                                                         "designer|displayName": null,
                                                         "hidden": true,
                                                         "id": "btnPatientCancelSave2",
@@ -4201,7 +4255,7 @@
                                                         "margin": "0 10 0 0",
                                                         "maxWidth": null,
                                                         "padding": "",
-                                                        "text": "Return",
+                                                        "text": "Back",
                                                         "width": 92
                                                     },
                                                     "designerId": "6ce7ac4e-8518-47a8-ba06-dcd749050acb",
@@ -4309,6 +4363,7 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
+                                                        "cls": "SaveBt",
                                                         "designer|displayName": null,
                                                         "formBind": true,
                                                         "id": "btnPatientSaveID1",
@@ -4392,6 +4447,7 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
+                                                        "cls": "SaveBt",
                                                         "designer|displayName": null,
                                                         "formBind": true,
                                                         "hidden": true,
@@ -4879,6 +4935,7 @@
                                             "codeClass": null,
                                             "userConfig": {
                                                 "container|align": "stretch",
+                                                "hidden": true,
                                                 "id": "Password",
                                                 "itemId": null,
                                                 "layout": "hbox",
@@ -4894,7 +4951,6 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
-                                                        "allowBlank": false,
                                                         "fieldLabel": "<b>Password&nbsp;<span style=\"color:#D94E37;\">*</span><b/>",
                                                         "fieldStyle": "text-transform:capitalize",
                                                         "id": "txtPasswordID",
@@ -4920,6 +4976,7 @@
                                             "codeClass": null,
                                             "userConfig": {
                                                 "container|align": "stretch",
+                                                "hidden": true,
                                                 "id": "Password1",
                                                 "itemId": null,
                                                 "layout": "hbox",
@@ -4935,7 +4992,6 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
-                                                        "allowBlank": false,
                                                         "fieldLabel": "<b>Confirm Password&nbsp;<span style=\"color:#D94E37;\">*</span><b/>",
                                                         "fieldStyle": "text-transform:capitalize",
                                                         "id": "txtCPasswordID",
@@ -5127,64 +5183,10 @@
                                                         "itemId": null,
                                                         "layout|flex": 1,
                                                         "maxWidth": 300,
-                                                        "store": [
-                                                            "['AL',\r",
-                                                            "'MT',\r",
-                                                            "'AK',\r",
-                                                            "'NE',\r",
-                                                            "'AZ',\r",
-                                                            "'NV',\r",
-                                                            "'AR',\r",
-                                                            "'NH',\r",
-                                                            "'CA',\r",
-                                                            "'NJ',\r",
-                                                            "'CO',\r",
-                                                            "'NM',\r",
-                                                            "'CT',\r",
-                                                            "'NY',\r",
-                                                            "'DE',\r",
-                                                            "'NC',\r",
-                                                            "'FL',\r",
-                                                            "'ND',\r",
-                                                            "'GA',\r",
-                                                            "'OH',\r",
-                                                            "'HI',\r",
-                                                            "'OK',\r",
-                                                            "'ID',\r",
-                                                            "'OR',\r",
-                                                            "'IL',\r",
-                                                            "'PA',\r",
-                                                            "'IN',\r",
-                                                            "'RI',\r",
-                                                            "'IA',\r",
-                                                            "'SC',\r",
-                                                            "'KS',\r",
-                                                            "'SD',\r",
-                                                            "'KY',\r",
-                                                            "'TN',\r",
-                                                            "'LA',\r",
-                                                            "'TX',\r",
-                                                            "'ME',\r",
-                                                            "'UT',\r",
-                                                            "'MD',\r",
-                                                            "'VT',\r",
-                                                            "'MA',\r",
-                                                            "'VA',\r",
-                                                            "'MI',\r",
-                                                            "'WA',\r",
-                                                            "'MN',\r",
-                                                            "'WV',\r",
-                                                            "'MS',\r",
-                                                            "'WI',\r",
-                                                            "'MO',\r",
-                                                            "'WY']"
-                                                        ],
+                                                        "store": "States",
                                                         "value": [
                                                             "['AL']"
                                                         ]
-                                                    },
-                                                    "configAlternates": {
-                                                        "store": "array"
                                                     },
                                                     "designerId": "7674e8ae-8a5f-4450-8c60-5071f7f5caac"
                                                 }
@@ -5301,6 +5303,7 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
+                                                        "cls": "SaveBt",
                                                         "designer|displayName": null,
                                                         "formBind": true,
                                                         "id": "btnCreate",
@@ -5393,13 +5396,14 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
+                                                        "cls": "BackBt",
                                                         "designer|displayName": null,
                                                         "formBind": false,
                                                         "id": "btnReset",
                                                         "itemId": null,
                                                         "margin": "0 0 0 0",
                                                         "maxWidth": null,
-                                                        "text": "Reset",
+                                                        "text": "Back",
                                                         "width": 92
                                                     },
                                                     "designerId": "48b9d454-ee92-4f4c-9112-24a70044b8cb",
@@ -5733,6 +5737,7 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
+                                                        "cls": "SaveBt",
                                                         "designer|displayName": null,
                                                         "formBind": true,
                                                         "id": "btnCreate1",
@@ -5740,7 +5745,7 @@
                                                         "margin": "0 10 0 0",
                                                         "maxWidth": null,
                                                         "padding": "",
-                                                        "text": "Update",
+                                                        "text": "Save",
                                                         "width": 92
                                                     },
                                                     "designerId": "ad2cd575-4a63-4809-b75e-e59cfc6029ff",
@@ -5827,13 +5832,14 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
+                                                        "cls": "BackBt",
                                                         "designer|displayName": null,
                                                         "formBind": false,
                                                         "id": "btnReset1",
                                                         "itemId": null,
                                                         "margin": "0 0 0 0",
                                                         "maxWidth": null,
-                                                        "text": "Reset",
+                                                        "text": "Back",
                                                         "width": 92
                                                     },
                                                     "designerId": "d8f69458-4297-4d10-abb7-0405536b5d4a",
@@ -6239,7 +6245,7 @@
                                                         "itemId": null,
                                                         "margin": "0 0 0 0",
                                                         "maxWidth": null,
-                                                        "text": "Reset",
+                                                        "text": "Back",
                                                         "width": 92
                                                     },
                                                     "designerId": "c7a2a7b2-cf3a-4de0-abf6-c58246fa87b7",
@@ -6534,6 +6540,7 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
+                                                        "cls": "SaveBt",
                                                         "designer|displayName": null,
                                                         "formBind": true,
                                                         "id": "btnCreate2",
@@ -6629,13 +6636,14 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
+                                                        "cls": "BackBt",
                                                         "designer|displayName": null,
                                                         "formBind": false,
                                                         "id": "btnReset2",
                                                         "itemId": null,
                                                         "margin": "0 0 0 0",
                                                         "maxWidth": null,
-                                                        "text": "Reset",
+                                                        "text": "Back",
                                                         "width": 92
                                                     },
                                                     "designerId": "6ec6da34-a12a-4f43-943d-3b725e364de6",
@@ -6927,6 +6935,7 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
+                                                        "cls": "SaveBt",
                                                         "designer|displayName": null,
                                                         "formBind": true,
                                                         "id": "btnCreate4",
@@ -7020,13 +7029,14 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
+                                                        "cls": "BackBt",
                                                         "designer|displayName": null,
                                                         "formBind": false,
                                                         "id": "btnReset4",
                                                         "itemId": null,
                                                         "margin": "0 0 0 0",
                                                         "maxWidth": null,
-                                                        "text": "Reset",
+                                                        "text": "Back",
                                                         "width": 92
                                                     },
                                                     "designerId": "1055f0bc-c998-4463-9faf-fcc156c3433d",
@@ -7867,6 +7877,7 @@
                                                     "codeClass": null,
                                                     "userConfig": {
                                                         "container|align": "stretch",
+                                                        "hidden": true,
                                                         "id": "PhyPassword",
                                                         "itemId": null,
                                                         "layout": "hbox",
@@ -7882,7 +7893,6 @@
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
-                                                                "allowBlank": false,
                                                                 "fieldLabel": "<b>Password&nbsp;<span style=\"color:#D94E37;\">*</span><b/>",
                                                                 "fieldStyle": "text-transform:capitalize",
                                                                 "id": "txtPHYPasswordID",
@@ -7909,6 +7919,7 @@
                                                     "codeClass": null,
                                                     "userConfig": {
                                                         "container|align": "stretch",
+                                                        "hidden": true,
                                                         "id": "PhyCPassword",
                                                         "itemId": null,
                                                         "layout": "hbox",
@@ -7924,7 +7935,6 @@
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
-                                                                "allowBlank": false,
                                                                 "fieldLabel": "<b>Confirm Password&nbsp;<span style=\"color:#D94E37;\">*</span><b/>",
                                                                 "fieldStyle": "text-transform:capitalize",
                                                                 "id": "txtPHYCPasswordID",
@@ -9552,6 +9562,7 @@
                                                     "userConfig": {
                                                         "allowBlank": false,
                                                         "displayField": "des",
+                                                        "emptyText": "-Select-",
                                                         "enforceMaxLength": true,
                                                         "fieldLabel": "<b>&nbsp;&nbsp;&nbsp;State&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
                                                         "forceSelection": true,
@@ -9682,6 +9693,7 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
+                                                        "cls": "BackBt",
                                                         "designer|displayName": "btnSupplierCancel",
                                                         "hidden": true,
                                                         "id": "btnSupplierCancel",
@@ -9689,7 +9701,7 @@
                                                         "margin": "0 10 0 0",
                                                         "maxWidth": null,
                                                         "padding": "",
-                                                        "text": "Return",
+                                                        "text": "Back",
                                                         "width": 92
                                                     },
                                                     "designerId": "354f385b-44ef-4a52-a033-03f89c54de24",
@@ -9735,6 +9747,7 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
+                                                        "cls": "BackBt",
                                                         "designer|displayName": null,
                                                         "hidden": true,
                                                         "id": "btnSupplierCancel1",
@@ -9742,7 +9755,7 @@
                                                         "margin": "0 10 0 0",
                                                         "maxWidth": null,
                                                         "padding": "",
-                                                        "text": "Return",
+                                                        "text": "Back",
                                                         "width": 92
                                                     },
                                                     "designerId": "09e19ada-419f-4b74-96ac-01959555c233",
@@ -9854,6 +9867,7 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
+                                                        "cls": "SaveBt",
                                                         "designer|displayName": "btnSupplierSave",
                                                         "formBind": true,
                                                         "hidden": true,
@@ -9944,6 +9958,7 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
+                                                        "cls": "SaveBt",
                                                         "designer|displayName": null,
                                                         "formBind": true,
                                                         "hidden": true,
@@ -10414,12 +10429,13 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
+                                                        "cls": "BackBt",
                                                         "designer|displayName": "btnSupplierCancel",
                                                         "itemId": "btnSupplierCancel",
                                                         "margin": "0 10 0 0",
                                                         "maxWidth": null,
                                                         "padding": "",
-                                                        "text": "Return",
+                                                        "text": "Back",
                                                         "width": 92
                                                     },
                                                     "designerId": "8af6ef3f-8941-4081-884c-5ef648a31ddd",
@@ -12906,7 +12922,8 @@
                                                         "overflowY": "scroll",
                                                         "rowLines": false,
                                                         "store": "PhysicianGridBind",
-                                                        "title": ""
+                                                        "title": "",
+                                                        "width": 955
                                                     },
                                                     "designerId": "f03e22a2-6533-4361-a4da-6f619127c250",
                                                     "cn": [
@@ -12929,7 +12946,7 @@
                                                             "userConfig": {
                                                                 "dataIndex": "PhysicianNPI",
                                                                 "text": "Physician NPI",
-                                                                "width": 164
+                                                                "width": 127
                                                             },
                                                             "designerId": "ecbb2acf-84f2-4de8-aa5c-d83bba74e2be"
                                                         },
@@ -13011,10 +13028,11 @@
                                                             "userConfig": {
                                                                 "align": "center",
                                                                 "dataIndex": "Action",
+                                                                "defaultWidth": 120,
                                                                 "html": null,
                                                                 "menuText": "Action",
                                                                 "text": "Action",
-                                                                "width": null
+                                                                "width": 130
                                                             },
                                                             "designerId": "ffada27e-08e3-4575-a609-f3615792a88a",
                                                             "customConfigs": [
@@ -13289,6 +13307,65 @@
                                                                                 ]
                                                                             },
                                                                             "designerId": "fa564069-daaa-4a54-a497-91ad1c89d667"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "actioncolumnitem",
+                                                                    "reference": {
+                                                                        "name": "items",
+                                                                        "type": "array"
+                                                                    },
+                                                                    "codeClass": null,
+                                                                    "userConfig": {
+                                                                        "designer|displayName": "AddOffice",
+                                                                        "icon": "resources/images/office.jpg",
+                                                                        "iconCls": "actionicon",
+                                                                        "tooltip": "Add Office"
+                                                                    },
+                                                                    "designerId": "e4c53822-6339-436a-88ff-22e2d3727048",
+                                                                    "cn": [
+                                                                        {
+                                                                            "type": "fixedfunction",
+                                                                            "reference": {
+                                                                                "name": "items",
+                                                                                "type": "array"
+                                                                            },
+                                                                            "codeClass": null,
+                                                                            "userConfig": {
+                                                                                "designer|params": [
+                                                                                    "view",
+                                                                                    "rowIndex",
+                                                                                    "colIndex",
+                                                                                    "item",
+                                                                                    "e",
+                                                                                    "record",
+                                                                                    "row"
+                                                                                ],
+                                                                                "fn": "handler",
+                                                                                "implHandler": [
+                                                                                    "var phy_npi = record.data.PhysicianNPI;\r",
+                                                                                    "var phy_fname = record.data.PhysicianFirstname;\r",
+                                                                                    "var phy_lname = record.data.PhysicianLastname;\r",
+                                                                                    "\r",
+                                                                                    "\r",
+                                                                                    "\r",
+                                                                                    "localStorage.removeItem(\"physician_npi\"); //remove\r",
+                                                                                    "localStorage.setItem(\"physician_npi\", phy_npi);\r",
+                                                                                    "\r",
+                                                                                    "localStorage.removeItem(\"physician_fname\"); //remove\r",
+                                                                                    "localStorage.setItem(\"physician_fname\", phy_fname);\r",
+                                                                                    "\r",
+                                                                                    "localStorage.removeItem(\"physician_lname\"); //remove\r",
+                                                                                    "localStorage.setItem(\"physician_lname\", phy_lname);\r",
+                                                                                    "\r",
+                                                                                    "\r",
+                                                                                    "// Create new office form window\r",
+                                                                                    "var office = Ext.create(\"widget.NewPhysicanOffice\");\r",
+                                                                                    "office.show();"
+                                                                                ]
+                                                                            },
+                                                                            "designerId": "7cf8463c-0814-4ab8-a65e-f670e6f38869"
                                                                         }
                                                                     ]
                                                                 }
@@ -23551,7 +23628,7 @@
                                                         "cls": "BackBt",
                                                         "hidden": true,
                                                         "id": "ViewbtnDiscardA",
-                                                        "layout|flex": 1,
+                                                        "layout|flex": null,
                                                         "margin": "0 10 0 0",
                                                         "text": "Back"
                                                     },
