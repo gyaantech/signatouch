@@ -36,6 +36,8 @@
                     "        localStorage.removeItem(\"preauthURL\"); //remove\r",
                     "        localStorage.removeItem(\"domain\"); //remove\r",
                     "        localStorage.removeItem(\"email\"); //remove\r",
+                    "        localStorage.removeItem(\"DetailID\");// remove\r",
+                    "        //localStorage.removeItem(\"RouteType\"); // remove\r",
                     "\r",
                     "\r",
                     "        //Login Panel\r",

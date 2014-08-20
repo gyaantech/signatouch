@@ -309,10 +309,34 @@ $sql = "Select CONCAT (if(patient.PatientFname is null,'',patient.PatientFname),
     return json_encode($app_list);
  
     }
+    
+    /*Section B check condition for Q3 and Q4*/
+       public function checkConditionq3q4 ($DetailID=''){
+          if(isset($_GET['DetailID'])){
+            $DetailID = trim($_GET['DetailID']);
+        }
+            $sql =  "SELECT `HdrID`, `HCPCS-E0431`,`HCPCS-E1390`,`HCPCS-E1392`,`HCPCS-K0738` FROM `cms484hdr` WHERE `HdrID`='$DetailID'";
+            
+            $result = mysql_query($sql);
+        if (!$result) {
+            die('Invalid query: ' . $sql . "   " . mysql_error());
+        }
+    //Allocate the array
+        $app_list = array();
+    //Loop through database to add array
+        while ($row = mysql_fetch_assoc($result)) {
+          if($row['HCPCS-E0431'] == '1' || $row['HCPCS-E1392'] == '1' || $row['HCPCS-K0738'] == '1'){
+            return FALSE;
+          }
+          else{
+            return TRUE;
+          }
+        }
+       }
               
  } 
   
- $possible_url = array("get_SectionBGridBind","get_LastSectionB1Bind","insertSectionBRecord","fetchICDDescription");
+ $possible_url = array("get_SectionBGridBind","get_LastSectionB1Bind","insertSectionBRecord","fetchICDDescription","checkConditionq3q4");
  $value = "An error has occurred";
  $cms = new SectionB();
 if (isset ($_GET["action"]) && in_array($_GET["action"], $possible_url)) {
@@ -339,6 +363,10 @@ if (isset ($_GET["action"]) && in_array($_GET["action"], $possible_url)) {
             
         case "insertSectionBRecord":
            $value = $cms->insertSectionBRecord();
+           break;  
+         
+       case "checkConditionq3q4":
+           $value = $cms->checkConditionq3q4();
            break;  
        
     }

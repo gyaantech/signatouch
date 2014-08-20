@@ -10,7 +10,6 @@
             "cn": [
                 {
                     "id": "a67ef7eb-1c7b-4f8d-ab53-848448de9b61",
-                    "expanded": false,
                     "cn": [
                         {
                             "id": "907ce016-29fa-49ce-a1f8-15e9767091a3",
@@ -222,6 +221,7 @@
                 },
                 {
                     "id": "c125811a-f32b-4ce6-9ac3-fa8a0babbdd4",
+                    "expanded": false,
                     "cn": [
                         {
                             "id": "aab07db0-06e5-40dd-b5f5-d47a18ec873d",
@@ -663,7 +663,7 @@
                                                             "id": "6f6ebc99-084c-48c9-96d8-f4f9b52be76f"
                                                         },
                                                         {
-                                                            "id": "7674e8ae-8a5f-4450-8c60-5071f7f5caac"
+                                                            "id": "7dc6aed1-f1a1-4404-9b11-8932f234bf3b"
                                                         }
                                                     ]
                                                 },
@@ -2175,6 +2175,7 @@
                         },
                         {
                             "id": "8709adc4-99a7-4757-abeb-b532e3abc3df",
+                            "expanded": false,
                             "cn": [
                                 {
                                     "id": "d5e3785c-26ed-4818-b943-60d9c28ef616",
@@ -4249,7 +4250,6 @@
                                     "cn": [
                                         {
                                             "id": "f7205bc3-2e9f-474d-b329-45053b7f4fc0",
-                                            "expanded": false,
                                             "cn": [
                                                 {
                                                     "id": "5deead10-d666-4547-bf73-400b7397bcad"
@@ -4258,7 +4258,6 @@
                                         },
                                         {
                                             "id": "7542da88-38b0-44bd-816c-c304e31cbf9d",
-                                            "expanded": false,
                                             "cn": [
                                                 {
                                                     "id": "bac6dd84-160d-451e-9981-15a964262953"
@@ -4278,6 +4277,7 @@
         },
         "267186a9-eded-4791-87ab-e7e19d818143": {
             "id": "267186a9-eded-4791-87ab-e7e19d818143",
+            "expanded": false,
             "cn": [
                 {
                     "id": "1b17fdb0-7748-4a47-8af3-4f960a3a00f5"
@@ -4771,7 +4771,7 @@
     },
     "inspectorState": {
         "topInstance": "a705110d-4ce3-4545-a748-7f920677364e",
-        "selectedInstance": "9fd6e1f2-94d8-498f-a676-48556bc835d4"
+        "selectedInstance": "53f1c1be-092d-45b7-8519-c808e80afd48"
     },
     "codeState": {
         "topInstance": "a705110d-4ce3-4545-a748-7f920677364e"

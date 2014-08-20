@@ -1870,11 +1870,9 @@ Ext.define('SignaTouch.view.MainView', {
                                                             id: 'ddlState2PID',
                                                             maxWidth: 300,
                                                             fieldLabel: '<b>&nbsp;&nbsp;&nbsp;State&nbsp;<span style="color:#D94E37;">*</span></b>',
-                                                            value: [
-                                                                'AL'
-                                                            ],
                                                             inputId: 'ddlNewPatientState',
                                                             allowBlank: false,
+                                                            emptyText: '-Select-',
                                                             displayField: 'des',
                                                             forceSelection: true,
                                                             queryMode: 'local',
@@ -2333,13 +2331,14 @@ Ext.define('SignaTouch.view.MainView', {
                                                             id: 'ddlUStateID',
                                                             maxWidth: 300,
                                                             fieldLabel: '<b>&nbsp;&nbsp;&nbsp;State&nbsp;<span style="color:#D94E37;">*</span></b>',
-                                                            value: [
-                                                                'AL'
-                                                            ],
                                                             inputId: 'ddlUState',
                                                             allowBlank: false,
+                                                            emptyText: '-Select-',
+                                                            displayField: 'des',
                                                             forceSelection: true,
-                                                            store: 'States'
+                                                            queryMode: 'local',
+                                                            store: 'States',
+                                                            valueField: 'id'
                                                         }
                                                     ]
                                                 },
@@ -2421,7 +2420,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             id: 'btnReset',
                                                             margin: '0 0 0 0',
                                                             width: 92,
-                                                            text: 'Back',
+                                                            text: 'Reset',
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onBtnResetClick,
@@ -2765,7 +2764,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             id: 'btnReset3',
                                                             margin: '0 0 0 0',
                                                             width: 92,
-                                                            text: 'Back',
+                                                            text: 'Reset',
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onBtnReset3Click,
@@ -3635,9 +3634,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     itemId: 'ddlState',
                                                                     maxWidth: 300,
                                                                     fieldLabel: '<b>&nbsp;&nbsp;&nbsp;State&nbsp;<span style="color:#D94E37;">*</span></b>',
-                                                                    value: [
-                                                                        'AL'
-                                                                    ],
                                                                     inputId: 'ddlPhysicianState',
                                                                     allowBlank: false,
                                                                     vtype: 'alpha',
@@ -3709,6 +3705,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             items: [
                                                                 {
                                                                     xtype: 'button',
+                                                                    hidden: true,
                                                                     id: 'btnPhysicianAddAnotherID',
                                                                     margin: '0 10 0 0',
                                                                     padding: '',
@@ -4868,6 +4865,10 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                 Ext.getCmp('SectionB1Breadcrumb').setValue('Edit Certificate');
                                                                                 var selectedFlag = record.data.StausFLG;
                                                                                 var selectedHdrid = record.data.DetailID;
+                                                                                // set detail ID in local storage
+                                                                                localStorage.removeItem("DetailID"); //remove
+                                                                                localStorage.setItem("DetailID",selectedHdrid); //add
+
                                                                                 //console.log(record);
                                                                                 var sectionB1 = Ext.getCmp('sectionB1ID');
                                                                                 if(selectedFlag === "B")
@@ -5968,7 +5969,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                         {
                                                                             handler: function(view, rowIndex, colIndex, item, e, record, row) {
                                                                                 // show add another button
-                                                                                Ext.getCmp('btnPhysicianAddAnotherID').show();
+                                                                                //Ext.getCmp('btnPhysicianAddAnotherID').show();
                                                                                 var PhysicianNPI = record.data.PhysicianNPI;
                                                                                 Ext.getCmp('PhysicianForm').getForm().reset();
                                                                                 var PhysicianNPI = record.data.PhysicianNPI;
@@ -7494,7 +7495,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                     fieldLabel: '<b>c) Enter Date of Test&nbsp;<span style="color:#D94E37;">*</span></b>',
                                                                                     labelWidth: 512,
                                                                                     inputId: 'txtSectionB1Q1c',
-                                                                                    editable: false,
+                                                                                    emptyText: 'mm-dd-yyyy',
                                                                                     format: 'm-d-Y'
                                                                                 }
                                                                             ]
@@ -7740,7 +7741,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                     fieldLabel: '<b>c) Enter Date of Test</b>',
                                                                                     labelWidth: 512,
                                                                                     inputId: 'ddlSectionB1Q6c',
-                                                                                    editable: false,
+                                                                                    emptyText: 'mm-dd-yyyy',
                                                                                     format: 'm-d-Y'
                                                                                 }
                                                                             ]
@@ -7934,6 +7935,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             formBind: true,
                                                             cls: 'SaveBt',
                                                             height: 22,
+                                                            id: 'BtSectionB1SaveID',
                                                             itemId: 'BtSectionB1Save',
                                                             margin: '7 7 7 7',
                                                             maxWidth: 70,
@@ -8073,6 +8075,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     fieldLabel: '<b>Certification Date&nbsp;<span style="color:#D94E37;">*</span></b>',
                                                                     labelWidth: 150,
                                                                     inputId: 'txtSectionA1CertificationDate',
+                                                                    emptyText: 'mm-dd-yyyy',
                                                                     format: 'm-d-Y'
                                                                 }
                                                             ]
@@ -11247,7 +11250,7 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('txtRChangePasswordID').reset();
         Ext.getCmp('txtOldPasswordID').reset();
 
-        Ext.getCmp('txtChangePasswordEmail').setValue(localStorage.getItem('email'));
+        Ext.getCmp('txtChangePasswordEmail').setValue(localStorage.getItem('email').split('.st')[0]);
         Ext.getCmp('HiddenID').setValue(localStorage.getItem('email'));
 
         Ext.getCmp('AddCOSID').hide();
@@ -13891,7 +13894,7 @@ Ext.define('SignaTouch.view.MainView', {
     },
 
     onBtPhysicianAddClick1: function(button, e, eOpts) {
-        Ext.getCmp('btnPhysicianAddAnotherID').hide();
+        //Ext.getCmp('btnPhysicianAddAnotherID').hide();
         Ext.getCmp('btnPhysicianSaveID').show();
 
         Ext.getCmp('btnPhysicianCancel1').hide();
@@ -14395,15 +14398,132 @@ Ext.define('SignaTouch.view.MainView', {
 
     onDdlQ3IDChange: function(field, newValue, oldValue, eOpts) {
         if(newValue === 3){
-          console.log('warning on hcpcs');
+            var DetailID = localStorage.getItem("DetailID"); //get DetailID from local storage
+            // success
+            var successCallback = function(resp, ops) {
+                if(resp.responseText === 'false'){
+                    Ext.Msg.alert("Incorrect answer", 'Patient will not qualify for portability with test during sleep');
+                    Ext.getCmp('BtSectionB1SaveID').disable();
+                }
+                else{
+                    Ext.getCmp('BtSectionB1SaveID').enable();
+                }
+            };
+            // Failure
+            var failureCallback = function(resp, ops) {
+                console.log('URL not called');
+
+            };
+
+            // ajax call
+            Ext.Ajax.request({url: "services/sectionB.php?action=checkConditionq3q4&DetailID="+DetailID,
+                              method: 'GET',
+                              params:  DetailID,
+                              success: successCallback,
+                              failure: failureCallback
+                             });
+        }
+        else{
+            if(Ext.getCmp('ddlQ4ID').getValue() === 'N' || Ext.getCmp('ddlQ4ID').getValue() === 'D'){
+
+
+                var DetailID = localStorage.getItem("DetailID"); //get DetailID from local storage
+                // success
+                var successCallback = function(resp, ops) {
+                    if(resp.responseText === 'false'){
+                        Ext.Msg.alert("Incorrect answer", 'Patient will not qualify for portability if not mobile within the home');
+                        Ext.getCmp('BtSectionB1SaveID').disable();
+                    }
+                    else{
+                        Ext.getCmp('BtSectionB1SaveID').enable();
+                    }
+                };
+                // Failure
+                var failureCallback = function(resp, ops) {
+                    console.log('URL not called');
+
+                };
+
+                // ajax call
+                Ext.Ajax.request({url: "services/sectionB.php?action=checkConditionq3q4&DetailID="+DetailID,
+                                  method: 'GET',
+                                  params:  DetailID,
+                                  success: successCallback,
+                                  failure: failureCallback
+                                 });
+            }
+            else{
+                Ext.getCmp('BtSectionB1SaveID').enable();
+            }
+
         }
 
     },
 
     onDdlQ4IDChange: function(field, newValue, oldValue, eOpts) {
         if(newValue === 'N' || newValue === 'D'){
-            console.log('show warning');
+
+            var DetailID = localStorage.getItem("DetailID"); //get DetailID from local storage
+            // success
+            var successCallback = function(resp, ops) {
+                if(resp.responseText === 'false'){
+                    Ext.Msg.alert("Incorrect answer", 'Patient will not qualify for portability if not mobile within the home');
+                    Ext.getCmp('BtSectionB1SaveID').disable();
+                }
+                else{
+                    Ext.getCmp('BtSectionB1SaveID').enable();
+                }
+            };
+            // Failure
+            var failureCallback = function(resp, ops) {
+                console.log('URL not called');
+
+            };
+
+            // ajax call
+            Ext.Ajax.request({url: "services/sectionB.php?action=checkConditionq3q4&DetailID="+DetailID,
+                              method: 'GET',
+                              params:  DetailID,
+                              success: successCallback,
+                              failure: failureCallback
+                             });
+
         }
+
+        else{
+                if(Ext.getCmp('ddlQ3ID').getValue() === 3){
+
+
+                var DetailID = localStorage.getItem("DetailID"); //get DetailID from local storage
+                // success
+                var successCallback = function(resp, ops) {
+                    if(resp.responseText === 'false'){
+                        Ext.Msg.alert("Incorrect answer", 'Patient will not qualify for portability with test during sleep');
+                        Ext.getCmp('BtSectionB1SaveID').disable();
+                    }
+                    else{
+                        Ext.getCmp('BtSectionB1SaveID').enable();
+                    }
+                };
+                // Failure
+                var failureCallback = function(resp, ops) {
+                    console.log('URL not called');
+
+                };
+
+                // ajax call
+                Ext.Ajax.request({url: "services/sectionB.php?action=checkConditionq3q4&DetailID="+DetailID,
+                                  method: 'GET',
+                                  params:  DetailID,
+                                  success: successCallback,
+                                  failure: failureCallback
+                                 });
+            }
+            else{
+                Ext.getCmp('BtSectionB1SaveID').enable();
+            }
+        }
+
     },
 
     onTxtQ5idBlur: function(component, e, eOpts) {

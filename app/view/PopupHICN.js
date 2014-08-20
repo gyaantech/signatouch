@@ -214,10 +214,8 @@ Ext.define('SignaTouch.view.PopupHICN', {
                                             itemId: 'ddlPOPState2',
                                             maxWidth: 300,
                                             fieldLabel: '<b>&nbsp;&nbsp;&nbsp;State&nbsp;<span style="color:#D94E37;">*</span></b>',
-                                            value: [
-                                                'AL'
-                                            ],
                                             inputId: 'ddlPOPNewPatientState',
+                                            emptyText: '-Select-',
                                             displayField: 'des',
                                             forceSelection: true,
                                             queryMode: 'local',
@@ -310,7 +308,7 @@ Ext.define('SignaTouch.view.PopupHICN', {
                                             itemId: 'btnPOPPatientCancel',
                                             padding: '',
                                             width: 92,
-                                            text: 'Back',
+                                            text: 'Reset',
                                             listeners: {
                                                 click: {
                                                     fn: me.onBtnPOPPatientCancelClick,

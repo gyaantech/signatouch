@@ -340,6 +340,7 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "displayField": "des",
+                                        "emptyText": "-Select-",
                                         "fieldLabel": "<b>&nbsp;&nbsp;&nbsp;State&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
                                         "forceSelection": true,
                                         "inputId": "ddlPOPNewPatientState",
@@ -348,9 +349,7 @@
                                         "maxWidth": 300,
                                         "queryMode": "local",
                                         "store": "States",
-                                        "value": [
-                                            "['AL']"
-                                        ],
+                                        "value": null,
                                         "valueField": "id"
                                     },
                                     "designerId": "1131dd44-27bd-465e-98ed-c32893a39f96"
@@ -594,7 +593,7 @@
                                         "margin": null,
                                         "maxWidth": null,
                                         "padding": "",
-                                        "text": "Back",
+                                        "text": "Reset",
                                         "width": 92
                                     },
                                     "designerId": "aa81cf44-f606-4ab8-bd19-a296f24058dc",

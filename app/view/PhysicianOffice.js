@@ -157,11 +157,9 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
                                             id: 'ddlPOPPhyStateID',
                                             maxWidth: 300,
                                             fieldLabel: '<b>&nbsp;&nbsp;&nbsp;State&nbsp;<span style="color:#D94E37;">*</span></b>',
-                                            value: [
-                                                'AL'
-                                            ],
                                             inputId: 'ddlPOPPhyState',
                                             allowBlank: false,
+                                            emptyText: '-Select-',
                                             regexText: '',
                                             editable: false,
                                             displayField: 'des',
@@ -230,7 +228,7 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
                                             margin: '',
                                             padding: '',
                                             width: 92,
-                                            text: 'Back',
+                                            text: 'Reset',
                                             listeners: {
                                                 click: {
                                                     fn: me.onBtnPOPPhyCancelClick,
@@ -327,7 +325,7 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
         Ext.getCmp('txtPOPPhyAddress1ID').reset();
         Ext.getCmp('txtPOPPhyAddress2ID').reset();
         Ext.getCmp('txtPOPPhyCityID').reset();
-        Ext.getCmp('txtPOPPhyStateID').reset();
+        Ext.getCmp('ddlPOPPhyStateID').reset();
         Ext.getCmp('txtPOPPhyzipID').reset();
     },
 

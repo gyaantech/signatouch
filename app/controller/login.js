@@ -31,6 +31,8 @@ Ext.define('SignaTouch.controller.login', {
                 localStorage.removeItem("preauthURL"); //remove
                 localStorage.removeItem("domain"); //remove
                 localStorage.removeItem("email"); //remove
+                localStorage.removeItem("DetailID");// remove
+                //localStorage.removeItem("RouteType"); // remove
 
 
                 //Login Panel

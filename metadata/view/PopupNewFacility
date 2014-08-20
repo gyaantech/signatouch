@@ -231,6 +231,7 @@
                                         "allowBlank": false,
                                         "displayField": "des",
                                         "editable": false,
+                                        "emptyText": "-Select-",
                                         "fieldLabel": "<b>&nbsp;&nbsp;&nbsp;State&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
                                         "id": "ddlPOPFacilityStateID",
                                         "inputId": "ddlPOPFacilityState",
@@ -240,9 +241,7 @@
                                         "queryMode": "local",
                                         "regexText": "",
                                         "store": "States",
-                                        "value": [
-                                            "['AL']"
-                                        ],
+                                        "value": null,
                                         "valueField": "id"
                                     },
                                     "designerId": "58f4d53d-c002-45b2-9d05-88177b8588f5"
@@ -465,7 +464,7 @@
                                         "margin": null,
                                         "maxWidth": null,
                                         "padding": "",
-                                        "text": "Back",
+                                        "text": "Reset",
                                         "width": 92
                                     },
                                     "designerId": "ac024f8b-e140-4750-93ab-a3d1f61eb93f",

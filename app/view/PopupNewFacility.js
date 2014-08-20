@@ -146,11 +146,9 @@ Ext.define('SignaTouch.view.PopupNewFacility', {
                                             id: 'ddlPOPFacilityStateID',
                                             maxWidth: 300,
                                             fieldLabel: '<b>&nbsp;&nbsp;&nbsp;State&nbsp;<span style="color:#D94E37;">*</span></b>',
-                                            value: [
-                                                'AL'
-                                            ],
                                             inputId: 'ddlPOPFacilityState',
                                             allowBlank: false,
+                                            emptyText: '-Select-',
                                             regexText: '',
                                             editable: false,
                                             displayField: 'des',
@@ -237,7 +235,7 @@ Ext.define('SignaTouch.view.PopupNewFacility', {
                                             itemId: 'btnPOPFacilityCancel',
                                             padding: '',
                                             width: 92,
-                                            text: 'Back',
+                                            text: 'Reset',
                                             listeners: {
                                                 click: {
                                                     fn: me.onBtnPOPFacilityCancelClick,

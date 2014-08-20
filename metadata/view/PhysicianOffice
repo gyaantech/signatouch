@@ -246,6 +246,7 @@
                                         "allowBlank": false,
                                         "displayField": "des",
                                         "editable": false,
+                                        "emptyText": "-Select-",
                                         "fieldLabel": "<b>&nbsp;&nbsp;&nbsp;State&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
                                         "id": "ddlPOPPhyStateID",
                                         "inputId": "ddlPOPPhyState",
@@ -255,9 +256,7 @@
                                         "queryMode": "local",
                                         "regexText": "",
                                         "store": "States",
-                                        "value": [
-                                            "['AL']"
-                                        ],
+                                        "value": null,
                                         "valueField": "id"
                                     },
                                     "designerId": "8940b4fe-ad73-497d-b98e-5edf8021001c"
@@ -405,7 +404,7 @@
                                                     "\r",
                                                     "                      Ext.getCmp('PhysicianOfficeID').setLoading(false,false);\r",
                                                     "                      //Ext.getCmp('PhysicianOfficeID').close();\r",
-                                                    "                       \r",
+                                                    "\r",
                                                     "                });\r",
                                                     "\r",
                                                     "        // TODO: Login using server-side authentication service\r",
@@ -438,7 +437,7 @@
                                         "margin": "",
                                         "maxWidth": null,
                                         "padding": "",
-                                        "text": "Back",
+                                        "text": "Reset",
                                         "width": 92
                                     },
                                     "designerId": "7542da88-38b0-44bd-816c-c304e31cbf9d",
@@ -457,7 +456,7 @@
                                                     "Ext.getCmp('txtPOPPhyAddress1ID').reset();\r",
                                                     "Ext.getCmp('txtPOPPhyAddress2ID').reset();\r",
                                                     "Ext.getCmp('txtPOPPhyCityID').reset();\r",
-                                                    "Ext.getCmp('txtPOPPhyStateID').reset();\r",
+                                                    "Ext.getCmp('ddlPOPPhyStateID').reset();\r",
                                                     "Ext.getCmp('txtPOPPhyzipID').reset();"
                                                 ],
                                                 "name": "click",
