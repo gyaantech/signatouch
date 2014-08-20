@@ -16526,9 +16526,10 @@
                                                                     },
                                                                     "codeClass": null,
                                                                     "userConfig": {
-                                                                        "fn": "onDdlQ3IDChange",
+                                                                        "fn": "onDdlQ3IDSelect",
                                                                         "implHandler": [
-                                                                            "if(newValue === 3){\r",
+                                                                            "console.log(records[0].data.id);\r",
+                                                                            "if(records[0].data.id === 3){\r",
                                                                             "    var DetailID = localStorage.getItem(\"DetailID\"); //get DetailID from local storage\r",
                                                                             "    // success\r",
                                                                             "    var successCallback = function(resp, ops) {\r",
@@ -16560,10 +16561,10 @@
                                                                             "\r",
                                                                             ""
                                                                         ],
-                                                                        "name": "change",
+                                                                        "name": "select",
                                                                         "scope": "me"
                                                                     },
-                                                                    "designerId": "9fd6e1f2-94d8-498f-a676-48556bc835d4"
+                                                                    "designerId": "4a61b7ad-f5bd-4427-b0e0-72ea6cf2fab3"
                                                                 }
                                                             ]
                                                         }
@@ -16615,9 +16616,9 @@
                                                                     },
                                                                     "codeClass": null,
                                                                     "userConfig": {
-                                                                        "fn": "onDdlQ4IDChange",
+                                                                        "fn": "onDdlQ4IDSelect",
                                                                         "implHandler": [
-                                                                            "if(newValue === 'N' || newValue === 'D'){\r",
+                                                                            "if(records[0].data.id === 'N' || records[0].data.id === 'D'){\r",
                                                                             "    \r",
                                                                             "    var DetailID = localStorage.getItem(\"DetailID\"); //get DetailID from local storage\r",
                                                                             "    // success\r",
@@ -16653,10 +16654,10 @@
                                                                             "\r",
                                                                             ""
                                                                         ],
-                                                                        "name": "change",
+                                                                        "name": "select",
                                                                         "scope": "me"
                                                                     },
-                                                                    "designerId": "2f802868-2b59-4c29-bd38-f810d7f12e82"
+                                                                    "designerId": "b50b6786-22c2-4d2c-bf22-5a33a674cab7"
                                                                 }
                                                             ]
                                                         }

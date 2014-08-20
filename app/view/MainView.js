@@ -7554,8 +7554,8 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     store: 'SectionBQ3',
                                                                     valueField: 'id',
                                                                     listeners: {
-                                                                        change: {
-                                                                            fn: me.onDdlQ3IDChange,
+                                                                        select: {
+                                                                            fn: me.onDdlQ3IDSelect,
                                                                             scope: me
                                                                         }
                                                                     }
@@ -7585,8 +7585,8 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     store: 'SectionBQ4',
                                                                     valueField: 'id',
                                                                     listeners: {
-                                                                        change: {
-                                                                            fn: me.onDdlQ4IDChange,
+                                                                        select: {
+                                                                            fn: me.onDdlQ4IDSelect,
                                                                             scope: me
                                                                         }
                                                                     }
@@ -14396,8 +14396,9 @@ Ext.define('SignaTouch.view.MainView', {
         }
     },
 
-    onDdlQ3IDChange: function(field, newValue, oldValue, eOpts) {
-        if(newValue === 3){
+    onDdlQ3IDSelect: function(combo, records, eOpts) {
+        console.log(records[0].data.id);
+        if(records[0].data.id === 3){
             var DetailID = localStorage.getItem("DetailID"); //get DetailID from local storage
             // success
             var successCallback = function(resp, ops) {
@@ -14430,8 +14431,8 @@ Ext.define('SignaTouch.view.MainView', {
 
     },
 
-    onDdlQ4IDChange: function(field, newValue, oldValue, eOpts) {
-        if(newValue === 'N' || newValue === 'D'){
+    onDdlQ4IDSelect: function(combo, records, eOpts) {
+        if(records[0].data.id === 'N' || records[0].data.id === 'D'){
 
             var DetailID = localStorage.getItem("DetailID"); //get DetailID from local storage
             // success
