@@ -216,6 +216,46 @@ class Function1
                                   
                                 break;
                        default:
+                          if(isset($row['ICDa'])){
+                              if($row['ICDa']=='0')
+                              {
+                               $row['ICDa'] = '';
+                              }
+                              else
+                              {
+                                $row['ICDa'] = $row['ICDa'];
+                              }
+                           }
+                           if(isset($row['ICDb'])){
+                              if($row['ICDb']=='0')
+                              {
+                               $row['ICDb'] = '';
+                              }
+                              else
+                              {
+                                $row['ICDb'] = $row['ICDb'];
+                              }
+                           }
+                            if(isset($row['Q6AmmHg'])){
+                              if($row['Q6AmmHg']=='0')
+                              {
+                               $row['Q6AmmHg'] = '';
+                              }
+                              else
+                              {
+                                $row['Q6AmmHg'] = $row['Q6AmmHg'];
+                              }
+                           }
+                           if(isset($row['Q6Bpercent'])){
+                              if($row['Q6Bpercent']=='0')
+                              {
+                               $row['Q6Bpercent'] = '';
+                              }
+                              else
+                              {
+                                $row['Q6Bpercent'] = $row['Q6Bpercent'];
+                              }
+                           }
                         $result_arr2 = array(
                         'LengthNeed' => $row['LengthNeed'], 
                         'ICDver' => '<b>ICD Version: </b>'.$row['ICDver'],

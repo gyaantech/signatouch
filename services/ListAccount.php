@@ -1,4 +1,5 @@
 <?php
+ini_set('memory_limit', '-1');
 // Create account Zimbra 
 //
 // Ver 1
@@ -38,7 +39,7 @@ class ListUser {
                             <soap:Body>
                                  
                                      <GetAllAccountsRequest xmlns="urn:zimbraAdmin">
-                                        <domain by="name">npi.st</domain>
+                                        <domain by="name">akant-11111.st</domain>
                                      </GetAllAccountsRequest>
     
                             </soap:Body>
@@ -53,47 +54,41 @@ class ListUser {
             print("ERROR: curl_exec - (" . curl_errno($CurlHandle) . ") " . curl_error($CurlHandle));
             return(FALSE); exit();
     }
-
-         // print("Raw Zimbra SOAP Response:<BR>" . $ZimbraSOAPResponse . "<BR><BR>\n"); exit();
-    $p = xml_parser_create();
-    xml_parse_into_struct($p, $ZimbraSOAPResponse, $vals, $index);
-    xml_parser_free($p);
-
-    foreach($vals as $key => $value){
-        print_r($value);
-     /*    if($value['tag'] == 'A'){
-            if (array_key_exists("attributes",$value)){
-                if($value['attributes']['N'] == 'displayName'){
-                $cos_attr[] = array('displayName' => $value['value']);
-                }   
-                if($value['attributes']['N'] == 'zimbraCOSId'){
-                $cos_attr[] = array('zimbraCOSId' => $value['value']);
-                } 
-                if($value['attributes']['N'] == 'company'){
-                $cos_attr[] = array('company' => $value['value']);
-                } 
-                if($value['attributes']['N'] == 'title'){
-                $cos_attr[] = array('title' => $value['value']);
-                }
-                if($value['attributes']['N'] == 'mobile'){
-                $cos_attr[] = array('mobile' => $value['value']);
-                } 
-                if($value['attributes']['N'] == 'l'){
-                $cos_attr[] = array('city' => $value['value']);
-                } 
-                if($value['attributes']['N'] == 'postalCode'){
-                $cos_attr[] = array('postalCode' => $value['value']);
-                } 
-                if($value['attributes']['N'] == 'st'){
-                $cos_attr[] = array('state' => $value['value']);
-                } 
-            }
-         }
-         */
-    }
-
+    $res = $ZimbraSOAPResponse;
+    $op = $this->soaptoarray($res);
+echo "<pre>";
+print_r($op);
+        
     //return $cos_attr;
   }
+  function soaptoarray($response)
+{
+
+$search  = array('<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"','<soapenv:Header/','<soapenv:Body','</', '<');
+$replace = array(' ',' ',' ','@end@', '*start*');
+$customer=str_replace($search, $replace, $response);
+$soapres =explode('*start*',$customer);
+echo "<pre>";
+/* print_r($soapres);
+exit */;
+
+$final_res = array();
+foreach($soapres as $key=>$value)
+ {
+   $res[$key]=$value;
+   $temp=explode('@end@',$value);
+   $tempval=explode('>',$temp[0]);
+   $tmp=explode("State",$tempval[0]);
+   if (isset($tempval[1])) {
+	$resp{$tempval[0]}=$tempval[1];
+	$final_res[] = $resp;
+}
+
+ }  
+$count = count($final_res);
+$final_return = $final_res[$count-1];
+ return $final_return;
+ }
 }
 $possible_url = array("ZimbraListUser");
  $value = "An error has occurred";

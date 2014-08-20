@@ -1065,7 +1065,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                                 Ext.getCmp('View1b').setValue(responseOjbect.Q1Bpercent);
 
                                                                                                 if(responseOjbect.Q1Cdate ==='0000-00-00'){
-                                                                                                    Ext.getCmp('View1c').setValue('0 - Blank');
+                                                                                                    Ext.getCmp('View1c').setValue('');
                                                                                                 }
                                                                                                 else{
                                                                                                     Ext.getCmp('View1c').setValue(responseOjbect.Q1Cdate);
@@ -1111,7 +1111,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                                 Ext.getCmp('View6b').setValue(responseOjbect.Q6Bpercent);
 
                                                                                                 if(responseOjbect.Q6Cdate ==='0000-00-00'){
-                                                                                                    Ext.getCmp('View6c').setValue('0 - Blank');
+                                                                                                    Ext.getCmp('View6c').setValue('');
                                                                                                 }
                                                                                                 else{
                                                                                                     Ext.getCmp('View6c').setValue(responseOjbect.Q6Cdate);
@@ -1125,7 +1125,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                                     Ext.getCmp('View7').setValue('N - No');
                                                                                                 }
                                                                                                 if(responseOjbect.Q7CHF ===''){
-                                                                                                    Ext.getCmp('View7').setValue('0 - Blank');
+                                                                                                    Ext.getCmp('View7').setValue('');
                                                                                                 }
 
                                                                                                 if(responseOjbect.Q8Hypert ==='Y'){
@@ -1135,7 +1135,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                                     Ext.getCmp('View8').setValue('N - No');
                                                                                                 }
                                                                                                 if(responseOjbect.Q8Hypert ===''){
-                                                                                                    Ext.getCmp('View8').setValue('0 - Blank');
+                                                                                                    Ext.getCmp('View8').setValue('');
                                                                                                 }
 
                                                                                                 if(responseOjbect.Q9Herm ==='Y'){
@@ -1145,7 +1145,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                                     Ext.getCmp('View9').setValue('N - No');
                                                                                                 }
                                                                                                 if(responseOjbect.Q9Herm ===''){
-                                                                                                    Ext.getCmp('View9').setValue('0 - Blank');
+                                                                                                    Ext.getCmp('View9').setValue('');
                                                                                                 }
 
                                                                                                 Ext.getCmp('ViewName').setValue(responseOjbect.SignedByName);
@@ -1383,7 +1383,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                             Ext.getCmp('View1b').setValue(responseOjbect.Q1Bpercent);
 
                                                                                             if(responseOjbect.Q1Cdate ==='0000-00-00'){
-                                                                                                Ext.getCmp('View1c').setValue('0 - Blank');
+                                                                                                Ext.getCmp('View1c').setValue('');
                                                                                             }
                                                                                             else{
                                                                                                 Ext.getCmp('View1c').setValue(responseOjbect.Q1Cdate);
@@ -1430,7 +1430,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                             Ext.getCmp('View6b').setValue(responseOjbect.Q6Bpercent);
 
                                                                                             if(responseOjbect.Q6Cdate ==='0000-00-00'){
-                                                                                                Ext.getCmp('View6c').setValue('0 - Blank');
+                                                                                                Ext.getCmp('View6c').setValue('');
                                                                                             }
                                                                                             else{
                                                                                                 Ext.getCmp('View6c').setValue(responseOjbect.Q6Cdate);
@@ -1444,7 +1444,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                                 Ext.getCmp('View7').setValue('N - No');
                                                                                             }
                                                                                             if(responseOjbect.Q7CHF ===''){
-                                                                                                Ext.getCmp('View7').setValue('0 - Blank');
+                                                                                                Ext.getCmp('View7').setValue('');
                                                                                             }
 
                                                                                             if(responseOjbect.Q8Hypert ==='Y'){
@@ -1454,7 +1454,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                                 Ext.getCmp('View8').setValue('N - No');
                                                                                             }
                                                                                             if(responseOjbect.Q8Hypert ===''){
-                                                                                                Ext.getCmp('View8').setValue('0 - Blank');
+                                                                                                Ext.getCmp('View8').setValue('');
                                                                                             }
 
                                                                                             if(responseOjbect.Q9Herm ==='Y'){
@@ -1464,7 +1464,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                                 Ext.getCmp('View9').setValue('N - No');
                                                                                             }
                                                                                             if(responseOjbect.Q9Herm ===''){
-                                                                                                Ext.getCmp('View9').setValue('0 - Blank');
+                                                                                                Ext.getCmp('View9').setValue('');
                                                                                             }
 
                                                                                             Ext.getCmp('ViewName').setValue(responseOjbect.SignedByName);
@@ -5205,7 +5205,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                         Ext.getCmp('View1b').setValue(responseOjbect.Q1Bpercent);
 
                                                                                         if(responseOjbect.Q1Cdate ==='0000-00-00'){
-                                                                                            Ext.getCmp('View1c').setValue('0 - Blank');
+                                                                                            Ext.getCmp('View1c').setValue('');
                                                                                         }
                                                                                         else{
                                                                                             Ext.getCmp('View1c').setValue(responseOjbect.Q1Cdate);
@@ -5252,7 +5252,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                         Ext.getCmp('View6b').setValue(responseOjbect.Q6Bpercent);
 
                                                                                         if(responseOjbect.Q6Cdate ==='0000-00-00'){
-                                                                                            Ext.getCmp('View6c').setValue('0 - Blank');
+                                                                                            Ext.getCmp('View6c').setValue('');
                                                                                         }
                                                                                         else{
                                                                                             Ext.getCmp('View6c').setValue(responseOjbect.Q6Cdate);
@@ -5266,7 +5266,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                             Ext.getCmp('View7').setValue('N - No');
                                                                                         }
                                                                                         if(responseOjbect.Q7CHF ===''){
-                                                                                            Ext.getCmp('View7').setValue('0 - Blank');
+                                                                                            Ext.getCmp('View7').setValue('');
                                                                                         }
 
                                                                                         if(responseOjbect.Q8Hypert ==='Y'){
@@ -5276,7 +5276,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                             Ext.getCmp('View8').setValue('N - No');
                                                                                         }
                                                                                         if(responseOjbect.Q8Hypert ===''){
-                                                                                            Ext.getCmp('View8').setValue('0 - Blank');
+                                                                                            Ext.getCmp('View8').setValue('');
                                                                                         }
 
                                                                                         if(responseOjbect.Q9Herm ==='Y'){
@@ -5286,7 +5286,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                             Ext.getCmp('View9').setValue('N - No');
                                                                                         }
                                                                                         if(responseOjbect.Q9Herm ===''){
-                                                                                            Ext.getCmp('View9').setValue('0 - Blank');
+                                                                                            Ext.getCmp('View9').setValue('');
                                                                                         }
 
                                                                                         Ext.getCmp('ViewName').setValue(responseOjbect.SignedByName);
@@ -5520,7 +5520,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                     Ext.getCmp('View1b').setValue(responseOjbect.Q1Bpercent);
 
                                                                                     if(responseOjbect.Q1Cdate ==='0000-00-00'){
-                                                                                        Ext.getCmp('View1c').setValue('0 - Blank');
+                                                                                        Ext.getCmp('View1c').setValue('');
                                                                                     }
                                                                                     else{
                                                                                         Ext.getCmp('View1c').setValue(responseOjbect.Q1Cdate);
@@ -5567,7 +5567,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                     Ext.getCmp('View6b').setValue(responseOjbect.Q6Bpercent);
 
                                                                                     if(responseOjbect.Q6Cdate ==='0000-00-00'){
-                                                                                        Ext.getCmp('View6c').setValue('0 - Blank');
+                                                                                        Ext.getCmp('View6c').setValue('');
                                                                                     }
                                                                                     else{
                                                                                         Ext.getCmp('View6c').setValue(responseOjbect.Q6Cdate);
@@ -5581,7 +5581,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                         Ext.getCmp('View7').setValue('N - No');
                                                                                     }
                                                                                     if(responseOjbect.Q7CHF ===''){
-                                                                                        Ext.getCmp('View7').setValue('0 - Blank');
+                                                                                        Ext.getCmp('View7').setValue('');
                                                                                     }
 
                                                                                     if(responseOjbect.Q8Hypert ==='Y'){
@@ -5591,7 +5591,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                         Ext.getCmp('View8').setValue('N - No');
                                                                                     }
                                                                                     if(responseOjbect.Q8Hypert ===''){
-                                                                                        Ext.getCmp('View8').setValue('0 - Blank');
+                                                                                        Ext.getCmp('View8').setValue('');
                                                                                     }
 
                                                                                     if(responseOjbect.Q9Herm ==='Y'){
@@ -5601,7 +5601,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                         Ext.getCmp('View9').setValue('N - No');
                                                                                     }
                                                                                     if(responseOjbect.Q9Herm ===''){
-                                                                                        Ext.getCmp('View9').setValue('0 - Blank');
+                                                                                        Ext.getCmp('View9').setValue('');
                                                                                     }
 
                                                                                     Ext.getCmp('ViewName').setValue(responseOjbect.SignedByName);
@@ -14402,11 +14402,14 @@ Ext.define('SignaTouch.view.MainView', {
             // success
             var successCallback = function(resp, ops) {
                 if(resp.responseText === 'false'){
-                    Ext.Msg.alert("Incorrect answer", 'Patient will not qualify for portability with test during sleep');
-                    Ext.getCmp('BtSectionB1SaveID').disable();
-                }
-                else{
-                    Ext.getCmp('BtSectionB1SaveID').enable();
+                    //Ext.Msg.alert("Incorrect answer", 'Patient will not qualify for portability with test during sleep');
+                    Ext.MessageBox.show({
+                        title : 'Incorrect answer',
+                        msg : 'Patient will not qualify for portability with test during sleep',
+                        width : 450,
+                        buttons : Ext.MessageBox.OK,
+                        icon : Ext.MessageBox.WARNING
+                    });
                 }
             };
             // Failure
@@ -14423,40 +14426,7 @@ Ext.define('SignaTouch.view.MainView', {
                               failure: failureCallback
                              });
         }
-        else{
-            if(Ext.getCmp('ddlQ4ID').getValue() === 'N' || Ext.getCmp('ddlQ4ID').getValue() === 'D'){
 
-
-                var DetailID = localStorage.getItem("DetailID"); //get DetailID from local storage
-                // success
-                var successCallback = function(resp, ops) {
-                    if(resp.responseText === 'false'){
-                        Ext.Msg.alert("Incorrect answer", 'Patient will not qualify for portability if not mobile within the home');
-                        Ext.getCmp('BtSectionB1SaveID').disable();
-                    }
-                    else{
-                        Ext.getCmp('BtSectionB1SaveID').enable();
-                    }
-                };
-                // Failure
-                var failureCallback = function(resp, ops) {
-                    console.log('URL not called');
-
-                };
-
-                // ajax call
-                Ext.Ajax.request({url: "services/sectionB.php?action=checkConditionq3q4&DetailID="+DetailID,
-                                  method: 'GET',
-                                  params:  DetailID,
-                                  success: successCallback,
-                                  failure: failureCallback
-                                 });
-            }
-            else{
-                Ext.getCmp('BtSectionB1SaveID').enable();
-            }
-
-        }
 
     },
 
@@ -14467,12 +14437,16 @@ Ext.define('SignaTouch.view.MainView', {
             // success
             var successCallback = function(resp, ops) {
                 if(resp.responseText === 'false'){
-                    Ext.Msg.alert("Incorrect answer", 'Patient will not qualify for portability if not mobile within the home');
-                    Ext.getCmp('BtSectionB1SaveID').disable();
+                    //Ext.Msg.alert("Incorrect answer", 'Patient will not qualify for portability if not mobile within the home');
+                    Ext.MessageBox.show({
+                        title : 'Incorrect answer',
+                        msg : 'Patient will not qualify for portability if not mobile within the home',
+                        width : 450,
+                        buttons : Ext.MessageBox.OK,
+                        icon : Ext.MessageBox.WARNING
+                    });
                 }
-                else{
-                    Ext.getCmp('BtSectionB1SaveID').enable();
-                }
+
             };
             // Failure
             var failureCallback = function(resp, ops) {
@@ -14490,39 +14464,7 @@ Ext.define('SignaTouch.view.MainView', {
 
         }
 
-        else{
-                if(Ext.getCmp('ddlQ3ID').getValue() === 3){
 
-
-                var DetailID = localStorage.getItem("DetailID"); //get DetailID from local storage
-                // success
-                var successCallback = function(resp, ops) {
-                    if(resp.responseText === 'false'){
-                        Ext.Msg.alert("Incorrect answer", 'Patient will not qualify for portability with test during sleep');
-                        Ext.getCmp('BtSectionB1SaveID').disable();
-                    }
-                    else{
-                        Ext.getCmp('BtSectionB1SaveID').enable();
-                    }
-                };
-                // Failure
-                var failureCallback = function(resp, ops) {
-                    console.log('URL not called');
-
-                };
-
-                // ajax call
-                Ext.Ajax.request({url: "services/sectionB.php?action=checkConditionq3q4&DetailID="+DetailID,
-                                  method: 'GET',
-                                  params:  DetailID,
-                                  success: successCallback,
-                                  failure: failureCallback
-                                 });
-            }
-            else{
-                Ext.getCmp('BtSectionB1SaveID').enable();
-            }
-        }
 
     },
 
