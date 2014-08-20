@@ -16511,7 +16511,29 @@
                                                                 "valueField": "id",
                                                                 "width": null
                                                             },
-                                                            "designerId": "eadd0e6f-bdd2-4f70-8105-af1d57505958"
+                                                            "designerId": "eadd0e6f-bdd2-4f70-8105-af1d57505958",
+                                                            "cn": [
+                                                                {
+                                                                    "type": "basiceventbinding",
+                                                                    "reference": {
+                                                                        "name": "listeners",
+                                                                        "type": "array"
+                                                                    },
+                                                                    "codeClass": null,
+                                                                    "userConfig": {
+                                                                        "fn": "onDdlQ3IDChange",
+                                                                        "implHandler": [
+                                                                            "if(newValue === 3){\r",
+                                                                            "  console.log('warning on hcpcs');  \r",
+                                                                            "}\r",
+                                                                            ""
+                                                                        ],
+                                                                        "name": "change",
+                                                                        "scope": "me"
+                                                                    },
+                                                                    "designerId": "9fd6e1f2-94d8-498f-a676-48556bc835d4"
+                                                                }
+                                                            ]
                                                         }
                                                     ]
                                                 },
@@ -16551,7 +16573,28 @@
                                                                 "valueField": "id",
                                                                 "width": null
                                                             },
-                                                            "designerId": "a64ca11d-5e9f-491f-8f0a-bdb6266df70e"
+                                                            "designerId": "a64ca11d-5e9f-491f-8f0a-bdb6266df70e",
+                                                            "cn": [
+                                                                {
+                                                                    "type": "basiceventbinding",
+                                                                    "reference": {
+                                                                        "name": "listeners",
+                                                                        "type": "array"
+                                                                    },
+                                                                    "codeClass": null,
+                                                                    "userConfig": {
+                                                                        "fn": "onDdlQ4IDChange",
+                                                                        "implHandler": [
+                                                                            "if(newValue === 'N' || newValue === 'D'){\r",
+                                                                            "    console.log('show warning');\r",
+                                                                            "}"
+                                                                        ],
+                                                                        "name": "change",
+                                                                        "scope": "me"
+                                                                    },
+                                                                    "designerId": "2f802868-2b59-4c29-bd38-f810d7f12e82"
+                                                                }
+                                                            ]
                                                         }
                                                     ]
                                                 },
@@ -17366,6 +17409,7 @@
                                                         "itemId": "BtDiscard",
                                                         "layout|flex": 1,
                                                         "margin": "7 7 7 7",
+                                                        "maxWidth": 70,
                                                         "text": "Back"
                                                     },
                                                     "designerId": "163c4c59-700d-4e68-be6f-d0b079d037d5",

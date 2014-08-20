@@ -7551,7 +7551,13 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     displayField: 'des',
                                                                     queryMode: 'local',
                                                                     store: 'SectionBQ3',
-                                                                    valueField: 'id'
+                                                                    valueField: 'id',
+                                                                    listeners: {
+                                                                        change: {
+                                                                            fn: me.onDdlQ3IDChange,
+                                                                            scope: me
+                                                                        }
+                                                                    }
                                                                 }
                                                             ]
                                                         },
@@ -7576,7 +7582,13 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     displayField: 'des',
                                                                     queryMode: 'local',
                                                                     store: 'SectionBQ4',
-                                                                    valueField: 'id'
+                                                                    valueField: 'id',
+                                                                    listeners: {
+                                                                        change: {
+                                                                            fn: me.onDdlQ4IDChange,
+                                                                            scope: me
+                                                                        }
+                                                                    }
                                                                 }
                                                             ]
                                                         },
@@ -7941,6 +7953,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             id: 'BtDiscardEdit',
                                                             itemId: 'BtDiscard',
                                                             margin: '7 7 7 7',
+                                                            maxWidth: 70,
                                                             text: 'Back',
                                                             listeners: {
                                                                 click: {
@@ -14377,6 +14390,19 @@ Ext.define('SignaTouch.view.MainView', {
             Ext.getCmp('ddlQ8ID').validate();
             Ext.getCmp('ddlQ9ID').allowBlank = true;
             Ext.getCmp('ddlQ9ID').validate();
+        }
+    },
+
+    onDdlQ3IDChange: function(field, newValue, oldValue, eOpts) {
+        if(newValue === 3){
+          console.log('warning on hcpcs');
+        }
+
+    },
+
+    onDdlQ4IDChange: function(field, newValue, oldValue, eOpts) {
+        if(newValue === 'N' || newValue === 'D'){
+            console.log('show warning');
         }
     },
 
