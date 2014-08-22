@@ -54,6 +54,7 @@ class CreateUser {
     $GetSet->setPhoneNo($_POST['txtUPhoneno']);
     $phone = $GetSet->getPhoneNo();
     
+    
     $GetSet->setZip($_POST['txtUZip']);
     $zip = $GetSet->getZip();
     $GetSet->setCity($_POST['txtUCity']);
@@ -82,8 +83,11 @@ class CreateUser {
      //to create zimbra Admin Account
   public function ZimbraAdminCreateAccount($Trace, $ServerAddress, $AdminUserName, $AdminPassword, $NewUserName, $NewUserPassword, $COSId)
   {
+
         $connect = new Zimbra();
         $param = $this->set_user_parameters();
+         $phone_arr = explode("-",$param['phone']);
+        $password = implode("",$phone_arr);
         $physician_cos_array = explode('-',$_COOKIE['user_cos']);
         $COS_user_name = $physician_cos_array[0].'-client-'.$param['cos_append'];
         $cosID = $connect->ZimbraGetCOSID($COS_user_name);
@@ -109,7 +113,7 @@ class CreateUser {
                                   <soap:Body>
                                           <CreateAccountRequest xmlns="urn:zimbraAdmin">
                                                   <name>' . $param['NewUserName'].'.st' . '</name>
-                                                  <password>' . $param['phone'] . '</password>
+                                                  <password>' . $password . '</password>
                                                   <a n="zimbraCOSId">' . $cosID . '</a>
                                                   <a n="displayName">'.$param['displayName'].'</a>
                                                <a n="givenName">'.$param['firstName'].'</a>

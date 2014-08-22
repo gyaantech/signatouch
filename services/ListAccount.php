@@ -48,47 +48,28 @@ class ListUser {
     curl_setopt($CurlHandle, CURLOPT_POSTFIELDS, $SOAPMessage);
     $ZimbraSOAPResponse = curl_exec($CurlHandle);
     curl_close($CurlHandle);
-
+//echo $ZimbraSOAPResponse;
     if(!($ZimbraSOAPResponse))
     {
             print("ERROR: curl_exec - (" . curl_errno($CurlHandle) . ") " . curl_error($CurlHandle));
             return(FALSE); exit();
     }
-    $res = $ZimbraSOAPResponse;
-    $op = $this->soaptoarray($res);
-echo "<pre>";
-print_r($op);
-        
-    //return $cos_attr;
-  }
-  function soaptoarray($response)
-{
+        $p = xml_parser_create();
+        xml_parse_into_struct($p, $ZimbraSOAPResponse, $vals, $index);
+        xml_parser_free($p);
 
-$search  = array('<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"','<soapenv:Header/','<soapenv:Body','</', '<');
-$replace = array(' ',' ',' ','@end@', '*start*');
-$customer=str_replace($search, $replace, $response);
-$soapres =explode('*start*',$customer);
-echo "<pre>";
-/* print_r($soapres);
-exit */;
+foreach($vals as $key => $value){
+  
+if (array_key_exists("attributes",$value)){
 
-$final_res = array();
-foreach($soapres as $key=>$value)
- {
-   $res[$key]=$value;
-   $temp=explode('@end@',$value);
-   $tempval=explode('>',$temp[0]);
-   $tmp=explode("State",$tempval[0]);
-   if (isset($tempval[1])) {
-	$resp{$tempval[0]}=$tempval[1];
-	$final_res[] = $resp;
 }
 
- }  
-$count = count($final_res);
-$final_return = $final_res[$count-1];
- return $final_return;
- }
+}
+
+
+
+    //return $cos_attr;
+  }
 }
 $possible_url = array("ZimbraListUser");
  $value = "An error has occurred";

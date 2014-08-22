@@ -1049,6 +1049,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                                 Ext.getCmp('ViewPhyCity').setValue(responseOjbect.PhysicianCity);
                                                                                                 Ext.getCmp('ViewPhyState').setValue(responseOjbect.PhysicianSt);
                                                                                                 Ext.getCmp('ViewPhyZip').setValue(responseOjbect.PhysicianZip);
+                                                                                                Ext.getCmp('ViewPhyemail').setValue(responseOjbect.PhysicianAltEmailId);
 
                                                                                                 //Section B
                                                                                                 Ext.getCmp('ViewNFO').setValue(responseOjbect.Send);
@@ -1366,6 +1367,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                             Ext.getCmp('ViewPhyCity').setValue(responseOjbect.PhysicianCity);
                                                                                             Ext.getCmp('ViewPhyState').setValue(responseOjbect.PhysicianSt);
                                                                                             Ext.getCmp('ViewPhyZip').setValue(responseOjbect.PhysicianZip);
+                                                                                            Ext.getCmp('ViewPhyemail').setValue(responseOjbect.PhysicianAltEmailId);
 
                                                                                             //SectionB
                                                                                             Ext.getCmp('ViewNFO').setValue(responseOjbect.Send);
@@ -5189,7 +5191,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                         Ext.getCmp('ViewPhyCity').setValue(responseOjbect.PhysicianCity);
                                                                                         Ext.getCmp('ViewPhyState').setValue(responseOjbect.PhysicianSt);
                                                                                         Ext.getCmp('ViewPhyZip').setValue(responseOjbect.PhysicianZip);
-
+                                                                                        Ext.getCmp('ViewPhyemail').setValue(responseOjbect.PhysicianAltEmailId);
 
                                                                                         //SectionB
                                                                                         Ext.getCmp('ViewNFO').setValue(responseOjbect.Send);
@@ -5504,7 +5506,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                     Ext.getCmp('ViewPhyCity').setValue(responseOjbect.PhysicianCity);
                                                                                     Ext.getCmp('ViewPhyState').setValue(responseOjbect.PhysicianSt);
                                                                                     Ext.getCmp('ViewPhyZip').setValue(responseOjbect.PhysicianZip);
-
+                                                                                    Ext.getCmp('ViewPhyemail').setValue(responseOjbect.PhysicianAltEmailId);
 
                                                                                     //SectionB
                                                                                     Ext.getCmp('ViewNFO').setValue(responseOjbect.Send);
@@ -9665,6 +9667,21 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                             xtype: 'displayfield',
                                                                                             id: 'ViewPhyZip',
                                                                                             fieldLabel: ''
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    xtype: 'container',
+                                                                                    layout: {
+                                                                                        type: 'hbox',
+                                                                                        align: 'stretch'
+                                                                                    },
+                                                                                    items: [
+                                                                                        {
+                                                                                            xtype: 'displayfield',
+                                                                                            id: 'ViewPhyemail',
+                                                                                            margin: '0 50 0 0',
+                                                                                            fieldLabel: '<b>Alt. Email ID:</b>'
                                                                                         }
                                                                                     ]
                                                                                 }
@@ -16134,40 +16151,66 @@ Ext.define('SignaTouch.view.MainView', {
     onViewbtnSendClick: function(button, e, eOpts) {
         var HdrID = Ext.getCmp('HiddenHDRID').value;
         var form = 'DrOffice';
-                // Success
-                var successCallback = function(resp, ops) {
-                    if(resp.responseText === 'true'){
-                        Ext.MessageBox.confirm ('Dr. office', 'Do you want to send record to Dr. office ?', function(btn){
-        if(btn === 'yes'){
+        var altemail = Ext.getCmp('ViewPhyemail').getValue();
+        // Success
+        var successCallback = function(resp, ops) {
+            if(resp.responseText === 'true'){
+                Ext.MessageBox.confirm ('Dr. office', 'Do you want to send record to Dr. office ?', function(btn){
+                    if(btn === 'yes'){
                         Ext.getCmp('txtSectionBFiltertextID').reset();
                         Ext.getCmp('TxtSectionBstartDate').setValue('');
                         Ext.getCmp('TxtSectionBendDate').setValue('');
                         var myStore = Ext.getStore('SectionBGridBind');
-                         myStore.clearFilter();
+                        myStore.clearFilter();
                         myStore.load();
                         Ext.getCmp('ViewAll').hide();
                         Ext.getCmp('sectionB1ID').show();
-        }
-                              });
+                        // success
+                        var successCallbackMail = function(resp, ops) {
+
+                            Ext.Msg.alert("Record sent to Dr. office", 'Record sent to Dr. office successfully!');
+                            // Show login failure error
+                            //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                        };
+                        // Failure
+                        var failureCallbackMail = function(resp, ops) {
+
+
+                            // Show login failure error
+                            //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                        };
+
+
+                        Ext.Ajax.request({url: "services/smtpmail/sendToDrOffice.php?send="+altemail,
+                                          method: 'GET',
+                                          params: HdrID,
+                                          success: successCallbackMail,
+                                          failure: failureCallbackMail
+                                         });
+
                     }
-                };
+                });
+            }
+        };
 
-                // Failure
-                var failureCallback = function(resp, ops) {
-
-
-                    // Show login failure error
-                    //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
-
-                };
+        // Failure
+        var failureCallback = function(resp, ops) {
 
 
-                      Ext.Ajax.request({url: "services/Function.php?action=ChangeRecordStatus&hdrid="+HdrID+"&form="+form,
-                        method: 'GET',
-                        params: HdrID,
-                        success: successCallback,
-                        failure: failureCallback
-                 });
+            // Show login failure error
+            //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+        };
+
+
+        Ext.Ajax.request({url: "services/Function.php?action=ChangeRecordStatus&hdrid="+HdrID+"&form="+form,
+                          method: 'GET',
+                          params: HdrID,
+                          success: successCallback,
+                          failure: failureCallback
+                         });
 
 
 
