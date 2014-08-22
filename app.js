@@ -53,7 +53,8 @@ Ext.application({
         'COS',
         'States',
         'PhysicianAlias',
-        'PhysicianOffice'
+        'PhysicianOffice',
+        'DomainUserRecord'
     ],
     views: [
         'MainView',

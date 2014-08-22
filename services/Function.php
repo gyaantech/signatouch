@@ -295,6 +295,7 @@ class Function1
 
 /*function to changes status of record*/
  public function ChangeRecordStatus($form='',$HdrID = ''){
+   
     $HdrID = $_GET['hdrid'];
     $form = $_GET['form'];
     switch ($form) {

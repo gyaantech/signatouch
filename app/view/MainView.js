@@ -6238,6 +6238,226 @@ Ext.define('SignaTouch.view.MainView', {
                         {
                             xtype: 'panel',
                             hidden: true,
+                            id: 'DomainRecordID',
+                            style: 'margin: 0 auto;\r\n    text-align: left;\r\n    width: 1000px;',
+                            bodyStyle: 'background-color:#3892d3;',
+                            title: '',
+                            titleAlign: 'center',
+                            layout: {
+                                type: 'hbox',
+                                align: 'middle',
+                                pack: 'center',
+                                padding: '15 0 15 0'
+                            },
+                            items: [
+                                {
+                                    xtype: 'form',
+                                    id: 'UserRecordForm',
+                                    width: 1000,
+                                    layout: 'auto',
+                                    bodyPadding: 10,
+                                    bodyStyle: 'background-color:#a5cfff;',
+                                    title: '',
+                                    items: [
+                                        {
+                                            xtype: 'container',
+                                            id: 'BreadcrumbDomainUserID',
+                                            layout: {
+                                                type: 'hbox',
+                                                align: 'stretch',
+                                                pack: 'end'
+                                            },
+                                            items: [
+                                                {
+                                                    xtype: 'displayfield',
+                                                    fieldLabel: '<b>Manage Account >>User </b>',
+                                                    labelSeparator: '&nbsp;',
+                                                    labelWidth: 180
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            xtype: 'fieldset',
+                                            style: 'border-style:solid;\r\nborder-color:#000000;',
+                                            title: '<font size="4">Domain User Record</font>',
+                                            items: [
+                                                {
+                                                    xtype: 'fieldset',
+                                                    style: 'border-style:solid;\r\nborder-color:#000000;',
+                                                    title: '<b>Lookup</b>',
+                                                    items: [
+                                                        {
+                                                            xtype: 'container',
+                                                            layout: {
+                                                                type: 'hbox',
+                                                                align: 'stretch',
+                                                                padding: 10
+                                                            },
+                                                            items: [
+                                                                {
+                                                                    xtype: 'combobox',
+                                                                    id: 'ddlPhysicianFilterID2',
+                                                                    itemId: '',
+                                                                    margin: '0 5 0 5',
+                                                                    maxWidth: 95,
+                                                                    value: [
+                                                                        'NPI'
+                                                                    ],
+                                                                    inputId: 'ddlUserFilter',
+                                                                    editable: false,
+                                                                    store: [
+                                                                        'NPI',
+                                                                        'FirstName',
+                                                                        'LastName',
+                                                                        'ZipCode'
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    xtype: 'textfield',
+                                                                    id: 'txtDomainUserfilterID',
+                                                                    margin: '0 5 0 5',
+                                                                    width: 250,
+                                                                    inputId: 'txtUserfilter'
+                                                                },
+                                                                {
+                                                                    xtype: 'button',
+                                                                    flex: 1,
+                                                                    formBind: false,
+                                                                    itemId: 'PhysicianBtnGO',
+                                                                    margin: '0 10 0 10',
+                                                                    maxWidth: 50,
+                                                                    text: 'GO',
+                                                                    listeners: {
+                                                                        click: {
+                                                                            fn: me.onPhysicianBtnGOClick1,
+                                                                            scope: me
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    xtype: 'button',
+                                                                    flex: 1,
+                                                                    formBind: false,
+                                                                    id: 'btPhysicianAdd1',
+                                                                    margin: '0 10 0 10',
+                                                                    maxWidth: 150,
+                                                                    text: 'Add User',
+                                                                    listeners: {
+                                                                        click: {
+                                                                            fn: me.onBtPhysicianAddClick11,
+                                                                            scope: me
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    xtype: 'container',
+                                                    margin: '5 0 10 0',
+                                                    items: [
+                                                        {
+                                                            xtype: 'gridpanel',
+                                                            height: 300,
+                                                            id: 'UserGrid',
+                                                            width: 955,
+                                                            overflowY: 'scroll',
+                                                            title: '',
+                                                            emptyText: '<font size="4">No Records found...</font>',
+                                                            enableColumnHide: false,
+                                                            enableColumnMove: false,
+                                                            enableColumnResize: false,
+                                                            rowLines: false,
+                                                            store: 'DomainUserRecord',
+                                                            columns: [
+                                                                {
+                                                                    xtype: 'gridcolumn',
+                                                                    dataIndex: 'displayName',
+                                                                    text: 'DisplayName'
+                                                                },
+                                                                {
+                                                                    xtype: 'gridcolumn',
+                                                                    dataIndex: 'Type',
+                                                                    text: 'Type'
+                                                                },
+                                                                {
+                                                                    xtype: 'gridcolumn',
+                                                                    dataIndex: 'Company',
+                                                                    text: 'Company'
+                                                                },
+                                                                {
+                                                                    xtype: 'gridcolumn',
+                                                                    dataIndex: 'JobTitle',
+                                                                    text: 'JobTitle'
+                                                                },
+                                                                {
+                                                                    xtype: 'gridcolumn',
+                                                                    dataIndex: 'Phone',
+                                                                    text: 'Phone'
+                                                                },
+                                                                {
+                                                                    xtype: 'gridcolumn',
+                                                                    dataIndex: 'City',
+                                                                    text: 'City'
+                                                                },
+                                                                {
+                                                                    xtype: 'gridcolumn',
+                                                                    dataIndex: 'Zip',
+                                                                    text: 'Zip'
+                                                                },
+                                                                {
+                                                                    xtype: 'gridcolumn',
+                                                                    defaultWidth: 80,
+                                                                    dataIndex: 'State',
+                                                                    text: 'State'
+                                                                },
+                                                                {
+                                                                    xtype: 'gridcolumn',
+                                                                    dataIndex: 'email',
+                                                                    text: 'Email'
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            xtype: 'pagingtoolbar',
+                                                            width: 958,
+                                                            store: 'PhysicianGridBind',
+                                                            layout: {
+                                                                type: 'hbox',
+                                                                pack: 'center'
+                                                            },
+                                                            items: [
+                                                                {
+                                                                    xtype: 'button',
+                                                                    handler: function(button, e) {
+                                                                        var myStore = Ext.getStore('DomainUserRecord');
+                                                                        myStore.clearFilter();
+
+                                                                        //Ext.getCmp('txtPhysicianfilterID').reset();
+                                                                    },
+                                                                    id: 'UserClear',
+                                                                    text: 'Clear Filter'
+                                                                }
+                                                            ],
+                                                            listeners: {
+                                                                beforechange: {
+                                                                    fn: me.onPagingtoolbarBeforeChange11,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            xtype: 'panel',
+                            hidden: true,
                             id: 'PatientRecord',
                             style: 'margin: 0 auto;\r\n    text-align: left;\r\n    width: 1000px;',
                             bodyStyle: 'background-color:#3892d3;',
@@ -9614,7 +9834,8 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                             margin: '0 50 0 0',
                                                                                             width: 200,
                                                                                             fieldLabel: '<b>NPI #</b>',
-                                                                                            labelWidth: 40
+                                                                                            labelWidth: 40,
+                                                                                            name: 'NPIname'
                                                                                         },
                                                                                         {
                                                                                             xtype: 'displayfield',
@@ -10776,313 +10997,6 @@ Ext.define('SignaTouch.view.MainView', {
                                     ]
                                 }
                             ]
-                        },
-                        {
-                            xtype: 'panel',
-                            hidden: true,
-                            id: 'DomainUserRecord',
-                            style: 'margin: 0 auto;\r\n    text-align: left;\r\n    width: 1000px;',
-                            bodyStyle: 'background-color:#3892d3;',
-                            title: '',
-                            titleAlign: 'center',
-                            layout: {
-                                type: 'hbox',
-                                align: 'middle',
-                                pack: 'center',
-                                padding: '15 0 15 0'
-                            },
-                            items: [
-                                {
-                                    xtype: 'form',
-                                    id: 'DomainUserRecordForm',
-                                    width: 1000,
-                                    layout: 'auto',
-                                    bodyPadding: 10,
-                                    bodyStyle: 'background-color:#a5cfff;',
-                                    title: '',
-                                    items: [
-                                        {
-                                            xtype: 'container',
-                                            id: 'BreadcrumbDomainUserRecord',
-                                            layout: {
-                                                type: 'hbox',
-                                                align: 'stretch',
-                                                pack: 'end'
-                                            },
-                                            items: [
-                                                {
-                                                    xtype: 'displayfield',
-                                                    fieldLabel: '<b>Maintenance >>User Record </b>',
-                                                    labelSeparator: '&nbsp;',
-                                                    labelWidth: 190
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            xtype: 'fieldset',
-                                            style: 'border-style:solid;\r\nborder-color:#000000;',
-                                            title: '<font size="4">Domain User Record</font>',
-                                            items: [
-                                                {
-                                                    xtype: 'fieldset',
-                                                    style: 'border-style:solid;\r\nborder-color:#000000;',
-                                                    title: '<b>Lookup</b>',
-                                                    items: [
-                                                        {
-                                                            xtype: 'container',
-                                                            layout: {
-                                                                type: 'hbox',
-                                                                align: 'stretch',
-                                                                padding: 10
-                                                            },
-                                                            items: [
-                                                                {
-                                                                    xtype: 'combobox',
-                                                                    id: 'ddlPhysicianFilterID1',
-                                                                    itemId: '',
-                                                                    margin: '0 5 0 5',
-                                                                    maxWidth: 95,
-                                                                    value: [
-                                                                        'NPI'
-                                                                    ],
-                                                                    inputId: 'ddlPhysicianFilter',
-                                                                    editable: false,
-                                                                    store: [
-                                                                        'NPI',
-                                                                        'FirstName',
-                                                                        'LastName',
-                                                                        'ZipCode'
-                                                                    ]
-                                                                },
-                                                                {
-                                                                    xtype: 'textfield',
-                                                                    id: 'txtDomainUserfilterID',
-                                                                    margin: '0 5 0 5',
-                                                                    width: 250,
-                                                                    inputId: 'txtDomainUserfilter'
-                                                                },
-                                                                {
-                                                                    xtype: 'button',
-                                                                    flex: 1,
-                                                                    formBind: true,
-                                                                    itemId: 'BtnDomainUserGO',
-                                                                    margin: '0 10 0 10',
-                                                                    maxWidth: 50,
-                                                                    text: 'GO'
-                                                                },
-                                                                {
-                                                                    xtype: 'button',
-                                                                    flex: 1,
-                                                                    formBind: true,
-                                                                    id: 'btDomainUserAdd',
-                                                                    margin: '0 10 0 10',
-                                                                    maxWidth: 150,
-                                                                    text: 'Add User',
-                                                                    listeners: {
-                                                                        click: {
-                                                                            fn: me.onBtDomainUserAddClick,
-                                                                            scope: me
-                                                                        }
-                                                                    }
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    xtype: 'container',
-                                                    margin: '5 0 10 0',
-                                                    items: [
-                                                        {
-                                                            xtype: 'gridpanel',
-                                                            height: 225,
-                                                            id: 'DomainUserRecordGrid',
-                                                            overflowY: 'scroll',
-                                                            title: '',
-                                                            enableColumnHide: false,
-                                                            enableColumnMove: false,
-                                                            enableColumnResize: false,
-                                                            rowLines: false,
-                                                            store: 'PhysicianGridBind',
-                                                            columns: [
-                                                                {
-                                                                    xtype: 'actioncolumn',
-                                                                    dataIndex: 'Action',
-                                                                    menuText: 'Action',
-                                                                    items: [
-                                                                        {
-                                                                            handler: function(view, rowIndex, colIndex, item, e, record, row) {
-                                                                                console.log(record.data);
-                                                                                var PhysicianNPI = record.data.PhysicianNPI;
-                                                                                Ext.getCmp('PhysicianForm').getForm().reset();
-                                                                                var PhysicianNPI = record.data.PhysicianNPI;
-                                                                                Ext.getCmp('PhysicianRecord').hide();
-                                                                                Ext.getCmp('PhysicianPanelID').show();
-
-
-
-                                                                                //Breadcrms
-                                                                                Ext.getCmp('Pbread').setValue('<b>Maintenance >> Edit Physician</b>');
-
-
-                                                                                //Button Hide
-                                                                                Ext.getCmp('btnPhysicianSaveID').hide();
-                                                                                Ext.getCmp('btnPhysicianUpdateID').show();
-
-                                                                                // Ajax request to fetch data based on HDRID
-                                                                                // Success
-                                                                                var successCallback = function(resp, ops) {
-                                                                                    var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));
-
-                                                                                    // var responseOjbect = Ext.JSON.decode(resp.responseText);
-
-                                                                                    Ext.getCmp('txtNPIID').setValue(PhysicianNPI).setReadOnly(true);
-                                                                                    Ext.getCmp('txtFnameID').setValue(responseOjbect.PhysicianFirstname);
-                                                                                    Ext.getCmp('txtMnameID').setValue(responseOjbect.PhysicianMidname);
-                                                                                    Ext.getCmp('txtLnameID').setValue(responseOjbect.PhysicianLastname);
-                                                                                    Ext.getCmp('txtAddress1ID').setValue(responseOjbect.PhysicianAddr1);
-
-                                                                                    Ext.getCmp('txtAddress2ID').setValue(responseOjbect.PhysicianAddr2);
-                                                                                    Ext.getCmp('txtCityID').setValue(responseOjbect.PhysicianCity);
-                                                                                    Ext.getCmp('ddlStateID').setValue(responseOjbect.PhysicianSt);
-                                                                                    Ext.getCmp('txtZipID').setValue(responseOjbect.PhysicianZip);
-                                                                                    Ext.getCmp('txtPhoneNoID').setValue(responseOjbect.PhysicianPhone);
-
-
-                                                                                };
-
-                                                                                // Failure
-                                                                                var failureCallback = function(resp, ops) {
-                                                                                    console.log("API not called");
-
-                                                                                };
-                                                                                //adding loader
-                                                                                Ext.Ajax.on('beforerequest', function(){
-
-                                                                                    var pnl=Ext.getCmp('PhysicianPanelID');
-                                                                                    pnl.setLoading(true, true);
-                                                                                });
-
-
-                                                                                Ext.Ajax.on('requestcomplete', function(){
-
-                                                                                    Ext.getCmp('PhysicianPanelID').setLoading(false,false);
-                                                                                });
-
-                                                                                // TODO: Login using server-side authentication service
-                                                                                Ext.Ajax.request({url: "services/Maintainence.php?action=ShowPhysicianRecord&physician_NPI="+PhysicianNPI,
-                                                                                    method: 'GET',
-                                                                                    params: PhysicianNPI,
-                                                                                    success: successCallback,
-                                                                                    failure: failureCallback
-                                                                                });
-
-
-                                                                            },
-                                                                            icon: 'resources/images/edit.png',
-                                                                            iconCls: 'actionicon',
-                                                                            tooltip: 'Edit'
-                                                                        },
-                                                                        {
-                                                                            handler: function(view, rowIndex, colIndex, item, e, record, row) {
-
-                                                                                Ext.getCmp('PhysicianForm').getForm().reset();
-                                                                                var PhysicianNPI = record.data.PhysicianNPI;
-                                                                                Ext.getCmp('PhysicianRecord').hide();
-                                                                                Ext.getCmp('PhysicianPanelID').show();
-                                                                                Ext.getCmp('btnPhysicianUpdateID').hide();
-
-
-                                                                                //Breadcrms
-                                                                                Ext.getCmp('Pbread').setValue('<b>Maintenance >> View Physician</b>');
-
-
-
-                                                                                //Button Hide
-                                                                                Ext.getCmp('btnPhysicianSaveID').hide();
-
-
-                                                                                // Ajax request to fetch data based on HDRID
-                                                                                // Success
-                                                                                var successCallback = function(resp, ops) {
-                                                                                    var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));
-
-                                                                                    // var responseOjbect = Ext.JSON.decode(resp.responseText);
-
-                                                                                    Ext.getCmp('txtNPIID').setValue(PhysicianNPI).setReadOnly(true);
-                                                                                    // Ext.getCmp('txtNPIID').setValue(PhysicianNPI).setFieldStyle('background-color: red;');
-                                                                                    Ext.getCmp('txtFnameID').setValue(responseOjbect.PhysicianFirstname).setReadOnly(true);
-                                                                                    Ext.getCmp('txtMnameID').setValue(responseOjbect.PhysicianMidname).setReadOnly(true);
-                                                                                    Ext.getCmp('txtLnameID').setValue(responseOjbect.PhysicianLastname).setReadOnly(true);
-                                                                                    Ext.getCmp('txtAddress1ID').setValue(responseOjbect.PhysicianAddr1).setReadOnly(true);
-
-                                                                                    Ext.getCmp('txtAddress2ID').setValue(responseOjbect.PhysicianAddr2).setReadOnly(true);
-                                                                                    Ext.getCmp('txtCityID').setValue(responseOjbect.PhysicianCity).setReadOnly(true);
-                                                                                    Ext.getCmp('ddlStateID').setValue(responseOjbect.PhysicianSt).setReadOnly(true);
-                                                                                    Ext.getCmp('txtZipID').setValue(responseOjbect.PhysicianZip).setReadOnly(true);
-                                                                                    Ext.getCmp('txtPhoneNoID').setValue(responseOjbect.PhysicianPhone).setReadOnly(true);
-
-
-                                                                                };
-
-                                                                                // Failure
-                                                                                var failureCallback = function(resp, ops) {
-                                                                                    console.log("API not called");
-
-                                                                                };
-                                                                                //adding loader
-                                                                                Ext.Ajax.on('beforerequest', function(){
-
-                                                                                    var pnl=Ext.getCmp('PhysicianPanelID');
-                                                                                    pnl.setLoading(true, true);
-                                                                                });
-
-
-                                                                                Ext.Ajax.on('requestcomplete', function(){
-
-                                                                                    Ext.getCmp('PhysicianPanelID').setLoading(false,false);
-                                                                                });
-
-                                                                                // TODO: Login using server-side authentication service
-                                                                                Ext.Ajax.request({url: "services/Maintainence.php?action=ShowPhysicianRecord&physician_NPI="+PhysicianNPI,
-                                                                                    method: 'GET',
-                                                                                    params: PhysicianNPI,
-                                                                                    success: successCallback,
-                                                                                    failure: failureCallback
-                                                                                });
-
-
-                                                                            },
-                                                                            icon: 'resources/images/view.png',
-                                                                            iconCls: 'actionicon',
-                                                                            tooltip: 'View'
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            xtype: 'pagingtoolbar',
-                                                            width: 958,
-                                                            store: 'PhysicianGridBind',
-                                                            layout: {
-                                                                type: 'hbox',
-                                                                pack: 'center'
-                                                            },
-                                                            items: [
-                                                                {
-                                                                    xtype: 'button',
-                                                                    text: 'Clear Fillter'
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
                         }
                     ]
                 },
@@ -11104,7 +11018,7 @@ Ext.define('SignaTouch.view.MainView', {
                             id: 'loginForm1',
                             bodyPadding: 10,
                             bodyStyle: 'background-color:#a5cfff;',
-                            title: 'Centered by the Signatouch Login',
+                            title: 'Signatouch Login',
                             titleAlign: 'center',
                             items: [
                                 {
@@ -11643,8 +11557,8 @@ Ext.define('SignaTouch.view.MainView', {
 
         //Supplier Record
         Ext.getCmp('SupplierRecord').hide();
-         Ext.getCmp('SupplierPanelID').hide();
-         Ext.getCmp('SupplierViewID').hide();
+        Ext.getCmp('SupplierPanelID').hide();
+        Ext.getCmp('SupplierViewID').hide();
 
         Ext.getCmp('ViewAll').hide();
         Ext.getCmp('Messaging').hide();
@@ -11653,7 +11567,25 @@ Ext.define('SignaTouch.view.MainView', {
 
         //Dashboard
         Ext.getCmp('AddUserForm').getForm().reset();
-        Ext.getCmp('AddUserPanelID').show();
+        Ext.getCmp('AddUserPanelID').hide();
+
+        var store = Ext.getStore('DomainUserRecord');
+        store.clearFilter();
+        store.load();
+
+        store.removeAll(true);
+
+        store.getProxy().url = 'services/ListAccount.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');
+        store.load();
+        store.add(Ext.JSON.decode(resp.responseText));
+
+
+        //Ext.getCmp('PhysicianOfficeGridID').clearValue();
+        Ext.getCmp('UserGrid').bindStore(store);
+
+        //Ext.getCmp('txtDomainUserfilterID').reset();
+        Ext.getCmp('DomainRecordID').show();
+
         Ext.getCmp('AddAlias').hide();
         Ext.getCmp('ChangePasswordPanelID').hide();
 
@@ -11664,6 +11596,90 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('hiddenDomainID').setValue('@'+domain);
 
         Ext.getCmp('AddDomainID').hide();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Ext.getCmp('PhysicianViewForm').getForm().reset();
+        var PhysicianNPI = record.data.PhysicianNPI;
+        Ext.getCmp('PhysicianRecord').hide();
+        Ext.getCmp('PhysicianViewID').show();
+        //Ext.getCmp('btnPhysicianUpdateID').hide();
+
+
+
+
+
+        //Button Hide
+        Ext.getCmp('btnPhysicianSaveID').hide();
+
+
+        // Ajax request to fetch data based on HDRID
+        // Success
+        var successCallback = function(resp, ops) {
+            var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));
+
+            // fetch office based on NPI
+
+            var successCallbackOffice = function(resp, ops) {
+
+                var store = Ext.getStore('DomainUserRecord');
+
+                store.removeAll(true);
+
+                store.getProxy().url = 'services/ListAccount.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');
+                store.load();
+                store.add(Ext.JSON.decode(resp.responseText));
+
+
+
+                Ext.getCmp('UserGrid').bindStore(store);
+
+            }
+            var failureCallbackOffice = function(resp, ops) {
+                console.log("API not called");
+            }
+            // TODO: Login using server-side authentication service
+            Ext.Ajax.request({url: "services/ListAccount.php?action=ZimbraListUser&domain="+localStorage.getItem('domain'),
+                              method: 'GET',
+                              params: localStorage.getItem('domain'),
+                              success: successCallbackOffice,
+                              failure: failureCallbackOffice
+                             });
+
+        };
+
+        // Failure
+        var failureCallback = function(resp, ops) {
+            console.log("API not called");
+
+        };
+
+        // TODO: Login using server-side authentication service
+        Ext.Ajax.request({url: "services/ListAccount.php?action=ZimbraListUser&domain="+localStorage.getItem('domain'),
+                          method: 'GET',
+                          params: localStorage.getItem('domain'),
+                          success: successCallback,
+                          failure: failureCallback
+                         });
+
+
 
     },
 
@@ -13941,6 +13957,81 @@ Ext.define('SignaTouch.view.MainView', {
         PhysicianGridBind.getProxy().extraParams.Search = Search;
     },
 
+    onPhysicianBtnGOClick1: function(button, e, eOpts) {
+        var form = button.up('form');
+         values = form.getValues();
+        var type=values.ddlPhysicianFilter;
+        var Search=values.txtPhysicianfilter;
+        var myStore = Ext.getStore('PhysicianGridBind');
+
+        /*myStore.clearFilter();
+
+
+        if(type=='NPI')
+        {
+            myStore.filter('PhysicianNPI',Search);
+            myStore.load();
+
+        }
+        if(type=='FirstName')
+        {
+
+            myStore.filter('PhysicianFirstname',Search);
+            myStore.load();
+
+        }
+        if(type=='LastName')
+        {
+
+            myStore.filter('PhysicianLastname',Search);
+            myStore.load();
+
+        }
+
+        if(type=='ZipCode')
+        {
+
+            myStore.filter('PhysicianZip',Search);
+            myStore.load();
+
+        }
+
+        */
+         myStore.filter([{property: 'SelectFilter',value: type} ,
+                            {property: 'PatientHICN' , value: Search }]);
+    },
+
+    onBtPhysicianAddClick11: function(button, e, eOpts) {
+        //Ext.getCmp('btnPhysicianAddAnotherID').hide();
+        Ext.getCmp('btnPhysicianSaveID').show();
+
+        Ext.getCmp('btnPhysicianCancel1').hide();
+        Ext.getCmp('btnPhysicianCancel').show();
+
+        Ext.getCmp('btnPhysicianUpdateID').hide();
+        Ext.getCmp('PhysicianRecordForm').getForm().reset();
+         Ext.getCmp('txtNPIID').setReadOnly(false);
+
+
+        Ext.getCmp('PhysicianPanelID').show();
+        Ext.getCmp('txtPHYPasswordID').show();
+        Ext.getCmp('txtPHYCPasswordID').show();
+        //Breadcrms
+        Ext.getCmp('Pbread').setValue('<b>Maintenance >> Add Physician</b>');
+                              Ext.getCmp('PhysicianRecord').hide();
+                             // Ext.getCmp('PhysicianForm').getForm().reset();
+    },
+
+    onPagingtoolbarBeforeChange11: function(pagingtoolbar, page, eOpts) {
+        var PhysicianGridBind = Ext.getStore('PhysicianGridBind');
+
+        var type = Ext.get('ddlPhysicianFilter').getValue();
+        var Search = Ext.get('txtPhysicianfilter').getValue();
+
+        PhysicianGridBind.getProxy().extraParams.SelectFilter = type;
+        PhysicianGridBind.getProxy().extraParams.Search = Search;
+    },
+
     onPatientBtnGoClick: function(button, e, eOpts) {
         var form = button.up('form');
         values = form.getValues();
@@ -16141,7 +16232,7 @@ Ext.define('SignaTouch.view.MainView', {
 
                 // TODO: Login using server-side authentication service
                 Ext.Ajax.request({url: "services/Function.php?action=ChangeRecordStatus&hdrid="+HdrID+"&form="+form,
-                        method: 'GET',
+                        method: 'POST',
                         params: HdrID,
                         success: successCallback,
                         failure: failureCallback
@@ -16152,6 +16243,7 @@ Ext.define('SignaTouch.view.MainView', {
         var HdrID = Ext.getCmp('HiddenHDRID').value;
         var form = 'DrOffice';
         var altemail = Ext.getCmp('ViewPhyemail').getValue();
+        var Name = Ext.getCmp('ViewPhyName').getValue();
         // Success
         var successCallback = function(resp, ops) {
             if(resp.responseText === 'true'){
@@ -16183,7 +16275,7 @@ Ext.define('SignaTouch.view.MainView', {
                         };
 
 
-                        Ext.Ajax.request({url: "services/smtpmail/sendToDrOffice.php?send="+altemail,
+                        Ext.Ajax.request({url: "services/mail/SendToDrOffice.php?send="+altemail+"&Name="+Name,
                                           method: 'GET',
                                           params: HdrID,
                                           success: successCallbackMail,
@@ -16282,10 +16374,6 @@ Ext.define('SignaTouch.view.MainView', {
                            //}
                 //});
 
-
-    },
-
-    onBtDomainUserAddClick: function(button, e, eOpts) {
 
     },
 

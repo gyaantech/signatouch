@@ -1,0 +1,46 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": true,
+        "defaultSortDirection": "DESC",
+        "designer|userClassName": "DomainUserRecord",
+        "model": "DomainUserRecord",
+        "pageSize": 20,
+        "remoteFilter": true,
+        "storeId": "DomainUserRecord"
+    },
+    "designerId": "d48b1218-6203-49fc-92d8-abeb69c99a3d",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "url": "services/ListAccount.php?action=ZimbraListUser&domain=npi.st"
+            },
+            "designerId": "38ed9d3f-4d63-4866-8cba-3596cee1d593",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "root": "data"
+                    },
+                    "designerId": "0fdb5c72-d748-4354-aefd-bc9a981cc7f7"
+                }
+            ]
+        }
+    ]
+}

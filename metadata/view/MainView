@@ -1020,8 +1020,8 @@
                                                     "\r",
                                                     "//Supplier Record\r",
                                                     "Ext.getCmp('SupplierRecord').hide();\r",
-                                                    " Ext.getCmp('SupplierPanelID').hide();\r",
-                                                    " Ext.getCmp('SupplierViewID').hide();\r",
+                                                    "Ext.getCmp('SupplierPanelID').hide();\r",
+                                                    "Ext.getCmp('SupplierViewID').hide();\r",
                                                     "\r",
                                                     "Ext.getCmp('ViewAll').hide();\r",
                                                     "Ext.getCmp('Messaging').hide();\r",
@@ -1030,7 +1030,25 @@
                                                     "\r",
                                                     "//Dashboard\r",
                                                     "Ext.getCmp('AddUserForm').getForm().reset();\r",
-                                                    "Ext.getCmp('AddUserPanelID').show();\r",
+                                                    "Ext.getCmp('AddUserPanelID').hide();\r",
+                                                    "\r",
+                                                    "var store = Ext.getStore('DomainUserRecord');\r",
+                                                    "store.clearFilter();\r",
+                                                    "store.load();\r",
+                                                    "\r",
+                                                    "store.removeAll(true);\r",
+                                                    "\r",
+                                                    "store.getProxy().url = 'services/ListAccount.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');\r",
+                                                    "store.load();\r",
+                                                    "store.add(Ext.JSON.decode(resp.responseText));\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "//Ext.getCmp('PhysicianOfficeGridID').clearValue();\r",
+                                                    "Ext.getCmp('UserGrid').bindStore(store);\r",
+                                                    "\r",
+                                                    "//Ext.getCmp('txtDomainUserfilterID').reset();\r",
+                                                    "Ext.getCmp('DomainRecordID').show();\r",
+                                                    "\r",
                                                     "Ext.getCmp('AddAlias').hide();\r",
                                                     "Ext.getCmp('ChangePasswordPanelID').hide();\r",
                                                     "\r",
@@ -1041,6 +1059,90 @@
                                                     "Ext.getCmp('hiddenDomainID').setValue('@'+domain);\r",
                                                     "\r",
                                                     "Ext.getCmp('AddDomainID').hide();\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "Ext.getCmp('PhysicianViewForm').getForm().reset();\r",
+                                                    "var PhysicianNPI = record.data.PhysicianNPI;\r",
+                                                    "Ext.getCmp('PhysicianRecord').hide();\r",
+                                                    "Ext.getCmp('PhysicianViewID').show();\r",
+                                                    "//Ext.getCmp('btnPhysicianUpdateID').hide();\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "//Button Hide\r",
+                                                    "Ext.getCmp('btnPhysicianSaveID').hide();\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "// Ajax request to fetch data based on HDRID\r",
+                                                    "// Success\r",
+                                                    "var successCallback = function(resp, ops) {\r",
+                                                    "    var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));\r",
+                                                    "    \r",
+                                                    "    // fetch office based on NPI\r",
+                                                    "    \r",
+                                                    "    var successCallbackOffice = function(resp, ops) {\r",
+                                                    "        \r",
+                                                    "        var store = Ext.getStore('DomainUserRecord');\r",
+                                                    "        \r",
+                                                    "        store.removeAll(true);\r",
+                                                    "        \r",
+                                                    "        store.getProxy().url = 'services/ListAccount.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');\r",
+                                                    "        store.load();\r",
+                                                    "        store.add(Ext.JSON.decode(resp.responseText));\r",
+                                                    "        \r",
+                                                    "        \r",
+                                                    "        \r",
+                                                    "        Ext.getCmp('UserGrid').bindStore(store);\r",
+                                                    "        \r",
+                                                    "    }\r",
+                                                    "    var failureCallbackOffice = function(resp, ops) {\r",
+                                                    "        console.log(\"API not called\");\r",
+                                                    "    }\r",
+                                                    "    // TODO: Login using server-side authentication service\r",
+                                                    "    Ext.Ajax.request({url: \"services/ListAccount.php?action=ZimbraListUser&domain=\"+localStorage.getItem('domain'),\r",
+                                                    "                      method: 'GET',\r",
+                                                    "                      params: localStorage.getItem('domain'),\r",
+                                                    "                      success: successCallbackOffice,\r",
+                                                    "                      failure: failureCallbackOffice\r",
+                                                    "                     });\r",
+                                                    "    \r",
+                                                    "};\r",
+                                                    "\r",
+                                                    "// Failure\r",
+                                                    "var failureCallback = function(resp, ops) {\r",
+                                                    "    console.log(\"API not called\");\r",
+                                                    "    \r",
+                                                    "};\r",
+                                                    "\r",
+                                                    "// TODO: Login using server-side authentication service\r",
+                                                    "Ext.Ajax.request({url: \"services/ListAccount.php?action=ZimbraListUser&domain=\"+localStorage.getItem('domain'),\r",
+                                                    "                  method: 'GET',\r",
+                                                    "                  params: localStorage.getItem('domain'),\r",
+                                                    "                  success: successCallback,\r",
+                                                    "                  failure: failureCallback\r",
+                                                    "                 });\r",
+                                                    "\r",
+                                                    "\r",
                                                     ""
                                                 ],
                                                 "name": "click",
@@ -13542,6 +13644,568 @@
                         "container|padding": "15 0 15 0",
                         "designer|displayName": null,
                         "hidden": true,
+                        "id": "DomainRecordID",
+                        "itemId": null,
+                        "layout": "hbox",
+                        "style": [
+                            "margin: 0 auto;\r",
+                            "    text-align: left;\r",
+                            "    width: 1000px;\r",
+                            ""
+                        ],
+                        "title": "",
+                        "titleAlign": "center"
+                    },
+                    "designerId": "2e4a8599-f7b3-4b81-bbcc-8a33faf4a8b0",
+                    "cn": [
+                        {
+                            "type": "Ext.form.Panel",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "bodyPadding": 10,
+                                "bodyStyle": [
+                                    "background-color:#a5cfff;"
+                                ],
+                                "height": null,
+                                "id": "UserRecordForm",
+                                "layout": "auto",
+                                "title": "",
+                                "width": 1000
+                            },
+                            "designerId": "243cbcf0-441a-45af-89b3-690afe8a8507",
+                            "cn": [
+                                {
+                                    "type": "Ext.container.Container",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "container|align": "stretch",
+                                        "container|pack": "end",
+                                        "id": "BreadcrumbDomainUserID",
+                                        "layout": "hbox"
+                                    },
+                                    "designerId": "7f169ffb-6231-4c9d-840e-1b9990b53547",
+                                    "cn": [
+                                        {
+                                            "type": "Ext.form.field.Display",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fieldLabel": "<b>Manage Account >>User </b>",
+                                                "labelSeparator": "&nbsp;",
+                                                "labelWidth": 180
+                                            },
+                                            "designerId": "7696f89d-11dc-4a1e-8221-1e9b93ce3d52"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.form.FieldSet",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "style": [
+                                            "border-style:solid;\r",
+                                            "border-color:#000000;"
+                                        ],
+                                        "title": "<font size=\"4\">Domain User Record</font>"
+                                    },
+                                    "designerId": "cc1955c8-fb6d-42ea-bd1f-73a11fadc059",
+                                    "cn": [
+                                        {
+                                            "type": "Ext.form.FieldSet",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "style": [
+                                                    "border-style:solid;\r",
+                                                    "border-color:#000000;"
+                                                ],
+                                                "title": "<b>Lookup</b>"
+                                            },
+                                            "designerId": "6fad147d-2b8a-4ebc-aff7-968eb44d440f",
+                                            "cn": [
+                                                {
+                                                    "type": "Ext.container.Container",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "container|align": "stretch",
+                                                        "container|padding": 10,
+                                                        "layout": "hbox"
+                                                    },
+                                                    "designerId": "790fcfaf-957f-4192-af58-0c4e9eebcabe",
+                                                    "cn": [
+                                                        {
+                                                            "type": "Ext.form.field.ComboBox",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "designer|displayName": "",
+                                                                "editable": false,
+                                                                "fieldLabel": null,
+                                                                "id": "ddlPhysicianFilterID2",
+                                                                "inputId": "ddlUserFilter",
+                                                                "itemId": "",
+                                                                "margin": "0 5 0 5",
+                                                                "maxWidth": 95,
+                                                                "store": [
+                                                                    "['NPI','FirstName','LastName','ZipCode'] \r",
+                                                                    ""
+                                                                ],
+                                                                "value": [
+                                                                    "['NPI']"
+                                                                ]
+                                                            },
+                                                            "configAlternates": {
+                                                                "store": "array"
+                                                            },
+                                                            "designerId": "910c442d-6a3c-459a-bb60-afef45fd1129"
+                                                        },
+                                                        {
+                                                            "type": "Ext.form.field.Text",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "designer|displayName": "",
+                                                                "fieldLabel": null,
+                                                                "id": "txtDomainUserfilterID",
+                                                                "inputId": "txtUserfilter",
+                                                                "itemId": null,
+                                                                "layout|flex": null,
+                                                                "margin": "0 5 0 5",
+                                                                "maxWidth": null,
+                                                                "width": 250
+                                                            },
+                                                            "designerId": "12ad7cad-a069-44af-9877-9024a7e41d12"
+                                                        },
+                                                        {
+                                                            "type": "Ext.button.Button",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "formBind": false,
+                                                                "itemId": "PhysicianBtnGO",
+                                                                "layout|flex": 1,
+                                                                "margin": "0 10 0 10",
+                                                                "maxWidth": 50,
+                                                                "text": "GO",
+                                                                "width": null
+                                                            },
+                                                            "designerId": "3d05a2f3-d60b-4141-a9e7-cbf05d57352b",
+                                                            "cn": [
+                                                                {
+                                                                    "type": "basiceventbinding",
+                                                                    "reference": {
+                                                                        "name": "listeners",
+                                                                        "type": "array"
+                                                                    },
+                                                                    "codeClass": null,
+                                                                    "userConfig": {
+                                                                        "fn": "onPhysicianBtnGOClick1",
+                                                                        "implHandler": [
+                                                                            "var form = button.up('form');\r",
+                                                                            " values = form.getValues();\r",
+                                                                            "var type=values.ddlPhysicianFilter;\r",
+                                                                            "var Search=values.txtPhysicianfilter;\r",
+                                                                            "var myStore = Ext.getStore('PhysicianGridBind');\r",
+                                                                            "\r",
+                                                                            "/*myStore.clearFilter();\r",
+                                                                            "\r",
+                                                                            "\r",
+                                                                            "if(type=='NPI')\r",
+                                                                            "{\r",
+                                                                            "    myStore.filter('PhysicianNPI',Search);\r",
+                                                                            "    myStore.load();\r",
+                                                                            "\r",
+                                                                            "}\r",
+                                                                            "if(type=='FirstName')\r",
+                                                                            "{\r",
+                                                                            "\r",
+                                                                            "    myStore.filter('PhysicianFirstname',Search);\r",
+                                                                            "    myStore.load();\r",
+                                                                            "\r",
+                                                                            "}\r",
+                                                                            "if(type=='LastName')\r",
+                                                                            "{\r",
+                                                                            "\r",
+                                                                            "    myStore.filter('PhysicianLastname',Search);\r",
+                                                                            "    myStore.load();\r",
+                                                                            "\r",
+                                                                            "}\r",
+                                                                            "\r",
+                                                                            "if(type=='ZipCode')\r",
+                                                                            "{\r",
+                                                                            "\r",
+                                                                            "    myStore.filter('PhysicianZip',Search);\r",
+                                                                            "    myStore.load();\r",
+                                                                            "\r",
+                                                                            "}\r",
+                                                                            "\r",
+                                                                            "*/\r",
+                                                                            " myStore.filter([{property: 'SelectFilter',value: type} , \r",
+                                                                            "                    {property: 'PatientHICN' , value: Search }]);"
+                                                                        ],
+                                                                        "name": "click",
+                                                                        "scope": "me"
+                                                                    },
+                                                                    "designerId": "505ca9e0-1f0d-40e8-882f-0e35cf67e56a"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "Ext.button.Button",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "formBind": false,
+                                                                "id": "btPhysicianAdd1",
+                                                                "itemId": null,
+                                                                "layout|flex": 1,
+                                                                "margin": "0 10 0 10",
+                                                                "maxWidth": 150,
+                                                                "text": "Add User",
+                                                                "width": null
+                                                            },
+                                                            "designerId": "5258dd2d-c443-42e8-9b2b-d7c09d006c34",
+                                                            "cn": [
+                                                                {
+                                                                    "type": "basiceventbinding",
+                                                                    "reference": {
+                                                                        "name": "listeners",
+                                                                        "type": "array"
+                                                                    },
+                                                                    "codeClass": null,
+                                                                    "userConfig": {
+                                                                        "fn": "onBtPhysicianAddClick11",
+                                                                        "implHandler": [
+                                                                            "//Ext.getCmp('btnPhysicianAddAnotherID').hide();\r",
+                                                                            "Ext.getCmp('btnPhysicianSaveID').show();\r",
+                                                                            "\r",
+                                                                            "Ext.getCmp('btnPhysicianCancel1').hide();\r",
+                                                                            "Ext.getCmp('btnPhysicianCancel').show();\r",
+                                                                            "\r",
+                                                                            "Ext.getCmp('btnPhysicianUpdateID').hide();\r",
+                                                                            "Ext.getCmp('PhysicianRecordForm').getForm().reset();\r",
+                                                                            " Ext.getCmp('txtNPIID').setReadOnly(false);\r",
+                                                                            "\r",
+                                                                            "\r",
+                                                                            "Ext.getCmp('PhysicianPanelID').show();\r",
+                                                                            "Ext.getCmp('txtPHYPasswordID').show();\r",
+                                                                            "Ext.getCmp('txtPHYCPasswordID').show();\r",
+                                                                            "//Breadcrms\r",
+                                                                            "Ext.getCmp('Pbread').setValue('<b>Maintenance >> Add Physician</b>');\r",
+                                                                            "                      Ext.getCmp('PhysicianRecord').hide();\r",
+                                                                            "                     // Ext.getCmp('PhysicianForm').getForm().reset();"
+                                                                        ],
+                                                                        "name": "click",
+                                                                        "scope": "me"
+                                                                    },
+                                                                    "designerId": "a496e878-88d9-4bb8-950a-1f50235a7895"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "Ext.container.Container",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "margin": "5 0 10 0"
+                                            },
+                                            "designerId": "165a6659-5f0a-4b58-8a8f-ba1a159f543b",
+                                            "cn": [
+                                                {
+                                                    "type": "Ext.grid.Panel",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "emptyText": "<font size=\"4\">No Records found...</font>",
+                                                        "enableColumnHide": false,
+                                                        "enableColumnMove": false,
+                                                        "enableColumnResize": false,
+                                                        "height": 300,
+                                                        "id": "UserGrid",
+                                                        "overflowY": "scroll",
+                                                        "rowLines": false,
+                                                        "store": "DomainUserRecord",
+                                                        "title": "",
+                                                        "width": 955
+                                                    },
+                                                    "designerId": "cfcec787-5e90-4a26-83b6-7e4a2238117f",
+                                                    "cn": [
+                                                        {
+                                                            "type": "Ext.grid.View",
+                                                            "reference": {
+                                                                "name": "viewConfig",
+                                                                "type": "object"
+                                                            },
+                                                            "codeClass": null,
+                                                            "designerId": "037dda80-4d48-446d-aa63-c698b3f0cba7"
+                                                        },
+                                                        {
+                                                            "type": "Ext.grid.column.Column",
+                                                            "reference": {
+                                                                "name": "columns",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "dataIndex": "displayName",
+                                                                "text": "DisplayName",
+                                                                "width": null
+                                                            },
+                                                            "designerId": "9d46fb60-6f64-4d9d-a729-1e508e1d3969"
+                                                        },
+                                                        {
+                                                            "type": "Ext.grid.column.Column",
+                                                            "reference": {
+                                                                "name": "columns",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "dataIndex": "Type",
+                                                                "text": "Type"
+                                                            },
+                                                            "designerId": "4ec47e44-516f-41b9-9cd3-84dc0f0778aa"
+                                                        },
+                                                        {
+                                                            "type": "Ext.grid.column.Column",
+                                                            "reference": {
+                                                                "name": "columns",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "dataIndex": "Company",
+                                                                "text": "Company"
+                                                            },
+                                                            "designerId": "07268228-e543-484c-a361-272572a61104"
+                                                        },
+                                                        {
+                                                            "type": "Ext.grid.column.Column",
+                                                            "reference": {
+                                                                "name": "columns",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "dataIndex": "JobTitle",
+                                                                "text": "JobTitle"
+                                                            },
+                                                            "designerId": "28d64037-9320-4414-8525-43e934541d2c"
+                                                        },
+                                                        {
+                                                            "type": "Ext.grid.column.Column",
+                                                            "reference": {
+                                                                "name": "columns",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "dataIndex": "Phone",
+                                                                "text": "Phone"
+                                                            },
+                                                            "designerId": "6ed30fe8-590d-445b-9251-88b2260b7037"
+                                                        },
+                                                        {
+                                                            "type": "Ext.grid.column.Column",
+                                                            "reference": {
+                                                                "name": "columns",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "dataIndex": "City",
+                                                                "text": "City"
+                                                            },
+                                                            "designerId": "f637d0b3-fccb-4218-b150-25a1135c5852"
+                                                        },
+                                                        {
+                                                            "type": "Ext.grid.column.Column",
+                                                            "reference": {
+                                                                "name": "columns",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "dataIndex": "Zip",
+                                                                "text": "Zip"
+                                                            },
+                                                            "designerId": "faf36df5-8e5d-4453-b7e9-2e48a59f7f8a"
+                                                        },
+                                                        {
+                                                            "type": "Ext.grid.column.Column",
+                                                            "reference": {
+                                                                "name": "columns",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "dataIndex": "State",
+                                                                "defaultWidth": 80,
+                                                                "text": "State"
+                                                            },
+                                                            "designerId": "964ed63b-0a34-4de4-bed4-b62b66a7fe4a"
+                                                        },
+                                                        {
+                                                            "type": "Ext.grid.column.Column",
+                                                            "reference": {
+                                                                "name": "columns",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "dataIndex": "email",
+                                                                "text": "Email"
+                                                            },
+                                                            "designerId": "1fe0d015-ac25-47aa-9854-81f2526c5a07"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "Ext.toolbar.Paging",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "container|pack": "center",
+                                                        "store": "PhysicianGridBind",
+                                                        "width": 958
+                                                    },
+                                                    "designerId": "8556d7d7-715f-46be-a058-1dae6768bcd2",
+                                                    "cn": [
+                                                        {
+                                                            "type": "Ext.button.Button",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "id": "UserClear",
+                                                                "layout|flex": null,
+                                                                "text": "Clear Filter"
+                                                            },
+                                                            "designerId": "117254cd-7e55-489d-bd43-dd45e02481d4",
+                                                            "cn": [
+                                                                {
+                                                                    "type": "fixedfunction",
+                                                                    "reference": {
+                                                                        "name": "items",
+                                                                        "type": "array"
+                                                                    },
+                                                                    "codeClass": null,
+                                                                    "userConfig": {
+                                                                        "designer|params": [
+                                                                            "button",
+                                                                            "e"
+                                                                        ],
+                                                                        "fn": "handler",
+                                                                        "implHandler": [
+                                                                            " var myStore = Ext.getStore('DomainUserRecord');\r",
+                                                                            " myStore.clearFilter();\r",
+                                                                            "\r",
+                                                                            "//Ext.getCmp('txtPhysicianfilterID').reset();"
+                                                                        ]
+                                                                    },
+                                                                    "designerId": "2ad760f8-0412-41a4-be9f-014fd53630e8"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "basiceventbinding",
+                                                            "reference": {
+                                                                "name": "listeners",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "fn": "onPagingtoolbarBeforeChange11",
+                                                                "implHandler": [
+                                                                    "var PhysicianGridBind = Ext.getStore('PhysicianGridBind');\r",
+                                                                    "\r",
+                                                                    "var type = Ext.get('ddlPhysicianFilter').getValue();\r",
+                                                                    "var Search = Ext.get('txtPhysicianfilter').getValue();\r",
+                                                                    "\r",
+                                                                    "PhysicianGridBind.getProxy().extraParams.SelectFilter = type;\r",
+                                                                    "PhysicianGridBind.getProxy().extraParams.Search = Search;"
+                                                                ],
+                                                                "name": "beforechange",
+                                                                "scope": "me"
+                                                            },
+                                                            "designerId": "a6dabae6-bfcc-44eb-9bb7-74897377b8d2"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "bodyPadding": null,
+                        "bodyStyle": [
+                            "background-color:#3892d3; "
+                        ],
+                        "container|align": "middle",
+                        "container|pack": "center",
+                        "container|padding": "15 0 15 0",
+                        "designer|displayName": null,
+                        "hidden": true,
                         "id": "PatientRecord",
                         "itemId": null,
                         "layout": "hbox",
@@ -22144,6 +22808,7 @@
                                                                                         "id": "ViewPhyNPI",
                                                                                         "labelWidth": 40,
                                                                                         "margin": "0 50 0 0",
+                                                                                        "name": "NPIname",
                                                                                         "value": null,
                                                                                         "width": 200
                                                                                     },
@@ -24422,7 +25087,7 @@
                                                                     "\r",
                                                                     "        // TODO: Login using server-side authentication service\r",
                                                                     "        Ext.Ajax.request({url: \"services/Function.php?action=ChangeRecordStatus&hdrid=\"+HdrID+\"&form=\"+form,\r",
-                                                                    "                method: 'GET',\r",
+                                                                    "                method: 'POST',\r",
                                                                     "                params: HdrID,\r",
                                                                     "                success: successCallback,\r",
                                                                     "                failure: failureCallback\r",
@@ -24463,6 +25128,7 @@
                                                                     "var HdrID = Ext.getCmp('HiddenHDRID').value;\r",
                                                                     "var form = 'DrOffice';\r",
                                                                     "var altemail = Ext.getCmp('ViewPhyemail').getValue();\r",
+                                                                    "var Name = Ext.getCmp('ViewPhyName').getValue();\r",
                                                                     "// Success\r",
                                                                     "var successCallback = function(resp, ops) {\r",
                                                                     "    if(resp.responseText === 'true'){\r",
@@ -24494,7 +25160,7 @@
                                                                     "                };\r",
                                                                     "\r",
                                                                     "\r",
-                                                                    "                Ext.Ajax.request({url: \"services/smtpmail/sendToDrOffice.php?send=\"+altemail,\r",
+                                                                    "                Ext.Ajax.request({url: \"services/mail/SendToDrOffice.php?send=\"+altemail+\"&Name=\"+Name,\r",
                                                                     "                                  method: 'GET',\r",
                                                                     "                                  params: HdrID,\r",
                                                                     "                                  success: successCallbackMail,\r",
@@ -24706,549 +25372,6 @@
                             ]
                         }
                     ]
-                },
-                {
-                    "type": "Ext.panel.Panel",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "bodyPadding": null,
-                        "bodyStyle": [
-                            "background-color:#3892d3; "
-                        ],
-                        "container|align": "middle",
-                        "container|pack": "center",
-                        "container|padding": "15 0 15 0",
-                        "hidden": true,
-                        "id": "DomainUserRecord",
-                        "itemId": null,
-                        "layout": "hbox",
-                        "style": [
-                            "margin: 0 auto;\r",
-                            "    text-align: left;\r",
-                            "    width: 1000px;\r",
-                            ""
-                        ],
-                        "title": "",
-                        "titleAlign": "center"
-                    },
-                    "designerId": "20f9c7fd-3026-4598-9611-c577161d4cbc",
-                    "cn": [
-                        {
-                            "type": "Ext.form.Panel",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "bodyPadding": 10,
-                                "bodyStyle": [
-                                    "background-color:#a5cfff;"
-                                ],
-                                "height": null,
-                                "id": "DomainUserRecordForm",
-                                "layout": "auto",
-                                "title": "",
-                                "width": 1000
-                            },
-                            "designerId": "fb0207bc-c5c2-434f-a1c3-c539bd847d06",
-                            "cn": [
-                                {
-                                    "type": "Ext.container.Container",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "container|align": "stretch",
-                                        "container|pack": "end",
-                                        "id": "BreadcrumbDomainUserRecord",
-                                        "layout": "hbox"
-                                    },
-                                    "designerId": "f09cba32-c920-4100-9462-6320cca16a2b",
-                                    "cn": [
-                                        {
-                                            "type": "Ext.form.field.Display",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "fieldLabel": "<b>Maintenance >>User Record </b>",
-                                                "labelSeparator": "&nbsp;",
-                                                "labelWidth": 190
-                                            },
-                                            "designerId": "6307498f-c95d-46ba-86d5-2bb460e98e0b"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Ext.form.FieldSet",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "style": [
-                                            "border-style:solid;\r",
-                                            "border-color:#000000;"
-                                        ],
-                                        "title": "<font size=\"4\">Domain User Record</font>"
-                                    },
-                                    "designerId": "7621cc4f-2b13-4896-8133-38d511c47c37",
-                                    "cn": [
-                                        {
-                                            "type": "Ext.form.FieldSet",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "style": [
-                                                    "border-style:solid;\r",
-                                                    "border-color:#000000;"
-                                                ],
-                                                "title": "<b>Lookup</b>"
-                                            },
-                                            "designerId": "863c2826-e99b-4c3c-8b95-e9b5bf808197",
-                                            "cn": [
-                                                {
-                                                    "type": "Ext.container.Container",
-                                                    "reference": {
-                                                        "name": "items",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "container|align": "stretch",
-                                                        "container|padding": 10,
-                                                        "layout": "hbox"
-                                                    },
-                                                    "designerId": "1d21415f-3744-4f7d-bf83-2d37a2b41845",
-                                                    "cn": [
-                                                        {
-                                                            "type": "Ext.form.field.ComboBox",
-                                                            "reference": {
-                                                                "name": "items",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "designer|displayName": "",
-                                                                "editable": false,
-                                                                "fieldLabel": null,
-                                                                "id": "ddlPhysicianFilterID1",
-                                                                "inputId": "ddlPhysicianFilter",
-                                                                "itemId": "",
-                                                                "margin": "0 5 0 5",
-                                                                "maxWidth": 95,
-                                                                "store": [
-                                                                    "['NPI','FirstName','LastName','ZipCode'] \r",
-                                                                    ""
-                                                                ],
-                                                                "value": [
-                                                                    "['NPI']"
-                                                                ]
-                                                            },
-                                                            "configAlternates": {
-                                                                "store": "array"
-                                                            },
-                                                            "designerId": "598ace9e-a614-45ca-921c-960ebeae74eb"
-                                                        },
-                                                        {
-                                                            "type": "Ext.form.field.Text",
-                                                            "reference": {
-                                                                "name": "items",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "designer|displayName": "",
-                                                                "fieldLabel": null,
-                                                                "id": "txtDomainUserfilterID",
-                                                                "inputId": "txtDomainUserfilter",
-                                                                "itemId": null,
-                                                                "layout|flex": null,
-                                                                "margin": "0 5 0 5",
-                                                                "maxWidth": null,
-                                                                "width": 250
-                                                            },
-                                                            "designerId": "8e91e0d1-8f4e-4a5e-9074-d396e4e124a9"
-                                                        },
-                                                        {
-                                                            "type": "Ext.button.Button",
-                                                            "reference": {
-                                                                "name": "items",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "formBind": true,
-                                                                "itemId": "BtnDomainUserGO",
-                                                                "layout|flex": 1,
-                                                                "margin": "0 10 0 10",
-                                                                "maxWidth": 50,
-                                                                "text": "GO",
-                                                                "width": null
-                                                            },
-                                                            "designerId": "9f29efe6-b244-4fe4-a558-7dc91ecc213d"
-                                                        },
-                                                        {
-                                                            "type": "Ext.button.Button",
-                                                            "reference": {
-                                                                "name": "items",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "formBind": true,
-                                                                "id": "btDomainUserAdd",
-                                                                "itemId": null,
-                                                                "layout|flex": 1,
-                                                                "margin": "0 10 0 10",
-                                                                "maxWidth": 150,
-                                                                "text": "Add User",
-                                                                "width": null
-                                                            },
-                                                            "designerId": "9e8846ef-f81c-49d2-856d-e41ae3eeba8d",
-                                                            "cn": [
-                                                                {
-                                                                    "type": "basiceventbinding",
-                                                                    "reference": {
-                                                                        "name": "listeners",
-                                                                        "type": "array"
-                                                                    },
-                                                                    "codeClass": null,
-                                                                    "userConfig": {
-                                                                        "fn": "onBtDomainUserAddClick",
-                                                                        "name": "click",
-                                                                        "scope": "me"
-                                                                    },
-                                                                    "designerId": "3f4be5ad-b86f-4b9b-9aba-ccbe42157df9"
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "Ext.container.Container",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "margin": "5 0 10 0"
-                                            },
-                                            "designerId": "a3d8cda6-abd8-408d-b3b6-2e08c83613b5",
-                                            "cn": [
-                                                {
-                                                    "type": "Ext.grid.Panel",
-                                                    "reference": {
-                                                        "name": "items",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "enableColumnHide": false,
-                                                        "enableColumnMove": false,
-                                                        "enableColumnResize": false,
-                                                        "height": 225,
-                                                        "id": "DomainUserRecordGrid",
-                                                        "overflowY": "scroll",
-                                                        "rowLines": false,
-                                                        "store": "PhysicianGridBind",
-                                                        "title": ""
-                                                    },
-                                                    "designerId": "99799eca-2038-4544-9b56-a70a94bf6356",
-                                                    "cn": [
-                                                        {
-                                                            "type": "Ext.grid.View",
-                                                            "reference": {
-                                                                "name": "viewConfig",
-                                                                "type": "object"
-                                                            },
-                                                            "codeClass": null,
-                                                            "designerId": "f3f4d539-daaf-4707-b757-d5b260ef4edc"
-                                                        },
-                                                        {
-                                                            "type": "Ext.grid.column.Action",
-                                                            "reference": {
-                                                                "name": "columns",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "dataIndex": "Action",
-                                                                "html": null,
-                                                                "menuText": "Action",
-                                                                "width": null
-                                                            },
-                                                            "designerId": "86a7e31d-4f6f-4927-938b-74f38be52794",
-                                                            "cn": [
-                                                                {
-                                                                    "type": "actioncolumnitem",
-                                                                    "reference": {
-                                                                        "name": "items",
-                                                                        "type": "array"
-                                                                    },
-                                                                    "codeClass": null,
-                                                                    "userConfig": {
-                                                                        "designer|displayName": "Edit",
-                                                                        "icon": "resources/images/edit.png",
-                                                                        "iconCls": "actionicon",
-                                                                        "tooltip": "Edit"
-                                                                    },
-                                                                    "designerId": "c32954e2-700a-4d21-b22a-8129f24f73ce",
-                                                                    "cn": [
-                                                                        {
-                                                                            "type": "fixedfunction",
-                                                                            "reference": {
-                                                                                "name": "items",
-                                                                                "type": "array"
-                                                                            },
-                                                                            "codeClass": null,
-                                                                            "userConfig": {
-                                                                                "designer|params": [
-                                                                                    "view",
-                                                                                    "rowIndex",
-                                                                                    "colIndex",
-                                                                                    "item",
-                                                                                    "e",
-                                                                                    "record",
-                                                                                    "row"
-                                                                                ],
-                                                                                "fn": "handler",
-                                                                                "implHandler": [
-                                                                                    "console.log(record.data);\r",
-                                                                                    "var PhysicianNPI = record.data.PhysicianNPI;\r",
-                                                                                    "Ext.getCmp('PhysicianForm').getForm().reset();\r",
-                                                                                    "var PhysicianNPI = record.data.PhysicianNPI;\r",
-                                                                                    "Ext.getCmp('PhysicianRecord').hide();\r",
-                                                                                    "Ext.getCmp('PhysicianPanelID').show();\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "//Breadcrms\r",
-                                                                                    "Ext.getCmp('Pbread').setValue('<b>Maintenance >> Edit Physician</b>');\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "    //Button Hide\r",
-                                                                                    "Ext.getCmp('btnPhysicianSaveID').hide();\r",
-                                                                                    "Ext.getCmp('btnPhysicianUpdateID').show();\r",
-                                                                                    "\r",
-                                                                                    "// Ajax request to fetch data based on HDRID\r",
-                                                                                    " // Success\r",
-                                                                                    "        var successCallback = function(resp, ops) {\r",
-                                                                                    "            var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));\r",
-                                                                                    "\r",
-                                                                                    "            // var responseOjbect = Ext.JSON.decode(resp.responseText);\r",
-                                                                                    "\r",
-                                                                                    "            Ext.getCmp('txtNPIID').setValue(PhysicianNPI).setReadOnly(true);\r",
-                                                                                    "            Ext.getCmp('txtFnameID').setValue(responseOjbect.PhysicianFirstname);\r",
-                                                                                    "            Ext.getCmp('txtMnameID').setValue(responseOjbect.PhysicianMidname);\r",
-                                                                                    "            Ext.getCmp('txtLnameID').setValue(responseOjbect.PhysicianLastname);\r",
-                                                                                    "            Ext.getCmp('txtAddress1ID').setValue(responseOjbect.PhysicianAddr1);\r",
-                                                                                    "\r",
-                                                                                    "            Ext.getCmp('txtAddress2ID').setValue(responseOjbect.PhysicianAddr2);\r",
-                                                                                    "            Ext.getCmp('txtCityID').setValue(responseOjbect.PhysicianCity);\r",
-                                                                                    "            Ext.getCmp('ddlStateID').setValue(responseOjbect.PhysicianSt);\r",
-                                                                                    "            Ext.getCmp('txtZipID').setValue(responseOjbect.PhysicianZip);\r",
-                                                                                    "            Ext.getCmp('txtPhoneNoID').setValue(responseOjbect.PhysicianPhone);\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "        };\r",
-                                                                                    "\r",
-                                                                                    "        // Failure\r",
-                                                                                    "        var failureCallback = function(resp, ops) {\r",
-                                                                                    "            console.log(\"API not called\");\r",
-                                                                                    "\r",
-                                                                                    "        };\r",
-                                                                                    "         //adding loader\r",
-                                                                                    "         Ext.Ajax.on('beforerequest', function(){\r",
-                                                                                    "\r",
-                                                                                    "                        var pnl=Ext.getCmp('PhysicianPanelID');\r",
-                                                                                    "                        pnl.setLoading(true, true);\r",
-                                                                                    "                });\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "                Ext.Ajax.on('requestcomplete', function(){\r",
-                                                                                    "\r",
-                                                                                    "                      Ext.getCmp('PhysicianPanelID').setLoading(false,false);\r",
-                                                                                    "                });\r",
-                                                                                    "\r",
-                                                                                    "        // TODO: Login using server-side authentication service\r",
-                                                                                    "        Ext.Ajax.request({url: \"services/Maintainence.php?action=ShowPhysicianRecord&physician_NPI=\"+PhysicianNPI,\r",
-                                                                                    "                method: 'GET',\r",
-                                                                                    "                params: PhysicianNPI,\r",
-                                                                                    "                success: successCallback,\r",
-                                                                                    "                failure: failureCallback\r",
-                                                                                    "         });\r",
-                                                                                    "\r",
-                                                                                    ""
-                                                                                ]
-                                                                            },
-                                                                            "designerId": "9268e59d-d3fa-4c2e-a167-71108249b2a3"
-                                                                        }
-                                                                    ]
-                                                                },
-                                                                {
-                                                                    "type": "actioncolumnitem",
-                                                                    "reference": {
-                                                                        "name": "items",
-                                                                        "type": "array"
-                                                                    },
-                                                                    "codeClass": null,
-                                                                    "userConfig": {
-                                                                        "designer|displayName": "View",
-                                                                        "icon": "resources/images/view.png",
-                                                                        "iconCls": "actionicon",
-                                                                        "tooltip": "View"
-                                                                    },
-                                                                    "designerId": "deef67e8-90f9-49a7-9e61-11c25f208351",
-                                                                    "cn": [
-                                                                        {
-                                                                            "type": "fixedfunction",
-                                                                            "reference": {
-                                                                                "name": "items",
-                                                                                "type": "array"
-                                                                            },
-                                                                            "codeClass": null,
-                                                                            "userConfig": {
-                                                                                "designer|params": [
-                                                                                    "view",
-                                                                                    "rowIndex",
-                                                                                    "colIndex",
-                                                                                    "item",
-                                                                                    "e",
-                                                                                    "record",
-                                                                                    "row"
-                                                                                ],
-                                                                                "fn": "handler",
-                                                                                "implHandler": [
-                                                                                    "\r",
-                                                                                    "Ext.getCmp('PhysicianForm').getForm().reset();\r",
-                                                                                    "var PhysicianNPI = record.data.PhysicianNPI;\r",
-                                                                                    "Ext.getCmp('PhysicianRecord').hide();\r",
-                                                                                    "Ext.getCmp('PhysicianPanelID').show();\r",
-                                                                                    "Ext.getCmp('btnPhysicianUpdateID').hide();\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "//Breadcrms\r",
-                                                                                    "Ext.getCmp('Pbread').setValue('<b>Maintenance >> View Physician</b>');\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "    //Button Hide\r",
-                                                                                    "Ext.getCmp('btnPhysicianSaveID').hide();\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "// Ajax request to fetch data based on HDRID\r",
-                                                                                    " // Success\r",
-                                                                                    "        var successCallback = function(resp, ops) {\r",
-                                                                                    "            var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));\r",
-                                                                                    "\r",
-                                                                                    "            // var responseOjbect = Ext.JSON.decode(resp.responseText);\r",
-                                                                                    "\r",
-                                                                                    "            Ext.getCmp('txtNPIID').setValue(PhysicianNPI).setReadOnly(true);\r",
-                                                                                    "           // Ext.getCmp('txtNPIID').setValue(PhysicianNPI).setFieldStyle('background-color: red;');\r",
-                                                                                    "            Ext.getCmp('txtFnameID').setValue(responseOjbect.PhysicianFirstname).setReadOnly(true);\r",
-                                                                                    "            Ext.getCmp('txtMnameID').setValue(responseOjbect.PhysicianMidname).setReadOnly(true);\r",
-                                                                                    "            Ext.getCmp('txtLnameID').setValue(responseOjbect.PhysicianLastname).setReadOnly(true);\r",
-                                                                                    "            Ext.getCmp('txtAddress1ID').setValue(responseOjbect.PhysicianAddr1).setReadOnly(true);\r",
-                                                                                    "\r",
-                                                                                    "            Ext.getCmp('txtAddress2ID').setValue(responseOjbect.PhysicianAddr2).setReadOnly(true);\r",
-                                                                                    "            Ext.getCmp('txtCityID').setValue(responseOjbect.PhysicianCity).setReadOnly(true);\r",
-                                                                                    "            Ext.getCmp('ddlStateID').setValue(responseOjbect.PhysicianSt).setReadOnly(true);\r",
-                                                                                    "            Ext.getCmp('txtZipID').setValue(responseOjbect.PhysicianZip).setReadOnly(true);\r",
-                                                                                    "            Ext.getCmp('txtPhoneNoID').setValue(responseOjbect.PhysicianPhone).setReadOnly(true);\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "        };\r",
-                                                                                    "\r",
-                                                                                    "        // Failure\r",
-                                                                                    "        var failureCallback = function(resp, ops) {\r",
-                                                                                    "            console.log(\"API not called\");\r",
-                                                                                    "\r",
-                                                                                    "        };\r",
-                                                                                    "         //adding loader\r",
-                                                                                    "         Ext.Ajax.on('beforerequest', function(){\r",
-                                                                                    "\r",
-                                                                                    "                        var pnl=Ext.getCmp('PhysicianPanelID');\r",
-                                                                                    "                        pnl.setLoading(true, true);\r",
-                                                                                    "                });\r",
-                                                                                    "\r",
-                                                                                    "\r",
-                                                                                    "                Ext.Ajax.on('requestcomplete', function(){\r",
-                                                                                    "\r",
-                                                                                    "                      Ext.getCmp('PhysicianPanelID').setLoading(false,false);\r",
-                                                                                    "                });\r",
-                                                                                    "\r",
-                                                                                    "        // TODO: Login using server-side authentication service\r",
-                                                                                    "        Ext.Ajax.request({url: \"services/Maintainence.php?action=ShowPhysicianRecord&physician_NPI=\"+PhysicianNPI,\r",
-                                                                                    "                method: 'GET',\r",
-                                                                                    "                params: PhysicianNPI,\r",
-                                                                                    "                success: successCallback,\r",
-                                                                                    "                failure: failureCallback\r",
-                                                                                    "         });\r",
-                                                                                    "\r",
-                                                                                    ""
-                                                                                ]
-                                                                            },
-                                                                            "designerId": "d0cdc037-5ebb-49af-9044-57dd8ddae3ee"
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "type": "Ext.toolbar.Paging",
-                                                    "reference": {
-                                                        "name": "items",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "container|pack": "center",
-                                                        "store": "PhysicianGridBind",
-                                                        "width": 958
-                                                    },
-                                                    "designerId": "d03887f7-7702-4c6f-84e0-04ae8c2bf14b",
-                                                    "cn": [
-                                                        {
-                                                            "type": "Ext.button.Button",
-                                                            "reference": {
-                                                                "name": "items",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "layout|flex": null,
-                                                                "text": "Clear Fillter"
-                                                            },
-                                                            "designerId": "7757a617-f2bd-4e05-977b-dffbb1b75573"
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
                 }
             ]
         },
@@ -25292,7 +25415,7 @@
                             "background-color:#a5cfff;"
                         ],
                         "id": "loginForm1",
-                        "title": "Centered by the Signatouch Login",
+                        "title": "Signatouch Login",
                         "titleAlign": "center"
                     },
                     "designerId": "47969686-c527-48f4-8502-ebe4f805c19a",

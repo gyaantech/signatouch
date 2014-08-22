@@ -707,11 +707,8 @@ public function check_for_existaince($domain , $physician_npi_user) {
   }
     public function ZimbraCreatePhysicianAccount($Trace, $ServerAddress, $AdminUserName, $AdminPassword, $NewUserName, $NewUserPassword, $DefaultCOS)
   {
-
          $connect = new Zimbra();
         $param = $this->set_physician_parameters();
-         $phone_arr = explode("-",$param['phone']);
-        $password = implode("",$phone_arr);
          $CurlHandle = curl_init();
           curl_setopt($CurlHandle, CURLOPT_URL,           "$connect->ServerAddress:7071/service/admin/soap");
           curl_setopt($CurlHandle, CURLOPT_POST,           TRUE);
@@ -734,7 +731,7 @@ public function check_for_existaince($domain , $physician_npi_user) {
                                   <soap:Body>
                                    <CreateAccountRequest xmlns="urn:zimbraAdmin">
                                                   <name>' . $param['NewUserName']. '</name>
-                                                  <password>' . $password . '</password>
+                                                  <password>' . $param['phone'] . '</password>
                                                   <a n="zimbraCOSId">' . $DefaultCOS . '</a>
                                                   <a n="displayName">'.$param['displayName'].'</a>
                                                <a n="givenName">'.$param['firstName'].'</a>

@@ -106,6 +106,18 @@
                 "name": "State"
             },
             "designerId": "522713c2-4d92-4ce7-ac99-9965dbb24964"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "email"
+            },
+            "designerId": "e050ee5a-671b-4523-8178-6ebbba25e156"
         }
     ]
 }

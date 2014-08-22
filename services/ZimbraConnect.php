@@ -124,7 +124,7 @@ class Zimbra {
 
           return $zimbraId;
   }   
-  // function that returns cos ID
+  // function that returns cos ID from COS name
   public function ZimbraGetCOSID($cos_name)
   {
         //print_r($_POST);exit();
@@ -179,6 +179,62 @@ class Zimbra {
           curl_close($CurlHandle);
 
           return $cos_code;
+  }   
+    // function that returns cos name from COS ID
+  public function ZimbraGetCOSName($cos_id)
+  {
+         $CurlHandle = curl_init();
+          curl_setopt($CurlHandle, CURLOPT_URL,"$this->ServerAddress:7071/service/admin/soap");
+          curl_setopt($CurlHandle, CURLOPT_POST,TRUE);
+          curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
+          curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
+          curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
+
+          
+          // ------ Send the zimbraAdmin AuthRequest -----
+          $parameters = $this->ZimbraConnect();
+          
+          
+          // ------ Send the zimbraCreateAccount request -----
+          $SOAPMessage = '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+                                  <soap:Header>
+                                          <context xmlns="urn:zimbra">
+                                                  <authToken>' . $parameters['authToken'] . '</authToken>
+                                                  <sessionId id="' . $parameters['sessionId'] . '">' . $parameters['sessionId'] . '</sessionId>
+                                          </context>
+                                  </soap:Header>
+                                  <soap:Body>
+                                      <GetCosRequest  xmlns="urn:zimbraAdmin">
+                                             <cos by="id">'.$cos_id.'</cos>
+                                         </GetCosRequest>
+                                  </soap:Body>
+                          </soap:Envelope>';
+
+          curl_setopt($CurlHandle, CURLOPT_POSTFIELDS, $SOAPMessage);
+
+          if(!($ZimbraSOAPResponse = curl_exec($CurlHandle)))
+          {
+                 /// print("ERROR: curl_exec - (" . curl_errno($CurlHandle) . ") " . curl_error($CurlHandle));
+                  return(FALSE); exit();
+          }
+          
+                 //print("SOAP Response:<BR>" . $ZimbraSOAPResponse . "<BR><BR>\n");
+                $b="cos id="; 
+                $cos = strstr($ZimbraSOAPResponse, $b);
+                $cos = strstr($cos, "=");
+                $cos = substr($cos, 1, strpos($cos, "/") - 1);
+                
+                if($cos){
+                  
+                  $cos_arr = explode("name=",$cos);
+                  //echo '<pre>';print_r($cos_arr);echo '</pre>';
+                  $cos_name = $cos_arr[1];
+                  $cos_name = str_replace(">1<","",$cos_name);
+                  $cos_name = str_replace(">","",$cos_name);
+                  $cos_name = str_replace('"','',$cos_name); // returns COS value
+                }
+          curl_close($CurlHandle);
+          return $cos_name;
   }   
    public function ZimbraGetPhysicianAlias($npi='')
   {

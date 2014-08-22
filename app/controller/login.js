@@ -85,6 +85,8 @@ Ext.define('SignaTouch.controller.login', {
                 Ext.getCmp('ChangePasswordPanelID').hide();
                 Ext.getCmp('AddUserPanelID').hide();
                 Ext.getCmp('AddAlias').hide();
+                Ext.getCmp('DomainRecordID').hide();
+
 
                 // refresh store
                 var myStore = Ext.getStore('SectionA1GridBind');
