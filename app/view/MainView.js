@@ -16204,10 +16204,11 @@ Ext.define('SignaTouch.view.MainView', {
                         myStore.load();
                         Ext.getCmp('ViewAll').hide();
                         Ext.getCmp('sectionB1ID').show();
+                        Ext.Msg.alert("Record sent to Dr. office", 'Record sent to Dr. office successfully!');
                         // success
                         var successCallbackMail = function(resp, ops) {
 
-                            Ext.Msg.alert("Record sent to Dr. office", 'Record sent to Dr. office successfully!');
+                            ///Ext.Msg.alert("Record sent to Dr. office", 'Record sent to Dr. office successfully!');
                             // Show login failure error
                             //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
 
@@ -16222,7 +16223,7 @@ Ext.define('SignaTouch.view.MainView', {
                         };
 
 
-                        Ext.Ajax.request({url: "services/mail/SendToDrOffice.php?send="+altemail+"&Name="+Name,
+                        Ext.Ajax.request({url: "services/mail/SendToDrOffice.php?action=mail&send="+altemail+"&Name="+Name,
                                           method: 'GET',
                                           params: HdrID,
                                           success: successCallbackMail,
