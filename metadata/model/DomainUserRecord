@@ -118,6 +118,18 @@
                 "name": "email"
             },
             "designerId": "e050ee5a-671b-4523-8178-6ebbba25e156"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "cos"
+            },
+            "designerId": "6e9486d8-7263-4e08-b4bf-9512101543e7"
         }
     ]
 }

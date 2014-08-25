@@ -48,6 +48,9 @@ Ext.define('SignaTouch.model.DomainUserRecord', {
         },
         {
             name: 'email'
+        },
+        {
+            name: 'cos'
         }
     ]
 });
