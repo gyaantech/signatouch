@@ -6338,13 +6338,13 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     xtype: 'button',
                                                                     flex: 1,
                                                                     formBind: false,
-                                                                    id: 'btPhysicianAdd1',
+                                                                    id: 'btUserAdd',
                                                                     margin: '0 10 0 10',
                                                                     maxWidth: 150,
                                                                     text: 'Add User',
                                                                     listeners: {
                                                                         click: {
-                                                                            fn: me.onBtPhysicianAddClick11,
+                                                                            fn: me.onBtUserAddClick,
                                                                             scope: me
                                                                         }
                                                                     }
@@ -11531,6 +11531,10 @@ Ext.define('SignaTouch.view.MainView', {
     },
 
     onMAddUserIDClick: function(item, e, eOpts) {
+            var store = Ext.getStore('DomainUserRecord');
+
+            store.removeAll(true);
+
         Ext.getCmp('Menu').show();
         Ext.getCmp('Footer').show();
         Ext.getCmp('Header').show();
@@ -11569,19 +11573,11 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('AddUserForm').getForm().reset();
         Ext.getCmp('AddUserPanelID').hide();
 
-        var store = Ext.getStore('DomainUserRecord');
-        store.clearFilter();
-        store.load();
 
-        store.removeAll(true);
-
-        store.getProxy().url = 'services/ListAccount.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');
-        store.load();
-        store.add(Ext.JSON.decode(resp.responseText));
 
 
         //Ext.getCmp('PhysicianOfficeGridID').clearValue();
-        Ext.getCmp('UserGrid').bindStore(store);
+        //Ext.getCmp('UserGrid').bindStore(store);
 
         //Ext.getCmp('txtDomainUserfilterID').reset();
         Ext.getCmp('DomainRecordID').show();
@@ -11598,70 +11594,18 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('AddDomainID').hide();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        Ext.getCmp('PhysicianViewForm').getForm().reset();
-        var PhysicianNPI = record.data.PhysicianNPI;
-        Ext.getCmp('PhysicianRecord').hide();
-        Ext.getCmp('PhysicianViewID').show();
-        //Ext.getCmp('btnPhysicianUpdateID').hide();
-
-
-
-
-
-        //Button Hide
-        Ext.getCmp('btnPhysicianSaveID').hide();
-
-
-        // Ajax request to fetch data based on HDRID
+        // Ajax request
         // Success
         var successCallback = function(resp, ops) {
-            var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));
+            var store = Ext.getStore('DomainUserRecord');
 
-            // fetch office based on NPI
+            store.removeAll(true);
 
-            var successCallbackOffice = function(resp, ops) {
+            store.getProxy().url = 'services/ListAccount.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');
+            store.load();
+            store.add(Ext.JSON.decode(resp.responseText));
 
-                var store = Ext.getStore('DomainUserRecord');
-
-                store.removeAll(true);
-
-                store.getProxy().url = 'services/ListAccount.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');
-                store.load();
-                store.add(Ext.JSON.decode(resp.responseText));
-
-
-
-                Ext.getCmp('UserGrid').bindStore(store);
-
-            }
-            var failureCallbackOffice = function(resp, ops) {
-                console.log("API not called");
-            }
-            // TODO: Login using server-side authentication service
-            Ext.Ajax.request({url: "services/ListAccount.php?action=ZimbraListUser&domain="+localStorage.getItem('domain'),
-                              method: 'GET',
-                              params: localStorage.getItem('domain'),
-                              success: successCallbackOffice,
-                              failure: failureCallbackOffice
-                             });
+            Ext.getCmp('UserGrid').bindStore(store);
 
         };
 
@@ -11670,6 +11614,24 @@ Ext.define('SignaTouch.view.MainView', {
             console.log("API not called");
 
         };
+        // Failure
+        var failureCallback = function(resp, ops) {
+            console.log("API not called");
+
+        };
+        //adding loader
+        Ext.Ajax.on('beforerequest', function(){
+
+            var pnl=Ext.getCmp('DomainRecordID');
+            pnl.setLoading(true, true);
+        });
+
+
+        Ext.Ajax.on('requestcomplete', function(){
+
+            Ext.getCmp('DomainRecordID').setLoading(false,false);
+        });
+
 
         // TODO: Login using server-side authentication service
         Ext.Ajax.request({url: "services/ListAccount.php?action=ZimbraListUser&domain="+localStorage.getItem('domain'),
@@ -14001,25 +13963,10 @@ Ext.define('SignaTouch.view.MainView', {
                             {property: 'PatientHICN' , value: Search }]);
     },
 
-    onBtPhysicianAddClick11: function(button, e, eOpts) {
-        //Ext.getCmp('btnPhysicianAddAnotherID').hide();
-        Ext.getCmp('btnPhysicianSaveID').show();
-
-        Ext.getCmp('btnPhysicianCancel1').hide();
-        Ext.getCmp('btnPhysicianCancel').show();
-
-        Ext.getCmp('btnPhysicianUpdateID').hide();
-        Ext.getCmp('PhysicianRecordForm').getForm().reset();
-         Ext.getCmp('txtNPIID').setReadOnly(false);
-
-
-        Ext.getCmp('PhysicianPanelID').show();
-        Ext.getCmp('txtPHYPasswordID').show();
-        Ext.getCmp('txtPHYCPasswordID').show();
-        //Breadcrms
-        Ext.getCmp('Pbread').setValue('<b>Maintenance >> Add Physician</b>');
-                              Ext.getCmp('PhysicianRecord').hide();
-                             // Ext.getCmp('PhysicianForm').getForm().reset();
+    onBtUserAddClick: function(button, e, eOpts) {
+        Ext.getCmp('AddUserForm').getForm().reset();
+        Ext.getCmp('AddUserPanelID').show();
+        Ext.getCmp('DomainRecordID').hide();
     },
 
     onPagingtoolbarBeforeChange11: function(pagingtoolbar, page, eOpts) {
