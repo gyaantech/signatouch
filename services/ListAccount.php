@@ -125,7 +125,7 @@ class ListUser {
     }
   
    //to list zimbra User
-  public function ZimbraListUser () {
+  public function ZimbraListUser () {   
     $domain = '';
     if(isset($_GET['domain'])){
       $domain = $_GET['domain'];
@@ -186,9 +186,17 @@ class ListUser {
     if($v['attrib']['n'] == 'displayName'){
       $displayName = $v['cdata']; 
     }
-      if($v['attrib']['n'] == 'zimbraCOSId'){
-        $cos = $v['cdata'];
-    }
+     /* if($v['attrib']['n'] == 'zimbraCOSId'){
+        $cos = $connect->ZimbraGetCOSName($v['cdata']);
+        $cos_arr = explode("-",$cos);
+        if (array_key_exists('2', $cos_arr)) {
+          $type = $cos_arr[2];
+        }
+        else{
+          $type = $cos_arr[1];
+        }
+         //$cos = $v['cdata'];
+    }*/
       if($v['attrib']['n'] == 'company'){
       $company = $v['cdata']; 
     }
@@ -209,10 +217,12 @@ class ListUser {
     }
 
   }
-
-      $app_list[] = array('Type'=>$Type,'email'=>$email,'displayName'=> $displayName,'cos' => $cos, 'Company' => $company,'JobTitle'=>$title,'Phone'=>$mobile,'City'=>$city,'Zip'=>$postalCode,'State'=>$state); 
+  
+    //  $app_list[] = array('Type'=>$type,'email'=>$email,'displayName'=> $displayName, 'Company' => $company,'JobTitle'=>$title,'Phone'=>$mobile,'City'=>$city,'Zip'=>$postalCode,'State'=>$state); 
+      $app_list[] = array('email'=>$email,'displayName'=> $displayName, 'Company' => $company,'JobTitle'=>$title,'Phone'=>$mobile,'City'=>$city,'Zip'=>$postalCode,'State'=>$state); 
+      
           }
-    return $app_list;  
+    return array_reverse($app_list);  
   
 }
   

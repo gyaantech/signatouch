@@ -312,20 +312,20 @@ class Maintainence
  /*physician record */
       public function get_physicianGridBind () {
         $filter = array();
-  $filter_array = '';
-  $filter_json = isset($_GET['filter']) ? $_GET['filter'] : '';
-  $filter_array = json_decode($filter_json);
-  //print_r($filter_array);
-  if(is_array($filter_array)){
-   foreach($filter_array as $value){
-    $filter[$value->property] = $value->value;
-   }
-  }
-  $count = count($filter);
-  
+        $filter_array = '';
+        $filter_json = isset($_GET['filter']) ? $_GET['filter'] : '';
+        $filter_array = json_decode($filter_json);
+        //print_r($filter_array);
+        if(is_array($filter_array)){
+        foreach($filter_array as $value){
+        $filter[$value->property] = $value->value;
+        }
+        }
+        $count = count($filter);
+
         $start = $_GET['start'];
         $limit = $_GET['limit'];
-  
+
   $sql = "Select SQL_CALC_FOUND_ROWS CONCAT (if(PhysicianFirstname is null,'',PhysicianFirstname),' ',if(PhysicianMidname is null,'',PhysicianMidname),' ',if(PhysicianLastname is null,'',PhysicianLastname)) as PhysicianName,PhysicianNPI,PhysicianPhone,PhysicianCity,PhysicianZip,PhysicianSt,PhysicianFirstname,PhysicianLastname 
   FROM physician";
   if($count > 0){

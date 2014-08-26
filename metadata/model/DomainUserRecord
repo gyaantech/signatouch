@@ -30,19 +30,6 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "Type",
-                "type": "auto"
-            },
-            "designerId": "4ad45a21-4276-4daa-8eee-5c47ab8da340"
-        },
-        {
-            "type": "Ext.data.Field",
-            "reference": {
-                "name": "fields",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
                 "name": "Company"
             },
             "designerId": "5ee95564-ae64-4ba3-a869-e0c22914117d"
@@ -118,18 +105,6 @@
                 "name": "email"
             },
             "designerId": "e050ee5a-671b-4523-8178-6ebbba25e156"
-        },
-        {
-            "type": "Ext.data.Field",
-            "reference": {
-                "name": "fields",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "name": "cos"
-            },
-            "designerId": "6e9486d8-7263-4e08-b4bf-9512101543e7"
         }
     ]
 }

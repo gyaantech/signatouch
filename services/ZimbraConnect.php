@@ -225,17 +225,18 @@ class Zimbra {
                 $cos = substr($cos, 1, strpos($cos, "/") - 1);
                 
                 if($cos){
-                  
                   $cos_arr = explode("name=",$cos);
-                  //echo '<pre>';print_r($cos_arr);echo '</pre>';
                   $cos_name = $cos_arr[1];
-                  $cos_name = str_replace(">1<","",$cos_name);
+                  $cos_name = str_replace('<a n="zimbraMobilePolicyAllowUnsignedApplications">1<',"",$cos_name);
                   $cos_name = str_replace(">","",$cos_name);
                   $cos_name = str_replace('"','',$cos_name); // returns COS value
+                 ///echo '<pre>';print_r($cos_name);echo '</pre>';
                 }
           curl_close($CurlHandle);
+         
           return $cos_name;
-  }   
+  }  
+  // get physician alias from npi
    public function ZimbraGetPhysicianAlias($npi='')
   {
      $connect = new Zimbra();

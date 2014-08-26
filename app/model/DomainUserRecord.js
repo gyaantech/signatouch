@@ -25,10 +25,6 @@ Ext.define('SignaTouch.model.DomainUserRecord', {
             name: 'displayName'
         },
         {
-            name: 'Type',
-            type: 'auto'
-        },
-        {
             name: 'Company'
         },
         {
@@ -48,9 +44,6 @@ Ext.define('SignaTouch.model.DomainUserRecord', {
         },
         {
             name: 'email'
-        },
-        {
-            name: 'cos'
         }
     ]
 });

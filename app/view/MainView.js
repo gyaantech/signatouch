@@ -2048,7 +2048,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                 {
                                                     xtype: 'displayfield',
                                                     id: 'BreadcrumbAddUser',
-                                                    fieldLabel: '<b>Maintenance >> Add New User</b>',
                                                     labelSeparator: '&nbsp;',
                                                     labelWidth: 205
                                                 }
@@ -2403,6 +2402,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             xtype: 'button',
                                                             formBind: true,
                                                             cls: 'SaveBt',
+                                                            hidden: true,
                                                             id: 'btnCreate',
                                                             margin: '0 10 0 0',
                                                             padding: '',
@@ -2418,14 +2418,29 @@ Ext.define('SignaTouch.view.MainView', {
                                                         {
                                                             xtype: 'button',
                                                             formBind: false,
-                                                            cls: 'BackBt',
+                                                            hidden: true,
                                                             id: 'btnReset',
-                                                            margin: '0 0 0 0',
+                                                            margin: '0 10 0 0',
                                                             width: 92,
-                                                            text: 'Reset',
+                                                            text: 'Update',
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onBtnResetClick,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            xtype: 'button',
+                                                            cls: 'BackBt',
+                                                            hidden: true,
+                                                            id: 'btnUserBack',
+                                                            padding: '',
+                                                            width: 92,
+                                                            text: 'Back',
+                                                            listeners: {
+                                                                click: {
+                                                                    fn: me.onBtnUserBackClick,
                                                                     scope: me
                                                                 }
                                                             }
@@ -3366,424 +3381,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     scope: me
                                                                 }
                                                             }
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            xtype: 'panel',
-                            hidden: true,
-                            id: 'PhysicianPanelID',
-                            style: 'margin: 0 auto;\r\n    text-align: left;\r\n    width: 650px;',
-                            bodyPadding: '50 0 50 0',
-                            bodyStyle: 'background-color:#3892d3;',
-                            animCollapse: false,
-                            title: '',
-                            items: [
-                                {
-                                    xtype: 'form',
-                                    id: 'PhysicianForm',
-                                    layout: 'auto',
-                                    bodyPadding: 10,
-                                    bodyStyle: 'background-color:#a5cfff;',
-                                    title: '',
-                                    titleAlign: 'center',
-                                    items: [
-                                        {
-                                            xtype: 'container',
-                                            layout: {
-                                                type: 'hbox',
-                                                align: 'stretch',
-                                                pack: 'end'
-                                            },
-                                            items: [
-                                                {
-                                                    xtype: 'displayfield',
-                                                    id: 'Pbread',
-                                                    labelSeparator: '&nbsp;',
-                                                    labelWidth: 210
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            xtype: 'fieldset',
-                                            style: 'border-style:solid;\r\nborder-color:#000000;',
-                                            title: '<font size="4">Physician</font>',
-                                            items: [
-                                                {
-                                                    xtype: 'container',
-                                                    items: [
-                                                        {
-                                                            xtype: 'container',
-                                                            itemId: 'NPI',
-                                                            margin: '7 0 7 0',
-                                                            items: [
-                                                                {
-                                                                    xtype: 'textfield',
-                                                                    id: 'txtNPIID',
-                                                                    itemId: 'txtNPI',
-                                                                    width: 300,
-                                                                    fieldLabel: '<b>NPI&nbsp;<span style="color:#D94E37;">*</span></b>',
-                                                                    labelWidth: 130,
-                                                                    msgTarget: 'side',
-                                                                    inputId: 'txtPhysicianNPI',
-                                                                    allowBlank: false,
-                                                                    enforceMaxLength: true,
-                                                                    maxLength: 10,
-                                                                    regex: /^[0-9]*$/,
-                                                                    regexText: 'Please enter valid NPI',
-                                                                    vtype: 'alphanum'
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            xtype: 'container',
-                                                            itemId: 'Name',
-                                                            margin: '7 0 7 0',
-                                                            layout: {
-                                                                type: 'hbox',
-                                                                align: 'stretch'
-                                                            },
-                                                            items: [
-                                                                {
-                                                                    xtype: 'textfield',
-                                                                    id: 'txtFnameID',
-                                                                    itemId: 'txtFname',
-                                                                    width: 300,
-                                                                    fieldLabel: '<b>First Name&nbsp;<span style="color:#D94E37;">*</span></b>',
-                                                                    labelWidth: 130,
-                                                                    msgTarget: 'side',
-                                                                    fieldStyle: 'text-transform:capitalize',
-                                                                    inputId: 'txtPhysicianFname',
-                                                                    allowBlank: false,
-                                                                    regex: /^[-\sa-zA-Z]+$/,
-                                                                    regexText: 'Please enter valid name.'
-                                                                },
-                                                                {
-                                                                    xtype: 'textfield',
-                                                                    flex: 0,
-                                                                    id: 'txtMnameID',
-                                                                    itemId: 'txtMname',
-                                                                    width: 300,
-                                                                    fieldLabel: '<b>&nbsp;&nbsp;&nbsp;Middle Name</b>',
-                                                                    msgTarget: 'side',
-                                                                    fieldStyle: 'text-transform:capitalize',
-                                                                    inputId: 'txtPhysicianMname',
-                                                                    regex: /^[-\sa-zA-Z]+$/,
-                                                                    regexText: 'Please enter valid name.'
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            xtype: 'container',
-                                                            itemId: 'Name1',
-                                                            margin: '7 0 7 0',
-                                                            items: [
-                                                                {
-                                                                    xtype: 'textfield',
-                                                                    id: 'txtLnameID',
-                                                                    itemId: 'txtLname',
-                                                                    width: 300,
-                                                                    fieldLabel: '<b>Last Name&nbsp;<span style="color:#D94E37;">*</span></b>',
-                                                                    labelWidth: 130,
-                                                                    msgTarget: 'side',
-                                                                    fieldStyle: 'text-transform:capitalize',
-                                                                    inputId: 'txtPhysicianLname',
-                                                                    allowBlank: false,
-                                                                    regex: /^[-\sa-zA-Z]+$/,
-                                                                    regexText: 'Please enter valid name.'
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            xtype: 'container',
-                                                            hidden: true,
-                                                            id: 'PhyPassword',
-                                                            margin: '7 0 7 0',
-                                                            layout: {
-                                                                type: 'hbox',
-                                                                align: 'stretch'
-                                                            },
-                                                            items: [
-                                                                {
-                                                                    xtype: 'textfield',
-                                                                    id: 'txtPHYPasswordID',
-                                                                    itemId: '',
-                                                                    width: 300,
-                                                                    fieldLabel: '<b>Password&nbsp;<span style="color:#D94E37;">*</span><b/>',
-                                                                    labelWidth: 130,
-                                                                    fieldStyle: 'text-transform:capitalize',
-                                                                    inputId: 'txtPHYPassword',
-                                                                    inputType: 'password',
-                                                                    minLength: 6
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            xtype: 'container',
-                                                            hidden: true,
-                                                            id: 'PhyCPassword',
-                                                            margin: '7 0 7 0',
-                                                            layout: {
-                                                                type: 'hbox',
-                                                                align: 'stretch'
-                                                            },
-                                                            items: [
-                                                                {
-                                                                    xtype: 'textfield',
-                                                                    id: 'txtPHYCPasswordID',
-                                                                    itemId: '',
-                                                                    width: 300,
-                                                                    fieldLabel: '<b>Confirm Password&nbsp;<span style="color:#D94E37;">*</span><b/>',
-                                                                    labelWidth: 130,
-                                                                    fieldStyle: 'text-transform:capitalize',
-                                                                    inputId: 'txtPHYCPassword',
-                                                                    inputType: 'password',
-                                                                    minLength: 6,
-                                                                    listeners: {
-                                                                        blur: {
-                                                                            fn: me.onTxtPHYCPasswordIDBlur,
-                                                                            scope: me
-                                                                        }
-                                                                    }
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            xtype: 'container',
-                                                            itemId: 'Address',
-                                                            margin: '7 0 7 0',
-                                                            layout: {
-                                                                type: 'vbox',
-                                                                align: 'stretch'
-                                                            },
-                                                            items: [
-                                                                {
-                                                                    xtype: 'textfield',
-                                                                    id: 'txtAddress1ID',
-                                                                    itemId: 'txtAddress1',
-                                                                    maxWidth: 600,
-                                                                    width: 600,
-                                                                    fieldLabel: '<b>Address1&nbsp;<span style="color:#D94E37;">*</span></b>',
-                                                                    labelWidth: 130,
-                                                                    inputId: 'txtPhysicianAddress1',
-                                                                    allowBlank: false
-                                                                },
-                                                                {
-                                                                    xtype: 'textfield',
-                                                                    id: 'txtAddress2ID',
-                                                                    itemId: 'txtAddress2',
-                                                                    maxWidth: 600,
-                                                                    fieldLabel: '<b>Address2</b>',
-                                                                    labelWidth: 130,
-                                                                    inputId: 'txtPhysicianAddress2'
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            xtype: 'container',
-                                                            id: 'PhysicianEmail',
-                                                            itemId: 'NPI1',
-                                                            margin: '7 0 7 0',
-                                                            items: [
-                                                                {
-                                                                    xtype: 'textfield',
-                                                                    id: 'txtPhysicianEmailID',
-                                                                    itemId: 'txtNPI',
-                                                                    width: 300,
-                                                                    fieldLabel: '<b>Alternate Email&nbsp;<span style="color:#D94E37;">*</span></b>',
-                                                                    labelWidth: 130,
-                                                                    msgTarget: 'side',
-                                                                    inputId: 'txtPhysicianEmail',
-                                                                    allowBlank: false,
-                                                                    enforceMaxLength: false,
-                                                                    vtype: 'email'
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            xtype: 'container',
-                                                            itemId: 'Citystatezip',
-                                                            margin: '7 0 7 0',
-                                                            layout: {
-                                                                type: 'hbox',
-                                                                align: 'stretch'
-                                                            },
-                                                            items: [
-                                                                {
-                                                                    xtype: 'textfield',
-                                                                    id: 'txtCityID',
-                                                                    itemId: 'txtCity',
-                                                                    width: 300,
-                                                                    fieldLabel: '<b>City&nbsp;<span style="color:#D94E37;">*</span></b>',
-                                                                    labelWidth: 130,
-                                                                    msgTarget: 'side',
-                                                                    fieldStyle: 'text-transform:capitalize',
-                                                                    inputId: 'txtPhysicianCity',
-                                                                    allowBlank: false,
-                                                                    regex: /^[a-zA-Z\s]*$/,
-                                                                    regexText: 'Please enter valid city.'
-                                                                },
-                                                                {
-                                                                    xtype: 'combobox',
-                                                                    flex: 1,
-                                                                    id: 'ddlStateID',
-                                                                    itemId: 'ddlState',
-                                                                    maxWidth: 300,
-                                                                    fieldLabel: '<b>&nbsp;&nbsp;&nbsp;State&nbsp;<span style="color:#D94E37;">*</span></b>',
-                                                                    inputId: 'ddlPhysicianState',
-                                                                    allowBlank: false,
-                                                                    vtype: 'alpha',
-                                                                    displayField: 'des',
-                                                                    forceSelection: true,
-                                                                    queryMode: 'local',
-                                                                    store: 'States',
-                                                                    valueField: 'id'
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            xtype: 'container',
-                                                            itemId: 'PhoneNo',
-                                                            margin: '7 0 7 0',
-                                                            layout: {
-                                                                type: 'hbox',
-                                                                align: 'stretch'
-                                                            },
-                                                            items: [
-                                                                {
-                                                                    xtype: 'textfield',
-                                                                    id: 'txtZipID',
-                                                                    itemId: 'txtZip',
-                                                                    width: 300,
-                                                                    fieldLabel: '<b>Zip&nbsp;<span style="color:#D94E37;">*</span></b>',
-                                                                    labelWidth: 130,
-                                                                    msgTarget: 'side',
-                                                                    inputId: 'txtPhysicianZip',
-                                                                    allowBlank: false,
-                                                                    enforceMaxLength: true,
-                                                                    maxLength: 10,
-                                                                    regex: /(^\d{5}$)|(^\d{5}-\d{4}$)/,
-                                                                    regexText: 'Invalid Zip Code'
-                                                                },
-                                                                {
-                                                                    xtype: 'textfield',
-                                                                    id: 'txtPhoneNoID',
-                                                                    itemId: 'txtPhoneNo',
-                                                                    width: 300,
-                                                                    fieldLabel: '<b>&nbsp;&nbsp;&nbsp;Mobile No.&nbsp;<span style="color:#D94E37;">*</span></b>',
-                                                                    msgTarget: 'side',
-                                                                    inputId: 'txtPhysicianPhoneNo',
-                                                                    allowBlank: false,
-                                                                    enableKeyEvents: true,
-                                                                    enforceMaxLength: true,
-                                                                    maxLength: 12,
-                                                                    regex: /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/,
-                                                                    regexText: 'Please enter phone No. in xxx-xxx-xxxx format.',
-                                                                    listeners: {
-                                                                        keypress: {
-                                                                            fn: me.onTxtPhoneNoIDKeypress,
-                                                                            scope: me
-                                                                        }
-                                                                    }
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            xtype: 'container',
-                                                            itemId: 'Button',
-                                                            margin: '7 0 7 0',
-                                                            width: 600,
-                                                            layout: {
-                                                                type: 'hbox',
-                                                                align: 'stretch',
-                                                                pack: 'end'
-                                                            },
-                                                            items: [
-                                                                {
-                                                                    xtype: 'button',
-                                                                    hidden: true,
-                                                                    id: 'btnPhysicianAddAnotherID',
-                                                                    margin: '0 10 0 0',
-                                                                    padding: '',
-                                                                    width: 92,
-                                                                    text: 'Add Office',
-                                                                    listeners: {
-                                                                        click: {
-                                                                            fn: me.onBtnPhysicianAddAnotherIDClick,
-                                                                            scope: me
-                                                                        }
-                                                                    }
-                                                                },
-                                                                {
-                                                                    xtype: 'button',
-                                                                    formBind: true,
-                                                                    cls: 'SaveBt',
-                                                                    id: 'btnPhysicianSaveID',
-                                                                    itemId: 'btnPhysicianSave',
-                                                                    margin: '0 10 0 0',
-                                                                    width: 92,
-                                                                    text: 'Save',
-                                                                    listeners: {
-                                                                        click: {
-                                                                            fn: me.onBtnPhysicianSaveClick,
-                                                                            scope: me
-                                                                        }
-                                                                    }
-                                                                },
-                                                                {
-                                                                    xtype: 'button',
-                                                                    formBind: true,
-                                                                    cls: 'SaveBt',
-                                                                    hidden: true,
-                                                                    id: 'btnPhysicianUpdateID',
-                                                                    margin: '0 10 0 0',
-                                                                    width: 92,
-                                                                    text: 'Update',
-                                                                    listeners: {
-                                                                        click: {
-                                                                            fn: me.onBtnPhysicianUpdateIDClick,
-                                                                            scope: me
-                                                                        }
-                                                                    }
-                                                                },
-                                                                {
-                                                                    xtype: 'button',
-                                                                    cls: 'BackBt',
-                                                                    hidden: true,
-                                                                    id: 'btnPhysicianCancel',
-                                                                    padding: '',
-                                                                    width: 92,
-                                                                    text: 'Back',
-                                                                    listeners: {
-                                                                        click: {
-                                                                            fn: me.onBtnPhysicianCancelClick,
-                                                                            scope: me
-                                                                        }
-                                                                    }
-                                                                },
-                                                                {
-                                                                    xtype: 'button',
-                                                                    cls: 'BackBt',
-                                                                    hidden: true,
-                                                                    id: 'btnPhysicianCancel1',
-                                                                    itemId: '',
-                                                                    padding: '',
-                                                                    width: 92,
-                                                                    text: 'Back',
-                                                                    listeners: {
-                                                                        click: {
-                                                                            fn: me.onBtnPhysicianCancel1Click,
-                                                                            scope: me
-                                                                        }
-                                                                    }
-                                                                }
-                                                            ]
                                                         }
                                                     ]
                                                 }
@@ -6296,7 +5893,8 @@ Ext.define('SignaTouch.view.MainView', {
                                                             items: [
                                                                 {
                                                                     xtype: 'combobox',
-                                                                    id: 'ddlPhysicianFilterID2',
+                                                                    hidden: true,
+                                                                    id: 'ddlUserFilterID',
                                                                     itemId: '',
                                                                     margin: '0 5 0 5',
                                                                     maxWidth: 95,
@@ -6306,7 +5904,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     inputId: 'ddlUserFilter',
                                                                     editable: false,
                                                                     store: [
-                                                                        'NPI',
                                                                         'FirstName',
                                                                         'LastName',
                                                                         'ZipCode'
@@ -6314,6 +5911,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                 },
                                                                 {
                                                                     xtype: 'textfield',
+                                                                    hidden: true,
                                                                     id: 'txtDomainUserfilterID',
                                                                     margin: '0 5 0 5',
                                                                     width: 250,
@@ -6323,13 +5921,14 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     xtype: 'button',
                                                                     flex: 1,
                                                                     formBind: false,
-                                                                    itemId: 'PhysicianBtnGO',
+                                                                    hidden: true,
+                                                                    itemId: 'UserBtnGO',
                                                                     margin: '0 10 0 10',
                                                                     maxWidth: 50,
                                                                     text: 'GO',
                                                                     listeners: {
                                                                         click: {
-                                                                            fn: me.onPhysicianBtnGOClick1,
+                                                                            fn: me.onUserBtnGOClick,
                                                                             scope: me
                                                                         }
                                                                     }
@@ -6361,7 +5960,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                             xtype: 'gridpanel',
                                                             height: 300,
                                                             id: 'UserGrid',
-                                                            width: 955,
                                                             overflowY: 'scroll',
                                                             title: '',
                                                             emptyText: '<font size="4">No Records found...</font>',
@@ -6373,13 +5971,9 @@ Ext.define('SignaTouch.view.MainView', {
                                                             columns: [
                                                                 {
                                                                     xtype: 'gridcolumn',
+                                                                    width: 117,
                                                                     dataIndex: 'displayName',
-                                                                    text: 'DisplayName'
-                                                                },
-                                                                {
-                                                                    xtype: 'gridcolumn',
-                                                                    dataIndex: 'Type',
-                                                                    text: 'Type'
+                                                                    text: 'Display Name'
                                                                 },
                                                                 {
                                                                     xtype: 'gridcolumn',
@@ -6408,14 +6002,219 @@ Ext.define('SignaTouch.view.MainView', {
                                                                 },
                                                                 {
                                                                     xtype: 'gridcolumn',
-                                                                    defaultWidth: 80,
+                                                                    width: 64,
                                                                     dataIndex: 'State',
                                                                     text: 'State'
                                                                 },
                                                                 {
                                                                     xtype: 'gridcolumn',
+                                                                    width: 160,
+                                                                    defaultWidth: 160,
                                                                     dataIndex: 'email',
                                                                     text: 'Email'
+                                                                },
+                                                                {
+                                                                    xtype: 'actioncolumn',
+                                                                    text: 'Action',
+                                                                    width: 90,
+                                                                    defaultWidth: 90,
+                                                                    align: 'center',
+                                                                    dataIndex: 'Action',
+                                                                    menuText: 'Action',
+                                                                    items: [
+                                                                        {
+                                                                            handler: function(view, rowIndex, colIndex, item, e, record, row) {
+                                                                                var email = record.data.email;
+                                                                                Ext.getCmp('AddUserForm').getForm().reset();
+                                                                                Ext.getCmp('DomainRecordID').hide();
+                                                                                Ext.getCmp('AddUserPanelID').show();
+
+                                                                                Ext.getCmp('btnCreate').hide();
+                                                                                Ext.getCmp('btnReset').show();
+                                                                                Ext.getCmp('btnUserBack').show();
+
+                                                                                //Breadcrms
+                                                                                Ext.getCmp('BreadcrumbAddUser').setValue('<b>Manage Account >> Edit User</b>');
+
+
+                                                                                //Button Hide
+                                                                                /*Ext.getCmp('btnPhysicianSaveID').hide();
+                                                                                Ext.getCmp('btnPhysicianUpdateID').show();
+                                                                                Ext.getCmp('txtPHYPasswordID').hide();
+                                                                                Ext.getCmp('txtPHYCPasswordID').hide();
+
+
+                                                                                // Ajax request to fetch data based on HDRID
+                                                                                // Success
+                                                                                var successCallback = function(resp, ops) {
+                                                                                    var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));
+
+                                                                                    // var responseOjbect = Ext.JSON.decode(resp.responseText);
+                                                                                    //console.log(responseOjbect.PhysicianAltEmailId);
+                                                                                    Ext.getCmp('txtNPIID').setValue(PhysicianNPI).setReadOnly(true);
+                                                                                    Ext.getCmp('txtFnameID').setValue(responseOjbect.PhysicianFirstname);
+                                                                                    Ext.getCmp('txtMnameID').setValue(responseOjbect.PhysicianMidname);
+                                                                                    Ext.getCmp('txtLnameID').setValue(responseOjbect.PhysicianLastname);
+                                                                                    Ext.getCmp('txtAddress1ID').setValue(responseOjbect.PhysicianAddr1);
+
+                                                                                    Ext.getCmp('txtAddress2ID').setValue(responseOjbect.PhysicianAddr2);
+                                                                                    Ext.getCmp('txtCityID').setValue(responseOjbect.PhysicianCity);
+                                                                                    Ext.getCmp('ddlStateID').setValue(responseOjbect.PhysicianSt);
+                                                                                    Ext.getCmp('txtZipID').setValue(responseOjbect.PhysicianZip);
+                                                                                    Ext.getCmp('txtPhoneNoID').setValue(responseOjbect.PhysicianPhone);
+                                                                                    Ext.getCmp('txtPhysicianEmailID').setValue(responseOjbect.PhysicianAltEmailId);
+
+                                                                                };
+
+                                                                                // Failure
+                                                                                var failureCallback = function(resp, ops) {
+                                                                                    console.log("API not called");
+
+                                                                                };
+                                                                                //adding loader
+                                                                                Ext.Ajax.on('beforerequest', function(){
+
+                                                                                    var pnl=Ext.getCmp('PhysicianPanelID');
+                                                                                    pnl.setLoading(true, true);
+                                                                                });
+
+
+                                                                                Ext.Ajax.on('requestcomplete', function(){
+
+                                                                                    Ext.getCmp('PhysicianPanelID').setLoading(false,false);
+                                                                                });
+
+                                                                                // TODO: Login using server-side authentication service
+                                                                                Ext.Ajax.request({url: "services/Maintainence.php?action=ShowPhysicianRecord&physician_NPI="+PhysicianNPI,
+                                                                                    method: 'GET',
+                                                                                    params: PhysicianNPI,
+                                                                                    success: successCallback,
+                                                                                    failure: failureCallback
+                                                                                });
+
+                                                                                */
+                                                                            },
+                                                                            icon: 'resources/images/edit.png',
+                                                                            iconCls: 'actionicon',
+                                                                            tooltip: 'Edit'
+                                                                        },
+                                                                        {
+                                                                            handler: function(view, rowIndex, colIndex, item, e, record, row) {
+
+                                                                                Ext.getCmp('PhysicianViewForm').getForm().reset();
+                                                                                var PhysicianNPI = record.data.PhysicianNPI;
+                                                                                Ext.getCmp('PhysicianRecord').hide();
+                                                                                Ext.getCmp('PhysicianViewID').show();
+                                                                                //Ext.getCmp('btnPhysicianUpdateID').hide();
+
+
+
+
+
+                                                                                //Button Hide
+                                                                                Ext.getCmp('btnPhysicianSaveID').hide();
+
+
+                                                                                // Ajax request to fetch data based on HDRID
+                                                                                // Success
+                                                                                var successCallback = function(resp, ops) {
+                                                                                    var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));
+
+                                                                                    // fetch office based on NPI
+
+                                                                                    var successCallbackOffice = function(resp, ops) {
+
+                                                                                        //Ext.getCmp('PhysicianAliasID').enable();
+                                                                                        //Ext.getCmp('PhysicianAliasID').reset();
+                                                                                        var store = Ext.getStore("PhysicianOffice");
+                                                                                        console.log(store);
+                                                                                        store.removeAll(true);
+
+                                                                                        store.getProxy().url = 'services/ZimbraPhysicianAlias.php?action=GetPhysicianofficeFromNpi&NPI='+PhysicianNPI;
+                                                                                        store.load();
+                                                                                        store.add(Ext.JSON.decode(resp.responseText));
+
+
+                                                                                        //Ext.getCmp('PhysicianOfficeGridID').clearValue();
+                                                                                        Ext.getCmp('PhysicianOfficeGridID').bindStore(store);
+                                                                                    }
+                                                                                    var failureCallbackOffice = function(resp, ops) {
+                                                                                        console.log("API not called");
+                                                                                    }
+                                                                                    // TODO: Login using server-side authentication service
+                                                                                    Ext.Ajax.request({url: "services/ZimbraPhysicianAlias.php?action=GetPhysicianofficeFromNpi&NPI="+PhysicianNPI,
+                                                                                        method: 'GET',
+                                                                                        params: PhysicianNPI,
+                                                                                        success: successCallbackOffice,
+                                                                                        failure: failureCallbackOffice
+                                                                                    });
+
+                                                                                    // var responseOjbect = Ext.JSON.decode(resp.responseText);
+
+                                                                                    Ext.getCmp('txtViewNPIID').setValue(PhysicianNPI);
+
+                                                                                    Ext.getCmp('txtViewPhyNameID').setValue(responseOjbect.PhysicianFirstname+' '+responseOjbect.PhysicianMidname+' '+responseOjbect.PhysicianLastname);
+
+
+                                                                                    Ext.getCmp('txtViewAddress1ID').setValue(responseOjbect.PhysicianAddr1);
+
+
+
+                                                                                    Ext.getCmp('txtViewAddress2ID').setValue(responseOjbect.PhysicianAddr2);
+
+
+                                                                                    Ext.getCmp('txtViewCityID').setValue(responseOjbect.PhysicianCity);
+
+
+                                                                                    Ext.getCmp('txtViewStateID').setValue(responseOjbect.PhysicianSt);
+
+
+                                                                                    Ext.getCmp('txtViewZipID').setValue(responseOjbect.PhysicianZip);
+
+
+                                                                                    Ext.getCmp('txtViewPhoneNoID').setValue(responseOjbect.PhysicianPhone);
+
+
+                                                                                    Ext.getCmp('txtViewEmailID').setValue(responseOjbect.PhysicianAltEmailId);
+
+
+
+
+                                                                                };
+
+                                                                                // Failure
+                                                                                var failureCallback = function(resp, ops) {
+                                                                                    console.log("API not called");
+
+                                                                                };
+                                                                                //adding loader
+                                                                                Ext.Ajax.on('beforerequest', function(){
+
+                                                                                    var pnl=Ext.getCmp('PhysicianViewID');
+                                                                                    pnl.setLoading(true, true);
+                                                                                });
+
+
+                                                                                Ext.Ajax.on('requestcomplete', function(){
+
+                                                                                    Ext.getCmp('PhysicianViewID').setLoading(false,false);
+                                                                                });
+
+                                                                                // TODO: Login using server-side authentication service
+                                                                                Ext.Ajax.request({url: "services/Maintainence.php?action=ShowPhysicianRecord&physician_NPI="+PhysicianNPI,
+                                                                                    method: 'GET',
+                                                                                    params: PhysicianNPI,
+                                                                                    success: successCallback,
+                                                                                    failure: failureCallback
+                                                                                });
+
+
+                                                                            },
+                                                                            icon: 'resources/images/view.png',
+                                                                            iconCls: 'actionicon',
+                                                                            tooltip: 'View'
+                                                                        }
+                                                                    ]
                                                                 }
                                                             ]
                                                         },
@@ -6442,7 +6241,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             ],
                                                             listeners: {
                                                                 beforechange: {
-                                                                    fn: me.onPagingtoolbarBeforeChange11,
+                                                                    fn: me.onPagingtoolbarBeforeChange5,
                                                                     scope: me
                                                                 }
                                                             }
@@ -11121,6 +10920,426 @@ Ext.define('SignaTouch.view.MainView', {
                     frameHeader: false,
                     header: false,
                     title: 'footer'
+                },
+                {
+                    xtype: 'panel',
+                    region: 'east',
+                    hidden: true,
+                    id: 'PhysicianPanelID',
+                    style: 'margin: 0 auto;\r\n    text-align: left;\r\n    width: 650px;',
+                    width: 150,
+                    bodyPadding: '50 0 50 0',
+                    bodyStyle: 'background-color:#3892d3;',
+                    animCollapse: false,
+                    title: '',
+                    items: [
+                        {
+                            xtype: 'form',
+                            id: 'PhysicianForm',
+                            layout: 'auto',
+                            bodyPadding: 10,
+                            bodyStyle: 'background-color:#a5cfff;',
+                            title: '',
+                            titleAlign: 'center',
+                            items: [
+                                {
+                                    xtype: 'container',
+                                    layout: {
+                                        type: 'hbox',
+                                        align: 'stretch',
+                                        pack: 'end'
+                                    },
+                                    items: [
+                                        {
+                                            xtype: 'displayfield',
+                                            id: 'Pbread',
+                                            labelSeparator: '&nbsp;',
+                                            labelWidth: 210
+                                        }
+                                    ]
+                                },
+                                {
+                                    xtype: 'fieldset',
+                                    style: 'border-style:solid;\r\nborder-color:#000000;',
+                                    title: '<font size="4">Physician</font>',
+                                    items: [
+                                        {
+                                            xtype: 'container',
+                                            items: [
+                                                {
+                                                    xtype: 'container',
+                                                    itemId: 'NPI',
+                                                    margin: '7 0 7 0',
+                                                    items: [
+                                                        {
+                                                            xtype: 'textfield',
+                                                            id: 'txtNPIID',
+                                                            itemId: 'txtNPI',
+                                                            width: 300,
+                                                            fieldLabel: '<b>NPI&nbsp;<span style="color:#D94E37;">*</span></b>',
+                                                            labelWidth: 130,
+                                                            msgTarget: 'side',
+                                                            inputId: 'txtPhysicianNPI',
+                                                            allowBlank: false,
+                                                            enforceMaxLength: true,
+                                                            maxLength: 10,
+                                                            regex: /^[0-9]*$/,
+                                                            regexText: 'Please enter valid NPI',
+                                                            vtype: 'alphanum'
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    xtype: 'container',
+                                                    itemId: 'Name',
+                                                    margin: '7 0 7 0',
+                                                    layout: {
+                                                        type: 'hbox',
+                                                        align: 'stretch'
+                                                    },
+                                                    items: [
+                                                        {
+                                                            xtype: 'textfield',
+                                                            id: 'txtFnameID',
+                                                            itemId: 'txtFname',
+                                                            width: 300,
+                                                            fieldLabel: '<b>First Name&nbsp;<span style="color:#D94E37;">*</span></b>',
+                                                            labelWidth: 130,
+                                                            msgTarget: 'side',
+                                                            fieldStyle: 'text-transform:capitalize',
+                                                            inputId: 'txtPhysicianFname',
+                                                            allowBlank: false,
+                                                            regex: /^[-\sa-zA-Z]+$/,
+                                                            regexText: 'Please enter valid name.'
+                                                        },
+                                                        {
+                                                            xtype: 'textfield',
+                                                            flex: 0,
+                                                            id: 'txtMnameID',
+                                                            itemId: 'txtMname',
+                                                            width: 300,
+                                                            fieldLabel: '<b>&nbsp;&nbsp;&nbsp;Middle Name</b>',
+                                                            msgTarget: 'side',
+                                                            fieldStyle: 'text-transform:capitalize',
+                                                            inputId: 'txtPhysicianMname',
+                                                            regex: /^[-\sa-zA-Z]+$/,
+                                                            regexText: 'Please enter valid name.'
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    xtype: 'container',
+                                                    itemId: 'Name1',
+                                                    margin: '7 0 7 0',
+                                                    items: [
+                                                        {
+                                                            xtype: 'textfield',
+                                                            id: 'txtLnameID',
+                                                            itemId: 'txtLname',
+                                                            width: 300,
+                                                            fieldLabel: '<b>Last Name&nbsp;<span style="color:#D94E37;">*</span></b>',
+                                                            labelWidth: 130,
+                                                            msgTarget: 'side',
+                                                            fieldStyle: 'text-transform:capitalize',
+                                                            inputId: 'txtPhysicianLname',
+                                                            allowBlank: false,
+                                                            regex: /^[-\sa-zA-Z]+$/,
+                                                            regexText: 'Please enter valid name.'
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    xtype: 'container',
+                                                    hidden: true,
+                                                    id: 'PhyPassword',
+                                                    margin: '7 0 7 0',
+                                                    layout: {
+                                                        type: 'hbox',
+                                                        align: 'stretch'
+                                                    },
+                                                    items: [
+                                                        {
+                                                            xtype: 'textfield',
+                                                            id: 'txtPHYPasswordID',
+                                                            itemId: '',
+                                                            width: 300,
+                                                            fieldLabel: '<b>Password&nbsp;<span style="color:#D94E37;">*</span><b/>',
+                                                            labelWidth: 130,
+                                                            fieldStyle: 'text-transform:capitalize',
+                                                            inputId: 'txtPHYPassword',
+                                                            inputType: 'password',
+                                                            minLength: 6
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    xtype: 'container',
+                                                    hidden: true,
+                                                    id: 'PhyCPassword',
+                                                    margin: '7 0 7 0',
+                                                    layout: {
+                                                        type: 'hbox',
+                                                        align: 'stretch'
+                                                    },
+                                                    items: [
+                                                        {
+                                                            xtype: 'textfield',
+                                                            id: 'txtPHYCPasswordID',
+                                                            itemId: '',
+                                                            width: 300,
+                                                            fieldLabel: '<b>Confirm Password&nbsp;<span style="color:#D94E37;">*</span><b/>',
+                                                            labelWidth: 130,
+                                                            fieldStyle: 'text-transform:capitalize',
+                                                            inputId: 'txtPHYCPassword',
+                                                            inputType: 'password',
+                                                            minLength: 6,
+                                                            listeners: {
+                                                                blur: {
+                                                                    fn: me.onTxtPHYCPasswordIDBlur,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    xtype: 'container',
+                                                    itemId: 'Address',
+                                                    margin: '7 0 7 0',
+                                                    layout: {
+                                                        type: 'vbox',
+                                                        align: 'stretch'
+                                                    },
+                                                    items: [
+                                                        {
+                                                            xtype: 'textfield',
+                                                            id: 'txtAddress1ID',
+                                                            itemId: 'txtAddress1',
+                                                            maxWidth: 600,
+                                                            width: 600,
+                                                            fieldLabel: '<b>Address1&nbsp;<span style="color:#D94E37;">*</span></b>',
+                                                            labelWidth: 130,
+                                                            inputId: 'txtPhysicianAddress1',
+                                                            allowBlank: false
+                                                        },
+                                                        {
+                                                            xtype: 'textfield',
+                                                            id: 'txtAddress2ID',
+                                                            itemId: 'txtAddress2',
+                                                            maxWidth: 600,
+                                                            fieldLabel: '<b>Address2</b>',
+                                                            labelWidth: 130,
+                                                            inputId: 'txtPhysicianAddress2'
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    xtype: 'container',
+                                                    id: 'PhysicianEmail',
+                                                    itemId: 'NPI1',
+                                                    margin: '7 0 7 0',
+                                                    items: [
+                                                        {
+                                                            xtype: 'textfield',
+                                                            id: 'txtPhysicianEmailID',
+                                                            itemId: 'txtNPI',
+                                                            width: 300,
+                                                            fieldLabel: '<b>Alternate Email&nbsp;<span style="color:#D94E37;">*</span></b>',
+                                                            labelWidth: 130,
+                                                            msgTarget: 'side',
+                                                            inputId: 'txtPhysicianEmail',
+                                                            allowBlank: false,
+                                                            enforceMaxLength: false,
+                                                            vtype: 'email'
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    xtype: 'container',
+                                                    itemId: 'Citystatezip',
+                                                    margin: '7 0 7 0',
+                                                    layout: {
+                                                        type: 'hbox',
+                                                        align: 'stretch'
+                                                    },
+                                                    items: [
+                                                        {
+                                                            xtype: 'textfield',
+                                                            id: 'txtCityID',
+                                                            itemId: 'txtCity',
+                                                            width: 300,
+                                                            fieldLabel: '<b>City&nbsp;<span style="color:#D94E37;">*</span></b>',
+                                                            labelWidth: 130,
+                                                            msgTarget: 'side',
+                                                            fieldStyle: 'text-transform:capitalize',
+                                                            inputId: 'txtPhysicianCity',
+                                                            allowBlank: false,
+                                                            regex: /^[a-zA-Z\s]*$/,
+                                                            regexText: 'Please enter valid city.'
+                                                        },
+                                                        {
+                                                            xtype: 'combobox',
+                                                            flex: 1,
+                                                            id: 'ddlStateID',
+                                                            itemId: 'ddlState',
+                                                            maxWidth: 300,
+                                                            fieldLabel: '<b>&nbsp;&nbsp;&nbsp;State&nbsp;<span style="color:#D94E37;">*</span></b>',
+                                                            inputId: 'ddlPhysicianState',
+                                                            allowBlank: false,
+                                                            vtype: 'alpha',
+                                                            displayField: 'des',
+                                                            forceSelection: true,
+                                                            queryMode: 'local',
+                                                            store: 'States',
+                                                            valueField: 'id'
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    xtype: 'container',
+                                                    itemId: 'PhoneNo',
+                                                    margin: '7 0 7 0',
+                                                    layout: {
+                                                        type: 'hbox',
+                                                        align: 'stretch'
+                                                    },
+                                                    items: [
+                                                        {
+                                                            xtype: 'textfield',
+                                                            id: 'txtZipID',
+                                                            itemId: 'txtZip',
+                                                            width: 300,
+                                                            fieldLabel: '<b>Zip&nbsp;<span style="color:#D94E37;">*</span></b>',
+                                                            labelWidth: 130,
+                                                            msgTarget: 'side',
+                                                            inputId: 'txtPhysicianZip',
+                                                            allowBlank: false,
+                                                            enforceMaxLength: true,
+                                                            maxLength: 10,
+                                                            regex: /(^\d{5}$)|(^\d{5}-\d{4}$)/,
+                                                            regexText: 'Invalid Zip Code'
+                                                        },
+                                                        {
+                                                            xtype: 'textfield',
+                                                            id: 'txtPhoneNoID',
+                                                            itemId: 'txtPhoneNo',
+                                                            width: 300,
+                                                            fieldLabel: '<b>&nbsp;&nbsp;&nbsp;Mobile No.&nbsp;<span style="color:#D94E37;">*</span></b>',
+                                                            msgTarget: 'side',
+                                                            inputId: 'txtPhysicianPhoneNo',
+                                                            allowBlank: false,
+                                                            enableKeyEvents: true,
+                                                            enforceMaxLength: true,
+                                                            maxLength: 12,
+                                                            regex: /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/,
+                                                            regexText: 'Please enter phone No. in xxx-xxx-xxxx format.',
+                                                            listeners: {
+                                                                keypress: {
+                                                                    fn: me.onTxtPhoneNoIDKeypress,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    xtype: 'container',
+                                                    itemId: 'Button',
+                                                    margin: '7 0 7 0',
+                                                    width: 600,
+                                                    layout: {
+                                                        type: 'hbox',
+                                                        align: 'stretch',
+                                                        pack: 'end'
+                                                    },
+                                                    items: [
+                                                        {
+                                                            xtype: 'button',
+                                                            hidden: true,
+                                                            id: 'btnPhysicianAddAnotherID',
+                                                            margin: '0 10 0 0',
+                                                            padding: '',
+                                                            width: 92,
+                                                            text: 'Add Office',
+                                                            listeners: {
+                                                                click: {
+                                                                    fn: me.onBtnPhysicianAddAnotherIDClick,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            xtype: 'button',
+                                                            formBind: true,
+                                                            cls: 'SaveBt',
+                                                            id: 'btnPhysicianSaveID',
+                                                            itemId: 'btnPhysicianSave',
+                                                            margin: '0 10 0 0',
+                                                            width: 92,
+                                                            text: 'Save',
+                                                            listeners: {
+                                                                click: {
+                                                                    fn: me.onBtnPhysicianSaveClick,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            xtype: 'button',
+                                                            formBind: true,
+                                                            cls: 'SaveBt',
+                                                            hidden: true,
+                                                            id: 'btnPhysicianUpdateID',
+                                                            margin: '0 10 0 0',
+                                                            width: 92,
+                                                            text: 'Update',
+                                                            listeners: {
+                                                                click: {
+                                                                    fn: me.onBtnPhysicianUpdateIDClick,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            xtype: 'button',
+                                                            cls: 'BackBt',
+                                                            hidden: true,
+                                                            id: 'btnPhysicianCancel',
+                                                            padding: '',
+                                                            width: 92,
+                                                            text: 'Back',
+                                                            listeners: {
+                                                                click: {
+                                                                    fn: me.onBtnPhysicianCancelClick,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            xtype: 'button',
+                                                            cls: 'BackBt',
+                                                            hidden: true,
+                                                            id: 'btnPhysicianCancel1',
+                                                            itemId: '',
+                                                            padding: '',
+                                                            width: 92,
+                                                            text: 'Back',
+                                                            listeners: {
+                                                                click: {
+                                                                    fn: me.onBtnPhysicianCancel1Click,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         });
@@ -11614,11 +11833,7 @@ Ext.define('SignaTouch.view.MainView', {
             console.log("API not called");
 
         };
-        // Failure
-        var failureCallback = function(resp, ops) {
-            console.log("API not called");
 
-        };
         //adding loader
         Ext.Ajax.on('beforerequest', function(){
 
@@ -12596,6 +12811,63 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('AddUserForm').getForm().reset();
     },
 
+    onBtnUserBackClick: function(button, e, eOpts) {
+        Ext.getCmp('txtDomainUserfilterID').reset();
+        /*var myStore = Ext.getStore('DomainUserRecord');
+        myStore.clearFilter();
+        myStore.load();*/
+        // Ajax request
+        // Success
+        var successCallback = function(resp, ops) {
+            var store = Ext.getStore('DomainUserRecord');
+
+            store.removeAll(true);
+
+            store.getProxy().url = 'services/ListAccount.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');
+            store.load();
+            store.add(Ext.JSON.decode(resp.responseText));
+
+            Ext.getCmp('UserGrid').bindStore(store);
+
+        };
+
+        // Failure
+        var failureCallback = function(resp, ops) {
+            console.log("API not called");
+
+        };
+
+        //adding loader
+        Ext.Ajax.on('beforerequest', function(){
+
+            var pnl=Ext.getCmp('DomainRecordID');
+            pnl.setLoading(true, true);
+        });
+
+
+        Ext.Ajax.on('requestcomplete', function(){
+
+            Ext.getCmp('DomainRecordID').setLoading(false,false);
+        });
+
+
+        // TODO: Login using server-side authentication service
+        Ext.Ajax.request({url: "services/ListAccount.php?action=ZimbraListUser&domain="+localStorage.getItem('domain'),
+                          method: 'GET',
+                          params: localStorage.getItem('domain'),
+                          success: successCallback,
+                          failure: failureCallback
+                         });
+
+
+
+        Ext.getCmp('AddUserPanelID').hide();
+        Ext.getCmp('DomainRecordID').show();
+        Ext.getCmp('AddUserForm').getForm().reset();
+
+
+    },
+
     onTxtRChangePasswordIDBlur: function(component, e, eOpts) {
         if(Ext.getCmp('txtChangePasswordID').value!== '' && Ext.getCmp('txtRChangePasswordID').value!== ''){
           if(Ext.getCmp('txtChangePasswordID').getValue() !== Ext.getCmp('txtRChangePasswordID').getValue()){
@@ -12880,338 +13152,6 @@ Ext.define('SignaTouch.view.MainView', {
                             Ext.getCmp('PatientForm').getForm().reset();
                            //}
                // });
-
-    },
-
-    onTxtPHYCPasswordIDBlur: function(component, e, eOpts) {
-        if(Ext.getCmp('txtPHYPasswordID').value!== '' && Ext.getCmp('txtPHYCPasswordID').value!== ''){
-          if(Ext.getCmp('txtPHYPasswordID').getValue() !== Ext.getCmp('txtPHYCPasswordID').getValue()){
-             Ext.Msg.alert("Passwords do not match", 'Passwords do not match');
-          }
-        }
-
-    },
-
-    onTxtPhoneNoIDKeypress: function(textfield, e, eOpts) {
-        var phone = Ext.getCmp('txtPhoneNoID').getValue();
-        if(phone.length === 3 || phone.length === 7){
-            var newPhone = phone.concat('-');
-            Ext.getCmp('txtPhoneNoID').setValue(newPhone);
-        }
-
-
-    },
-
-    onBtnPhysicianAddAnotherIDClick: function(button, e, eOpts) {
-        var form =  Ext.getCmp('PhysicianForm');  // Physician form
-        values = form.getValues();    // Form values
-        var phy_npi = values.txtPhysicianNPI;
-        var phy_fname = values.txtPhysicianFname;
-        var phy_lname = values.txtPhysicianLname;
-
-
-
-        localStorage.removeItem("physician_npi"); //remove
-        localStorage.setItem("physician_npi", phy_npi);
-
-        localStorage.removeItem("physician_fname"); //remove
-        localStorage.setItem("physician_fname", phy_fname);
-
-        localStorage.removeItem("physician_lname"); //remove
-        localStorage.setItem("physician_lname", phy_lname);
-
-
-        // Create new office form window
-        var office = Ext.create("widget.NewPhysicanOffice");
-        office.show();
-    },
-
-    onBtnPhysicianSaveClick: function(button, e, eOpts) {
-        var form = button.up('form');
-        var domain = localStorage.getItem('email');
-                   //var header = button.up('headerPanel');
-                       values = form.getValues();
-
-                // Success
-                var successCallback = function(resp, ops) {
-                    console.log(resp.responseText);
-                    if(resp.responseText === 'true'){
-                        /*
-                      Ext.Msg.alert("Data Inserted", 'Physican Record Created successfully');
-                        Ext.getCmp('txtPhysicianfilterID').reset();
-                          var myStore = Ext.getStore('PhysicianGridBind');
-                          myStore.clearFilter();
-                        myStore.load();
-                         Ext.getCmp('PhysicianPanelID').hide();
-                              Ext.getCmp('PhysicianRecord').show();
-                              Ext.getCmp('PhysicianForm').getForm().reset();
-                        */
-                        Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=ZimbraPhysicianCreate&src="+domain,
-                                method: 'POST',
-                                params: values,
-                                success: successPhyCallback,
-                                failure: failurePhyCallback
-                         });
-                   }
-                   else if(resp.responseText === 'false'){
-
-                      Ext.Msg.alert("Duplicate Entry", 'Physican Record Already Exists');
-                   }
-                    else{
-                      // Show login failure error
-                    Ext.Msg.alert("Insert Failure", 'Data cannot be added');
-                    }
-
-                };
-
-                // Failure
-                var failureCallback = function(resp, ops) {
-
-                    // Show login failure error
-                    //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
-
-                };
-
-                // Success
-                var successPhyCallback = function(resp, ops) {
-                    console.log(resp.responseText);
-                    if(resp.responseText === 'true'){
-                        /*
-                        Ext.Msg.alert("Data Inserted", 'Physican Record Created successfully');
-                        Ext.getCmp('txtPhysicianfilterID').reset();
-                        var myStore = Ext.getStore('PhysicianGridBind');
-                        myStore.clearFilter();
-                        myStore.load();
-                        Ext.getCmp('PhysicianPanelID').hide();
-                        Ext.getCmp('PhysicianRecord').show();
-                        Ext.getCmp('PhysicianForm').getForm().reset();
-                        */
-                        Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=ZimbraPhysicianPreAuthKey&src="+domain,
-                                method: 'POST',
-                                params: values,
-                                success: successPhyAuthCallback,
-                                failure: failurePhyAuthCallback
-                         });
-
-                   }
-                   else if(resp.responseText === 'false'){
-
-                      Ext.Msg.alert("Duplicate Entry", 'Physican Record Already Exists');
-                   }
-                    else{
-                      // Show login failure error
-                        Ext.Msg.alert("Insert Failure", 'Data cannot be added');
-                    }
-
-                };
-
-
-                var successPhyAuthCallback = function(resp, ops) {
-                    console.log(resp.responseText);
-                    if(resp.responseText === 'true'){
-
-                        Ext.Msg.alert("Data Inserted", 'Physican Record Created successfully');
-                        Ext.getCmp('txtPhysicianfilterID').reset();
-                        var myStore = Ext.getStore('PhysicianGridBind');
-                        myStore.clearFilter();
-                        myStore.load();
-                        Ext.getCmp('PhysicianPanelID').hide();
-                        Ext.getCmp('PhysicianRecord').show();
-                        Ext.getCmp('PhysicianForm').getForm().reset();
-
-
-                   }
-                   else if(resp.responseText === 'false'){
-
-                      Ext.Msg.alert("Preauth Key Failed", 'Preauth Key Failed!');
-                   }
-                    else{
-                      // Show login failure error
-                        Ext.Msg.alert("Insert Failure", 'Data cannot be added');
-                    }
-
-                };
-
-                // Failure
-                var failurePhyAuthCallback = function(resp, ops) {
-
-                    // Show login failure error
-                    //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
-
-                };
-                // Failure
-                var failurePhyCallback = function(resp, ops) {
-
-                    // Show login failure error
-                    //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
-
-                };
-                //adding loader
-                 Ext.Ajax.on('beforerequest', function(){
-
-                                var pnl=Ext.getCmp('PhysicianPanelID');
-                                pnl.setLoading(true, true);
-                        });
-
-
-                        Ext.Ajax.on('requestcomplete', function(){
-
-                              Ext.getCmp('PhysicianPanelID').setLoading(false,false);
-                        });
-
-                // TODO: Login using server-side authentication service
-                Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=ZimbraCheckPhysician&src="+domain,
-                        method: 'POST',
-                        params: values,
-                        success: successCallback,
-                        failure: failureCallback
-                 });
-    },
-
-    onBtnPhysicianUpdateIDClick: function(button, e, eOpts) {
-        var form = button.up('form');
-        var domain = localStorage.getItem('email');
-                   //var header = button.up('headerPanel');
-                       values = form.getValues();
-
-                // Success
-                var successCallback = function(resp, ops) {
-                    console.log(resp.responseText);
-                    if(resp.responseText === 'true'){
-
-                      Ext.Msg.alert("Record Updated", 'Physican Record Updated successfully');
-                        Ext.getCmp('txtPhysicianfilterID').reset();
-                                      var myStore = Ext.getStore('PhysicianGridBind');
-                          myStore.clearFilter();
-                        myStore.load();
-                         Ext.getCmp('PhysicianPanelID').hide();
-                              Ext.getCmp('PhysicianRecord').show();
-                              Ext.getCmp('PhysicianForm').getForm().reset();
-
-                   }
-                   else if(resp.responseText === 'false'){
-
-                      Ext.Msg.alert("Duplicate Entry", 'Physican Record Already Exists');
-                   }
-                    else{
-                      // Show login failure error
-                    Ext.Msg.alert("Insert Failure", 'Data cannot be added');
-                    }
-
-                };
-
-                // Failure
-                var failureCallback = function(resp, ops) {
-
-                    // Show login failure error
-                    Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
-
-                };
-
-
-                // TODO: Login using server-side authentication service
-                Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=ZimbraUpdatePhysician&src="+domain,
-                        method: 'POST',
-                        params: values,
-                        success: successCallback,
-                        failure: failureCallback
-                 });
-    },
-
-    onBtnPhysicianCancelClick: function(button, e, eOpts) {
-        //go back to Physician selector screen
-         //Ext.MessageBox.confirm ('Go back', 'Go back to Physician Selector screen ?', function(btn){
-                          // if(btn === 'yes'){
-                               Ext.getCmp('txtPhysicianfilterID').reset();
-                                      var myStore = Ext.getStore('PhysicianGridBind');
-                          myStore.clearFilter();
-                        myStore.load();
-                              Ext.getCmp('PhysicianPanelID').hide();
-                              Ext.getCmp('PhysicianRecord').show();
-                              Ext.getCmp('PhysicianForm').getForm().reset();
-                          // }
-                //});
-
-
-    },
-
-    onBtnPhysicianCancel1Click: function(button, e, eOpts) {
-        //go back to Physician selector screen
-        var form = button.up('form');
-        Ext.MessageBox.confirm ('Do you want to save changes?', 'Do you want to save changes?', function(btn){
-            if(btn === 'yes'){
-
-                var domain = localStorage.getItem('email');
-                //var header = button.up('headerPanel');
-                values = form.getValues();
-
-                var state = values.ddlPhysicianState;
-                var addr1 = values.txtPhysicianAddress1;
-                var city = values.txtPhysicianCity;
-                var fname = values.txtPhysicianFname;
-                var hicn = values.txtPhysicianNPI;
-                var zip = values.txtPhysicianZip;
-                var lname = values.txtPhysicianLname;
-                var phone = values.txtPhysicianPhoneNo;
-                // Success
-                var successCallback = function(resp, ops) {
-                    if(state === '' || addr1 === '' || city === '' || fname === '' || hicn === '' || zip === '' || lname === '' || phone === ''){
-                        Ext.Msg.alert("Please fill up mandatory fields", 'Please fill up mandatory fields');
-                    }
-                    else{
-                        // console.log(resp.responseText);
-                        if(resp.responseText === 'true'){
-
-                            Ext.Msg.alert("Record Updated", 'Physican Record Updated successfully');
-                            Ext.getCmp('txtPhysicianfilterID').reset();
-                            var myStore = Ext.getStore('PhysicianGridBind');
-                            myStore.clearFilter();
-                            myStore.load();
-                            Ext.getCmp('PhysicianPanelID').hide();
-                            Ext.getCmp('PhysicianRecord').show();
-                            Ext.getCmp('PhysicianForm').getForm().reset();
-
-                        }
-                        else if(resp.responseText === 'false'){
-
-                            Ext.Msg.alert("Duplicate Entry", 'Physican Record Already Exists');
-                        }
-                            else{
-                                // Show login failure error
-                                Ext.Msg.alert("Insert Failure", 'Data cannot be added');
-                            }
-                    }
-
-                };
-
-                // Failure
-                var failureCallback = function(resp, ops) {
-
-                    // Show login failure error
-                    Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
-
-                };
-
-
-                // TODO: Login using server-side authentication service
-                Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=ZimbraUpdatePhysician&src="+domain,
-                                  method: 'POST',
-                                  params: values,
-                                  success: successCallback,
-                                  failure: failureCallback
-                                 });
-            }
-            else{
-                Ext.getCmp('txtPhysicianfilterID').reset();
-                var myStore = Ext.getStore('PhysicianGridBind');
-                myStore.clearFilter();
-                myStore.load();
-                Ext.getCmp('PhysicianPanelID').hide();
-                Ext.getCmp('PhysicianRecord').show();
-                Ext.getCmp('PhysicianForm').getForm().reset();
-            }
-        });
-
 
     },
 
@@ -13919,33 +13859,26 @@ Ext.define('SignaTouch.view.MainView', {
         PhysicianGridBind.getProxy().extraParams.Search = Search;
     },
 
-    onPhysicianBtnGOClick1: function(button, e, eOpts) {
+    onUserBtnGOClick: function(button, e, eOpts) {
         var form = button.up('form');
-         values = form.getValues();
-        var type=values.ddlPhysicianFilter;
-        var Search=values.txtPhysicianfilter;
-        var myStore = Ext.getStore('PhysicianGridBind');
+        values = form.getValues();
+        var type=values.ddlUserFilter;
+        var Search=values.txtUserFilter;
+        var myStore = Ext.getStore('DomainUserRecord');
 
-        /*myStore.clearFilter();
+        myStore.clearFilter();
 
-
-        if(type=='NPI')
-        {
-            myStore.filter('PhysicianNPI',Search);
-            myStore.load();
-
-        }
         if(type=='FirstName')
         {
 
-            myStore.filter('PhysicianFirstname',Search);
+            myStore.filter('displayName',Search);
             myStore.load();
 
         }
         if(type=='LastName')
         {
 
-            myStore.filter('PhysicianLastname',Search);
+            myStore.filter('displayName',Search);
             myStore.load();
 
         }
@@ -13953,30 +13886,37 @@ Ext.define('SignaTouch.view.MainView', {
         if(type=='ZipCode')
         {
 
-            myStore.filter('PhysicianZip',Search);
+            myStore.filter('Zip',Search);
             myStore.load();
 
         }
 
-        */
-         myStore.filter([{property: 'SelectFilter',value: type} ,
-                            {property: 'PatientHICN' , value: Search }]);
     },
 
     onBtUserAddClick: function(button, e, eOpts) {
         Ext.getCmp('AddUserForm').getForm().reset();
         Ext.getCmp('AddUserPanelID').show();
         Ext.getCmp('DomainRecordID').hide();
+        Ext.getCmp('DomainRecordID').hide();
+
+        Ext.getCmp('btnCreate').show();
+        Ext.getCmp('btnReset').hide();
+        Ext.getCmp('btnUserBack').show();
+
+        var domain = localStorage.getItem("domain");
+        var domain = domain.replace('.st', "");
+        Ext.getCmp('userDomainID').setValue('<b>@'+domain+'</b>');
+        Ext.getCmp('hiddenDomainID').setValue('@'+domain);
     },
 
-    onPagingtoolbarBeforeChange11: function(pagingtoolbar, page, eOpts) {
-        var PhysicianGridBind = Ext.getStore('PhysicianGridBind');
+    onPagingtoolbarBeforeChange5: function(pagingtoolbar, page, eOpts) {
+        var UserGridBind = Ext.getStore('DomainUserRecord');
 
-        var type = Ext.get('ddlPhysicianFilter').getValue();
-        var Search = Ext.get('txtPhysicianfilter').getValue();
+        var type = Ext.get('ddlUserFilterID').getValue();
+        var Search = Ext.get('txtDomainUserfilterID').getValue();
 
-        PhysicianGridBind.getProxy().extraParams.SelectFilter = type;
-        PhysicianGridBind.getProxy().extraParams.Search = Search;
+        UserGridBind.getProxy().extraParams.SelectFilter = type;
+        UserGridBind.getProxy().extraParams.Search = Search;
     },
 
     onPatientBtnGoClick: function(button, e, eOpts) {
@@ -16443,6 +16383,338 @@ Ext.define('SignaTouch.view.MainView', {
                           success: successCallback,
                           failure: failureCallback
                          });
+    },
+
+    onTxtPHYCPasswordIDBlur: function(component, e, eOpts) {
+        if(Ext.getCmp('txtPHYPasswordID').value!== '' && Ext.getCmp('txtPHYCPasswordID').value!== ''){
+          if(Ext.getCmp('txtPHYPasswordID').getValue() !== Ext.getCmp('txtPHYCPasswordID').getValue()){
+             Ext.Msg.alert("Passwords do not match", 'Passwords do not match');
+          }
+        }
+
+    },
+
+    onTxtPhoneNoIDKeypress: function(textfield, e, eOpts) {
+        var phone = Ext.getCmp('txtPhoneNoID').getValue();
+        if(phone.length === 3 || phone.length === 7){
+            var newPhone = phone.concat('-');
+            Ext.getCmp('txtPhoneNoID').setValue(newPhone);
+        }
+
+
+    },
+
+    onBtnPhysicianAddAnotherIDClick: function(button, e, eOpts) {
+        var form =  Ext.getCmp('PhysicianForm');  // Physician form
+        values = form.getValues();    // Form values
+        var phy_npi = values.txtPhysicianNPI;
+        var phy_fname = values.txtPhysicianFname;
+        var phy_lname = values.txtPhysicianLname;
+
+
+
+        localStorage.removeItem("physician_npi"); //remove
+        localStorage.setItem("physician_npi", phy_npi);
+
+        localStorage.removeItem("physician_fname"); //remove
+        localStorage.setItem("physician_fname", phy_fname);
+
+        localStorage.removeItem("physician_lname"); //remove
+        localStorage.setItem("physician_lname", phy_lname);
+
+
+        // Create new office form window
+        var office = Ext.create("widget.NewPhysicanOffice");
+        office.show();
+    },
+
+    onBtnPhysicianSaveClick: function(button, e, eOpts) {
+        var form = button.up('form');
+        var domain = localStorage.getItem('email');
+                   //var header = button.up('headerPanel');
+                       values = form.getValues();
+
+                // Success
+                var successCallback = function(resp, ops) {
+                    console.log(resp.responseText);
+                    if(resp.responseText === 'true'){
+                        /*
+                      Ext.Msg.alert("Data Inserted", 'Physican Record Created successfully');
+                        Ext.getCmp('txtPhysicianfilterID').reset();
+                          var myStore = Ext.getStore('PhysicianGridBind');
+                          myStore.clearFilter();
+                        myStore.load();
+                         Ext.getCmp('PhysicianPanelID').hide();
+                              Ext.getCmp('PhysicianRecord').show();
+                              Ext.getCmp('PhysicianForm').getForm().reset();
+                        */
+                        Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=ZimbraPhysicianCreate&src="+domain,
+                                method: 'POST',
+                                params: values,
+                                success: successPhyCallback,
+                                failure: failurePhyCallback
+                         });
+                   }
+                   else if(resp.responseText === 'false'){
+
+                      Ext.Msg.alert("Duplicate Entry", 'Physican Record Already Exists');
+                   }
+                    else{
+                      // Show login failure error
+                    Ext.Msg.alert("Insert Failure", 'Data cannot be added');
+                    }
+
+                };
+
+                // Failure
+                var failureCallback = function(resp, ops) {
+
+                    // Show login failure error
+                    //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                };
+
+                // Success
+                var successPhyCallback = function(resp, ops) {
+                    console.log(resp.responseText);
+                    if(resp.responseText === 'true'){
+                        /*
+                        Ext.Msg.alert("Data Inserted", 'Physican Record Created successfully');
+                        Ext.getCmp('txtPhysicianfilterID').reset();
+                        var myStore = Ext.getStore('PhysicianGridBind');
+                        myStore.clearFilter();
+                        myStore.load();
+                        Ext.getCmp('PhysicianPanelID').hide();
+                        Ext.getCmp('PhysicianRecord').show();
+                        Ext.getCmp('PhysicianForm').getForm().reset();
+                        */
+                        Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=ZimbraPhysicianPreAuthKey&src="+domain,
+                                method: 'POST',
+                                params: values,
+                                success: successPhyAuthCallback,
+                                failure: failurePhyAuthCallback
+                         });
+
+                   }
+                   else if(resp.responseText === 'false'){
+
+                      Ext.Msg.alert("Duplicate Entry", 'Physican Record Already Exists');
+                   }
+                    else{
+                      // Show login failure error
+                        Ext.Msg.alert("Insert Failure", 'Data cannot be added');
+                    }
+
+                };
+
+
+                var successPhyAuthCallback = function(resp, ops) {
+                    console.log(resp.responseText);
+                    if(resp.responseText === 'true'){
+
+                        Ext.Msg.alert("Data Inserted", 'Physican Record Created successfully');
+                        Ext.getCmp('txtPhysicianfilterID').reset();
+                        var myStore = Ext.getStore('PhysicianGridBind');
+                        myStore.clearFilter();
+                        myStore.load();
+                        Ext.getCmp('PhysicianPanelID').hide();
+                        Ext.getCmp('PhysicianRecord').show();
+                        Ext.getCmp('PhysicianForm').getForm().reset();
+
+
+                   }
+                   else if(resp.responseText === 'false'){
+
+                      Ext.Msg.alert("Preauth Key Failed", 'Preauth Key Failed!');
+                   }
+                    else{
+                      // Show login failure error
+                        Ext.Msg.alert("Insert Failure", 'Data cannot be added');
+                    }
+
+                };
+
+                // Failure
+                var failurePhyAuthCallback = function(resp, ops) {
+
+                    // Show login failure error
+                    //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                };
+                // Failure
+                var failurePhyCallback = function(resp, ops) {
+
+                    // Show login failure error
+                    //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                };
+                //adding loader
+                 Ext.Ajax.on('beforerequest', function(){
+
+                                var pnl=Ext.getCmp('PhysicianPanelID');
+                                pnl.setLoading(true, true);
+                        });
+
+
+                        Ext.Ajax.on('requestcomplete', function(){
+
+                              Ext.getCmp('PhysicianPanelID').setLoading(false,false);
+                        });
+
+                // TODO: Login using server-side authentication service
+                Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=ZimbraCheckPhysician&src="+domain,
+                        method: 'POST',
+                        params: values,
+                        success: successCallback,
+                        failure: failureCallback
+                 });
+    },
+
+    onBtnPhysicianUpdateIDClick: function(button, e, eOpts) {
+        var form = button.up('form');
+        var domain = localStorage.getItem('email');
+                   //var header = button.up('headerPanel');
+                       values = form.getValues();
+
+                // Success
+                var successCallback = function(resp, ops) {
+                    console.log(resp.responseText);
+                    if(resp.responseText === 'true'){
+
+                      Ext.Msg.alert("Record Updated", 'Physican Record Updated successfully');
+                        Ext.getCmp('txtPhysicianfilterID').reset();
+                                      var myStore = Ext.getStore('PhysicianGridBind');
+                          myStore.clearFilter();
+                        myStore.load();
+                         Ext.getCmp('PhysicianPanelID').hide();
+                              Ext.getCmp('PhysicianRecord').show();
+                              Ext.getCmp('PhysicianForm').getForm().reset();
+
+                   }
+                   else if(resp.responseText === 'false'){
+
+                      Ext.Msg.alert("Duplicate Entry", 'Physican Record Already Exists');
+                   }
+                    else{
+                      // Show login failure error
+                    Ext.Msg.alert("Insert Failure", 'Data cannot be added');
+                    }
+
+                };
+
+                // Failure
+                var failureCallback = function(resp, ops) {
+
+                    // Show login failure error
+                    Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                };
+
+
+                // TODO: Login using server-side authentication service
+                Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=ZimbraUpdatePhysician&src="+domain,
+                        method: 'POST',
+                        params: values,
+                        success: successCallback,
+                        failure: failureCallback
+                 });
+    },
+
+    onBtnPhysicianCancelClick: function(button, e, eOpts) {
+        //go back to Physician selector screen
+         //Ext.MessageBox.confirm ('Go back', 'Go back to Physician Selector screen ?', function(btn){
+                          // if(btn === 'yes'){
+                               Ext.getCmp('txtPhysicianfilterID').reset();
+                                      var myStore = Ext.getStore('PhysicianGridBind');
+                          myStore.clearFilter();
+                        myStore.load();
+                              Ext.getCmp('PhysicianPanelID').hide();
+                              Ext.getCmp('PhysicianRecord').show();
+                              Ext.getCmp('PhysicianForm').getForm().reset();
+                          // }
+                //});
+
+
+    },
+
+    onBtnPhysicianCancel1Click: function(button, e, eOpts) {
+        //go back to Physician selector screen
+        var form = button.up('form');
+        Ext.MessageBox.confirm ('Do you want to save changes?', 'Do you want to save changes?', function(btn){
+            if(btn === 'yes'){
+
+                var domain = localStorage.getItem('email');
+                //var header = button.up('headerPanel');
+                values = form.getValues();
+
+                var state = values.ddlPhysicianState;
+                var addr1 = values.txtPhysicianAddress1;
+                var city = values.txtPhysicianCity;
+                var fname = values.txtPhysicianFname;
+                var hicn = values.txtPhysicianNPI;
+                var zip = values.txtPhysicianZip;
+                var lname = values.txtPhysicianLname;
+                var phone = values.txtPhysicianPhoneNo;
+                // Success
+                var successCallback = function(resp, ops) {
+                    if(state === '' || addr1 === '' || city === '' || fname === '' || hicn === '' || zip === '' || lname === '' || phone === ''){
+                        Ext.Msg.alert("Please fill up mandatory fields", 'Please fill up mandatory fields');
+                    }
+                    else{
+                        // console.log(resp.responseText);
+                        if(resp.responseText === 'true'){
+
+                            Ext.Msg.alert("Record Updated", 'Physican Record Updated successfully');
+                            Ext.getCmp('txtPhysicianfilterID').reset();
+                            var myStore = Ext.getStore('PhysicianGridBind');
+                            myStore.clearFilter();
+                            myStore.load();
+                            Ext.getCmp('PhysicianPanelID').hide();
+                            Ext.getCmp('PhysicianRecord').show();
+                            Ext.getCmp('PhysicianForm').getForm().reset();
+
+                        }
+                        else if(resp.responseText === 'false'){
+
+                            Ext.Msg.alert("Duplicate Entry", 'Physican Record Already Exists');
+                        }
+                            else{
+                                // Show login failure error
+                                Ext.Msg.alert("Insert Failure", 'Data cannot be added');
+                            }
+                    }
+
+                };
+
+                // Failure
+                var failureCallback = function(resp, ops) {
+
+                    // Show login failure error
+                    Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                };
+
+
+                // TODO: Login using server-side authentication service
+                Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=ZimbraUpdatePhysician&src="+domain,
+                                  method: 'POST',
+                                  params: values,
+                                  success: successCallback,
+                                  failure: failureCallback
+                                 });
+            }
+            else{
+                Ext.getCmp('txtPhysicianfilterID').reset();
+                var myStore = Ext.getStore('PhysicianGridBind');
+                myStore.clearFilter();
+                myStore.load();
+                Ext.getCmp('PhysicianPanelID').hide();
+                Ext.getCmp('PhysicianRecord').show();
+                Ext.getCmp('PhysicianForm').getForm().reset();
+            }
+        });
+
+
     }
 
 });
