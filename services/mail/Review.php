@@ -2,14 +2,14 @@
 
 include 'EmailConnect.php'; // include the smtp connect file
 
-class SendToDrOfficeEmail {
+class ReviewEmail {
 	public function mail() {
 	
 		// message
 		
 		$body = "<html>
 		<head>
-		  <title>Record is Sent To Dr. office successfully.</title>
+		  <title>Record is Review/Approved successfully.</title>
 		</head>
 		<body>
 		<table width='100%'>
@@ -23,7 +23,7 @@ class SendToDrOfficeEmail {
 		<tr><td><br /></td></tr>
 		<tr><td>Dear , ".$_POST["View_PName"]."</td></tr>
 		<tr><td></td></tr>
-		<tr><td> Record is Sent To Dr. office successfully!</td></tr>
+		<tr><td> Record is Review/Approved successfully!</td></tr>
 		<tr><td></td></tr>
 		<tr><td> 
 			<table>
@@ -104,7 +104,7 @@ class SendToDrOfficeEmail {
 }
 $possible_url = array("mail");
  $value = "An error has occurred";
- $cms = new SendToDrOfficeEmail();
+ $cms = new ReviewEmail();
   if (isset ($_GET["action"]) && in_array($_GET["action"], $possible_url)) {
       switch ($_GET["action"]) {
         case "mail" :

@@ -195,7 +195,8 @@ public function create_another_office() {
 		$okay = $this->check_for_existaince($domain_name , $param['NewUserName']);
 		return $okay;
 	}  
-	public function ZimbraPhysicianCreate(){
+
+  public function ZimbraPhysicianCreate(){
     //print_r($_COOKIE);
 		$connect = new Zimbra();
 		$param = $this->set_physician_parameters();

@@ -44,6 +44,18 @@ Ext.define('SignaTouch.model.DomainUserRecord', {
         },
         {
             name: 'email'
+        },
+        {
+            name: 'FirstName'
+        },
+        {
+            name: 'MidName'
+        },
+        {
+            name: 'LastName'
+        },
+        {
+            name: 'altEmail'
         }
     ]
 });

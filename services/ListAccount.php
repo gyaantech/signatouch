@@ -169,6 +169,10 @@ class ListUser {
  
 
   $displayName = '';
+  $FirstName = '';
+  $MidName = '';
+  $LastName = '';
+  $altEmail = '';
   $cos = '';
   $company = '';
   $title = '';
@@ -183,8 +187,21 @@ class ListUser {
   foreach($domain_accounts as $key => $value){
     $email = $value['attrib']['name'];
   foreach($value['a'] as $k => $v){
+  //  echo '<pre>';print_r($v);echo '</pre>';
     if($v['attrib']['n'] == 'displayName'){
       $displayName = $v['cdata']; 
+    }
+    if($v['attrib']['n'] == 'givenName'){
+      $FirstName = $v['cdata']; 
+    }
+    if($v['attrib']['n'] == 'initials'){
+      $MidName = $v['cdata']; 
+    }
+    if($v['attrib']['n'] == 'sn'){
+      $LastName = $v['cdata']; 
+    }
+    if($v['attrib']['n'] == 'zimbraNotes'){
+      $altEmail = $v['cdata']; 
     }
      /* if($v['attrib']['n'] == 'zimbraCOSId'){
         $cos = $connect->ZimbraGetCOSName($v['cdata']);
@@ -219,17 +236,67 @@ class ListUser {
   }
   
     //  $app_list[] = array('Type'=>$type,'email'=>$email,'displayName'=> $displayName, 'Company' => $company,'JobTitle'=>$title,'Phone'=>$mobile,'City'=>$city,'Zip'=>$postalCode,'State'=>$state); 
-      $app_list[] = array('email'=>$email,'displayName'=> $displayName, 'Company' => $company,'JobTitle'=>$title,'Phone'=>$mobile,'City'=>$city,'Zip'=>$postalCode,'State'=>$state); 
+      $app_list[] = array('email'=>$email,'displayName'=> $displayName, 'FirstName'=>$FirstName,'MidName'=>$MidName,'LastName'=>$LastName,'altEmail'=>$altEmail,'Company' => $company,'JobTitle'=>$title,'Phone'=>$mobile,'City'=>$city,'Zip'=>$postalCode,'State'=>$state); 
       
           }
     return array_reverse($app_list);  
   
 }
   
+   //to update zimbra User
+  public function ZimbraUpdateUser () { 
+    $connect = new Zimbra();
+    $account = $_POST['txtAccountName'].$_POST['hiddenDomain'].'.st';
+    $account_id = $connect->ZimbraGetAccountID($account);
+    $CurlHandle = curl_init();
+    curl_setopt($CurlHandle, CURLOPT_URL,"$connect->ServerAddress:7071/service/admin/soap");
+    curl_setopt($CurlHandle, CURLOPT_POST, TRUE);
+    curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
 
+
+    $parameters = $connect->ZimbraConnect();
+
+     $SOAPMessage = '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+                            <soap:Header>
+                                    <context xmlns="urn:zimbra">
+                                            <authToken>' . $parameters['authToken'] . '</authToken>
+                                            <sessionId id="' . $parameters['sessionId'] . '">' . $parameters['sessionId'] . '</sessionId>
+                                    </context>
+                            </soap:Header>
+                            <soap:Body>
+                            <ModifyAccountRequest xmlns="urn:zimbraAdmin" id="'.$account_id.'">
+                                  <a n="givenName">'.$_POST['txtFirstName'].'</a>
+                                  <a n="initials">'.$_POST['txtMiddleInitial'].'</a>
+                                  <a n="sn">'.$_POST['txtLastName'].'</a>
+                                  <a n="displayName">'.$_POST['txtDisplayNaMe'].'</a>
+                                  <a n="company">'.$_POST['txCompany'].'</a>
+                                  <a n="title">'.$_POST['txCompanyTitle'].'</a>
+                                  <a n="l">'.$_POST['txtUCity'].'</a>
+                                  <a n="st">'.$_POST['ddlUState'].'</a>
+                                  <a n="postalCode">'.$_POST['txtUZip'].'</a>
+                                  <a n="mobile">'.$_POST['txtUPhoneno'].'</a>
+                                  <a n="zimbraNotes">'.$_POST['txtAltMailID'].'</a>
+                                    
+                              </ModifyAccountRequest>
+                            </soap:Body>
+                    </soap:Envelope>';
+
+    curl_setopt($CurlHandle, CURLOPT_POSTFIELDS, $SOAPMessage);
+    $ZimbraSOAPResponse = curl_exec($CurlHandle);
+    curl_close($CurlHandle);
+    echo $ZimbraSOAPResponse;
+    if(!($ZimbraSOAPResponse))
+    {
+            print("ERROR: curl_exec - (" . curl_errno($CurlHandle) . ") " . curl_error($CurlHandle));
+            return(FALSE); exit();
+    }
+      return TRUE;
+    }
   }
 
-$possible_url = array("ZimbraListUser");
+$possible_url = array("ZimbraListUser","ZimbraUpdateUser");
  $value = "An error has occurred";
  $cms = new ListUser();
   if (isset ($_GET["action"]) && in_array($_GET["action"], $possible_url)) {
@@ -237,6 +304,10 @@ $possible_url = array("ZimbraListUser");
           case "ZimbraListUser" :
               $value = $cms->ZimbraListUser();
               break; 
+          case "ZimbraUpdateUser" :
+              $value = $cms->ZimbraUpdateUser();
+              break; 
+          
       }
   }
 echo json_encode($value);

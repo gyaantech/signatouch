@@ -105,6 +105,54 @@
                 "name": "email"
             },
             "designerId": "e050ee5a-671b-4523-8178-6ebbba25e156"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "FirstName"
+            },
+            "designerId": "9e54a270-9315-44cc-81a3-c2eca5e830df"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "MidName"
+            },
+            "designerId": "64a318c7-9029-4c06-b2b7-5062cb40b712"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "LastName"
+            },
+            "designerId": "3c5bad4c-d0d3-404e-b47f-9b68423de098"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "altEmail"
+            },
+            "designerId": "d0695861-d2ff-4805-b6b3-517b9ff12be8"
         }
     ]
 }

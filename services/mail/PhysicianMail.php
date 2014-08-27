@@ -2,14 +2,15 @@
 
 include 'EmailConnect.php'; // include the smtp connect file
 
-class SendToDrOfficeEmail {
+class PhysicianEmail {
 	public function mail() {
 	
+    $name=$_POST["txtPhysicianFname"].' '.$_POST["txtPhysicianMname"].' '.$_POST["txtPhysicianLname"];
 		// message
 		
 		$body = "<html>
 		<head>
-		  <title>Record is Sent To Dr. office successfully.</title>
+		  <title>Physician is Created successfully</title>
 		</head>
 		<body>
 		<table width='100%'>
@@ -21,62 +22,48 @@ class SendToDrOfficeEmail {
 				</tr>
 			
 		<tr><td><br /></td></tr>
-		<tr><td>Dear , ".$_POST["View_PName"]."</td></tr>
+		<tr><td>Dear , ".$name."</td></tr>
 		<tr><td></td></tr>
-		<tr><td> Record is Sent To Dr. office successfully!</td></tr>
+		<tr><td> Your Account is Created successfully!</td></tr>
 		<tr><td></td></tr>
 		<tr><td> 
 			<table>
 				<tr>
 				  
-					<td colspan='2'>Patient Information:</td>
-				</tr>
-				  <tr>
-					<td><b>Cert Type :</b></td>
-					<td>".$_POST["View_CertType"]."</td>
+					<td colspan='2'>Physician Information:</td>
 				</tr>
 				<tr>
-					 <td><b>Date :</b></td>
+					<td><b>NPI :</b></td>
+					<td>".$_POST["txtPhysicianNPI"]."</td>
+				</tr>
+				  <tr>
+					<td><b>Name :</b></td>
+					<td>".$name."</td>
+				</tr>
+				<tr>
+					 <td><b>Username :</b></td>
 					<td>".$_POST["View_Date"]."</td>
 				</tr>
 				<tr>
-					 <td><b>Status :</b></td>
+					 <td><b>Password :</b></td>
 					<td>".$_POST["View_Status"]."</td>
 				</tr>
+					<tr>
+					 <td><b>Alt. Email ID :</b></td>
+					<td>".$_POST["View_Status"]."</td>
+				</tr>	   
 				
-				 <tr>
-					<td><b>Supplier NPI :</b></td>
-					<td>".$_POST["View_SupplierNPI"]."</td>
-				</tr>
-				
-			   
-				<tr>
-					<td><b>Patient HICN :</b></td>
-					<td>".$_POST["View_PatientHICN"]."</td>
-				</tr>
-				<tr>
-					 <td><b>Patient Name :</b></td>
-					<td>".$_POST["View_PatientName"]."</td>
-				</tr>
-				<tr>
-					 <td><b>Phone No :</b></td>
-					<td>".$_POST["View_PatientPhone"]."</td>
-				</tr>
-
 				<tr>
 					 <td></td>
 					<td></td>
 				</tr>
-				<tr>
-					 <td></td>
-					<td></td>
-				</tr>
+				
 			</table>
 
 
 			</td></tr>
 		<tr><td></td></tr>
-		   <tr><td>
+		   <tr><td> Please <a href='http://103.14.96.74/signatouch' target='a'>Here Login </a> and Change your Password. 
 			</td></tr>
 		<tr><td>Thanks & Regards,</td></tr>
 		<tr><td>Admin<br /></td> </tr>
@@ -88,7 +75,7 @@ class SendToDrOfficeEmail {
 		</html>";
 		$connect = new EmailConnect();
 		$mail = $connect->setSmtpParameters();
-		//$send = isset($_GET["send"])?$_GET["send"]:'';
+		
 		$mail->Subject = "Record is sent to Dr. office"; //Subject of your mail
 		$mail->addAddress($_GET["send"]);
 		$mail->MsgHTML($body);
@@ -104,7 +91,7 @@ class SendToDrOfficeEmail {
 }
 $possible_url = array("mail");
  $value = "An error has occurred";
- $cms = new SendToDrOfficeEmail();
+ $cms = new PhysicianEmail();
   if (isset ($_GET["action"]) && in_array($_GET["action"], $possible_url)) {
       switch ($_GET["action"]) {
         case "mail" :

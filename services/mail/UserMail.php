@@ -4,9 +4,7 @@ include 'EmailConnect.php'; // include the smtp connect file
 
 class SendToDrOfficeEmail {
 	public function mail() {
-	
 		// message
-		
 		$body = "<html>
 		<head>
 		  <title>Record is Sent To Dr. office successfully.</title>
@@ -14,70 +12,66 @@ class SendToDrOfficeEmail {
 		<body>
 		<table width='100%'>
 		<tr><td>
-			<img alt='' src='http://103.14.96.74/signatouch/resources/images/SignaTouch.png' /></td>
-			</tr>
-			<tr>
+			<table>
+				<tr>
+					<td><img alt='' src='http://103.14.96.74/signatouch/resources/images/SignaTouch.png' /></td>
 					 <td><font size='5'><b>High Efficiency Signature Capture System<b></font></td>
 				</tr>
-			
+			</table>
+			</td></tr>
 		<tr><td><br /></td></tr>
-		<tr><td>Dear , ".$_POST["View_PName"]."</td></tr>
-		<tr><td></td></tr>
+		<tr><td>Dear , ".$_GET["Name"]."</td></tr>
+		<tr><td>&nbsp;</td></tr>
 		<tr><td> Record is Sent To Dr. office successfully!</td></tr>
 		<tr><td></td></tr>
 		<tr><td> 
 			<table>
 				<tr>
 				  
-					<td colspan='2'>Patient Information:</td>
+					<td colspan='2'><b>Patient Information:</b></td>
 				</tr>
 				  <tr>
-					<td><b>Cert Type :</b></td>
-					<td>".$_POST["View_CertType"]."</td>
+					<td width='140px'><b>Cert Type :</b></td>
+					<td></td>
 				</tr>
 				<tr>
 					 <td><b>Date :</b></td>
-					<td>".$_POST["View_Date"]."</td>
+					<td></td>
 				</tr>
-				<tr>
-					 <td><b>Status :</b></td>
-					<td>".$_POST["View_Status"]."</td>
-				</tr>
-				
 				 <tr>
 					<td><b>Supplier NPI :</b></td>
-					<td>".$_POST["View_SupplierNPI"]."</td>
+					<td></td>
 				</tr>
 				
 			   
 				<tr>
 					<td><b>Patient HICN :</b></td>
-					<td>".$_POST["View_PatientHICN"]."</td>
+					<td></td>
 				</tr>
 				<tr>
 					 <td><b>Patient Name :</b></td>
-					<td>".$_POST["View_PatientName"]."</td>
+					<td></td>
 				</tr>
 				<tr>
 					 <td><b>Phone No :</b></td>
-					<td>".$_POST["View_PatientPhone"]."</td>
+					<td></td>
 				</tr>
 
 				<tr>
-					 <td></td>
-					<td></td>
+					 <td>&nbsp;</td>
+					<td>&nbsp;</td>
 				</tr>
 				<tr>
-					 <td></td>
-					<td></td>
+					 <td>&nbsp;</td>
+					<td>&nbsp;</td>
 				</tr>
 			</table>
 
 
 			</td></tr>
-		<tr><td></td></tr>
+		<tr><td>&nbsp;</td></tr>
 		   <tr><td>
-			</td></tr>
+			&nbsp;</td></tr>
 		<tr><td>Thanks & Regards,</td></tr>
 		<tr><td>Admin<br /></td> </tr>
 		<tr><td><b>CMS-484</b></td></tr>
