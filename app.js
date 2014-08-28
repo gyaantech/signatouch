@@ -61,7 +61,8 @@ Ext.application({
         'PopupHICN',
         'Help',
         'PopupNewFacility',
-        'PhysicianOffice'
+        'PhysicianOffice',
+        'UserAlias'
     ],
     controllers: [
         'login'

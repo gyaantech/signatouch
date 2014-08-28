@@ -160,7 +160,9 @@ class ListUser {
     curl_setopt($CurlHandle, CURLOPT_POSTFIELDS, $SOAPMessage);
     $ZimbraSOAPResponse = curl_exec($CurlHandle);
     curl_close($CurlHandle);
-//echo $ZimbraSOAPResponse;
+
+    //echo $ZimbraSOAPResponse; exit();
+    
     if(!($ZimbraSOAPResponse))
     {
             print("ERROR: curl_exec - (" . curl_errno($CurlHandle) . ") " . curl_error($CurlHandle));
@@ -181,14 +183,16 @@ class ListUser {
   $postalCode = '';
   $state = '';
   $type = '';
+  $hasAlias = '';
   $xmlObject = new XmlToArrayParser($ZimbraSOAPResponse);
   $arr = $xmlObject->array;
   $domain_accounts = $arr['soap:Envelope']['soap:Body']['GetAllAccountsResponse']['account'];
   foreach($domain_accounts as $key => $value){
     $email = $value['attrib']['name'];
     $email = str_replace(".st","",$email);
+    
   foreach($value['a'] as $k => $v){
-  //  echo '<pre>';print_r($v);echo '</pre>';
+    
     if($v['attrib']['n'] == 'displayName'){
       $displayName = $v['cdata']; 
     }
@@ -196,6 +200,9 @@ class ListUser {
       $FirstName = $v['cdata']; 
     }
     if($v['attrib']['n'] == 'initials'){
+      if($v['cdata'] == 'p' || 's'){
+        $v['cdata'] = '';
+      }
       $MidName = $v['cdata']; 
     }
     if($v['attrib']['n'] == 'sn'){
@@ -204,7 +211,7 @@ class ListUser {
     if($v['attrib']['n'] == 'zimbraNotes'){
       $altEmail = $v['cdata']; 
     }
-     /* if($v['attrib']['n'] == 'zimbraCOSId'){
+    /* if($v['attrib']['n'] == 'zimbraCOSId'){
         $cos = $connect->ZimbraGetCOSName($v['cdata']);
         $cos_arr = explode("-",$cos);
         if (array_key_exists('2', $cos_arr)) {
@@ -238,8 +245,9 @@ class ListUser {
   
     //  $app_list[] = array('Type'=>$type,'email'=>$email,'displayName'=> $displayName, 'Company' => $company,'JobTitle'=>$title,'Phone'=>$mobile,'City'=>$city,'Zip'=>$postalCode,'State'=>$state); 
       $app_list[] = array('email'=>$email,'displayName'=> ucwords($displayName), 'FirstName'=>$FirstName,'MidName'=>$MidName,'LastName'=>$LastName,'altEmail'=>$altEmail,'Company' => $company,'JobTitle'=>$title,'Phone'=>$mobile,'City'=>$city,'Zip'=>$postalCode,'State'=>$state); 
-      
+      //echo '<pre>';print_R($app_list);echo '</pre>';
           }
+          
     return array_reverse($app_list);  
   
 }

@@ -1,0 +1,54 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "Alias",
+        "designer|userClassName": "UserAlias",
+        "height": 250,
+        "modal": true,
+        "title": "View Alias",
+        "width": 400
+    },
+    "designerId": "aeb29144-a4b9-4b11-b03d-4153a93a009b",
+    "cn": [
+        {
+            "type": "Ext.form.field.Display",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fieldLabel": null,
+                "id": "AliasID",
+                "labelSeparator": "&nbsp;",
+                "value": null
+            },
+            "designerId": "b4bc11df-a9eb-4936-a145-a3a1bf585311"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onWindowShow",
+                "implHandler": [
+                    "Ext.getCmp('AliasID').setValue(localStorage.getItem(\"physician_alias\"));\r",
+                    "\r",
+                    "localStorage.removeItem(\"physician_alias\"); //remove\r",
+                    ""
+                ],
+                "name": "show",
+                "scope": "me"
+            },
+            "designerId": "e3cf06cb-abd5-46d1-8b11-6d5c78bb5a7a"
+        }
+    ]
+}

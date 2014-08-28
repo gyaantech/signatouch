@@ -445,7 +445,10 @@
                                                     "Ext.getCmp('AddCOSID').hide();\r",
                                                     "Ext.getCmp('AddAlias').hide();\r",
                                                     "Ext.getCmp('AddUserPanelID').hide();\r",
-                                                    "Ext.getCmp('AddDomainID').hide();"
+                                                    "Ext.getCmp('AddDomainID').hide();\r",
+                                                    "\r",
+                                                    "//DomainRecordID\r",
+                                                    "Ext.getCmp('DomainRecordID').hide();"
                                                 ],
                                                 "name": "click",
                                                 "scope": "me"
@@ -528,7 +531,10 @@
                                                     "Ext.getCmp('AddCOSID').hide();\r",
                                                     "Ext.getCmp('AddAlias').hide();\r",
                                                     "Ext.getCmp('AddUserPanelID').hide();\r",
-                                                    "Ext.getCmp('AddDomainID').hide();"
+                                                    "Ext.getCmp('AddDomainID').hide();\r",
+                                                    "\r",
+                                                    "//DomainRecordID\r",
+                                                    "Ext.getCmp('DomainRecordID').hide();"
                                                 ],
                                                 "name": "click",
                                                 "scope": "me"
@@ -618,6 +624,9 @@
                                                     "\r",
                                                     "Ext.getCmp('ChangePasswordPanelID').hide();\r",
                                                     "Ext.getCmp('AddAlias').hide();\r",
+                                                    "\r",
+                                                    "//DomainRecordID\r",
+                                                    "Ext.getCmp('DomainRecordID').hide();\r",
                                                     ""
                                                 ],
                                                 "name": "click",
@@ -783,7 +792,10 @@
                                                     "Ext.getCmp('AddCOSID').hide();\r",
                                                     "Ext.getCmp('AddAlias').hide();\r",
                                                     "\r",
-                                                    "Ext.getCmp('AddDomainID').hide();"
+                                                    "Ext.getCmp('AddDomainID').hide();\r",
+                                                    "\r",
+                                                    "//DomainRecordID\r",
+                                                    "Ext.getCmp('DomainRecordID').hide();"
                                                 ],
                                                 "name": "click",
                                                 "scope": "me"
@@ -862,7 +874,10 @@
                                                     "Ext.getCmp('AddCOSID').hide();\r",
                                                     "Ext.getCmp('AddAlias').hide();\r",
                                                     "\r",
-                                                    "Ext.getCmp('AddDomainID').hide();"
+                                                    "Ext.getCmp('AddDomainID').hide();\r",
+                                                    "\r",
+                                                    "//DomainRecordID\r",
+                                                    "Ext.getCmp('DomainRecordID').hide();"
                                                 ],
                                                 "name": "click",
                                                 "scope": "me"
@@ -943,7 +958,10 @@
                                                     "Ext.getCmp('AddCOSID').hide();\r",
                                                     "Ext.getCmp('AddAlias').hide();\r",
                                                     "\r",
-                                                    "Ext.getCmp('AddDomainID').hide();"
+                                                    "Ext.getCmp('AddDomainID').hide();\r",
+                                                    "\r",
+                                                    "//DomainRecordID\r",
+                                                    "Ext.getCmp('DomainRecordID').hide();"
                                                 ],
                                                 "name": "click",
                                                 "scope": "me"
@@ -994,7 +1012,7 @@
                                             "userConfig": {
                                                 "fn": "onMAddUserIDClick",
                                                 "implHandler": [
-                                                    "    var store = Ext.getStore('DomainUserRecord');\r",
+                                                    "  /*  var store = Ext.getStore('DomainUserRecord');\r",
                                                     "\r",
                                                     "    store.removeAll(true);\r",
                                                     "\r",
@@ -1031,6 +1049,8 @@
                                                     "Ext.getCmp('Messaging').hide();\r",
                                                     "Ext.getCmp('Dashboard').hide();\r",
                                                     "\r",
+                                                    "//DomainRecordID\r",
+                                                    "Ext.getCmp('DomainRecordID').hide();\r",
                                                     "\r",
                                                     "//Dashboard\r",
                                                     "Ext.getCmp('AddUserForm').getForm().reset();\r",
@@ -1071,6 +1091,7 @@
                                                     "\r",
                                                     "    Ext.getCmp('UserGrid').bindStore(store);\r",
                                                     "\r",
+                                                    "\r",
                                                     "};\r",
                                                     "\r",
                                                     "// Failure\r",
@@ -1078,6 +1099,8 @@
                                                     "    console.log(\"API not called\");\r",
                                                     "\r",
                                                     "};\r",
+                                                    "\r",
+                                                    "\r",
                                                     "\r",
                                                     "//adding loader\r",
                                                     "Ext.Ajax.on('beforerequest', function(){\r",
@@ -1101,8 +1124,8 @@
                                                     "                  failure: failureCallback\r",
                                                     "                 });\r",
                                                     "\r",
-                                                    "\r",
-                                                    ""
+                                                    "*/\r",
+                                                    "Ext.Msg.alert(\"In Progress\", 'In Progress');"
                                                 ],
                                                 "name": "click",
                                                 "scope": "me"
@@ -1168,6 +1191,9 @@
                                                     "Ext.getCmp('Messaging').hide();\r",
                                                     "Ext.getCmp('Dashboard').hide();\r",
                                                     "Ext.getCmp('AddAlias').hide();\r",
+                                                    "\r",
+                                                    "//DomainRecordID\r",
+                                                    "Ext.getCmp('DomainRecordID').hide();\r",
                                                     "\r",
                                                     "//COS\r",
                                                     "Ext.getCmp('COSForm').getForm().reset();\r",
@@ -1243,6 +1269,8 @@
                                                     "Ext.getCmp('Messaging').hide();\r",
                                                     "Ext.getCmp('Dashboard').hide();\r",
                                                     "\r",
+                                                    "//DomainRecordID\r",
+                                                    "Ext.getCmp('DomainRecordID').hide();\r",
                                                     "\r",
                                                     "//COS\r",
                                                     "\r",
@@ -8964,6 +8992,7 @@
                                                     "userConfig": {
                                                         "cls": "BackBt",
                                                         "designer|displayName": "btnPatientCancel",
+                                                        "height": 25,
                                                         "itemId": "btnPatientCancel",
                                                         "margin": "0 10 0 0",
                                                         "maxWidth": null,
@@ -9503,6 +9532,7 @@
                                                             "userConfig": {
                                                                 "cls": "BackBt",
                                                                 "designer|displayName": "btnPhysicianCancel",
+                                                                "height": 25,
                                                                 "itemId": "btnPhysicianCancel",
                                                                 "margin": "",
                                                                 "maxWidth": null,
@@ -10706,6 +10736,7 @@
                                                     "userConfig": {
                                                         "cls": "BackBt",
                                                         "designer|displayName": "btnSupplierCancel",
+                                                        "height": 25,
                                                         "itemId": "btnSupplierCancel",
                                                         "margin": "0 10 0 0",
                                                         "maxWidth": null,
@@ -14055,7 +14086,7 @@
                                                                         "name": "click",
                                                                         "scope": "me"
                                                                     },
-                                                                    "designerId": "2acb60ad-749d-46c1-a060-d2f0cd52a4da"
+                                                                    "designerId": "36cfa656-c865-4583-8370-e62ccc11510d"
                                                                 }
                                                             ]
                                                         }
@@ -14089,6 +14120,7 @@
                                                         "enableColumnResize": false,
                                                         "height": 300,
                                                         "id": "UserGrid",
+                                                        "loader": null,
                                                         "overflowY": "scroll",
                                                         "rowLines": false,
                                                         "store": "DomainUserRecord",
@@ -14114,11 +14146,13 @@
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
-                                                                "dataIndex": "displayName",
-                                                                "text": "Name",
-                                                                "width": 117
+                                                                "dataIndex": "email",
+                                                                "defaultWidth": 160,
+                                                                "maxWidth": null,
+                                                                "text": "Email",
+                                                                "width": 160
                                                             },
-                                                            "designerId": "c20db743-ffca-42a5-85ab-84fd0a72f192"
+                                                            "designerId": "9a3040a4-9078-43e6-8ca9-1e19beea63ee"
                                                         },
                                                         {
                                                             "type": "Ext.grid.column.Column",
@@ -14128,10 +14162,11 @@
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
-                                                                "dataIndex": "Company",
-                                                                "text": "Company"
+                                                                "dataIndex": "displayName",
+                                                                "text": "Display Name",
+                                                                "width": 117
                                                             },
-                                                            "designerId": "dab6ad8d-c4ed-40f0-8eb8-1f6bd20ecb4e"
+                                                            "designerId": "c20db743-ffca-42a5-85ab-84fd0a72f192"
                                                         },
                                                         {
                                                             "type": "Ext.grid.column.Column",
@@ -14154,7 +14189,49 @@
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
+                                                                "dataIndex": "Type",
+                                                                "hidden": true,
+                                                                "text": "UserType"
+                                                            },
+                                                            "designerId": "c65335e6-b299-4e29-ab7f-1b2cc573a23c"
+                                                        },
+                                                        {
+                                                            "type": "Ext.grid.column.Column",
+                                                            "reference": {
+                                                                "name": "columns",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "dataIndex": "hasAlias",
+                                                                "text": "Has Alias?"
+                                                            },
+                                                            "designerId": "754d02ad-f382-4ea7-9adf-4db6c4e21e8d"
+                                                        },
+                                                        {
+                                                            "type": "Ext.grid.column.Column",
+                                                            "reference": {
+                                                                "name": "columns",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "dataIndex": "Company",
+                                                                "hidden": true,
+                                                                "text": "Company"
+                                                            },
+                                                            "designerId": "dab6ad8d-c4ed-40f0-8eb8-1f6bd20ecb4e"
+                                                        },
+                                                        {
+                                                            "type": "Ext.grid.column.Column",
+                                                            "reference": {
+                                                                "name": "columns",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
                                                                 "dataIndex": "Phone",
+                                                                "hidden": true,
                                                                 "text": "Phone"
                                                             },
                                                             "designerId": "5ace0625-2775-4a0d-b50f-882ce77caa23"
@@ -14168,6 +14245,7 @@
                                                             "codeClass": null,
                                                             "userConfig": {
                                                                 "dataIndex": "City",
+                                                                "hidden": true,
                                                                 "text": "City"
                                                             },
                                                             "designerId": "c42d8c34-34ea-4dde-80b4-fc57e42f52ff"
@@ -14181,6 +14259,7 @@
                                                             "codeClass": null,
                                                             "userConfig": {
                                                                 "dataIndex": "Zip",
+                                                                "hidden": true,
                                                                 "text": "Zip"
                                                             },
                                                             "designerId": "cd37359f-26a1-4780-844b-f164fe266dcd"
@@ -14194,26 +14273,11 @@
                                                             "codeClass": null,
                                                             "userConfig": {
                                                                 "dataIndex": "State",
+                                                                "hidden": true,
                                                                 "text": "State",
                                                                 "width": 64
                                                             },
                                                             "designerId": "f559d607-5696-4f95-9c71-06de3d3ea1bd"
-                                                        },
-                                                        {
-                                                            "type": "Ext.grid.column.Column",
-                                                            "reference": {
-                                                                "name": "columns",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "dataIndex": "email",
-                                                                "defaultWidth": 160,
-                                                                "maxWidth": null,
-                                                                "text": "Email",
-                                                                "width": 160
-                                                            },
-                                                            "designerId": "9a3040a4-9078-43e6-8ca9-1e19beea63ee"
                                                         },
                                                         {
                                                             "type": "Ext.grid.column.Action",
@@ -14229,7 +14293,7 @@
                                                                 "html": null,
                                                                 "menuText": "Action",
                                                                 "text": "Action",
-                                                                "width": 90
+                                                                "width": 150
                                                             },
                                                             "designerId": "15e301e6-d8ab-4849-9af2-6920431ce5d5",
                                                             "customConfigs": [
@@ -14407,13 +14471,13 @@
                                                                                     "    var type = cos.split('-');\r",
                                                                                     "    if(type[2]){\r",
                                                                                     "        var type1= type[2];\r",
-                                                                                    "    } \r",
+                                                                                    "    }\r",
                                                                                     "    else{\r",
-                                                                                    "        var type1= type[1];  \r",
+                                                                                    "        var type1= type[1];\r",
                                                                                     "    }\r",
                                                                                     "    if(type1==='admin'){\r",
-                                                                                    "        \r",
-                                                                                    "        \r",
+                                                                                    "\r",
+                                                                                    "\r",
                                                                                     "        var value = 1;\r",
                                                                                     "    }\r",
                                                                                     "    else{\r",
@@ -14421,11 +14485,11 @@
                                                                                     "    }\r",
                                                                                     "    Ext.getCmp('AutoID3').setValue(value);\r",
                                                                                     "    //Ext.getCmp('UserRecordForm').getForm().reset();\r",
-                                                                                    "    \r",
+                                                                                    "\r",
                                                                                     "    Ext.getCmp('DomainRecordID').hide();\r",
                                                                                     "    Ext.getCmp('UserViewID').show();\r",
-                                                                                    "    \r",
-                                                                                    "    console.log(record.data.email);\r",
+                                                                                    "\r",
+                                                                                    "    console.log(record.data.MidName);\r",
                                                                                     "    // set values in text field\r",
                                                                                     "    Ext.getCmp('txtAccountNameID1').setValue(record.data.email);\r",
                                                                                     "    Ext.getCmp('txtFirstNameID1').setValue(record.data.FirstName);\r",
@@ -14436,18 +14500,18 @@
                                                                                     "    Ext.getCmp('txCompanyID1').setValue(record.data.Company);\r",
                                                                                     "    Ext.getCmp('txCompanyTitleID1').setValue(record.data.JobTitle);\r",
                                                                                     "    Ext.getCmp('txtUCityID1').setValue(record.data.City);\r",
-                                                                                    "    \r",
+                                                                                    "\r",
                                                                                     "    Ext.getCmp('ddlUStateID1').setValue(record.data.State.trim());\r",
                                                                                     "    Ext.getCmp('txtUZipID1').setValue(record.data.Zip);\r",
                                                                                     "    Ext.getCmp('txtUPhoneNoID1').setValue(record.data.Phone);\r",
-                                                                                    "    \r",
-                                                                                    "    \r",
+                                                                                    "\r",
+                                                                                    "\r",
                                                                                     "    var domain = localStorage.getItem(\"domain\");\r",
                                                                                     "    var domain = domain.replace('.st', \"\");\r",
                                                                                     "    Ext.getCmp('userDomainID1').setValue('<b>@'+domain+'</b>');\r",
                                                                                     "    Ext.getCmp('hiddenDomainID1').setValue('@'+domain);\r",
-                                                                                    "    \r",
-                                                                                    "    \r",
+                                                                                    "\r",
+                                                                                    "\r",
                                                                                     "    Ext.getCmp('btnCreate').hide();\r",
                                                                                     "    Ext.getCmp('btnReset').hide();\r",
                                                                                     "    Ext.getCmp('btnUserBack1').show();\r",
@@ -14455,18 +14519,18 @@
                                                                                     "// Failure\r",
                                                                                     "var failureCallback = function(resp, ops) {\r",
                                                                                     "    console.log(\"API not called\");\r",
-                                                                                    "    \r",
+                                                                                    "\r",
                                                                                     "};\r",
                                                                                     "//adding loader\r",
                                                                                     "Ext.Ajax.on('beforerequest', function(){\r",
-                                                                                    "    \r",
+                                                                                    "\r",
                                                                                     "    var pnl=Ext.getCmp('AddUserPanelID');\r",
                                                                                     "    pnl.setLoading(true, true);\r",
                                                                                     "});\r",
                                                                                     "\r",
                                                                                     "\r",
                                                                                     "Ext.Ajax.on('requestcomplete', function(){\r",
-                                                                                    "    \r",
+                                                                                    "\r",
                                                                                     "    Ext.getCmp('AddUserPanelID').setLoading(false,false);\r",
                                                                                     "});\r",
                                                                                     "\r",
@@ -14486,6 +14550,55 @@
                                                                             "designerId": "b914fc26-d0b0-4557-8c05-b2138400ef19"
                                                                         }
                                                                     ]
+                                                                },
+                                                                {
+                                                                    "type": "actioncolumnitem",
+                                                                    "reference": {
+                                                                        "name": "items",
+                                                                        "type": "array"
+                                                                    },
+                                                                    "codeClass": null,
+                                                                    "userConfig": {
+                                                                        "designer|displayName": "View Office",
+                                                                        "icon": "resources/images/ViewOffice.png",
+                                                                        "iconCls": "actionicon",
+                                                                        "tooltip": "View"
+                                                                    },
+                                                                    "designerId": "7f161078-a833-4335-8abd-3f383f3e9af5",
+                                                                    "cn": [
+                                                                        {
+                                                                            "type": "fixedfunction",
+                                                                            "reference": {
+                                                                                "name": "items",
+                                                                                "type": "array"
+                                                                            },
+                                                                            "codeClass": null,
+                                                                            "userConfig": {
+                                                                                "designer|params": [
+                                                                                    "view",
+                                                                                    "rowIndex",
+                                                                                    "colIndex",
+                                                                                    "item",
+                                                                                    "e",
+                                                                                    "record",
+                                                                                    "row"
+                                                                                ],
+                                                                                "fn": "handler",
+                                                                                "implHandler": [
+                                                                                    "console.log(record.data);\r",
+                                                                                    "if(record.data.hasAlias === 'YES'){\r",
+                                                                                    "    localStorage.removeItem(\"physician_alias\"); //remove\r",
+                                                                                    "    localStorage.setItem(\"physician_alias\", record.data.Alias);\r",
+                                                                                    "\r",
+                                                                                    "}\r",
+                                                                                    "\r",
+                                                                                    "var HelpWindow = Ext.create(\"widget.Alias\");\r",
+                                                                                    "HelpWindow.show();"
+                                                                                ]
+                                                                            },
+                                                                            "designerId": "cb0121a5-74dc-4bab-aedf-2b1d47d8ef4f"
+                                                                        }
+                                                                    ]
                                                                 }
                                                             ]
                                                         }
@@ -14500,7 +14613,7 @@
                                                     "codeClass": null,
                                                     "userConfig": {
                                                         "container|pack": "center",
-                                                        "store": "PhysicianGridBind",
+                                                        "store": "DomainUserRecord",
                                                         "width": 958
                                                     },
                                                     "designerId": "8556d7d7-715f-46be-a058-1dae6768bcd2",
@@ -22073,7 +22186,7 @@
                                                                     "        var LocalHDRid = localStorage.getItem('SectionAHDRID');\r",
                                                                     "        var CertDate = Ext.getCmp('txtSectionA1CertificationDateID');\r",
                                                                     "        var HICN = Ext.getCmp('PatientHICNPOP');\r",
-                                                                    "        var MedID =  Ext.getCmp('MedIDSectionAinput');\r",
+                                                                    "        //var MedID =  Ext.getCmp('MedIDSectionAinput');\r",
                                                                     "        var SupplierNPI = Ext.getCmp('txtSectionASupplierNPIID');\r",
                                                                     "        var PhysicianNPI = Ext.getCmp('txtSectionAPhysicianNPIID');\r",
                                                                     "        var POS = Ext.getCmp('txtSectionAPOSID');\r",
@@ -22118,7 +22231,7 @@
                                                                     "\r",
                                                                     "\r",
                                                                     "        //alert('alias '+alias.value);\r",
-                                                                    "        if(CertDate.value === '' || HICN.value === '' || MedID.value === '' || SupplierNPI.value === '' || PhysicianNPI.value === '' || POS.value === '' || alias.value === '' || alias.value == null){\r",
+                                                                    "        if(CertDate.value === '' || HICN.value === '' || SupplierNPI.value === '' || PhysicianNPI.value === '' || POS.value === '' || alias.value === '' || alias.value == null){\r",
                                                                     "            Ext.Msg.show({\r",
                                                                     "                title: 'Empty Record',\r",
                                                                     "                msg: '<code>Please enter values for required fields</code>',\r",

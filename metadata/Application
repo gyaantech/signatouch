@@ -51,7 +51,8 @@
             "PopupHICN",
             "Help",
             "PopupNewFacility",
-            "PhysicianOffice"
+            "PhysicianOffice",
+            "UserAlias"
         ]
     },
     "designerId": "application"

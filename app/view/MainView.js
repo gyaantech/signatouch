@@ -3833,6 +3833,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                         {
                                                             xtype: 'button',
                                                             cls: 'BackBt',
+                                                            height: 25,
                                                             itemId: 'btnPatientCancel',
                                                             margin: '0 10 0 0',
                                                             padding: '',
@@ -4073,6 +4074,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                 {
                                                                     xtype: 'button',
                                                                     cls: 'BackBt',
+                                                                    height: 25,
                                                                     itemId: 'btnPhysicianCancel',
                                                                     margin: '',
                                                                     padding: '',
@@ -4582,6 +4584,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                         {
                                                             xtype: 'button',
                                                             cls: 'BackBt',
+                                                            height: 25,
                                                             itemId: 'btnSupplierCancel',
                                                             margin: '0 10 0 0',
                                                             padding: '',
@@ -6434,14 +6437,16 @@ Ext.define('SignaTouch.view.MainView', {
                                                             columns: [
                                                                 {
                                                                     xtype: 'gridcolumn',
-                                                                    width: 117,
-                                                                    dataIndex: 'displayName',
-                                                                    text: 'Name'
+                                                                    width: 160,
+                                                                    defaultWidth: 160,
+                                                                    dataIndex: 'email',
+                                                                    text: 'Email'
                                                                 },
                                                                 {
                                                                     xtype: 'gridcolumn',
-                                                                    dataIndex: 'Company',
-                                                                    text: 'Company'
+                                                                    width: 117,
+                                                                    dataIndex: 'displayName',
+                                                                    text: 'Display Name'
                                                                 },
                                                                 {
                                                                     xtype: 'gridcolumn',
@@ -6450,36 +6455,50 @@ Ext.define('SignaTouch.view.MainView', {
                                                                 },
                                                                 {
                                                                     xtype: 'gridcolumn',
+                                                                    hidden: true,
+                                                                    dataIndex: 'Type',
+                                                                    text: 'UserType'
+                                                                },
+                                                                {
+                                                                    xtype: 'gridcolumn',
+                                                                    dataIndex: 'hasAlias',
+                                                                    text: 'Has Alias?'
+                                                                },
+                                                                {
+                                                                    xtype: 'gridcolumn',
+                                                                    hidden: true,
+                                                                    dataIndex: 'Company',
+                                                                    text: 'Company'
+                                                                },
+                                                                {
+                                                                    xtype: 'gridcolumn',
+                                                                    hidden: true,
                                                                     dataIndex: 'Phone',
                                                                     text: 'Phone'
                                                                 },
                                                                 {
                                                                     xtype: 'gridcolumn',
+                                                                    hidden: true,
                                                                     dataIndex: 'City',
                                                                     text: 'City'
                                                                 },
                                                                 {
                                                                     xtype: 'gridcolumn',
+                                                                    hidden: true,
                                                                     dataIndex: 'Zip',
                                                                     text: 'Zip'
                                                                 },
                                                                 {
                                                                     xtype: 'gridcolumn',
+                                                                    hidden: true,
                                                                     width: 64,
                                                                     dataIndex: 'State',
                                                                     text: 'State'
                                                                 },
                                                                 {
-                                                                    xtype: 'gridcolumn',
-                                                                    width: 160,
-                                                                    defaultWidth: 160,
-                                                                    dataIndex: 'email',
-                                                                    text: 'Email'
-                                                                },
-                                                                {
                                                                     xtype: 'actioncolumn',
                                                                     text: 'Action',
-                                                                    width: 90,
+                                                                    width: 150,
                                                                     defaultWidth: 90,
                                                                     align: 'center',
                                                                     dataIndex: 'Action',
@@ -6605,7 +6624,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                     Ext.getCmp('DomainRecordID').hide();
                                                                                     Ext.getCmp('UserViewID').show();
 
-                                                                                    console.log(record.data.email);
+                                                                                    console.log(record.data.MidName);
                                                                                     // set values in text field
                                                                                     Ext.getCmp('txtAccountNameID1').setValue(record.data.email);
                                                                                     Ext.getCmp('txtFirstNameID1').setValue(record.data.FirstName);
@@ -6665,6 +6684,22 @@ Ext.define('SignaTouch.view.MainView', {
                                                                             icon: 'resources/images/view.png',
                                                                             iconCls: 'actionicon',
                                                                             tooltip: 'View'
+                                                                        },
+                                                                        {
+                                                                            handler: function(view, rowIndex, colIndex, item, e, record, row) {
+                                                                                console.log(record.data);
+                                                                                if(record.data.hasAlias === 'YES'){
+                                                                                    localStorage.removeItem("physician_alias"); //remove
+                                                                                    localStorage.setItem("physician_alias", record.data.Alias);
+
+                                                                                }
+
+                                                                                var HelpWindow = Ext.create("widget.Alias");
+                                                                                HelpWindow.show();
+                                                                            },
+                                                                            icon: 'resources/images/ViewOffice.png',
+                                                                            iconCls: 'actionicon',
+                                                                            tooltip: 'View'
                                                                         }
                                                                     ]
                                                                 }
@@ -6673,7 +6708,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                         {
                                                             xtype: 'pagingtoolbar',
                                                             width: 958,
-                                                            store: 'PhysicianGridBind',
+                                                            store: 'DomainUserRecord',
                                                             layout: {
                                                                 type: 'hbox',
                                                                 pack: 'center'
@@ -11925,6 +11960,9 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('AddAlias').hide();
         Ext.getCmp('AddUserPanelID').hide();
         Ext.getCmp('AddDomainID').hide();
+
+        //DomainRecordID
+        Ext.getCmp('DomainRecordID').hide();
     },
 
     onSectionBMenuClick: function(item, e, eOpts) {
@@ -11977,6 +12015,9 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('AddAlias').hide();
         Ext.getCmp('AddUserPanelID').hide();
         Ext.getCmp('AddDomainID').hide();
+
+        //DomainRecordID
+        Ext.getCmp('DomainRecordID').hide();
     },
 
     onDashboardIDClick: function(item, e, eOpts) {
@@ -12021,6 +12062,9 @@ Ext.define('SignaTouch.view.MainView', {
 
         Ext.getCmp('ChangePasswordPanelID').hide();
         Ext.getCmp('AddAlias').hide();
+
+        //DomainRecordID
+        Ext.getCmp('DomainRecordID').hide();
 
     },
 
@@ -12111,6 +12155,9 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('AddAlias').hide();
 
         Ext.getCmp('AddDomainID').hide();
+
+        //DomainRecordID
+        Ext.getCmp('DomainRecordID').hide();
     },
 
     onMPhysicianClick: function(item, e, eOpts) {
@@ -12162,6 +12209,9 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('AddAlias').hide();
 
         Ext.getCmp('AddDomainID').hide();
+
+        //DomainRecordID
+        Ext.getCmp('DomainRecordID').hide();
     },
 
     onMSupplierClick: function(item, e, eOpts) {
@@ -12214,10 +12264,13 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('AddAlias').hide();
 
         Ext.getCmp('AddDomainID').hide();
+
+        //DomainRecordID
+        Ext.getCmp('DomainRecordID').hide();
     },
 
     onMAddUserIDClick: function(item, e, eOpts) {
-            var store = Ext.getStore('DomainUserRecord');
+          /*  var store = Ext.getStore('DomainUserRecord');
 
             store.removeAll(true);
 
@@ -12254,6 +12307,8 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('Messaging').hide();
         Ext.getCmp('Dashboard').hide();
 
+        //DomainRecordID
+        Ext.getCmp('DomainRecordID').hide();
 
         //Dashboard
         Ext.getCmp('AddUserForm').getForm().reset();
@@ -12294,6 +12349,7 @@ Ext.define('SignaTouch.view.MainView', {
 
             Ext.getCmp('UserGrid').bindStore(store);
 
+
         };
 
         // Failure
@@ -12301,6 +12357,8 @@ Ext.define('SignaTouch.view.MainView', {
             console.log("API not called");
 
         };
+
+
 
         //adding loader
         Ext.Ajax.on('beforerequest', function(){
@@ -12324,8 +12382,8 @@ Ext.define('SignaTouch.view.MainView', {
                           failure: failureCallback
                          });
 
-
-
+        */
+        Ext.Msg.alert("In Progress", 'In Progress');
     },
 
     onMAddCOSIDClick: function(item, e, eOpts) {
@@ -12362,6 +12420,9 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('Messaging').hide();
         Ext.getCmp('Dashboard').hide();
         Ext.getCmp('AddAlias').hide();
+
+        //DomainRecordID
+        Ext.getCmp('DomainRecordID').hide();
 
         //COS
         Ext.getCmp('COSForm').getForm().reset();
@@ -12409,6 +12470,8 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('Messaging').hide();
         Ext.getCmp('Dashboard').hide();
 
+        //DomainRecordID
+        Ext.getCmp('DomainRecordID').hide();
 
         //COS
 
@@ -16726,7 +16789,7 @@ Ext.define('SignaTouch.view.MainView', {
                 var LocalHDRid = localStorage.getItem('SectionAHDRID');
                 var CertDate = Ext.getCmp('txtSectionA1CertificationDateID');
                 var HICN = Ext.getCmp('PatientHICNPOP');
-                var MedID =  Ext.getCmp('MedIDSectionAinput');
+                //var MedID =  Ext.getCmp('MedIDSectionAinput');
                 var SupplierNPI = Ext.getCmp('txtSectionASupplierNPIID');
                 var PhysicianNPI = Ext.getCmp('txtSectionAPhysicianNPIID');
                 var POS = Ext.getCmp('txtSectionAPOSID');
@@ -16771,7 +16834,7 @@ Ext.define('SignaTouch.view.MainView', {
 
 
                 //alert('alias '+alias.value);
-                if(CertDate.value === '' || HICN.value === '' || MedID.value === '' || SupplierNPI.value === '' || PhysicianNPI.value === '' || POS.value === '' || alias.value === '' || alias.value == null){
+                if(CertDate.value === '' || HICN.value === '' || SupplierNPI.value === '' || PhysicianNPI.value === '' || POS.value === '' || alias.value === '' || alias.value == null){
                     Ext.Msg.show({
                         title: 'Empty Record',
                         msg: '<code>Please enter values for required fields</code>',
