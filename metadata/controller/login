@@ -91,7 +91,7 @@
                     "        Ext.getCmp('AddUserPanelID').hide();\r",
                     "        Ext.getCmp('AddAlias').hide();\r",
                     "        Ext.getCmp('DomainRecordID').hide();\r",
-                    "        \r",
+                    "\r",
                     "\r",
                     "        // refresh store\r",
                     "        var myStore = Ext.getStore('SectionA1GridBind');\r",

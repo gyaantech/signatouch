@@ -31,10 +31,10 @@ Ext.define('SignaTouch.store.DomainUserRecord', {
             model: 'SignaTouch.model.DomainUserRecord',
             remoteFilter: true,
             storeId: 'DomainUserRecord',
-            pageSize: 20,
+            pageSize: 10,
             proxy: {
                 type: 'ajax',
-                url: 'services/ListAccount.php?action=ZimbraListUser&domain=npi.st',
+                url: 'services/ListAccount.php?action=ZimbraListUser&domain=akant-11111.st',
                 reader: {
                     type: 'json',
                     root: 'data'

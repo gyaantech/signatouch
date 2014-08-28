@@ -180,12 +180,13 @@ class ListUser {
   $city = '';
   $postalCode = '';
   $state = '';
-  $Type = '';
+  $type = '';
   $xmlObject = new XmlToArrayParser($ZimbraSOAPResponse);
   $arr = $xmlObject->array;
   $domain_accounts = $arr['soap:Envelope']['soap:Body']['GetAllAccountsResponse']['account'];
   foreach($domain_accounts as $key => $value){
     $email = $value['attrib']['name'];
+    $email = str_replace(".st","",$email);
   foreach($value['a'] as $k => $v){
   //  echo '<pre>';print_r($v);echo '</pre>';
     if($v['attrib']['n'] == 'displayName'){
@@ -236,7 +237,7 @@ class ListUser {
   }
   
     //  $app_list[] = array('Type'=>$type,'email'=>$email,'displayName'=> $displayName, 'Company' => $company,'JobTitle'=>$title,'Phone'=>$mobile,'City'=>$city,'Zip'=>$postalCode,'State'=>$state); 
-      $app_list[] = array('email'=>$email,'displayName'=> $displayName, 'FirstName'=>$FirstName,'MidName'=>$MidName,'LastName'=>$LastName,'altEmail'=>$altEmail,'Company' => $company,'JobTitle'=>$title,'Phone'=>$mobile,'City'=>$city,'Zip'=>$postalCode,'State'=>$state); 
+      $app_list[] = array('email'=>$email,'displayName'=> ucwords($displayName), 'FirstName'=>$FirstName,'MidName'=>$MidName,'LastName'=>$LastName,'altEmail'=>$altEmail,'Company' => $company,'JobTitle'=>$title,'Phone'=>$mobile,'City'=>$city,'Zip'=>$postalCode,'State'=>$state); 
       
           }
     return array_reverse($app_list);  
@@ -286,7 +287,7 @@ class ListUser {
     curl_setopt($CurlHandle, CURLOPT_POSTFIELDS, $SOAPMessage);
     $ZimbraSOAPResponse = curl_exec($CurlHandle);
     curl_close($CurlHandle);
-    echo $ZimbraSOAPResponse;
+   // echo $ZimbraSOAPResponse;
     if(!($ZimbraSOAPResponse))
     {
             print("ERROR: curl_exec - (" . curl_errno($CurlHandle) . ") " . curl_error($CurlHandle));
@@ -294,9 +295,61 @@ class ListUser {
     }
       return TRUE;
     }
+    
+  public function ZimbraFetchCOS () {
+    $account = '';
+    $connect = new Zimbra();
+    if(isset($_GET['account'])){
+     $account = $_GET['account']; 
+    }
+    
+    $account_id = $connect->ZimbraGetAccountID($account);
+    $CurlHandle = curl_init();
+    curl_setopt($CurlHandle, CURLOPT_URL,"$connect->ServerAddress:7071/service/admin/soap");
+    curl_setopt($CurlHandle, CURLOPT_POST, TRUE);
+    curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
+
+
+    $parameters = $connect->ZimbraConnect();
+
+     $SOAPMessage = '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+                            <soap:Header>
+                                    <context xmlns="urn:zimbra">
+                                            <authToken>' . $parameters['authToken'] . '</authToken>
+                                            <sessionId id="' . $parameters['sessionId'] . '">' . $parameters['sessionId'] . '</sessionId>
+                                    </context>
+                            </soap:Header>
+                            <soap:Body>
+
+
+                          <GetAccountRequest xmlns="urn:zimbraAdmin">
+                              <account by="id">'.$account_id.'</account>
+                          </GetAccountRequest>
+                            </soap:Body>
+                    </soap:Envelope>';
+
+    curl_setopt($CurlHandle, CURLOPT_POSTFIELDS, $SOAPMessage);
+    $ZimbraSOAPResponse = curl_exec($CurlHandle);
+    curl_close($CurlHandle);
+    
+    if(!($ZimbraSOAPResponse))
+    {
+            print("ERROR: curl_exec - (" . curl_errno($CurlHandle) . ") " . curl_error($CurlHandle));
+            return(FALSE); exit();
+    }
+    $cos = strstr($ZimbraSOAPResponse, '<a n="zimbraCOSId"');
+    $cos = strstr($cos, ">");
+    $cos = substr($cos, 1, strpos($cos, "<") - 1);
+    if($cos){
+      $cos_name = $connect->ZimbraGetCOSName($cos);
+    }
+      return $cos_name;
+    }
   }
 
-$possible_url = array("ZimbraListUser","ZimbraUpdateUser");
+$possible_url = array("ZimbraListUser","ZimbraUpdateUser","ZimbraFetchCOS");
  $value = "An error has occurred";
  $cms = new ListUser();
   if (isset ($_GET["action"]) && in_array($_GET["action"], $possible_url)) {
@@ -307,6 +360,10 @@ $possible_url = array("ZimbraListUser","ZimbraUpdateUser");
           case "ZimbraUpdateUser" :
               $value = $cms->ZimbraUpdateUser();
               break; 
+          case "ZimbraFetchCOS" :
+              $value = $cms->ZimbraFetchCOS();
+              break; 
+            
           
       }
   }

@@ -38,7 +38,7 @@ Ext.define('SignaTouch.view.Help', {
             items: [
                 {
                     xtype: 'container',
-                    html: '<ul style="list-style:none;text-align: center;padding-top: 25px;/* border: 1px solid red; */padding-right: 45px;">\r\n<li><img src="resources/images/SignaTouch.png"></li>\r\n<li><font size="5"><b>High Efficiency Signature Capture System<b></b></b></font></li><b><b>\r\n<li><b>Version : </b> 2.2</li>\r\n<li><b>© 2014 SignaTouch Corporation - All Rights Reserved</b></li>\r\n</b></b></ul>'
+                    html: '<ul style="list-style:none;text-align: center;padding-top: 25px;/* border: 1px solid red; */padding-right: 45px;">\r\n<li><img src="resources/images/SignaTouch.png"></li>\r\n<li><font size="5"><b>High Efficiency Signature Capture System<b></b></b></font></li><b><b>\r\n<li><b>Version : </b> 2.3</li>\r\n<li><b>© 2014 SignaTouch Corporation - All Rights Reserved</b></li>\r\n</b></b></ul>'
                 }
             ]
         });

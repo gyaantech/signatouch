@@ -7,6 +7,7 @@
 include "DBConnection.php";
 include "GetSet.php";
 include "ZimbraConnect.php";
+//include "mail/PhysicianMail.php";
 
 class CreatePhysician {
   //Database connect 
@@ -78,7 +79,7 @@ class CreatePhysician {
     $GetSet->setAliasEmailId($email_id);
     $AliasEmailId = $GetSet->getAliasEmailId();
     
-    $target_email_id = $_POST['txtTargetAccount'].'.st';
+    $target_email_id = $_POST['txtTargetAccount'].'@'.$_POST['txtDomainName1'].'.st';
     $GetSet->setTargetAccount($target_email_id);
     $TargetAccount = $GetSet->getTargetAccount();
     
@@ -231,7 +232,9 @@ public function create_another_office() {
 
 
         $admin_account_name = 'admin@'.$domain_name;
-        $account_response = $this->create_office_admin_account($admin_account_name , $param['phone'] , $cos_admin_response_id , $param['displayName']);
+        $pass = explode("-",$param['phone']);
+        $password = implode("",$pass);
+        $account_response = $this->create_office_admin_account($admin_account_name , $param['phone'] , $password,$cos_admin_response_id , $param['displayName']);
 
 		//$preauth = $this->ZimbraPhysicianPreAuthKey($domain_name , $admin_account_name);
 		
@@ -251,6 +254,7 @@ public function create_another_office() {
         else{
 			//$alias_response = $this->ZimbraCreatePhysicianAlias(1, $this->ServerAddress, $this->AdminUserName, $this->AdminPassword);
 			$result = $this->insertPhysicianRecord();
+    
 			return $result;
         }
 	}
@@ -287,7 +291,9 @@ public function create_another_office() {
 
 
         $admin_account_name = 'admin@'.$domain_name;
-        $account_response = $this->create_office_admin_account($admin_account_name , $param['phone'] , $cos_admin_response_id , $param['displayName']);
+        $pass = explode('-',$param['phone']);
+        $password  = implode("",$pass);
+        $account_response = $this->create_office_admin_account($admin_account_name , $param['phone'] ,$password, $cos_admin_response_id , $param['displayName']);
 
 
         $allias_name = $name_f_l.'@'.$domain_name;
@@ -478,7 +484,7 @@ public function check_for_existaince($domain , $physician_npi_user) {
           
   }   
   
-  public function create_office_admin_account($admin_account_name , $password , $COS_admin_name , $displayName){
+  public function create_office_admin_account($admin_account_name , $phone,$password , $COS_admin_name , $displayName){
        $connect = new Zimbra();
        $username = isset($_GET['user'])?$_GET['user']:'';
         $param = $this->set_physician_parameters();
@@ -505,7 +511,7 @@ public function check_for_existaince($domain , $physician_npi_user) {
                                         <a n="sn">admin</a>
                                         <a n="zimbraCOSId">'.$COS_admin_name.'</a>
 										<a n="displayName">'.$displayName.'</a>
-										<a n="mobile">'.$password.'</a>
+										<a n="mobile">'.$phone.'</a>
                                         <a n="description">Administrative Account</a>
                                     </CreateAccountRequest>
                                 </soap:Body>
@@ -710,6 +716,8 @@ public function check_for_existaince($domain , $physician_npi_user) {
   {
          $connect = new Zimbra();
         $param = $this->set_physician_parameters();
+        $phone_arr = explode("-",$param['phone']);
+        $phone = implode($phone_arr,"");
          $CurlHandle = curl_init();
           curl_setopt($CurlHandle, CURLOPT_URL,           "$connect->ServerAddress:7071/service/admin/soap");
           curl_setopt($CurlHandle, CURLOPT_POST,           TRUE);
@@ -732,7 +740,7 @@ public function check_for_existaince($domain , $physician_npi_user) {
                                   <soap:Body>
                                    <CreateAccountRequest xmlns="urn:zimbraAdmin">
                                                   <name>' . $param['NewUserName']. '</name>
-                                                  <password>' . $param['phone'] . '</password>
+                                                  <password>' . $phone . '</password>
                                                   <a n="zimbraCOSId">' . $DefaultCOS . '</a>
                                                   <a n="displayName">'.$param['displayName'].'</a>
                                                <a n="givenName">'.$param['firstName'].'</a>
@@ -814,9 +822,9 @@ public function check_for_existaince($domain , $physician_npi_user) {
             return 'account_error';
         }
         else{
-			$GetSet=new GetSet();
-			$GetSet->setLastUpdateID($_GET['src']);
-			$LastUpdateID = $GetSet->getLastUpdateID();
+			///$GetSet=new GetSet();
+			//$GetSet->setLastUpdateID($_GET['src']);
+			//$LastUpdateID = $GetSet->getLastUpdateID();
 			/*$sql = "Insert into physician_alias (PhysicianNPI,PhysicianAlias,PhysicianLastUpdateID) values('".$result['TargetAccount']."','".$result['AliasEmailId']."','$LastUpdateID')";
 
             $result = mysql_query($sql);

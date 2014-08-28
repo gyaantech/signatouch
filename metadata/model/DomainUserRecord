@@ -153,6 +153,18 @@
                 "name": "altEmail"
             },
             "designerId": "d0695861-d2ff-4805-b6b3-517b9ff12be8"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "Type"
+            },
+            "designerId": "ed6aa2df-31d2-487c-8ee2-6ecdec8cb741"
         }
     ]
 }

@@ -58,10 +58,11 @@ class CreateUser {
     $zip = $GetSet->getZip();
     $GetSet->setCity($_POST['txtUCity']);
     $city = $GetSet->getCity();
+    $GetSet->setAltemailID($_POST['txtAltMailID']);
+    $AltMailID = $GetSet->getAltemailID();
     
     
-    
-    $result = array('NewUserName'=>$NewUserName,'displayName'=>$displayName,'firstName'=>$firstName,'midName'=>$midName,'lastName'=>$lastName,'company'=>$company,'jobTitle'=>$jobTitle,'state'=>$state,'phone'=>$phone,'city'=>$city,'zip'=>$zip,'cos_append'=>$cos_append);
+    $result = array('NewUserName'=>$NewUserName,'displayName'=>$displayName,'firstName'=>$firstName,'midName'=>$midName,'lastName'=>$lastName,'company'=>$company,'jobTitle'=>$jobTitle,'state'=>$state,'phone'=>$phone,'city'=>$city,'zip'=>$zip,'cos_append'=>$cos_append,'AltMailID'=>$AltMailID);
     return $result;
   }
     
@@ -84,6 +85,8 @@ class CreateUser {
   {
         $connect = new Zimbra();
         $param = $this->set_user_parameters();
+        $pass = explode("-",$param['phone']);
+        $password = implode("",$pass);
         $physician_cos_array = explode('-',$_COOKIE['user_cos']);
         $COS_user_name = $physician_cos_array[0].'-client-'.$param['cos_append'];
         $cosID = $connect->ZimbraGetCOSID($COS_user_name);
@@ -109,7 +112,7 @@ class CreateUser {
                                   <soap:Body>
                                           <CreateAccountRequest xmlns="urn:zimbraAdmin">
                                                   <name>' . $param['NewUserName'].'.st' . '</name>
-                                                  <password>' . $param['phone'] . '</password>
+                                                  <password>' . $password . '</password>
                                                   <a n="zimbraCOSId">' . $cosID . '</a>
                                                   <a n="displayName">'.$param['displayName'].'</a>
                                                <a n="givenName">'.$param['firstName'].'</a>
@@ -122,6 +125,8 @@ class CreateUser {
                                                             <a n="mobile">'.$param['phone'].'</a>
                                                               <a n="l">'.$param['city'].'</a>
                                                                 <a n="postalCode">'.$param['zip'].'</a>
+                                                                  <a n="zimbraNotes">'.$param['AltMailID'].'</a>
+                                                                  
                                           </CreateAccountRequest>
                                   </soap:Body>
                           </soap:Envelope>';
@@ -163,10 +168,6 @@ class CreateUser {
     }
          
   }
- 
- 
-
-  
     //For change password
   public function ZimbraUpdatePassword()
 {       

@@ -5,9 +5,18 @@ include 'EmailConnect.php'; // include the smtp connect file
 class PhysicianEmail {
 	public function mail() {
 	
+	//Name
     $name=$_POST["txtPhysicianFname"].' '.$_POST["txtPhysicianMname"].' '.$_POST["txtPhysicianLname"];
-		// message
+		// Username
+		$name_f_l = strtolower(substr($_POST['txtPhysicianFname'], 0, 1).substr($_POST['txtPhysicianLname'], 0, 6));
+		$domain_name = $name_f_l.'-'.substr($_POST['txtPhysicianZip'], 0, 5);
+		$admin_account_name = 'admin@'.$domain_name;
 		
+		//Password
+		$pass = explode('-',$_POST['txtPhysicianPhoneNo']);
+		$password = implode("",$pass);		
+		
+		// message
 		$body = "<html>
 		<head>
 		  <title>Physician is Created successfully</title>
@@ -42,15 +51,15 @@ class PhysicianEmail {
 				</tr>
 				<tr>
 					 <td><b>Username :</b></td>
-					<td>".$_POST["View_Date"]."</td>
+					<td>".$admin_account_name."</td>
 				</tr>
 				<tr>
 					 <td><b>Password :</b></td>
-					<td>".$_POST["View_Status"]."</td>
+					<td>".$password."</td>
 				</tr>
 					<tr>
 					 <td><b>Alt. Email ID :</b></td>
-					<td>".$_POST["View_Status"]."</td>
+					<td>".$_POST["txtPhysicianEmail"]."</td>
 				</tr>	   
 				
 				<tr>

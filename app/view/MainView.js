@@ -2634,6 +2634,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             id: 'AutoID2',
                                                             margin: '0 0 0 10',
                                                             fieldLabel: '',
+                                                            readOnly: true,
                                                             boxLabel: 'Auto',
                                                             checked: true,
                                                             inputValue: '1',
@@ -2715,7 +2716,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             fieldLabel: '<b>Alt. Email&nbsp;</b>',
                                                             labelWidth: 130,
                                                             msgTarget: 'side',
-                                                            inputId: 'txtAltMailID1'
+                                                            inputId: ''
                                                         }
                                                     ]
                                                 },
@@ -2734,6 +2735,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             id: 'AutoID3',
                                                             fieldLabel: '',
                                                             inputId: 'isadmin1',
+                                                            readOnly: true,
                                                             boxLabel: '<b>Is Admin?</b>',
                                                             inputValue: '1',
                                                             uncheckedValue: '0'
@@ -2877,7 +2879,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                         {
                                                             xtype: 'button',
                                                             cls: 'BackBt',
-                                                            hidden: true,
+                                                            height: 20,
                                                             id: 'btnUserBack1',
                                                             padding: '',
                                                             width: 92,
@@ -3159,14 +3161,14 @@ Ext.define('SignaTouch.view.MainView', {
                                                             labelWidth: 20
                                                         },
                                                         {
-                                                            xtype: 'textfield',
+                                                            xtype: 'displayfield',
                                                             height: 0,
                                                             id: 'txtDomainNameID',
                                                             width: 170,
                                                             fieldLabel: '',
                                                             labelWidth: 120,
-                                                            inputId: 'txtDomainName',
-                                                            emptyText: 'domain.com'
+                                                            submitValue: true,
+                                                            inputId: 'txtDomainName'
                                                         }
                                                     ]
                                                 },
@@ -3183,11 +3185,28 @@ Ext.define('SignaTouch.view.MainView', {
                                                             xtype: 'textfield',
                                                             id: 'txtTargetAccountID',
                                                             itemId: '',
-                                                            width: 520,
+                                                            width: 330,
                                                             fieldLabel: '<b>Target Account&nbsp;<span style="color:#D94E37;">*</span><b/>',
                                                             labelWidth: 150,
                                                             inputId: 'txtTargetAccount',
                                                             allowBlank: false
+                                                        },
+                                                        {
+                                                            xtype: 'displayfield',
+                                                            width: 20,
+                                                            fieldLabel: '&nbsp;@',
+                                                            labelSeparator: '&nbsp;',
+                                                            labelWidth: 20
+                                                        },
+                                                        {
+                                                            xtype: 'displayfield',
+                                                            height: 0,
+                                                            id: 'txtDomainNameID1',
+                                                            width: 170,
+                                                            fieldLabel: '',
+                                                            labelWidth: 120,
+                                                            submitValue: true,
+                                                            inputId: 'txtDomainName1'
                                                         }
                                                     ]
                                                 },
@@ -6468,70 +6487,61 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     items: [
                                                                         {
                                                                             handler: function(view, rowIndex, colIndex, item, e, record, row) {
-                                                                                var email = record.data.email;
-
-                                                                                var name = email.split("@");
-
-                                                                                // set values in text field
-                                                                                Ext.getCmp('txtAccountNameID').setValue(name[0]).setReadOnly(true);
-                                                                                Ext.getCmp('txtFirstNameID').setValue(record.data.FirstName);
-                                                                                Ext.getCmp('txtMiddleInitialID').setValue(record.data.MidName);
-                                                                                Ext.getCmp('txtLastNameID').setValue(record.data.LastName);
-                                                                                Ext.getCmp('txtDisplayNaMeID').setValue(record.data.displayName);
-                                                                                Ext.getCmp('txtAltMailID1').setValue(record.data.altEmail);
-                                                                                Ext.getCmp('txCompanyID').setValue(record.data.Company);
-                                                                                Ext.getCmp('txCompanyTitleID').setValue(record.data.JobTitle);
-                                                                                Ext.getCmp('txtUCityID').setValue(record.data.City);
-                                                                                console.log(record.data.State);
-                                                                                Ext.getCmp('ddlUStateID').setValue(record.data.State.trim());
-                                                                                Ext.getCmp('txtUZipID').setValue(record.data.Zip);
-                                                                                Ext.getCmp('txtUPhoneNoID').setValue(record.data.Phone);
-
-
-                                                                                var domain = localStorage.getItem("domain");
-                                                                                var domain = domain.replace('.st', "");
-                                                                                Ext.getCmp('userDomainID').setValue('<b>@'+domain+'</b>');
-                                                                                Ext.getCmp('hiddenDomainID').setValue('@'+domain);
-
-
-                                                                                Ext.getCmp('DomainRecordID').hide();
-                                                                                Ext.getCmp('AddUserPanelID').show();
-
-                                                                                Ext.getCmp('btnCreate').hide();
-                                                                                Ext.getCmp('btnReset').show();
-                                                                                Ext.getCmp('btnUserBack').show();
-
-
-                                                                                //Breadcrms
-                                                                                Ext.getCmp('BreadcrumbAddUser').setValue('<b>Manage Account >> Edit User</b>');
-
-
-                                                                                //Button Hide
-                                                                                /*Ext.getCmp('btnPhysicianSaveID').hide();
-                                                                                Ext.getCmp('btnPhysicianUpdateID').show();
-                                                                                Ext.getCmp('txtPHYPasswordID').hide();
-                                                                                Ext.getCmp('txtPHYCPasswordID').hide();
-
-
                                                                                 // Ajax request to fetch data based on HDRID
                                                                                 // Success
                                                                                 var successCallback = function(resp, ops) {
-                                                                                    var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));
+                                                                                    var cos = Ext.JSON.decode(resp.responseText);
+                                                                                    var type = cos.split('-');
+                                                                                    if(type[2]){
+                                                                                        var type1= type[2];
+                                                                                    }
+                                                                                    else{
+                                                                                        var type1= type[1];
+                                                                                    }
+                                                                                    if(type1==='admin'){
 
-                                                                                    // var responseOjbect = Ext.JSON.decode(resp.responseText);
-                                                                                    //console.log(responseOjbect.PhysicianAltEmailId);
-                                                                                    Ext.getCmp('txtNPIID').setValue(PhysicianNPI).setReadOnly(true);
-                                                                                    Ext.getCmp('txtFnameID').setValue(responseOjbect.PhysicianFirstname);
-                                                                                    Ext.getCmp('txtMnameID').setValue(responseOjbect.PhysicianMidname);
-                                                                                    Ext.getCmp('txtLnameID').setValue(responseOjbect.PhysicianLastname);
-                                                                                    Ext.getCmp('txtAddress1ID').setValue(responseOjbect.PhysicianAddr1);
 
-                                                                                    Ext.getCmp('txtAddress2ID').setValue(responseOjbect.PhysicianAddr2);
-                                                                                    Ext.getCmp('txtCityID').setValue(responseOjbect.PhysicianCity);
-                                                                                    Ext.getCmp('ddlStateID').setValue(responseOjbect.PhysicianSt);
-                                                                                    Ext.getCmp('txtZipID').setValue(responseOjbect.PhysicianZip);
-                                                                                    Ext.getCmp('txtPhoneNoID').setValue(responseOjbect.PhysicianPhone);
-                                                                                    Ext.getCmp('txtPhysicianEmailID').setValue(responseOjbect.PhysicianAltEmailId);
+                                                                                        var value = 1;
+                                                                                    }
+                                                                                    else{
+                                                                                        var value = 0;
+                                                                                    }
+                                                                                    var email = record.data.email;
+
+                                                                                    var name = email.split("@");
+
+                                                                                    // set values in text field
+                                                                                    Ext.getCmp('txtAccountNameID').setValue(name[0]).setReadOnly(true);
+                                                                                    Ext.getCmp('txtFirstNameID').setValue(record.data.FirstName);
+                                                                                    Ext.getCmp('txtMiddleInitialID').setValue(record.data.MidName);
+                                                                                    Ext.getCmp('txtLastNameID').setValue(record.data.LastName);
+                                                                                    Ext.getCmp('txtDisplayNaMeID').setValue(record.data.displayName);
+                                                                                    Ext.getCmp('txtAltMailID1').setValue(record.data.altEmail);
+                                                                                    Ext.getCmp('AutoID1').setValue(value);
+                                                                                    Ext.getCmp('txCompanyID').setValue(record.data.Company);
+                                                                                    Ext.getCmp('txCompanyTitleID').setValue(record.data.JobTitle);
+                                                                                    Ext.getCmp('txtUCityID').setValue(record.data.City);
+                                                                                    Ext.getCmp('ddlUStateID').setValue(record.data.State.trim());
+                                                                                    Ext.getCmp('txtUZipID').setValue(record.data.Zip);
+                                                                                    Ext.getCmp('txtUPhoneNoID').setValue(record.data.Phone);
+
+
+                                                                                    var domain = localStorage.getItem("domain");
+                                                                                    var domain = domain.replace('.st', "");
+                                                                                    Ext.getCmp('userDomainID').setValue('<b>@'+domain+'</b>');
+                                                                                    Ext.getCmp('hiddenDomainID').setValue('@'+domain);
+
+
+                                                                                    Ext.getCmp('DomainRecordID').hide();
+                                                                                    Ext.getCmp('AddUserPanelID').show();
+
+                                                                                    Ext.getCmp('btnCreate').hide();
+                                                                                    Ext.getCmp('btnReset').show();
+                                                                                    Ext.getCmp('btnUserBack').show();
+
+
+                                                                                    //Breadcrms
+                                                                                    Ext.getCmp('BreadcrumbAddUser').setValue('<b>Manage Account >> Edit User</b>');
 
                                                                                 };
 
@@ -6543,25 +6553,25 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                 //adding loader
                                                                                 Ext.Ajax.on('beforerequest', function(){
 
-                                                                                    var pnl=Ext.getCmp('PhysicianPanelID');
+                                                                                    var pnl=Ext.getCmp('AddUserPanelID');
                                                                                     pnl.setLoading(true, true);
                                                                                 });
 
 
                                                                                 Ext.Ajax.on('requestcomplete', function(){
 
-                                                                                    Ext.getCmp('PhysicianPanelID').setLoading(false,false);
+                                                                                    Ext.getCmp('AddUserPanelID').setLoading(false,false);
                                                                                 });
 
                                                                                 // TODO: Login using server-side authentication service
-                                                                                Ext.Ajax.request({url: "services/Maintainence.php?action=ShowPhysicianRecord&physician_NPI="+PhysicianNPI,
+                                                                                Ext.Ajax.request({url: "services/ListAccount.php?action=ZimbraFetchCOS&account="+record.data.email+".st",
                                                                                     method: 'GET',
-                                                                                    params: PhysicianNPI,
+                                                                                    params: record.data.email,
                                                                                     success: successCallback,
                                                                                     failure: failureCallback
                                                                                 });
 
-                                                                                */
+
                                                                             },
                                                                             icon: 'resources/images/edit.png',
                                                                             iconCls: 'actionicon',
@@ -6569,37 +6579,85 @@ Ext.define('SignaTouch.view.MainView', {
                                                                         },
                                                                         {
                                                                             handler: function(view, rowIndex, colIndex, item, e, record, row) {
-                                                                                //Ext.getCmp('UserRecordForm').getForm().reset();
-
-                                                                                Ext.getCmp('DomainRecordID').hide();
-                                                                                Ext.getCmp('UserViewID').show();
-
-                                                                                console.log(record.data.email);
-                                                                                // set values in text field
-                                                                                Ext.getCmp('txtAccountNameID1').setValue(record.data.email);
-                                                                                Ext.getCmp('txtFirstNameID1').setValue(record.data.FirstName);
-                                                                                Ext.getCmp('txtMiddleInitialID1').setValue(record.data.MidName);
-                                                                                Ext.getCmp('txtLastNameID1').setValue(record.data.LastName);
-                                                                                Ext.getCmp('txtDisplayNaMeID1').setValue(record.data.displayName);
-                                                                                Ext.getCmp('txtAltMailID2').setValue(record.data.altEmail);
-                                                                                Ext.getCmp('txCompanyID1').setValue(record.data.Company);
-                                                                                Ext.getCmp('txCompanyTitleID1').setValue(record.data.JobTitle);
-                                                                                Ext.getCmp('txtUCityID1').setValue(record.data.City);
-
-                                                                                Ext.getCmp('ddlUStateID1').setValue(record.data.State.trim());
-                                                                                Ext.getCmp('txtUZipID1').setValue(record.data.Zip);
-                                                                                Ext.getCmp('txtUPhoneNoID1').setValue(record.data.Phone);
 
 
-                                                                                var domain = localStorage.getItem("domain");
-                                                                                var domain = domain.replace('.st', "");
-                                                                                Ext.getCmp('userDomainID1').setValue('<b>@'+domain+'</b>');
-                                                                                Ext.getCmp('hiddenDomainID1').setValue('@'+domain);
+                                                                                // Success
+                                                                                var successCallback = function(resp, ops) {
+                                                                                    var cos = Ext.JSON.decode(resp.responseText);
+                                                                                    var type = cos.split('-');
+                                                                                    if(type[2]){
+                                                                                        var type1= type[2];
+                                                                                    }
+                                                                                    else{
+                                                                                        var type1= type[1];
+                                                                                    }
+                                                                                    if(type1==='admin'){
 
 
-                                                                                Ext.getCmp('btnCreate').hide();
-                                                                                Ext.getCmp('btnReset').hide();
-                                                                                Ext.getCmp('btnUserBack1').show();
+                                                                                        var value = 1;
+                                                                                    }
+                                                                                    else{
+                                                                                        var value = 0;
+                                                                                    }
+                                                                                    Ext.getCmp('AutoID3').setValue(value);
+                                                                                    //Ext.getCmp('UserRecordForm').getForm().reset();
+
+                                                                                    Ext.getCmp('DomainRecordID').hide();
+                                                                                    Ext.getCmp('UserViewID').show();
+
+                                                                                    console.log(record.data.email);
+                                                                                    // set values in text field
+                                                                                    Ext.getCmp('txtAccountNameID1').setValue(record.data.email);
+                                                                                    Ext.getCmp('txtFirstNameID1').setValue(record.data.FirstName);
+                                                                                    Ext.getCmp('txtMiddleInitialID1').setValue(record.data.MidName);
+                                                                                    Ext.getCmp('txtLastNameID1').setValue(record.data.LastName);
+                                                                                    Ext.getCmp('txtDisplayNaMeID1').setValue(record.data.displayName);
+                                                                                    Ext.getCmp('txtAltMailID2').setValue(record.data.altEmail);
+                                                                                    Ext.getCmp('txCompanyID1').setValue(record.data.Company);
+                                                                                    Ext.getCmp('txCompanyTitleID1').setValue(record.data.JobTitle);
+                                                                                    Ext.getCmp('txtUCityID1').setValue(record.data.City);
+
+                                                                                    Ext.getCmp('ddlUStateID1').setValue(record.data.State.trim());
+                                                                                    Ext.getCmp('txtUZipID1').setValue(record.data.Zip);
+                                                                                    Ext.getCmp('txtUPhoneNoID1').setValue(record.data.Phone);
+
+
+                                                                                    var domain = localStorage.getItem("domain");
+                                                                                    var domain = domain.replace('.st', "");
+                                                                                    Ext.getCmp('userDomainID1').setValue('<b>@'+domain+'</b>');
+                                                                                    Ext.getCmp('hiddenDomainID1').setValue('@'+domain);
+
+
+                                                                                    Ext.getCmp('btnCreate').hide();
+                                                                                    Ext.getCmp('btnReset').hide();
+                                                                                    Ext.getCmp('btnUserBack1').show();
+                                                                                };
+                                                                                // Failure
+                                                                                var failureCallback = function(resp, ops) {
+                                                                                    console.log("API not called");
+
+                                                                                };
+                                                                                //adding loader
+                                                                                Ext.Ajax.on('beforerequest', function(){
+
+                                                                                    var pnl=Ext.getCmp('AddUserPanelID');
+                                                                                    pnl.setLoading(true, true);
+                                                                                });
+
+
+                                                                                Ext.Ajax.on('requestcomplete', function(){
+
+                                                                                    Ext.getCmp('AddUserPanelID').setLoading(false,false);
+                                                                                });
+
+                                                                                // TODO: Login using server-side authentication service
+                                                                                Ext.Ajax.request({url: "services/ListAccount.php?action=ZimbraFetchCOS&account="+record.data.email+".st",
+                                                                                    method: 'GET',
+                                                                                    params: record.data.email,
+                                                                                    success: successCallback,
+                                                                                    failure: failureCallback
+                                                                                });
+
 
 
 
@@ -6629,6 +6687,7 @@ Ext.define('SignaTouch.view.MainView', {
 
                                                                         //Ext.getCmp('txtPhysicianfilterID').reset();
                                                                     },
+                                                                    hidden: true,
                                                                     id: 'UserClear',
                                                                     text: 'Clear Filter'
                                                                 }
@@ -12359,6 +12418,10 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('AddCOSID').hide();
 
         Ext.getCmp('AliasForm').getForm().reset();
+        var domain = localStorage.getItem("domain");
+        var domain = domain.replace('.st', "");
+        Ext.getCmp('txtDomainNameID').setValue(domain);
+        Ext.getCmp('txtDomainNameID1').setValue(domain);
         Ext.getCmp('AddAlias').show();
 
         Ext.getCmp('AddDomainID').hide();
@@ -13272,6 +13335,19 @@ Ext.define('SignaTouch.view.MainView', {
             console.log(resp.responseText);
             if(resp.responseText === 'true'){
                 Ext.Msg.alert("User updated", 'User updated successfully');
+                //Ext.getCmp('AddUserForm').getForm().reset();
+                var store = Ext.getStore('DomainUserRecord');
+
+                store.removeAll(true);
+
+                store.getProxy().url = 'services/ListAccount.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');
+                store.load();
+                //store.add(Ext.JSON.decode(resp.responseText));
+
+                Ext.getCmp('UserGrid').bindStore(store);
+
+                Ext.getCmp('AddUserPanelID').hide();
+                Ext.getCmp('DomainRecordID').show();
                 Ext.getCmp('AddUserForm').getForm().reset();
             }
 
@@ -13654,7 +13730,7 @@ Ext.define('SignaTouch.view.MainView', {
                 Ext.Msg.alert("Alias is created", 'Alias created successfully');
                 Ext.getCmp('txtAliasID').reset();
                 Ext.getCmp('txtTargetAccountID').reset();
-                Ext.getCmp('txtDomainNameID').reset();
+                //Ext.getCmp('txtDomainNameID').reset();
             }
 
             else if(resp.responseText === '"exists"'){
@@ -13706,9 +13782,9 @@ Ext.define('SignaTouch.view.MainView', {
     },
 
     onBtnReset3Click: function(button, e, eOpts) {
-          Ext.getCmp('txtAliasID').reset();
+        Ext.getCmp('txtAliasID').reset();
         Ext.getCmp('txtTargetAccountID').reset();
-          Ext.getCmp('txtDomainNameID').reset();
+        //Ext.getCmp('txtDomainNameID').reset();
     },
 
     onBtnCreate2Click: function(button, e, eOpts) {
@@ -14593,6 +14669,7 @@ Ext.define('SignaTouch.view.MainView', {
     },
 
     onBtUserAddClick: function(button, e, eOpts) {
+        Ext.getCmp('txtAccountNameID').setReadOnly(false);
         Ext.getCmp('AddUserForm').getForm().reset();
         Ext.getCmp('AddUserPanelID').show();
         Ext.getCmp('DomainRecordID').hide();
@@ -16854,10 +16931,10 @@ Ext.define('SignaTouch.view.MainView', {
     onViewbtnSendClick: function(button, e, eOpts) {
         var form =  Ext.getCmp('ViewForm');  //
         values = form.getValues();    // Form values
-
+        var altemail = Ext.getCmp('ViewPhyemail').getValue();
         var HdrID = Ext.getCmp('HiddenHDRID').value;
         var form = 'DrOffice';
-        var altemail = Ext.getCmp('ViewPhyemail').getValue();
+
         var Name = Ext.getCmp('ViewPhyName').getValue();
         // Success
         var successCallback = function(resp, ops) {
@@ -17037,136 +17114,133 @@ Ext.define('SignaTouch.view.MainView', {
     },
 
     onBtnPhysicianSaveClick: function(button, e, eOpts) {
+
+
         var form = button.up('form');
         var domain = localStorage.getItem('email');
-                   //var header = button.up('headerPanel');
-                       values = form.getValues();
+        //var header = button.up('headerPanel');
+        values = form.getValues();
+        var altemail = Ext.getCmp('txtPhysicianEmailID').getValue();
 
-                // Success
-                var successCallback = function(resp, ops) {
-                    console.log(resp.responseText);
-                    if(resp.responseText === 'true'){
+        // Success
+        var successCallback = function(resp, ops) {
+            console.log(resp.responseText);
+            if(resp.responseText === 'true'){
 
-                        Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=ZimbraPhysicianCreate&src="+domain,
-                                method: 'POST',
-                                params: values,
-                                success: successPhyCallback,
-                                failure: failurePhyCallback
-                         });
-                   }
-                   else if(resp.responseText === 'false'){
+                Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=ZimbraPhysicianCreate&src="+domain,
+                                  method: 'POST',
+                                  params: values,
+                                  success: successPhyCallback,
+                                  failure: failurePhyCallback
+                                 });
 
-                      Ext.Msg.alert("Duplicate Entry", 'Physican Record Already Exists');
-                   }
-                    else{
-                      // Show login failure error
+
+
+            }
+            else if(resp.responseText === 'false'){
+
+                Ext.Msg.alert("Duplicate Entry", 'Physican Record Already Exists');
+            }
+                else{
+                    // Show login failure error
                     Ext.Msg.alert("Insert Failure", 'Data cannot be added');
-                    }
+                }
 
-                };
+        };
 
-                // Failure
-                var failureCallback = function(resp, ops) {
+        // Failure
+        var failureCallback = function(resp, ops) {
 
+            // Show login failure error
+            //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+        };
+
+        // Success
+        var successPhyCallback = function(resp, ops) {
+            console.log(resp.responseText);
+            if(resp.responseText === 'true'){
+                Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=ZimbraPhysicianPreAuthKey&src="+domain,
+                                  method: 'POST',
+                                  params: values,
+                                  success: successPhyAuthCallback,
+                                  failure: failurePhyAuthCallback
+                                 });
+
+            }
+            else if(resp.responseText === 'false'){
+
+                Ext.Msg.alert("Duplicate Entry", 'Physican Record Already Exists');
+            }
+                else{
                     // Show login failure error
-                    //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+                    Ext.Msg.alert("Insert Failure", 'Data cannot be added');
+                }
 
-                };
+        };
 
-                // Success
-                var successPhyCallback = function(resp, ops) {
-                    console.log(resp.responseText);
-                    if(resp.responseText === 'true'){
-                        /*
-                        Ext.Msg.alert("Data Inserted", 'Physican Record Created successfully');
-                        Ext.getCmp('txtPhysicianfilterID').reset();
-                        var myStore = Ext.getStore('PhysicianGridBind');
-                        myStore.clearFilter();
-                        myStore.load();
-                        Ext.getCmp('PhysicianPanelID').hide();
-                        Ext.getCmp('PhysicianRecord').show();
-                        Ext.getCmp('PhysicianForm').getForm().reset();
-                        */
-                        Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=ZimbraPhysicianPreAuthKey&src="+domain,
-                                method: 'POST',
-                                params: values,
-                                success: successPhyAuthCallback,
-                                failure: failurePhyAuthCallback
+
+        var successPhyAuthCallback = function(resp, ops) {
+            console.log(resp.responseText);
+            if(resp.responseText === 'true'){
+
+                Ext.Msg.alert("Data Inserted", 'Physican Record Created successfully');
+                Ext.getCmp('txtPhysicianfilterID').reset();
+                var myStore = Ext.getStore('PhysicianGridBind');
+                myStore.clearFilter();
+                myStore.load();
+                Ext.getCmp('PhysicianPanelID').hide();
+                Ext.getCmp('PhysicianRecord').show();
+                Ext.getCmp('PhysicianForm').getForm().reset();
+
+
+
+            }
+            else if(resp.responseText === 'false'){
+
+                Ext.Msg.alert("Preauth Key Failed", 'Preauth Key Failed!');
+            }
+                else{
+                    // Show login failure error
+                    Ext.Msg.alert("Insert Failure", 'Data cannot be added');
+                }
+
+        };
+
+        // Failure
+        var failurePhyAuthCallback = function(resp, ops) {
+
+            // Show login failure error
+            //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+        };
+        // Failure
+        var failurePhyCallback = function(resp, ops) {
+
+            // Show login failure error
+            //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+        };
+        //adding loader
+        Ext.Ajax.on('beforerequest', function(){
+
+            var pnl=Ext.getCmp('PhysicianPanelID');
+            pnl.setLoading(true, true);
+        });
+
+
+        Ext.Ajax.on('requestcomplete', function(){
+
+            Ext.getCmp('PhysicianPanelID').setLoading(false,false);
+        });
+
+        // TODO: Login using server-side authentication service
+        Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=ZimbraCheckPhysician&src="+domain,
+                          method: 'POST',
+                          params: values,
+                          success: successCallback,
+                          failure: failureCallback
                          });
-
-                   }
-                   else if(resp.responseText === 'false'){
-
-                      Ext.Msg.alert("Duplicate Entry", 'Physican Record Already Exists');
-                   }
-                    else{
-                      // Show login failure error
-                        Ext.Msg.alert("Insert Failure", 'Data cannot be added');
-                    }
-
-                };
-
-
-                var successPhyAuthCallback = function(resp, ops) {
-                    console.log(resp.responseText);
-                    if(resp.responseText === 'true'){
-
-                        Ext.Msg.alert("Data Inserted", 'Physican Record Created successfully');
-                        Ext.getCmp('txtPhysicianfilterID').reset();
-                        var myStore = Ext.getStore('PhysicianGridBind');
-                        myStore.clearFilter();
-                        myStore.load();
-                        Ext.getCmp('PhysicianPanelID').hide();
-                        Ext.getCmp('PhysicianRecord').show();
-                        Ext.getCmp('PhysicianForm').getForm().reset();
-
-
-                   }
-                   else if(resp.responseText === 'false'){
-
-                      Ext.Msg.alert("Preauth Key Failed", 'Preauth Key Failed!');
-                   }
-                    else{
-                      // Show login failure error
-                        Ext.Msg.alert("Insert Failure", 'Data cannot be added');
-                    }
-
-                };
-
-                // Failure
-                var failurePhyAuthCallback = function(resp, ops) {
-
-                    // Show login failure error
-                    //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
-
-                };
-                // Failure
-                var failurePhyCallback = function(resp, ops) {
-
-                    // Show login failure error
-                    //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
-
-                };
-                //adding loader
-                 Ext.Ajax.on('beforerequest', function(){
-
-                                var pnl=Ext.getCmp('PhysicianPanelID');
-                                pnl.setLoading(true, true);
-                        });
-
-
-                        Ext.Ajax.on('requestcomplete', function(){
-
-                              Ext.getCmp('PhysicianPanelID').setLoading(false,false);
-                        });
-
-                // TODO: Login using server-side authentication service
-                Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=ZimbraCheckPhysician&src="+domain,
-                        method: 'POST',
-                        params: values,
-                        success: successCallback,
-                        failure: failureCallback
-                 });
     },
 
     onBtnPhysicianUpdateIDClick: function(button, e, eOpts) {
