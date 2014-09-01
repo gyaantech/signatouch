@@ -12270,7 +12270,7 @@ Ext.define('SignaTouch.view.MainView', {
     },
 
     onMAddUserIDClick: function(item, e, eOpts) {
-          /*  var store = Ext.getStore('DomainUserRecord');
+           var store = Ext.getStore('DomainUserRecord');
 
             store.removeAll(true);
 
@@ -12335,7 +12335,7 @@ Ext.define('SignaTouch.view.MainView', {
 
         Ext.getCmp('AddDomainID').hide();
 
-
+        /*
         // Ajax request
         // Success
         var successCallback = function(resp, ops) {
@@ -12383,7 +12383,7 @@ Ext.define('SignaTouch.view.MainView', {
                          });
 
         */
-        Ext.Msg.alert("In Progress", 'In Progress');
+        /*Ext.Msg.alert("In Progress", 'In Progress');*/
     },
 
     onMAddCOSIDClick: function(item, e, eOpts) {

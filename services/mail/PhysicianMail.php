@@ -85,7 +85,7 @@ class PhysicianEmail {
 		$connect = new EmailConnect();
 		$mail = $connect->setSmtpParameters();
 		
-		$mail->Subject = "Record is sent to Dr. office"; //Subject of your mail
+		$mail->Subject = "Physician is Created successfully"; //Subject of your mail
 		$mail->addAddress($_GET["send"]);
 		$mail->MsgHTML($body);
 		$send = $mail->Send();

@@ -1012,7 +1012,7 @@
                                             "userConfig": {
                                                 "fn": "onMAddUserIDClick",
                                                 "implHandler": [
-                                                    "  /*  var store = Ext.getStore('DomainUserRecord');\r",
+                                                    "   var store = Ext.getStore('DomainUserRecord');\r",
                                                     "\r",
                                                     "    store.removeAll(true);\r",
                                                     "\r",
@@ -1077,7 +1077,7 @@
                                                     "\r",
                                                     "Ext.getCmp('AddDomainID').hide();\r",
                                                     "\r",
-                                                    "\r",
+                                                    "/*\r",
                                                     "// Ajax request\r",
                                                     "// Success\r",
                                                     "var successCallback = function(resp, ops) {\r",
@@ -1125,7 +1125,7 @@
                                                     "                 });\r",
                                                     "\r",
                                                     "*/\r",
-                                                    "Ext.Msg.alert(\"In Progress\", 'In Progress');"
+                                                    "/*Ext.Msg.alert(\"In Progress\", 'In Progress');*/"
                                                 ],
                                                 "name": "click",
                                                 "scope": "me"

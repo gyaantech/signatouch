@@ -89,7 +89,7 @@ class ReviewEmail {
 		$connect = new EmailConnect();
 		$mail = $connect->setSmtpParameters();
 		//$send = isset($_GET["send"])?$_GET["send"]:'';
-		$mail->Subject = "Record is sent to Dr. office"; //Subject of your mail
+		$mail->Subject = "Record is Review/Approved successfully"; //Subject of your mail
 		$mail->addAddress($_GET["send"]);
 		$mail->MsgHTML($body);
 		$send = $mail->Send();
