@@ -34,7 +34,7 @@ Ext.define('SignaTouch.store.DomainUserRecord', {
             pageSize: 10,
             proxy: {
                 type: 'ajax',
-                url: 'services/ListAccount.php?action=ZimbraListUser&domain=akant-11111.st',
+                url: 'services/ZimbraAddUser.php?action=ZimbraListUser&domain=akant-11111.st',
                 reader: {
                     type: 'json',
                     root: 'data'

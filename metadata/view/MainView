@@ -1012,9 +1012,9 @@
                                             "userConfig": {
                                                 "fn": "onMAddUserIDClick",
                                                 "implHandler": [
-                                                    "   var store = Ext.getStore('DomainUserRecord');\r",
+                                                    "var store = Ext.getStore('DomainUserRecord');\r",
                                                     "\r",
-                                                    "    store.removeAll(true);\r",
+                                                    "store.removeAll(true);\r",
                                                     "\r",
                                                     "Ext.getCmp('Menu').show();\r",
                                                     "Ext.getCmp('Footer').show();\r",
@@ -1078,19 +1078,17 @@
                                                     "Ext.getCmp('AddDomainID').hide();\r",
                                                     "\r",
                                                     "/*\r",
+                                                    "\r",
+                                                    "*/\r",
+                                                    "/*Ext.Msg.alert(\"In Progress\", 'In Progress');*/\r",
                                                     "// Ajax request\r",
                                                     "// Success\r",
                                                     "var successCallback = function(resp, ops) {\r",
-                                                    "    var store = Ext.getStore('DomainUserRecord');\r",
-                                                    "\r",
-                                                    "    store.removeAll(true);\r",
-                                                    "\r",
-                                                    "    store.getProxy().url = 'services/ListAccount.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');\r",
-                                                    "    store.load();\r",
-                                                    "    store.add(Ext.JSON.decode(resp.responseText));\r",
-                                                    "\r",
-                                                    "    Ext.getCmp('UserGrid').bindStore(store);\r",
-                                                    "\r",
+                                                    "    var response = Ext.JSON.decode(resp.responseText)\r",
+                                                    "    Ext.getCmp('txtUserNPIID').setValue(response.npi);\r",
+                                                    "    Ext.getCmp('txtUserNameID').setValue(response.FullName);\r",
+                                                    "    Ext.getCmp('txtUserDisplayNameID').setValue(response.displayName);\r",
+                                                    "    Ext.getCmp('txtUserEmailID').setValue(response.altEmail);\r",
                                                     "\r",
                                                     "};\r",
                                                     "\r",
@@ -1117,15 +1115,47 @@
                                                     "\r",
                                                     "\r",
                                                     "// TODO: Login using server-side authentication service\r",
-                                                    "Ext.Ajax.request({url: \"services/ListAccount.php?action=ZimbraListUser&domain=\"+localStorage.getItem('domain'),\r",
+                                                    "Ext.Ajax.request({url: \"services/ZimbraAddUser.php?action=ZimbraListPhysicianInfo&accountName=\"+localStorage.getItem('email'),\r",
                                                     "                  method: 'GET',\r",
-                                                    "                  params: localStorage.getItem('domain'),\r",
+                                                    "                  params: localStorage.getItem('email'),\r",
                                                     "                  success: successCallback,\r",
                                                     "                  failure: failureCallback\r",
                                                     "                 });\r",
                                                     "\r",
-                                                    "*/\r",
-                                                    "/*Ext.Msg.alert(\"In Progress\", 'In Progress');*/"
+                                                    "//grid bind\r",
+                                                    "// Ajax request\r",
+                                                    "// Success\r",
+                                                    "var successCallbackGrid = function(resp, ops) {\r",
+                                                    "    var store = Ext.getStore('DomainUserRecord');\r",
+                                                    "\r",
+                                                    "    store.removeAll(true);\r",
+                                                    "\r",
+                                                    "    store.getProxy().url = 'services/ZimbraAddUser.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');\r",
+                                                    "    store.load();\r",
+                                                    "    store.add(Ext.JSON.decode(resp.responseText));\r",
+                                                    "\r",
+                                                    "    Ext.getCmp('UserGrid').bindStore(store);\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "};\r",
+                                                    "\r",
+                                                    "// Failure\r",
+                                                    "var failureCallbackGrid = function(resp, ops) {\r",
+                                                    "    console.log(\"API not called\");\r",
+                                                    "\r",
+                                                    "};\r",
+                                                    "\r",
+                                                    "\r",
+                                                    "// TODO: Login using server-side authentication service\r",
+                                                    "Ext.Ajax.request({url: \"services/ZimbraAddUser.php?action=ZimbraListUser&domain=\"+localStorage.getItem('domain'),\r",
+                                                    "                  method: 'GET',\r",
+                                                    "                  params: localStorage.getItem('domain'),\r",
+                                                    "                  success: successCallbackGrid,\r",
+                                                    "                  failure: failureCallbackGrid\r",
+                                                    "                 });\r",
+                                                    "\r",
+                                                    "\r",
+                                                    ""
                                                 ],
                                                 "name": "click",
                                                 "scope": "me"
@@ -5648,40 +5678,40 @@
                                                                     "        Ext.Msg.alert(\"User updated\", 'User updated successfully');\r",
                                                                     "        //Ext.getCmp('AddUserForm').getForm().reset();\r",
                                                                     "        var store = Ext.getStore('DomainUserRecord');\r",
-                                                                    "        \r",
+                                                                    "\r",
                                                                     "        store.removeAll(true);\r",
-                                                                    "        \r",
+                                                                    "\r",
                                                                     "        store.getProxy().url = 'services/ListAccount.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');\r",
                                                                     "        store.load();\r",
                                                                     "        //store.add(Ext.JSON.decode(resp.responseText));\r",
-                                                                    "        \r",
+                                                                    "\r",
                                                                     "        Ext.getCmp('UserGrid').bindStore(store);\r",
-                                                                    "        \r",
+                                                                    "\r",
                                                                     "        Ext.getCmp('AddUserPanelID').hide();\r",
                                                                     "        Ext.getCmp('DomainRecordID').show();\r",
                                                                     "        Ext.getCmp('AddUserForm').getForm().reset();\r",
                                                                     "    }\r",
-                                                                    "    \r",
+                                                                    "\r",
                                                                     "};\r",
                                                                     "\r",
                                                                     "// Failure\r",
                                                                     "var failureCallback = function(resp, ops) {\r",
-                                                                    "    \r",
-                                                                    "    \r",
+                                                                    "\r",
+                                                                    "\r",
                                                                     "    // Show login failure error\r",
                                                                     "    //Ext.Msg.alert(\"Login Failure\", 'Incorrect Username or Password');\r",
-                                                                    "    \r",
+                                                                    "\r",
                                                                     "};\r",
                                                                     "//adding loader\r",
                                                                     "Ext.Ajax.on('beforerequest', function(){\r",
-                                                                    "    \r",
+                                                                    "\r",
                                                                     "    var pnl=Ext.getCmp('AddUserPanelID');\r",
                                                                     "    pnl.setLoading(true, true);\r",
                                                                     "});\r",
                                                                     "\r",
                                                                     "\r",
                                                                     "Ext.Ajax.on('requestcomplete', function(){\r",
-                                                                    "    \r",
+                                                                    "\r",
                                                                     "    Ext.getCmp('AddUserPanelID').setLoading(false,false);\r",
                                                                     "});\r",
                                                                     "\r",
@@ -5731,7 +5761,7 @@
                                                             "userConfig": {
                                                                 "fn": "onBtnUserBackClick",
                                                                 "implHandler": [
-                                                                    "Ext.getCmp('txtDomainUserfilterID').reset();\r",
+                                                                    "//Ext.getCmp('txtDomainUserfilterID').reset();\r",
                                                                     "/*var myStore = Ext.getStore('DomainUserRecord');\r",
                                                                     "myStore.clearFilter();\r",
                                                                     "myStore.load();*/\r",
@@ -5739,33 +5769,33 @@
                                                                     "// Success\r",
                                                                     "var successCallback = function(resp, ops) {\r",
                                                                     "    var store = Ext.getStore('DomainUserRecord');\r",
-                                                                    "    \r",
+                                                                    "\r",
                                                                     "    store.removeAll(true);\r",
-                                                                    "    \r",
+                                                                    "\r",
                                                                     "    store.getProxy().url = 'services/ListAccount.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');\r",
                                                                     "    store.load();\r",
                                                                     "    store.add(Ext.JSON.decode(resp.responseText));\r",
-                                                                    "    \r",
+                                                                    "\r",
                                                                     "    Ext.getCmp('UserGrid').bindStore(store);\r",
-                                                                    "    \r",
+                                                                    "\r",
                                                                     "};\r",
                                                                     "\r",
                                                                     "// Failure\r",
                                                                     "var failureCallback = function(resp, ops) {\r",
                                                                     "    console.log(\"API not called\");\r",
-                                                                    "    \r",
+                                                                    "\r",
                                                                     "};\r",
                                                                     "\r",
                                                                     "//adding loader\r",
                                                                     "Ext.Ajax.on('beforerequest', function(){\r",
-                                                                    "    \r",
+                                                                    "\r",
                                                                     "    var pnl=Ext.getCmp('DomainRecordID');\r",
                                                                     "    pnl.setLoading(true, true);\r",
                                                                     "});\r",
                                                                     "\r",
                                                                     "\r",
                                                                     "Ext.Ajax.on('requestcomplete', function(){\r",
-                                                                    "    \r",
+                                                                    "\r",
                                                                     "    Ext.getCmp('DomainRecordID').setLoading(false,false);\r",
                                                                     "});\r",
                                                                     "\r",
@@ -13900,7 +13930,7 @@
                                                     "border-style:solid;\r",
                                                     "border-color:#000000;"
                                                 ],
-                                                "title": "<b>Lookup</b>"
+                                                "title": "<b>Physician Details</b>"
                                             },
                                             "designerId": "6fad147d-2b8a-4ebc-aff7-968eb44d440f",
                                             "cn": [
@@ -13913,130 +13943,106 @@
                                                     "codeClass": null,
                                                     "userConfig": {
                                                         "container|align": "stretch",
+                                                        "itemId": "Name1",
+                                                        "layout": "hbox",
+                                                        "margin": "7 0 7 0"
+                                                    },
+                                                    "designerId": "7adcafad-8994-4063-b269-d36820970715",
+                                                    "cn": [
+                                                        {
+                                                            "type": "Ext.form.field.Display",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "fieldLabel": "<b>NPI</b>",
+                                                                "id": "txtUserNPIID",
+                                                                "layout|flex": 1,
+                                                                "value": null
+                                                            },
+                                                            "designerId": "76ac3893-9572-4465-aff2-c2a2242bc043"
+                                                        },
+                                                        {
+                                                            "type": "Ext.form.field.Display",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "fieldLabel": "<b>&nbsp;&nbsp;&nbsp;Name&nbsp;</b>",
+                                                                "id": "txtUserNameID",
+                                                                "layout|flex": 1,
+                                                                "value": null
+                                                            },
+                                                            "designerId": "c0178f28-09ab-4e15-a34a-eb27cf6adade"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "Ext.container.Container",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "container|align": "stretch",
+                                                        "itemId": "Name2",
+                                                        "layout": "hbox",
+                                                        "margin": "7 0 7 0"
+                                                    },
+                                                    "designerId": "0c6f9fdd-9c38-4308-8fad-ad2415ea4942",
+                                                    "cn": [
+                                                        {
+                                                            "type": "Ext.form.field.Display",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "fieldLabel": "<b>Display Name</b>",
+                                                                "id": "txtUserDisplayNameID",
+                                                                "layout|flex": 1,
+                                                                "value": null
+                                                            },
+                                                            "designerId": "48d7060e-0587-4156-86e4-30ce6416d3e6"
+                                                        },
+                                                        {
+                                                            "type": "Ext.form.field.Display",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "fieldLabel": "<b>&nbsp;&nbsp;&nbsp;Alt. Email ID&nbsp;</b>",
+                                                                "id": "txtUserEmailID",
+                                                                "layout|flex": 1,
+                                                                "value": null
+                                                            },
+                                                            "designerId": "05e043a9-996a-4518-a7cd-daa3e2000a09"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "Ext.container.Container",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "container|align": "stretch",
+                                                        "container|pack": "center",
                                                         "container|padding": 10,
                                                         "layout": "hbox"
                                                     },
                                                     "designerId": "790fcfaf-957f-4192-af58-0c4e9eebcabe",
                                                     "cn": [
-                                                        {
-                                                            "type": "Ext.form.field.ComboBox",
-                                                            "reference": {
-                                                                "name": "items",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "designer|displayName": "",
-                                                                "editable": false,
-                                                                "fieldLabel": null,
-                                                                "hidden": true,
-                                                                "id": "ddlUserFilterID",
-                                                                "inputId": "ddlUserFilter",
-                                                                "itemId": "",
-                                                                "margin": "0 5 0 5",
-                                                                "maxWidth": 95,
-                                                                "store": [
-                                                                    "['FirstName','LastName','ZipCode'] \r",
-                                                                    ""
-                                                                ],
-                                                                "value": [
-                                                                    "['NPI']"
-                                                                ]
-                                                            },
-                                                            "configAlternates": {
-                                                                "store": "array"
-                                                            },
-                                                            "designerId": "910c442d-6a3c-459a-bb60-afef45fd1129"
-                                                        },
-                                                        {
-                                                            "type": "Ext.form.field.Text",
-                                                            "reference": {
-                                                                "name": "items",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "designer|displayName": "",
-                                                                "fieldLabel": null,
-                                                                "hidden": true,
-                                                                "id": "txtDomainUserfilterID",
-                                                                "inputId": "txtUserfilter",
-                                                                "itemId": null,
-                                                                "layout|flex": null,
-                                                                "margin": "0 5 0 5",
-                                                                "maxWidth": null,
-                                                                "width": 250
-                                                            },
-                                                            "designerId": "12ad7cad-a069-44af-9877-9024a7e41d12"
-                                                        },
-                                                        {
-                                                            "type": "Ext.button.Button",
-                                                            "reference": {
-                                                                "name": "items",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "formBind": false,
-                                                                "hidden": true,
-                                                                "itemId": "UserBtnGO",
-                                                                "layout|flex": 1,
-                                                                "margin": "0 10 0 10",
-                                                                "maxWidth": 50,
-                                                                "text": "GO",
-                                                                "width": null
-                                                            },
-                                                            "designerId": "3d05a2f3-d60b-4141-a9e7-cbf05d57352b",
-                                                            "cn": [
-                                                                {
-                                                                    "type": "basiceventbinding",
-                                                                    "reference": {
-                                                                        "name": "listeners",
-                                                                        "type": "array"
-                                                                    },
-                                                                    "codeClass": null,
-                                                                    "userConfig": {
-                                                                        "fn": "onUserBtnGOClick",
-                                                                        "implHandler": [
-                                                                            "var form = button.up('form');\r",
-                                                                            "values = form.getValues();\r",
-                                                                            "var type=values.ddlUserFilter;\r",
-                                                                            "var Search=values.txtUserFilter;\r",
-                                                                            "var myStore = Ext.getStore('DomainUserRecord');\r",
-                                                                            "\r",
-                                                                            "myStore.clearFilter();\r",
-                                                                            "\r",
-                                                                            "if(type=='FirstName')\r",
-                                                                            "{\r",
-                                                                            "\r",
-                                                                            "    myStore.filter('displayName',Search);\r",
-                                                                            "    myStore.load();\r",
-                                                                            "\r",
-                                                                            "}\r",
-                                                                            "if(type=='LastName')\r",
-                                                                            "{\r",
-                                                                            "\r",
-                                                                            "    myStore.filter('displayName',Search);\r",
-                                                                            "    myStore.load();\r",
-                                                                            "\r",
-                                                                            "}\r",
-                                                                            "\r",
-                                                                            "if(type=='ZipCode')\r",
-                                                                            "{\r",
-                                                                            "\r",
-                                                                            "    myStore.filter('Zip',Search);\r",
-                                                                            "    myStore.load();\r",
-                                                                            "\r",
-                                                                            "}\r",
-                                                                            ""
-                                                                        ],
-                                                                        "name": "click",
-                                                                        "scope": "me"
-                                                                    },
-                                                                    "designerId": "859d9e22-00a2-4a43-80f5-f39d3b4115e9"
-                                                                }
-                                                            ]
-                                                        },
                                                         {
                                                             "type": "Ext.button.Button",
                                                             "reference": {
@@ -14049,7 +14055,7 @@
                                                                 "id": "btUserAdd",
                                                                 "itemId": null,
                                                                 "layout|flex": 1,
-                                                                "margin": "0 10 0 10",
+                                                                "margin": null,
                                                                 "maxWidth": 150,
                                                                 "text": "Add User",
                                                                 "width": null
@@ -14087,6 +14093,44 @@
                                                                         "scope": "me"
                                                                     },
                                                                     "designerId": "36cfa656-c865-4583-8370-e62ccc11510d"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "Ext.button.Button",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "formBind": false,
+                                                                "id": "btUserViewOffice",
+                                                                "itemId": null,
+                                                                "layout|flex": 1,
+                                                                "margin": "0 0 0 10",
+                                                                "maxWidth": 150,
+                                                                "text": "View Office",
+                                                                "width": null
+                                                            },
+                                                            "designerId": "aa1709fe-b6bb-4476-8222-c10e7ac18430",
+                                                            "cn": [
+                                                                {
+                                                                    "type": "basiceventbinding",
+                                                                    "reference": {
+                                                                        "name": "listeners",
+                                                                        "type": "array"
+                                                                    },
+                                                                    "codeClass": null,
+                                                                    "userConfig": {
+                                                                        "fn": "onBtUserViewOfficeClick",
+                                                                        "implHandler": [
+                                                                            ""
+                                                                        ],
+                                                                        "name": "click",
+                                                                        "scope": "me"
+                                                                    },
+                                                                    "designerId": "12d1743e-20a1-4713-bf8e-1a90f8ccdfea"
                                                                 }
                                                             ]
                                                         }
@@ -14150,7 +14194,7 @@
                                                                 "defaultWidth": 160,
                                                                 "maxWidth": null,
                                                                 "text": "Email",
-                                                                "width": 160
+                                                                "width": 211
                                                             },
                                                             "designerId": "9a3040a4-9078-43e6-8ca9-1e19beea63ee"
                                                         },
@@ -14164,7 +14208,7 @@
                                                             "userConfig": {
                                                                 "dataIndex": "displayName",
                                                                 "text": "Display Name",
-                                                                "width": 117
+                                                                "width": 205
                                                             },
                                                             "designerId": "c20db743-ffca-42a5-85ab-84fd0a72f192"
                                                         },
@@ -14191,93 +14235,22 @@
                                                             "userConfig": {
                                                                 "dataIndex": "Type",
                                                                 "hidden": true,
-                                                                "text": "UserType"
+                                                                "text": "Type"
+                                                            },
+                                                            "designerId": "1df4de65-af6a-40d6-8640-858cb12bf436"
+                                                        },
+                                                        {
+                                                            "type": "Ext.grid.column.Column",
+                                                            "reference": {
+                                                                "name": "columns",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "dataIndex": "status",
+                                                                "text": "Status"
                                                             },
                                                             "designerId": "c65335e6-b299-4e29-ab7f-1b2cc573a23c"
-                                                        },
-                                                        {
-                                                            "type": "Ext.grid.column.Column",
-                                                            "reference": {
-                                                                "name": "columns",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "dataIndex": "hasAlias",
-                                                                "text": "Has Alias?"
-                                                            },
-                                                            "designerId": "754d02ad-f382-4ea7-9adf-4db6c4e21e8d"
-                                                        },
-                                                        {
-                                                            "type": "Ext.grid.column.Column",
-                                                            "reference": {
-                                                                "name": "columns",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "dataIndex": "Company",
-                                                                "hidden": true,
-                                                                "text": "Company"
-                                                            },
-                                                            "designerId": "dab6ad8d-c4ed-40f0-8eb8-1f6bd20ecb4e"
-                                                        },
-                                                        {
-                                                            "type": "Ext.grid.column.Column",
-                                                            "reference": {
-                                                                "name": "columns",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "dataIndex": "Phone",
-                                                                "hidden": true,
-                                                                "text": "Phone"
-                                                            },
-                                                            "designerId": "5ace0625-2775-4a0d-b50f-882ce77caa23"
-                                                        },
-                                                        {
-                                                            "type": "Ext.grid.column.Column",
-                                                            "reference": {
-                                                                "name": "columns",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "dataIndex": "City",
-                                                                "hidden": true,
-                                                                "text": "City"
-                                                            },
-                                                            "designerId": "c42d8c34-34ea-4dde-80b4-fc57e42f52ff"
-                                                        },
-                                                        {
-                                                            "type": "Ext.grid.column.Column",
-                                                            "reference": {
-                                                                "name": "columns",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "dataIndex": "Zip",
-                                                                "hidden": true,
-                                                                "text": "Zip"
-                                                            },
-                                                            "designerId": "cd37359f-26a1-4780-844b-f164fe266dcd"
-                                                        },
-                                                        {
-                                                            "type": "Ext.grid.column.Column",
-                                                            "reference": {
-                                                                "name": "columns",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "dataIndex": "State",
-                                                                "hidden": true,
-                                                                "text": "State",
-                                                                "width": 64
-                                                            },
-                                                            "designerId": "f559d607-5696-4f95-9c71-06de3d3ea1bd"
                                                         },
                                                         {
                                                             "type": "Ext.grid.column.Action",
@@ -14293,7 +14266,7 @@
                                                                 "html": null,
                                                                 "menuText": "Action",
                                                                 "text": "Action",
-                                                                "width": 150
+                                                                "width": 250
                                                             },
                                                             "designerId": "15e301e6-d8ab-4849-9af2-6920431ce5d5",
                                                             "customConfigs": [
@@ -14656,29 +14629,6 @@
                                                                     "designerId": "2ad760f8-0412-41a4-be9f-014fd53630e8"
                                                                 }
                                                             ]
-                                                        },
-                                                        {
-                                                            "type": "basiceventbinding",
-                                                            "reference": {
-                                                                "name": "listeners",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "fn": "onPagingtoolbarBeforeChange5",
-                                                                "implHandler": [
-                                                                    "var UserGridBind = Ext.getStore('DomainUserRecord');\r",
-                                                                    "\r",
-                                                                    "var type = Ext.get('ddlUserFilterID').getValue();\r",
-                                                                    "var Search = Ext.get('txtDomainUserfilterID').getValue();\r",
-                                                                    "\r",
-                                                                    "UserGridBind.getProxy().extraParams.SelectFilter = type;\r",
-                                                                    "UserGridBind.getProxy().extraParams.Search = Search;"
-                                                                ],
-                                                                "name": "beforechange",
-                                                                "scope": "me"
-                                                            },
-                                                            "designerId": "a3fc93e7-4d67-44d2-939e-1198ca1d44e3"
                                                         }
                                                     ]
                                                 }

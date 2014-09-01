@@ -24,7 +24,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "url": "services/ListAccount.php?action=ZimbraListUser&domain=akant-11111.st"
+                "url": "services/ZimbraAddUser.php?action=ZimbraListUser&domain=akant-11111.st"
             },
             "designerId": "38ed9d3f-4d63-4866-8cba-3596cee1d593",
             "cn": [

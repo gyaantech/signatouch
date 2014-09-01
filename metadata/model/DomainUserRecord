@@ -189,6 +189,18 @@
                 "name": "Alias"
             },
             "designerId": "5a09ad9e-eb3f-4b4f-b1ec-21feaa29ff8a"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "status"
+            },
+            "designerId": "08ed0f19-ed30-4de5-bbe2-6f586d5b5754"
         }
     ]
 }

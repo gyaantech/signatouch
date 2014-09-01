@@ -6347,54 +6347,73 @@ Ext.define('SignaTouch.view.MainView', {
                                                 {
                                                     xtype: 'fieldset',
                                                     style: 'border-style:solid;\r\nborder-color:#000000;',
-                                                    title: '<b>Lookup</b>',
+                                                    title: '<b>Physician Details</b>',
                                                     items: [
+                                                        {
+                                                            xtype: 'container',
+                                                            itemId: 'Name1',
+                                                            margin: '7 0 7 0',
+                                                            layout: {
+                                                                type: 'hbox',
+                                                                align: 'stretch'
+                                                            },
+                                                            items: [
+                                                                {
+                                                                    xtype: 'displayfield',
+                                                                    flex: 1,
+                                                                    id: 'txtUserNPIID',
+                                                                    fieldLabel: '<b>NPI</b>'
+                                                                },
+                                                                {
+                                                                    xtype: 'displayfield',
+                                                                    flex: 1,
+                                                                    id: 'txtUserNameID',
+                                                                    fieldLabel: '<b>&nbsp;&nbsp;&nbsp;Name&nbsp;</b>'
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            xtype: 'container',
+                                                            itemId: 'Name2',
+                                                            margin: '7 0 7 0',
+                                                            layout: {
+                                                                type: 'hbox',
+                                                                align: 'stretch'
+                                                            },
+                                                            items: [
+                                                                {
+                                                                    xtype: 'displayfield',
+                                                                    flex: 1,
+                                                                    id: 'txtUserDisplayNameID',
+                                                                    fieldLabel: '<b>Display Name</b>'
+                                                                },
+                                                                {
+                                                                    xtype: 'displayfield',
+                                                                    flex: 1,
+                                                                    id: 'txtUserEmailID',
+                                                                    fieldLabel: '<b>&nbsp;&nbsp;&nbsp;Alt. Email ID&nbsp;</b>'
+                                                                }
+                                                            ]
+                                                        },
                                                         {
                                                             xtype: 'container',
                                                             layout: {
                                                                 type: 'hbox',
                                                                 align: 'stretch',
+                                                                pack: 'center',
                                                                 padding: 10
                                                             },
                                                             items: [
                                                                 {
-                                                                    xtype: 'combobox',
-                                                                    hidden: true,
-                                                                    id: 'ddlUserFilterID',
-                                                                    itemId: '',
-                                                                    margin: '0 5 0 5',
-                                                                    maxWidth: 95,
-                                                                    value: [
-                                                                        'NPI'
-                                                                    ],
-                                                                    inputId: 'ddlUserFilter',
-                                                                    editable: false,
-                                                                    store: [
-                                                                        'FirstName',
-                                                                        'LastName',
-                                                                        'ZipCode'
-                                                                    ]
-                                                                },
-                                                                {
-                                                                    xtype: 'textfield',
-                                                                    hidden: true,
-                                                                    id: 'txtDomainUserfilterID',
-                                                                    margin: '0 5 0 5',
-                                                                    width: 250,
-                                                                    inputId: 'txtUserfilter'
-                                                                },
-                                                                {
                                                                     xtype: 'button',
                                                                     flex: 1,
                                                                     formBind: false,
-                                                                    hidden: true,
-                                                                    itemId: 'UserBtnGO',
-                                                                    margin: '0 10 0 10',
-                                                                    maxWidth: 50,
-                                                                    text: 'GO',
+                                                                    id: 'btUserAdd',
+                                                                    maxWidth: 150,
+                                                                    text: 'Add User',
                                                                     listeners: {
                                                                         click: {
-                                                                            fn: me.onUserBtnGOClick,
+                                                                            fn: me.onBtUserAddClick,
                                                                             scope: me
                                                                         }
                                                                     }
@@ -6403,13 +6422,13 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     xtype: 'button',
                                                                     flex: 1,
                                                                     formBind: false,
-                                                                    id: 'btUserAdd',
-                                                                    margin: '0 10 0 10',
+                                                                    id: 'btUserViewOffice',
+                                                                    margin: '0 0 0 10',
                                                                     maxWidth: 150,
-                                                                    text: 'Add User',
+                                                                    text: 'View Office',
                                                                     listeners: {
                                                                         click: {
-                                                                            fn: me.onBtUserAddClick,
+                                                                            fn: me.onBtUserViewOfficeClick,
                                                                             scope: me
                                                                         }
                                                                     }
@@ -6437,14 +6456,14 @@ Ext.define('SignaTouch.view.MainView', {
                                                             columns: [
                                                                 {
                                                                     xtype: 'gridcolumn',
-                                                                    width: 160,
+                                                                    width: 211,
                                                                     defaultWidth: 160,
                                                                     dataIndex: 'email',
                                                                     text: 'Email'
                                                                 },
                                                                 {
                                                                     xtype: 'gridcolumn',
-                                                                    width: 117,
+                                                                    width: 205,
                                                                     dataIndex: 'displayName',
                                                                     text: 'Display Name'
                                                                 },
@@ -6457,48 +6476,17 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     xtype: 'gridcolumn',
                                                                     hidden: true,
                                                                     dataIndex: 'Type',
-                                                                    text: 'UserType'
+                                                                    text: 'Type'
                                                                 },
                                                                 {
                                                                     xtype: 'gridcolumn',
-                                                                    dataIndex: 'hasAlias',
-                                                                    text: 'Has Alias?'
-                                                                },
-                                                                {
-                                                                    xtype: 'gridcolumn',
-                                                                    hidden: true,
-                                                                    dataIndex: 'Company',
-                                                                    text: 'Company'
-                                                                },
-                                                                {
-                                                                    xtype: 'gridcolumn',
-                                                                    hidden: true,
-                                                                    dataIndex: 'Phone',
-                                                                    text: 'Phone'
-                                                                },
-                                                                {
-                                                                    xtype: 'gridcolumn',
-                                                                    hidden: true,
-                                                                    dataIndex: 'City',
-                                                                    text: 'City'
-                                                                },
-                                                                {
-                                                                    xtype: 'gridcolumn',
-                                                                    hidden: true,
-                                                                    dataIndex: 'Zip',
-                                                                    text: 'Zip'
-                                                                },
-                                                                {
-                                                                    xtype: 'gridcolumn',
-                                                                    hidden: true,
-                                                                    width: 64,
-                                                                    dataIndex: 'State',
-                                                                    text: 'State'
+                                                                    dataIndex: 'status',
+                                                                    text: 'Status'
                                                                 },
                                                                 {
                                                                     xtype: 'actioncolumn',
                                                                     text: 'Action',
-                                                                    width: 150,
+                                                                    width: 250,
                                                                     defaultWidth: 90,
                                                                     align: 'center',
                                                                     dataIndex: 'Action',
@@ -6726,13 +6714,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     id: 'UserClear',
                                                                     text: 'Clear Filter'
                                                                 }
-                                                            ],
-                                                            listeners: {
-                                                                beforechange: {
-                                                                    fn: me.onPagingtoolbarBeforeChange5,
-                                                                    scope: me
-                                                                }
-                                                            }
+                                                            ]
                                                         }
                                                     ]
                                                 }
@@ -12270,9 +12252,9 @@ Ext.define('SignaTouch.view.MainView', {
     },
 
     onMAddUserIDClick: function(item, e, eOpts) {
-           var store = Ext.getStore('DomainUserRecord');
+        var store = Ext.getStore('DomainUserRecord');
 
-            store.removeAll(true);
+        store.removeAll(true);
 
         Ext.getCmp('Menu').show();
         Ext.getCmp('Footer').show();
@@ -12336,19 +12318,17 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('AddDomainID').hide();
 
         /*
+
+        */
+        /*Ext.Msg.alert("In Progress", 'In Progress');*/
         // Ajax request
         // Success
         var successCallback = function(resp, ops) {
-            var store = Ext.getStore('DomainUserRecord');
-
-            store.removeAll(true);
-
-            store.getProxy().url = 'services/ListAccount.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');
-            store.load();
-            store.add(Ext.JSON.decode(resp.responseText));
-
-            Ext.getCmp('UserGrid').bindStore(store);
-
+            var response = Ext.JSON.decode(resp.responseText)
+            Ext.getCmp('txtUserNPIID').setValue(response.npi);
+            Ext.getCmp('txtUserNameID').setValue(response.FullName);
+            Ext.getCmp('txtUserDisplayNameID').setValue(response.displayName);
+            Ext.getCmp('txtUserEmailID').setValue(response.altEmail);
 
         };
 
@@ -12375,15 +12355,47 @@ Ext.define('SignaTouch.view.MainView', {
 
 
         // TODO: Login using server-side authentication service
-        Ext.Ajax.request({url: "services/ListAccount.php?action=ZimbraListUser&domain="+localStorage.getItem('domain'),
+        Ext.Ajax.request({url: "services/ZimbraAddUser.php?action=ZimbraListPhysicianInfo&accountName="+localStorage.getItem('email'),
                           method: 'GET',
-                          params: localStorage.getItem('domain'),
+                          params: localStorage.getItem('email'),
                           success: successCallback,
                           failure: failureCallback
                          });
 
-        */
-        /*Ext.Msg.alert("In Progress", 'In Progress');*/
+        //grid bind
+        // Ajax request
+        // Success
+        var successCallbackGrid = function(resp, ops) {
+            var store = Ext.getStore('DomainUserRecord');
+
+            store.removeAll(true);
+
+            store.getProxy().url = 'services/ZimbraAddUser.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');
+            store.load();
+            store.add(Ext.JSON.decode(resp.responseText));
+
+            Ext.getCmp('UserGrid').bindStore(store);
+
+
+        };
+
+        // Failure
+        var failureCallbackGrid = function(resp, ops) {
+            console.log("API not called");
+
+        };
+
+
+        // TODO: Login using server-side authentication service
+        Ext.Ajax.request({url: "services/ZimbraAddUser.php?action=ZimbraListUser&domain="+localStorage.getItem('domain'),
+                          method: 'GET',
+                          params: localStorage.getItem('domain'),
+                          success: successCallbackGrid,
+                          failure: failureCallbackGrid
+                         });
+
+
+
     },
 
     onMAddCOSIDClick: function(item, e, eOpts) {
@@ -13447,7 +13459,7 @@ Ext.define('SignaTouch.view.MainView', {
     },
 
     onBtnUserBackClick: function(button, e, eOpts) {
-        Ext.getCmp('txtDomainUserfilterID').reset();
+        //Ext.getCmp('txtDomainUserfilterID').reset();
         /*var myStore = Ext.getStore('DomainUserRecord');
         myStore.clearFilter();
         myStore.load();*/
@@ -14697,40 +14709,6 @@ Ext.define('SignaTouch.view.MainView', {
         PhysicianGridBind.getProxy().extraParams.Search = Search;
     },
 
-    onUserBtnGOClick: function(button, e, eOpts) {
-        var form = button.up('form');
-        values = form.getValues();
-        var type=values.ddlUserFilter;
-        var Search=values.txtUserFilter;
-        var myStore = Ext.getStore('DomainUserRecord');
-
-        myStore.clearFilter();
-
-        if(type=='FirstName')
-        {
-
-            myStore.filter('displayName',Search);
-            myStore.load();
-
-        }
-        if(type=='LastName')
-        {
-
-            myStore.filter('displayName',Search);
-            myStore.load();
-
-        }
-
-        if(type=='ZipCode')
-        {
-
-            myStore.filter('Zip',Search);
-            myStore.load();
-
-        }
-
-    },
-
     onBtUserAddClick: function(button, e, eOpts) {
         Ext.getCmp('txtAccountNameID').setReadOnly(false);
         Ext.getCmp('AddUserForm').getForm().reset();
@@ -14750,14 +14728,8 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('hiddenDomainID').setValue('@'+domain);
     },
 
-    onPagingtoolbarBeforeChange5: function(pagingtoolbar, page, eOpts) {
-        var UserGridBind = Ext.getStore('DomainUserRecord');
+    onBtUserViewOfficeClick: function(button, e, eOpts) {
 
-        var type = Ext.get('ddlUserFilterID').getValue();
-        var Search = Ext.get('txtDomainUserfilterID').getValue();
-
-        UserGridBind.getProxy().extraParams.SelectFilter = type;
-        UserGridBind.getProxy().extraParams.Search = Search;
     },
 
     onPatientBtnGoClick: function(button, e, eOpts) {
