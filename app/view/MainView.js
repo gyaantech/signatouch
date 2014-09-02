@@ -2411,6 +2411,13 @@ Ext.define('SignaTouch.view.MainView', {
                                                     ]
                                                 },
                                                 {
+                                                    xtype: 'hiddenfield',
+                                                    anchor: '100%',
+                                                    id: 'HdnNPIID',
+                                                    fieldLabel: 'Label',
+                                                    inputId: 'HdnNPIInput'
+                                                },
+                                                {
                                                     xtype: 'container',
                                                     itemId: 'Button',
                                                     margin: '7 0 7 0',
@@ -2425,6 +2432,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             xtype: 'button',
                                                             formBind: true,
                                                             cls: 'SaveBt',
+                                                            height: 22,
                                                             hidden: true,
                                                             id: 'btnCreate',
                                                             margin: '0 10 0 0',
@@ -2441,6 +2449,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                         {
                                                             xtype: 'button',
                                                             formBind: false,
+                                                            height: 22,
                                                             hidden: true,
                                                             id: 'btnReset',
                                                             margin: '0 10 0 0',
@@ -2456,6 +2465,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                         {
                                                             xtype: 'button',
                                                             cls: 'BackBt',
+                                                            height: 22,
                                                             hidden: true,
                                                             id: 'btnUserBack',
                                                             padding: '',
@@ -4075,6 +4085,8 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     xtype: 'button',
                                                                     cls: 'BackBt',
                                                                     height: 25,
+                                                                    hidden: true,
+                                                                    id: 'btnPhysicianCancelID',
                                                                     itemId: 'btnPhysicianCancel',
                                                                     margin: '',
                                                                     padding: '',
@@ -4083,6 +4095,24 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     listeners: {
                                                                         click: {
                                                                             fn: me.onBtnPhysicianCancelClick1,
+                                                                            scope: me
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    xtype: 'button',
+                                                                    cls: 'BackBt',
+                                                                    height: 25,
+                                                                    hidden: true,
+                                                                    id: 'btnAddUserCancel',
+                                                                    itemId: '',
+                                                                    margin: '',
+                                                                    padding: '',
+                                                                    width: 100,
+                                                                    text: 'Back',
+                                                                    listeners: {
+                                                                        click: {
+                                                                            fn: me.onBtnAddUserCancelClick,
                                                                             scope: me
                                                                         }
                                                                     }
@@ -6125,7 +6155,9 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                 Ext.getCmp('PhysicianViewID').show();
                                                                                 //Ext.getCmp('btnPhysicianUpdateID').hide();
 
-
+                                                                                //Button
+                                                                                Ext.getCmp('btnPhysicianCancelID').show();
+                                                                                Ext.getCmp('btnAddUserCancel').hide();
 
 
 
@@ -6361,8 +6393,11 @@ Ext.define('SignaTouch.view.MainView', {
                                                                 {
                                                                     xtype: 'displayfield',
                                                                     flex: 1,
+                                                                    formBind: true,
                                                                     id: 'txtUserNPIID',
-                                                                    fieldLabel: '<b>NPI</b>'
+                                                                    fieldLabel: '<b>NPI</b>',
+                                                                    submitValue: true,
+                                                                    inputId: 'txtUserNPIInput'
                                                                 },
                                                                 {
                                                                     xtype: 'displayfield',
@@ -6456,16 +6491,16 @@ Ext.define('SignaTouch.view.MainView', {
                                                             columns: [
                                                                 {
                                                                     xtype: 'gridcolumn',
+                                                                    width: 205,
+                                                                    dataIndex: 'displayName',
+                                                                    text: 'Display Name'
+                                                                },
+                                                                {
+                                                                    xtype: 'gridcolumn',
                                                                     width: 211,
                                                                     defaultWidth: 160,
                                                                     dataIndex: 'email',
                                                                     text: 'Email'
-                                                                },
-                                                                {
-                                                                    xtype: 'gridcolumn',
-                                                                    width: 205,
-                                                                    dataIndex: 'displayName',
-                                                                    text: 'Display Name'
                                                                 },
                                                                 {
                                                                     xtype: 'gridcolumn',
@@ -6474,7 +6509,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                                 },
                                                                 {
                                                                     xtype: 'gridcolumn',
-                                                                    hidden: true,
                                                                     dataIndex: 'Type',
                                                                     text: 'Type'
                                                                 },
@@ -6486,7 +6520,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                 {
                                                                     xtype: 'actioncolumn',
                                                                     text: 'Action',
-                                                                    width: 250,
+                                                                    width: 220,
                                                                     defaultWidth: 90,
                                                                     align: 'center',
                                                                     dataIndex: 'Action',
@@ -6674,20 +6708,9 @@ Ext.define('SignaTouch.view.MainView', {
                                                                             tooltip: 'View'
                                                                         },
                                                                         {
-                                                                            handler: function(view, rowIndex, colIndex, item, e, record, row) {
-                                                                                console.log(record.data);
-                                                                                if(record.data.hasAlias === 'YES'){
-                                                                                    localStorage.removeItem("physician_alias"); //remove
-                                                                                    localStorage.setItem("physician_alias", record.data.Alias);
-
-                                                                                }
-
-                                                                                var HelpWindow = Ext.create("widget.Alias");
-                                                                                HelpWindow.show();
-                                                                            },
-                                                                            icon: 'resources/images/ViewOffice.png',
+                                                                            icon: 'resources/images/delete.png',
                                                                             iconCls: 'actionicon',
-                                                                            tooltip: 'View'
+                                                                            tooltip: 'Delete'
                                                                         }
                                                                     ]
                                                                 }
@@ -14022,6 +14045,89 @@ Ext.define('SignaTouch.view.MainView', {
 
     },
 
+    onBtnAddUserCancelClick: function(button, e, eOpts) {
+         var store = Ext.getStore('DomainUserRecord');
+
+        store.removeAll(true);
+
+                              Ext.getCmp('PhysicianViewID').hide();
+                              Ext.getCmp('DomainRecordID').show();
+
+
+                          var successCallback = function(resp, ops) {
+            var response = Ext.JSON.decode(resp.responseText)
+            Ext.getCmp('txtUserNPIID').setValue(response.npi);
+            Ext.getCmp('txtUserNameID').setValue(response.FullName);
+            Ext.getCmp('txtUserDisplayNameID').setValue(response.displayName);
+            Ext.getCmp('txtUserEmailID').setValue(response.altEmail);
+
+        };
+
+        // Failure
+        var failureCallback = function(resp, ops) {
+            console.log("API not called");
+
+        };
+
+
+
+        //adding loader
+        Ext.Ajax.on('beforerequest', function(){
+
+            var pnl=Ext.getCmp('DomainRecordID');
+            pnl.setLoading(true, true);
+        });
+
+
+        Ext.Ajax.on('requestcomplete', function(){
+
+            Ext.getCmp('DomainRecordID').setLoading(false,false);
+        });
+
+
+        // TODO: Login using server-side authentication service
+        Ext.Ajax.request({url: "services/ZimbraAddUser.php?action=ZimbraListPhysicianInfo&accountName="+localStorage.getItem('email'),
+                          method: 'GET',
+                          params: localStorage.getItem('email'),
+                          success: successCallback,
+                          failure: failureCallback
+                         });
+
+        //grid bind
+        // Ajax request
+        // Success
+        var successCallbackGrid = function(resp, ops) {
+            var store = Ext.getStore('DomainUserRecord');
+
+            store.removeAll(true);
+
+            store.getProxy().url = 'services/ZimbraAddUser.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');
+            store.load();
+            store.add(Ext.JSON.decode(resp.responseText));
+
+            Ext.getCmp('UserGrid').bindStore(store);
+
+
+        };
+
+        // Failure
+        var failureCallbackGrid = function(resp, ops) {
+            console.log("API not called");
+
+        };
+
+
+        // TODO: Login using server-side authentication service
+        Ext.Ajax.request({url: "services/ZimbraAddUser.php?action=ZimbraListUser&domain="+localStorage.getItem('domain'),
+                          method: 'GET',
+                          params: localStorage.getItem('domain'),
+                          success: successCallbackGrid,
+                          failure: failureCallbackGrid
+                         });
+
+
+    },
+
     onTxtSPhoneNoIDKeypress: function(textfield, e, eOpts) {
         var phone = Ext.getCmp('txtSPhoneNoID').getValue();
         if(phone.length === 3 || phone.length === 7){
@@ -14710,8 +14816,17 @@ Ext.define('SignaTouch.view.MainView', {
     },
 
     onBtUserAddClick: function(button, e, eOpts) {
-        Ext.getCmp('txtAccountNameID').setReadOnly(false);
         Ext.getCmp('AddUserForm').getForm().reset();
+
+        var form =  Ext.getCmp('UserRecordForm');
+        values = form.getValues();
+        var PhysicianNPI = values.txtUserNPIInput;
+        console.log(PhysicianNPI);
+        console.log(Ext.getCmp('HdnNPIID'));
+        Ext.getCmp('HdnNPIID').setValue(PhysicianNPI);
+
+        Ext.getCmp('txtAccountNameID').setReadOnly(false);
+
         Ext.getCmp('AddUserPanelID').show();
         Ext.getCmp('DomainRecordID').hide();
         Ext.getCmp('DomainRecordID').hide();
@@ -14726,9 +14841,123 @@ Ext.define('SignaTouch.view.MainView', {
         var domain = domain.replace('.st', "");
         Ext.getCmp('userDomainID').setValue('<b>@'+domain+'</b>');
         Ext.getCmp('hiddenDomainID').setValue('@'+domain);
+
     },
 
     onBtUserViewOfficeClick: function(button, e, eOpts) {
+        var form =  Ext.getCmp('UserRecordForm');
+        values = form.getValues();
+        //console.log(values.txtUserNPIInput);
+        Ext.getCmp('PhysicianViewForm').getForm().reset();
+        var PhysicianNPI = values.txtUserNPIInput;
+
+        Ext.getCmp('DomainRecordID').hide();
+        Ext.getCmp('PhysicianViewID').show();
+        //Ext.getCmp('btnPhysicianUpdateID').hide();
+
+        //Button
+         Ext.getCmp('btnPhysicianCancelID').hide();
+         Ext.getCmp('btnAddUserCancel').show();
+
+
+
+        //Button Hide
+        Ext.getCmp('btnPhysicianSaveID').hide();
+
+
+        // Ajax request to fetch data based on HDRID
+        // Success
+        var successCallback = function(resp, ops) {
+            var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));
+
+            // fetch office based on NPI
+
+            var successCallbackOffice = function(resp, ops) {
+
+                //Ext.getCmp('PhysicianAliasID').enable();
+                //Ext.getCmp('PhysicianAliasID').reset();
+                var store = Ext.getStore("PhysicianOffice");
+                console.log(store);
+                store.removeAll(true);
+
+                store.getProxy().url = 'services/ZimbraPhysicianAlias.php?action=GetPhysicianofficeFromNpi&NPI='+PhysicianNPI;
+                store.load();
+                store.add(Ext.JSON.decode(resp.responseText));
+
+
+                //Ext.getCmp('PhysicianOfficeGridID').clearValue();
+                Ext.getCmp('PhysicianOfficeGridID').bindStore(store);
+            }
+            var failureCallbackOffice = function(resp, ops) {
+                console.log("API not called");
+            }
+            // TODO: Login using server-side authentication service
+            Ext.Ajax.request({url: "services/ZimbraPhysicianAlias.php?action=GetPhysicianofficeFromNpi&NPI="+PhysicianNPI,
+                              method: 'GET',
+                              params: PhysicianNPI,
+                              success: successCallbackOffice,
+                              failure: failureCallbackOffice
+                             });
+
+            // var responseOjbect = Ext.JSON.decode(resp.responseText);
+
+            Ext.getCmp('txtViewNPIID').setValue(PhysicianNPI);
+
+            Ext.getCmp('txtViewPhyNameID').setValue(responseOjbect.PhysicianFirstname+' '+responseOjbect.PhysicianMidname+' '+responseOjbect.PhysicianLastname);
+
+
+            Ext.getCmp('txtViewAddress1ID').setValue(responseOjbect.PhysicianAddr1);
+
+
+
+            Ext.getCmp('txtViewAddress2ID').setValue(responseOjbect.PhysicianAddr2);
+
+
+            Ext.getCmp('txtViewCityID').setValue(responseOjbect.PhysicianCity);
+
+
+            Ext.getCmp('txtViewStateID').setValue(responseOjbect.PhysicianSt);
+
+
+            Ext.getCmp('txtViewZipID').setValue(responseOjbect.PhysicianZip);
+
+
+            Ext.getCmp('txtViewPhoneNoID').setValue(responseOjbect.PhysicianPhone);
+
+
+            Ext.getCmp('txtViewEmailID').setValue(responseOjbect.PhysicianAltEmailId);
+
+
+
+
+        };
+
+        // Failure
+        var failureCallback = function(resp, ops) {
+            console.log("API not called");
+
+        };
+        //adding loader
+        Ext.Ajax.on('beforerequest', function(){
+
+            var pnl=Ext.getCmp('PhysicianViewID');
+            pnl.setLoading(true, true);
+        });
+
+
+        Ext.Ajax.on('requestcomplete', function(){
+
+            Ext.getCmp('PhysicianViewID').setLoading(false,false);
+        });
+
+        // TODO: Login using server-side authentication service
+        Ext.Ajax.request({url: "services/Maintainence.php?action=ShowPhysicianRecord&physician_NPI="+PhysicianNPI,
+                          method: 'GET',
+                          params: PhysicianNPI,
+                          success: successCallback,
+                          failure: failureCallback
+                         });
+
 
     },
 

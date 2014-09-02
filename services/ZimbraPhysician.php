@@ -14,13 +14,15 @@ class CreatePhysician {
     public function __construct() 
     {
         $db = new DB_Class();
-       // $phy = new Maintainence();
+       
     }
     
    //parameters to create physician
   public function set_physician_parameters() {
     $GetSet = new GetSet();
-    
+    $GetSet->setPhysicianNPI($_POST['txtPhysicianNPI']);
+		$PhysicianNPI=$GetSet->getPhysicianNPI();
+		
     $user_email_id = $_POST['txtPhysicianNPI'].'@npi.st'; 
     
     $GetSet->setemailID($user_email_id);
@@ -63,10 +65,18 @@ class CreatePhysician {
     $zip = $GetSet->getZip();
     $GetSet->setCity($_POST['txtPhysicianCity']);
     $city = $GetSet->getCity();
+	
+		$name_f_l = strtolower(substr($firstName, 0, 1).substr($lastName, 0, 6));
+		
+		$COS_name_common = $name_f_l.'-'.substr($zip, 0, 5);
+		
+		$OfficeDomain = $COS_name_common.'.st';
+    
+    $GetSet->setLastUpdateID($_GET['src']);
+      $LastUpdateID = $GetSet->getLastUpdateID();
     
     
-    
-    $result = array('NewUserName'=>$NewUserName,'NewAltUserName' => $NewAltUserName ,'displayName'=>$displayName,'firstName'=>$firstName,'midName'=>$midName,'lastName'=>$lastName,'address1'=>$address1,'address2'=>$address2,'state'=>$state,'phone'=>$phone,'city'=>$city,'zip'=>$zip,'email'=>$user_email_id);
+    $result = array('NewUserName'=>$NewUserName,'NewAltUserName' => $NewAltUserName ,'displayName'=>$displayName,'firstName'=>$firstName,'midName'=>$midName,'lastName'=>$lastName,'address1'=>$address1,'address2'=>$address2,'state'=>$state,'phone'=>$phone,'city'=>$city,'zip'=>$zip,'email'=>$user_email_id,'LastUpdateID'=>$LastUpdateID,'OfficeDomain'=>$OfficeDomain,'PhysicianNPI'=>$PhysicianNPI);
     return $result;
   }
   
@@ -139,6 +149,7 @@ public function create_another_office() {
 													PhysicianCity = '".$param['city']."' , 
 													PhysicianSt = '".$param['state']."' , 
 													PhysicianZip = '".$param['zip']."' , 
+                            OfficeDomain='".$domain_name."' ,
 													PhysicianLastUpdateID = '".$username."' ";
 			mysql_query($sql);
 		}
@@ -895,56 +906,30 @@ public function check_for_existaince($domain , $physician_npi_user) {
    }
   /*Insert physician record in db*/
     public function insertPhysicianRecord() {
-	 $GetSet=new GetSet();
-        $GetSet->setPhysicianNPI($_POST['txtPhysicianNPI']);
-		$PhysicianNPI=$GetSet->getPhysicianNPI();
+	$param = $this->set_physician_parameters();
+	
 		
-        $GetSet->setFName($_POST['txtPhysicianFname']);
-		$FName = $GetSet->getFName();
-		
-        $GetSet->setMName($_POST['txtPhysicianMname']);
-		$MName = $GetSet->getMName();
-        
-		$GetSet->setLName($_POST['txtPhysicianLname']);
-		$LName = $GetSet->getLName();
-		
-        $GetSet->setAddress1($_POST['txtPhysicianAddress1']);
-		$Address1 = $GetSet->getAddress1();
-		
-        $GetSet->setAddress2($_POST['txtPhysicianAddress2']);
-		$Address2 = $GetSet->getAddress2();
-		
-        $GetSet->setCity($_POST['txtPhysicianCity']);
-		$City = $GetSet->getCity();
-		
-        $GetSet->setState($_POST['ddlPhysicianState']);
-		$State = trim($GetSet->getState());
-		
-        $GetSet->setZip($_POST['txtPhysicianZip']);
-		$Zip = $GetSet->getZip();
-		
-        $GetSet->setPhoneNo($_POST['txtPhysicianPhoneNo']);
-		$PhoneNo = $GetSet->getPhoneNo();
-		
-    $GetSet->setAltemailID($_POST['txtPhysicianEmail']);
-    $AltEmailId = $GetSet->getAltemailID();
-    
-    $GetSet->setLastUpdateID($_GET['src']);
-      $LastUpdateID = $GetSet->getLastUpdateID();
-
-        $SqlCheck = "Select * from physician where PhysicianNPI=$PhysicianNPI";
+        $SqlCheck = "Select * from physician where PhysicianNPI='".$param['PhysicianNPI']."'";
         $result = mysql_query($SqlCheck);
         $row_count = mysql_num_rows($result);
         if($row_count == 1){
             return FALSE;
         }
         else{
-          $sql = "Insert into physician (PhysicianNPI,PhysicianFirstname,PhysicianMidname,PhysicianLastname,PhysicianAddr1,PhysicianAddr2,PhysicianCity,PhysicianSt,PhysicianZip,PhysicianPhone,PhysicianAltEmailId,PhysicianLastUpdateID) values('$PhysicianNPI','$FName','$MName','$LName','$Address1','$Address2','$City','$State','$Zip','$PhoneNo','$AltEmailId','$LastUpdateID')";
+          $sql = "Insert into physician (PhysicianNPI,PhysicianFirstname,PhysicianMidname,PhysicianLastname,PhysicianAddr1,PhysicianAddr2,PhysicianCity,PhysicianSt,PhysicianZip,PhysicianPhone,PhysicianAltEmailId,PhysicianLastUpdateID) values('".$param['PhysicianNPI']."','".$param['firstName']."','".$param['midName']."','".$param['lastName']."','".$param['address1']."','".$param['address2']."','".$param['city']."','".$param['state']."','".$param['zip']."','".$param['phone']."','".$param['NewAltUserName']."','".$param['LastUpdateID']."')";
+
+		  $sql1 = "Insert into physician_office (PhysicianNPI,PhysicianAddr1,PhysicianAddr2,PhysicianCity,PhysicianSt,PhysicianZip,OfficeDomain,PhysicianLastUpdateID) values('".$param['PhysicianNPI']."','".$param['address1']."','".$param['address2']."','".$param['city']."','".$param['state']."','".$param['zip']."','".$param['OfficeDomain']."','".$param['LastUpdateID']."')";
 
             $result = mysql_query($sql);
             if (!$result) 
                 {
                 die('Invalid query: ' . $sql . "   " . mysql_error());
+            }
+			
+			$result1 = mysql_query($sql1);
+            if (!$result1) 
+                {
+                die('Invalid query: ' . $sql1 . "   " . mysql_error());
             }
 			//$this->send_email($AltEmailId , $FName ,$LName, $PhysicianNPI , $PhoneNo);
             return TRUE;  
@@ -999,41 +984,17 @@ public function send_email($to , $FName ,$LName, $user_name, $password) {
 
     /*Edit physician record*/
    public function editPhysicianRecord() {
-        $GetSet=new GetSet();
-        $GetSet->setPhysicianNPI($_POST['txtPhysicianNPI']);
-		$PhysicianNPI=$GetSet->getPhysicianNPI();
-		$GetSet->setFName($_POST['txtPhysicianFname']);
-		$FName = $GetSet->getFName();
-        $GetSet->setMName($_POST['txtPhysicianMname']);
-		$MName = $GetSet->getMName();
-		$GetSet->setLName($_POST['txtPhysicianLname']);
-		$LName = $GetSet->getLName();
-        $GetSet->setAddress1($_POST['txtPhysicianAddress1']);
-		$Address1 = $GetSet->getAddress1();
-        $GetSet->setAddress2($_POST['txtPhysicianAddress2']);
-		$Address2 = $GetSet->getAddress2();
-        $GetSet->setCity($_POST['txtPhysicianCity']);
-		$City = $GetSet->getCity();
-        $GetSet->setState($_POST['ddlPhysicianState']);
-		$State = trim($GetSet->getState());
-        $GetSet->setZip($_POST['txtPhysicianZip']);
-		$Zip = $GetSet->getZip();
-        $GetSet->setPhoneNo($_POST['txtPhysicianPhoneNo']);
-		$PhoneNo = $GetSet->getPhoneNo();
-		
-    $GetSet->setAltemailID($_POST['txtPhysicianEmail']);
-    $AltEmailId = $GetSet->getAltemailID();
-    
-    $GetSet->setLastUpdateID($_GET['src']);
-      $LastUpdateID = $GetSet->getLastUpdateID();
-		
-            $SqlCheck = "SELECT PhysicianNPI FROM physician WHERE PhysicianNPI = '$PhysicianNPI'";
+   $param = $this->set_physician_parameters();
+
+        $SqlCheck = "Select PhysicianNPI from physician where PhysicianNPI='".$param['PhysicianNPI']."'";
+        
             $result = mysql_query($SqlCheck);
             if($result){
                $row_count = mysql_num_rows($result);
                 if($row_count == 1){
                     
-                   $sql = "UPDATE physician SET PhysicianLastname='$LName',PhysicianMidname='$MName',PhysicianFirstname='$FName',PhysicianAddr1='$Address1',PhysicianAddr2='$Address2',PhysicianCity='$City',PhysicianSt='$State',PhysicianZip='$Zip',PhysicianPhone='$PhoneNo', PhysicianAltEmailId='$AltEmailId',PhysicianLastUpdateID='$LastUpdateID',PhysicianLastUpdate=NOW()  where PhysicianNPI= '$PhysicianNPI'";
+					
+                   $sql = "UPDATE physician SET PhysicianLastname='".$param['lastName']."',PhysicianMidname='".$param['midName']."',PhysicianFirstname='".$param['firstName']."',PhysicianAddr1='".$param['address1']."',PhysicianAddr2='".$param['address2']."',PhysicianCity='".$param['city']."',PhysicianSt='".$param['state']."',PhysicianZip='".$param['zip']."',PhysicianPhone='".$param['phone']."', PhysicianAltEmailId='".$param['NewAltUserName']."',PhysicianLastUpdateID='".$param['LastUpdateID']."',PhysicianLastUpdate=NOW() where PhysicianNPI='".$param['PhysicianNPI']."'";
                   $result1 = mysql_query($sql);
                 if (!$result1) 
                   {
@@ -1046,7 +1007,8 @@ public function send_email($to , $FName ,$LName, $user_name, $password) {
                 return FALSE;  
             }
    }
-   public function ZimbraPhysicianPreAuthKey(){
+  
+  public function ZimbraPhysicianPreAuthKey(){
 		
 		$param = $this->set_physician_parameters();
 		$COS_name_common = '';

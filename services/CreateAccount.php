@@ -21,15 +21,34 @@ class CreateUser {
     $GetSet = new GetSet();
     $GetSet->setemailID($_POST['txtAccountName'].$_POST['hiddenDomain']);
     $NewUserName = $GetSet->getemailID();
-    
+    $NPI=$_POST['HdnNPIInput'];
    // $GetSet->setpassword($_POST['txtCPassword']);
     //$NewUserPassword = $GetSet->getpassword();
       if($_POST['isadmin'] == '1'){
         $cos_append = 'admin';
+		if(isset($NPI)){
+			$description='Admin,'.$NPI.'@npi.st';
+		}
+		else{
+			$description='Admin';
+		}
+		
       }
       if($_POST['isadmin'] == '0'){
         $cos_append = 'user';
+		
+		if(isset($NPI)){
+			$description='User,'.$NPI.'@npi.st';
+		}
+		else{
+			$description='User';
+		}
       }
+	
+	
+   
+	
+	  
     $GetSet->setdisplayName($_POST['txtDisplayNaMe']);
     $displayName = $GetSet->GetdisplayName();
 
@@ -60,9 +79,11 @@ class CreateUser {
     $city = $GetSet->getCity();
     $GetSet->setAltemailID($_POST['txtAltMailID']);
     $AltMailID = $GetSet->getAltemailID();
+	
+	
     
     
-    $result = array('NewUserName'=>$NewUserName,'displayName'=>$displayName,'firstName'=>$firstName,'midName'=>$midName,'lastName'=>$lastName,'company'=>$company,'jobTitle'=>$jobTitle,'state'=>$state,'phone'=>$phone,'city'=>$city,'zip'=>$zip,'cos_append'=>$cos_append,'AltMailID'=>$AltMailID);
+    $result = array('NewUserName'=>$NewUserName,'displayName'=>$displayName,'firstName'=>$firstName,'midName'=>$midName,'lastName'=>$lastName,'company'=>$company,'jobTitle'=>$jobTitle,'state'=>$state,'phone'=>$phone,'city'=>$city,'zip'=>$zip,'cos_append'=>$cos_append,'AltMailID'=>$AltMailID,'description'=>$description);
     return $result;
   }
     
@@ -126,6 +147,7 @@ class CreateUser {
                                                               <a n="l">'.$param['city'].'</a>
                                                                 <a n="postalCode">'.$param['zip'].'</a>
                                                                   <a n="zimbraNotes">'.$param['AltMailID'].'</a>
+																  <a n="description">'.$param['description'].'</a>
                                                                   
                                           </CreateAccountRequest>
                                   </soap:Body>

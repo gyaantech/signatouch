@@ -171,8 +171,16 @@ class ListUser {
                 $cname = substr($cname, 1, strpos($cname, "<") - 1);
                 if($cname){
                   $npi = explode(",",$cname);
-                  $npi = explode("@",$npi[1]);
-                  $npi = $npi[0];
+				  if($npi){
+					$npi = explode("@",$npi[1]);
+					$npi = $npi[0];
+				  }
+				  else{
+					$npi = $cname;
+				  }
+				  
+                  
+                  
                 }
 
               //  echo $cname;
@@ -220,7 +228,8 @@ class ListUser {
     $app_list = array('npi'=>$npi,'displayName'=> ucwords($displayName), 'altEmail'=>$altEmail,'FullName'=>ucwords($FullName)); 
     return $app_list;
 }
-       //to list zimbra User
+    
+	//to list zimbra User
   public function ZimbraListUser () {   
     $domain = '';
     if(isset($_GET['domain'])){
@@ -247,7 +256,7 @@ class ListUser {
                             <soap:Body>
                                  
                                      <GetAllAccountsRequest xmlns="urn:zimbraAdmin">
-                                        <domain by="name">'.$domain.'</domain>
+										 <domain by="name">'.$domain.'</domain>
                                      </GetAllAccountsRequest>
     
                             </soap:Body>
@@ -289,6 +298,14 @@ class ListUser {
     if($v['attrib']['n'] == 'zimbraAccountStatus'){
       $Status = $v['cdata']; 
     }
+	
+	if($v['attrib']['n'] == 'description'){
+      $description = $v['cdata']; 
+	
+	  $description = explode(",",$description);
+	  $description = $description[0];
+    }
+	
     
 
        
