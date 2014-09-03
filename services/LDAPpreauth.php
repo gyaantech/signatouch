@@ -363,6 +363,7 @@ class LDAP {
     $zimbraPreAuthKey  = $this->GetAcctInfo();
     //echo "key ".$zimbraPreAuthKey;
     $PREAUTH_KEY=$zimbraPreAuthKey;
+    
     $account = isset($user_data['username']) ? $user_data['username'] : $_GET['username'];
     //echo 'account '.$account;
     $expires=0;

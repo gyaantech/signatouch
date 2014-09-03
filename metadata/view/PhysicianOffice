@@ -301,6 +301,54 @@
                                         "width": 300
                                     },
                                     "designerId": "48bebe0b-4fa7-4b42-9e25-8558a33e54b8"
+                                },
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "allowBlank": false,
+                                        "enableKeyEvents": true,
+                                        "enforceMaxLength": true,
+                                        "fieldLabel": "<b>&nbsp;&nbsp;&nbsp;Phone No.&nbsp;<span style=\"color:#D94E37;\">*</span></b>",
+                                        "id": "txtPOPHYPhonenoID",
+                                        "inputId": "txtPOPHYPhoneno",
+                                        "itemId": null,
+                                        "maxLength": 12,
+                                        "msgTarget": "side",
+                                        "regex": "/^(\\([0-9]{3}\\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/",
+                                        "regexText": "Please enter phone No. in xxx-xxx-xxxx format.",
+                                        "width": 300
+                                    },
+                                    "designerId": "4c581622-c361-46d2-a845-5dd69644fad4",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onTxtPOPHYPhonenoIDKeypress",
+                                                "implHandler": [
+                                                    "var phone = Ext.getCmp('txtPOPHYPhonenoID').getValue();\r",
+                                                    "if(phone.length === 3 || phone.length === 7){\r",
+                                                    "    var newPhone = phone.concat('-');\r",
+                                                    "    Ext.getCmp('txtPOPHYPhonenoID').setValue(newPhone);\r",
+                                                    "}\r",
+                                                    "\r",
+                                                    ""
+                                                ],
+                                                "name": "keypress",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "13c40461-afb3-4220-9f28-c4350489ac67"
+                                        }
+                                    ]
                                 }
                             ]
                         },

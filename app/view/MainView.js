@@ -2644,7 +2644,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                             id: 'AutoID2',
                                                             margin: '0 0 0 10',
                                                             fieldLabel: '',
-                                                            readOnly: true,
                                                             boxLabel: 'Auto',
                                                             checked: true,
                                                             inputValue: '1',
@@ -2854,38 +2853,6 @@ Ext.define('SignaTouch.view.MainView', {
                                                         pack: 'end'
                                                     },
                                                     items: [
-                                                        {
-                                                            xtype: 'button',
-                                                            formBind: true,
-                                                            cls: 'SaveBt',
-                                                            hidden: true,
-                                                            id: 'btnCreate5',
-                                                            margin: '0 10 0 0',
-                                                            padding: '',
-                                                            width: 92,
-                                                            text: 'Create',
-                                                            listeners: {
-                                                                click: {
-                                                                    fn: me.onBtnCreateClick1,
-                                                                    scope: me
-                                                                }
-                                                            }
-                                                        },
-                                                        {
-                                                            xtype: 'button',
-                                                            formBind: false,
-                                                            hidden: true,
-                                                            id: 'btnReset5',
-                                                            margin: '0 10 0 0',
-                                                            width: 92,
-                                                            text: 'Update',
-                                                            listeners: {
-                                                                click: {
-                                                                    fn: me.onBtnResetClick1,
-                                                                    scope: me
-                                                                }
-                                                            }
-                                                        },
                                                         {
                                                             xtype: 'button',
                                                             cls: 'BackBt',
@@ -6531,17 +6498,8 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                 // Ajax request to fetch data based on HDRID
                                                                                 // Success
                                                                                 var successCallback = function(resp, ops) {
-                                                                                    var cos = Ext.JSON.decode(resp.responseText);
-                                                                                    var type = cos.split('-');
-                                                                                    if(type[2]){
-                                                                                        var type1= type[2];
-                                                                                    }
-                                                                                    else{
-                                                                                        var type1= type[1];
-                                                                                    }
-                                                                                    if(type1==='admin'){
-
-
+                                                                                    var response = Ext.JSON.decode(resp.responseText);
+                                                                                    if(record.data.Type === 'Admin'){
                                                                                         var value = 1;
                                                                                     }
                                                                                     else{
@@ -6553,18 +6511,18 @@ Ext.define('SignaTouch.view.MainView', {
 
                                                                                     // set values in text field
                                                                                     Ext.getCmp('txtAccountNameID').setValue(name[0]).setReadOnly(true);
-                                                                                    Ext.getCmp('txtFirstNameID').setValue(record.data.FirstName);
-                                                                                    Ext.getCmp('txtMiddleInitialID').setValue(record.data.MidName);
-                                                                                    Ext.getCmp('txtLastNameID').setValue(record.data.LastName);
-                                                                                    Ext.getCmp('txtDisplayNaMeID').setValue(record.data.displayName);
-                                                                                    Ext.getCmp('txtAltMailID1').setValue(record.data.altEmail);
+                                                                                    Ext.getCmp('txtFirstNameID').setValue(response.givenName);
+                                                                                    Ext.getCmp('txtMiddleInitialID').setValue(response.midName);
+                                                                                    Ext.getCmp('txtLastNameID').setValue(response.lastName);
+                                                                                    Ext.getCmp('txtDisplayNaMeID').setValue(response.displayName);
+                                                                                    Ext.getCmp('txtAltMailID1').setValue(response.altEmail);
                                                                                     Ext.getCmp('AutoID1').setValue(value);
-                                                                                    Ext.getCmp('txCompanyID').setValue(record.data.Company);
-                                                                                    Ext.getCmp('txCompanyTitleID').setValue(record.data.JobTitle);
-                                                                                    Ext.getCmp('txtUCityID').setValue(record.data.City);
-                                                                                    Ext.getCmp('ddlUStateID').setValue(record.data.State.trim());
-                                                                                    Ext.getCmp('txtUZipID').setValue(record.data.Zip);
-                                                                                    Ext.getCmp('txtUPhoneNoID').setValue(record.data.Phone);
+                                                                                    Ext.getCmp('txCompanyID').setValue(response.company);
+                                                                                    Ext.getCmp('txCompanyTitleID').setValue(response.title);
+                                                                                    Ext.getCmp('txtUCityID').setValue(response.city);
+                                                                                    Ext.getCmp('ddlUStateID').setValue(response.state.trim());
+                                                                                    Ext.getCmp('txtUZipID').setValue(response.postalCode);
+                                                                                    Ext.getCmp('txtUPhoneNoID').setValue(response.mobile);
 
 
                                                                                     var domain = localStorage.getItem("domain");
@@ -6605,7 +6563,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                 });
 
                                                                                 // TODO: Login using server-side authentication service
-                                                                                Ext.Ajax.request({url: "services/ListAccount.php?action=ZimbraFetchCOS&account="+record.data.email+".st",
+                                                                                Ext.Ajax.request({url: "services/ZimbraAddUser.php?action=ZimbraEditUser&account="+record.data.email+".st",
                                                                                     method: 'GET',
                                                                                     params: record.data.email,
                                                                                     success: successCallback,
@@ -6620,55 +6578,45 @@ Ext.define('SignaTouch.view.MainView', {
                                                                         },
                                                                         {
                                                                             handler: function(view, rowIndex, colIndex, item, e, record, row) {
-
-
-                                                                                // Success
                                                                                 var successCallback = function(resp, ops) {
-                                                                                    var cos = Ext.JSON.decode(resp.responseText);
-                                                                                    var type = cos.split('-');
-                                                                                    if(type[2]){
-                                                                                        var type1= type[2];
-                                                                                    }
-                                                                                    else{
-                                                                                        var type1= type[1];
-                                                                                    }
-                                                                                    if(type1==='admin'){
-
-
+                                                                                    var response = Ext.JSON.decode(resp.responseText);
+                                                                                    console.log(record.data.Type);
+                                                                                    if(record.data.Type === 'Admin'){
                                                                                         var value = 1;
                                                                                     }
                                                                                     else{
                                                                                         var value = 0;
                                                                                     }
-                                                                                    Ext.getCmp('AutoID3').setValue(value);
-                                                                                    //Ext.getCmp('UserRecordForm').getForm().reset();
+                                                                                    var email = record.data.email;
 
-                                                                                    Ext.getCmp('DomainRecordID').hide();
-                                                                                    Ext.getCmp('UserViewID').show();
+                                                                                    var name = email.split("@");
 
-                                                                                    console.log(record.data.MidName);
+                                                                                    console.log(value);
+
                                                                                     // set values in text field
                                                                                     Ext.getCmp('txtAccountNameID1').setValue(record.data.email);
-                                                                                    Ext.getCmp('txtFirstNameID1').setValue(record.data.FirstName);
-                                                                                    Ext.getCmp('txtMiddleInitialID1').setValue(record.data.MidName);
-                                                                                    Ext.getCmp('txtLastNameID1').setValue(record.data.LastName);
-                                                                                    Ext.getCmp('txtDisplayNaMeID1').setValue(record.data.displayName);
-                                                                                    Ext.getCmp('txtAltMailID2').setValue(record.data.altEmail);
-                                                                                    Ext.getCmp('txCompanyID1').setValue(record.data.Company);
-                                                                                    Ext.getCmp('txCompanyTitleID1').setValue(record.data.JobTitle);
-                                                                                    Ext.getCmp('txtUCityID1').setValue(record.data.City);
+                                                                                    Ext.getCmp('txtFirstNameID1').setValue(response.givenName);
+                                                                                    Ext.getCmp('txtMiddleInitialID1').setValue(response.midName);
+                                                                                    Ext.getCmp('txtLastNameID1').setValue(response.lastName);
+                                                                                    Ext.getCmp('txtDisplayNaMeID1').setValue(response.displayName);
+                                                                                    Ext.getCmp('txtAltMailID2').setValue(response.altEmail);
+                                                                                    Ext.getCmp('txCompanyID1').setValue(response.company);
+                                                                                    Ext.getCmp('txCompanyTitleID1').setValue(response.title);
+                                                                                    Ext.getCmp('txtUCityID1').setValue(response.city);
 
-                                                                                    Ext.getCmp('ddlUStateID1').setValue(record.data.State.trim());
-                                                                                    Ext.getCmp('txtUZipID1').setValue(record.data.Zip);
-                                                                                    Ext.getCmp('txtUPhoneNoID1').setValue(record.data.Phone);
+                                                                                    Ext.getCmp('ddlUStateID1').setValue(response.state.trim());
+                                                                                    Ext.getCmp('txtUZipID1').setValue(response.postalCode);
+                                                                                    Ext.getCmp('txtUPhoneNoID1').setValue(response.mobile);
 
+                                                                                    Ext.getCmp('AutoID3').setValue(value).setReadOnly(true);
 
                                                                                     var domain = localStorage.getItem("domain");
                                                                                     var domain = domain.replace('.st', "");
                                                                                     Ext.getCmp('userDomainID1').setValue('<b>@'+domain+'</b>');
                                                                                     Ext.getCmp('hiddenDomainID1').setValue('@'+domain);
 
-
+                                                                                    Ext.getCmp('DomainRecordID').hide();
+                                                                                    Ext.getCmp('UserViewID').show();
                                                                                     Ext.getCmp('btnCreate').hide();
                                                                                     Ext.getCmp('btnReset').hide();
                                                                                     Ext.getCmp('btnUserBack1').show();
@@ -6692,14 +6640,12 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                 });
 
                                                                                 // TODO: Login using server-side authentication service
-                                                                                Ext.Ajax.request({url: "services/ListAccount.php?action=ZimbraFetchCOS&account="+record.data.email+".st",
+                                                                                Ext.Ajax.request({url: "services/ZimbraAddUser.php?action=ZimbraEditUser&account="+record.data.email+".st",
                                                                                     method: 'GET',
                                                                                     params: record.data.email,
                                                                                     success: successCallback,
                                                                                     failure: failureCallback
                                                                                 });
-
-
 
 
                                                                             },
@@ -13438,7 +13384,7 @@ Ext.define('SignaTouch.view.MainView', {
 
                 store.removeAll(true);
 
-                store.getProxy().url = 'services/ListAccount.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');
+                store.getProxy().url = 'services/ZimbraAddUser.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');
                 store.load();
                 //store.add(Ext.JSON.decode(resp.responseText));
 
@@ -13473,7 +13419,7 @@ Ext.define('SignaTouch.view.MainView', {
         });
 
         // TODO: Login using server-side authentication service
-        Ext.Ajax.request({url: "services/ListAccount.php?action=ZimbraUpdateUser",
+        Ext.Ajax.request({url: "services/ZimbraAddUser.php?action=ZimbraUpdateUser",
                           method: 'POST',
                           params: values,
                           success: successCallback,
@@ -13493,7 +13439,7 @@ Ext.define('SignaTouch.view.MainView', {
 
             store.removeAll(true);
 
-            store.getProxy().url = 'services/ListAccount.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');
+            store.getProxy().url = 'services/ZimbraAddUser.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');
             store.load();
             store.add(Ext.JSON.decode(resp.responseText));
 
@@ -13522,7 +13468,7 @@ Ext.define('SignaTouch.view.MainView', {
 
 
         // TODO: Login using server-side authentication service
-        Ext.Ajax.request({url: "services/ListAccount.php?action=ZimbraListUser&domain="+localStorage.getItem('domain'),
+        Ext.Ajax.request({url: "services/ZimbraAddUser.php?action=ZimbraListUser&domain="+localStorage.getItem('domain'),
                           method: 'GET',
                           params: localStorage.getItem('domain'),
                           success: successCallback,
@@ -13574,117 +13520,8 @@ Ext.define('SignaTouch.view.MainView', {
 
     },
 
-    onBtnCreateClick1: function(button, e, eOpts) {
-
-        var form =  Ext.getCmp('AddUserForm');  // Login form
-        //var userName =  Ext.getCmp('LBLUsername');
-        //var header = button.up('headerPanel');
-        values = form.getValues();    // Form values
-
-
-        // Success
-        var successCallback = function(resp, ops) {
-            //console.log(resp.responseText);
-            if(resp.responseText === 'true'){
-                Ext.Msg.alert("New User Created", 'New User Created successfully');
-                Ext.getCmp('AddUserForm').getForm().reset();
-                // Success
-                var successCallback = function(resp, ops) {
-                    var store = Ext.getStore('DomainUserRecord');
-
-                    store.removeAll(true);
-
-                    store.getProxy().url = 'services/ListAccount.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');
-                    store.load();
-                    store.add(Ext.JSON.decode(resp.responseText));
-
-                    Ext.getCmp('UserGrid').bindStore(store);
-
-                };
-
-                // Failure
-                var failureCallback = function(resp, ops) {
-                    console.log("API not called");
-
-                };
-
-                //adding loader
-                Ext.Ajax.on('beforerequest', function(){
-
-                    var pnl=Ext.getCmp('DomainRecordID');
-                    pnl.setLoading(true, true);
-                });
-
-
-                Ext.Ajax.on('requestcomplete', function(){
-
-                    Ext.getCmp('DomainRecordID').setLoading(false,false);
-                });
-
-
-                // TODO: Login using server-side authentication service
-                Ext.Ajax.request({url: "services/ListAccount.php?action=ZimbraListUser&domain="+localStorage.getItem('domain'),
-                                  method: 'GET',
-                                  params: localStorage.getItem('domain'),
-                                  success: successCallback,
-                                  failure: failureCallback
-                                 });
-
-
-
-                Ext.getCmp('AddUserPanelID').hide();
-                Ext.getCmp('DomainRecordID').show();
-                Ext.getCmp('AddUserForm').getForm().reset();
-            }
-            else if(resp.responseText === '"duplicate"'){
-                Ext.Msg.alert("User exists", 'This User already exists');
-            }
-
-                else {
-                    Ext.Msg.alert("New User cannot be Created", 'New User cannot be Created');
-                }
-
-
-
-        };
-
-        // Failure
-        var failureCallback = function(resp, ops) {
-
-
-            // Show login failure error
-            //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
-
-        };
-        //adding loader
-        Ext.Ajax.on('beforerequest', function(){
-
-            var pnl=Ext.getCmp('AddUserPanelID');
-            pnl.setLoading(true, true);
-        });
-
-
-        Ext.Ajax.on('requestcomplete', function(){
-
-            Ext.getCmp('AddUserPanelID').setLoading(false,false);
-        });
-
-        // TODO: Login using server-side authentication service
-        Ext.Ajax.request({url: "services/CreateAccount.php?action=ZimbraCreateUser",
-                          method: 'POST',
-                          params: values,
-                          success: successCallback,
-                          failure: failureCallback
-                         });
-    },
-
-    onBtnResetClick1: function(button, e, eOpts) {
-        console.log(Ext.getCmp('AddUserForm').getForm());
-        Ext.getCmp('AddUserForm').getForm().reset();
-    },
-
     onBtnUserBackClick1: function(button, e, eOpts) {
-        Ext.getCmp('txtDomainUserfilterID').reset();
+
         /*var myStore = Ext.getStore('DomainUserRecord');
         myStore.clearFilter();
         myStore.load();*/
@@ -13695,7 +13532,7 @@ Ext.define('SignaTouch.view.MainView', {
 
             store.removeAll(true);
 
-            store.getProxy().url = 'services/ListAccount.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');
+            store.getProxy().url = 'services/ZimbraAddUser.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');
             store.load();
             store.add(Ext.JSON.decode(resp.responseText));
 
@@ -13724,7 +13561,7 @@ Ext.define('SignaTouch.view.MainView', {
 
 
         // TODO: Login using server-side authentication service
-        Ext.Ajax.request({url: "services/ListAccount.php?action=ZimbraListUser&domain="+localStorage.getItem('domain'),
+        Ext.Ajax.request({url: "services/ZimbraAddUser.php?action=ZimbraListUser&domain="+localStorage.getItem('domain'),
                           method: 'GET',
                           params: localStorage.getItem('domain'),
                           success: successCallback,

@@ -122,6 +122,7 @@ public function create_another_office() {
 		
 		$username = isset($_GET['user'])?$_GET['user']:'';
 		$param = $this->set_office_parameters();
+    
 		$COS_name_common = '';
 		
 		$name_f_l = ''; 
@@ -132,12 +133,18 @@ public function create_another_office() {
 		//$COS_user_name = 'barnes-client-admin';
 		$physician_cos_array = explode('-',$_COOKIE['user_cos']);
 		$COS_user_name = $physician_cos_array[0].'-client-admin';
+    
+    //echo $COS_user_name;
 		$domain_name = $COS_name_common.'.st';
-		
+		$admin_account_name = 'admin@'.$domain_name;
 		//$cos_user_response_id = $this->copy_default_cos($COS_user_name); 
-
+    $password = explode('-',$param['phone']);
+    $password = implode("",$password);
+    
         $description = 'Domain '.$domain_name.' with default COS.';
         $domain_response = $this->create_domain($domain_name , $COS_user_name , $description);
+        
+        $account_response = $this->create_office_admin_account($admin_account_name , $param['phone'],$password , $COS_user_name , $param['displayName']);
 		
 		$allias_name = $name_f_l.'@'.$domain_name;
         $allias_response = $this->create_physician_allias($param['NewUserName'] , $allias_name);
@@ -149,7 +156,7 @@ public function create_another_office() {
 													PhysicianCity = '".$param['city']."' , 
 													PhysicianSt = '".$param['state']."' , 
 													PhysicianZip = '".$param['zip']."' , 
-                            OfficeDomain='".$domain_name."' ,
+                          OfficeDomain='".$domain_name."' ,
 													PhysicianLastUpdateID = '".$username."' ";
 			mysql_query($sql);
 		}
@@ -187,7 +194,14 @@ public function create_another_office() {
         $GetSet->setCity($_POST['txtPOPPhyCity']);
         $city = $GetSet->getCity();
 
-        $result = array('physician_npi' => $physician_npi, 'NewUserName'=>$NewUserName, 'firstName' => $firstName, 'lastName' => $lastName, 'address1'=>$address1,'address2'=>$address2,'state'=>$state,'city'=>$city,'zip'=>$zip);
+        $GetSet->setPhoneNo($_POST['txtPOPHYPhoneno']);
+        $phone = $GetSet->getPhoneNo();
+          
+        $GetSet->setdisplayName($_POST['txtPOPPhyFname'].' '.$_POST['txtPOPPhyLname']);
+    $displayName = $GetSet->GetdisplayName();
+        
+        
+        $result = array('physician_npi' => $physician_npi, 'NewUserName'=>$NewUserName, 'firstName' => $firstName, 'lastName' => $lastName, 'address1'=>$address1,'address2'=>$address2,'state'=>$state,'city'=>$city,'zip'=>$zip,'phone'=>$phone,'displayName'=>$displayName);
         return $result;
       }
 	  
@@ -523,13 +537,14 @@ public function check_for_existaince($domain , $physician_npi_user) {
                                         <a n="zimbraCOSId">'.$COS_admin_name.'</a>
 										<a n="displayName">'.$displayName.'</a>
 										<a n="mobile">'.$phone.'</a>
-                                        <a n="description">Administrative Account</a>
+                                        <a n="description">Admin,'.$param['PhysicianNPI'].'@npi.st</a>
                                     </CreateAccountRequest>
                                 </soap:Body>
                         </soap:Envelope>';
        
         curl_setopt($CurlHandle, CURLOPT_POSTFIELDS, $SOAPMessage);
         $ZimbraSOAPResponse = curl_exec($CurlHandle);
+        //echo $ZimbraSOAPResponse;
         //print("Raw Zimbra SOAP Response:<BR>" . $ZimbraSOAPResponse . "<BR><BR>\n");
         curl_close($CurlHandle);
         $a='<Code>'; 

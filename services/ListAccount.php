@@ -342,6 +342,7 @@ class ListUser {
     $ZimbraSOAPResponse = curl_exec($CurlHandle);
     curl_close($CurlHandle);
     
+    
     if(!($ZimbraSOAPResponse))
     {
             print("ERROR: curl_exec - (" . curl_errno($CurlHandle) . ") " . curl_error($CurlHandle));

@@ -191,6 +191,26 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
                                             maxLength: 10,
                                             regex: /(^\d{5}$)|(^\d{5}-\d{4}$)/,
                                             regexText: 'Invalid Zip Code'
+                                        },
+                                        {
+                                            xtype: 'textfield',
+                                            id: 'txtPOPHYPhonenoID',
+                                            width: 300,
+                                            fieldLabel: '<b>&nbsp;&nbsp;&nbsp;Phone No.&nbsp;<span style="color:#D94E37;">*</span></b>',
+                                            msgTarget: 'side',
+                                            inputId: 'txtPOPHYPhoneno',
+                                            allowBlank: false,
+                                            enableKeyEvents: true,
+                                            enforceMaxLength: true,
+                                            maxLength: 12,
+                                            regex: /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/,
+                                            regexText: 'Please enter phone No. in xxx-xxx-xxxx format.',
+                                            listeners: {
+                                                keypress: {
+                                                    fn: me.onTxtPOPHYPhonenoIDKeypress,
+                                                    scope: me
+                                                }
+                                            }
                                         }
                                     ]
                                 },
@@ -252,6 +272,16 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
         });
 
         me.callParent(arguments);
+    },
+
+    onTxtPOPHYPhonenoIDKeypress: function(textfield, e, eOpts) {
+        var phone = Ext.getCmp('txtPOPHYPhonenoID').getValue();
+        if(phone.length === 3 || phone.length === 7){
+            var newPhone = phone.concat('-');
+            Ext.getCmp('txtPOPHYPhonenoID').setValue(newPhone);
+        }
+
+
     },
 
     onBtnPOPPhySaveClick: function(button, e, eOpts) {
