@@ -119,10 +119,10 @@ class CreatePhysician {
          
   }
 public function create_another_office() {
-		
+		$connect = new Zimbra();
+    $account_response = '';
 		$username = isset($_GET['user'])?$_GET['user']:'';
 		$param = $this->set_office_parameters();
-    
 		$COS_name_common = '';
 		
 		$name_f_l = ''; 
@@ -136,6 +136,7 @@ public function create_another_office() {
     
     //echo $COS_user_name;
 		$domain_name = $COS_name_common.'.st';
+
 		$admin_account_name = 'admin@'.$domain_name;
 		//$cos_user_response_id = $this->copy_default_cos($COS_user_name); 
     $password = explode('-',$param['phone']);
@@ -143,8 +144,11 @@ public function create_another_office() {
     
         $description = 'Domain '.$domain_name.' with default COS.';
         $domain_response = $this->create_domain($domain_name , $COS_user_name , $description);
+        $pre_auth_key = $connect->ZimbraGeneratePreAuthKey($domain_name);
+          if($pre_auth_key){
+            $account_response = $this->create_domain_admin_account($admin_account_name , $param['phone'],$password , $param['COS'] , $param['displayName']);
+          }
         
-        $account_response = $this->create_office_admin_account($admin_account_name , $param['phone'],$password , $COS_user_name , $param['displayName']);
 		
 		$allias_name = $name_f_l.'@'.$domain_name;
         $allias_response = $this->create_physician_allias($param['NewUserName'] , $allias_name);
@@ -198,10 +202,13 @@ public function create_another_office() {
         $phone = $GetSet->getPhoneNo();
           
         $GetSet->setdisplayName($_POST['txtPOPPhyFname'].' '.$_POST['txtPOPPhyLname']);
-    $displayName = $GetSet->GetdisplayName();
+        $displayName = $GetSet->GetdisplayName();
+        
+        $GetSet->setCOS($_POST['PhysicianCOS']);
+        $COS = $GetSet->getCOS();
         
         
-        $result = array('physician_npi' => $physician_npi, 'NewUserName'=>$NewUserName, 'firstName' => $firstName, 'lastName' => $lastName, 'address1'=>$address1,'address2'=>$address2,'state'=>$state,'city'=>$city,'zip'=>$zip,'phone'=>$phone,'displayName'=>$displayName);
+        $result = array('physician_npi' => $physician_npi, 'NewUserName'=>$NewUserName, 'firstName' => $firstName, 'lastName' => $lastName, 'address1'=>$address1,'address2'=>$address2,'state'=>$state,'city'=>$city,'zip'=>$zip,'phone'=>$phone,'displayName'=>$displayName,'COS'=>$COS);
         return $result;
       }
 	  
@@ -544,7 +551,7 @@ public function check_for_existaince($domain , $physician_npi_user) {
        
         curl_setopt($CurlHandle, CURLOPT_POSTFIELDS, $SOAPMessage);
         $ZimbraSOAPResponse = curl_exec($CurlHandle);
-        //echo $ZimbraSOAPResponse;
+        echo $ZimbraSOAPResponse;
         //print("Raw Zimbra SOAP Response:<BR>" . $ZimbraSOAPResponse . "<BR><BR>\n");
         curl_close($CurlHandle);
         $a='<Code>'; 
@@ -563,6 +570,59 @@ public function check_for_existaince($domain , $physician_npi_user) {
           
   }
 
+  public function create_domain_admin_account($admin_account_name , $phone,$password , $COS_admin_name , $displayName){
+       $connect = new Zimbra();
+       $username = isset($_GET['user'])?$_GET['user']:'';
+        $param = $this->set_office_parameters();
+        $CurlHandle = curl_init();
+        curl_setopt($CurlHandle, CURLOPT_URL,"$connect->ServerAddress:7071/service/admin/soap");
+        curl_setopt($CurlHandle, CURLOPT_POST, TRUE);
+        curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
+        
+ 
+        $parameters = $connect->ZimbraConnect();
+        //$cos_detail = $connect->ZimbraGetCOSID($COS_admin_name);
+        
+         $SOAPMessage = '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+                                <soap:Header>
+                                        <context xmlns="urn:zimbra">
+                                                <authToken>' . $parameters['authToken'] . '</authToken>
+                                                <sessionId id="' . $parameters['sessionId'] . '">' . $parameters['sessionId'] . '</sessionId>
+                                        </context>
+                                </soap:Header>
+                                <soap:Body>
+                                    <CreateAccountRequest name="'.$admin_account_name.'" password="'.$password.'"  xmlns="urn:zimbraAdmin">
+                                        <a n="sn">admin</a>
+                                        <a n="zimbraCOSId">'.$COS_admin_name.'</a>
+										<a n="displayName">'.$displayName.'</a>
+										<a n="mobile">'.$phone.'</a>
+                                        <a n="description">Admin,'.$param['physician_npi'].'@npi.st</a>
+                                    </CreateAccountRequest>
+                                </soap:Body>
+                        </soap:Envelope>';
+       
+        curl_setopt($CurlHandle, CURLOPT_POSTFIELDS, $SOAPMessage);
+        $ZimbraSOAPResponse = curl_exec($CurlHandle);
+        
+        //print("Raw Zimbra SOAP Response:<BR>" . $ZimbraSOAPResponse . "<BR><BR>\n");
+        curl_close($CurlHandle);
+        $a='<Code>'; 
+        $duplicate = strstr($ZimbraSOAPResponse, $a);
+        if(!($ZimbraSOAPResponse))
+        {
+                print("ERROR: curl_exec - (" . curl_errno($CurlHandle) . ") " . curl_error($CurlHandle));
+                return(FALSE); exit();
+        }
+        elseif(strpos($duplicate,'DOMAIN_EXISTS') !== false){
+          return 'duplicate';
+        }
+        else{
+          return TRUE;
+        }
+          
+  }
     public function create_domain($Domain_Name , $DefaultCOS , $Description)
 {       $connect = new Zimbra(); 
         $username = isset($_GET['user'])?$_GET['user']:'';

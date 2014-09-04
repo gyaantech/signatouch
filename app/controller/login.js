@@ -33,6 +33,7 @@ Ext.define('SignaTouch.controller.login', {
                 localStorage.removeItem("email"); //remove
                 localStorage.removeItem("DetailID");// remove
                 //localStorage.removeItem("RouteType"); // remove
+                localStorage.removeItem("physician_cos"); //remove
 
 
                 //Login Panel

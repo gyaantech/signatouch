@@ -5719,85 +5719,33 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                         Ext.getCmp('ViewHCPCS4Med').setValue(responseOjbect.HCPCS_Other4MedFee);
                                                                                     }
 
-                                                                                    /*  var responseOjbect = Ext.JSON.decode(resp.responseText);
-                                                                                    if(responseOjbect.status === 'usera'){
-                                                                                    localStorage.removeItem("user_name"); //remove
-                                                                                    localStorage.setItem("user_name", responseOjbect.username);
-                                                                                    //   SectionAsidemenu.show();
-                                                                                    userName.setText(localStorage.getItem('user_name'));
-                                                                                    // console.log(userName);
+                                                                                };
+
+                                                                                // Failure
+                                                                                var failureCallback = function(resp, ops) {
+                                                                                    console.log("API not called");
+
+                                                                                };
+                                                                                //adding loader
+                                                                                Ext.Ajax.on('beforerequest', function(){
+
+                                                                                    var pnl=Ext.getCmp('ViewAll');
+                                                                                    pnl.setLoading(true, true);
+                                                                                });
 
 
-                                                                                    // Hide login panel
-                                                                                    form.hide();
-                                                                                    loginPanel.hide();
-                                                                                    // show header panel
+                                                                                Ext.Ajax.on('requestcomplete', function(){
 
-                                                                                    Ext.getCmp('Menu2Con').show();
-                                                                                    HeaderPanel.show();
-                                                                                    menuPanel.show();
-                                                                                    contentPanel.show();
-                                                                                    footerPanel.show();
-                                                                                    // sectionB1Next = this.getSectionB1Next();
-                                                                                    sectionA.show();
-                                                                                    //loginPanel.destroy();
-                                                                                }
-                                                                                if(responseOjbect.status === 'userb'){
-                                                                                    localStorage.removeItem("user_name"); //remove
-                                                                                    localStorage.setItem("user_name", responseOjbect.username);
+                                                                                    Ext.getCmp('ViewAll').setLoading(false,false);
+                                                                                });
 
-                                                                                    // SectionBsidemenu.show();
-                                                                                    userName.setText(localStorage.getItem('user_name'));
-                                                                                    // Hide login panel
-                                                                                    form.hide();
-                                                                                    loginPanel.hide();
-                                                                                    // show header panel
-                                                                                    HeaderPanel.show();
-                                                                                    Ext.getCmp('Menu2Con').hide();
-                                                                                    menuPanel.show();
-                                                                                    contentPanel.show();
-                                                                                    footerPanel.show();
-                                                                                    sectionA.hide();
-                                                                                    // sectionB1Next = this.getSectionB1Next();
-                                                                                    SectionB1.show();
-                                                                                    //  loginPanel.destroy();
-                                                                                }
-
-
-
-
-                                                                                if(resp.responseText == 'false'){
-                                                                                    // Show login failure error
-                                                                                    Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
-                                                                                }*/
-
-                                                                            };
-
-                                                                            // Failure
-                                                                            var failureCallback = function(resp, ops) {
-                                                                                console.log("API not called");
-
-                                                                            };
-                                                                            //adding loader
-                                                                            Ext.Ajax.on('beforerequest', function(){
-
-                                                                                var pnl=Ext.getCmp('ViewAll');
-                                                                                pnl.setLoading(true, true);
-                                                                            });
-
-
-                                                                            Ext.Ajax.on('requestcomplete', function(){
-
-                                                                                Ext.getCmp('ViewAll').setLoading(false,false);
-                                                                            });
-
-                                                                            // TODO: Login using server-side authentication service
-                                                                            Ext.Ajax.request({url: "services/Function.php?action=ViewRecordData&HDRID="+selectedHdrid+"&flag="+flag,
-                                                                                method: 'POST',
-                                                                                params: selectedHdrid,
-                                                                                success: successCallback,
-                                                                                failure: failureCallback
-                                                                            });
+                                                                                // TODO: Login using server-side authentication service
+                                                                                Ext.Ajax.request({url: "services/Function.php?action=ViewRecordData&HDRID="+selectedHdrid+"&flag="+flag,
+                                                                                    method: 'POST',
+                                                                                    params: selectedHdrid,
+                                                                                    success: successCallback,
+                                                                                    failure: failureCallback
+                                                                                });
 
 
                                                                             },
@@ -6247,11 +6195,43 @@ Ext.define('SignaTouch.view.MainView', {
 
                                                                                 localStorage.removeItem("physician_lname"); //remove
                                                                                 localStorage.setItem("physician_lname", phy_lname);
+                                                                                //adding loader
+                                                                                Ext.Ajax.on('beforerequest', function(){
+
+                                                                                    var pnl=Ext.getCmp('PhysicianRecord');
+                                                                                    pnl.setLoading(true, true);
+                                                                                });
 
 
-                                                                                // Create new office form window
-                                                                                var office = Ext.create("widget.NewPhysicanOffice");
-                                                                                office.show();
+                                                                                Ext.Ajax.on('requestcomplete', function(){
+
+                                                                                    Ext.getCmp('PhysicianRecord').setLoading(false,false);
+                                                                                });
+
+                                                                                var successCallback = function(resp, ops) {
+                                                                                    var responseOjbect = Ext.JSON.decode(resp.responseText);
+                                                                                    localStorage.removeItem("physician_cos"); //remove
+                                                                                    localStorage.setItem("physician_cos", responseOjbect);
+
+
+
+                                                                                    // Create new office form window
+                                                                                    var office = Ext.create("widget.NewPhysicanOffice");
+                                                                                    office.show();
+
+                                                                                };
+                                                                                var failureCallback = function(resp, ops) {
+                                                                                    console.log("API not called");
+
+                                                                                };
+                                                                                // TODO: Login using server-side authentication service
+                                                                                Ext.Ajax.request({url: "services/ZimbraPhysicianAlias.php?action=ZimbraGetPhysicianCOS&NPI="+phy_npi,
+                                                                                    method: 'GET',
+                                                                                    params: phy_npi,
+                                                                                    success: successCallback,
+                                                                                    failure: failureCallback
+                                                                                });
+
                                                                             },
                                                                             icon: 'resources/images/office.jpg',
                                                                             iconCls: 'actionicon',
@@ -6445,7 +6425,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                     items: [
                                                         {
                                                             xtype: 'gridpanel',
-                                                            height: 300,
+                                                            height: 250,
                                                             id: 'UserGrid',
                                                             overflowY: 'scroll',
                                                             title: '',
@@ -12223,7 +12203,8 @@ Ext.define('SignaTouch.view.MainView', {
     onMAddUserIDClick: function(item, e, eOpts) {
         var store = Ext.getStore('DomainUserRecord');
 
-        store.removeAll(true);
+        Ext.getCmp('UserGrid').store.removeAll(true);
+
 
         Ext.getCmp('Menu').show();
         Ext.getCmp('Footer').show();
@@ -12266,7 +12247,11 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('AddUserPanelID').hide();
 
 
-
+        // reset lookup in user grid
+        Ext.getCmp('txtUserNPIID').reset();
+        Ext.getCmp('txtUserNameID').reset();
+        Ext.getCmp('txtUserDisplayNameID').reset();
+        Ext.getCmp('txtUserEmailID').reset();
 
         //Ext.getCmp('PhysicianOfficeGridID').clearValue();
         //Ext.getCmp('UserGrid').bindStore(store);
@@ -12293,11 +12278,46 @@ Ext.define('SignaTouch.view.MainView', {
         // Ajax request
         // Success
         var successCallback = function(resp, ops) {
-            var response = Ext.JSON.decode(resp.responseText)
+            var response = Ext.JSON.decode(resp.responseText);
             Ext.getCmp('txtUserNPIID').setValue(response.npi);
             Ext.getCmp('txtUserNameID').setValue(response.FullName);
             Ext.getCmp('txtUserDisplayNameID').setValue(response.displayName);
             Ext.getCmp('txtUserEmailID').setValue(response.altEmail);
+
+            //load grid
+
+            //grid bind
+            // Ajax request
+            // Success
+            var successCallbackGrid = function(resp, ops) {
+                var store = Ext.getStore('DomainUserRecord');
+
+                //store.removeAll(true);
+                Ext.getCmp('UserGrid').store.removeAll(true);
+
+                store.getProxy().url = 'services/ZimbraAddUser.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');
+                store.load();
+                store.add(Ext.JSON.decode(resp.responseText));
+
+                Ext.getCmp('UserGrid').bindStore(store);
+
+
+            };
+
+            // Failure
+            var failureCallbackGrid = function(resp, ops) {
+                console.log("API not called");
+
+            };
+
+
+            // TODO: Login using server-side authentication service
+            Ext.Ajax.request({url: "services/ZimbraAddUser.php?action=ZimbraListUser&domain="+localStorage.getItem('domain'),
+                              method: 'GET',
+                              params: localStorage.getItem('domain'),
+                              success: successCallbackGrid,
+                              failure: failureCallbackGrid
+                             });
 
         };
 
@@ -12322,45 +12342,12 @@ Ext.define('SignaTouch.view.MainView', {
             Ext.getCmp('DomainRecordID').setLoading(false,false);
         });
 
-
         // TODO: Login using server-side authentication service
         Ext.Ajax.request({url: "services/ZimbraAddUser.php?action=ZimbraListPhysicianInfo&accountName="+localStorage.getItem('email'),
                           method: 'GET',
                           params: localStorage.getItem('email'),
                           success: successCallback,
                           failure: failureCallback
-                         });
-
-        //grid bind
-        // Ajax request
-        // Success
-        var successCallbackGrid = function(resp, ops) {
-            var store = Ext.getStore('DomainUserRecord');
-
-            store.removeAll(true);
-
-            store.getProxy().url = 'services/ZimbraAddUser.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');
-            store.load();
-            store.add(Ext.JSON.decode(resp.responseText));
-
-            Ext.getCmp('UserGrid').bindStore(store);
-
-
-        };
-
-        // Failure
-        var failureCallbackGrid = function(resp, ops) {
-            console.log("API not called");
-
-        };
-
-
-        // TODO: Login using server-side authentication service
-        Ext.Ajax.request({url: "services/ZimbraAddUser.php?action=ZimbraListUser&domain="+localStorage.getItem('domain'),
-                          method: 'GET',
-                          params: localStorage.getItem('domain'),
-                          success: successCallbackGrid,
-                          failure: failureCallbackGrid
                          });
 
 
@@ -13033,50 +13020,50 @@ Ext.define('SignaTouch.view.MainView', {
     onBtnPatientSaveClick: function(button, e, eOpts) {
         var form = button.up('form');
         var domain = localStorage.getItem('email');
-                   //var header = button.up('headerPanel');
-                       values = form.getValues();
+        //var header = button.up('headerPanel');
+        values = form.getValues();
 
-                // Success
-                var successCallback = function(resp, ops) {
-                    console.log(resp.responseText);
-                    if(resp.responseText === 'true'){
+        // Success
+        var successCallback = function(resp, ops) {
+            console.log(resp.responseText);
+            if(resp.responseText === 'true'){
 
-                      Ext.Msg.alert("Data Inserted", 'Patient Record Created successfully');
-                        Ext.getCmp('txtPatientfilterID').reset();
-        var myStore = Ext.getStore('PatientGridBind');
-                         myStore.clearFilter();
-                        myStore.load();
-                          Ext.getCmp('PatientPanelID').hide();
-                              Ext.getCmp('PatientRecord').show();
-                            Ext.getCmp('PatientForm').getForm().reset();
-                   }
-                   else if(resp.responseText === 'false'){
+                Ext.Msg.alert("Data Inserted", 'Patient Record Created successfully');
+                Ext.getCmp('txtPatientfilterID').reset();
+                var myStore = Ext.getStore('PatientGridBind');
+                myStore.clearFilter();
+                myStore.load();
+                Ext.getCmp('PatientPanelID').hide();
+                Ext.getCmp('PatientRecord').show();
+                Ext.getCmp('PatientForm').getForm().reset();
+            }
+            else if(resp.responseText === 'false'){
 
-                      Ext.Msg.alert("Duplicate Entry", 'Patient Record Already Exists');
-                   }
-                    else{
-                      // Show login failure error
-                    Ext.Msg.alert("Insert Failure", 'Data cannot be added');
-                    }
-
-                };
-
-                // Failure
-                var failureCallback = function(resp, ops) {
-
+                Ext.Msg.alert("Duplicate Entry", 'Patient Record Already Exists');
+            }
+                else{
                     // Show login failure error
-                    Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+                    Ext.Msg.alert("Insert Failure", 'Data cannot be added');
+                }
 
-                };
+        };
+
+        // Failure
+        var failureCallback = function(resp, ops) {
+
+            // Show login failure error
+            Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+        };
 
 
-                // TODO: Login using server-side authentication service
-                Ext.Ajax.request({url: "services/Maintainence.php?action=insertPatientHICN&src="+domain,
-                        method: 'POST',
-                        params: values,
-                        success: successCallback,
-                        failure: failureCallback
-                 });
+        // TODO: Login using server-side authentication service
+        Ext.Ajax.request({url: "services/Maintainence.php?action=insertPatientHICN&src="+domain,
+                          method: 'POST',
+                          params: values,
+                          success: successCallback,
+                          failure: failureCallback
+                         });
     },
 
     onBtnPatientUpdateClick: function(button, e, eOpts) {
@@ -13285,7 +13272,7 @@ Ext.define('SignaTouch.view.MainView', {
 
                     store.removeAll(true);
 
-                    store.getProxy().url = 'services/ListAccount.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');
+                    store.getProxy().url = 'services/ZimbraAddUser.php?action=ZimbraListUser&domain='+localStorage.getItem('domain');
                     store.load();
                     store.add(Ext.JSON.decode(resp.responseText));
 
@@ -13314,7 +13301,7 @@ Ext.define('SignaTouch.view.MainView', {
 
 
                 // TODO: Login using server-side authentication service
-                Ext.Ajax.request({url: "services/ListAccount.php?action=ZimbraListUser&domain="+localStorage.getItem('domain'),
+                Ext.Ajax.request({url: "services/ZimbraAddUser.php?action=ZimbraListUser&domain="+localStorage.getItem('domain'),
                                   method: 'GET',
                                   params: localStorage.getItem('domain'),
                                   success: successCallback,
@@ -17215,8 +17202,6 @@ Ext.define('SignaTouch.view.MainView', {
     },
 
     onBtnPhysicianSaveClick: function(button, e, eOpts) {
-
-
         var form = button.up('form');
         var domain = localStorage.getItem('email');
         //var header = button.up('headerPanel');
@@ -17286,6 +17271,34 @@ Ext.define('SignaTouch.view.MainView', {
             if(resp.responseText === 'true'){
 
                 Ext.Msg.alert("Data Inserted", 'Physican Record Created successfully');
+
+                // success
+                var successCallbackMail = function(resp, ops) {
+
+                    ///Ext.Msg.alert("Record sent to Dr. office", 'Record sent to Dr. office successfully!');
+                    // Show login failure error
+                    //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                };
+                // Failure
+                var failureCallbackMail = function(resp, ops) {
+
+
+                    // Show login failure error
+                    //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                };
+
+
+                Ext.Ajax.request({url: "services/mail/PhysicianMail.php?action=mail&send="+altemail,
+                                  method: 'POST',
+                                  params: values,
+                                  success: successCallbackMail,
+                                  failure: failureCallbackMail
+                                 });
+
+
+
                 Ext.getCmp('txtPhysicianfilterID').reset();
                 var myStore = Ext.getStore('PhysicianGridBind');
                 myStore.clearFilter();
@@ -17342,6 +17355,9 @@ Ext.define('SignaTouch.view.MainView', {
                           success: successCallback,
                           failure: failureCallback
                          });
+
+
+
     },
 
     onBtnPhysicianUpdateIDClick: function(button, e, eOpts) {

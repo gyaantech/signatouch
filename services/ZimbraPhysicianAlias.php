@@ -115,8 +115,70 @@ class GetPhysicianAlias {
     
 
   } 
+      // get physician cos from npi
+   public function ZimbraGetPhysicianCOS($npi='')
+  {
+     $cos = '';        
+     $connect = new Zimbra();
+    $GetSet = new GetSet();   
+    // set PhysicianNPI
+    if($npi == ''){
+      $npi = $_GET['NPI'];
+    }
+    $GetSet->setPhysicianNPI($npi);
+    // get PhysicianNPI
+    $npi = $GetSet->getPhysicianNPI();
+    $npi = $npi.$connect->npi_domain;
+    
+        //print_r($_POST);exit();
+         $CurlHandle = curl_init();
+          curl_setopt($CurlHandle, CURLOPT_URL,           "$connect->ServerAddress:7071/service/admin/soap");
+          curl_setopt($CurlHandle, CURLOPT_POST,           TRUE);
+          curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
+          curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
+          curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
+         
+          //$id = $connect->ZimbraGetAccountID($result['TargetAccount']);
+          // ------ Send the zimbraAdmin AuthRequest -----
+          
+          $parameters = $connect->ZimbraConnect();
+          
+          // ------ Send the zimbraCreateAccount request -----
+          $SOAPMessage = '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+                                  <soap:Header>
+                                          <context xmlns="urn:zimbra">
+                                                  <authToken>' . $parameters['authToken'] . '</authToken>
+                                                  <sessionId id="' . $parameters['sessionId'] . '">' . $parameters['sessionId'] . '</sessionId>
+                                          </context>
+                                  </soap:Header>
+                                  <soap:Body>
+     
+                                  
+    <GetAccountRequest xmlns="urn:zimbraAdmin">
+         <account by="name">'.$npi.'</account>
+    </GetAccountRequest>
+    
+
+                                  </soap:Body>
+                          </soap:Envelope>';
+
+          curl_setopt($CurlHandle, CURLOPT_POSTFIELDS, $SOAPMessage);
+
+          if(!($ZimbraSOAPResponse = curl_exec($CurlHandle)))
+          {
+                 /// print("ERROR: curl_exec - (" . curl_errno($CurlHandle) . ") " . curl_error($CurlHandle));
+                  return(FALSE); exit();
+          }
+          
+        curl_close($CurlHandle);
+        $cos='<a n="zimbraCOSId">'; 
+                $cos = strstr($ZimbraSOAPResponse, $cos);
+                $cos = strstr($cos, ">");
+                $cos = substr($cos, 1, strpos($cos, "<") - 1);
+          return $cos;
+  }
 }
-$possible_url = array("ZimbraGetPhysicianAlias","GetPhysicianofficeFromNpi");
+$possible_url = array("ZimbraGetPhysicianAlias","GetPhysicianofficeFromNpi","ZimbraGetPhysicianCOS");
  $value = "An error has occurred";
  $cms = new GetPhysicianAlias();
   if (isset ($_GET["action"]) && in_array($_GET["action"], $possible_url)) {
@@ -127,6 +189,10 @@ $possible_url = array("ZimbraGetPhysicianAlias","GetPhysicianofficeFromNpi");
       case "GetPhysicianofficeFromNpi" :
                 $value = $cms->GetPhysicianofficeFromNpi();
             break;
+      case "ZimbraGetPhysicianCOS" :
+                $value = $cms->ZimbraGetPhysicianCOS();
+            break;
+          
       }
   }
 echo json_encode($value);

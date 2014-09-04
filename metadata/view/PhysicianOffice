@@ -353,6 +353,21 @@
                             ]
                         },
                         {
+                            "type": "Ext.form.field.Hidden",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": "Label",
+                                "id": "PhysicianCOSID",
+                                "inputId": "PhysicianCOS",
+                                "layout|anchor": "100%"
+                            },
+                            "designerId": "f20aed5e-217e-4bb2-b090-faff91926e1b"
+                        },
+                        {
                             "type": "Ext.container.Container",
                             "reference": {
                                 "name": "items",
@@ -533,20 +548,21 @@
                     "var phy_npi = localStorage.getItem(\"physician_npi\");\r",
                     "var phy_fname = localStorage.getItem(\"physician_fname\");\r",
                     "var phy_lname = localStorage.getItem(\"physician_lname\");\r",
-                    "\r",
-                    "\r",
+                    "var cos = localStorage.getItem(\"physician_cos\");\r",
                     "\r",
                     "var form =  Ext.getCmp('PopForm3');  // Physician Office form\r",
                     "\r",
                     "Ext.getCmp('PopForm3').getForm().setValues({\r",
                     "    txtPOPPhyNPI: phy_npi,\r",
                     "    txtPOPPhyFname: phy_fname,\r",
-                    "    txtPOPPhyLname: phy_lname\r",
+                    "    txtPOPPhyLname: phy_lname,\r",
+                    "    PhysicianCOS:cos\r",
                     "});\r",
                     "\r",
                     "localStorage.removeItem(\"physician_npi\"); //remove\r",
                     "localStorage.removeItem(\"physician_fname\"); //remove\r",
-                    "localStorage.removeItem(\"physician_lname\"); //remove"
+                    "localStorage.removeItem(\"physician_lname\"); //remove\r",
+                    "localStorage.removeItem(\"physician_cos\"); //remove"
                 ],
                 "name": "show",
                 "scope": "me"

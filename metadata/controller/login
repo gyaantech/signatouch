@@ -38,6 +38,7 @@
                     "        localStorage.removeItem(\"email\"); //remove\r",
                     "        localStorage.removeItem(\"DetailID\");// remove\r",
                     "        //localStorage.removeItem(\"RouteType\"); // remove\r",
+                    "        localStorage.removeItem(\"physician_cos\"); //remove\r",
                     "\r",
                     "\r",
                     "        //Login Panel\r",

@@ -50,7 +50,6 @@ Ext.application({
         'PhysicianGridBind',
         'SupplierGridBind',
         'PatientGridBind',
-        'COS',
         'States',
         'PhysicianAlias',
         'PhysicianOffice',

@@ -183,6 +183,7 @@ class Zimbra {
     // function that returns cos name from COS ID
   public function ZimbraGetCOSName($cos_id)
   {
+        $cos_name = '';
          $CurlHandle = curl_init();
           curl_setopt($CurlHandle, CURLOPT_URL,"$this->ServerAddress:7071/service/admin/soap");
           curl_setopt($CurlHandle, CURLOPT_POST,TRUE);
@@ -318,4 +319,104 @@ class Zimbra {
         }
           
   }  
+  // generate preauth key
+   public function ZimbraGeneratePreAuthKey($domain_name){
+		
+		//$domain = 'npi.st';
+		$connect = new Zimbra();
+    $admin_account_name = 'admin@'.$domain_name;
+        $CurlHandle = curl_init();
+        curl_setopt($CurlHandle, CURLOPT_URL,           "$connect->ServerAddress:7071/service/admin/soap");
+        curl_setopt($CurlHandle, CURLOPT_POST,           TRUE);
+        curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
+
+        // ------ Send the zimbraAdmin AuthRequest -----
+        $parameters = $connect->ZimbraConnect();
+
+        // ------ Send the zimbraCreateAccount request -----
+        $SOAPMessage = '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+                                <soap:Header>
+                                        <context xmlns="urn:zimbra">
+                                                <authToken>' . $parameters['authToken'] . '</authToken>
+                                                <sessionId id="' . $parameters['sessionId'] . '">' . $parameters['sessionId'] . '</sessionId>
+                                        </context>
+                                </soap:Header>
+                                <soap:Body>
+                                        <GetDomainRequest xmlns="urn:zimbraAdmin">
+                                            <domain by="name">'.$domain_name.'</domain>
+                                        </GetDomainRequest>
+                                </soap:Body>
+                        </soap:Envelope>';
+
+        curl_setopt($CurlHandle, CURLOPT_POSTFIELDS, $SOAPMessage);
+        $ZimbraSOAPResponse = curl_exec($CurlHandle);
+        curl_close($CurlHandle);
+		$cos_desc = '';
+        $a = '<domain id="'; 
+        $domain_id = strstr($ZimbraSOAPResponse, $a);
+        //$domain_id = strstr($domain_id, '" name="');
+        $domain_id = substr($domain_id, 12, strpos($domain_id, '" name="') - 12);
+		//exit();
+		//print("Raw Zimbra SOAP Response:<BR>" . $ZimbraSOAPResponse . "<BR><BR>\n");
+		
+        $a='<Code>'; 
+        $exists = strstr($ZimbraSOAPResponse, $a);
+        if(!($ZimbraSOAPResponse)){
+                //print("ERROR: curl_exec - (" . curl_errno($CurlHandle) . ") " . curl_error($CurlHandle));
+            return FALSE;
+        }
+        elseif(strpos($exists,'NO_SUCH_DOMAIN') !== false){
+            return FALSE;
+        }
+        else{
+            $PREAUTH_KEY="0f6f5bbf7f3ee4e99e2d24a7091e262db37eb9542bc921b2ae4434fcb6338284";
+			$timestamp = time()*1000;
+			//$email = $_GET["email"];
+			//$email = '1111111111@npi.st';
+			$preauthToken = hash_hmac("sha1",$admin_account_name."|name|0|".$timestamp,$PREAUTH_KEY);
+			
+			$connect = new Zimbra(); 
+			//$username = isset($_GET['user'])?$_GET['user']:'';
+			
+			$CurlHandle = curl_init();
+			curl_setopt($CurlHandle, CURLOPT_URL,"$connect->ServerAddress:7071/service/admin/soap");
+			curl_setopt($CurlHandle, CURLOPT_POST, TRUE);
+			curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
+			curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
+			curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
+			
+			
+			$parameters = $connect->ZimbraConnect();
+			
+			 $SOAPMessage = '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+									<soap:Header>
+											<context xmlns="urn:zimbra">
+													<authToken>' . $parameters['authToken'] . '</authToken>
+													<sessionId id="' . $parameters['sessionId'] . '">' . $parameters['sessionId'] . '</sessionId>
+											</context>
+									</soap:Header>
+									<soap:Body>
+										<ModifyDomainRequest xmlns="urn:zimbraAdmin">
+											<id>'.$domain_id.'</id>
+											<a n="zimbraPreAuthKey">'.$preauthToken.'</a>
+										</ModifyDomainRequest> 
+									</soap:Body>
+							</soap:Envelope>';
+		   
+			curl_setopt($CurlHandle, CURLOPT_POSTFIELDS, $SOAPMessage);
+			$ZimbraSOAPResponse = curl_exec($CurlHandle);
+			//print("Raw Zimbra SOAP Response:<BR>" . $ZimbraSOAPResponse . "<BR><BR>\n");
+			curl_close($CurlHandle);
+			if(!($ZimbraSOAPResponse))
+			{
+					print("ERROR: curl_exec - (" . curl_errno($CurlHandle) . ") " . curl_error($CurlHandle));
+					return(FALSE); exit();
+			}
+			else{
+			  return TRUE;
+			}
+        }
+   }
 }

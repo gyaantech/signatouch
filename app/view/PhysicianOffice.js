@@ -21,6 +21,7 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
         'Ext.form.Panel',
         'Ext.form.FieldSet',
         'Ext.form.field.ComboBox',
+        'Ext.form.field.Hidden',
         'Ext.button.Button'
     ],
 
@@ -215,6 +216,13 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
                                     ]
                                 },
                                 {
+                                    xtype: 'hiddenfield',
+                                    anchor: '100%',
+                                    id: 'PhysicianCOSID',
+                                    fieldLabel: 'Label',
+                                    inputId: 'PhysicianCOS'
+                                },
+                                {
                                     xtype: 'container',
                                     itemId: 'Button',
                                     margin: '7 0 7 0',
@@ -363,20 +371,21 @@ Ext.define('SignaTouch.view.PhysicianOffice', {
         var phy_npi = localStorage.getItem("physician_npi");
         var phy_fname = localStorage.getItem("physician_fname");
         var phy_lname = localStorage.getItem("physician_lname");
-
-
+        var cos = localStorage.getItem("physician_cos");
 
         var form =  Ext.getCmp('PopForm3');  // Physician Office form
 
         Ext.getCmp('PopForm3').getForm().setValues({
             txtPOPPhyNPI: phy_npi,
             txtPOPPhyFname: phy_fname,
-            txtPOPPhyLname: phy_lname
+            txtPOPPhyLname: phy_lname,
+            PhysicianCOS:cos
         });
 
         localStorage.removeItem("physician_npi"); //remove
         localStorage.removeItem("physician_fname"); //remove
         localStorage.removeItem("physician_lname"); //remove
+        localStorage.removeItem("physician_cos"); //remove
     }
 
 });
