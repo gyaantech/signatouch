@@ -11840,7 +11840,7 @@ Ext.define('SignaTouch.view.MainView', {
 
         Ext.getCmp('AddUserPanelID').hide();
         Ext.getCmp('AddAlias').hide();
-
+        Ext.getCmp('DomainRecordID').hide();
 
         //Dashboard
 
