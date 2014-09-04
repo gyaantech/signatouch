@@ -285,6 +285,26 @@ Ext.define('SignaTouch.view.MainView', {
                                     xtype: 'menu',
                                     floating: false,
                                     hidden: true,
+                                    id: 'MaintananceClientID',
+                                    title: 'Maintenance',
+                                    items: [
+                                        {
+                                            xtype: 'menuitem',
+                                            itemId: 'MNewPatient',
+                                            text: 'Patient / HICN',
+                                            listeners: {
+                                                click: {
+                                                    fn: me.onMNewPatientClick1,
+                                                    scope: me
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    xtype: 'menu',
+                                    floating: false,
+                                    hidden: true,
                                     id: 'ManageAccountID',
                                     title: 'Manage Account',
                                     items: [
@@ -12200,6 +12220,60 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('DomainRecordID').hide();
     },
 
+    onMNewPatientClick1: function(item, e, eOpts) {
+        Ext.getCmp('Menu').show();
+        Ext.getCmp('Footer').show();
+        Ext.getCmp('Header').show();
+
+        // hide
+
+        // section A
+        Ext.getCmp('SectionAID').hide();
+        Ext.getCmp('SectionA1NextID').hide();
+
+        // section B
+        Ext.getCmp('SectionB1NextID').hide();
+        Ext.getCmp('sectionB1ID').hide();
+
+
+        //Physician Record
+        Ext.getCmp('PhysicianPanelID').hide();
+        Ext.getCmp('PhysicianViewID').hide();
+        Ext.getCmp('PhysicianRecord').hide();
+
+        //Supplier Record
+        Ext.getCmp('SupplierRecord').hide();
+         Ext.getCmp('SupplierPanelID').hide();
+         Ext.getCmp('SupplierViewID').hide();
+
+        Ext.getCmp('ViewAll').hide();
+        Ext.getCmp('Messaging').hide();
+        Ext.getCmp('Dashboard').hide();
+
+
+        //Patient Record
+        Ext.getCmp('PatientRecord').show();
+        Ext.getCmp('PatientPanelID').hide();
+        Ext.getCmp('PatientViewID').hide();
+        Ext.getCmp('PatientForm').getForm().reset();
+
+        Ext.getCmp('AddUserPanelID').hide();
+        // Clear store
+        Ext.getCmp('ChangePasswordPanelID').hide();
+
+        var myStore = Ext.getStore('PatientGridBind');
+         myStore.clearFilter();
+        myStore.load();
+        Ext.getCmp('txtPatientfilterID').reset();
+        Ext.getCmp('AddCOSID').hide();
+        Ext.getCmp('AddAlias').hide();
+
+        Ext.getCmp('AddDomainID').hide();
+
+        //DomainRecordID
+        Ext.getCmp('DomainRecordID').hide();
+    },
+
     onMAddUserIDClick: function(item, e, eOpts) {
         var store = Ext.getStore('DomainUserRecord');
 
@@ -12452,7 +12526,7 @@ Ext.define('SignaTouch.view.MainView', {
         var domain = localStorage.getItem("domain");
         var domain = domain.replace('.st', "");
         Ext.getCmp('txtDomainNameID').setValue(domain);
-        Ext.getCmp('txtDomainNameID1').setValue(domain);
+        Ext.getCmp('txtDomainNameID1').setValue('npi');
         Ext.getCmp('AddAlias').show();
 
         Ext.getCmp('AddDomainID').hide();
@@ -17210,7 +17284,7 @@ Ext.define('SignaTouch.view.MainView', {
 
         // Success
         var successCallback = function(resp, ops) {
-            console.log(resp.responseText);
+
             if(resp.responseText === 'true'){
 
                 Ext.Ajax.request({url: "services/ZimbraPhysician.php?action=ZimbraPhysicianCreate&src="+domain,

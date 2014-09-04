@@ -82,6 +82,7 @@ Ext.define('SignaTouch.controller.login', {
                 Ext.getCmp('SectionBMenu').hide();
                 Ext.getCmp('CMS484SectionA').hide();
                 Ext.getCmp('Maintanance').hide();
+                Ext.getCmp('MaintananceClientID').hide();
                 Ext.getCmp('ManageAccountID').hide();
                 Ext.getCmp('ChangePasswordPanelID').hide();
                 Ext.getCmp('AddUserPanelID').hide();
