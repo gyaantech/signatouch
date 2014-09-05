@@ -1,5 +1,8 @@
 <?php
-
+// Defines get set functions
+//
+// Ver 1
+// -------------------------------------
 class GetSet
 {    
     public $HICN;

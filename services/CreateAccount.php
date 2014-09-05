@@ -1,5 +1,5 @@
 <?php
-// Create account Zimbra 
+// Create account Zimbra , Change password of user account
 //
 // Ver 1
 //  july 2014
