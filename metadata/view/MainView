@@ -7457,6 +7457,7 @@
                                                     "codeClass": null,
                                                     "userConfig": {
                                                         "allowBlank": false,
+                                                        "emptyText": "Physician NPI",
                                                         "fieldLabel": "<b>Target Account&nbsp;<span style=\"color:#D94E37;\">*</span><b/>",
                                                         "fieldStyle": null,
                                                         "id": "txtTargetAccountID",

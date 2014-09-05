@@ -3186,7 +3186,8 @@ Ext.define('SignaTouch.view.MainView', {
                                                             fieldLabel: '<b>Target Account&nbsp;<span style="color:#D94E37;">*</span><b/>',
                                                             labelWidth: 150,
                                                             inputId: 'txtTargetAccount',
-                                                            allowBlank: false
+                                                            allowBlank: false,
+                                                            emptyText: 'Physician NPI'
                                                         },
                                                         {
                                                             xtype: 'displayfield',
