@@ -26,7 +26,6 @@ Ext.define('SignaTouch.view.PopupNewFacility', {
 
     height: 317,
     hidden: false,
-    id: 'POPUPFacilityID',
     itemId: 'FacilityItem',
     width: 656,
     title: 'New Facility',
@@ -150,8 +149,8 @@ Ext.define('SignaTouch.view.PopupNewFacility', {
                                             allowBlank: false,
                                             emptyText: '-Select-',
                                             regexText: '',
-                                            editable: false,
                                             displayField: 'des',
+                                            forceSelection: true,
                                             queryMode: 'local',
                                             store: 'States',
                                             valueField: 'id'
@@ -267,64 +266,65 @@ Ext.define('SignaTouch.view.PopupNewFacility', {
 
     onBtnPOPFacilitySaveClick: function(button, e, eOpts) {
         var form = button.up('form');
-                   //var header = button.up('headerPanel');
-                       values = form.getValues();
-                var LocalHDRid = localStorage.getItem('SectionAHDRID');
-                var successCallbackFacility = function(resp, ops) {
+        //var header = button.up('headerPanel');
+        values = form.getValues();
+        var LocalHDRid = localStorage.getItem('SectionAHDRID');
+        var successCallbackFacility = function(resp, ops) {
 
-                    Ext.getCmp('FacilityNameText').setValue(Ext.JSON.decode(resp.responseText));
-                };
-                var failureCallbackFacility = function(resp, ops) {};
-                // Success
-                var successCallback = function(resp, ops) {
-                    var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));
-                    if(responseOjbect.status === true){
+            Ext.getCmp('FacilityNameText').setValue(Ext.JSON.decode(resp.responseText));
+        };
+        var failureCallbackFacility = function(resp, ops) {};
+        // Success
+        var successCallback = function(resp, ops) {
+            var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));
+            if(responseOjbect.status === true){
 
-                      Ext.Msg.alert("Data Inserted", 'New Facility Created');
+                Ext.Msg.alert("New Facility Created", 'New Facility Created Successfully');
+                var NewFacility = Ext.create("widget.NewFacility");
+                console.log(NewFacility);
+                NewFacility.hide();
 
-                        Ext.getCmp('POPUPFacilityID').hide();
-
-                        // fetch facility name from facility NPI and display in textfield
-                        Ext.Ajax.request({url: "services/SectionA.php?action=fetchFacilityName&facility_NPI="+responseOjbect.facility_npi,
-                        method: 'POST',
-                        params: values,
-                        success: successCallbackFacility,
-                        failure: failureCallbackFacility
-                 });
-                                    // Code to reset the form values
-                    form.getForm().getFields().each(function(f){
+                // fetch facility name from facility NPI and display in textfield
+                Ext.Ajax.request({url: "services/SectionA.php?action=fetchFacilityName&facility_NPI="+responseOjbect.facility_npi,
+                                  method: 'POST',
+                                  params: values,
+                                  success: successCallbackFacility,
+                                  failure: failureCallbackFacility
+                                 });
+                // Code to reset the form values
+                form.getForm().getFields().each(function(f){
                     f.originalValue=undefined;
-                    });
-                    form.getForm().reset();
-                   }
-                   else if(responseOjbect.status === 'false'){
+                });
+                form.getForm().reset();
+            }
+            else if(responseOjbect.status === 'false'){
 
-                      Ext.Msg.alert("Duplicate Entry", 'Facility NPI Already Exists');
+                Ext.Msg.alert("Duplicate Entry", 'Facility NPI Already Exists');
 
-                   }
-                    else{
+            }
+                else{
 
                     Ext.Msg.alert("Insert Failure", 'Data cannot be added');
-                    }
+                }
 
-                };
+        };
 
-                // Failure
-                var failureCallback = function(resp, ops) {
+        // Failure
+        var failureCallback = function(resp, ops) {
 
-                    // Show login failure error
-                    //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+            // Show login failure error
+            //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
 
-                };
+        };
 
 
-                // TODO: Login using server-side authentication service
-                Ext.Ajax.request({url: "services/Maintainence.php?action=insertFacility&HdrID="+LocalHDRid,
-                        method: 'POST',
-                        params: values,
-                        success: successCallback,
-                        failure: failureCallback
-                 });
+        // TODO: Login using server-side authentication service
+        Ext.Ajax.request({url: "services/Maintainence.php?action=insertFacility&HdrID="+LocalHDRid,
+                          method: 'POST',
+                          params: values,
+                          success: successCallback,
+                          failure: failureCallback
+                         });
     },
 
     onBtnPOPFacilityCancelClick: function(button, e, eOpts) {

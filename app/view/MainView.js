@@ -6450,7 +6450,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             id: 'UserGrid',
                                                             overflowY: 'scroll',
                                                             title: '',
-                                                            emptyText: '<font size="4">No Records found...</font>',
+                                                            emptyText: '<font size="4">No Users found...</font>',
                                                             enableColumnHide: false,
                                                             enableColumnMove: false,
                                                             enableColumnResize: false,
@@ -16376,7 +16376,7 @@ Ext.define('SignaTouch.view.MainView', {
 
     onCheckBoxNewFacilityChange: function(field, newValue, oldValue, eOpts) {
         // Create NewFacility form window
-            var NewFacility = Ext.create("widget.NewFacility");
+        var NewFacility = Ext.create("widget.NewFacility");
 
         if(newValue === true){
 
@@ -16386,7 +16386,7 @@ Ext.define('SignaTouch.view.MainView', {
             Ext.getCmp('CheckBoxNewFacilityID').setValue(0);
         }
         else{
-             //destroy
+            //destroy
             NewFacility.destroy();
         }
     },

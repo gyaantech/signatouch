@@ -545,6 +545,7 @@ public function check_for_existaince($domain , $physician_npi_user) {
 										<a n="displayName">'.$displayName.'</a>
 										<a n="mobile">'.$phone.'</a>
                                         <a n="description">Admin,'.$param['PhysicianNPI'].'@npi.st</a>
+                                          <a n="zimbraNotes">'.$param['NewAltUserName'].'</a>
                                     </CreateAccountRequest>
                                 </soap:Body>
                         </soap:Envelope>';
@@ -599,6 +600,7 @@ public function check_for_existaince($domain , $physician_npi_user) {
 										<a n="displayName">'.$displayName.'</a>
 										<a n="mobile">'.$phone.'</a>
                                         <a n="description">Admin,'.$param['physician_npi'].'@npi.st</a>
+                                          
                                     </CreateAccountRequest>
                                 </soap:Body>
                         </soap:Envelope>';
@@ -800,8 +802,10 @@ public function check_for_existaince($domain , $physician_npi_user) {
   }
     public function ZimbraCreatePhysicianAccount($Trace, $ServerAddress, $AdminUserName, $AdminPassword, $NewUserName, $NewUserPassword, $DefaultCOS)
   {
+      
          $connect = new Zimbra();
         $param = $this->set_physician_parameters();
+        
         $phone_arr = explode("-",$param['phone']);
         $phone = implode($phone_arr,"");
          $CurlHandle = curl_init();
@@ -1011,51 +1015,7 @@ public function check_for_existaince($domain , $physician_npi_user) {
         }
 }
 
-public function send_email($to , $FName ,$LName, $user_name, $password) {
-    
-    // subject
-    $subject = 'User Created Suceessfully.';
 
-    // message
-    $message = '
-    <html>
-    <head>
-      <title>User Created</title>
-    </head>
-    <body>
-      <p>Change Passowrd!</p>
-      <table>
-        <tr>
-          <th>Dear '.$FName.' '.$LName.',</th>
-        </tr>
-        <tr>
-          <td>Please use following details for login:</td>
-        </tr>
-        <tr>
-          <td><a href="#">Click here for login</a></td>
-        </tr>
-        <tr>
-          <td>Username: '.$user_name.'</td>
-        </tr>
-        <tr>
-          <td>Password: '.$password.'</td>
-        </tr>
-      </table>
-    </body>
-    </html>
-    ';
-
-    // To send HTML mail, the Content-type header must be set
-    $headers  = 'MIME-Version: 1.0' . "\r\n";
-    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-
-    // Additional headers
-    $headers .= 'To: '.$FName .' '.$LName.' <'.$to.'>' . "\r\n";
-    
-    // Mail it
-    mail($to, $subject, $message, $headers);
-    return TRUE;
-}
 
     /*Edit physician record*/
    public function editPhysicianRecord() {

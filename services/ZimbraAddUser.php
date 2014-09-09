@@ -176,6 +176,9 @@ class ListUser {
               $npi = explode("@",$npi[1]);
               $npi = $npi[0];
             }
+            else{
+              $npi = 'N/A';
+            }
 				  }
 				  else{
 					$npi = $cname;
@@ -285,39 +288,45 @@ class ListUser {
   $app_list = array();
   $xmlObject = new XmlToArrayParser($ZimbraSOAPResponse);
   $arr = $xmlObject->array;
+  $email = '';
+ 
   if(isset($arr['soap:Envelope']['soap:Body']['GetAllAccountsResponse'])){
     $domain_accounts = $arr['soap:Envelope']['soap:Body']['GetAllAccountsResponse']['account'];
   }
   if($domain_accounts){
     foreach($domain_accounts as $key => $value){
-      $email = $value['attrib']['name'];
+      
+      $email = isset($value['attrib']['name']) ? $value['attrib']['name'] : '';
       $email = str_replace(".st","",$email);
+      if(isset($value['a'])){
+        foreach($value['a'] as $k => $v){
+          if($v['attrib']['n'] == 'displayName'){
+          $displayName = $v['cdata']; 
+          }
+          if($v['attrib']['n'] == 'title'){
+          $title = $v['cdata']; 
+          }
+          if($v['attrib']['n'] == 'zimbraAccountStatus'){
+          $Status = $v['cdata']; 
+          }
 
-      foreach($value['a'] as $k => $v){
-        if($v['attrib']['n'] == 'displayName'){
-        $displayName = $v['cdata']; 
-        }
-        if($v['attrib']['n'] == 'title'){
-        $title = $v['cdata']; 
-        }
-        if($v['attrib']['n'] == 'zimbraAccountStatus'){
-        $Status = $v['cdata']; 
-        }
+          if($v['attrib']['n'] == 'description'){
+          $description = $v['cdata']; 
 
-        if($v['attrib']['n'] == 'description'){
-        $description = $v['cdata']; 
-
-        $description = explode(",",$description);
-        $description = $description[0];
-        }
-
+          $description = explode(",",$description);
+          $description = $description[0];
+          }
       }
-         $app_list[] = array('email'=>$email,'displayName'=> ucwords($displayName), 'JobTitle'=>ucwords($title),'status'=>ucwords($Status),
+      }
+        if($email!='' && $displayName!='' && $title!='' && $Status!=''){
+                   $app_list[] = array('email'=>$email,'displayName'=> ucwords($displayName), 'JobTitle'=>ucwords($title),'status'=>ucwords($Status),
             'Type'=>$description); 
+        }
+
     }
   }
 
-//      echo '<pre>'; print_r($app_list);echo '</pre>';
+      //echo '<pre>'; print_r(count($app_list));echo '</pre>';
     return array_reverse($app_list);  
   
 }
