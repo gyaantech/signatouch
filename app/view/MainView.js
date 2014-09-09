@@ -762,7 +762,31 @@ Ext.define('SignaTouch.view.MainView', {
                                                                                             var successCallback = function(resp, ops) {
 
                                                                                                 var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));
+                                                                                                //console.log(responseOjbect);
 
+                                                                                                localStorage.removeItem("FacilityNPI"); //remove
+                                                                                                localStorage.setItem("FacilityNPI",responseOjbect.FacilityNPI);
+
+                                                                                                localStorage.removeItem("FacilityName"); //remove
+                                                                                                localStorage.setItem("FacilityName",responseOjbect.FacilityName);
+
+                                                                                                localStorage.removeItem("FacilityPhone"); //remove
+                                                                                                localStorage.setItem("FacilityPhone",responseOjbect.FacilityPhone);
+
+                                                                                                localStorage.removeItem("FacilityST"); //remove
+                                                                                                localStorage.setItem("FacilityST",responseOjbect.FacilityST);
+
+                                                                                                localStorage.removeItem("FacilityZip"); //remove
+                                                                                                localStorage.setItem("FacilityZip",responseOjbect.FacilityZip);
+
+                                                                                                localStorage.removeItem("FacilityAddr1"); //remove
+                                                                                                localStorage.setItem("FacilityAddr1",responseOjbect.FacilityAddr1);
+
+                                                                                                localStorage.removeItem("FacilityAddr2"); //remove
+                                                                                                localStorage.setItem("FacilityAddr2",responseOjbect.FacilityAddr2);
+
+                                                                                                localStorage.removeItem("FacilityCity"); //remove
+                                                                                                localStorage.setItem("FacilityCity",responseOjbect.FacilityCity);
 
                                                                                                 var successCallbackAlias = function(resp, ops) {
                                                                                                     Ext.getCmp('PhysicianAliasID').enable();
@@ -8604,6 +8628,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                     width: 320,
                                                                     fieldLabel: '',
                                                                     labelWidth: 200,
+                                                                    fieldStyle: 'text-transform:capitalize',
                                                                     inputId: 'txtHICNDes',
                                                                     readOnly: true
                                                                 }
@@ -8841,7 +8866,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                                             width: 155,
                                                                             fieldLabel: '',
                                                                             labelWidth: 70,
-                                                                            boxLabel: '<b>New Facility</b>',
+                                                                            boxLabel: '<b>Facility</b>',
                                                                             uncheckedValue: '1',
                                                                             listeners: {
                                                                                 change: {
@@ -14720,8 +14745,7 @@ Ext.define('SignaTouch.view.MainView', {
         var form =  Ext.getCmp('UserRecordForm');
         values = form.getValues();
         var PhysicianNPI = values.txtUserNPIInput;
-        console.log(PhysicianNPI);
-        console.log(Ext.getCmp('HdnNPIID'));
+
         Ext.getCmp('HdnNPIID').setValue(PhysicianNPI);
 
         Ext.getCmp('txtAccountNameID').setReadOnly(false);
@@ -15723,6 +15747,24 @@ Ext.define('SignaTouch.view.MainView', {
         var form = button.up('form');
         var domain = localStorage.getItem('email');
         var srcdomain = localStorage.getItem('domain');
+
+        localStorage.removeItem("FacilityAddr1"); //remove
+
+        localStorage.removeItem("FacilityAddr2"); //remove
+
+        localStorage.removeItem("FacilityCity"); //remove
+
+        localStorage.removeItem("FacilityNPI"); //remove
+
+        localStorage.removeItem("FacilityName"); //remove
+
+        localStorage.removeItem("FacilityPhone"); //remove
+
+        localStorage.removeItem("FacilityST"); //remove
+
+        localStorage.removeItem("FacilityZip"); //remove
+
+
         sectionA = Ext.getCmp('SectionAID');
 
         sectionA1Next = Ext.getCmp('SectionA1NextID');
@@ -15742,508 +15784,508 @@ Ext.define('SignaTouch.view.MainView', {
             });
         }
         else if(HICN.value === ''){
-                Ext.Msg.show({
+            Ext.Msg.show({
                 title: 'HICN is required',
                 msg: '<code>Please enter HICN</code>',
                 icon: Ext.Msg['ERROR']
             });
         }
-        else if(CertDate.value === null) {
+            else if(CertDate.value === null) {
                 Ext.Msg.show({
-                title: 'CertDate is required',
-                msg: '<code>Please enter CertDate</code>',
-                icon: Ext.Msg['ERROR']
-            });
-        }
-        else{
+                    title: 'CertDate is required',
+                    msg: '<code>Please enter CertDate</code>',
+                    icon: Ext.Msg['ERROR']
+                });
+            }
+                else{
 
-            // Success
-            var successCallback = function(resp, ops) {
+                    // Success
+                    var successCallback = function(resp, ops) {
 
-                if(resp.responseText === 'true'){
-
-
-
-                    if(values.ddlSectionACertype1=='I'){
-                        // allow new record creation for cert type='I'
-                        if(values.ddlSectionACertype1=='I'){
-                            Ext.MessageBox.confirm('New record', 'Do you want to create a new record?', function(btn){
-                                if(btn === 'yes'){
-                                    Ext.getCmp('BtSectionA1NextProceedID').hide();
-                                    // Success on proceed
-                                    var successCallbackProceed = function(resp, ops) {
+                        if(resp.responseText === 'true'){
 
 
-                                        var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));
 
-                                        if(responseOjbect.status === true){
-                                            Ext.getCmp('ContainerToProceedSectionA').enable();
-                                            Ext.getCmp('BtSectionA1NextSaveID').enable();
+                            if(values.ddlSectionACertype1=='I'){
+                                // allow new record creation for cert type='I'
+                                if(values.ddlSectionACertype1=='I'){
+                                    Ext.MessageBox.confirm('New record', 'Do you want to create a new record?', function(btn){
+                                        if(btn === 'yes'){
+                                            Ext.getCmp('BtSectionA1NextProceedID').hide();
+                                            // Success on proceed
+                                            var successCallbackProceed = function(resp, ops) {
 
-
-                                            localStorage.removeItem("SectionAHDRID"); //remove
-                                            localStorage.setItem("SectionAHDRID", responseOjbect.hdrid);
-                                            //   SectionAsidemenu.show();
-                                            //userName.setText(localStorage.getItem('user_name'));
-                                        }
-                                        else
-                                        {
-                                            Ext.Msg.show({
-                                                title: 'Duplicate Record',
-                                                msg: '<code>This Record Already Exists</code>',
-                                                icon: Ext.Msg['ERROR']
-                                            });
-                                        }
-                                    };
-                                    var failureCallbackProceed = function(resp, ops) {
-                                        //console.log(resp.responseText);
-                                    };
-
-
-                                    Ext.Ajax.request({url: "services/SectionA.php?action=InsertRecordOnProceed&src="+domain+"&srcdomain="+srcdomain,
-                                                      method: 'POST',
-                                                      params: values,
-                                                      success: successCallbackProceed,
-                                                      failure: failureCallbackProceed
-                                                     });
-                                }
-
-                            });
-
-                        }
-
-                        else{
-                            Ext.Msg.alert("No Initial Certificate exists or Certificate In progress", 'No Initial Certificate exists or Initial Certificate In progress..');
-                        }
-                    }
-                    else if(values.ddlSectionACertype1=='V' || values.ddlSectionACertype1=='C')
-                    {
-
-                        if(values.ddlSectionACertype1=='V'){
-                            Ext.MessageBox.confirm('New record', 'Do you want to create a revised certificate for this record?', function(btn1){
-                                if(btn1 === 'yes'){
-                                    Ext.getCmp('BtSectionA1NextProceedID').hide();
-                                    // Success on proceed
-                                    var successCallbackProceed = function(resp, ops) {
-                                        var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));
-
-
-                                        if(responseOjbect.status === true){
-                                            Ext.getCmp('ContainerToProceedSectionA').enable();
-
-                                            localStorage.removeItem("SectionAHDRID"); //remove
-                                            localStorage.setItem("SectionAHDRID", responseOjbect.hdrid);
-                                            //  Fetch Data From CMS484hdr
-                                            var successCallback = function(resp, ops) {
-
-                                                // var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));
-                                                console.log(responseOjbect);
-                                                sectionA1Next = Ext.getCmp('SectionA1NextID');
-                                                sectionA.hide();
-                                                sectionA1Next.show();
-                                                var CertType = Ext.getCmp('SectionA1CertType');
-
-                                                var PatientName = Ext.getCmp('txtPatientName');
-                                                var MedID =  Ext.getCmp('MedIDSectionAinput');
-                                                var SupplierNPI = Ext.getCmp('txtSectionASupplierNPIID');
-                                                var PhysicianNPI = Ext.getCmp('txtSectionAPhysicianNPIID');
-                                                var POS = Ext.getCmp('txtSectionAPOSID');
-                                                var PhysicianName = Ext.getCmp('phydes');
-                                                var SupplierName = Ext.getCmp('suppdes');
-                                                var FacilityName = Ext.getCmp('FacilityNameText');
-                                                var InputE1390ID = Ext.getCmp('InputE1390ID');
-                                                var InputE1392ID = Ext.getCmp('InputE1392ID');
-                                                var InputE0431ID = Ext.getCmp('InputE0431ID');
-                                                var InputK0738ID = Ext.getCmp('InputK0738ID');
-
-                                                var txtHCPCS1ID = Ext.getCmp('txtHCPCS1ID');
-                                                var txtHCPCS2ID = Ext.getCmp('txtHCPCS2ID');
-                                                var txtHCPCS3ID = Ext.getCmp('txtHCPCS3ID');
-                                                var txtHCPCS4ID = Ext.getCmp('txtHCPCS4ID');
-
-                                                var txtE1390Sup = Ext.getCmp('txtE1390Sup');
-                                                var txtE1390MediCare = Ext.getCmp('txtE1390MediCare');
-                                                var txtE1392Sup = Ext.getCmp('txtE1392Sup');
-                                                var txtE1392MediCare = Ext.getCmp('txtE1392MediCare');
-                                                var txtE0431Sup = Ext.getCmp('txtE0431Sup');
-                                                var txtE0431MediCare = Ext.getCmp('txtE0431MediCare');
-                                                var txtK0738Sup = Ext.getCmp('txtK0738Sup');
-                                                var txtK0738MediCare = Ext.getCmp('txtK0738MediCare');
-
-                                                var txtHCPCS1DesID = Ext.getCmp('txtHCPCS1DesID');
-                                                var IDtxtHCPCS1Sup = Ext.getCmp('IDtxtHCPCS1Sup');
-                                                var IDtxtHCPCS1MediCareFee = Ext.getCmp('IDtxtHCPCS1MediCareFee');
-                                                var txtHCPCS2DesID = Ext.getCmp('txtHCPCS2DesID');
-                                                var IDtxtHCPCS2Sup = Ext.getCmp('IDtxtHCPCS2Sup');
-                                                var IDtxtHCPCS2MediCareFee = Ext.getCmp('IDtxtHCPCS2MediCareFee');
-                                                var txtHCPCS3DesID = Ext.getCmp('txtHCPCS3DesID');
-                                                var IDtxtHCPCS3Sup = Ext.getCmp('IDtxtHCPCS3Sup');
-                                                var IDtxtHCPCS3MediCareFee = Ext.getCmp('IDtxtHCPCS3MediCareFee');
-                                                var txtHCPCS4DesID = Ext.getCmp('txtHCPCS4DesID');
-                                                var IDtxtHCPCS4Sup = Ext.getCmp('IDtxtHCPCS4Sup');
-                                                var IDtxtHCPCS4MediCareFee = Ext.getCmp('IDtxtHCPCS4MediCareFee');
-                                                CertType.setValue(responseOjbect.CertType);
-                                                CertType.disable();
-                                                CertDate.setValue(responseOjbect.InitialCertDate);
-                                                CertDate.disable();
-                                                HICN.setValue(responseOjbect.PatientHICN);
-                                                HICN.disable();
-                                                PatientName.setValue(responseOjbect.PatientName);
-                                                PatientName.disable();
-                                                PhysicianName.setValue(responseOjbect.physicianName);
-                                                SupplierName.setValue(responseOjbect.supplierName);
-                                                MedID.setValue(responseOjbect.MedicalID);
-                                                SupplierNPI.setValue(responseOjbect.SupplierNPI);
-                                                PhysicianNPI.setValue(responseOjbect.PhysicianNPI);
-                                                FacilityName.setValue(responseOjbect.FacilityName);
-                                                POS.setValue(responseOjbect.PlaceService);
-
-                                                InputE1390ID.setValue(responseOjbect.HCPCS_E1390);
-                                                InputE1392ID.setValue(responseOjbect.HCPCS_E1392);
-                                                InputE0431ID.setValue(responseOjbect.HCPCS_E0431);
-                                                InputK0738ID.setValue(responseOjbect.HCPCS_K0738);
-
-                                                txtHCPCS1ID.setValue(responseOjbect.HCPCS_Other1Code);
-                                                txtHCPCS2ID.setValue(responseOjbect.HCPCS_Other2Code);
-                                                txtHCPCS3ID.setValue(responseOjbect.HCPCS_Other3Code);
-                                                txtHCPCS4ID.setValue(responseOjbect.HCPCS_Other4Code);
-
-                                                if(txtHCPCS1ID.value!== ""){
-                                                    IDtxtHCPCS1Sup.enable();
-                                                    IDtxtHCPCS1MediCareFee.enable();
-                                                }
-                                                if(txtHCPCS2ID.value!== ""){
-                                                    IDtxtHCPCS2Sup.enable();
-                                                    IDtxtHCPCS2MediCareFee.enable();
-                                                }
-                                                if(txtHCPCS3ID.value!== ""){
-                                                    IDtxtHCPCS3Sup.enable();
-                                                    IDtxtHCPCS3MediCareFee.enable();
-                                                }
-                                                if(txtHCPCS4ID.value!== ""){
-                                                    IDtxtHCPCS4Sup.enable();
-                                                    IDtxtHCPCS4MediCareFee.enable();
-                                                }
-                                                txtHCPCS1DesID.setValue(responseOjbect.HCPCS_Other1Desc);
-                                                IDtxtHCPCS1Sup.setValue(responseOjbect.HCPCS_Other1SupChrg);
-                                                IDtxtHCPCS1MediCareFee.setValue(responseOjbect.HCPCS_Other1MedFee);
-
-                                                txtHCPCS2DesID.setValue(responseOjbect.HCPCS_Other2Desc);
-                                                IDtxtHCPCS2Sup.setValue(responseOjbect.HCPCS_Other2SupChrg);
-                                                IDtxtHCPCS2MediCareFee.setValue(responseOjbect.HCPCS_Other2MedFee);
-
-                                                txtHCPCS3DesID.setValue(responseOjbect.HCPCS_Other3Desc);
-                                                IDtxtHCPCS3Sup.setValue(responseOjbect.HCPCS_Other3SupChrg);
-                                                IDtxtHCPCS3MediCareFee.setValue(responseOjbect.HCPCS_Other3MedFee);
-
-                                                txtHCPCS4DesID.setValue(responseOjbect.HCPCS_Other4Desc);
-                                                IDtxtHCPCS4Sup.setValue(responseOjbect.HCPCS_Other4SupChrg);
-                                                IDtxtHCPCS4MediCareFee.setValue(responseOjbect.HCPCS_Other4MedFee);
-
-                                                txtE1390Sup.setValue(responseOjbect.HCPCS_E1390SupChrg);
-                                                txtE1392Sup.setValue(responseOjbect.HCPCS_E1392SupChrg);
-                                                txtE0431Sup.setValue(responseOjbect.HCPCS_E0431SupChrg);
-                                                txtK0738Sup.setValue(responseOjbect.HCPCS_K0738SupChrg);
-
-                                                txtE1390MediCare.setValue(responseOjbect.HCPCS_E1390MedFee);
-                                                txtE1392MediCare.setValue(responseOjbect.HCPCS_E1392MedFee);
-                                                txtE0431MediCare.setValue(responseOjbect.HCPCS_E0431MedFee);
-                                                txtK0738MediCare.setValue(responseOjbect.HCPCS_K0738MedFee);
-                                                Ext.getCmp('ChkHICNPOPUPID').disable();
-                                                Ext.getCmp('BtSectionA1NextProceedID').hide();
-                                                Ext.getCmp('ContainerToProceedSectionA').enable();
-                                            };
-
-                                            // Failure
-                                            var failureCallback = function(resp, ops) {
-
-
-                                                // Show login failure error
-                                                //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
-
-                                            };
-
-                                            // HIT webservice
-                                            Ext.Ajax.request({url: "services/SectionA.php?action=EditRecordA&HdrID="+hdrid,
-                                                              method: 'GET',
-                                                              params: hdrid,
-                                                              success: successCallback,
-                                                              failure: failureCallback
-                                                             });
-
-                                        }
-                                        else
-                                        {
-                                            Ext.Msg.show({
-                                                title: 'Duplicate Record',
-                                                msg: '<code>This Record Already Exists</code>',
-                                                icon: Ext.Msg['ERROR']
-                                            });
-                                        }
-                                    };
-                                    var failureCallbackProceed = function(resp, ops) {
-                                        //console.log(resp.responseText);
-                                    };
-
-
-                                    Ext.Ajax.request({url: "services/SectionA.php?action=InsertRecordOnProceed&src="+domain+"&srcdomain="+srcdomain,
-                                                      method: 'POST',
-                                                      params: values,
-                                                      success: successCallbackProceed,
-                                                      failure: failureCallbackProceed
-                                                     });
-                                }
-
-                                // });
-
-                            });
-                        }
-                        if(values.ddlSectionACertype1=='C'){
-                            Ext.MessageBox.confirm('New record', 'Do you want to create a re-certificate for this record?', function(btn1){
-                                if(btn1 === 'yes'){
-                                    Ext.getCmp('BtSectionA1NextProceedID').hide();
-                                    // Success on proceed
-                                    var successCallbackProceed = function(resp, ops) {
-
-
-                                        var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));
-                                        if(responseOjbect.status === true){
-                                            Ext.getCmp('ContainerToProceedSectionA').enable();
-
-                                            localStorage.removeItem("SectionAHDRID"); //remove
-                                            localStorage.setItem("SectionAHDRID", responseOjbect.hdrid);
-                                            //  Fetch Data From CMS484hdr
-                                            var successCallback = function(resp, ops) {
 
                                                 var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));
-                                                console.log(responseOjbect);
-                                                sectionA1Next = Ext.getCmp('SectionA1NextID');
-                                                sectionA.hide();
-                                                sectionA1Next.show();
-                                                var CertType = Ext.getCmp('SectionA1CertType');
-                                                var CertDate = Ext.getCmp('txtSectionA1CertificationDateID');
-                                                var HICN = Ext.getCmp('PatientHICNPOP');
-                                                var PatientName = Ext.getCmp('txtPatientName');
-                                                var MedID =  Ext.getCmp('MedIDSectionAinput');
-                                                var SupplierNPI = Ext.getCmp('txtSectionASupplierNPIID');
-                                                var PhysicianNPI = Ext.getCmp('txtSectionAPhysicianNPIID');
-                                                var POS = Ext.getCmp('txtSectionAPOSID');
-                                                var PhysicianName = Ext.getCmp('phydes');
-                                                var SupplierName = Ext.getCmp('suppdes');
-                                                var FacilityName = Ext.getCmp('FacilityNameText');
-                                                var InputE1390ID = Ext.getCmp('InputE1390ID');
-                                                var InputE1392ID = Ext.getCmp('InputE1392ID');
-                                                var InputE0431ID = Ext.getCmp('InputE0431ID');
-                                                var InputK0738ID = Ext.getCmp('InputK0738ID');
 
-                                                var txtHCPCS1ID = Ext.getCmp('txtHCPCS1ID');
-                                                var txtHCPCS2ID = Ext.getCmp('txtHCPCS2ID');
-                                                var txtHCPCS3ID = Ext.getCmp('txtHCPCS3ID');
-                                                var txtHCPCS4ID = Ext.getCmp('txtHCPCS4ID');
+                                                if(responseOjbect.status === true){
+                                                    Ext.getCmp('ContainerToProceedSectionA').enable();
+                                                    Ext.getCmp('BtSectionA1NextSaveID').enable();
 
-                                                var txtE1390Sup = Ext.getCmp('txtE1390Sup');
-                                                var txtE1390MediCare = Ext.getCmp('txtE1390MediCare');
-                                                var txtE1392Sup = Ext.getCmp('txtE1392Sup');
-                                                var txtE1392MediCare = Ext.getCmp('txtE1392MediCare');
-                                                var txtE0431Sup = Ext.getCmp('txtE0431Sup');
-                                                var txtE0431MediCare = Ext.getCmp('txtE0431MediCare');
-                                                var txtK0738Sup = Ext.getCmp('txtK0738Sup');
-                                                var txtK0738MediCare = Ext.getCmp('txtK0738MediCare');
 
-                                                var txtHCPCS1DesID = Ext.getCmp('txtHCPCS1DesID');
-                                                var IDtxtHCPCS1Sup = Ext.getCmp('IDtxtHCPCS1Sup');
-                                                var IDtxtHCPCS1MediCareFee = Ext.getCmp('IDtxtHCPCS1MediCareFee');
-                                                var txtHCPCS2DesID = Ext.getCmp('txtHCPCS2DesID');
-                                                var IDtxtHCPCS2Sup = Ext.getCmp('IDtxtHCPCS2Sup');
-                                                var IDtxtHCPCS2MediCareFee = Ext.getCmp('IDtxtHCPCS2MediCareFee');
-                                                var txtHCPCS3DesID = Ext.getCmp('txtHCPCS3DesID');
-                                                var IDtxtHCPCS3Sup = Ext.getCmp('IDtxtHCPCS3Sup');
-                                                var IDtxtHCPCS3MediCareFee = Ext.getCmp('IDtxtHCPCS3MediCareFee');
-                                                var txtHCPCS4DesID = Ext.getCmp('txtHCPCS4DesID');
-                                                var IDtxtHCPCS4Sup = Ext.getCmp('IDtxtHCPCS4Sup');
-                                                var IDtxtHCPCS4MediCareFee = Ext.getCmp('IDtxtHCPCS4MediCareFee');
-                                                CertType.setValue(responseOjbect.CertType);
-                                                CertType.disable();
-                                                CertDate.setValue(responseOjbect.InitialCertDate);
-                                                CertDate.disable();
-                                                HICN.setValue(responseOjbect.PatientHICN);
-                                                HICN.disable();
-                                                PatientName.setValue(responseOjbect.PatientName);
-                                                PatientName.disable();
-                                                PhysicianName.setValue(responseOjbect.physicianName);
-                                                SupplierName.setValue(responseOjbect.supplierName);
-                                                MedID.setValue(responseOjbect.MedicalID);
-                                                SupplierNPI.setValue(responseOjbect.SupplierNPI);
-                                                PhysicianNPI.setValue(responseOjbect.PhysicianNPI);
-                                                FacilityName.setValue(responseOjbect.FacilityName);
-                                                POS.setValue(responseOjbect.PlaceService);
-
-                                                InputE1390ID.setValue(responseOjbect.HCPCS_E1390);
-                                                InputE1392ID.setValue(responseOjbect.HCPCS_E1392);
-                                                InputE0431ID.setValue(responseOjbect.HCPCS_E0431);
-                                                InputK0738ID.setValue(responseOjbect.HCPCS_K0738);
-
-                                                txtHCPCS1ID.setValue(responseOjbect.HCPCS_Other1Code);
-                                                txtHCPCS2ID.setValue(responseOjbect.HCPCS_Other2Code);
-                                                txtHCPCS3ID.setValue(responseOjbect.HCPCS_Other3Code);
-                                                txtHCPCS4ID.setValue(responseOjbect.HCPCS_Other4Code);
-
-                                                if(txtHCPCS1ID.value!= ""){
-                                                    IDtxtHCPCS1Sup.enable();
-                                                    IDtxtHCPCS1MediCareFee.enable();
+                                                    localStorage.removeItem("SectionAHDRID"); //remove
+                                                    localStorage.setItem("SectionAHDRID", responseOjbect.hdrid);
+                                                    //   SectionAsidemenu.show();
+                                                    //userName.setText(localStorage.getItem('user_name'));
                                                 }
-                                                if(txtHCPCS2ID.value!= ""){
-                                                    IDtxtHCPCS2Sup.enable();
-                                                    IDtxtHCPCS2MediCareFee.enable();
+                                                else
+                                                {
+                                                    Ext.Msg.show({
+                                                        title: 'Duplicate Record',
+                                                        msg: '<code>This Record Already Exists</code>',
+                                                        icon: Ext.Msg['ERROR']
+                                                    });
                                                 }
-                                                if(txtHCPCS3ID.value!= ""){
-                                                    IDtxtHCPCS3Sup.enable();
-                                                    IDtxtHCPCS3MediCareFee.enable();
-                                                }
-                                                if(txtHCPCS4ID.value!= ""){
-                                                    IDtxtHCPCS3Sup.enable();
-                                                    IDtxtHCPCS4MediCareFee.enable();
-                                                }
-                                                txtHCPCS1DesID.setValue(responseOjbect.HCPCS_Other1Desc);
-                                                IDtxtHCPCS1Sup.setValue(responseOjbect.HCPCS_Other1SupChrg);
-                                                IDtxtHCPCS1MediCareFee.setValue(responseOjbect.HCPCS_Other1MedFee);
-
-                                                txtHCPCS2DesID.setValue(responseOjbect.HCPCS_Other2Desc);
-                                                IDtxtHCPCS2Sup.setValue(responseOjbect.HCPCS_Other2SupChrg);
-                                                IDtxtHCPCS2MediCareFee.setValue(responseOjbect.HCPCS_Other2MedFee);
-
-                                                txtHCPCS3DesID.setValue(responseOjbect.HCPCS_Other3Desc);
-                                                IDtxtHCPCS3Sup.setValue(responseOjbect.HCPCS_Other3SupChrg);
-                                                IDtxtHCPCS3MediCareFee.setValue(responseOjbect.HCPCS_Other3MedFee);
-
-                                                txtHCPCS4DesID.setValue(responseOjbect.HCPCS_Other4Desc);
-                                                IDtxtHCPCS4Sup.setValue(responseOjbect.HCPCS_Other4SupChrg);
-                                                IDtxtHCPCS4MediCareFee.setValue(responseOjbect.HCPCS_Other4MedFee);
-
-                                                txtE1390Sup.setValue(responseOjbect.HCPCS_E1390SupChrg);
-                                                txtE1392Sup.setValue(responseOjbect.HCPCS_E1392SupChrg);
-                                                txtE0431Sup.setValue(responseOjbect.HCPCS_E0431SupChrg);
-                                                txtK0738Sup.setValue(responseOjbect.HCPCS_K0738SupChrg);
-
-                                                txtE1390MediCare.setValue(responseOjbect.HCPCS_E1390MedFee);
-                                                txtE1392MediCare.setValue(responseOjbect.HCPCS_E1392MedFee);
-                                                txtE0431MediCare.setValue(responseOjbect.HCPCS_E0431MedFee);
-                                                txtK0738MediCare.setValue(responseOjbect.HCPCS_K0738MedFee);
-                                                Ext.getCmp('ChkHICNPOPUPID').disable();
-                                                Ext.getCmp('BtSectionA1NextProceedID').hide();
-                                                Ext.getCmp('ContainerToProceedSectionA').enable();
+                                            };
+                                            var failureCallbackProceed = function(resp, ops) {
+                                                //console.log(resp.responseText);
                                             };
 
-                                            // Failure
-                                            var failureCallback = function(resp, ops) {
 
-
-                                                // Show login failure error
-                                                //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
-
-                                            };
-
-                                            // HIT webservice
-                                            Ext.Ajax.request({url: "services/SectionA.php?action=EditRecordA&HdrID="+hdrid,
-                                                              method: 'GET',
-                                                              params: hdrid,
-                                                              success: successCallback,
-                                                              failure: failureCallback
+                                            Ext.Ajax.request({url: "services/SectionA.php?action=InsertRecordOnProceed&src="+domain+"&srcdomain="+srcdomain,
+                                                              method: 'POST',
+                                                              params: values,
+                                                              success: successCallbackProceed,
+                                                              failure: failureCallbackProceed
                                                              });
-
                                         }
-                                        else
-                                        {
-                                            Ext.Msg.show({
-                                                title: 'Duplicate Record',
-                                                msg: '<code>This Record Already Exists</code>',
-                                                icon: Ext.Msg['ERROR']
-                                            });
-                                        }
-                                    };
-                                    var failureCallbackProceed = function(resp, ops) {
-                                        //console.log(resp.responseText);
-                                    };
 
+                                    });
 
-                                    Ext.Ajax.request({url: "services/SectionA.php?action=InsertRecordOnProceed&src="+domain+"&srcdomain="+srcdomain,
-                                                      method: 'POST',
-                                                      params: values,
-                                                      success: successCallbackProceed,
-                                                      failure: failureCallbackProceed
-                                                     });
                                 }
 
-                                // });
+                                else{
+                                    Ext.Msg.alert("No Initial Certificate exists or Certificate In progress", 'No Initial Certificate exists or Initial Certificate In progress..');
+                                }
+                            }
+                            else if(values.ddlSectionACertype1=='V' || values.ddlSectionACertype1=='C')
+                            {
 
-                            });
+                                if(values.ddlSectionACertype1=='V'){
+                                    Ext.MessageBox.confirm('New record', 'Do you want to create a revised certificate for this record?', function(btn1){
+                                        if(btn1 === 'yes'){
+                                            Ext.getCmp('BtSectionA1NextProceedID').hide();
+                                            // Success on proceed
+                                            var successCallbackProceed = function(resp, ops) {
+                                                var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));
+
+
+                                                if(responseOjbect.status === true){
+                                                    Ext.getCmp('ContainerToProceedSectionA').enable();
+
+                                                    localStorage.removeItem("SectionAHDRID"); //remove
+                                                    localStorage.setItem("SectionAHDRID", responseOjbect.hdrid);
+                                                    //  Fetch Data From CMS484hdr
+                                                    var successCallback = function(resp, ops) {
+
+                                                        // var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));
+                                                        console.log(responseOjbect);
+                                                        sectionA1Next = Ext.getCmp('SectionA1NextID');
+                                                        sectionA.hide();
+                                                        sectionA1Next.show();
+                                                        var CertType = Ext.getCmp('SectionA1CertType');
+
+                                                        var PatientName = Ext.getCmp('txtPatientName');
+                                                        var MedID =  Ext.getCmp('MedIDSectionAinput');
+                                                        var SupplierNPI = Ext.getCmp('txtSectionASupplierNPIID');
+                                                        var PhysicianNPI = Ext.getCmp('txtSectionAPhysicianNPIID');
+                                                        var POS = Ext.getCmp('txtSectionAPOSID');
+                                                        var PhysicianName = Ext.getCmp('phydes');
+                                                        var SupplierName = Ext.getCmp('suppdes');
+                                                        var FacilityName = Ext.getCmp('FacilityNameText');
+                                                        var InputE1390ID = Ext.getCmp('InputE1390ID');
+                                                        var InputE1392ID = Ext.getCmp('InputE1392ID');
+                                                        var InputE0431ID = Ext.getCmp('InputE0431ID');
+                                                        var InputK0738ID = Ext.getCmp('InputK0738ID');
+
+                                                        var txtHCPCS1ID = Ext.getCmp('txtHCPCS1ID');
+                                                        var txtHCPCS2ID = Ext.getCmp('txtHCPCS2ID');
+                                                        var txtHCPCS3ID = Ext.getCmp('txtHCPCS3ID');
+                                                        var txtHCPCS4ID = Ext.getCmp('txtHCPCS4ID');
+
+                                                        var txtE1390Sup = Ext.getCmp('txtE1390Sup');
+                                                        var txtE1390MediCare = Ext.getCmp('txtE1390MediCare');
+                                                        var txtE1392Sup = Ext.getCmp('txtE1392Sup');
+                                                        var txtE1392MediCare = Ext.getCmp('txtE1392MediCare');
+                                                        var txtE0431Sup = Ext.getCmp('txtE0431Sup');
+                                                        var txtE0431MediCare = Ext.getCmp('txtE0431MediCare');
+                                                        var txtK0738Sup = Ext.getCmp('txtK0738Sup');
+                                                        var txtK0738MediCare = Ext.getCmp('txtK0738MediCare');
+
+                                                        var txtHCPCS1DesID = Ext.getCmp('txtHCPCS1DesID');
+                                                        var IDtxtHCPCS1Sup = Ext.getCmp('IDtxtHCPCS1Sup');
+                                                        var IDtxtHCPCS1MediCareFee = Ext.getCmp('IDtxtHCPCS1MediCareFee');
+                                                        var txtHCPCS2DesID = Ext.getCmp('txtHCPCS2DesID');
+                                                        var IDtxtHCPCS2Sup = Ext.getCmp('IDtxtHCPCS2Sup');
+                                                        var IDtxtHCPCS2MediCareFee = Ext.getCmp('IDtxtHCPCS2MediCareFee');
+                                                        var txtHCPCS3DesID = Ext.getCmp('txtHCPCS3DesID');
+                                                        var IDtxtHCPCS3Sup = Ext.getCmp('IDtxtHCPCS3Sup');
+                                                        var IDtxtHCPCS3MediCareFee = Ext.getCmp('IDtxtHCPCS3MediCareFee');
+                                                        var txtHCPCS4DesID = Ext.getCmp('txtHCPCS4DesID');
+                                                        var IDtxtHCPCS4Sup = Ext.getCmp('IDtxtHCPCS4Sup');
+                                                        var IDtxtHCPCS4MediCareFee = Ext.getCmp('IDtxtHCPCS4MediCareFee');
+                                                        CertType.setValue(responseOjbect.CertType);
+                                                        CertType.disable();
+                                                        CertDate.setValue(responseOjbect.InitialCertDate);
+                                                        CertDate.disable();
+                                                        HICN.setValue(responseOjbect.PatientHICN);
+                                                        HICN.disable();
+                                                        PatientName.setValue(responseOjbect.PatientName);
+                                                        PatientName.disable();
+                                                        PhysicianName.setValue(responseOjbect.physicianName);
+                                                        SupplierName.setValue(responseOjbect.supplierName);
+                                                        MedID.setValue(responseOjbect.MedicalID);
+                                                        SupplierNPI.setValue(responseOjbect.SupplierNPI);
+                                                        PhysicianNPI.setValue(responseOjbect.PhysicianNPI);
+                                                        FacilityName.setValue(responseOjbect.FacilityName);
+                                                        POS.setValue(responseOjbect.PlaceService);
+
+                                                        InputE1390ID.setValue(responseOjbect.HCPCS_E1390);
+                                                        InputE1392ID.setValue(responseOjbect.HCPCS_E1392);
+                                                        InputE0431ID.setValue(responseOjbect.HCPCS_E0431);
+                                                        InputK0738ID.setValue(responseOjbect.HCPCS_K0738);
+
+                                                        txtHCPCS1ID.setValue(responseOjbect.HCPCS_Other1Code);
+                                                        txtHCPCS2ID.setValue(responseOjbect.HCPCS_Other2Code);
+                                                        txtHCPCS3ID.setValue(responseOjbect.HCPCS_Other3Code);
+                                                        txtHCPCS4ID.setValue(responseOjbect.HCPCS_Other4Code);
+
+                                                        if(txtHCPCS1ID.value!== ""){
+                                                            IDtxtHCPCS1Sup.enable();
+                                                            IDtxtHCPCS1MediCareFee.enable();
+                                                        }
+                                                        if(txtHCPCS2ID.value!== ""){
+                                                            IDtxtHCPCS2Sup.enable();
+                                                            IDtxtHCPCS2MediCareFee.enable();
+                                                        }
+                                                        if(txtHCPCS3ID.value!== ""){
+                                                            IDtxtHCPCS3Sup.enable();
+                                                            IDtxtHCPCS3MediCareFee.enable();
+                                                        }
+                                                        if(txtHCPCS4ID.value!== ""){
+                                                            IDtxtHCPCS4Sup.enable();
+                                                            IDtxtHCPCS4MediCareFee.enable();
+                                                        }
+                                                        txtHCPCS1DesID.setValue(responseOjbect.HCPCS_Other1Desc);
+                                                        IDtxtHCPCS1Sup.setValue(responseOjbect.HCPCS_Other1SupChrg);
+                                                        IDtxtHCPCS1MediCareFee.setValue(responseOjbect.HCPCS_Other1MedFee);
+
+                                                        txtHCPCS2DesID.setValue(responseOjbect.HCPCS_Other2Desc);
+                                                        IDtxtHCPCS2Sup.setValue(responseOjbect.HCPCS_Other2SupChrg);
+                                                        IDtxtHCPCS2MediCareFee.setValue(responseOjbect.HCPCS_Other2MedFee);
+
+                                                        txtHCPCS3DesID.setValue(responseOjbect.HCPCS_Other3Desc);
+                                                        IDtxtHCPCS3Sup.setValue(responseOjbect.HCPCS_Other3SupChrg);
+                                                        IDtxtHCPCS3MediCareFee.setValue(responseOjbect.HCPCS_Other3MedFee);
+
+                                                        txtHCPCS4DesID.setValue(responseOjbect.HCPCS_Other4Desc);
+                                                        IDtxtHCPCS4Sup.setValue(responseOjbect.HCPCS_Other4SupChrg);
+                                                        IDtxtHCPCS4MediCareFee.setValue(responseOjbect.HCPCS_Other4MedFee);
+
+                                                        txtE1390Sup.setValue(responseOjbect.HCPCS_E1390SupChrg);
+                                                        txtE1392Sup.setValue(responseOjbect.HCPCS_E1392SupChrg);
+                                                        txtE0431Sup.setValue(responseOjbect.HCPCS_E0431SupChrg);
+                                                        txtK0738Sup.setValue(responseOjbect.HCPCS_K0738SupChrg);
+
+                                                        txtE1390MediCare.setValue(responseOjbect.HCPCS_E1390MedFee);
+                                                        txtE1392MediCare.setValue(responseOjbect.HCPCS_E1392MedFee);
+                                                        txtE0431MediCare.setValue(responseOjbect.HCPCS_E0431MedFee);
+                                                        txtK0738MediCare.setValue(responseOjbect.HCPCS_K0738MedFee);
+                                                        Ext.getCmp('ChkHICNPOPUPID').disable();
+                                                        Ext.getCmp('BtSectionA1NextProceedID').hide();
+                                                        Ext.getCmp('ContainerToProceedSectionA').enable();
+                                                    };
+
+                                                    // Failure
+                                                    var failureCallback = function(resp, ops) {
+
+
+                                                        // Show login failure error
+                                                        //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                                                    };
+
+                                                    // HIT webservice
+                                                    Ext.Ajax.request({url: "services/SectionA.php?action=EditRecordA&HdrID="+hdrid,
+                                                                      method: 'GET',
+                                                                      params: hdrid,
+                                                                      success: successCallback,
+                                                                      failure: failureCallback
+                                                                     });
+
+                                                }
+                                                else
+                                                {
+                                                    Ext.Msg.show({
+                                                        title: 'Duplicate Record',
+                                                        msg: '<code>This Record Already Exists</code>',
+                                                        icon: Ext.Msg['ERROR']
+                                                    });
+                                                }
+                                            };
+                                            var failureCallbackProceed = function(resp, ops) {
+                                                //console.log(resp.responseText);
+                                            };
+
+
+                                            Ext.Ajax.request({url: "services/SectionA.php?action=InsertRecordOnProceed&src="+domain+"&srcdomain="+srcdomain,
+                                                              method: 'POST',
+                                                              params: values,
+                                                              success: successCallbackProceed,
+                                                              failure: failureCallbackProceed
+                                                             });
+                                        }
+
+                                        // });
+
+                                    });
+                                }
+                                if(values.ddlSectionACertype1=='C'){
+                                    Ext.MessageBox.confirm('New record', 'Do you want to create a re-certificate for this record?', function(btn1){
+                                        if(btn1 === 'yes'){
+                                            Ext.getCmp('BtSectionA1NextProceedID').hide();
+                                            // Success on proceed
+                                            var successCallbackProceed = function(resp, ops) {
+
+
+                                                var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));
+                                                if(responseOjbect.status === true){
+                                                    Ext.getCmp('ContainerToProceedSectionA').enable();
+
+                                                    localStorage.removeItem("SectionAHDRID"); //remove
+                                                    localStorage.setItem("SectionAHDRID", responseOjbect.hdrid);
+                                                    //  Fetch Data From CMS484hdr
+                                                    var successCallback = function(resp, ops) {
+
+                                                        var responseOjbect = JSON.parse(Ext.JSON.decode(resp.responseText));
+                                                        console.log(responseOjbect);
+                                                        sectionA1Next = Ext.getCmp('SectionA1NextID');
+                                                        sectionA.hide();
+                                                        sectionA1Next.show();
+                                                        var CertType = Ext.getCmp('SectionA1CertType');
+                                                        var CertDate = Ext.getCmp('txtSectionA1CertificationDateID');
+                                                        var HICN = Ext.getCmp('PatientHICNPOP');
+                                                        var PatientName = Ext.getCmp('txtPatientName');
+                                                        var MedID =  Ext.getCmp('MedIDSectionAinput');
+                                                        var SupplierNPI = Ext.getCmp('txtSectionASupplierNPIID');
+                                                        var PhysicianNPI = Ext.getCmp('txtSectionAPhysicianNPIID');
+                                                        var POS = Ext.getCmp('txtSectionAPOSID');
+                                                        var PhysicianName = Ext.getCmp('phydes');
+                                                        var SupplierName = Ext.getCmp('suppdes');
+                                                        var FacilityName = Ext.getCmp('FacilityNameText');
+                                                        var InputE1390ID = Ext.getCmp('InputE1390ID');
+                                                        var InputE1392ID = Ext.getCmp('InputE1392ID');
+                                                        var InputE0431ID = Ext.getCmp('InputE0431ID');
+                                                        var InputK0738ID = Ext.getCmp('InputK0738ID');
+
+                                                        var txtHCPCS1ID = Ext.getCmp('txtHCPCS1ID');
+                                                        var txtHCPCS2ID = Ext.getCmp('txtHCPCS2ID');
+                                                        var txtHCPCS3ID = Ext.getCmp('txtHCPCS3ID');
+                                                        var txtHCPCS4ID = Ext.getCmp('txtHCPCS4ID');
+
+                                                        var txtE1390Sup = Ext.getCmp('txtE1390Sup');
+                                                        var txtE1390MediCare = Ext.getCmp('txtE1390MediCare');
+                                                        var txtE1392Sup = Ext.getCmp('txtE1392Sup');
+                                                        var txtE1392MediCare = Ext.getCmp('txtE1392MediCare');
+                                                        var txtE0431Sup = Ext.getCmp('txtE0431Sup');
+                                                        var txtE0431MediCare = Ext.getCmp('txtE0431MediCare');
+                                                        var txtK0738Sup = Ext.getCmp('txtK0738Sup');
+                                                        var txtK0738MediCare = Ext.getCmp('txtK0738MediCare');
+
+                                                        var txtHCPCS1DesID = Ext.getCmp('txtHCPCS1DesID');
+                                                        var IDtxtHCPCS1Sup = Ext.getCmp('IDtxtHCPCS1Sup');
+                                                        var IDtxtHCPCS1MediCareFee = Ext.getCmp('IDtxtHCPCS1MediCareFee');
+                                                        var txtHCPCS2DesID = Ext.getCmp('txtHCPCS2DesID');
+                                                        var IDtxtHCPCS2Sup = Ext.getCmp('IDtxtHCPCS2Sup');
+                                                        var IDtxtHCPCS2MediCareFee = Ext.getCmp('IDtxtHCPCS2MediCareFee');
+                                                        var txtHCPCS3DesID = Ext.getCmp('txtHCPCS3DesID');
+                                                        var IDtxtHCPCS3Sup = Ext.getCmp('IDtxtHCPCS3Sup');
+                                                        var IDtxtHCPCS3MediCareFee = Ext.getCmp('IDtxtHCPCS3MediCareFee');
+                                                        var txtHCPCS4DesID = Ext.getCmp('txtHCPCS4DesID');
+                                                        var IDtxtHCPCS4Sup = Ext.getCmp('IDtxtHCPCS4Sup');
+                                                        var IDtxtHCPCS4MediCareFee = Ext.getCmp('IDtxtHCPCS4MediCareFee');
+                                                        CertType.setValue(responseOjbect.CertType);
+                                                        CertType.disable();
+                                                        CertDate.setValue(responseOjbect.InitialCertDate);
+                                                        CertDate.disable();
+                                                        HICN.setValue(responseOjbect.PatientHICN);
+                                                        HICN.disable();
+                                                        PatientName.setValue(responseOjbect.PatientName);
+                                                        PatientName.disable();
+                                                        PhysicianName.setValue(responseOjbect.physicianName);
+                                                        SupplierName.setValue(responseOjbect.supplierName);
+                                                        MedID.setValue(responseOjbect.MedicalID);
+                                                        SupplierNPI.setValue(responseOjbect.SupplierNPI);
+                                                        PhysicianNPI.setValue(responseOjbect.PhysicianNPI);
+                                                        FacilityName.setValue(responseOjbect.FacilityName);
+                                                        POS.setValue(responseOjbect.PlaceService);
+
+                                                        InputE1390ID.setValue(responseOjbect.HCPCS_E1390);
+                                                        InputE1392ID.setValue(responseOjbect.HCPCS_E1392);
+                                                        InputE0431ID.setValue(responseOjbect.HCPCS_E0431);
+                                                        InputK0738ID.setValue(responseOjbect.HCPCS_K0738);
+
+                                                        txtHCPCS1ID.setValue(responseOjbect.HCPCS_Other1Code);
+                                                        txtHCPCS2ID.setValue(responseOjbect.HCPCS_Other2Code);
+                                                        txtHCPCS3ID.setValue(responseOjbect.HCPCS_Other3Code);
+                                                        txtHCPCS4ID.setValue(responseOjbect.HCPCS_Other4Code);
+
+                                                        if(txtHCPCS1ID.value!= ""){
+                                                            IDtxtHCPCS1Sup.enable();
+                                                            IDtxtHCPCS1MediCareFee.enable();
+                                                        }
+                                                        if(txtHCPCS2ID.value!= ""){
+                                                            IDtxtHCPCS2Sup.enable();
+                                                            IDtxtHCPCS2MediCareFee.enable();
+                                                        }
+                                                        if(txtHCPCS3ID.value!= ""){
+                                                            IDtxtHCPCS3Sup.enable();
+                                                            IDtxtHCPCS3MediCareFee.enable();
+                                                        }
+                                                        if(txtHCPCS4ID.value!= ""){
+                                                            IDtxtHCPCS3Sup.enable();
+                                                            IDtxtHCPCS4MediCareFee.enable();
+                                                        }
+                                                        txtHCPCS1DesID.setValue(responseOjbect.HCPCS_Other1Desc);
+                                                        IDtxtHCPCS1Sup.setValue(responseOjbect.HCPCS_Other1SupChrg);
+                                                        IDtxtHCPCS1MediCareFee.setValue(responseOjbect.HCPCS_Other1MedFee);
+
+                                                        txtHCPCS2DesID.setValue(responseOjbect.HCPCS_Other2Desc);
+                                                        IDtxtHCPCS2Sup.setValue(responseOjbect.HCPCS_Other2SupChrg);
+                                                        IDtxtHCPCS2MediCareFee.setValue(responseOjbect.HCPCS_Other2MedFee);
+
+                                                        txtHCPCS3DesID.setValue(responseOjbect.HCPCS_Other3Desc);
+                                                        IDtxtHCPCS3Sup.setValue(responseOjbect.HCPCS_Other3SupChrg);
+                                                        IDtxtHCPCS3MediCareFee.setValue(responseOjbect.HCPCS_Other3MedFee);
+
+                                                        txtHCPCS4DesID.setValue(responseOjbect.HCPCS_Other4Desc);
+                                                        IDtxtHCPCS4Sup.setValue(responseOjbect.HCPCS_Other4SupChrg);
+                                                        IDtxtHCPCS4MediCareFee.setValue(responseOjbect.HCPCS_Other4MedFee);
+
+                                                        txtE1390Sup.setValue(responseOjbect.HCPCS_E1390SupChrg);
+                                                        txtE1392Sup.setValue(responseOjbect.HCPCS_E1392SupChrg);
+                                                        txtE0431Sup.setValue(responseOjbect.HCPCS_E0431SupChrg);
+                                                        txtK0738Sup.setValue(responseOjbect.HCPCS_K0738SupChrg);
+
+                                                        txtE1390MediCare.setValue(responseOjbect.HCPCS_E1390MedFee);
+                                                        txtE1392MediCare.setValue(responseOjbect.HCPCS_E1392MedFee);
+                                                        txtE0431MediCare.setValue(responseOjbect.HCPCS_E0431MedFee);
+                                                        txtK0738MediCare.setValue(responseOjbect.HCPCS_K0738MedFee);
+                                                        Ext.getCmp('ChkHICNPOPUPID').disable();
+                                                        Ext.getCmp('BtSectionA1NextProceedID').hide();
+                                                        Ext.getCmp('ContainerToProceedSectionA').enable();
+                                                    };
+
+                                                    // Failure
+                                                    var failureCallback = function(resp, ops) {
+
+
+                                                        // Show login failure error
+                                                        //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                                                    };
+
+                                                    // HIT webservice
+                                                    Ext.Ajax.request({url: "services/SectionA.php?action=EditRecordA&HdrID="+hdrid,
+                                                                      method: 'GET',
+                                                                      params: hdrid,
+                                                                      success: successCallback,
+                                                                      failure: failureCallback
+                                                                     });
+
+                                                }
+                                                else
+                                                {
+                                                    Ext.Msg.show({
+                                                        title: 'Duplicate Record',
+                                                        msg: '<code>This Record Already Exists</code>',
+                                                        icon: Ext.Msg['ERROR']
+                                                    });
+                                                }
+                                            };
+                                            var failureCallbackProceed = function(resp, ops) {
+                                                //console.log(resp.responseText);
+                                            };
+
+
+                                            Ext.Ajax.request({url: "services/SectionA.php?action=InsertRecordOnProceed&src="+domain+"&srcdomain="+srcdomain,
+                                                              method: 'POST',
+                                                              params: values,
+                                                              success: successCallbackProceed,
+                                                              failure: failureCallbackProceed
+                                                             });
+                                        }
+
+                                        // });
+
+                                    });
+                                }
+
+
+                            }
+
+
                         }
+                        else if(resp.responseText === 'false'){
 
-
-                    }
-
-
-                }
-                else if(resp.responseText === 'false'){
-
-                    if(values.ddlSectionACertype1=='I')
-                    {
-                        Ext.MessageBox.confirm('This Record Already Exists', 'Go Back to Selector Screen ?', function(btn){
-                            if(btn === 'yes'){
-                                sectionA.show();
-                                sectionA1Next.hide();
+                            if(values.ddlSectionACertype1=='I')
+                            {
+                                Ext.MessageBox.confirm('This Record Already Exists', 'Go Back to Selector Screen ?', function(btn){
+                                    if(btn === 'yes'){
+                                        sectionA.show();
+                                        sectionA1Next.hide();
+                                    }
+                                });
                             }
-                        });
-                    }
-                    if(values.ddlSectionACertype1=='V')
-                    {
-                        Ext.MessageBox.confirm('No Initial Certificate exists or Certificate In progress', 'Go Back to Selector Screen ?', function(btn){
-                            if(btn === 'yes'){
-                                sectionA.show();
-                                sectionA1Next.hide();
+                            if(values.ddlSectionACertype1=='V')
+                            {
+                                Ext.MessageBox.confirm('No Initial Certificate exists or Certificate In progress', 'Go Back to Selector Screen ?', function(btn){
+                                    if(btn === 'yes'){
+                                        sectionA.show();
+                                        sectionA1Next.hide();
+                                    }
+                                });
                             }
-                        });
-                    }
-                    if(values.ddlSectionACertype1=='C')
-                    {
-                        Ext.MessageBox.confirm('No Initial Certificate exists or Certificate In progress', 'Go Back to Selector Screen ?', function(btn){
-                            if(btn === 'yes'){
-                                sectionA.show();
-                                sectionA1Next.hide();
+                            if(values.ddlSectionACertype1=='C')
+                            {
+                                Ext.MessageBox.confirm('No Initial Certificate exists or Certificate In progress', 'Go Back to Selector Screen ?', function(btn){
+                                    if(btn === 'yes'){
+                                        sectionA.show();
+                                        sectionA1Next.hide();
+                                    }
+                                });
                             }
-                        });
-                    }
 
-                }
-                    else{
+                        }
+                            else{
+                                // Show login failure error
+                                //Ext.Msg.alert("Insert Failure", 'Data cannot be added');
+                            }
+
+
+
+
+
+
+                    };
+
+                    // Failure
+                    var failureCallback = function(resp, ops) {
+
                         // Show login failure error
-                        //Ext.Msg.alert("Insert Failure", 'Data cannot be added');
-                    }
+                        //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+                    };
 
 
-
-
-
-
-            };
-
-            // Failure
-            var failureCallback = function(resp, ops) {
-
-                // Show login failure error
-                //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
-
-            };
-
-
-            // TODO: Login using server-side authentication service
-            Ext.Ajax.request({url: "services/SectionA.php?action=CheckRecordLookUp",
-                              method: 'POST',
-                              params: values,
-                              success: successCallback,
-                              failure: failureCallback
-                             });
-        }
+                    // TODO: Login using server-side authentication service
+                    Ext.Ajax.request({url: "services/SectionA.php?action=CheckRecordLookUp",
+                                      method: 'POST',
+                                      params: values,
+                                      success: successCallback,
+                                      failure: failureCallback
+                                     });
+                }
     },
 
     onTxtSectionASupplierNPIBlur: function(component, e, eOpts) {
@@ -16747,6 +16789,21 @@ Ext.define('SignaTouch.view.MainView', {
         var PhysicianNPI = Ext.getCmp('txtSectionAPhysicianNPIID');
         var POS = Ext.getCmp('txtSectionAPOSID');
 
+        localStorage.removeItem("FacilityAddr1"); //remove
+
+        localStorage.removeItem("FacilityAddr2"); //remove
+
+        localStorage.removeItem("FacilityCity"); //remove
+
+        localStorage.removeItem("FacilityNPI"); //remove
+
+        localStorage.removeItem("FacilityName"); //remove
+
+        localStorage.removeItem("FacilityPhone"); //remove
+
+        localStorage.removeItem("FacilityST"); //remove
+
+        localStorage.removeItem("FacilityZip"); //remove
 
 
         var txtE1390Sup = Ext.getCmp('InputE1390ID');
@@ -16858,19 +16915,33 @@ Ext.define('SignaTouch.view.MainView', {
     onBtSectionA1NextSaveDiscardClick: function(button, e, eOpts) {
         //go back to section A selector screen
         //Ext.MessageBox.confirm ('Do you want to save changes?', 'Do you want to save changes?', function(btn){
-            //if(btn === 'yes'){
-                Ext.getCmp('SectionA1NextID').hide();
-            Ext.getCmp('SectionAID').show();
-            Ext.getCmp('SectionA1Form').getForm().reset();
-            var myStore = Ext.getStore('SectionA1GridBind');
-            myStore.clearFilter();
-            myStore.load();
-            Ext.getCmp('txtFilterID').reset();
-            Ext.getCmp('TxtstartDateID').setValue('');
-            Ext.getCmp('TxtendDateID').setValue('');
-            //}
+        //if(btn === 'yes'){
+        Ext.getCmp('SectionA1NextID').hide();
+        Ext.getCmp('SectionAID').show();
+        Ext.getCmp('SectionA1Form').getForm().reset();
+        var myStore = Ext.getStore('SectionA1GridBind');
+        myStore.clearFilter();
+        myStore.load();
+        Ext.getCmp('txtFilterID').reset();
+        Ext.getCmp('TxtstartDateID').setValue('');
+        Ext.getCmp('TxtendDateID').setValue('');
+        //}
 
+        localStorage.removeItem("FacilityAddr1"); //remove
 
+        localStorage.removeItem("FacilityAddr2"); //remove
+
+        localStorage.removeItem("FacilityCity"); //remove
+
+        localStorage.removeItem("FacilityNPI"); //remove
+
+        localStorage.removeItem("FacilityName"); //remove
+
+        localStorage.removeItem("FacilityPhone"); //remove
+
+        localStorage.removeItem("FacilityST"); //remove
+
+        localStorage.removeItem("FacilityZip"); //remove
 
         //});
 
@@ -16878,6 +16949,22 @@ Ext.define('SignaTouch.view.MainView', {
     },
 
     onBtSectionA1NextSaveDiscard2Click: function(button, e, eOpts) {
+        localStorage.removeItem("FacilityAddr1"); //remove
+
+        localStorage.removeItem("FacilityAddr2"); //remove
+
+        localStorage.removeItem("FacilityCity"); //remove
+
+        localStorage.removeItem("FacilityNPI"); //remove
+
+        localStorage.removeItem("FacilityName"); //remove
+
+        localStorage.removeItem("FacilityPhone"); //remove
+
+        localStorage.removeItem("FacilityST"); //remove
+
+        localStorage.removeItem("FacilityZip"); //remove
+
         //go back to section A selector screen
         Ext.MessageBox.confirm ('Do you want to save changes?', 'Do you want to save changes?', function(btn){
             if(btn === 'yes'){

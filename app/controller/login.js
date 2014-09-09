@@ -35,6 +35,22 @@ Ext.define('SignaTouch.controller.login', {
                 //localStorage.removeItem("RouteType"); // remove
                 localStorage.removeItem("physician_cos"); //remove
 
+                localStorage.removeItem("FacilityAddr1"); //remove
+
+                localStorage.removeItem("FacilityAddr2"); //remove
+
+                localStorage.removeItem("FacilityCity"); //remove
+
+                localStorage.removeItem("FacilityNPI"); //remove
+
+                localStorage.removeItem("FacilityName"); //remove
+
+                localStorage.removeItem("FacilityPhone"); //remove
+
+                localStorage.removeItem("FacilityST"); //remove
+
+                localStorage.removeItem("FacilityZip"); //remove
+
 
                 //Login Panel
                 Ext.getCmp('panelLoginID').show();

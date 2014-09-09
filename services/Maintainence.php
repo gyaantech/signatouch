@@ -284,13 +284,13 @@ class Maintainence
             $GetSet->setPhoneNo($_POST['txtPOPFacilityPhoneNo']); 
               $PhoneNo = trim($GetSet->getPhoneNo()); 
                
-            $SqlCheck = "Select * from cms484hdr where FacilityNPI= '$FacilityNPI'";
+            /*$SqlCheck = "Select * from cms484hdr where FacilityNPI= '$FacilityNPI'";
             $result = mysql_query($SqlCheck);
             $row_count = mysql_num_rows($result);
             if($row_count == 1){
                 return FALSE;
-            }
-            else{
+            }*/
+           // else{
                 $sql = "Update cms484hdr set FacilityNPI='$FacilityNPI', FacilityID='', FacilityName='$Fname', FacilityAddr1='$Address1', FacilityAddr2='$Address2', FacilityCity='$City', FacilityST='$State', FacilityZip='$Zip', FacilityPhone='$PhoneNo' where HdrID='$HdrID' ";
                 $result = mysql_query($sql);
                 if (!$result) 
@@ -300,7 +300,7 @@ class Maintainence
                 $return_arr = array('status'=>TRUE,'facility_npi'=>$FacilityNPI);
                // echo '<pre>';print_r(json_encode($return_arr));echo '</pre>';
                 return json_encode($return_arr);
-            }
+            //}
          }
  
 }
