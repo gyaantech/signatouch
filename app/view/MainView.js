@@ -17711,7 +17711,7 @@ Ext.define('SignaTouch.view.MainView', {
                     myStore1.load();
 
                     var responseOjbect = Ext.JSON.decode(resp.responseText);
-                   // console.log(responseOjbect);
+                    // console.log(responseOjbect);
 
                     //Common Panel
 
@@ -17741,14 +17741,14 @@ Ext.define('SignaTouch.view.MainView', {
 
 
                     userName.setText(localStorage.getItem('user_name'));
-        Ext.getCmp('HiddenID').setValue(responseOjbect.response.id);
+                    Ext.getCmp('HiddenID').setValue(responseOjbect.response.id);
 
 
 
                     var data = responseOjbect.menu;
                     //console.log(data);
                     Ext.each(data, function(op) {
-                          //console.log(op.FormNameID);
+                        //console.log(op.FormNameID);
 
                         Ext.getCmp(op.FormNameID).show();
 

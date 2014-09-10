@@ -7,7 +7,7 @@
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
-define('DB_DATABASE', 'dummy');
+define('DB_DATABASE', 'signatouch');
 	// Create connection
 class DB_Class 
 {

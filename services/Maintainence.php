@@ -394,33 +394,33 @@ class Maintainence
   
   /*Edit physician record*/
    public function editPhysicianRecord() {
-        $GetSet=new GetSet();
-        $GetSet->setPhysicianNPI($_POST['txtPhysicianNPI']);
-		$PhysicianNPI=trim($GetSet->getPhysicianNPI());
-		$GetSet->setFName($_POST['txtPhysicianFname']);
-		$FName = trim($GetSet->getFName());
-        $GetSet->setMName($_POST['txtPhysicianMname']);
-		$MName = trim($GetSet->getMName());
-		$GetSet->setLName($_POST['txtPhysicianLname']);
-		$LName = trim($GetSet->getLName());
-        $GetSet->setAddress1($_POST['txtPhysicianAddress1']);
-		$Address1 = trim($GetSet->getAddress1());
-        $GetSet->setAddress2($_POST['txtPhysicianAddress2']);
-		$Address2 = trim($GetSet->getAddress2());
-        $GetSet->setCity($_POST['txtPhysicianCity']);
-		$City = trim($GetSet->getCity());
-        $GetSet->setState($_POST['ddlPhysicianState']);
-		$State = trim($GetSet->getState());
-        $GetSet->setZip($_POST['txtPhysicianZip']);
-		$Zip = trim($GetSet->getZip());
-        $GetSet->setPhoneNo($_POST['txtPhysicianPhoneNo']);
-		$PhoneNo = trim($GetSet->getPhoneNo());
-		
+    $GetSet=new GetSet();
+    $GetSet->setPhysicianNPI($_POST['txtPhysicianNPI']);
+    $PhysicianNPI=trim($GetSet->getPhysicianNPI());
+    $GetSet->setFName($_POST['txtPhysicianFname']);
+    $FName = trim($GetSet->getFName());
+    $GetSet->setMName($_POST['txtPhysicianMname']);
+    $MName = trim($GetSet->getMName());
+    $GetSet->setLName($_POST['txtPhysicianLname']);
+    $LName = trim($GetSet->getLName());
+    $GetSet->setAddress1($_POST['txtPhysicianAddress1']);
+    $Address1 = trim($GetSet->getAddress1());
+    $GetSet->setAddress2($_POST['txtPhysicianAddress2']);
+    $Address2 = trim($GetSet->getAddress2());
+    $GetSet->setCity($_POST['txtPhysicianCity']);
+    $City = trim($GetSet->getCity());
+    $GetSet->setState($_POST['ddlPhysicianState']);
+    $State = trim($GetSet->getState());
+    $GetSet->setZip($_POST['txtPhysicianZip']);
+    $Zip = trim($GetSet->getZip());
+    $GetSet->setPhoneNo($_POST['txtPhysicianPhoneNo']);
+    $PhoneNo = trim($GetSet->getPhoneNo());
+
     $GetSet->setAltemailID($_POST['txtPhysicianEmail']);
     $AltEmailId = trim($GetSet->getAltemailID());
-    
+
     $GetSet->setLastUpdateID($_GET['src']);
-      $LastUpdateID = $GetSet->getLastUpdateID();
+    $LastUpdateID = $GetSet->getLastUpdateID();
 		
             $SqlCheck = "SELECT PhysicianNPI FROM physician WHERE PhysicianNPI = '$PhysicianNPI'";
             $result = mysql_query($SqlCheck);
@@ -441,26 +441,6 @@ class Maintainence
                 return FALSE;  
             }
    }
-     /*Fetch physician alias from NPI*/
-  public function GetPhysicianAlias($physician_NPI = '') {
-     if(isset($_GET['NPI'])){
-            $physician_NPI = trim($_GET['NPI']);
-        }
-            $SqlCheck = "SELECT PhysicianAlias FROM physician_alias WHERE PhysicianNPI = '$physician_NPI'";
-            $result = mysql_query($SqlCheck);
-            if($result){
-               $row_count = mysql_num_rows($result);
-                if($row_count >= 1){
-                  while ($row = mysql_fetch_assoc($result)) {
-                     $result_arr[] = array('id' => $row['PhysicianAlias'],'alias' => $row['PhysicianAlias']);
-                  }
-                    return $result_arr;
-                } 
-            }
-            else{
-                return FALSE;  
-            }
-  }
    
  
   /*----------------------Physician record end-------------------------------------------------------------- */
@@ -517,25 +497,25 @@ class Maintainence
   
     /*Insert supplier record in db*/
     public function insertsupplierRecord() {
-			$GetSet=new GetSet();
-			$GetSet->setNPI($_POST['txtSNPI']); 
-			$NPI = $GetSet->getNPI(); 
-		
-			$GetSet->setFName($_POST['txtSupplierName']);
-			$FName = trim($GetSet->getFName());
-			$GetSet->setAddress1($_POST['txtSAddress1']);
-			$Address1 = trim($GetSet->getAddress1());
-			$GetSet->setAddress2($_POST['txtSAddress2']);
-			$Address2 = trim($GetSet->getAddress2());
+      $GetSet=new GetSet();
+      $GetSet->setNPI($_POST['txtSNPI']); 
+      $NPI = $GetSet->getNPI(); 
+
+      $GetSet->setFName($_POST['txtSupplierName']);
+      $FName = trim($GetSet->getFName());
+      $GetSet->setAddress1($_POST['txtSAddress1']);
+      $Address1 = trim($GetSet->getAddress1());
+      $GetSet->setAddress2($_POST['txtSAddress2']);
+      $Address2 = trim($GetSet->getAddress2());
             $GetSet->setCity($_POST['txtSCity']);
-			$City = trim($GetSet->getCity());
+      $City = trim($GetSet->getCity());
             $GetSet->setState( $_POST['ddlSState']);
-			$State = trim($GetSet->getState ());
+      $State = trim($GetSet->getState ());
             $GetSet->setZip($_POST['txtSZip']);
-			$Zip = trim($GetSet->getZip());
+      $Zip = trim($GetSet->getZip());
             $GetSet->setPhoneNo($_POST['txtSPhoneNo']);
-			$PhoneNo = trim($GetSet->getPhoneNo());
-    $GetSet->setLastUpdateID($_GET['src']);
+      $PhoneNo = trim($GetSet->getPhoneNo());
+      $GetSet->setLastUpdateID($_GET['src']);
       $LastUpdateID = $GetSet->getLastUpdateID();
             $SqlCheck = "Select * from supplier where SupplierNPI= $NPI";
             $result = mysql_query($SqlCheck);
@@ -584,27 +564,27 @@ class Maintainence
   
  /*Edit Supplier record*/
    public function editSupplierRecord() {
-        	$GetSet=new GetSet();
-			$GetSet->setNPI($_POST['txtSNPI']); 
-			$NPI = $GetSet->getNPI(); 
-		
-			$GetSet->setFName($_POST['txtSupplierName']);
-			$FName = trim($GetSet->getFName());
-			$GetSet->setAddress1($_POST['txtSAddress1']);
-			$Address1 = trim($GetSet->getAddress1());
-			$GetSet->setAddress2($_POST['txtSAddress2']);
-			$Address2 = trim($GetSet->getAddress2());
-            $GetSet->setCity($_POST['txtSCity']);
-			$City = trim($GetSet->getCity());
-            $GetSet->setState( $_POST['ddlSState']);
-			$State = trim($GetSet->getState());
-            $GetSet->setZip($_POST['txtSZip']);
-			$Zip = trim($GetSet->getZip());
-            $GetSet->setPhoneNo($_POST['txtSPhoneNo']);
-			$PhoneNo = trim($GetSet->getPhoneNo());
+    $GetSet=new GetSet();
+    $GetSet->setNPI($_POST['txtSNPI']); 
+    $NPI = $GetSet->getNPI(); 
+
+    $GetSet->setFName($_POST['txtSupplierName']);
+    $FName = trim($GetSet->getFName());
+    $GetSet->setAddress1($_POST['txtSAddress1']);
+    $Address1 = trim($GetSet->getAddress1());
+    $GetSet->setAddress2($_POST['txtSAddress2']);
+    $Address2 = trim($GetSet->getAddress2());
+      $GetSet->setCity($_POST['txtSCity']);
+    $City = trim($GetSet->getCity());
+      $GetSet->setState( $_POST['ddlSState']);
+    $State = trim($GetSet->getState());
+      $GetSet->setZip($_POST['txtSZip']);
+    $Zip = trim($GetSet->getZip());
+      $GetSet->setPhoneNo($_POST['txtSPhoneNo']);
+    $PhoneNo = trim($GetSet->getPhoneNo());
     $GetSet->setLastUpdateID($_GET['src']);
-      $LastUpdateID = $GetSet->getLastUpdateID();
-			
+    $LastUpdateID = $GetSet->getLastUpdateID();
+
             $SqlCheck = "Select * from supplier where SupplierNPI= $NPI";
    $result = mysql_query($SqlCheck);
             if($result){
@@ -625,75 +605,48 @@ class Maintainence
             }
    }
    /*----------------------Supplier record end-------------------------------------------------------------- */
-   /*Fetch COS Data*/
-   public function FetchCOS() {
-     $SqlCheck = "SELECT COSID,COSName FROM cos";
-            $result = mysql_query($SqlCheck);
-            if($result){
-               $row_count = mysql_num_rows($result);
-                if($row_count >= 1){
-                   while ($row = mysql_fetch_assoc($result)) {
-                    $result_arr[] = array('COSID' => $row['COSID'],
-                    'COSName' => $row['COSName'],
-                    ); 
-                   }
-                    echo '<pre>';print_r($result_arr);echo '</pre>';
-                    return $result_arr;
-                } 
-            }
-  }
-   
+
       
 
 }// Class def ends 
   
- $possible_url = array( "get_physicianGridBind","insertsupplierRecord","insertPatientHICN","POPinsertPatientHICN","insertFacility","editPhysicianRecord","ShowPhysicianRecord","get_SupplierGridBind","ShowSupplierRecord","editSupplierRecord","get_PatientGridBind","ShowPatientRecord","editPatientRecord","FetchCOS","GetPhysicianAlias");
+ $possible_url = array( "get_physicianGridBind","insertsupplierRecord","insertPatientHICN","POPinsertPatientHICN","insertFacility","editPhysicianRecord","ShowPhysicianRecord","get_SupplierGridBind","ShowSupplierRecord","editSupplierRecord","get_PatientGridBind","ShowPatientRecord","editPatientRecord");
  $value = "An error has occurred";
  $cms = new Maintainence();
 if (isset ($_GET["action"]) && in_array($_GET["action"], $possible_url)) {
     switch ($_GET["action"]) {
-     
-      
-      	    case "GetPhysicianAlias" :
-            $value = $cms->GetPhysicianAlias();
-            break;
-	    case "get_physicianGridBind" :
+      case "get_physicianGridBind" :
             $value = $cms->get_physicianGridBind();
             break;
-          
-           case "get_PatientGridBind" :
+
+      case "get_PatientGridBind" :
             $value = $cms->get_PatientGridBind();
             break;
-          
-        
-		
-		case "get_SupplierGridBind" :
+
+      case "get_SupplierGridBind" :
             $value = $cms->get_SupplierGridBind();
             break;
-			
-			
-	
-        
-        case "insertsupplierRecord" :
+
+      case "insertsupplierRecord" :
             $value = $cms->insertsupplierRecord();
             break;
-    
-        case "insertPatientHICN" :
+
+      case "insertPatientHICN" :
              $value = $cms->insertPatientHICN();
              break;
-      
-           case "POPinsertPatientHICN" :
+
+      case "POPinsertPatientHICN" :
              $value = $cms->POPinsertPatientHICN();
              break;
-                  
-        case "insertFacility" :
+
+      case "insertFacility" :
             if (isset ($_GET["HdrID"])){
                 $value = $cms->insertFacility($_GET["HdrID"]);
             }
             else
                 $value = "Missing argument";
             break;
-            
+
       case "ShowPhysicianRecord":
          if (isset ($_GET['physician_NPI'])){
                 $value = $cms->ShowPhysicianRecord($_GET['physician_NPI']);
@@ -701,41 +654,37 @@ if (isset ($_GET["action"]) && in_array($_GET["action"], $possible_url)) {
             else
                 $value = "Missing argument";
             break;
-            
-       case "ShowPatientRecord":
+
+      case "ShowPatientRecord":
          if (isset ($_GET['HICN']) && isset($_GET['form'])){
                 $value = $cms->ShowPatientRecord($_GET['HICN'],$_GET['form']);
             }
             else
                 $value = "Missing argument";
             break;
-      case "FetchCOS":
-         
-                $value = $cms->FetchCOS();
-  
-            break;
-            
-             case "ShowSupplierRecord":
+
+
+      case "ShowSupplierRecord":
          if (isset ($_GET['SupplierNPI'])){
                 $value = $cms->ShowSupplierRecord($_GET['SupplierNPI']);
             }
             else
                 $value = "Missing argument";
             break;
-            
-            
+
+
       case "editPhysicianRecord":
                 $value = $cms->editPhysicianRecord();
             break;
-          
+
           case "editSupplierRecord":
                 $value = $cms->editSupplierRecord();
             break;
-			
-          case "editPatientRecord":
+
+      case "editPatientRecord":
                 $value = $cms->editPatientRecord();
             break;
-            
+
     }
 }
 //return JSON array
