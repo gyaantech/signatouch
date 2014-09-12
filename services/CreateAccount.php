@@ -26,23 +26,22 @@ class CreateUser {
     //$NewUserPassword = $GetSet->getpassword();
       if($_POST['isadmin'] == '1'){
         $cos_append = 'admin';
-		if(isset($NPI)){
-			$description='Admin,'.$NPI.'@npi.st';
-		}
-		else{
-			$description='Admin';
-		}
-		
+        if(isset($NPI) && $NPI != 'N/A'){
+          $description='Admin,'.$NPI.'@npi.st';
+        }
+        else{
+          $description='Admin';
+        }
       }
       if($_POST['isadmin'] == '0'){
         $cos_append = 'user';
-		
-		if(isset($NPI)){
-			$description='User,'.$NPI.'@npi.st';
-		}
-		else{
-			$description='User';
-		}
+
+        if(isset($NPI) && $NPI != 'N/A'){
+          $description='User,'.$NPI.'@npi.st';
+        }
+        else{
+          $description='User';
+        }
       }
 	
 	

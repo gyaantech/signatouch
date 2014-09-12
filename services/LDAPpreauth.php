@@ -396,15 +396,41 @@ class LDAP {
       return FALSE;
     }
   } // function def ends
+  
+  public function check_user_first_login() {
+    $email = '';
+    $user_data = $this->set_user_parameters();
+    $email = isset($user_data['username']) ? $user_data['username'] : '';
+    $SqlCheck = "SELECT ID FROM user_login WHERE email = '$email'";
+    
+    $result = mysql_query($SqlCheck);
+    $row_count = mysql_num_rows($result);
+    if($row_count == 1){
+      return FALSE;
+    }
+    else{
+         $Sql = "INSERT INTO user_login(email) VALUES ('$email')";
+         
+         $result = mysql_query($Sql);
+         if (!$result) 
+                {
+                die('Invalid query: ' . $Sql . "   " . mysql_error());
+            }
+            return TRUE;
+        }
+  }
 } // class def ends
 
- $possible_url = array("Messaging_Preauth_URL");
+ $possible_url = array("Messaging_Preauth_URL","check_user_first_login");
  $val = "An error has occurred";
  $cms = new LDAP();
   if (isset ($_GET["action"]) && in_array($_GET["action"], $possible_url)) {
       switch ($_GET["action"]) {
           case "Messaging_Preauth_URL" :
               $value = $cms->Messaging_Preauth_URL();
+              break;
+         case "check_user_first_login" :
+              $value = $cms->check_user_first_login();
               break;
       }
   }

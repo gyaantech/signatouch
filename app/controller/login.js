@@ -50,7 +50,8 @@ Ext.define('SignaTouch.controller.login', {
                 localStorage.removeItem("FacilityST"); //remove
 
                 localStorage.removeItem("FacilityZip"); //remove
-
+                // refresh page
+                window.location.reload();
 
                 //Login Panel
                 Ext.getCmp('panelLoginID').show();

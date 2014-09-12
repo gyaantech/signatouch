@@ -108,6 +108,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                 },
                                                 {
                                                     xtype: 'button',
+                                                    id: 'BtProfileID',
                                                     itemId: 'BtProfile',
                                                     margin: '0 4 0 4',
                                                     text: 'Profile',
@@ -3085,7 +3086,7 @@ Ext.define('SignaTouch.view.MainView', {
                                                             id: 'btnReset1',
                                                             margin: '0 0 0 0',
                                                             width: 92,
-                                                            text: 'Back',
+                                                            text: 'Reset',
                                                             listeners: {
                                                                 click: {
                                                                     fn: me.onBtnReset1Click,
@@ -13734,9 +13735,10 @@ Ext.define('SignaTouch.view.MainView', {
     },
 
     onBtnReset1Click: function(button, e, eOpts) {
-          Ext.getCmp('txtChangePasswordID').reset();
+        Ext.getCmp('txtChangePasswordID').reset();
         Ext.getCmp('txtRChangePasswordID').reset();
-        Ext.getCmp('txtChangePasswordEmail').setValue(localStorage.getItem('email'));
+        Ext.getCmp('txtOldPasswordID').reset();
+        //Ext.getCmp('txtChangePasswordEmail').setValue(localStorage.getItem('email'));
     },
 
     onBtnCreate3Click: function(button, e, eOpts) {
@@ -17703,56 +17705,100 @@ Ext.define('SignaTouch.view.MainView', {
             }
 
                 else {
-                    var myStore = Ext.getStore('SectionA1GridBind');
-                    var myStore1 = Ext.getStore('SectionBGridBind');
+                    var output = resp.responseText;
+                    // check for first login
+                    // Failure
+                    var successCallbackLogin = function(resp, ops) {
+                        if(resp.responseText === 'true'){
+                            Ext.getCmp('panelLoginID').hide();
+                            Ext.getCmp('loginForm1').hide();
+                            localStorage.removeItem("user_name"); //remove
+                            localStorage.setItem("user_name", Ext.JSON.decode(output).response.username);
 
-                    myStore.load();
+                            localStorage.removeItem("email"); //remove
+                            localStorage.setItem("email", Ext.JSON.decode(output).response.email);
 
-                    myStore1.load();
-
-                    var responseOjbect = Ext.JSON.decode(resp.responseText);
-                    // console.log(responseOjbect);
-
-                    //Common Panel
-
-                    Ext.getCmp('panelLoginID').hide();
-                    Ext.getCmp('loginForm1').hide();
-
-                    Ext.getCmp('Menu').show();
-                    Ext.getCmp('Footer').show();
-                    Ext.getCmp('Header').show();
-                    Ext.getCmp('ViewAll').hide();
-                    Ext.getCmp('Dashboard').hide();
-                    Ext.getCmp('Messaging').hide();
-
-                    localStorage.removeItem("user_name"); //remove
-                    localStorage.setItem("user_name", responseOjbect.response.username);
-
-                    localStorage.removeItem("preauthURL"); //remove
-                    localStorage.setItem("preauthURL", responseOjbect.response.preauthURL);
-
-                    localStorage.removeItem("domain"); //remove
-                    localStorage.setItem("domain", responseOjbect.response.domain);
-
-                    localStorage.removeItem("email"); //remove
-                    localStorage.setItem("email", responseOjbect.response.email);
+                            userName.setText(localStorage.getItem('user_name'));
+                            Ext.getCmp('txtChangePasswordEmail').setValue(localStorage.getItem('email').split('.st')[0]);
+                            Ext.getCmp('HiddenID').setValue(localStorage.getItem('email'));
 
 
+                            Ext.getCmp('ChangePasswordPanelID').show();
+                            Ext.getCmp('Footer').show();
+                            Ext.getCmp('BtProfileID').hide();
+                            Ext.getCmp('Header').show();
+                        }
+                        else{
+
+                            var myStore = Ext.getStore('SectionA1GridBind');
+                            var myStore1 = Ext.getStore('SectionBGridBind');
+
+                            myStore.load();
+
+                            myStore1.load();
+
+                            var responseOjbect = Ext.JSON.decode(output);
+                            // console.log(responseOjbect);
+
+                            //Common Panel
+
+                            Ext.getCmp('panelLoginID').hide();
+                            Ext.getCmp('loginForm1').hide();
+
+                            Ext.getCmp('Menu').show();
+                            Ext.getCmp('Footer').show();
+                            Ext.getCmp('BtProfileID').show();
+                            Ext.getCmp('Header').show();
+                            Ext.getCmp('ViewAll').hide();
+                            Ext.getCmp('Dashboard').hide();
+                            Ext.getCmp('Messaging').hide();
+
+                            localStorage.removeItem("user_name"); //remove
+                            localStorage.setItem("user_name", responseOjbect.response.username);
+
+                            localStorage.removeItem("preauthURL"); //remove
+                            localStorage.setItem("preauthURL", responseOjbect.response.preauthURL);
+
+                            localStorage.removeItem("domain"); //remove
+                            localStorage.setItem("domain", responseOjbect.response.domain);
+
+                            localStorage.removeItem("email"); //remove
+                            localStorage.setItem("email", responseOjbect.response.email);
 
 
-                    userName.setText(localStorage.getItem('user_name'));
-                    Ext.getCmp('HiddenID').setValue(responseOjbect.response.id);
 
 
 
-                    var data = responseOjbect.menu;
-                    //console.log(data);
-                    Ext.each(data, function(op) {
-                        //console.log(op.FormNameID);
+                            userName.setText(localStorage.getItem('user_name'));
 
-                        Ext.getCmp(op.FormNameID).show();
 
-                    });
+
+
+                            var data = responseOjbect.menu;
+                            //console.log(data);
+                            Ext.each(data, function(op) {
+                                //console.log(op.FormNameID);
+
+                                Ext.getCmp(op.FormNameID).show();
+
+                            });
+                        }
+                    };
+                    var failureCallbackLogin = function(resp, ops) {
+
+
+                        console.log('api not called');
+
+                    };
+
+                    // TODO: Login using server-side authentication service
+                    Ext.Ajax.request({url: "services/LDAPpreauth.php?action=check_user_first_login",
+                                      method: 'POST',
+                                      params: values,
+                                      success: successCallbackLogin,
+                                      failure: failureCallbackLogin
+                                     });
+
                 }
 
 
