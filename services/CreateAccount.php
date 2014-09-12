@@ -146,6 +146,7 @@ class CreateUser {
                                                               <a n="l">'.$param['city'].'</a>
                                                                 <a n="postalCode">'.$param['zip'].'</a>
                                                                   <a n="zimbraNotes">'.$param['AltMailID'].'</a>
+                                                                    <a n="zimbraPasswordMustChange">TRUE</a>
 																  <a n="description">'.$param['description'].'</a>
                                                                   
                                           </CreateAccountRequest>

@@ -546,6 +546,7 @@ public function check_for_existaince($domain , $physician_npi_user) {
 										<a n="mobile">'.$phone.'</a>
                                         <a n="description">Admin,'.$param['PhysicianNPI'].'@npi.st</a>
                                           <a n="zimbraNotes">'.$param['NewAltUserName'].'</a>
+                                            <a n="zimbraPasswordMustChange">TRUE</a>
                                     </CreateAccountRequest>
                                 </soap:Body>
                         </soap:Envelope>';
@@ -600,7 +601,7 @@ public function check_for_existaince($domain , $physician_npi_user) {
 										<a n="displayName">'.$displayName.'</a>
 										<a n="mobile">'.$phone.'</a>
                                         <a n="description">Admin,'.$param['physician_npi'].'@npi.st</a>
-                                          
+                                          <a n="zimbraPasswordMustChange">TRUE</a>
                                     </CreateAccountRequest>
                                 </soap:Body>
                         </soap:Envelope>';
@@ -844,6 +845,7 @@ public function check_for_existaince($domain , $physician_npi_user) {
                                                               <a n="l">'.$param['city'].'</a>
                                                                 <a n="postalCode">'.$param['zip'].'</a> 
                                                                    <a n="zimbraNotes">'.$param['NewAltUserName'].'</a>
+                                                                     <a n="zimbraPasswordMustChange">TRUE</a>
                                           </CreateAccountRequest>
                                   </soap:Body>
                           </soap:Envelope>';
