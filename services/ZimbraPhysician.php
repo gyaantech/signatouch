@@ -400,7 +400,7 @@ public function check_for_existaince($domain , $physician_npi_user) {
         curl_setopt($CurlHandle, CURLOPT_POSTFIELDS, $SOAPMessage);
         $ZimbraSOAPResponse = curl_exec($CurlHandle);
         curl_close($CurlHandle);
-        //print("Raw Zimbra SOAP Response:<BR>" . $ZimbraSOAPResponse . "<BR><BR>\n");
+       //print("Raw Zimbra SOAP Response:<BR>" . $ZimbraSOAPResponse . "<BR><BR>\n");
         //exit();
         $a='<Code>'; 
         $exists = strstr($ZimbraSOAPResponse, $a);

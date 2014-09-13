@@ -3068,14 +3068,32 @@ Ext.define('SignaTouch.view.MainView', {
                                                             xtype: 'button',
                                                             formBind: true,
                                                             cls: 'SaveBt',
-                                                            id: 'btnCreate1',
+                                                            hidden: true,
+                                                            id: 'btnPCreate',
                                                             margin: '0 10 0 0',
                                                             padding: '',
                                                             width: 92,
                                                             text: 'Save',
                                                             listeners: {
                                                                 click: {
-                                                                    fn: me.onBtnCreate1Click,
+                                                                    fn: me.onBtnPCreateClick,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            xtype: 'button',
+                                                            formBind: true,
+                                                            cls: 'SaveBt',
+                                                            hidden: true,
+                                                            id: 'btnCPCreate',
+                                                            margin: '0 10 0 0',
+                                                            padding: '',
+                                                            width: 92,
+                                                            text: 'Save',
+                                                            listeners: {
+                                                                click: {
+                                                                    fn: me.onBtnCPCreateClick,
                                                                     scope: me
                                                                 }
                                                             }
@@ -11880,7 +11898,8 @@ Ext.define('SignaTouch.view.MainView', {
         Ext.getCmp('txtChangePasswordID').reset();
         Ext.getCmp('txtRChangePasswordID').reset();
         Ext.getCmp('txtOldPasswordID').reset();
-
+        Ext.getCmp('btnCPCreate').hide();
+        Ext.getCmp('btnPCreate').show();
         Ext.getCmp('txtChangePasswordEmail').setValue(localStorage.getItem('email').split('.st')[0]);
         Ext.getCmp('HiddenID').setValue(localStorage.getItem('email'));
 
@@ -13676,7 +13695,7 @@ Ext.define('SignaTouch.view.MainView', {
 
     },
 
-    onBtnCreate1Click: function(button, e, eOpts) {
+    onBtnPCreateClick: function(button, e, eOpts) {
         var form =  Ext.getCmp('ChangeForm');  // Login form
         //var userName =  Ext.getCmp('LBLUsername');
         //var header = button.up('headerPanel');
@@ -13711,6 +13730,121 @@ Ext.define('SignaTouch.view.MainView', {
 
             // Show login failure error
             //Ext.Msg.alert("Login Failure", 'Incorrect Username or Password');
+
+        };
+        //adding loader
+        Ext.Ajax.on('beforerequest', function(){
+
+            var pnl=Ext.getCmp('ChangePasswordPanelID');
+            pnl.setLoading(true, true);
+        });
+
+
+        Ext.Ajax.on('requestcomplete', function(){
+
+            Ext.getCmp('ChangePasswordPanelID').setLoading(false,false);
+        });
+
+        // TODO: Login using server-side authentication service
+        Ext.Ajax.request({url: "services/CreateAccount.php?action=ZimbraUpdatePassword",
+                          method: 'POST',
+                          params: values,
+                          success: successCallback,
+                          failure: failureCallback
+                         });
+    },
+
+    onBtnCPCreateClick: function(button, e, eOpts) {
+        var form =  Ext.getCmp('ChangeForm');  // Login form
+        values = form.getValues();    // Form values
+        console.log(values);
+        // Success
+        var successCallback = function(resp, ops) {
+
+            if(resp.responseText === 'true'){
+                Ext.Msg.alert("Password is changed", 'Password is changed successfully');
+                Ext.getCmp('txtChangePasswordID').reset();
+                Ext.getCmp('txtRChangePasswordID').reset();
+                Ext.getCmp('txtOldPasswordID').reset();
+                Ext.getCmp('txtChangePasswordEmail').setValue(localStorage.getItem('email'));
+
+                // show record selector table to user after changing passsword
+                // success
+                var successCallbackLogin = function(resp, ops) {
+                    var userName =  Ext.getCmp('LBLUsername');
+                    var myStore = Ext.getStore('SectionA1GridBind');
+                    var myStore1 = Ext.getStore('SectionBGridBind');
+
+                    myStore.load();
+
+                    myStore1.load();
+
+                    var responseOjbect = Ext.JSON.decode(resp.responseText);
+                    // console.log(responseOjbect);
+
+                    //Common Panel
+
+                    Ext.getCmp('ChangePasswordPanelID').hide();
+                    Ext.getCmp('ChangeForm').hide();
+
+                    Ext.getCmp('Menu').show();
+                    Ext.getCmp('Footer').show();
+                    Ext.getCmp('BtProfileID').show();
+                    Ext.getCmp('Header').show();
+                    Ext.getCmp('ViewAll').hide();
+                    Ext.getCmp('Dashboard').hide();
+                    Ext.getCmp('Messaging').hide();
+                    Ext.getCmp('UpHeader1ID').show();
+
+                    localStorage.removeItem("user_name"); //remove
+                    localStorage.setItem("user_name", responseOjbect.response.username);
+
+                    localStorage.removeItem("preauthURL"); //remove
+                    localStorage.setItem("preauthURL", responseOjbect.response.preauthURL);
+
+                    localStorage.removeItem("domain"); //remove
+                    localStorage.setItem("domain", responseOjbect.response.domain);
+
+                    localStorage.removeItem("email"); //remove
+                    localStorage.setItem("email", responseOjbect.response.email);
+
+                    userName.setText(localStorage.getItem('user_name'));
+
+                    var data = responseOjbect.menu;
+                    //console.log(data);
+                    Ext.each(data, function(op) {
+
+                        Ext.getCmp(op.FormNameID).show();
+
+                    });
+                };
+                // Failure
+                var failureCallbackLogin = function(resp, ops) {
+                };
+
+
+                // TODO: Login using server-side authentication service
+                Ext.Ajax.request({url: "services/LDAPpreauthAfterPasswordChnage.php?action=Messaging_Preauth_URL",
+                                  method: 'POST',
+                                  params: values,
+                                  success: successCallbackLogin,
+                                  failure: failureCallbackLogin
+                                 });
+
+            }
+            else if(resp.responseText === '"duplicate"'){
+                Ext.Msg.alert("Authentication failed", 'Authentication failed');
+            }
+
+                else {
+                    Ext.Msg.alert("Password cannot be changed", 'Password cannot be changed');
+                }
+
+        };
+
+        // Failure
+        var failureCallback = function(resp, ops) {
+            console.log('api not called');
 
         };
         //adding loader
@@ -17717,6 +17851,8 @@ Ext.define('SignaTouch.view.MainView', {
 
 
                     Ext.getCmp('ChangePasswordPanelID').show();
+                    Ext.getCmp('btnCPCreate').show();
+                    Ext.getCmp('btnPCreate').hide();
                     Ext.getCmp('Footer').show();
                     Ext.getCmp('UpHeader1ID').hide();
                     Ext.getCmp('BtProfileID').hide();
@@ -17765,7 +17901,6 @@ Ext.define('SignaTouch.view.MainView', {
                         var data = responseOjbect.menu;
                         //console.log(data);
                         Ext.each(data, function(op) {
-                            //console.log(op.FormNameID);
 
                             Ext.getCmp(op.FormNameID).show();
 
