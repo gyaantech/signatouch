@@ -13,13 +13,15 @@ class Zimbra {
   public $AdminUserName  = "zimbra";
   public $AdminPassword = "As8wriWew";
   public $npi_domain = '@npi.st';
+  public $admin_port = '7071';
+  public $user_port = '8080';
       
     //Zimbra Connect
      public function ZimbraConnect()
   {
           $CurlHandle = curl_init();
-          curl_setopt($CurlHandle, CURLOPT_URL,           "$this->ServerAddress:7071/service/admin/soap");
-          curl_setopt($CurlHandle, CURLOPT_POST,           TRUE);
+          curl_setopt($CurlHandle, CURLOPT_URL,"$this->ServerAddress:".$this->admin_port."/service/admin/soap");
+          curl_setopt($CurlHandle, CURLOPT_POST,TRUE);
           curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
           curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
           curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
@@ -75,8 +77,8 @@ class Zimbra {
   {
         //print_r($_POST);exit();
          $CurlHandle = curl_init();
-          curl_setopt($CurlHandle, CURLOPT_URL,           "$this->ServerAddress:7071/service/admin/soap");
-          curl_setopt($CurlHandle, CURLOPT_POST,           TRUE);
+          curl_setopt($CurlHandle, CURLOPT_URL,"$this->ServerAddress:".$this->admin_port."/service/admin/soap");
+          curl_setopt($CurlHandle, CURLOPT_POST,TRUE);
           curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
           curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
           curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
@@ -129,7 +131,7 @@ class Zimbra {
   {
         //print_r($_POST);exit();
          $CurlHandle = curl_init();
-          curl_setopt($CurlHandle, CURLOPT_URL,           "$this->ServerAddress:7071/service/admin/soap");
+          curl_setopt($CurlHandle, CURLOPT_URL,           "$this->ServerAddress:".$this->admin_port."/service/admin/soap");
           curl_setopt($CurlHandle, CURLOPT_POST,           TRUE);
           curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
           curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
@@ -185,7 +187,7 @@ class Zimbra {
   {
         $cos_name = '';
          $CurlHandle = curl_init();
-          curl_setopt($CurlHandle, CURLOPT_URL,"$this->ServerAddress:7071/service/admin/soap");
+          curl_setopt($CurlHandle, CURLOPT_URL,"$this->ServerAddress:".$this->admin_port."/service/admin/soap");
           curl_setopt($CurlHandle, CURLOPT_POST,TRUE);
           curl_setopt($CurlHandle, CURLOPT_RETURNTRANSFER, TRUE);
           curl_setopt($CurlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);

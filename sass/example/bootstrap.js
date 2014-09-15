@@ -864,6 +864,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "SignaTouch.model.Alias": [],
   "SignaTouch.model.COSType": [],
   "SignaTouch.model.CertType": [],
+  "SignaTouch.model.DomainUserRecord": [],
   "SignaTouch.model.Gender": [],
   "SignaTouch.model.PatientRecord": [],
   "SignaTouch.model.PhysicianOffice": [],
@@ -876,8 +877,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "SignaTouch.model.SectionBQYesNo": [],
   "SignaTouch.model.SupplierRecord": [],
   "SignaTouch.model.state": [],
-  "SignaTouch.store.COS": [],
   "SignaTouch.store.CertType": [],
+  "SignaTouch.store.DomainUserRecord": [],
   "SignaTouch.store.MyArrayStore": [],
   "SignaTouch.store.PatientGridBind": [],
   "SignaTouch.store.PhysicianAlias": [],
@@ -897,6 +898,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "SignaTouch.view.PhysicianOffice": [],
   "SignaTouch.view.PopupHICN": [],
   "SignaTouch.view.PopupNewFacility": [],
+  "SignaTouch.view.UserAlias": [],
   "jb.Application": [],
   "jb.controller.Main": [],
   "jb.view.Main": [],
@@ -1907,6 +1909,7 @@ Ext.ClassManager.addNameAliasMappings({
   "SignaTouch.model.Alias": [],
   "SignaTouch.model.COSType": [],
   "SignaTouch.model.CertType": [],
+  "SignaTouch.model.DomainUserRecord": [],
   "SignaTouch.model.Gender": [],
   "SignaTouch.model.PatientRecord": [],
   "SignaTouch.model.PhysicianOffice": [],
@@ -1919,8 +1922,8 @@ Ext.ClassManager.addNameAliasMappings({
   "SignaTouch.model.SectionBQYesNo": [],
   "SignaTouch.model.SupplierRecord": [],
   "SignaTouch.model.state": [],
-  "SignaTouch.store.COS": [],
   "SignaTouch.store.CertType": [],
+  "SignaTouch.store.DomainUserRecord": [],
   "SignaTouch.store.MyArrayStore": [],
   "SignaTouch.store.PatientGridBind": [],
   "SignaTouch.store.PhysicianAlias": [],
@@ -1947,6 +1950,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "SignaTouch.view.PopupNewFacility": [
     "widget.NewFacility"
+  ],
+  "SignaTouch.view.UserAlias": [
+    "widget.Alias"
   ],
   "jb.Application": [],
   "jb.controller.Main": [],

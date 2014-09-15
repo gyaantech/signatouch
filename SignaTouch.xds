@@ -15,7 +15,7 @@
             }
         },
         "urlPrefix": "http://localhost/SignaTouch",
-        "exportPath": "C:/xampp/htdocs/publish(19-5-2014)/",
+        "exportPath": "C:/xampp/htdocs",
         "spacesToIndent": 4,
         "sdkPath": "",
         "lineEnding": "CRLF",
@@ -33,7 +33,9 @@
         "displayfield-ExtBox1-1437-inputEl": "Not Installed",
         "displayfield-ExtBox1-1487-inputEl": "Not Installed",
         "displayfield-ExtBox1-1537-inputEl": "Not Installed",
-        "displayfield-ExtBox1-1587-inputEl": "Not Installed"
+        "displayfield-ExtBox1-1587-inputEl": "Not Installed",
+        "displayfield-ExtBox1-1278-inputEl": "Not Installed",
+        "displayfield-ExtBox1-1334-inputEl": "Not Installed"
     },
     "xdsVersion": "3.0.4",
     "xdsBuild": 1386,

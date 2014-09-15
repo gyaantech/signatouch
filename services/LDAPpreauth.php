@@ -13,10 +13,10 @@ class LDAP {
     {
         $db = new DB_Class();
         $connect = new Zimbra();
-        $this->userURL = $connect->ZimbraAddress.':8080/service/soap';
-        $this->WEB_MAIL_PREAUTH_URL = $connect->ZimbraAddress.':8080/service/preauth'; 
+        $this->userURL = $connect->ZimbraAddress.':'.$connect->user_port.'/service/soap';
+        $this->WEB_MAIL_PREAUTH_URL = $connect->ZimbraAddress.':'.$connect->user_port.'/service/preauth'; 
         $this->zmbpasswd = $connect->AdminPassword;
-        $this->zmbADMURL = $connect->ServerAddress.':7071/service/admin/soap';
+        $this->zmbADMURL = $connect->ServerAddress.':'.$connect->admin_port.'/service/admin/soap';
        
     }
  
